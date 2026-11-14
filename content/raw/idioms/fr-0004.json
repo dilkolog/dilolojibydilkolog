@@ -1,0 +1,924 @@
+[
+  {
+    "w": "jeter l'argent par les fenêtres",
+    "t": "parayı gereksiz yere savurmak",
+    "lit": "parayı pencerelerden dışarı atmak",
+    "s": "Acheter cela sans l'utiliser, c'est jeter l'argent par les fenêtres.",
+    "form": "jeter l'argent par les fenêtres",
+    "tr": "Bunu kullanmadan satın almak parayı savurmaktır.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/jeter_l%E2%80%99argent_par_les_fen%C3%AAtres",
+      "https://www.expressio.fr/expressions/jeter-l-argent-par-les-fenetres"
+    ],
+    "editorialId": "fr-idiom-000157",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_l%E2%80%99argent_par_les_fen%C3%AAtres",
+        "verification": "dictionary_entry_opened",
+        "locator": "jeter l'argent par les fenêtres : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/jeter-l-argent-par-les-fenetres",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_l%E2%80%99argent_par_les_fen%C3%AAtres",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jeter l'argent par les fenêtres",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=jeter_l’argent_par_les_fenêtres&oldid=39972484",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "rouler sur l'or",
+    "t": "çok zengin olmak",
+    "lit": "altının üzerinde yuvarlanmak",
+    "s": "Cette famille roule sur l'or depuis des générations.",
+    "form": "roule sur l'or",
+    "tr": "Bu aile nesillerdir çok zengin.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/rouler_sur_l'or",
+      "https://www.expressio.fr/expressions/rouler-sur-l-or"
+    ],
+    "editorialId": "fr-idiom-000158",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/rouler_sur_l'or",
+        "verification": "dictionary_entry_opened",
+        "locator": "rouler sur l'or : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/rouler-sur-l-or",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rouler_sur_l%E2%80%99or",
+        "citation": "— (Francis Halin, Ça joue cochon dans l’industrie du porc, Le journal de Montréal, 15 novembre 2020)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rouler_sur_l'or",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rouler sur l'or",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rouler_sur_l’or&oldid=38607766",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "être plein aux as",
+    "t": "çok varlıklı olmak",
+    "lit": "aslarla dolu olmak",
+    "s": "Il faut être plein aux as pour acheter une villa pareille.",
+    "form": "être plein aux as",
+    "tr": "Böyle bir villa almak için çok zengin olmak gerekir.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/plein_aux_as",
+      "https://www.expressio.fr/expressions/plein-aux-as"
+    ],
+    "editorialId": "fr-idiom-000159",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/plein_aux_as",
+        "verification": "dictionary_entry_opened",
+        "locator": "être plein aux as : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/plein-aux-as",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/plein_aux_as",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 139; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être plein aux as",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=plein_aux_as&oldid=37008167",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "être dans le rouge",
+    "t": "hesabı eksi bakiyede olmak",
+    "lit": "kırmızının içinde olmak",
+    "s": "Après le prélèvement du loyer, mon compte est dans le rouge.",
+    "form": "est dans le rouge",
+    "tr": "Kira kesilince hesabım eksi bakiyeye düştü.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_rouge",
+      "https://www.expressio.fr/expressions/etre-dans-le-rouge"
+    ],
+    "editorialId": "fr-idiom-000161",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_rouge",
+        "verification": "dictionary_entry_opened",
+        "locator": "être dans le rouge : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/etre-dans-le-rouge",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_rouge",
+        "citation": "— (Nathalie Colin-Osterlé, Députée européenne, Centriste, Conseil économique, social et environnemental, «Nous avons un important travail à faire en matière d’éducation, de sensibilisation de notre jeunesse. », Droits des femmes : Quels enjeux pour les élections européennes 2024 ? page 36, 10 octobre 2",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_rouge",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2000.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être dans le rouge",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=être_dans_le_rouge&oldid=39801900",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "être à sec",
+    "t": "elinde para kalmamış olmak",
+    "lit": "kuruda olmak",
+    "s": "Je ne peux rien avancer, je suis à sec.",
+    "form": "suis à sec",
+    "tr": "Hiç para veremem; elimde para kalmadı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%A0_sec",
+      "https://www.expressio.fr/expressions/etre-a-sec"
+    ],
+    "editorialId": "fr-idiom-000162",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_sec",
+        "verification": "dictionary_entry_opened",
+        "locator": "être à sec : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/etre-a-sec",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_sec",
+        "citation": "— (Big Browser, L’Indonésie et la Thaïlande ne veulent plus des « begpackers », Le Monde. Mis en ligne le 10 juillet 2019)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_sec",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 141; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être à sec",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=à_sec&oldid=39799394",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "tirer le diable par la queue",
+    "t": "geçim sıkıntısı içinde yaşamak",
+    "lit": "şeytanı kuyruğundan çekmek",
+    "s": "Avec ce petit revenu, ils tirent le diable par la queue.",
+    "form": "tirent le diable par la queue",
+    "tr": "Bu küçük gelirle geçim sıkıntısı içinde yaşıyorlar.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/tirer_le_diable_par_la_queue",
+      "https://www.expressio.fr/expressions/tirer-le-diable-par-la-queue"
+    ],
+    "editorialId": "fr-idiom-000164",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_le_diable_par_la_queue",
+        "verification": "dictionary_entry_opened",
+        "locator": "tirer le diable par la queue : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/tirer-le-diable-par-la-queue",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_le_diable_par_la_queue",
+        "citation": "— (Yan Lindingre, « L'Édito : Sea, Sex and Sun », dans Fluide glacial, n^{o} (numéro) 446 août 2013)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_le_diable_par_la_queue",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 141; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer le diable par la queue",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tirer_le_diable_par_la_queue&oldid=39811615",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "joindre les deux bouts",
+    "t": "geliriyle temel giderlerini karşılayabilmek",
+    "lit": "iki ucu birleştirmek",
+    "s": "Avec deux petits salaires, ils parviennent à joindre les deux bouts.",
+    "form": "joindre les deux bouts",
+    "tr": "İki küçük maaşla temel giderlerini karşılayabiliyorlar.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/joindre_les_deux_bouts",
+      "https://www.expressio.fr/expressions/joindre-les-deux-bouts"
+    ],
+    "editorialId": "fr-idiom-000165",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/joindre_les_deux_bouts",
+        "verification": "dictionary_entry_opened",
+        "locator": "joindre les deux bouts : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/joindre-les-deux-bouts",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/joindre_les_deux_bouts",
+        "citation": "— (Henri Jeanson, Soixante-dix ans d'adolescence\", Stock, Le Livre de Poche, 1971, page 139)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/international/article/2026/11/11/espagne-une-greve-generale-sur-fond-de-crise-du-logement-et-de-colere-sur-le-pouvoir-d-achat_6809018_3210.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de joindre les deux bouts",
+        "evidenceKind": "published_usage",
+        "expression": "joindre les deux bouts",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "se serrer la ceinture",
+    "t": "masrafları kısmak, kemer sıkmak",
+    "lit": "kemerini sıkmak",
+    "s": "Pendant quelques mois, nous devrons nous serrer la ceinture.",
+    "form": "nous serrer la ceinture",
+    "tr": "Birkaç ay kemer sıkmamız gerekecek.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/se_serrer_la_ceinture",
+      "https://www.expressio.fr/expressions/se-serrer-la-ceinture"
+    ],
+    "editorialId": "fr-idiom-000166",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_serrer_la_ceinture",
+        "verification": "dictionary_entry_opened",
+        "locator": "se serrer la ceinture : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/se-serrer-la-ceinture",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_serrer_la_ceinture",
+        "citation": "— (Thierry Desjardins, 【14†La ficelle est un peu grosse !†www.thierry-desjardins.fr】, 13.10.2010, <www.thierry-desjardins.fr>)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_serrer_la_ceinture",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se serrer la ceinture",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_serrer_la_ceinture&oldid=39755026",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir les poches percées",
+    "t": "eline geçen parayı tutamayıp harcamak",
+    "lit": "cepleri delinmiş olmak",
+    "s": "Dès qu'il est payé, il dépense : il a les poches percées.",
+    "form": "a les poches percées",
+    "tr": "Maaşı gelir gelmez harcıyor; eline geçen parayı tutamıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "money",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais-anglais/poche/61202",
+      "https://context.reverso.net/traduction/francais-turc/poches"
+    ],
+    "editorialId": "fr-idiom-000174",
+    "sourceChecks": [
+      {
+        "url": "https://www.dictionnaire-academie.fr/article/A9P3031",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir les poches percées : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000174",
+        "url": "https://www.larousse.fr/dictionnaires/francais-anglais/poche/61202",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000174",
+        "url": "https://context.reverso.net/traduction/francais-turc/poches",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.ouest-france.fr/medias/ouest-france/courrier-des-lecteurs/archives/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir les poches percées",
+        "evidenceKind": "published_usage",
+        "expression": "avoir les poches percées",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire des économies de bouts de chandelle",
+    "t": "önemsiz tutarlar için anlamsız tasarruf yapmak",
+    "lit": "mum ucu tasarrufları yapmak",
+    "s": "Supprimer les crayons, c'est faire des économies de bouts de chandelle.",
+    "form": "faire des économies de bouts de chandelle",
+    "tr": "Kurşun kalemleri kaldırmak önemsiz tutarlar için anlamsız tasarruf yapmaktır.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://www.expressio.fr/expressions/des-economies-de-bouts-de-chandelle/page-12",
+      "https://fr.wiktionary.org/wiki/chandelle"
+    ],
+    "editorialId": "fr-idiom-000176",
+    "sourceChecks": [
+      {
+        "url": "https://www.dictionnaire-academie.fr/article/A9B1888",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire des économies de bouts de chandelle : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/des-economies-de-bouts-de-chandelle/page-12",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/chandelle",
+        "citation": "— (Jean-Claude Estampe, Le Peintre écarlate : roman noir, Éditions Publibook, 2007, page 150)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/archives/article/2004/09/21/la-preparation-du-budget-aura-fait-l-objet-d-une-intense-bataille-au-sein-du-gouvernement_379904_1819218.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire des économies de bouts de chandelle",
+        "evidenceKind": "published_usage",
+        "expression": "faire des économies de bouts de chandelle",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "payer rubis sur l'ongle",
+    "t": "borcunu eksiksiz ve hemen ödemek",
+    "lit": "tırnağın üstünde yakut ödemek",
+    "s": "Cette cliente tient à payer rubis sur l'ongle.",
+    "form": "payer rubis sur l'ongle",
+    "tr": "Bu müşteri borcunu hemen ve eksiksiz ödemekte ısrar ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/rubis_sur_l%E2%80%99ongle",
+      "https://www.expressio.fr/expressions/payer-rubis-sur-l-ongle"
+    ],
+    "editorialId": "fr-idiom-000177",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/rubis_sur_l%E2%80%99ongle",
+        "verification": "dictionary_entry_opened",
+        "locator": "payer rubis sur l'ongle : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/payer-rubis-sur-l-ongle",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rubis_sur_l%E2%80%99ongle",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 138; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "payer rubis sur l'ongle",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rubis_sur_l’ongle&oldid=38487807",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "payer les pots cassés",
+    "t": "bir işin kötü sonuçlarının bedelini üstlenmek",
+    "lit": "kırılmış kapların parasını ödemek",
+    "s": "Le projet échoue et les salariés paient les pots cassés.",
+    "form": "paient les pots cassés",
+    "tr": "Proje çöküyor ve kötü sonuçların bedelini çalışanlar ödüyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/payer_les_pots_cass%C3%A9s",
+      "https://www.expressio.fr/expressions/payer-les-pots-casses"
+    ],
+    "editorialId": "fr-idiom-000178",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/payer_les_pots_cass%C3%A9s",
+        "verification": "dictionary_entry_opened",
+        "locator": "payer les pots cassés : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/payer-les-pots-casses",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/payer_les_pots_cass%C3%A9s",
+        "citation": "— (René Boylesve, La leçon d’amour dans un parc, Calmann-Lévy, 1920, collection Le Livre de Poche, page 104)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/economie/article/2026/01/19/liquidation-de-novasco-ex-ascometal-l-etat-enclenche-une-procedure-judiciaire-inedite_6663259_3234.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de payer les pots cassés",
+        "evidenceKind": "published_usage",
+        "expression": "payer les pots cassés",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "en être pour ses frais",
+    "t": "yaptığı harcamayı karşılayamayıp zararda kalmak",
+    "lit": "kendi masraflarıyla kalmak",
+    "s": "Sans ventes suffisantes, l'organisateur en sera pour ses frais.",
+    "form": "en sera pour ses frais",
+    "tr": "Yeterli satış olmazsa organizatör masrafını karşılayamayıp zararda kalacak.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/en_%C3%AAtre_pour_ses_frais",
+      "https://www.expressio.fr/expressions/en-etre-pour-ses-frais"
+    ],
+    "editorialId": "fr-idiom-000179",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/en_%C3%AAtre_pour_ses_frais",
+        "verification": "dictionary_entry_opened",
+        "locator": "en être pour ses frais : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/en-etre-pour-ses-frais",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/en_%C3%AAtre_pour_ses_frais",
+        "citation": "— (Stéphane Lauer, Plutôt que de « miracle » économique américain, ne vaut-il pas mieux parler de « mirage » ?, Le Monde. Mis en ligne le 13 mai 2019)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/en_%C3%AAtre_pour_ses_frais",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "en être pour ses frais",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=en_être_pour_ses_frais&oldid=39784005",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "prendre pour argent comptant",
+    "t": "duyduğunu sorgulamadan doğru kabul etmek",
+    "lit": "peşin para saymak",
+    "s": "Je refuse de prendre pour argent comptant cette rumeur sans preuve.",
+    "form": "prendre pour argent comptant",
+    "tr": "Bu söylentiye kanıt olmadan sorgusuz sualsiz inanmayı reddediyorum.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/prendre_pour_argent_comptant",
+      "https://www.expressio.fr/expressions/prendre-pour-argent-comptant"
+    ],
+    "editorialId": "fr-idiom-000245",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_pour_argent_comptant",
+        "verification": "dictionary_entry_opened",
+        "locator": "prendre quelque chose pour argent comptant : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/prendre-pour-argent-comptant",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_pour_argent_comptant",
+        "citation": "— (Robert Jordan, Les Feux du ciel, traduit par Jean-Claude Mallé, Bragelonne, 2013, ISBN 978-2-35294-664-9)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_pour_argent_comptant",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre pour argent comptant",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_pour_argent_comptant&oldid=39237586",
+        "selectedUsageWitness": true
+      }
+    ],
+    "pat": "prendre quelque chose pour argent comptant"
+  },
+  {
+    "w": "avoir maille à partir",
+    "t": "biriyle çekişmek",
+    "lit": "bölüşülecek küçük bir parası olmak",
+    "s": "Avec son propriétaire, il a maille à partir pour une simple réparation.",
+    "form": "a maille à partir",
+    "tr": "Basit bir tamirat yüzünden ev sahibiyle çekişiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "money",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/maille/48672",
+      "https://dictionnaire.lerobert.com/definition/partir"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/maille/48672",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/partir",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/langue-sauce-piquante/2005/07/21/2005_07_une_maille_peut/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir maille à partir",
+        "evidenceKind": "published_usage",
+        "expression": "avoir maille à partir",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "couper les vivres",
+    "t": "maddi desteği kesmek",
+    "lit": "erzakları kesmek",
+    "s": "Sans résultats concrets, les investisseurs menacent de nous couper les vivres.",
+    "form": "couper les vivres",
+    "tr": "Somut sonuçlar olmazsa yatırımcılar maddi desteğimizi kesmekle tehdit ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://www.expressio.fr/expressions/couper-les-vivres",
+      "https://fr.wiktionary.org/wiki/couper_les_vivres"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/couper-les-vivres",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/couper_les_vivres",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/couper_les_vivres",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2000.",
+        "evidenceKind": "dated_quotation",
+        "expression": "couper les vivres",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=couper_les_vivres&oldid=38089719",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "rendre la monnaie de sa pièce",
+    "t": "kendisine yapılanın aynısıyla karşılık vermek",
+    "lit": "parasının bozuğunu geri vermek",
+    "s": "Après cette plaisanterie, elle compte lui rendre la monnaie de sa pièce.",
+    "form": "rendre la monnaie de sa pièce",
+    "tr": "Bu şakadan sonra ona aynısıyla karşılık vermeyi düşünüyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://www.expressio.fr/expressions/rendre-la-monnaie-de-sa-piece",
+      "https://fr.wiktionary.org/wiki/rendre_la_monnaie_de_sa_pi%C3%A8ce"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/rendre-la-monnaie-de-sa-piece",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rendre_la_monnaie_de_sa_pi%C3%A8ce",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rendre_la_monnaie_de_sa_pi%C3%A8ce",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rendre la monnaie de sa pièce",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rendre_la_monnaie_de_sa_pièce&oldid=39702975",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "s'en mettre plein les poches",
+    "t": "kendine büyük miktarda para aktarmak",
+    "lit": "ceplerini tıka basa doldurmak",
+    "s": "Ces intermédiaires s'en mettent plein les poches grâce à des commissions excessives.",
+    "form": "s'en mettent plein les poches",
+    "tr": "Bu aracılar aşırı yüksek komisyonlar sayesinde ceplerini dolduruyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://www.expressio.fr/expressions/s-en-mettre-plein-les-poches",
+      "https://fr.wiktionary.org/wiki/s%E2%80%99en_mettre_plein_les_poches",
+      "https://www.larousse.fr/dictionnaires/francais/poche/61899",
+      "https://usito.usherbrooke.ca/lexies/s%27en%20mettre%20plein%20les%20poches"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/s-en-mettre-plein-les-poches",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/s%E2%80%99en_mettre_plein_les_poches",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/poche/61899",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://usito.usherbrooke.ca/lexies/s%27en%20mettre%20plein%20les%20poches",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/s%E2%80%99en_mettre_plein_les_poches",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "s'en mettre plein les poches",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=s’en_mettre_plein_les_poches&oldid=39755285",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "vivre sur un grand pied",
+    "t": "gösterişli ve pahalı bir hayat sürmek",
+    "lit": "büyük ayak üstünde yaşamak",
+    "s": "Depuis son héritage, il cherche à vivre sur un grand pied.",
+    "form": "vivre sur un grand pied",
+    "tr": "Miras kaldığından beri gösterişli ve pahalı bir hayat sürmeye çalışıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://fr.wiktionary.org/wiki/vivre_sur_un_grand_pied",
+      "https://www.larousse.fr/dictionnaires/francais/pied/60776"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/vivre_sur_un_grand_pied",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/pied/60776",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/vivre_sur_un_grand_pied",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 126; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "vivre sur un grand pied",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=vivre_sur_un_grand_pied&oldid=38824370",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "vivre d'amour et d'eau fraîche",
+    "t": "maddi ihtiyaçları önemsemeden yaşamak",
+    "lit": "aşk ve serin suyla yaşamak",
+    "s": "Avec ces factures, nous ne pouvons pas vivre d'amour et d'eau fraîche.",
+    "form": "vivre d'amour et d'eau fraîche",
+    "tr": "Bu faturalarla maddi ihtiyaçlarımızı önemsemeden yaşayamayız.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "money",
+    "src": [
+      "https://www.expressio.fr/expressions/vivre-d-amour-et-d-eau-fraiche",
+      "https://www.larousse.fr/dictionnaires/francais/vivre/82325"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/vivre-d-amour-et-d-eau-fraiche",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/vivre/82325",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/economie/article/2007/10/06/le-couple-et-l-argent_963729_3234.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de vivre d'amour et d'eau fraîche",
+        "evidenceKind": "published_usage",
+        "expression": "vivre d'amour et d'eau fraîche",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "vivre aux crochets",
+    "t": "başkasının geçindirmesiyle yaşamak",
+    "lit": "kancaların üstünde yaşamak",
+    "s": "Il continue à vivre aux crochets de ses parents malgré son salaire.",
+    "form": "vivre aux crochets",
+    "tr": "Maaşı olmasına rağmen anne babasının geçindirmesiyle yaşamayı sürdürüyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "money",
+    "src": [
+      "https://www.expressio.fr/expressions/vivre-aux-crochets-de",
+      "https://fr.wiktionary.org/wiki/vivre_aux_crochets_de",
+      "https://sanction.usito.usherbrooke.ca/d%C3%A9finitions/crochet/lexies"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/vivre-aux-crochets-de",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/vivre_aux_crochets_de",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://sanction.usito.usherbrooke.ca/d%C3%A9finitions/crochet/lexies",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/vivre_aux_crochets_de",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "vivre aux crochets",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=vivre_aux_crochets_de&oldid=39869155",
+        "selectedUsageWitness": true
+      }
+    ]
+  }
+]

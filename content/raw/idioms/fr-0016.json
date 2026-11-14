@@ -1,0 +1,501 @@
+[
+  {
+    "w": "prendre son envol",
+    "t": "kendi alanında gelişip yükselmeye başlamak",
+    "lit": "uçuşunu almak",
+    "s": "Après son premier album, sa carrière a pris son envol.",
+    "form": "pris son envol",
+    "tr": "İlk albümünden sonra kariyeri yükselmeye başladı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://fr.wiktionary.org/wiki/prendre_son_envol",
+      "https://www.expressio.fr/expressions/prendre-son-envol"
+    ],
+    "editorialId": "fr-idiom-000098",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_son_envol",
+        "verification": "dictionary_entry_opened",
+        "locator": "prendre son envol : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/economie/article/2021/11/26/les-commerces-en-circuit-court-se-multiplient_6103693_3234.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/prendre-son-envol",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_son_envol",
+        "citation": "— (Catherine Robin, Pierre Déom, le hussard de La Hulotte, dans L’Express.fr, publié le 29 septembre 2005)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_son_envol",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2005.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre son envol",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_son_envol&oldid=38095258",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "voler de ses propres ailes",
+    "t": "kendi imkânlarıyla bağımsız hareket etmek",
+    "lit": "kendi kanatlarıyla uçmak",
+    "s": "Après son apprentissage, elle veut voler de ses propres ailes.",
+    "form": "voler de ses propres ailes",
+    "tr": "Çıraklıktan sonra kendi ayakları üzerinde durmak istiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://fr.wiktionary.org/wiki/voler_de_ses_propres_ailes",
+      "https://www.expressio.fr/expressions/voler-de-ses-propres-ailes"
+    ],
+    "editorialId": "fr-idiom-000099",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/voler_de_ses_propres_ailes",
+        "verification": "dictionary_entry_opened",
+        "locator": "voler de ses propres ailes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/voler-de-ses-propres-ailes",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voler_de_ses_propres_ailes",
+        "citation": "— (Francis Denis, « La psyché québécoise est enfermée dans une forme archaïque de religiosité », dans Argument, XXVI, 2, printemps-été 2024, p. 107)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voler_de_ses_propres_ailes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2024.",
+        "evidenceKind": "dated_quotation",
+        "expression": "voler de ses propres ailes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=voler_de_ses_propres_ailes&oldid=39905273",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "battre le pavé",
+    "t": "sokaklarda amaçsızca dolaşmak",
+    "lit": "kaldırım taşını dövmek",
+    "s": "Sans but précis, il battait le pavé.",
+    "form": "battait le pavé",
+    "tr": "Belirli bir amacı olmadan sokaklarda dolaşıyordu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "move",
+    "src": [
+      "https://fr.wiktionary.org/wiki/battre_le_pav%C3%A9",
+      "https://www.expressio.fr/expressions/battre-le-pave"
+    ],
+    "editorialId": "fr-idiom-000205",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/battre_le_pav%C3%A9",
+        "verification": "dictionary_entry_opened",
+        "locator": "battre le pavé : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/battre-le-pave",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/battre_le_pav%C3%A9",
+        "citation": "— (Valentin Cebron, Les personnels psychiatriques manifestent pour réclamer « un renouveau des soins psychiques », Le Monde. Mis en ligne le 22 mars 2019)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/battre_le_pav%C3%A9",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "battre le pavé",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=battre_le_pavé&oldid=38477730",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "être dans une impasse",
+    "t": "çözüm yolu görünmeyen bir çıkmaza girmek",
+    "lit": "çıkmaz sokağın içinde olmak",
+    "s": "Sans accord sur le budget, nous sommes dans une impasse.",
+    "form": "sommes dans une impasse",
+    "tr": "Bütçede anlaşma yok; çözüm yolu görünmeyen bir çıkmazdayız.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "move",
+    "src": [
+      "https://fr.wiktionary.org/wiki/impasse",
+      "https://dvlf.uchicago.edu/mot/impasse"
+    ],
+    "editorialId": "fr-idiom-000226",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/impasse",
+        "verification": "dictionary_entry_opened",
+        "locator": "être dans une impasse : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000226",
+        "url": "https://dvlf.uchicago.edu/mot/impasse",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/Conspue-et-insulte-par-les-supporters-de-l-atletico-de-madrid-comme-antoine-griezmann-avant-lui-julian-alvarez-dans-une-impasse/1713103",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de être dans une impasse",
+        "evidenceKind": "published_usage",
+        "expression": "être dans une impasse",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "perdre le nord",
+    "t": "şaşkınlıkla ne yapacağını bilemez hâle gelmek",
+    "lit": "kuzeyi kaybetmek",
+    "s": "Sous la pression, il a un instant perdu le nord.",
+    "form": "perdu le nord",
+    "tr": "Baskı altında bir an ne yapacağını bilemez hâle geldi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://fr.wiktionary.org/wiki/perdre_le_nord",
+      "https://www.expressio.fr/expressions/perdre-le-nord-la-boussole"
+    ],
+    "editorialId": "fr-idiom-000260",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/perdre_le_nord",
+        "verification": "dictionary_entry_opened",
+        "locator": "perdre le nord : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/perdre-le-nord-la-boussole",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/perdre_le_nord",
+        "citation": "— (François Mauriac, Le Nœud de vipères, Grasset, 1933, réédition Le Livre de Poche, page 134)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/serie/aventures/rouge-foret-m362976122/?int_campaign=abonnement&int_content=bloc-services&int_medium=lien&marquepref=&marquesource=",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de perdre le nord",
+        "evidenceKind": "published_usage",
+        "expression": "perdre le nord",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire du surplace",
+    "t": "bir türlü ilerleyememek",
+    "lit": "yerinde hareket yapmak",
+    "s": "Sans décision sur le budget, le projet fait du surplace.",
+    "form": "fait du surplace",
+    "tr": "Bütçe kararı çıkmadığı için proje bir türlü ilerleyemiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-du-surplace",
+      "https://www.larousse.fr/dictionnaires/college/surplace/38825"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-du-surplace",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/college/surplace/38825",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/Ralenti-par-cagliari-come-manque-l-occasion-de-se-rapprocher-du-podium/1608396",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire du surplace",
+        "evidenceKind": "published_usage",
+        "expression": "faire du surplace",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire le mur",
+    "t": "izinsiz gizlice çıkmak",
+    "lit": "duvarı yapmak",
+    "s": "Au pensionnat, ils rêvaient de faire le mur pour assister au concert.",
+    "form": "faire le mur",
+    "tr": "Yatılı okuldayken konsere gitmek için gizlice çıkmayı hayal ediyorlardı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://www.expressio.fr/expressions/faire-le-mur",
+      "https://fr.wiktionary.org/wiki/faire_le_mur"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/faire-le-mur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_le_mur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_le_mur",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 138; année mentionnée 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire le mur",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_le_mur&oldid=38539684",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "mettre les voiles",
+    "t": "çekip gitmek",
+    "lit": "yelkenleri koymak",
+    "s": "Après deux heures d'attente, nous avons décidé de mettre les voiles.",
+    "form": "mettre les voiles",
+    "tr": "İki saat bekledikten sonra çekip gitmeye karar verdik.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://www.expressio.fr/expressions/mettre-les-voiles",
+      "https://fr.wiktionary.org/wiki/mettre_les_voiles"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-les-voiles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_les_voiles",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_les_voiles",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre les voiles",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_les_voiles&oldid=38093563",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "filer à l'anglaise",
+    "t": "kimseye haber vermeden çekip gitmek",
+    "lit": "İngiliz usulü sıvışmak",
+    "s": "Après le dessert, ils ont préféré filer à l'anglaise.",
+    "form": "filer à l'anglaise",
+    "tr": "Tatlıdan sonra kimseye haber vermeden çekip gitmeyi tercih ettiler.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://www.expressio.fr/expressions/filer-a-l-anglaise",
+      "https://fr.pons.com/traduction/fran%C3%A7ais-anglais/filer"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/filer-a-l-anglaise",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.pons.com/traduction/fran%C3%A7ais-anglais/filer",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Article/Thomas-lemar-dans-l-ombre-d-alexis-sanchez-a-arsenal/864187",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de filer à l'anglaise",
+        "evidenceKind": "published_usage",
+        "expression": "filer à l'anglaise",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "jeter l'ancre",
+    "t": "bir yere yerleşmek",
+    "lit": "çapa atmak",
+    "s": "Après dix déménagements, nous voulons jeter l'ancre dans cette petite ville.",
+    "form": "jeter l'ancre",
+    "tr": "On kez taşındıktan sonra bu küçük şehre yerleşmek istiyoruz.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://www.expressio.fr/expressions/jeter-lever-l-ancre",
+      "https://www.larousse.fr/dictionnaires/francais/jeter/44878"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/jeter-lever-l-ancre",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/jeter/44878",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.ouest-france.fr/archives/bretagne/2023/28-septembre-2023/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de jeter l'ancre",
+        "evidenceKind": "published_usage",
+        "expression": "jeter l'ancre",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "plier bagage",
+    "t": "toparlanıp gitmek",
+    "lit": "bagajı katlamak",
+    "s": "La salle ferme ; il est temps de plier bagage.",
+    "form": "plier bagage",
+    "tr": "Salon kapanıyor; toparlanıp gitme zamanı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://www.expressio.fr/expressions/plier-bagage",
+      "https://fr.wiktionary.org/wiki/plier_bagage"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/plier-bagage",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/plier_bagage",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/plier_bagage",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "plier bagage",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=plier_bagage&oldid=39960045",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "se faire la belle",
+    "t": "kaçıp gitmek",
+    "lit": "güzel olanı yapmak",
+    "s": "Le chat a profité de la fenêtre ouverte pour se faire la belle.",
+    "form": "se faire la belle",
+    "tr": "Kedi açık pencereden yararlanıp kaçıp gitti.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "move",
+    "src": [
+      "https://www.expressio.fr/expressions/se-faire-la-belle",
+      "https://fr.wiktionary.org/wiki/se_faire_la_belle"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/se-faire-la-belle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_faire_la_belle",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_faire_la_belle",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se faire la belle",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_faire_la_belle&oldid=38485019",
+        "selectedUsageWitness": true
+      }
+    ]
+  }
+]

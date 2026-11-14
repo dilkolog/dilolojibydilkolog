@@ -1,0 +1,996 @@
+[
+  {
+    "w": "avoir la tête ailleurs",
+    "t": "aklı başka yerde olmak",
+    "lit": "kafası başka yerde olmak",
+    "s": "Excuse-moi, peux-tu répéter ? J'avais la tête ailleurs.",
+    "form": "avais la tête ailleurs",
+    "tr": "Kusura bakma, tekrar eder misin? Aklım başka yerdeydi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_la_t%C3%AAte_ailleurs",
+      "https://www.expressio.fr/expressions/avoir-la-tete-ailleurs"
+    ],
+    "editorialId": "fr-idiom-000012",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_t%C3%AAte_ailleurs",
+        "locator": "Français : Locution verbale, sens 1",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-la-tete-ailleurs",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_t%C3%AAte_ailleurs",
+        "citation": "— (Sandrine Collette, Ces orages-là, J-C Lattès, 2021)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_t%C3%AAte_ailleurs",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir la tête ailleurs",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_la_tête_ailleurs&oldid=39655679",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire la part des choses",
+    "t": "yargıya varırken koşulları ve farklı etkenleri gözetmek",
+    "lit": "şeylerin payını ayırmak",
+    "s": "Il débutait sans formation : il faut faire la part des choses avant de le juger.",
+    "form": "faire la part des choses",
+    "tr": "Eğitim almadan işe yeni başlamıştı; onu yargılamadan önce koşulları gözetmek gerekir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/part/58338",
+      "https://www.expressio.fr/expressions/faire-la-part-des-choses",
+      "https://fr.wiktionary.org/wiki/faire_la_part_des_choses"
+    ],
+    "editorialId": "fr-idiom-000026",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/part/58338",
+        "locator": "Expressions : Faire la part des choses",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2019/12/18/comment-eduquer-une-adolescente-quand-on-est-une-mere-feministe-un-dialogue-a-podcaster_6023379_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-la-part-des-choses",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_la_part_des_choses",
+        "citation": "— (Speak French With Fun)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_la_part_des_choses",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire la part des choses",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_la_part_des_choses&oldid=38091712",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir plus d'un tour dans son sac",
+    "t": "çözüm üretmek için çok sayıda hüneri olmak",
+    "lit": "çantasında birden fazla numara olmak",
+    "s": "Ce réparateur a plus d'un tour dans son sac.",
+    "form": "a plus d'un tour dans son sac",
+    "tr": "Bu tamircinin çözüm üretecek çok hüneri var.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_plus_d%E2%80%99un_tour_dans_son_sac",
+      "https://www.expressio.fr/expressions/avoir-plus-d-un-tour-dans-son-sac"
+    ],
+    "editorialId": "fr-idiom-000094",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_plus_d%E2%80%99un_tour_dans_son_sac",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir plus d'un tour dans son sac : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.francetvpro.fr/sites/default/files/telechargements/documents/grille%20NoA%20N%C2%B0%2019_2.pdf",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Grille NoA 03–09 mai 2025, p. 57, présentation du paysan André"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-plus-d-un-tour-dans-son-sac",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_plus_d%E2%80%99un_tour_dans_son_sac",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir plus d'un tour dans son sac",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_plus_d’un_tour_dans_son_sac&oldid=39709628",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "voir venir",
+    "t": "birinin niyetini önceden anlamak",
+    "lit": "gelirken görmek",
+    "s": "Je te vois venir : tu veux emprunter ma voiture.",
+    "form": "vois venir",
+    "tr": "Niyetini anlıyorum; arabamı ödünç almak istiyorsun.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/voir_venir",
+      "https://www.larousse.fr/dictionnaires/college/voir/42507"
+    ],
+    "editorialId": "fr-idiom-000239",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_venir",
+        "verification": "dictionary_entry_opened",
+        "locator": "voir venir quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000239",
+        "url": "https://www.larousse.fr/dictionnaires/college/voir/42507",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_venir",
+        "citation": "— (Benoît Vitkine, En Russie, le coronavirus place le secteur privé au bord du gouffre, Le Monde. Mis en ligne le 9 avril 2020)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_venir",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "voir venir",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=voir_venir&oldid=39756106",
+        "selectedUsageWitness": true
+      }
+    ],
+    "pat": "voir venir quelqu'un"
+  },
+  {
+    "w": "lire entre les lignes",
+    "t": "açıkça yazılmayan anlamı çıkarmak",
+    "lit": "satırların arasını okumak",
+    "s": "Il faut lire entre les lignes de ce message.",
+    "form": "lire entre les lignes",
+    "tr": "Bu mesajda açıkça yazılmayan anlamı çıkarmak gerekiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/lire_entre_les_lignes",
+      "https://www.expressio.fr/expressions/lire-entre-les-lignes"
+    ],
+    "editorialId": "fr-idiom-000240",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/lire_entre_les_lignes",
+        "verification": "dictionary_entry_opened",
+        "locator": "lire entre les lignes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/lire-entre-les-lignes",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/lire_entre_les_lignes",
+        "citation": "— (Marcel Aymé, La jument verte, Gallimard, 1933, collection Le Livre de Poche, page 8.)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/argent/article/2024/03/19/assurance-vie-face-aux-bonus-de-rendement-proposes-il-faut-savoir-lire-entre-les-lignes_6222823_1657007.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de lire entre les lignes",
+        "evidenceKind": "published_usage",
+        "expression": "lire entre les lignes",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "lire comme dans un livre ouvert",
+    "t": "birinin duygu veya düşüncesini kolayca anlamak",
+    "lit": "içinde açık bir kitaptaki gibi okumak",
+    "s": "Sa sœur lit en lui comme dans un livre ouvert.",
+    "form": "lit en lui comme dans un livre ouvert",
+    "tr": "Kız kardeşi onun içinden geçeni kolayca anlıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/lire_en_quelqu%E2%80%99un_comme_dans_un_livre_ouvert",
+      "https://www.cnrtl.fr/definition/ouvert"
+    ],
+    "editorialId": "fr-idiom-000241",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/lire_en_quelqu%E2%80%99un_comme_dans_un_livre_ouvert",
+        "verification": "dictionary_entry_opened",
+        "locator": "lire en quelqu'un comme dans un livre ouvert : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000241",
+        "url": "https://www.cnrtl.fr/definition/ouvert",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/lire_en_quelqu%27un_comme_dans_un_livre_ouvert",
+        "citation": "— (Maurice Leblanc, La Comtesse de Cagliostro, 1924)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/lire_en_quelqu%E2%80%99un_comme_dans_un_livre_ouvert",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "lire comme dans un livre ouvert",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=lire_en_quelqu’un_comme_dans_un_livre_ouvert&oldid=39982999",
+        "selectedUsageWitness": true
+      }
+    ],
+    "pat": "lire en quelqu'un comme dans un livre ouvert"
+  },
+  {
+    "w": "voir midi à sa porte",
+    "t": "durumu yalnız kendi çıkarına göre değerlendirmek",
+    "lit": "öğleyi kendi kapısında görmek",
+    "s": "Chacun voit midi à sa porte dans cette négociation.",
+    "form": "voit midi à sa porte",
+    "tr": "Bu müzakerede herkes durumu kendi çıkarına göre değerlendiriyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/voir_midi_%C3%A0_sa_porte",
+      "https://www.expressio.fr/expressions/voir-midi-a-sa-porte"
+    ],
+    "editorialId": "fr-idiom-000243",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_midi_%C3%A0_sa_porte",
+        "verification": "dictionary_entry_opened",
+        "locator": "voir midi à sa porte : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/voir-midi-a-sa-porte",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_midi_%C3%A0_sa_porte",
+        "citation": "— (Alain Beuve-Méry, Repenser le droit d’auteur, Le Monde, 2006)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_midi_%C3%A0_sa_porte",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "voir midi à sa porte",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=voir_midi_à_sa_porte&oldid=39753998",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "prendre des vessies pour des lanternes",
+    "t": "bir şeyi gerçeğinden çok farklı sanıp fena yanılmak",
+    "lit": "mesaneleri fener sanmak",
+    "s": "Vérifie ses promesses avant de prendre des vessies pour des lanternes.",
+    "form": "prendre des vessies pour des lanternes",
+    "tr": "Olmadık şeylere kanmadan önce vaatlerini araştır.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/prendre_des_vessies_pour_des_lanternes",
+      "https://www.expressio.fr/expressions/prendre-des-vessies-pour-des-lanternes/page-2"
+    ],
+    "editorialId": "fr-idiom-000244",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_des_vessies_pour_des_lanternes",
+        "verification": "dictionary_entry_opened",
+        "locator": "prendre des vessies pour des lanternes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/prendre-des-vessies-pour-des-lanternes/page-2",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_des_vessies_pour_des_lanternes",
+        "citation": "— (Pierre Dac et Francis Blanche : le Sâr Rabindranah Düval, 1957 → lire en ligne)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_des_vessies_pour_des_lanternes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre des vessies pour des lanternes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_des_vessies_pour_des_lanternes&oldid=39961796",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "en perdre son latin",
+    "t": "hiçbir şey anlayamaz hâle gelmek",
+    "lit": "Latince bilgisini yitirmek",
+    "s": "Avec toutes ces versions contradictoires, j'en perds mon latin.",
+    "form": "en perds mon latin",
+    "tr": "Bütün bu çelişkili anlatımlarla artık hiçbir şey anlayamıyorum.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/en_perdre_son_latin",
+      "https://www.expressio.fr/expressions/perdre-son-latin"
+    ],
+    "editorialId": "fr-idiom-000253",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/en_perdre_son_latin",
+        "verification": "dictionary_entry_opened",
+        "locator": "en perdre son latin : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/perdre-son-latin",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/en_perdre_son_latin",
+        "citation": "— (Maxime Vaudano, CETA et farines animales : comment le gouvernement s’est trompé, Le Monde. Mis en ligne le 22 juillet 2019)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/en_perdre_son_latin",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 127; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "en perdre son latin",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=en_perdre_son_latin&oldid=38090470",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir la science infuse",
+    "t": "her şeyi öğrenmeden bildiğini sanmak",
+    "lit": "içine doğmuş bilime sahip olmak",
+    "s": "Il croit avoir la science infuse et refuse les conseils.",
+    "form": "avoir la science infuse",
+    "tr": "Her şeyi zaten bildiğini sanıp öğütleri reddediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_la_science_infuse",
+      "https://www.expressio.fr/expressions/avoir-la-science-infuse"
+    ],
+    "editorialId": "fr-idiom-000254",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_science_infuse",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir la science infuse : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-la-science-infuse",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_science_infuse",
+        "citation": "— (Jean Montaldo, Le Marché aux voleurs, 2003)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_science_infuse",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2003.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir la science infuse",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_la_science_infuse&oldid=39330997",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir réponse à tout",
+    "t": "her itiraza karşı bir cevap bulmak",
+    "lit": "her şeye cevabı olmak",
+    "s": "Même pris en faute, il a réponse à tout.",
+    "form": "a réponse à tout",
+    "tr": "Hatası ortaya çıkınca bile her itiraza bir cevap buluyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "mind",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/r%C3%A9ponse/68438",
+      "https://www.expressio.fr/expressions/avoir-reponse-a-tout"
+    ],
+    "editorialId": "fr-idiom-000257",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9ponse/68438",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir réponse à tout : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-reponse-a-tout",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/documentaire/sciences-et-technique/42-la-reponse-a-presque-tout-m192123267/42-la-reponse-a-presque-tout-c451155439/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir réponse à tout",
+        "evidenceKind": "published_usage",
+        "expression": "avoir réponse à tout",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "être à côté de la plaque",
+    "t": "konunun özünü kaçırıp ilgisiz bir cevap vermek",
+    "lit": "levhanın yanında olmak",
+    "s": "Avec cette réponse, tu es à côté de la plaque.",
+    "form": "es à côté de la plaque",
+    "tr": "Bu cevabınla konunun özünü kaçırıyorsun.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%A0_c%C3%B4t%C3%A9_de_la_plaque",
+      "https://www.unsa-education.com/article-/a-cote-de-la-plaque-2/",
+      "https://www.expressio.fr/expressions/etre-mettre-a-cote-de-la-plaque"
+    ],
+    "editorialId": "fr-idiom-000258",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_c%C3%B4t%C3%A9_de_la_plaque",
+        "verification": "dictionary_entry_opened",
+        "locator": "être à côté de la plaque : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.unsa-education.com/article-/a-cote-de-la-plaque-2/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/etre-mettre-a-cote-de-la-plaque",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_c%C3%B4t%C3%A9_de_la_plaque",
+        "citation": "— (Walter Hill (scénario), Matz (adaptation et traduction), Jef (dessin et couleurs), Balles perdues, Rue de Sèvres, 2015, page 52)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_c%C3%B4t%C3%A9_de_la_plaque",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être à côté de la plaque",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=à_côté_de_la_plaque&oldid=39729101",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir de la suite dans les idées",
+    "t": "başladığı işi kararlılıkla sürdürmek",
+    "lit": "fikirlerinde devamlılığı olmak",
+    "s": "Elle a de la suite dans les idées et reprend son projet chaque été.",
+    "form": "a de la suite dans les idées",
+    "tr": "Kararlılıkla peşini bırakmıyor; her yaz projesine yeniden dönüyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_de_la_suite_dans_les_id%C3%A9es",
+      "https://www.larousse.fr/dictionnaires/francais/suite/75305"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_de_la_suite_dans_les_id%C3%A9es",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/suite/75305",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/sciences/article/2014/12/01/la-suite-dans-les-idees-devient-une-science_4532295_1650684.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir de la suite dans les idées",
+        "evidenceKind": "published_usage",
+        "expression": "avoir de la suite dans les idées",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "prendre au pied de la lettre",
+    "t": "söyleneni kelimesi kelimesine anlamak",
+    "lit": "harfin ayağında almak",
+    "s": "Il ne faut pas prendre au pied de la lettre cette plaisanterie.",
+    "form": "prendre au pied de la lettre",
+    "tr": "Bu şakayı kelimesi kelimesine anlamamak gerekir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/au-pied-de-la-lettre-a-la-lettre/page-2",
+      "https://fr.wiktionary.org/wiki/prendre_au_pied_de_la_lettre"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/au-pied-de-la-lettre-a-la-lettre/page-2",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_au_pied_de_la_lettre",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_au_pied_de_la_lettre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2015.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre au pied de la lettre",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_au_pied_de_la_lettre&oldid=39253149",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "battre la campagne",
+    "t": "saçma sapan konuşmak",
+    "lit": "kırsalı dövmek",
+    "s": "Épuisé par la fièvre, il commence à battre la campagne.",
+    "form": "battre la campagne",
+    "tr": "Ateş yüzünden bitkin düştü; saçma sapan konuşmaya başlıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/battre-la-campagne/page-2",
+      "https://fr.wiktionary.org/wiki/battre_la_campagne"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/battre-la-campagne/page-2",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/battre_la_campagne",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/battre_la_campagne",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 138; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "battre la campagne",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=battre_la_campagne&oldid=38339189",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "passer au peigne fin",
+    "t": "en ince ayrıntısına kadar incelemek",
+    "lit": "ince dişli taraktan geçirmek",
+    "s": "Les enquêteurs vont passer au peigne fin tous les contrats.",
+    "form": "passer au peigne fin",
+    "tr": "Soruşturmacılar bütün sözleşmeleri en ince ayrıntısına kadar inceleyecek.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/passer-au-peigne-fin",
+      "https://fr.wiktionary.org/wiki/passer_au_peigne_fin"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/passer-au-peigne-fin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_au_peigne_fin",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_au_peigne_fin",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "passer au peigne fin",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=passer_au_peigne_fin&oldid=38398282",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "percer à jour",
+    "t": "gizli niyetini anlamak",
+    "lit": "gün ışığına kadar delmek",
+    "s": "Cette détective va bientôt le percer à jour.",
+    "form": "percer à jour",
+    "tr": "Bu dedektif yakında onun gizli niyetini anlayacak.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/percer-a-jour",
+      "https://fr.wiktionary.org/wiki/percer_%C3%A0_jour"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/percer-a-jour",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/percer_%C3%A0_jour",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/percer_%C3%A0_jour",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "percer à jour",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=percer_à_jour&oldid=39862965",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "perdre la boule",
+    "t": "aklı karışıp kontrolünü kaybetmek",
+    "lit": "topu kaybetmek",
+    "s": "Avec toutes ces consignes contradictoires, je vais finir par perdre la boule.",
+    "form": "perdre la boule",
+    "tr": "Birbiriyle çelişen bunca talimat yüzünden sonunda aklım karışıp kontrolümü kaybedeceğim.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/perdre-la-boule",
+      "https://fr.wiktionary.org/wiki/perdre_la_boule"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/perdre-la-boule",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/perdre_la_boule",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/le-monde-passe-a-table/article/2025/09/12/a-paris-des-glaces-a-en-perdre-la-boule_6640651_6082232.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de perdre la boule",
+        "evidenceKind": "published_usage",
+        "expression": "perdre la boule",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "perdre les pédales",
+    "t": "şaşırıp ne yapacağını bilememek",
+    "lit": "pedalları kaybetmek",
+    "s": "Pendant l'entretien, j'ai perdu les pédales et oublié ma propre question.",
+    "form": "perdu les pédales",
+    "tr": "Görüşme sırasında şaşırıp ne yapacağımı bilemedim ve kendi sorumu unuttum.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/perdre-les-pedales",
+      "https://fr.wiktionary.org/wiki/perdre_les_p%C3%A9dales"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/perdre-les-pedales",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/perdre_les_p%C3%A9dales",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/perdre_les_p%C3%A9dales",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2003.",
+        "evidenceKind": "dated_quotation",
+        "expression": "perdre les pédales",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=perdre_les_pédales&oldid=39908031",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "perdre le fil",
+    "t": "konuşmanın veya düşüncenin akışını kaçırmak",
+    "lit": "ipliği kaybetmek",
+    "s": "Après cette interruption, j'ai perdu le fil de mon raisonnement.",
+    "form": "perdu le fil",
+    "tr": "Bu kesintiden sonra düşüncemin akışını kaçırdım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/perdre-le-fil",
+      "https://fr.wiktionary.org/wiki/perdre_le_fil"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/perdre-le-fil",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/perdre_le_fil",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/perdre_le_fil",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "perdre le fil",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=perdre_le_fil&oldid=39649312",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "s'emmêler les pinceaux",
+    "t": "işleri veya sözleri birbirine karıştırmak",
+    "lit": "fırçaları birbirine dolamak",
+    "s": "En expliquant les horaires, je commence à m'emmêler les pinceaux.",
+    "form": "m'emmêler les pinceaux",
+    "tr": "Saatleri açıklarken işleri birbirine karıştırmaya başlıyorum.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/s-emmeler-les-pinceaux",
+      "https://www.linternaute.fr/dictionnaire/fr/definition/s-emmeler/"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/s-emmeler-les-pinceaux",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.linternaute.fr/dictionnaire/fr/definition/s-emmeler/",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/Avant-bruges-25-ans-de-desillusions-europeennes-pour-l-om/1637619",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de s'emmêler les pinceaux",
+        "evidenceKind": "published_usage",
+        "expression": "s'emmêler les pinceaux",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "se monter le bourrichon",
+    "t": "kendi kendine olmayacak hayaller kurmak",
+    "lit": "kendi sepetini yukarı çıkarmak",
+    "s": "Avant même sa réponse, il commence à se monter le bourrichon.",
+    "form": "se monter le bourrichon",
+    "tr": "Daha cevabı gelmeden kendi kendine olmayacak hayaller kurmaya başlıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/se-monter-le-bourrichon-monter-le-bourrichon-a-quelqu-un",
+      "https://fr.wiktionary.org/wiki/se_monter_le_bourrichon"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/se-monter-le-bourrichon-monter-le-bourrichon-a-quelqu-un",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_monter_le_bourrichon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_monter_le_bourrichon",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se monter le bourrichon",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_monter_le_bourrichon&oldid=38096391",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "tenir la route",
+    "t": "tutarlı ve inandırıcı olmak",
+    "lit": "yolu tutmak",
+    "s": "Ton explication tient la route, mais il nous manque une preuve.",
+    "form": "tient la route",
+    "tr": "Açıklaman tutarlı ve inandırıcı; ancak bir kanıtımız eksik.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "mind",
+    "src": [
+      "https://www.expressio.fr/expressions/tenir-la-route",
+      "https://fr.wiktionary.org/wiki/tenir_la_route"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/tenir-la-route",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_la_route",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_la_route",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tenir la route",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tenir_la_route&oldid=39754522",
+        "selectedUsageWitness": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,1322 @@
+[
+  {
+    "w": "jeter l'éponge",
+    "t": "mücadeleyi bırakıp pes etmek",
+    "lit": "süngeri fırlatmak",
+    "s": "Malgré deux refus, elle n'a pas jeté l'éponge et a envoyé une nouvelle candidature.",
+    "form": "jeté l'éponge",
+    "tr": "İki kez reddedilmesine rağmen pes etmedi ve yeni bir başvuru gönderdi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/%C3%A9ponge/30574",
+      "https://www.expressio.fr/expressions/jeter-l-eponge",
+      "https://fr.wiktionary.org/wiki/jeter_l%E2%80%99%C3%A9ponge"
+    ],
+    "editorialId": "fr-idiom-000008",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/%C3%A9ponge/30574",
+        "locator": "Expressions : Jeter l'éponge",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/jeter-l-eponge",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_l%E2%80%99%C3%A9ponge",
+        "citation": "— (Jean-Christophe Saladin, Mieux parler en public, Vuibert, Paris, 2004)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_l%E2%80%99%C3%A9ponge",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jeter l'éponge",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=jeter_l’éponge&oldid=39930156",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "peser le pour et le contre",
+    "t": "artıları ve eksileri tartmak",
+    "lit": "leyhteyi ve aleyhteyi tartmak",
+    "s": "Avant de signer, pesons le pour et le contre.",
+    "form": "pesons le pour et le contre",
+    "tr": "İmzalamadan önce artıları ve eksileri tartalım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/peser_le_pour_et_le_contre",
+      "https://www.expressio.fr/expressions/peser-le-pour-et-le-contre"
+    ],
+    "editorialId": "fr-idiom-000105",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/peser_le_pour_et_le_contre",
+        "verification": "dictionary_entry_opened",
+        "locator": "peser le pour et le contre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/peser-le-pour-et-le-contre",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/peser_le_pour_et_le_contre",
+        "citation": "— (Anne Barrère, Les lycéens au travail: tâches objectives, épreuves subjectives, Presses universitaires de France, 1997, page 127)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/peser_le_pour_et_le_contre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "peser le pour et le contre",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=peser_le_pour_et_le_contre&oldid=39055736",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "prendre du recul",
+    "t": "olaydan biraz uzaklaşıp daha nesnel bakmak",
+    "lit": "geriye doğru mesafe almak",
+    "s": "Attendons demain pour prendre du recul sur cette dispute.",
+    "form": "prendre du recul",
+    "tr": "Bu tartışmaya biraz mesafeyle bakabilmek için yarını bekleyelim.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/prendre_du_recul",
+      "https://www.collinsdictionary.com/dictionary/french-english/prendre-du-recul"
+    ],
+    "editorialId": "fr-idiom-000107",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_du_recul",
+        "verification": "dictionary_entry_opened",
+        "locator": "prendre du recul : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000107",
+        "url": "https://www.collinsdictionary.com/dictionary/french-english/prendre-du-recul",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_du_recul",
+        "citation": "— (Philippe Morvan, Ours, Calmann-Lévy, 2018)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_du_recul",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre du recul",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_du_recul&oldid=38980016",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "prendre de la hauteur",
+    "t": "ayrıntıların üstüne çıkıp geniş açıdan değerlendirmek",
+    "lit": "yükseklik almak",
+    "s": "Prenons de la hauteur pour comprendre l'ensemble du projet.",
+    "form": "Prenons de la hauteur",
+    "tr": "Projenin bütününü anlamak için geniş açıdan bakalım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/prendre_de_la_hauteur",
+      "https://www.btb.termiumplus.gc.ca/tpv2alpha/alpha-fra.html?i=&index=frt&lang=fra&srchtxt=PRENDRE+HAUTEUR"
+    ],
+    "editorialId": "fr-idiom-000108",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_de_la_hauteur",
+        "verification": "dictionary_entry_opened",
+        "locator": "prendre de la hauteur : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000108",
+        "url": "https://www.btb.termiumplus.gc.ca/tpv2alpha/alpha-fra.html?i=&index=frt&lang=fra&srchtxt=PRENDRE+HAUTEUR",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_de_la_hauteur",
+        "citation": "— (Cédric Pietralunga et Virginie Malingre, Macron tente de renouer le fil avec les Français, Le Monde. Mis en ligne le 17 octobre 2018)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_de_la_hauteur",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre de la hauteur",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_de_la_hauteur&oldid=38094961",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "mettre les choses à plat",
+    "t": "meseleleri açıkça ortaya koyup ayrıntıları incelemek",
+    "lit": "şeyleri düz hâle koymak",
+    "s": "Mettons les choses à plat avant de décider.",
+    "form": "Mettons les choses à plat",
+    "tr": "Karar vermeden meseleleri açıkça ortaya koyalım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/mettre_%C3%A0_plat",
+      "https://ehouionline.com/102-9-expressions-idiomatiques-avec-le-verbe-mettre/"
+    ],
+    "editorialId": "fr-idiom-000109",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_%C3%A0_plat",
+        "verification": "dictionary_entry_opened",
+        "locator": "mettre les choses à plat : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000109",
+        "url": "https://ehouionline.com/102-9-expressions-idiomatiques-avec-le-verbe-mettre/",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/Ribery-et-gourcuff-se-sont-expliques/186923",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre les choses à plat",
+        "evidenceKind": "published_usage",
+        "expression": "mettre les choses à plat",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "changer son fusil d'épaule",
+    "t": "yöntem veya tutumunu bütünüyle değiştirmek",
+    "lit": "tüfeğini öteki omza geçirmek",
+    "s": "Le premier plan échoue ; changeons notre fusil d'épaule.",
+    "form": "changeons notre fusil d'épaule",
+    "tr": "İlk plan yürümüyor; yöntemimizi bütünüyle değiştirelim.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/changer_son_fusil_d'%C3%A9paule",
+      "https://www.expressio.fr/expressions/changer-son-fusil-d-epaule"
+    ],
+    "editorialId": "fr-idiom-000111",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/changer_son_fusil_d'%C3%A9paule",
+        "verification": "dictionary_entry_opened",
+        "locator": "changer son fusil d'épaule : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/changer-son-fusil-d-epaule",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/changer_son_fusil_d%E2%80%99%C3%A9paule",
+        "citation": "— (Philippe Morvan, Ours, Calmann-Lévy, 2018)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/changer_son_fusil_d'%C3%A9paule",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2016.",
+        "evidenceKind": "dated_quotation",
+        "expression": "changer son fusil d'épaule",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=changer_son_fusil_d’épaule&oldid=38426309",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire machine arrière",
+    "t": "giriştiği işten geri adım atmak",
+    "lit": "makineyi geriye çalıştırmak",
+    "s": "Face aux protestations, la mairie a fait machine arrière.",
+    "form": "fait machine arrière",
+    "tr": "Tepkiler karşısında belediye geri adım attı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/faire_machine_arri%C3%A8re",
+      "https://www.expressio.fr/expressions/faire-machine-arriere"
+    ],
+    "editorialId": "fr-idiom-000112",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_machine_arri%C3%A8re",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire machine arrière : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-machine-arriere",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_machine_arri%C3%A8re",
+        "citation": "— (Harlan Coben, À quelques secondes près, Pocket, 2012)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_machine_arri%C3%A8re",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire machine arrière",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_machine_arrière&oldid=38267948",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "mettre un frein",
+    "t": "bir gelişmeyi sınırlamak veya durdurmak",
+    "lit": "bir fren koymak",
+    "s": "Nous devons mettre un frein à ces dépenses.",
+    "form": "mettre un frein",
+    "tr": "Bu harcamalara sınır koymalıyız.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/frein/35159",
+      "https://dictionary.cambridge.org/fr/dictionnaire/francais-anglais/mettre-un-frein-a"
+    ],
+    "editorialId": "fr-idiom-000115",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/frein/35159",
+        "verification": "dictionary_entry_opened",
+        "locator": "mettre un frein à quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000115",
+        "url": "https://dictionary.cambridge.org/fr/dictionnaire/francais-anglais/mettre-un-frein-a",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/international/article/2025/05/30/en-cote-d-ivoire-la-dangereux-succes-de-la-boisson-alcoolisee-vody_6609179_3210.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre un frein",
+        "evidenceKind": "published_usage",
+        "expression": "mettre un frein",
+        "selectedUsageWitness": true
+      }
+    ],
+    "pat": "mettre un frein à quelque chose"
+  },
+  {
+    "w": "sauter le pas",
+    "t": "uzun tereddütten sonra karar verip harekete geçmek",
+    "lit": "adımı atlamak",
+    "s": "Après des mois d'hésitation, elle a sauté le pas.",
+    "form": "sauté le pas",
+    "tr": "Aylarca tereddüt ettikten sonra kararını verip harekete geçti.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/sauter_le_pas",
+      "https://dictionnaire.lerobert.com/en/definition/sauter"
+    ],
+    "editorialId": "fr-idiom-000118",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/sauter_le_pas",
+        "verification": "dictionary_entry_opened",
+        "locator": "sauter le pas : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.leprogres.fr/economie/2024/07/06/conge-menstruel-cette-entreprise-jurassienne-a-saute-le-pas",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "id": "fr-idiom-000118",
+        "url": "https://dictionnaire.lerobert.com/en/definition/sauter",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sauter_le_pas",
+        "citation": "— (Nicolas Mathieu, Connemara, Actes Sud, 2022)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sauter_le_pas",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2003.",
+        "evidenceKind": "dated_quotation",
+        "expression": "sauter le pas",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=sauter_le_pas&oldid=38096002",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire le grand saut",
+    "t": "büyük bir değişime cesaret edip başlamak",
+    "lit": "büyük atlayışı yapmak",
+    "s": "Quitter son emploi pour créer son atelier, c'est faire le grand saut.",
+    "form": "faire le grand saut",
+    "tr": "İşini bırakıp kendi atölyesini açmak büyük bir değişime adım atmaktır.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/grand_saut",
+      "https://www.presences-grenoble.fr/actualites-management-formation-rh-grenoble/melanie-de-vulpian-fait-le-grand-saut.htm"
+    ],
+    "editorialId": "fr-idiom-000119",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/grand_saut",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire le grand saut : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.presences-grenoble.fr/actualites-management-formation-rh-grenoble/melanie-de-vulpian-fait-le-grand-saut.htm",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/grand_saut",
+        "citation": "— (Frédéric Lemaître, Le rêve américain des jeunes Chinois, Le Monde. Mis en ligne le 23 septembre 2019)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/grand_saut",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 127; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire le grand saut",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=grand_saut&oldid=34784778",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "brûler les étapes",
+    "t": "gerekli aşamaları atlayarak sonuca koşmak",
+    "lit": "aşamaları yakmak",
+    "s": "Sans les bases, tu risques de brûler les étapes.",
+    "form": "brûler les étapes",
+    "tr": "Temel bilgiler olmadan gerekli aşamaları atlama riskin var.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/br%C3%BBler_les_%C3%A9tapes",
+      "https://video.lefigaro.fr/figaro/politique/il-cherche-a-bruler-les-etapes-marine-le-pen-esquive-la-proposition-de-debat-avec-gabriel-attal-20240220",
+      "https://www.expressio.fr/expressions/bruler-les-etapes"
+    ],
+    "editorialId": "fr-idiom-000122",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/br%C3%BBler_les_%C3%A9tapes",
+        "verification": "dictionary_entry_opened",
+        "locator": "brûler les étapes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://video.lefigaro.fr/figaro/politique/il-cherche-a-bruler-les-etapes-marine-le-pen-esquive-la-proposition-de-debat-avec-gabriel-attal-20240220",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/bruler-les-etapes",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/br%C3%BBler_les_%C3%A9tapes",
+        "citation": "— (journal Sud-Ouest, édition Charente-Maritime / Charente, 20 août 2022, page 36)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/br%C3%BBler_les_%C3%A9tapes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "brûler les étapes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=brûler_les_étapes&oldid=38089324",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "assurer ses arrières",
+    "t": "olası tersliklere karşı kendini güvenceye almak",
+    "lit": "arka taraflarını güvenceye almak",
+    "s": "Avant de partir, elle a assuré ses arrières avec un contrat écrit.",
+    "form": "assuré ses arrières",
+    "tr": "Gitmeden önce yazılı sözleşmeyle kendini güvenceye aldı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/assurer/5921",
+      "https://dictionnaire.lerobert.com/definition/arrieres"
+    ],
+    "editorialId": "fr-idiom-000129",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/assurer/5921",
+        "verification": "dictionary_entry_opened",
+        "locator": "assurer ses arrières : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000129",
+        "url": "https://dictionnaire.lerobert.com/definition/arrieres",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/Mercato-le-barca-veut-attirer-eli-junior-kroupi-en-plan-b-du-dossier-julian-alvarez/1707597",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de assurer ses arrières",
+        "evidenceKind": "published_usage",
+        "expression": "assurer ses arrières",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "tâter le terrain",
+    "t": "adım atmadan önce durumu yoklamak",
+    "lit": "araziyi elle yoklamak",
+    "s": "Avant de proposer ce changement, je vais tâter le terrain.",
+    "form": "tâter le terrain",
+    "tr": "Bu değişikliği önermeden önce durumu yoklayacağım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/t%C3%A2ter_le_terrain",
+      "https://www.expressio.fr/expressions/tater-le-terrain"
+    ],
+    "editorialId": "fr-idiom-000130",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/t%C3%A2ter_le_terrain",
+        "verification": "dictionary_entry_opened",
+        "locator": "tâter le terrain : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/tater-le-terrain",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/t%C3%A2ter_le_terrain",
+        "citation": "— (journal 20 minutes, édition Paris-IDF, 9 juin 2023, page 12)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/t%C3%A2ter_le_terrain",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tâter le terrain",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tâter_le_terrain&oldid=39779399",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire d'une pierre deux coups",
+    "t": "tek bir işle iki sonuç elde etmek",
+    "lit": "bir taşla iki vuruş yapmak",
+    "s": "Je fais d'une pierre deux coups : je marche et je poste mon colis.",
+    "form": "fais d'une pierre deux coups",
+    "tr": "Yürüyüp kolimi postalayarak bir taşla iki kuş vuruyorum.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/faire_d%E2%80%99une_pierre_deux_coups",
+      "https://www.lapresse.tn/2024/10/30/pourquoi-dune-pierre-deux-coups/",
+      "https://www.expressio.fr/expressions/faire-d-une-pierre-deux-coups"
+    ],
+    "editorialId": "fr-idiom-000181",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_d%E2%80%99une_pierre_deux_coups",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire d'une pierre deux coups : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lapresse.tn/2024/10/30/pourquoi-dune-pierre-deux-coups/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-d-une-pierre-deux-coups",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_d%E2%80%99une_pierre_deux_coups",
+        "citation": "— (Lucien Descaves, L’Hirondelle sous le toit, 1924)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.togogoal.tg/journee-de-larbre-la-federation-togolaise-dathletisme-fait-dune-pierre-deux-coups/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article du 2 juin 2024; plantation et sensibilisation des athlètes, deux objectifs atteints ensemble.",
+        "evidenceKind": "published_usage",
+        "expression": "faire d'une pierre deux coups",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire l'impasse",
+    "t": "bir konuyu bilerek atlamak",
+    "lit": "kart oyununda empas yapmak",
+    "s": "Faute de temps, elle doit faire l'impasse sur le dernier chapitre.",
+    "form": "faire l'impasse",
+    "tr": "Zamanı olmadığı için son bölümü bilerek atlamak zorunda.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.linternaute.fr/dictionnaire/fr/definition/faire-l-impasse/",
+      "https://www.larousse.fr/dictionnaires/francais-arabe/impasse/20285"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.linternaute.fr/dictionnaire/fr/definition/faire-l-impasse/",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais-arabe/impasse/20285",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Patinage-artistique/Actualites/Alysa-liu-double-medaillee-d-or-olympique-de-patinage-artistique-fait-l-impasse-sur-la-saison/1713625",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire l'impasse",
+        "evidenceKind": "published_usage",
+        "expression": "faire l'impasse",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "mettre au pied du mur",
+    "t": "birini karar vermeye zorlamak",
+    "lit": "duvarın dibine koymak",
+    "s": "Cette échéance va nous mettre au pied du mur.",
+    "form": "mettre au pied du mur",
+    "tr": "Bu son tarih bizi karar vermeye zorlayacak.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/mettre-au-pied-du-mur",
+      "https://fr.wiktionary.org/wiki/mettre_au_pied_du_mur"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-au-pied-du-mur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_au_pied_du_mur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_au_pied_du_mur",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre au pied du mur",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_au_pied_du_mur&oldid=39828575",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "brûler ses vaisseaux",
+    "t": "geri dönüş yolunu bilerek kapatmak",
+    "lit": "gemilerini yakmak",
+    "s": "En vendant son atelier pour financer ce voyage, il a brûlé ses vaisseaux.",
+    "form": "brûlé ses vaisseaux",
+    "tr": "Bu yolculuğu finanse etmek için atölyesini satarak geri dönüş yolunu kapattı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/bruler-ses-vaisseaux",
+      "https://fr.wiktionary.org/wiki/br%C3%BBler_ses_vaisseaux"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/bruler-ses-vaisseaux",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/br%C3%BBler_ses_vaisseaux",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/langue-sauce-piquante/2023/04/05/macron-le-nouveau-pyrrhus/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de brûler ses vaisseaux",
+        "evidenceKind": "published_usage",
+        "expression": "brûler ses vaisseaux",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "donner carte blanche",
+    "t": "tam yetki vermek",
+    "lit": "beyaz kart vermek",
+    "s": "La direction nous a donné carte blanche pour imaginer la nouvelle exposition.",
+    "form": "donné carte blanche",
+    "tr": "Yönetim yeni sergiyi tasarlamamız için bize tam yetki verdi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/donner-carte-blanche",
+      "https://fr.wiktionary.org/wiki/donner_carte_blanche"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/donner-carte-blanche",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/donner_carte_blanche",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/international/video/2023/08/09/en-tunisie-le-discours-de-kais-saied-a-donne-carte-blanche-a-la-violence-contre-les-migrants_6184896_3210.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de donner carte blanche",
+        "evidenceKind": "published_usage",
+        "expression": "donner carte blanche",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "donner un blanc-seing",
+    "t": "sınırsız hareket yetkisi vermek",
+    "lit": "imzalı boş kâğıt vermek",
+    "s": "Le conseil refuse de donner un blanc-seing sans garanties précises.",
+    "form": "donner un blanc-seing",
+    "tr": "Kurul belirli güvenceler olmadan sınırsız hareket yetkisi vermeyi reddediyor.",
+    "reg": "formal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/blanc-seing",
+      "https://www.larousse.fr/dictionnaires/francais/blanc-seing/9755"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/blanc-seing",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/blanc-seing/9755",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/blanc-seing",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 146; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "donner un blanc-seing",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=blanc-seing&oldid=39256814",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "jouer sa dernière carte",
+    "t": "son çareye başvurmak",
+    "lit": "son kartını oynamak",
+    "s": "En faisant appel, elle va jouer sa dernière carte.",
+    "form": "jouer sa dernière carte",
+    "tr": "İtiraz ederek son çareye başvuracak.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/jouer-sa-derniere-carte",
+      "https://fr.wiktionary.org/wiki/jouer_sa_derni%C3%A8re_carte"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/jouer-sa-derniere-carte",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_sa_derni%C3%A8re_carte",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/archives-du-monde/03-07-2002/2/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de jouer sa dernière carte",
+        "evidenceKind": "published_usage",
+        "expression": "jouer sa dernière carte",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "jouer serré",
+    "t": "çok dikkatli ve hesaplı davranmak",
+    "lit": "sıkı oynamak",
+    "s": "Avec un budget aussi faible, il faudra jouer serré.",
+    "form": "jouer serré",
+    "tr": "Bu kadar düşük bir bütçeyle çok dikkatli ve hesaplı davranmak gerekecek.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/jouer-serre",
+      "https://fr.wiktionary.org/wiki/jouer_serr%C3%A9"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/jouer-serre",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_serr%C3%A9",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_serr%C3%A9",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 125; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jouer serré",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=jouer_serré&oldid=38785249",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "jouer sur deux tableaux",
+    "t": "iki taraftan da avantaj elde etmeye çalışmak",
+    "lit": "iki tahtada oynamak",
+    "s": "Ce candidat veut jouer sur deux tableaux en soutenant des projets opposés.",
+    "form": "jouer sur deux tableaux",
+    "tr": "Bu aday birbirine karşıt projeleri destekleyerek iki taraftan da avantaj sağlamaya çalışıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/jouer-sur-les-deux-tableaux",
+      "https://www.dictionnaire-academie.fr/article/A9J0277"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/jouer-sur-les-deux-tableaux",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jouer sur deux tableaux"
+      },
+      {
+        "url": "https://www.dictionnaire-academie.fr/article/A9J0277",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "jouer sur deux tableaux"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/documentaire/telerealite/caught-in-the-act-infidelite-m262432905/s03-il-a-meme-pas-de-voiture-c378155915/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de jouer sur deux tableaux",
+        "evidenceKind": "published_usage",
+        "expression": "jouer sur deux tableaux",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "lâcher du lest",
+    "t": "bazı taleplerinden vazgeçmek",
+    "lit": "safra bırakmak",
+    "s": "Pour sauver l'accord, chaque partie devra lâcher du lest.",
+    "form": "lâcher du lest",
+    "tr": "Anlaşmayı kurtarmak için her iki tarafın da bazı taleplerinden vazgeçmesi gerekecek.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/lacher-du-lest",
+      "https://fr.wiktionary.org/wiki/l%C3%A2cher_du_lest"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/lacher-du-lest",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/l%C3%A2cher_du_lest",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/l%C3%A2cher_du_lest",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "lâcher du lest",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=lâcher_du_lest&oldid=39221634",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "laisser courir",
+    "t": "üzerinde durmayıp müdahale etmemek",
+    "lit": "koşmasını bırakmak",
+    "s": "Pour cette remarque sans importance, mieux vaut laisser courir.",
+    "form": "laisser courir",
+    "tr": "Bu önemsiz sözün üzerinde durmayıp müdahale etmemek daha iyi.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.collinsdictionary.com/dictionary/french-english/laisser-courir",
+      "https://www.dictionnaire-academie.fr/article/A9C4628"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.collinsdictionary.com/dictionary/french-english/laisser-courir",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "laisser courir"
+      },
+      {
+        "url": "https://www.dictionnaire-academie.fr/article/A9C4628",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "locator": "laisser courir"
+      },
+      {
+        "url": "https://france3-regions.blog.franceinfo.fr/midi-pyrenees-politiques-france3/2015/11/05/decryptage-affaire-reynie-un-ancien-prefet-explique-le-dessous-des-cartes.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de laisser courir",
+        "evidenceKind": "published_usage",
+        "expression": "laisser courir",
+        "selectedUsageWitness": true
+      }
+    ],
+    "selectionNoteTr": "Uygulamaya aktarılmadan önce sözlük biçimi veya ikinci kaynak doğrulaması üzerinden yeniden seçildi."
+  },
+  {
+    "w": "monter au créneau",
+    "t": "bir görüşü savunmak için öne çıkmak",
+    "lit": "mazgallı sipere çıkmak",
+    "s": "Les habitants vont monter au créneau pour défendre leur école.",
+    "form": "monter au créneau",
+    "tr": "Mahalle sakinleri okullarını savunmak için öne çıkacak.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/monter-au-creneau",
+      "https://fr.wiktionary.org/wiki/monter_au_cr%C3%A9neau"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/monter-au-creneau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/monter_au_cr%C3%A9neau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/monter_au_cr%C3%A9neau",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "monter au créneau",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=monter_au_créneau&oldid=38093645",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "rendre les armes",
+    "t": "direnmeyi bırakıp teslim olmak",
+    "lit": "silahları teslim etmek",
+    "s": "Après des heures de discussion, nos adversaires ont rendu les armes.",
+    "form": "rendu les armes",
+    "tr": "Saatler süren tartışmadan sonra karşı taraf direnmeyi bıraktı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/rendre-les-armes",
+      "https://fr.wiktionary.org/wiki/rendre_les_armes"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/rendre-les-armes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rendre_les_armes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rendre_les_armes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2026.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rendre les armes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rendre_les_armes&oldid=39385377",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "renverser la vapeur",
+    "t": "gidişatı tersine çevirmek",
+    "lit": "buharın yönünü ters çevirmek",
+    "s": "Une nouvelle stratégie pourrait renverser la vapeur avant la fin de l'année.",
+    "form": "renverser la vapeur",
+    "tr": "Yeni bir strateji yıl sonundan önce gidişatı tersine çevirebilir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/renverser-la-vapeur",
+      "https://fr.wiktionary.org/wiki/renverser_la_vapeur"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/renverser-la-vapeur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/renverser_la_vapeur",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/renverser_la_vapeur",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "renverser la vapeur",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=renverser_la_vapeur&oldid=38095644",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "se tenir à carreau",
+    "t": "sorun çıkarmamak için uslu durmak",
+    "lit": "karo üstünde durmak",
+    "s": "Après cet avertissement, mieux vaut se tenir à carreau.",
+    "form": "se tenir à carreau",
+    "tr": "Bu uyarıdan sonra sorun çıkarmamak için uslu durmak daha iyi olur.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/se-tenir-a-carreau",
+      "https://fr.wiktionary.org/wiki/se_tenir_%C3%A0_carreau"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/se-tenir-a-carreau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_tenir_%C3%A0_carreau",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_tenir_%C3%A0_carreau",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se tenir à carreau",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_tenir_à_carreau&oldid=39755092",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "tenir le cap",
+    "t": "hedefinden sapmadan ilerlemek",
+    "lit": "rotayı tutmak",
+    "s": "Malgré les critiques, nous devons tenir le cap sur la qualité.",
+    "form": "tenir le cap",
+    "tr": "Eleştirilere rağmen kalite hedefimizden sapmadan ilerlemeliyiz.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://fr.wiktionary.org/wiki/tenir_le_cap",
+      "https://dictionnaire.lerobert.com/definition/tenir-cap"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_le_cap",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/tenir-cap",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_le_cap",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tenir le cap",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tenir_le_cap&oldid=39944979",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "tirer un trait",
+    "t": "bir meseleyi kapatıp geride bırakmak",
+    "lit": "bir çizgi çekmek",
+    "s": "Après cet accord, nous pouvons tirer un trait sur ce conflit.",
+    "form": "tirer un trait",
+    "tr": "Bu anlaşmadan sonra bu çatışmayı kapatıp geride bırakabiliriz.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/tirer-un-trait",
+      "https://fr.wiktionary.org/wiki/tirer_un_trait"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/tirer-un-trait",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_un_trait",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_un_trait",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer un trait",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tirer_un_trait&oldid=39386067",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "tourner la page",
+    "t": "geçmişi geride bırakıp yeni döneme geçmek",
+    "lit": "sayfayı çevirmek",
+    "s": "Après cette séparation, elle veut tourner la page et déménager.",
+    "form": "tourner la page",
+    "tr": "Bu ayrılıktan sonra geçmişi geride bırakıp yeni bir döneme geçmek ve taşınmak istiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "decide",
+    "src": [
+      "https://www.expressio.fr/expressions/tourner-la-page",
+      "https://fr.wiktionary.org/wiki/tourner_la_page"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/tourner-la-page",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tourner_la_page",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tourner_la_page",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 138; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tourner la page",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tourner_la_page&oldid=39753548",
+        "selectedUsageWitness": true
+      }
+    ]
+  }
+]

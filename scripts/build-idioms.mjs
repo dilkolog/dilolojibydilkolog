@@ -22,8 +22,28 @@ export function sourceMatches(language, idiom, address) {
     // Ignore the hostname and fragment. Decode percent escapes and query '+' separators.
     const path = decodeURIComponent(url.pathname)
     const query = [...url.searchParams].flat().join(' ')
-    const available = new Set(tokens(`${path} ${query}`))
-    return tokens(idiom).filter((w) => !STOP[language].has(w)).some((w) => available.has(w))
+    const content = (value) => tokens(value).filter((w) => !STOP[language].has(w))
+    // French dictionary URLs use singular headwords even when an idiom fixes a plural.
+    // Keep whole-token comparisons: this is an address preflight, never source verification.
+    const forms = (word) => language === 'fr' && word.length > 3 && word.endsWith('s')
+      ? [word, word.slice(0, -1)] : [word]
+    const available = new Set(content(`${path} ${query}`).flatMap(forms))
+    return content(idiom).flatMap(forms).some((w) => available.has(w))
+  } catch { return false }
+}
+
+// Official ninth-edition entries have opaque IDs instead of headwords in their URLs.
+// Require an explicit, dated editorial locator; this does not replace reading the source.
+export function hasReviewedFrenchLocator(row, address) {
+  if (typeof row?.w !== 'string' || !row.w.trim()) return false
+  try {
+    const url = new URL(address)
+    if (url.protocol !== 'https:' || !['dictionnaire-academie.fr', 'www.dictionnaire-academie.fr'].includes(url.host)
+      || !/^\/article\/A9[A-Z]\d{4}$/.test(url.pathname)) return false
+    return Array.isArray(row.sourceChecks) && row.sourceChecks.some((check) => check.url === address
+      && ['dictionary_entry_opened', 'dictionary_search_excerpt'].includes(check.verification)
+      && /^\d{4}-\d{2}-\d{2}$/.test(check.checkedOn ?? '')
+      && typeof check.locator === 'string' && fold(key(check.locator)).includes(fold(key(row.w ?? ''))))
   } catch { return false }
 }
 
@@ -51,7 +71,7 @@ export function buildIdioms({ raw = RAW, out = OUT, log = console.log, error = c
           }
         }
         for (const address of Array.isArray(row.src) ? row.src : []) {
-          if (!sourceMatches(language, row.w ?? '', address)) {
+          if (!sourceMatches(language, row.w ?? '', address) && !(language === 'fr' && hasReviewedFrenchLocator(row, address))) {
             error(`${file}: "${row.w}" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: ${address}`)
             failed = true
           }

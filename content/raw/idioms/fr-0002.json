@@ -1,0 +1,1796 @@
+[
+  {
+    "w": "avoir le cafard",
+    "t": "içi sıkılmak, keyifsiz ve üzgün olmak",
+    "lit": "hamamböceğine sahip olmak",
+    "s": "Depuis le départ de sa sœur, il a le cafard.",
+    "form": "a le cafard",
+    "tr": "Kız kardeşi gittiğinden beri içi sıkılıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/college/cafard/5963",
+      "https://www.expressio.fr/expressions/avoir-le-cafard",
+      "https://fr.wiktionary.org/wiki/avoir_le_cafard"
+    ],
+    "editorialId": "fr-idiom-000005",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/college/cafard/5963",
+        "locator": "Sens 2 : Avoir le cafard",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-le-cafard",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_cafard",
+        "citation": "— (Hugo TSR, Iceberg, Tant qu'on est là, 2017)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_cafard",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir le cafard",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_le_cafard&oldid=39733039",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "mettre la charrue avant les bœufs",
+    "t": "işleri gerekli sırayı tersine çevirerek yapmak",
+    "lit": "sabanı öküzlerin önüne koymak",
+    "s": "Acheter les meubles avant de mesurer la pièce, c'est mettre la charrue avant les bœufs.",
+    "form": "mettre la charrue avant les bœufs",
+    "tr": "Odayı ölçmeden mobilya almak, işleri ters sırayla yapmaktır.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/college/charrue/7432",
+      "https://www.expressio.fr/expressions/mettre-la-charrue-avant-devant-les-boeufs",
+      "https://fr.wiktionary.org/wiki/mettre_la_charrue_avant_les_b%C5%93ufs"
+    ],
+    "editorialId": "fr-idiom-000018",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/college/charrue/7432",
+        "locator": "Mettre la charrue avant les bœufs",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/sport/article/2021/03/26/tournoi-des-6-nations-gagner-sans-s-egarer-dans-les-calculs-la-derniere-equation-du-xv-de-france_6074515_3242.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-la-charrue-avant-devant-les-boeufs",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_la_charrue_avant_les_b%C5%93ufs",
+        "citation": "— (Franca Lugand-Ciacci, L’école assassinée, 2008)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_la_charrue_avant_les_b%C5%93ufs",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 141; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre la charrue avant les bœufs",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_la_charrue_avant_les_bœufs&oldid=39801129",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "ménager la chèvre et le chou",
+    "t": "karşıt iki tarafı da gücendirmemeye çalışmak",
+    "lit": "keçiyi ve lahanayı gözetmek",
+    "s": "Pour plaire aux deux camps, la présidente essaie de ménager la chèvre et le chou.",
+    "form": "ménager la chèvre et le chou",
+    "tr": "Başkan, iki tarafa da yaranmak için kimseyi gücendirmemeye çalışıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/ch%C3%A8vre/15217",
+      "https://www.expressio.fr/expressions/menager-la-chevre-et-le-chou",
+      "https://fr.wiktionary.org/wiki/m%C3%A9nager_la_ch%C3%A8vre_et_le_chou"
+    ],
+    "editorialId": "fr-idiom-000020",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/ch%C3%A8vre/15217",
+        "locator": "Expressions : Ménager la chèvre et le chou",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/economie/article/2023/04/10/le-village-d-etretat-ronge-par-le-surtourisme-suffoque-il-y-a-tellement-de-monde-que-les-gens-font-n-importe-quoi_6168900_3234.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/menager-la-chevre-et-le-chou",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/m%C3%A9nager_la_ch%C3%A8vre_et_le_chou",
+        "citation": "— (Les filles, qui aimaient peut-être toujours leur père, ont voulu ménager la chèvre et le chou, le père et le mari;)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/m%C3%A9nager_la_ch%C3%A8vre_et_le_chou",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 137; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "ménager la chèvre et le chou",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=ménager_la_chèvre_et_le_chou&oldid=39444859",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "noyer le poisson",
+    "t": "asıl meseleden kaçınmak için konuyu bulandırmak",
+    "lit": "balığı boğmak",
+    "s": "Au lieu d'expliquer la dépense, il noie le poisson avec des détails sans rapport.",
+    "form": "noie le poisson",
+    "tr": "Harcamanın nedenini açıklamak yerine ilgisiz ayrıntılarla konuyu bulandırıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/noyer/55155",
+      "https://www.expressio.fr/expressions/noyer-le-poisson",
+      "https://fr.wiktionary.org/wiki/noyer_le_poisson"
+    ],
+    "editorialId": "fr-idiom-000021",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/noyer/55155",
+        "locator": "Expressions : Noyer le poisson",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/societe/article/2025/03/07/au-proces-sarkozy-kadhafi-alexandre-djouhri-et-la-villa-de-mougins_6576859_3224.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/noyer-le-poisson",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/noyer_le_poisson",
+        "citation": "— (Du poisson « durable » en grande surface ? )",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/noyer_le_poisson",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "noyer le poisson",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=noyer_le_poisson&oldid=39849099",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "prendre le taureau par les cornes",
+    "t": "bir güçlüğün üzerine kararlılıkla gitmek",
+    "lit": "boğayı boynuzlarından tutmak",
+    "s": "Au lieu de repousser cette discussion, prenons le taureau par les cornes.",
+    "form": "prenons le taureau par les cornes",
+    "tr": "Bu konuşmayı ertelemek yerine meselenin üzerine kararlılıkla gidelim.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/taureau/76848",
+      "https://www.expressio.fr/expressions/prendre-le-taureau-par-les-cornes",
+      "https://fr.wiktionary.org/wiki/prendre_le_taureau_par_les_cornes"
+    ],
+    "editorialId": "fr-idiom-000023",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/taureau/76848",
+        "locator": "Expressions : Prendre le taureau par les cornes",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/campus/article/2024/01/15/parcoursup-et-le-controle-continu-a-la-recherche-de-l-equite-entre-candidats_6210952_4401467.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Intertitre et passage sur le contrôle continu, prendre le taureau par les cornes"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/prendre-le-taureau-par-les-cornes",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_le_taureau_par_les_cornes",
+        "citation": "— (Rémi Nadeau, Roberge est encore l’homme de Legault, Le Journal de Québec, 30 janvier 2021)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_le_taureau_par_les_cornes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre le taureau par les cornes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_le_taureau_par_les_cornes&oldid=39011829",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "mettre la puce à l'oreille",
+    "t": "birinin içine şüphe düşürmek, onu kuşkulandırmak",
+    "lit": "kulağına pire koymak",
+    "s": "Son silence inhabituel m'a mis la puce à l'oreille.",
+    "form": "mis la puce à l'oreille",
+    "tr": "Alışılmadık sessizliği içime şüphe düşürdü.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/puce/64975",
+      "https://www.expressio.fr/expressions/mettre-la-puce-a-l-oreille-avoir-la-puce-a-l-oreille"
+    ],
+    "editorialId": "fr-idiom-000024",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/puce/64975",
+        "locator": "Expressions : Mettre la puce à l'oreille de quelqu'un",
+        "checkedOn": "2026-11-10",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2026/10/13/les-series-de-la-semaine-la-diplomate-below-visioquest-et-crystal-lake_6793044_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-la-puce-a-l-oreille-avoir-la-puce-a-l-oreille",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2026/10/13/les-series-de-la-semaine-la-diplomate-below-visioquest-et-crystal-lake_6793044_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı",
+        "expression": "mettre la puce à l'oreille",
+        "evidenceKind": "published_usage",
+        "selectedUsageWitness": true
+      }
+    ],
+    "pat": "mettre la puce à l'oreille de quelqu'un"
+  },
+  {
+    "w": "avoir la chair de poule",
+    "t": "tüyleri diken diken olmak",
+    "lit": "tavuk derisine sahip olmak",
+    "s": "Dans ce couloir glacé, j'ai la chair de poule.",
+    "form": "ai la chair de poule",
+    "tr": "Bu buz gibi koridorda tüylerim diken diken oluyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_la_chair_de_poule",
+      "https://www.expressio.fr/expressions/avoir-la-chair-de-poule"
+    ],
+    "editorialId": "fr-idiom-000039",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_chair_de_poule",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir la chair de poule : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-la-chair-de-poule",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_chair_de_poule",
+        "citation": "— (Louis Gigout, Syracuse : Chroniques de voyage, 2007)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_chair_de_poule",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir la chair de poule",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_la_chair_de_poule&oldid=39697569",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir des papillons dans le ventre",
+    "t": "heyecandan midesinde kelebekler uçuşmak",
+    "lit": "karnında kelebekler olmak",
+    "s": "Avant leur premier rendez-vous, elle avait des papillons dans le ventre.",
+    "form": "avait des papillons dans le ventre",
+    "tr": "İlk buluşmalarından önce heyecandan midesinde kelebekler uçuşuyordu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://en.wiktionary.org/wiki/papillons_dans_le_ventre",
+      "https://dictionnaire.lerobert.com/definition/papillon"
+    ],
+    "editorialId": "fr-idiom-000041",
+    "sourceChecks": [
+      {
+        "url": "https://en.wiktionary.org/wiki/papillons_dans_le_ventre",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir des papillons dans le ventre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000041",
+        "url": "https://dictionnaire.lerobert.com/definition/papillon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000041",
+        "url": "https://dictionnaire.lerobert.com/definition/papillon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/pixels/article/2023/12/08/baldur-s-gate-iii-quand-le-c-ur-des-joueurs-chavire-pour-des-personnages-de-pixels_6204713_4408996.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir des papillons dans le ventre",
+        "evidenceKind": "published_usage",
+        "expression": "avoir des papillons dans le ventre",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "monter sur ses grands chevaux",
+    "t": "sert ve üstten bir tavırla çıkışmak",
+    "lit": "yüksek atlarına binmek",
+    "s": "Pour une simple remarque, il est monté sur ses grands chevaux.",
+    "form": "monté sur ses grands chevaux",
+    "tr": "Basit bir yorum üzerine sert ve üstten bir tavırla çıkıştı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/monter_sur_ses_grands_chevaux",
+      "https://www.expressio.fr/expressions/monter-sur-ses-grands-chevaux"
+    ],
+    "editorialId": "fr-idiom-000045",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/monter_sur_ses_grands_chevaux",
+        "verification": "dictionary_entry_opened",
+        "locator": "monter sur ses grands chevaux : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/monter-sur-ses-grands-chevaux",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/monter_sur_ses_grands_chevaux",
+        "citation": "— (Patrick Besson, La vie quotidienne de Patrick Besson sous le règne de François Mitterrand, Fayard, 2006)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/monter_sur_ses_grands_chevaux",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "monter sur ses grands chevaux",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=monter_sur_ses_grands_chevaux&oldid=39498168",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "prendre la mouche",
+    "t": "küçük bir söze aniden alınmak",
+    "lit": "sineği almak",
+    "s": "Il a pris la mouche parce qu'on avait mal prononcé son prénom.",
+    "form": "pris la mouche",
+    "tr": "Adı yanlış telaffuz edildi diye bir anda alındı.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/prendre_la_mouche",
+      "https://www.expressio.fr/expressions/prendre-la-mouche"
+    ],
+    "editorialId": "fr-idiom-000046",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_la_mouche",
+        "verification": "dictionary_entry_opened",
+        "locator": "prendre la mouche : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/prendre-la-mouche",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_la_mouche",
+        "citation": "— (Pierre Lemaitre, Couleurs de l’incendie, Albin Michel, 2018)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_la_mouche",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 137; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre la mouche",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_la_mouche&oldid=39639237",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "appeler un chat un chat",
+    "t": "bir şeyi adıyla açıkça söylemek",
+    "lit": "bir kediye kedi demek",
+    "s": "Appelons un chat un chat : ce document contient des erreurs.",
+    "form": "Appelons un chat un chat",
+    "tr": "Açık konuşalım; bu belgede hatalar var.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/appeler_un_chat_un_chat",
+      "https://www.expressio.fr/expressions/appeler-un-chat-un-chat"
+    ],
+    "editorialId": "fr-idiom-000058",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/appeler_un_chat_un_chat",
+        "verification": "dictionary_entry_opened",
+        "locator": "appeler un chat un chat : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/appeler-un-chat-un-chat",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/appeler_un_chat_un_chat",
+        "citation": "— (La Quadrature du Net, Smart Cities sécuritaires : la CNIL forfait ?, 6 novembre 2018 → lire en ligne)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/appeler_un_chat_un_chat",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "appeler un chat un chat",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=appeler_un_chat_un_chat&oldid=39206565",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "passer du coq à l'âne",
+    "t": "bir konudan ilgisiz başka bir konuya atlamak",
+    "lit": "horozdan eşeğe geçmek",
+    "s": "Il passe du coq à l'âne et personne ne suit.",
+    "form": "passe du coq à l'âne",
+    "tr": "İlgisiz konulara atlıyor ve kimse takip edemiyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/passer_du_coq_%C3%A0_l%E2%80%99%C3%A2ne",
+      "https://www.expressio.fr/expressions/sauter-du-coq-a-l-ane-passer-du-coq-a-l-ane"
+    ],
+    "editorialId": "fr-idiom-000062",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_du_coq_%C3%A0_l%E2%80%99%C3%A2ne",
+        "verification": "dictionary_entry_opened",
+        "locator": "passer du coq à l'âne : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/sauter-du-coq-a-l-ane-passer-du-coq-a-l-ane",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/du_coq_%C3%A0_l%E2%80%99%C3%A2ne",
+        "citation": "— (Delphine de Vigan, Rien ne s’oppose à la nuit, J.-C. ...   * France (Lyon) : écouter « du coq à l’âne [Prononciation ?]",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_du_coq_%C3%A0_l%E2%80%99%C3%A2ne",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 139; année mentionnée 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "passer du coq à l'âne",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=du_coq_à_l’âne&oldid=39912685",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "revenir à ses moutons",
+    "t": "asıl konuşulan konuya dönmek",
+    "lit": "kendi koyunlarına dönmek",
+    "s": "Après cette parenthèse, revenons à nos moutons : le budget.",
+    "form": "revenons à nos moutons",
+    "tr": "Bu aradan sonra asıl konumuza, bütçeye dönelim.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/revenir_%C3%A0_ses_moutons",
+      "https://jemenfiche.fr/expression/revenir-a-ses-moutons/"
+    ],
+    "editorialId": "fr-idiom-000063",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/revenir_%C3%A0_ses_moutons",
+        "verification": "dictionary_entry_opened",
+        "locator": "revenir à ses moutons : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000063",
+        "url": "https://jemenfiche.fr/expression/revenir-a-ses-moutons/",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/revenir_%C3%A0_ses_moutons",
+        "citation": "— (Georges Simenon, Les inconnus dans la maison, Gallimard, 1940, réédition Folio, 1975, page 228) ...   * France (Lyon) : écouter « revenir à ses moutons [Prononciation ?]",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://lemagdesanimaux.ouest-france.fr/dossier-1604-revenons-nos-moutons.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de revenir à ses moutons",
+        "evidenceKind": "published_usage",
+        "expression": "revenir à ses moutons",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "clouer le bec",
+    "t": "birini cevap veremez hâle getirip susturmak",
+    "lit": "gagayı çivilemek",
+    "s": "Cette preuve a cloué le bec à son détracteur.",
+    "form": "cloué le bec",
+    "tr": "Bu kanıt, onu kötüleyeni cevap veremez hâle getirip susturdu.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/clouer_le_bec",
+      "https://www.expressio.fr/expressions/clouer-le-bec/page-2"
+    ],
+    "editorialId": "fr-idiom-000070",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/clouer_le_bec",
+        "verification": "dictionary_entry_opened",
+        "locator": "clouer le bec à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/clouer-le-bec/page-2",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/clouer_le_bec",
+        "citation": "— (Georges Emmanuel Clancier, La Fabrique du roi, vol. 2 : Le Pain noir, éd. Robert Laffont, 2014)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/clouer_le_bec",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "clouer le bec",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=clouer_le_bec&oldid=39919089",
+        "selectedUsageWitness": true
+      }
+    ],
+    "pat": "clouer le bec à quelqu'un"
+  },
+  {
+    "w": "brosser dans le sens du poil",
+    "t": "birinin hoşuna gidecek şekilde davranıp güvenini kazanmak",
+    "lit": "tüyün yönünde fırçalamak",
+    "s": "Il préfère brosser dans le sens du poil plutôt que contredire son directeur.",
+    "form": "brosser dans le sens du poil",
+    "tr": "Müdürüne karşı çıkmaktansa onun suyuna gitmeyi tercih ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/brosser_dans_le_sens_du_poil",
+      "https://www.expressio.fr/expressions/caresser-dans-le-sens-du-poil"
+    ],
+    "editorialId": "fr-idiom-000141",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/brosser_dans_le_sens_du_poil",
+        "verification": "dictionary_entry_opened",
+        "locator": "brosser quelqu'un dans le sens du poil : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/caresser-dans-le-sens-du-poil",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/brosser_dans_le_sens_du_poil",
+        "citation": null,
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/L-entraineur-de-naples-antonio-conte-contredit-son-president-en-pleine-conference-de-presse-s-accrocher-a-ces-arguments-je-n-aime-pas-ca/1678773",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de brosser dans le sens du poil",
+        "evidenceKind": "published_usage",
+        "expression": "brosser dans le sens du poil",
+        "selectedUsageWitness": true
+      }
+    ],
+    "pat": "brosser quelqu'un dans le sens du poil"
+  },
+  {
+    "w": "se regarder en chiens de faïence",
+    "t": "birbirine soğuk ve kuşkulu bakmak",
+    "lit": "çini köpekler gibi birbirine bakmak",
+    "s": "Dans le salon, ils se regardaient en chiens de faïence.",
+    "form": "se regardaient en chiens de faïence",
+    "tr": "Salonda birbirlerine soğuk ve kuşkulu bakıyorlardı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/se_regarder_en_chiens_de_fa%C3%AFence",
+      "https://www.expressio.fr/expressions/se-regarder-en-chiens-de-faience"
+    ],
+    "editorialId": "fr-idiom-000149",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_regarder_en_chiens_de_fa%C3%AFence",
+        "verification": "dictionary_entry_opened",
+        "locator": "se regarder en chiens de faïence : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/se-regarder-en-chiens-de-faience",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_regarder_en_chiens_de_fa%C3%AFence",
+        "citation": "— (Romain Herreros, Jamal Khashoggi : Menaces diplomatiques, enquête, enregistrements… le point sur la disparition du journaliste, Le Huffington Post. Mis en ligne le 14 octobre 2018)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_regarder_en_chiens_de_fa%C3%AFence",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se regarder en chiens de faïence",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_regarder_en_chiens_de_faïence&oldid=39755074",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "tirer dans les pattes",
+    "t": "birini zayıflatmak için gizlice uğraşmak",
+    "lit": "patilere ateş etmek",
+    "s": "Ces associés passent leur temps à se tirer dans les pattes.",
+    "form": "se tirer dans les pattes",
+    "tr": "Bu ortaklar sürekli birbirlerinin kuyusunu kazıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://www.cnrtl.fr/definition/tirer",
+      "https://fr.wiktionary.org/wiki/se_tirer_dans_les_pattes"
+    ],
+    "editorialId": "fr-idiom-000153",
+    "sourceChecks": [
+      {
+        "url": "https://www.cnrtl.fr/definition/TIRAIT",
+        "verification": "dictionary_entry_opened",
+        "locator": "tirer dans les pattes de quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000153",
+        "url": "https://www.cnrtl.fr/definition/tirer",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_entry_opened",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_tirer_dans_les_pattes",
+        "citation": "— (Marc Trévidic, Le juge Trévidic : « Dans l’affaire Karachi, on nous a mis trop de handicaps », Le Monde. Mis en ligne le 7 octobre 2019)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_tirer_dans_les_pattes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 124; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer dans les pattes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_tirer_dans_les_pattes&oldid=38096574",
+        "selectedUsageWitness": true
+      }
+    ],
+    "pat": "tirer dans les pattes de quelqu'un"
+  },
+  {
+    "w": "avoir des oursins dans les poches",
+    "t": "para harcamaya yanaşmayacak kadar cimri olmak",
+    "lit": "ceplerinde denizkestaneleri olmak",
+    "s": "Quand il faut participer, il a des oursins dans les poches.",
+    "form": "a des oursins dans les poches",
+    "tr": "Masrafa katılmak gerektiğinde cimriliği tutuyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_des_oursins_dans_les_poches",
+      "https://www.thelocal.fr/20211228/french-expression-of-the-day-avoir-des-oursins-dans-les-poches"
+    ],
+    "editorialId": "fr-idiom-000171",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_des_oursins_dans_les_poches",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir des oursins dans les poches : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000171",
+        "url": "https://www.thelocal.fr/20211228/french-expression-of-the-day-avoir-des-oursins-dans-les-poches",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_des_oursins_dans_les_poches",
+        "citation": "— (Grégoire Bouillier, Le Coeur ne cède pas, J'ai lu, 2022, p. 1162.)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_des_oursins_dans_les_poches",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir des oursins dans les poches",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_des_oursins_dans_les_poches&oldid=39917732",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "traîner la patte",
+    "t": "yorgunlukla ağır ağır ilerlemek",
+    "lit": "patiyi sürüklemek",
+    "s": "Après dix kilomètres, les marcheurs traînaient la patte.",
+    "form": "traînaient la patte",
+    "tr": "On kilometreden sonra yürüyüşçüler yorgunlukla ağır ilerliyordu.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/tra%C3%AEner_la_patte",
+      "https://www.larousse.fr/dictionnaires/francais/tra%C3%AEner/78956"
+    ],
+    "editorialId": "fr-idiom-000184",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/tra%C3%AEner_la_patte",
+        "verification": "dictionary_entry_opened",
+        "locator": "traîner la patte : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000184",
+        "url": "https://www.larousse.fr/dictionnaires/francais/tra%C3%AEner/78956",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tra%C3%AEner_la_patte",
+        "citation": "— (Jacques Mandelbaum, Clint Eastwood, ou l’art d’être vieux derrière et devant la caméra, Le Monde. Mis en ligne le 10 novembre 2021)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tra%C3%AEner_la_patte",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "traîner la patte",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=traîner_la_patte&oldid=39755541",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire le pied de grue",
+    "t": "bir yerde ayakta uzun süre beklemek",
+    "lit": "turna ayağı yapmak",
+    "s": "J'ai fait le pied de grue devant le théâtre.",
+    "form": "fait le pied de grue",
+    "tr": "Tiyatronun önünde ayakta uzun süre bekledim.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/faire_le_pied_de_grue",
+      "https://www.expressio.fr/expressions/faire-le-pied-de-grue"
+    ],
+    "editorialId": "fr-idiom-000206",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_le_pied_de_grue",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire le pied de grue : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-le-pied-de-grue",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_le_pied_de_grue",
+        "citation": "— (Qui veut la peau de Roger Rabbit, 1988)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_le_pied_de_grue",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 137; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire le pied de grue",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_le_pied_de_grue&oldid=39200512",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "mettre le pied à l'étrier",
+    "t": "birinin bir işe başlamasına yardımcı olmak",
+    "lit": "ayağı üzengiye koymak",
+    "s": "Ce stage lui a mis le pied à l'étrier.",
+    "form": "mis le pied à l'étrier",
+    "tr": "Bu staj işe başlamasına yardımcı oldu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/mettre_le_pied_%C3%A0_l%E2%80%99%C3%A9trier",
+      "https://www.expressio.fr/expressions/mettre-le-pied-a-l-etrier"
+    ],
+    "editorialId": "fr-idiom-000211",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_le_pied_%C3%A0_l%E2%80%99%C3%A9trier",
+        "verification": "dictionary_entry_opened",
+        "locator": "mettre le pied à l'étrier à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-le-pied-a-l-etrier",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_le_pied_%C3%A0_l%E2%80%99%C3%A9trier",
+        "citation": "— (Laurent de Wilde, Monk, 1996, collection Folio, page 151)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/disparitions/article/2013/04/13/antoine-veil-haut-fonctionnaire-homme-politique-chef-d-entreprise-et-mari-de_3159208_3382.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre le pied à l'étrier",
+        "evidenceKind": "published_usage",
+        "expression": "mettre le pied à l'étrier",
+        "selectedUsageWitness": true
+      }
+    ],
+    "pat": "mettre le pied à l'étrier à quelqu'un"
+  },
+  {
+    "w": "faire mouche",
+    "t": "sözüyle veya işiyle hedefi tam tutturmak",
+    "lit": "sineği vurmak",
+    "s": "Son exemple concret a fait mouche.",
+    "form": "fait mouche",
+    "tr": "Somut örneği tam yerini buldu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/faire_mouche",
+      "https://www.linternaute.fr/dictionnaire/fr/definition/faire-mouche/"
+    ],
+    "editorialId": "fr-idiom-000214",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_mouche",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire mouche : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000214",
+        "url": "https://www.linternaute.fr/dictionnaire/fr/definition/faire-mouche/",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_mouche",
+        "citation": "— (Jean-Louis Lessard, À la hache sur laurentiana.blogspot.com. Mis en ligne le 17 juin 2007)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_mouche",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2014.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire mouche",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_mouche&oldid=39473028",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir du flair",
+    "t": "bir şeyi sezebilme yeteneği olmak",
+    "lit": "koku alma yetisi olmak",
+    "s": "Cette enquêtrice a du flair pour repérer les incohérences.",
+    "form": "a du flair",
+    "tr": "Bu araştırmacı tutarsızlıkları sezmekte yetenekli.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_du_flair",
+      "https://www.expressio.fr/expressions/avoir-du-flair"
+    ],
+    "editorialId": "fr-idiom-000237",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_du_flair",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir du flair : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-du-flair",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_du_flair",
+        "citation": "— (Actu Pure Break, 10/10/2024)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_du_flair",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir du flair",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_du_flair&oldid=39902034",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir une tête de linotte",
+    "t": "çok unutkan olmak",
+    "lit": "ketenkuşu kafasına sahip olmak",
+    "s": "Aujourd'hui, j'ai une tête de linotte : j'oublie même mon adresse.",
+    "form": "ai une tête de linotte",
+    "tr": "Bugün çok unutkanım; kendi adresimi bile unutuyorum.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais-italien/linotte/42175",
+      "https://dictionnaire.lerobert.com/definition/linotte",
+      "https://www.expressio.fr/expressions/tete-de-linotte/page-10"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais-italien/linotte/42175",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/linotte",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/tete-de-linotte/page-10",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://lemagdesanimaux.ouest-france.fr/dossier-1643-tete-de-linotte.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir une tête de linotte",
+        "evidenceKind": "published_usage",
+        "expression": "avoir une tête de linotte",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir une mémoire d'éléphant",
+    "t": "çok güçlü bir hafızası olmak",
+    "lit": "fil hafızasına sahip olmak",
+    "s": "Elle a une mémoire d'éléphant et se rappelle chaque anniversaire.",
+    "form": "a une mémoire d'éléphant",
+    "tr": "Çok güçlü bir hafızası var; bütün doğum günlerini hatırlıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/%C3%A9l%C3%A9phant/28378",
+      "https://dictionnaire.lerobert.com/definition/elephant"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/%C3%A9l%C3%A9phant/28378",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/elephant",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/a-la-une/article/2011/03/08/la-memoire-ses-codes-et-ses-cles_1489929_3208.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir une mémoire d'éléphant",
+        "evidenceKind": "published_usage",
+        "expression": "avoir une mémoire d'éléphant",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire l'autruche",
+    "t": "tehlikeyi görmezden gelmek",
+    "lit": "devekuşu olmak",
+    "s": "Devant ces chiffres alarmants, inutile de faire l'autruche.",
+    "form": "faire l'autruche",
+    "tr": "Bu kaygı verici rakamlar karşısında tehlikeyi görmezden gelmenin anlamı yok.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/autruche/6892",
+      "https://dictionnaire.lerobert.com/definition/autruche"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/autruche/6892",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/autruche",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2006/08/25/lettre-ouverte-a-andre-malraux_806418_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire l'autruche",
+        "evidenceKind": "published_usage",
+        "expression": "faire l'autruche",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "battre de l'aile",
+    "t": "kötüye gitmek",
+    "lit": "kanadı çırpmak",
+    "s": "Depuis plusieurs mois, leur couple bat de l'aile.",
+    "form": "bat de l'aile",
+    "tr": "İlişkileri birkaç aydır kötüye gidiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/college/aile/912",
+      "https://dictionnaire.lerobert.com/definition/aile",
+      "https://www.expressio.fr/expressions/battre-de-l-aile-avoir-du-plomb-dans-l-aile"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/college/aile/912",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/aile",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/battre-de-l-aile-avoir-du-plomb-dans-l-aile",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/documentaire/societe/classe-de-chefs-m349934343/s01-battre-de-l-aile-c355080371/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de battre de l'aile",
+        "evidenceKind": "published_usage",
+        "expression": "battre de l'aile",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "chercher la petite bête",
+    "t": "gereksiz yere kusur aramak",
+    "lit": "küçük hayvanı aramak",
+    "s": "Ce rapport est clair ; inutile de chercher la petite bête dans chaque phrase.",
+    "form": "chercher la petite bête",
+    "tr": "Bu rapor açık; her cümlede gereksiz yere kusur aramaya gerek yok.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/chercher-la-petite-bete",
+      "https://fr.wiktionary.org/wiki/chercher_la_petite_b%C3%AAte"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/chercher-la-petite-bete",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/chercher_la_petite_b%C3%AAte",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/archives/article/2000/09/08/internet-rehabilite-le-bavardage_3709468_1819218.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de chercher la petite bête",
+        "evidenceKind": "published_usage",
+        "expression": "chercher la petite bête",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "courir plusieurs lièvres à la fois",
+    "t": "aynı anda birden fazla hedefin peşinden koşmak",
+    "lit": "bir kerede birkaç tavşanı kovalamak",
+    "s": "Avec trois créations d'entreprise, il veut courir plusieurs lièvres à la fois.",
+    "form": "courir plusieurs lièvres à la fois",
+    "tr": "Üç şirket kurmaya çalışarak aynı anda birden fazla hedefin peşinden koşuyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/courir-deux-plusieurs-lievres-a-la-fois",
+      "https://fr.wiktionary.org/wiki/courir_deux_li%C3%A8vres_%C3%A0_la_fois"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/courir-deux-plusieurs-lievres-a-la-fois",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/courir_deux_li%C3%A8vres_%C3%A0_la_fois",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/politique/article/2018/10/15/l-evaluation-du-cice-continue-de-faire-debat-chez-les-economistes_5369587_823448.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de courir plusieurs lièvres à la fois",
+        "evidenceKind": "published_usage",
+        "expression": "courir plusieurs lièvres à la fois",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "jouer au chat et à la souris",
+    "t": "birini peşinden koşturarak oyalamak",
+    "lit": "kediyle fare oyunu oynamak",
+    "s": "Avec ses réponses évasives, ce vendeur nous fait jouer au chat et à la souris.",
+    "form": "jouer au chat et à la souris",
+    "tr": "Bu satıcı kaçamak cevaplarıyla bizi peşinden koşturup oyalıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/jouer-au-chat-et-a-la-souris",
+      "https://fr.wiktionary.org/wiki/jouer_au_chat_et_%C3%A0_la_souris"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/jouer-au-chat-et-a-la-souris",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_au_chat_et_%C3%A0_la_souris",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_au_chat_et_%C3%A0_la_souris",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jouer au chat et à la souris",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=jouer_au_chat_et_à_la_souris&oldid=38092797",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "lâcher la bride",
+    "t": "birine daha fazla serbestlik tanımak",
+    "lit": "dizgini bırakmak",
+    "s": "Sur ce projet, la directrice accepte de nous lâcher la bride.",
+    "form": "lâcher la bride",
+    "tr": "Bu projede müdür bize daha fazla serbestlik tanımayı kabul ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/avoir-la-bride-sur-le-cou-lacher-la-bride-a-quelqu-un",
+      "https://fr.wiktionary.org/wiki/l%C3%A2cher_la_bride"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-la-bride-sur-le-cou-lacher-la-bride-a-quelqu-un",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/l%C3%A2cher_la_bride",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/l%C3%A2cher_la_bride",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "lâcher la bride",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=lâcher_la_bride&oldid=39641460",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "manger à tous les râteliers",
+    "t": "her taraftan çıkar sağlamaya çalışmak",
+    "lit": "bütün yemliklerden yemek",
+    "s": "Ce conseiller mange à tous les râteliers pour préserver ses avantages.",
+    "form": "mange à tous les râteliers",
+    "tr": "Bu danışman ayrıcalıklarını korumak için her taraftan çıkar sağlamaya çalışıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/manger-a-tous-les-rateliers",
+      "https://fr.wiktionary.org/wiki/manger_%C3%A0_tous_les_r%C3%A2teliers"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/manger-a-tous-les-rateliers",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/manger_%C3%A0_tous_les_r%C3%A2teliers",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://mcetv.ouest-france.fr/2024/secret-story-lou-veut-nominer-sa-rivale-amoureuse-perrine-28052024/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de manger à tous les râteliers",
+        "evidenceKind": "published_usage",
+        "expression": "manger à tous les râteliers",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "mordre à l'hameçon",
+    "t": "tuzağa kanmak",
+    "lit": "oltanın kancasını ısırmak",
+    "s": "Le message paraissait crédible et j'ai mordu à l'hameçon.",
+    "form": "mordu à l'hameçon",
+    "tr": "Mesaj inandırıcı görünüyordu; ben de tuzağa kandım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/hame%C3%A7on/38962",
+      "https://dictionnaire.lerobert.com/definition/hamecon",
+      "https://www.expressio.fr/expressions/mordre-a-l-hamecon"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/hame%C3%A7on/38962",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/hamecon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/mordre-a-l-hamecon",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Respire/Pratique-sportive/Actualites/-trop-nul-plus-jamais-le-velo-en-famille-ce-faux-ami-des-parents-sportifs/1673839",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mordre à l'hameçon",
+        "evidenceKind": "published_usage",
+        "expression": "mordre à l'hameçon",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "montrer patte blanche",
+    "t": "kimliğini veya yetkisini kanıtlamak",
+    "lit": "beyaz pati göstermek",
+    "s": "À l'entrée du laboratoire, chacun doit montrer patte blanche.",
+    "form": "montrer patte blanche",
+    "tr": "Laboratuvarın girişinde herkes kimliğini veya yetkisini kanıtlamalı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/montrer-patte-blanche",
+      "https://fr.wiktionary.org/wiki/montrer_patte_blanche"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/montrer-patte-blanche",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/montrer_patte_blanche",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/montrer_patte_blanche",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "montrer patte blanche",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=montrer_patte_blanche&oldid=39781566",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "pousser des cris d'orfraie",
+    "t": "sert biçimde tepki göstermek",
+    "lit": "balık kartalı çığlıkları atmak",
+    "s": "À chaque changement, certains employés poussent des cris d'orfraie.",
+    "form": "poussent des cris d'orfraie",
+    "tr": "Her değişiklikte bazı çalışanlar sert biçimde tepki gösteriyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/pousser-des-cris-d-orfraie",
+      "https://fr.wiktionary.org/wiki/pousser_des_cris_d%E2%80%99orfraie",
+      "https://www.larousse.fr/dictionnaires/college/orfraie/28703",
+      "https://www.cnrtl.fr/definition/Orfraie"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/pousser-des-cris-d-orfraie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/pousser_des_cris_d%E2%80%99orfraie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.larousse.fr/dictionnaires/college/orfraie/28703",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.cnrtl.fr/definition/Orfraie",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/pousser_des_cris_d%E2%80%99orfraie",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "pousser des cris d'orfraie",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=pousser_des_cris_d’orfraie&oldid=38635153",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "rentrer dans sa coquille",
+    "t": "kendi içine kapanmak",
+    "lit": "kabuğuna geri girmek",
+    "s": "Après cette remarque blessante, l'enfant rentre dans sa coquille.",
+    "form": "rentre dans sa coquille",
+    "tr": "Bu kırıcı sözden sonra çocuk kendi içine kapanıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/rentrer-dans-sa-coquille",
+      "https://fr.wiktionary.org/wiki/rentrer_dans_sa_coquille"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/rentrer-dans-sa-coquille",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rentrer_dans_sa_coquille",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2008/06/14/isabella-rossellini-et-le-sexe-des-insectes_1058209_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de rentrer dans sa coquille",
+        "evidenceKind": "published_usage",
+        "expression": "rentrer dans sa coquille",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "se brûler les ailes",
+    "t": "sınırlarını aşıp zarar görmek",
+    "lit": "kendi kanatlarını yakmak",
+    "s": "En acceptant trop de contrats, cette jeune société risque de se brûler les ailes.",
+    "form": "se brûler les ailes",
+    "tr": "Bu yeni şirket çok fazla sözleşme kabul ederek sınırlarını aşıp zarar görebilir.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/se-bruler-les-ailes",
+      "https://usito.usherbrooke.ca/d%C3%A9finitions/aile/lexies?v=battre+de+l%27aile+%2C+ne+battre+que+d%E2%80%99une+aile"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/se-bruler-les-ailes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://usito.usherbrooke.ca/d%C3%A9finitions/aile/lexies?v=battre+de+l%27aile+%2C+ne+battre+que+d%E2%80%99une+aile",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/politique/article/2015/11/12/le-fantasme-macron_4807749_823448.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de se brûler les ailes",
+        "evidenceKind": "published_usage",
+        "expression": "se brûler les ailes",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "se jeter dans la gueule du loup",
+    "t": "bile bile tehlikeye atılmak",
+    "lit": "kurdun ağzına atılmak",
+    "s": "Sans protection juridique, signer serait se jeter dans la gueule du loup.",
+    "form": "se jeter dans la gueule du loup",
+    "tr": "Hukuki koruma olmadan imza atmak bile bile tehlikeye atılmak olurdu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://www.expressio.fr/expressions/se-jeter-dans-la-gueule-du-loup",
+      "https://fr.wiktionary.org/wiki/se_jeter_dans_la_gueule_du_loup"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/se-jeter-dans-la-gueule-du-loup",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_jeter_dans_la_gueule_du_loup",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_jeter_dans_la_gueule_du_loup",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se jeter dans la gueule du loup",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_jeter_dans_la_gueule_du_loup&oldid=39902889",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "verser des larmes de crocodile",
+    "t": "üzülmüş gibi davranmak",
+    "lit": "timsah gözyaşları dökmek",
+    "s": "Il préfère verser des larmes de crocodile plutôt que réparer son erreur.",
+    "form": "verser des larmes de crocodile",
+    "tr": "Hatasını düzeltmektense üzülmüş gibi davranmayı tercih ediyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "animals",
+    "src": [
+      "https://dictionnaire.lerobert.com/definition/larmes-de-crocodile",
+      "https://fr.wiktionary.org/wiki/verser_des_larmes_de_crocodile"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/larmes-de-crocodile",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/verser_des_larmes_de_crocodile",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://lemagdesanimaux.ouest-france.fr/dossier-1081-larmes-crocodile.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de verser des larmes de crocodile",
+        "evidenceKind": "published_usage",
+        "expression": "verser des larmes de crocodile",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "voler dans les plumes",
+    "t": "birine sertçe saldırmak",
+    "lit": "tüylerin içine uçmak",
+    "s": "À la moindre remarque, il lui vole dans les plumes.",
+    "form": "vole dans les plumes",
+    "tr": "En küçük bir sözde ona sertçe saldırıyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "animals",
+    "src": [
+      "https://fr.wiktionary.org/wiki/voler_dans_les_plumes",
+      "https://examen-francais-quebec.usito.usherbrooke.ca/d%C3%A9finitions/plume/lexies?v=voler+dans+les+plumes+%C3%A0%2C+de+quelqu%E2%80%99un"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/voler_dans_les_plumes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://examen-francais-quebec.usito.usherbrooke.ca/d%C3%A9finitions/plume/lexies?v=voler+dans+les+plumes+%C3%A0%2C+de+quelqu%E2%80%99un",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voler_dans_les_plumes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 126; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "voler dans les plumes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=voler_dans_les_plumes&oldid=38456425",
+        "selectedUsageWitness": true
+      }
+    ]
+  }
+]

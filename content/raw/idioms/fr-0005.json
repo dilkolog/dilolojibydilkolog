@@ -1,0 +1,876 @@
+[
+  {
+    "w": "se retrousser les manches",
+    "t": "kolları sıvayıp işe koyulmak",
+    "lit": "kolların yenlerini sıvamak",
+    "s": "Il reste tout à nettoyer ; retroussons-nous les manches.",
+    "form": "retroussons-nous les manches",
+    "tr": "Her yer hâlâ temizlenecek; kolları sıvayalım.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/se_retrousser_les_manches",
+      "https://www.expressio.fr/expressions/retrousser-ses-manches"
+    ],
+    "editorialId": "fr-idiom-000080",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_retrousser_les_manches",
+        "verification": "dictionary_entry_opened",
+        "locator": "se retrousser les manches : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/retrousser-ses-manches",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_retrousser_les_manches",
+        "citation": "— (journal 20 minutes, édition Paris-IDF, 31 janvier 2024, page 2)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_retrousser_les_manches",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2024.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se retrousser les manches",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_retrousser_les_manches&oldid=39755073",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "travailler d'arrache-pied",
+    "t": "durmaksızın yoğun biçimde çalışmak",
+    "lit": "ayağı sökerek çalışmak",
+    "s": "Les équipes travaillent d'arrache-pied à la réparation du pont.",
+    "form": "travaillent d'arrache-pied",
+    "tr": "Ekipler köprünün onarımı için durmaksızın yoğun biçimde çalışıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/d%E2%80%99arrache-pied",
+      "https://www.expressio.fr/expressions/d-arrache-pied/page-2"
+    ],
+    "editorialId": "fr-idiom-000082",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/d%E2%80%99arrache-pied",
+        "verification": "dictionary_entry_opened",
+        "locator": "travailler d'arrache-pied : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/d-arrache-pied/page-2",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/d%E2%80%99arrache-pied",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 143; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "travailler d'arrache-pied",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=d’arrache-pied&oldid=39317669",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "se donner du mal",
+    "t": "bir şey için emek ve çaba harcamak",
+    "lit": "kendine zahmet vermek",
+    "s": "Tu t'es donné du mal pour préparer cet accueil.",
+    "form": "t'es donné du mal",
+    "tr": "Bu karşılamayı hazırlamak için emek harcadın.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "work",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/mal/48790",
+      "https://dictionary.cambridge.org/fr/dictionnaire/francais-anglais/se-donner-du-mal"
+    ],
+    "editorialId": "fr-idiom-000083",
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/mal/48790",
+        "verification": "dictionary_entry_opened",
+        "locator": "se donner du mal : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000083",
+        "url": "https://dictionary.cambridge.org/fr/dictionnaire/francais-anglais/se-donner-du-mal",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/intimites/article/2026/09/06/a-bas-la-paresse-sexuelle-ou-pourquoi-la-sexualite-vaut-tous-les-efforts-du-monde_6766767_6190330.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de se donner du mal",
+        "evidenceKind": "published_usage",
+        "expression": "se donner du mal",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "se donner à fond",
+    "t": "bütün enerjisini ortaya koymak",
+    "lit": "kendini dibine kadar vermek",
+    "s": "Au concours, chacun s'est donné à fond.",
+    "form": "s'est donné à fond",
+    "tr": "Yarışmada herkes bütün enerjisini ortaya koydu.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B1",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/se_donner_%C3%A0_fond",
+      "https://www.larousse.fr/dictionnaires/francais-anglais/donner/26313"
+    ],
+    "editorialId": "fr-idiom-000084",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_donner_%C3%A0_fond",
+        "verification": "dictionary_entry_opened",
+        "locator": "se donner à fond : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000084",
+        "url": "https://www.larousse.fr/dictionnaires/francais-anglais/donner/26313",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_donner_%C3%A0_fond",
+        "citation": "— (Harlan Coben, À quelques secondes près, Pocket, 2012)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_donner_%C3%A0_fond",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se donner à fond",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_donner_à_fond&oldid=39752951",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "travailler comme un forçat",
+    "t": "çok ağır ve yorucu biçimde çalışmak",
+    "lit": "kürek mahkûmu gibi çalışmak",
+    "s": "Sans machine, ils travaillaient comme des forçats dans l'atelier.",
+    "form": "travaillaient comme des forçats",
+    "tr": "Makine olmayınca atölyede çok ağır koşullarda çalışıyorlardı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/for%C3%A7at",
+      "https://dictionnaire.lerobert.com/definition/forcat"
+    ],
+    "editorialId": "fr-idiom-000087",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/for%C3%A7at",
+        "verification": "dictionary_entry_opened",
+        "locator": "travailler comme un forçat : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000087",
+        "url": "https://dictionnaire.lerobert.com/definition/forcat",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.letemps.ch/suisse/soupcon-descroquerie-massive-tessin-une-instruction-interminable",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de travailler comme un forçat",
+        "evidenceKind": "published_usage",
+        "expression": "travailler comme un forçat",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir plusieurs cordes à son arc",
+    "t": "birden fazla beceri veya çözüm yoluna sahip olmak",
+    "lit": "yayında birkaç kirişi olmak",
+    "s": "Elle sait traduire et programmer : elle a plusieurs cordes à son arc.",
+    "form": "a plusieurs cordes à son arc",
+    "tr": "Çeviri ve programlama biliyor; birden fazla becerisi var.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/avoir_plusieurs_cordes_%C3%A0_son_arc",
+      "https://www.expressio.fr/expressions/avoir-plusieurs-cordes-a-son-arc"
+    ],
+    "editorialId": "fr-idiom-000093",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_plusieurs_cordes_%C3%A0_son_arc",
+        "verification": "dictionary_entry_opened",
+        "locator": "avoir plusieurs cordes à son arc : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-plusieurs-cordes-a-son-arc",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_plusieurs_cordes_%C3%A0_son_arc",
+        "citation": "— (Michel Onfray Vies parallèles – De Gaulle - Mitterrand, Robert Laffont, 2020, p. 192)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_plusieurs_cordes_%C3%A0_son_arc",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir plusieurs cordes à son arc",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_plusieurs_cordes_à_son_arc&oldid=39709497",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "apprendre sur le tas",
+    "t": "işi yaparken uygulama içinde öğrenmek",
+    "lit": "yığının üstünde öğrenmek",
+    "s": "Sans formation en cuisine, elle a appris sur le tas auprès de l'équipe.",
+    "form": "appris sur le tas",
+    "tr": "Mutfak eğitimi olmadan, ekiple çalışırken uygulama içinde öğrendi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/sur_le_tas",
+      "https://www.expressio.fr/expressions/sur-le-tas"
+    ],
+    "editorialId": "fr-idiom-000095",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/sur_le_tas",
+        "verification": "dictionary_entry_opened",
+        "locator": "apprendre sur le tas : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/sur-le-tas",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sur_le_tas",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "apprendre sur le tas",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=sur_le_tas&oldid=39315613",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "prendre le pli",
+    "t": "bir işin alışkanlığını edinmek",
+    "lit": "kat izini almak",
+    "s": "Au début c'était difficile, puis j'ai pris le pli.",
+    "form": "pris le pli",
+    "tr": "Başta zordu, sonra alışkanlığını edindim.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/prendre_le_pli",
+      "https://dictionnaire.lerobert.com/definition/pli"
+    ],
+    "editorialId": "fr-idiom-000096",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_le_pli",
+        "verification": "dictionary_entry_opened",
+        "locator": "prendre le pli : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000096",
+        "url": "https://dictionnaire.lerobert.com/definition/pli",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_le_pli",
+        "citation": "— (Pierre Lemaitre, Le Silence et la Colère, Calmann-Lévy, 2023)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_le_pli",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2015.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre le pli",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_le_pli&oldid=39443301",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire ses premières armes",
+    "t": "bir alanda ilk deneyimlerini edinmek",
+    "lit": "ilk silahlarını kullanmak",
+    "s": "Elle a fait ses premières armes dans une petite rédaction.",
+    "form": "fait ses premières armes",
+    "tr": "İlk deneyimlerini küçük bir haber merkezinde edindi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/faire_ses_premi%C3%A8res_armes",
+      "https://www.expressio.fr/expressions/faire-ses-premieres-armes"
+    ],
+    "editorialId": "fr-idiom-000097",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_ses_premi%C3%A8res_armes",
+        "verification": "dictionary_entry_opened",
+        "locator": "faire ses premières armes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/faire-ses-premieres-armes",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_ses_premi%C3%A8res_armes",
+        "citation": "— (George Sand, Jeanne, 1844)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/societe/article/2008/12/09/nathalie-arthaud-38-ans-en-piste-pour-remplacer-arlette-laguiller_1128746_3224.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire ses premières armes",
+        "evidenceKind": "published_usage",
+        "expression": "faire ses premières armes",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "être sur tous les fronts",
+    "t": "birden çok alanda aynı anda uğraş vermek",
+    "lit": "bütün cephelerde olmak",
+    "s": "Entre l'accueil et la logistique, elle est sur tous les fronts.",
+    "form": "est sur tous les fronts",
+    "tr": "Karşılama ve lojistik arasında birçok alanda aynı anda uğraşıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/sur_tous_les_fronts",
+      "https://100pour100news.com/2026/05/01/etre-sur-tous-les-fronts-interview-e-cordier-fndt/"
+    ],
+    "editorialId": "fr-idiom-000100",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/sur_tous_les_fronts",
+        "verification": "dictionary_entry_opened",
+        "locator": "être sur tous les fronts : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000100",
+        "url": "https://100pour100news.com/2026/05/01/etre-sur-tous-les-fronts-interview-e-cordier-fndt/",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sur_tous_les_fronts",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 125; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être sur tous les fronts",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=sur_tous_les_fronts&oldid=39240946",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "être au four et au moulin",
+    "t": "aynı anda birçok işe yetişmeye çalışmak",
+    "lit": "hem fırında hem değirmende olmak",
+    "s": "Je ne peux pas être au four et au moulin.",
+    "form": "être au four et au moulin",
+    "tr": "Aynı anda her işe yetişemem.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/%C3%AAtre_au_four_et_au_moulin",
+      "https://www.expressio.fr/expressions/ne-pas-pouvoir-etre-a-la-fois-au-four-et-au-moulin"
+    ],
+    "editorialId": "fr-idiom-000101",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_au_four_et_au_moulin",
+        "verification": "dictionary_entry_opened",
+        "locator": "être au four et au moulin : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.expressio.fr/expressions/ne-pas-pouvoir-etre-a-la-fois-au-four-et-au-moulin",
+        "verification": "dictionary_search_excerpt",
+        "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_au_four_et_au_moulin",
+        "citation": "— (Pierre Desproges in Textes de scène)",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/campus/article/2021/03/02/dans-l-enseignement-superieur-la-grande-disparite-des-cours-a-distance_6071720_4401467.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de être au four et au moulin",
+        "evidenceKind": "published_usage",
+        "expression": "être au four et au moulin",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "abattre du travail",
+    "t": "çok miktarda işi tamamlamak",
+    "lit": "işi yere devirmek",
+    "s": "L'équipe a abattu beaucoup de travail ce matin.",
+    "form": "abattu beaucoup de travail",
+    "tr": "Ekip bu sabah çok iş bitirdi.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://fr.wiktionary.org/wiki/abattre",
+      "https://www.collinsdictionary.com/dictionary/french-english/abattre-du-travail"
+    ],
+    "editorialId": "fr-idiom-000103",
+    "sourceChecks": [
+      {
+        "url": "https://fr.wiktionary.org/wiki/abattre",
+        "verification": "dictionary_entry_opened",
+        "locator": "abattre du travail : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
+        "checkedOn": "2026-11-10",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "id": "fr-idiom-000103",
+        "url": "https://www.collinsdictionary.com/dictionary/french-english/abattre-du-travail",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt",
+        "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/abattre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 191; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "abattre du travail",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir le feu sacré",
+    "t": "işine büyük bir tutkuyla bağlı olmak",
+    "lit": "kutsal ateşe sahip olmak",
+    "s": "Cette enseignante a le feu sacré et prépare chaque cours avec enthousiasme.",
+    "form": "a le feu sacré",
+    "tr": "Bu öğretmen işine tutkuyla bağlı; her dersi hevesle hazırlıyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais/feu/33449",
+      "https://dictionnaire.lerobert.com/definition/sacre"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais/feu/33449",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://dictionnaire.lerobert.com/definition/sacre",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2026/11/04/dans-ignis-nicolas-fraiseau-danse-avec-le-feu_6806275_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir le feu sacré",
+        "evidenceKind": "published_usage",
+        "expression": "avoir le feu sacré",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "avoir de la bouteille",
+    "t": "deneyimli olmak",
+    "lit": "şişesi olmak",
+    "s": "Ce mécanicien a de la bouteille : il connaît déjà cette panne.",
+    "form": "a de la bouteille",
+    "tr": "Bu tamirci deneyimlidir; bu arızayı zaten biliyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://www.expressio.fr/expressions/avoir-de-la-bouteille",
+      "https://fr.wiktionary.org/wiki/avoir_de_la_bouteille"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/avoir-de-la-bouteille",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_de_la_bouteille",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_de_la_bouteille",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir de la bouteille",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_de_la_bouteille&oldid=39727903",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "faire ses gammes",
+    "t": "temel becerilerini alıştırmayla geliştirmek",
+    "lit": "gamlarını yapmak",
+    "s": "Avant de réaliser un film, elle a dû faire ses gammes sur de courts reportages.",
+    "form": "faire ses gammes",
+    "tr": "Film çekmeden önce kısa röportajlarla temel becerilerini geliştirmek zorunda kaldı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://www.larousse.fr/dictionnaires/francais-anglais/gamme/35976",
+      "https://fr.wiktionary.org/wiki/faire_des_gammes"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.larousse.fr/dictionnaires/francais-anglais/gamme/35976",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_des_gammes",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://emploi.ouest-france.fr/recherche-emploi/acheteur/paris/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire ses gammes",
+        "evidenceKind": "published_usage",
+        "expression": "faire ses gammes",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "mettre le paquet",
+    "t": "bütün imkânlarını seferber etmek",
+    "lit": "paketi koymak",
+    "s": "Pour réussir ce lancement, nous allons mettre le paquet sur la communication.",
+    "form": "mettre le paquet",
+    "tr": "Bu açılışı başarmak için iletişime bütün imkânlarımızı ayıracağız.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://www.expressio.fr/expressions/mettre-le-paquet",
+      "https://fr.wiktionary.org/wiki/mettre_le_paquet"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/mettre-le-paquet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_le_paquet",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_le_paquet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre le paquet",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_le_paquet&oldid=39537150",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "brûler la chandelle par les deux bouts",
+    "t": "aşırı tempoyla kendini tüketmek",
+    "lit": "mumu iki ucundan yakmak",
+    "s": "Avec deux emplois et des fêtes chaque soir, tu brûles la chandelle par les deux bouts.",
+    "form": "brûles la chandelle par les deux bouts",
+    "tr": "İki iş ve her akşam eğlenceyle kendini tüketiyorsun.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://www.expressio.fr/expressions/bruler-la-chandelle-par-les-deux-bouts",
+      "https://fr.wiktionary.org/wiki/br%C3%BBler_la_chandelle_par_les_deux_bouts"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/bruler-la-chandelle-par-les-deux-bouts",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/br%C3%BBler_la_chandelle_par_les_deux_bouts",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/br%C3%BBler_la_chandelle_par_les_deux_bouts",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "brûler la chandelle par les deux bouts",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=brûler_la_chandelle_par_les_deux_bouts&oldid=39649288",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "fermer boutique",
+    "t": "faaliyetini sonlandırmak",
+    "lit": "dükkânı kapatmak",
+    "s": "Sans soutien financier, cette association devra fermer boutique dès juin.",
+    "form": "fermer boutique",
+    "tr": "Maddi destek olmadan bu dernek haziranda faaliyetini sonlandırmak zorunda kalacak.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://www.expressio.fr/expressions/fermer-boutique",
+      "https://fr.wiktionary.org/wiki/fermer_boutique"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/fermer-boutique",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/fermer_boutique",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/fermer_boutique",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "fermer boutique",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=fermer_boutique&oldid=39505419",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "filer un mauvais coton",
+    "t": "durumu giderek kötüleşmek",
+    "lit": "kötü bir pamuk eğirmek",
+    "s": "Avec ses pertes répétées, cette société file un mauvais coton.",
+    "form": "file un mauvais coton",
+    "tr": "Tekrarlanan zararlarla bu şirketin durumu giderek kötüleşiyor.",
+    "reg": "informal",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://www.expressio.fr/expressions/filer-un-mauvais-coton",
+      "https://fr.wiktionary.org/wiki/filer_un_mauvais_coton"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/filer-un-mauvais-coton",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/filer_un_mauvais_coton",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/filer_un_mauvais_coton",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "filer un mauvais coton",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=filer_un_mauvais_coton&oldid=39163313",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "passer la main",
+    "t": "sorumluluğu başkasına devretmek",
+    "lit": "eli geçirmek",
+    "s": "Après dix ans à la présidence, elle souhaite passer la main.",
+    "form": "passer la main",
+    "tr": "On yıl başkanlık yaptıktan sonra sorumluluğu başkasına devretmek istiyor.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "B2",
+    "theme": "work",
+    "src": [
+      "https://www.expressio.fr/expressions/passer-la-main",
+      "https://fr.wiktionary.org/wiki/passer_la_main"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/passer-la-main",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_la_main",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_la_main",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "passer la main",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=passer_la_main&oldid=38474399",
+        "selectedUsageWitness": true
+      }
+    ]
+  },
+  {
+    "w": "payer de sa personne",
+    "t": "bir işe bizzat emek vermek",
+    "lit": "kendi kişisiyle ödemek",
+    "s": "Pour organiser ce festival, tous les bénévoles ont dû payer de leur personne.",
+    "form": "payer de leur personne",
+    "tr": "Bu festivali düzenlemek için bütün gönüllüler bizzat emek vermek zorunda kaldı.",
+    "reg": "neutral",
+    "area": "genel",
+    "level": "C1",
+    "theme": "work",
+    "src": [
+      "https://www.expressio.fr/expressions/payer-de-sa-personne",
+      "https://fr.wiktionary.org/wiki/payer_de_sa_personne"
+    ],
+    "sourceChecks": [
+      {
+        "url": "https://www.expressio.fr/expressions/payer-de-sa-personne",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/payer_de_sa_personne",
+        "checkedOn": "2026-11-14",
+        "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/film/comedie/a-fond-la-fac-c1068/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de payer de sa personne",
+        "evidenceKind": "published_usage",
+        "expression": "payer de sa personne",
+        "selectedUsageWitness": true
+      }
+    ]
+  }
+]
