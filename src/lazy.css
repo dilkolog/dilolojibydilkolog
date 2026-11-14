@@ -656,6 +656,7 @@
 .mc-key { display: inline-block; width: 0.625rem; height: 0.625rem; border-radius: var(--r-full); margin: 0 0.25rem 0 0.5rem; vertical-align: middle; }
 .mc-key-ok { background: var(--ok); } .mc-key-bad { background: var(--bad); }
 .year-scroll { overflow-x: auto; direction: rtl; }
+.year-scroll:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; border-radius: var(--r-sm); }
 .year-calendar { direction: ltr; display: block; }
 .yc-label { fill: var(--ink-soft); font-size: 10px; }
 .yc-cell { fill: var(--rule); }
@@ -1331,10 +1332,8 @@ button.badge-card:active { transform: none; }
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: var(--t-xs);
+  font-weight: 600;
+  font-size: var(--t-sm);
   color: var(--lang-text);
 }
 .week-hero-title { margin: 0; font-size: var(--t-xl); font-weight: 800; letter-spacing: -0.015em; line-height: 1.25; color: var(--ink); }
@@ -1375,11 +1374,10 @@ button.badge-card:active { transform: none; }
 .week-hero-figures > div { display: grid; gap: 0.25rem; align-content: start; padding: 0.875rem 1rem; min-width: 0; }
 .week-hero-figures > div:nth-child(n + 4) { border-top: 1px solid var(--rule); }
 .week-hero-figures > div:not(:nth-child(3n + 1)) { border-left: 1px solid var(--rule); }
+/* The figures' names in ordinary type (they were spaced capitals: CEVAP, DOĞRULUK, XP). */
 .week-hero-figures dt {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: var(--t-sm);
+  font-weight: 500;
   color: var(--ink-soft);
 }
 .week-hero-figures dd {
@@ -3086,6 +3084,38 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .path-waiting .guide-path-text > strong { font-weight: 500; }
 .path-waiting .guide-path-dot { border-style: dashed; }
 
+/* The lesson list (2026-11-14): a level opens and closes (GroupToggle), each lesson is one line; the summary is on its page. */
+.guide-level-group > .settings-group-title { margin-top: 0.25rem; font-size: var(--t-md); letter-spacing: 0; color: var(--ink); }
+.guide-level-group .group-toggle { gap: 0.625rem; min-height: 2.75rem; }
+.guide-level-group .guide-level-progress { margin-left: auto; }
+.guide-level-group .group-toggle .group-chevron { margin-left: 0; }
+.guide-level-tools { display: flex; justify-content: flex-end; margin-top: -0.25rem; }
+.guide-rows { display: grid; margin: 0; padding: 0; list-style: none; background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); overflow: hidden; }
+.guide-row + .guide-row { border-top: 1px solid var(--rule); }
+.guide-row-btn { display: flex; align-items: center; gap: 0.75rem; width: 100%; min-height: 3rem; padding: 0.625rem 0.875rem; border: 0; background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: background var(--dur-fast) var(--ease-out); }
+.guide-row-btn:hover { background: var(--surface-2); }
+.guide-row-btn:hover .guide-row-title { color: var(--lang-text); }
+.guide-row-btn:focus-visible { outline: 2px solid var(--lang); outline-offset: -2px; }
+.guide-row-dot { position: static; flex: none; width: 1.5rem; height: 1.5rem; }
+.guide-row-main { display: grid; gap: 0.125rem; flex: 1 1 auto; min-width: 0; }
+.guide-row-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.path-next .guide-row-title { color: var(--lang-text); font-weight: 700; }
+.guide-row-main .guide-card-snippet { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.guide-row-meta { display: inline-flex; align-items: center; gap: 0.375rem; flex: none; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.guide-row-meta .guide-flag { font-size: var(--t-base); }
+/* A wide screen keeps a grid: the rows stand in columns. */
+@media (min-width: 64rem) {
+  .guide-rows { grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr)); column-gap: 1px; background: var(--rule); }
+  .guide-row { background: var(--surface); }
+  .guide-row + .guide-row { border-top: 0; }
+  .guide-rows { row-gap: 1px; }
+}
+/* One line of filters: the view (Liste / Yol) and the level side by side, the search under them on a phone. */
+.guide-filter-row { display: flex; flex: 1 1 22rem; align-items: center; gap: 0.75rem; min-width: 0; }
+.guide-filter-row .segmented { flex: none; flex-wrap: nowrap; }
+.guide-level-select { flex: 1 1 10rem; min-width: 0; max-width: 16rem; }
+.guide-level-select .select-trigger { width: 100%; }
+
 /* Lesson View */
 .guide-lesson {
   max-width: 46rem;
@@ -3293,25 +3323,18 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .guide-lesson-actions > .guide-read-btn[aria-pressed='true'], .guide-tools > .btn[aria-pressed='true'] { border-color: color-mix(in srgb, var(--lang) 55%, var(--rule)); background: var(--lang-soft); color: var(--lang-text); }
 .guide-report { display: flex; justify-content: center; }
 @media (max-width: 40rem) {
+  /* The three tabs stay on one line (they took two rows on a phone). */
   .guide-tabs {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.375rem;
-    padding: 0;
-    background: transparent;
-    border: none;
     max-width: 100%;
+    gap: 0.125rem;
   }
   .guide-tab-btn {
-    flex: initial;
-    padding: 0.375rem 0.75rem;
-    background: var(--surface-2);
-    border: 1px solid var(--rule);
-    border-radius: var(--r-full);
-  }
-  .guide-tab-btn[aria-selected='true'] {
-    background: var(--surface);
-    border-color: var(--lang);
+    flex: 1 1 auto;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.4375rem 0.5rem;
+    min-width: 0;
   }
   .guide-search-box {
     max-width: none;
@@ -3936,7 +3959,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 
 /* Exam-style reading and listening tasks (ui/games/ExamTasks) */
 .examtask-list { gap: 0.625rem; }
-.examtask-item { display: flex; gap: 0.875rem; align-items: center; width: 100%; text-align: left; cursor: pointer; }
+.examtask-item { display: flex; gap: 0.875rem; align-items: center; width: 100%; text-align: left; cursor: pointer; border: 2px solid transparent; color: inherit; font: inherit; }
 .examtask-item:hover { border-color: var(--lang); }
 .examtask-level { flex: none; min-width: 2.5rem; text-align: center; font-weight: 700; color: var(--lang-text); background: var(--lang-soft); border-radius: var(--r-md); padding: 0.375rem 0.5rem; }
 .examtask-title { display: grid; gap: 0.125rem; }
@@ -4361,3 +4384,11 @@ html:has(.lp) { scroll-behavior: smooth; }
 .idiom-facts > div { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .idiom-facts dt { min-width: 6.5rem; }
 .idiom-facts dd { margin: 0; }
+/* After a miss: the right answer typed once, while it is on screen (CopyStep). */
+.copy-step { display: grid; gap: 0.375rem; }
+.copy-step .input { width: 100%; font-family: var(--serif); font-size: var(--t-md); }
+.copy-step .input.is-correct { border-color: var(--ok); }
+.copy-step .input.is-near { border-color: var(--near); }
+.copy-step .input.is-wrong { border-color: var(--bad); }
+.copy-step .accent-bar { margin-top: 0; }
+.progress-locked { display: flex; align-items: center; gap: 0.5rem; margin: 0; }

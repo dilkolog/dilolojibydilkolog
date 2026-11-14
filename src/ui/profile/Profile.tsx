@@ -1,4 +1,6 @@
 import '../../lazy.css'
+import { EmptyState } from '../shared/EmptyState'
+import { progressUnlocks } from '../progress/progressUnlocks'
 import { WordCountLabel } from '../shared/wordCounts'
 import { useEffect, useState } from 'react'
 import { BADGE_CATEGORIES, badgeCategory, badgeSeries, levelTitle, medalTier, type BadgeSeries } from '../../engine/gamification'
@@ -27,7 +29,18 @@ import { resolveCoordinates } from '../../data/weather'
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
 const LADDER: [number, string][] = [1, 3, 5, 8, 11, 15, 20, 25, 30, 40, 50].map((l) => [l, levelTitle(l)])
 
-export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings: Settings; onChange: (s: Settings) => void; onOpenSettings?: () => void }) {
+export function ProfileScreen({
+  settings,
+  onChange,
+  onOpenSettings,
+  onStartDay,
+}: {
+  settings: Settings
+  onChange: (s: Settings) => void
+  onOpenSettings?: () => void
+  /** Starts the day's round (the invitation a learner with no answers yet sees). */
+  onStartDay?: () => void
+}) {
   const game = useGame()
   const profile = settings.profile
   const [name, setName] = useState(profile.name)
@@ -299,6 +312,22 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
 
       {game && (
         <>
+          {progressUnlocks(game.stats.totalAnswers).empty ? (
+            // No answers yet: one invitation instead of four zeros and an empty record (progress/progressUnlocks.ts).
+            <EmptyState
+              art="garden"
+              title="Bahçen ilk turla başlar"
+              action={
+                onStartDay && (
+                  <button type="button" className="btn" onClick={onStartDay}>
+                    İlk turuna başla
+                  </button>
+                )
+              }
+            >
+              Serin, tanıştığın ve yerine oturan kelimelerin, verdiğin cevaplar ve son haftaların burada birikir. İlk turunu bitirdiğinde ilk rozetine de bir adım yaklaşırsın.
+            </EmptyState>
+          ) : (
           <div className="profile-overview">
             <section className="stat-grid profile-stats">
               <Stat value={<><StreakPicture streak={game.streak} size={24} /> {game.streak}</>} label="günlük seri" />
@@ -315,6 +344,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               ]}
             />
           </div>
+          )}
 
           <div className="page-tabs ind-line" role="tablist" aria-label="Profil" ref={tabsRef}>
             {(['badges', 'titles', 'share'] as const).map((t) => (

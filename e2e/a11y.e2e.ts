@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
-import { aiRoute, approveAccount, openVerbLab, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples, gameCard } from './helpers'
+import { aiRoute, approveAccount, openVerbLab, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, settleTransitions, startWithSamples, gameCard, seedAnswers } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -37,6 +37,8 @@ test('every main screen passes the automated accessibility check', async ({ page
 
 test('a column chart is one keyboard stop: arrows read the days out', async ({ page }) => {
   await startWithSamples(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
   await openScreen(page, 'İlerleme')
   const chart = page.getByRole('group', { name: /Önümüzdeki günlerin tekrarları/ })
   await expect(chart).toBeVisible()
@@ -413,6 +415,8 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
 test('new games and insight cards pass accessibility check across dark and calm themes (grammar, reflex, traps, pairs, mind seed, blind spots)', async ({ page }) => {
   test.setTimeout(180_000)
   await startWithSamples(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
 
   const setTheme = (t: 'light' | 'dark' | 'calm') =>
     page.evaluate((theme) => {
@@ -625,6 +629,8 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   await page.setViewportSize({ width: 375, height: 667 })
   await startWithSamples(page)
   await approveAccount(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
 
   // Seed translations for back-translation loop chips, traps for blind spots card, and 5 own words for suggest words
   await page.evaluate(() => {
@@ -960,7 +966,7 @@ test('guide lesson, mini quiz states (question, feedback, score) and Today revie
   await expect(page.locator('.guide-path-item').first()).toBeVisible()
   await scanBoth('guide-path-view')
   await page.getByRole('button', { name: 'Liste', exact: true }).click()
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
   await scanBoth('guide-lesson-page')
 

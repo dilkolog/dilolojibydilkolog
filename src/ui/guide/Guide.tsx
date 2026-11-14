@@ -32,6 +32,8 @@ import type { TargetLanguage } from '../../engine/types'
 import { CheckCircleIcon, ChevronLeftIcon, ChevronRightIcon, ConjugationsIcon, FlagIcon, LinkIcon, PrintIcon, SearchIcon, SpeakerIcon, StarIcon, TimerIcon } from '../shared/icons'
 import { LANGUAGE_NAME } from '../shared/labels'
 import { PageHeader } from '../shared/PageHeader'
+import { GroupToggle } from '../shared/JumpNav'
+import { Select } from '../shared/Select'
 import { speak } from '../shared/speech'
 import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonTry } from './LessonTry'
@@ -209,6 +211,22 @@ export function GuideScreen({
   const next = pickNext(ordered, (t) => read.has(t))
   const path = useMemo(() => learningPath(lessons, (t) => read.has(t), (t) => !!marks[t]?.learned), [lessons, read, marks])
   const certs = useMemo(() => levelCertificates(lessons, marks), [lessons, marks])
+  const stepOf = useMemo(() => new Map(path.map((st) => [st.lesson.topic, st])), [path])
+  const levelsShown = LEVELS.filter((lv) => lessons.some((l) => l.level === lv))
+  // The level the learner is at: where the next lesson is (once the marks are read), else where the placement test put them.
+  const hereLevel: GuideLevel = (marksReady ? next?.level : undefined) ?? placement?.start ?? levelsShown[0] ?? 'A1'
+  // On a phone only that level is open (73 lessons one under the other made a page of 18,000 px); a wide screen opens all.
+  // Until the learner opens or closes one, the open level follows where they are; after that their choice stands.
+  const [wide] = useState(() => typeof window !== 'undefined' && typeof window.matchMedia === 'function' && window.matchMedia('(min-width: 64rem)').matches)
+  const [levelsOpen, setLevelsOpen] = useState<Set<GuideLevel> | null>(null)
+  const filtering = !!q || !!level || !!flagFilter
+  const levelOpen = (lv: GuideLevel) => filtering || (levelsOpen ? levelsOpen.has(lv) : wide || lv === hereLevel)
+  const toggleLevel = (lv: GuideLevel) => {
+    const now = new Set(levelsShown.filter((x) => levelOpen(x)))
+    if (now.has(lv)) now.delete(lv)
+    else now.add(lv)
+    setLevelsOpen(now)
+  }
   const weekDone = lessonsThisWeek(marks, localDate(new Date()))
 
   const quizQuestions = useMemo((): LevelQuizQuestion[] => {
@@ -450,23 +468,22 @@ export function GuideScreen({
             </button>
           )}
           <div className="guide-filters">
-            <div className="choice-row" role="group" aria-label="Görünüm">
-              <button type="button" className="chip chip-sm" aria-pressed={view === 'list'} onClick={() => pickView('list')}>
-                Liste
-              </button>
-              <button type="button" className="chip chip-sm" aria-pressed={view === 'path'} onClick={() => pickView('path')}>
-                Yol
-              </button>
-            </div>
-            <div className="choice-row" role="group" aria-label="Seviye">
-              <button type="button" className="chip chip-sm" aria-pressed={!level} onClick={() => setLevel(null)}>
-                Hepsi
-              </button>
-              {LEVELS.filter((lv) => lessons.some((l) => l.level === lv)).map((lv) => (
-                <button key={lv} type="button" className="chip chip-sm" aria-pressed={level === lv} onClick={() => setLevel(level === lv ? null : lv)}>
-                  {lv}
+            <div className="guide-filter-row">
+              <div className="segmented" role="group" aria-label="Görünüm">
+                <button type="button" className="segmented-btn" aria-pressed={view === 'list'} onClick={() => pickView('list')}>
+                  Liste
                 </button>
-              ))}
+                <button type="button" className="segmented-btn" aria-pressed={view === 'path'} onClick={() => pickView('path')}>
+                  Yol
+                </button>
+              </div>
+              <Select<GuideLevel | 'all'>
+                className="guide-level-select"
+                label="Seviye"
+                value={level ?? 'all'}
+                options={[{ value: 'all', label: 'Tüm seviyeler' }, ...levelsShown.map((lv) => ({ value: lv, label: `${lv} · ${LEVEL_NAME[lv]}` }))]}
+                onChange={(v) => setLevel(v === 'all' ? null : v)}
+              />
             </div>
             {(flagged('star') > 0 || flagged('hard') > 0) && (
               <div className="choice-row" role="group" aria-label="İşaretler">
@@ -510,24 +527,20 @@ export function GuideScreen({
               {LEVELS.map((lv) => {
                 const steps = path.filter((st) => st.lesson.level === lv && shown.includes(st.lesson))
                 if (!steps.length) return null
+                const lvDone = steps.filter((st) => read.has(st.lesson.topic)).length
                 return (
-                  <section key={lv} className="stack gap-2">
-                    <h2 className="section-title guide-level">
-                      <span className="guide-level-badge">{lv}</span> {LEVEL_NAME[lv]}
-                      <button
-                        type="button"
-                        className="guide-level-quiz-btn"
-                        title={`${lv} seviyesi karma testi: 10 soru`}
-                        onClick={() => setLevelQuiz(lv)}
-                      >
-                        🎯 Seviyeyi sına
-                      </button>
-                    </h2>
-                    <ol className="guide-path">
-                      {steps.map((st) => (
-                        <PathRow key={st.lesson.topic} step={st} needs={st.needs.map((t) => lessonFor(language, t)).filter((x): x is TopicLesson => !!x).map(titleOf)[0]} flag={flagOf(st.lesson.topic)} hasNote={!!marks[st.lesson.topic]?.note} onOpen={() => setOpen(st.lesson)} />
-                      ))}
-                    </ol>
+                  <section key={lv} className="stack gap-2 guide-level-group">
+                    <LevelHead level={lv} done={lvDone} total={steps.length} open={levelOpen(lv)} onToggle={() => toggleLevel(lv)} />
+                    {levelOpen(lv) && (
+                      <>
+                        <LevelQuizButton level={lv} onQuiz={() => setLevelQuiz(lv)} />
+                        <ol className="guide-path">
+                          {steps.map((st) => (
+                            <PathRow key={st.lesson.topic} step={st} needs={st.needs.map((t) => lessonFor(language, t)).filter((x): x is TopicLesson => !!x).map(titleOf)[0]} flag={flagOf(st.lesson.topic)} hasNote={!!marks[st.lesson.topic]?.note} onOpen={() => setOpen(st.lesson)} />
+                          ))}
+                        </ol>
+                      </>
+                    )}
                   </section>
                 )
               })}
@@ -538,50 +551,34 @@ export function GuideScreen({
             if (!list.length) return null
             const lvDone = list.filter((l) => read.has(l.topic)).length
             return (
-              <section key={lv} className="stack gap-2">
-                <h2 className="section-title guide-level">
-                  <span className="guide-level-badge">{lv}</span> <span>{LEVEL_NAME[lv]}</span>
-                  <span className="guide-level-progress small muted">
-                    {lvDone} / {list.length}
-                  </span>
-                  <button
-                    type="button"
-                    className="guide-level-quiz-btn"
-                    title={`${lv} seviyesi karma testi: 10 soru`}
-                    onClick={() => setLevelQuiz(lv)}
-                  >
-                    🎯 Seviyeyi sına
-                  </button>
-                </h2>
-                <div className="guide-grid">
-                  {list.map((l) => {
-                    const s = stats.get(l.topic)
-                    const n = questions.get(l.topic) ?? 0
-                    const pn = l.practice ? (questions.get(l.practice) ?? 0) : 0
-                    return (
-                      <LessonCard
-                        key={l.topic}
-                        lesson={l}
-                        read={read.has(l.topic)}
-                        learned={!!marks[l.topic]?.learned}
-                        hasNote={!!marks[l.topic]?.note}
-                        foot={
-                          n > 0
-                            ? s && s.answered > 0
-                              ? `${n} soru · %${Math.round(s.accuracy * 100)} doğru`
-                              : `${n} soru`
-                            : pn > 0
-                              ? `${pn} soru`
-                              : 'Konu anlatımı'
-                        }
-                        flag={flagOf(l.topic)}
-                        snippet={hits.get(l.topic)?.snippet}
-                        needs={read.has(l.topic) ? undefined : unmetPrereqs(l.topic, (t) => read.has(t)).map((t) => lessonFor(language, t)).filter((x): x is TopicLesson => !!x).map(titleOf)[0]}
-                        onOpen={() => setOpen(l)}
-                      />
-                    )
-                  })}
-                </div>
+              <section key={lv} className="stack gap-2 guide-level-group">
+                <LevelHead level={lv} done={lvDone} total={list.length} open={levelOpen(lv)} onToggle={() => toggleLevel(lv)} />
+                {levelOpen(lv) && (
+                  <>
+                    <LevelQuizButton level={lv} onQuiz={() => setLevelQuiz(lv)} />
+                    <ul className="plain guide-rows">
+                      {list.map((l) => {
+                        const s = stats.get(l.topic)
+                        const n = questions.get(l.topic) ?? 0
+                        const pn = l.practice ? (questions.get(l.practice) ?? 0) : 0
+                        const step = stepOf.get(l.topic)
+                        return (
+                          <LessonRow
+                            key={l.topic}
+                            lesson={l}
+                            state={step?.state ?? (read.has(l.topic) ? 'read' : 'open')}
+                            meta={n > 0 ? (s && s.answered > 0 ? `${n} soru · %${Math.round(s.accuracy * 100)}` : `${n} soru`) : pn > 0 ? `${pn} soru` : 'Anlatım'}
+                            flag={flagOf(l.topic)}
+                            hasNote={!!marks[l.topic]?.note}
+                            snippet={hits.get(l.topic)?.snippet}
+                            needs={read.has(l.topic) ? undefined : unmetPrereqs(l.topic, (t) => read.has(t)).map((t) => lessonFor(language, t)).filter((x): x is TopicLesson => !!x).map(titleOf)[0]}
+                            onOpen={() => setOpen(l)}
+                          />
+                        )
+                      })}
+                    </ul>
+                  </>
+                )}
               </section>
             )
           })}
@@ -737,6 +734,67 @@ function LessonCard({ lesson, read, learned, foot, flag, hasNote, snippet, needs
         {learned && <span className="guide-tag guide-tag-learned">Öğrenildi</span>}
       </span>
     </button>
+  )
+}
+
+/** A level's heading: opens and closes its lessons (on a phone only the learner's level starts open). */
+function LevelHead({ level, done, total, open, onToggle }: { level: GuideLevel; done: number; total: number; open: boolean; onToggle: () => void }) {
+  return (
+    <GroupToggle id={`guide-${level}`} open={open} onToggle={onToggle}>
+      <span className="guide-level-badge">{level}</span>
+      <span>{LEVEL_NAME[level]}</span>
+      <span className="guide-level-progress small muted" aria-label={`${done} / ${total} okundu`}>
+        {done} / {total}
+      </span>
+    </GroupToggle>
+  )
+}
+
+function LevelQuizButton({ level, onQuiz }: { level: GuideLevel; onQuiz: () => void }) {
+  return (
+    <div className="guide-level-tools">
+      <button type="button" className="guide-level-quiz-btn" title={`${level} seviyesi karma testi: 10 soru`} onClick={onQuiz}>
+        🎯 Seviyeyi sına
+      </button>
+    </div>
+  )
+}
+
+const ROW_STATE: Record<PathStep<TopicLesson>['state'], string> = { learned: 'Öğrenildi', read: 'Okundu', next: 'Sıradaki', open: 'Okunmadı', waiting: 'Okunmadı' }
+
+/**
+ * One lesson in the list, on one line: where it stands (the path's dot), its name, its level and its questions. The
+ * summary is on the lesson's page; a search shows the line it matched under the name.
+ */
+function LessonRow({ lesson, state, meta, flag, hasNote, snippet, needs, onOpen }: { lesson: TopicLesson; state: PathStep<TopicLesson>['state']; meta: string; flag?: LessonFlag; hasNote?: boolean; snippet?: string; needs?: string; onOpen: () => void }) {
+  const done = state === 'learned' || state === 'read'
+  return (
+    <li className={`guide-row path-${needs && !done ? 'waiting' : state}`}>
+      <button type="button" className="guide-row-btn" onClick={onOpen} title={needs ? `Önce: ${needs}` : undefined}>
+        <span className="guide-path-dot guide-row-dot" aria-hidden="true">
+          {done && <CheckCircleIcon size={16} />}
+        </span>
+        <span className="guide-row-main">
+          <strong className="guide-row-title">{titleOf(lesson)}</strong>
+          {snippet && <span className="small guide-card-snippet">{snippet}</span>}
+        </span>
+        <span className="guide-row-meta small muted">
+          {hasNote && (
+            <span className="guide-row-note" title="Kişisel notun var">
+              📝<span className="sr-only"> Not</span>
+            </span>
+          )}
+          {flag === 'star' && <span className="guide-flag" title="Yer imi">★</span>}
+          {flag === 'hard' && <span className="guide-tag guide-tag-hard">Zor</span>}
+          <span className="guide-level-badge">{lesson.level}</span>
+          <span className="guide-row-stat">{meta}</span>
+        </span>
+        <span className="sr-only">
+          , {ROW_STATE[state]}
+          {needs && !done ? `, önce: ${needs}` : ''}
+        </span>
+      </button>
+    </li>
   )
 }
 

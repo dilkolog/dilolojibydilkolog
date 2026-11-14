@@ -98,6 +98,8 @@ export interface JournalEntry {
   at: string
   text: string
   review?: JournalReview
+  /** The exam-style writing task it answers (ExamTask id), when one was chosen; older entries lack it. */
+  task?: string
 }
 
 export interface VocabTestRecord {
@@ -214,6 +216,8 @@ export interface Settings {
   pretest: boolean
   /** Resume an unfinished recent introduction with its card; never reveal an already tested word. */
   refreshCard?: boolean
+  /** After a miss on a typed question, offer typing the shown answer once (unscored). Unset = on. */
+  copyAfterMiss?: boolean
   /** Offer "not sure" before answering; confident errors get extra attention. */
   confidence: boolean
   /** Turn "e'" into "é" etc. while typing. */
