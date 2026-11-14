@@ -1,0 +1,522 @@
+[
+ {
+  "w": "go the extra mile",
+  "t": "beklenenden fazla çaba göstermek",
+  "lit": "fazladan bir mil gitmek",
+  "eq": "elinden geleni ardına koymamak",
+  "s": "Our host went the extra mile to make us feel welcome.",
+  "form": "went the extra mile",
+  "tr": "Ev sahibimiz bizi rahat ettirmek için elinden gelenin fazlasını yaptı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-the-extra-mile",
+   "https://en.wiktionary.org/wiki/go_the_extra_mile"
+  ]
+ },
+ {
+  "w": "get the hang of",
+  "pat": "get the hang of something",
+  "t": "elini alıştırmak, püf noktasını kapmak",
+  "lit": "bir şeyin tutuşunu kapmak",
+  "eq": "elini alıştırmak",
+  "s": "Once you get the hang of driving stick, it feels easy.",
+  "form": "get the hang of",
+  "tr": "Düz vites kullanmanın mantığını kaptın mı çok kolay gelir.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-the-hang-of",
+   "https://en.wiktionary.org/wiki/get_the_hang_of"
+  ]
+ },
+ {
+  "w": "learn the ropes",
+  "t": "işin inceliklerini ve düzenini öğrenmek",
+  "lit": "halatları öğrenmek",
+  "eq": "işin kurdu olmak",
+  "s": "It took two weeks to learn the ropes at my new office.",
+  "form": "learn the ropes",
+  "tr": "Yeni ofisimde işleyişi öğrenmem iki haftamı aldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/learn-know-the-ropes",
+   "https://en.wiktionary.org/wiki/learn_the_ropes"
+  ]
+ },
+ {
+  "w": "around the clock",
+  "t": "gece gündüz demeden, aralıksız",
+  "lit": "saatin etrafında",
+  "eq": "gece gündüz",
+  "s": "Nurses worked around the clock during the flu surge.",
+  "form": "around the clock",
+  "tr": "Grip dalgası sırasında hemşireler gece gündüz demeden çalıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/around-the-clock",
+   "https://en.wiktionary.org/wiki/around_the_clock"
+  ]
+ },
+ {
+  "w": "pull an all-nighter",
+  "t": "sabaha kadar uyumayıp çalışmak",
+  "lit": "bütün bir geceyi çekmek",
+  "eq": "sabahlamak",
+  "s": "I had to pull an all-nighter to finish my lab report.",
+  "form": "pull an all-nighter",
+  "tr": "Laboratuvar raporunu bitirmek için sabahlamak zorunda kaldım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pull-an-all-nighter",
+   "https://en.wiktionary.org/wiki/pull_an_all-nighter"
+  ]
+ },
+ {
+  "w": "roll up one's sleeves",
+  "t": "kolları sıvayıp işe girişmek",
+  "lit": "kollarını yukarı kıvırmak",
+  "eq": "kolları sıvamak",
+  "s": "Let's roll up our sleeves and clear out the garage.",
+  "form": "roll up our sleeves",
+  "tr": "Hadi kolları sıvayıp garajı temizleyelim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/roll-up-sleeves",
+   "https://en.wiktionary.org/wiki/roll_up_one's_sleeves"
+  ]
+ },
+ {
+  "w": "back to the drawing board",
+  "t": "sil baştan başlamak, başa dönmek",
+  "lit": "çizim tahtasına geri",
+  "eq": "sil baştan",
+  "s": "That prototype failed, so it's back to the drawing board.",
+  "form": "back to the drawing board",
+  "tr": "İlk örnek tutmadı, o yüzden tasarıma sil baştan dönüyoruz.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/back-to-the-drawing-board",
+   "https://en.wiktionary.org/wiki/back_to_the_drawing_board"
+  ]
+ },
+ {
+  "w": "get down to business",
+  "t": "asıl işe koyulmak, sadede gelmek",
+  "lit": "işin altına inmek",
+  "eq": "işe koyulmak",
+  "s": "Enough chatting—let's get down to business.",
+  "form": "get down to business",
+  "tr": "Bu kadar sohbet yeter—hadi asıl işe koyulalım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-down-to-business",
+   "https://en.wiktionary.org/wiki/get_down_to_business"
+  ]
+ },
+ {
+  "w": "think outside the box",
+  "t": "kalıpların dışında, yaratıcı düşünmek",
+  "lit": "kutunun dışında düşünmek",
+  "s": "We need to think outside the box to cut shipping costs.",
+  "form": "think outside the box",
+  "tr": "Kargo giderlerini azaltmak için alışılmışın dışında düşünmeliyiz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/think-outside-the-box",
+   "https://en.wiktionary.org/wiki/think_outside_the_box"
+  ]
+ },
+ {
+  "w": "raise the bar",
+  "t": "çıtayı yükseltmek, standardı artırmak",
+  "lit": "çubuğu yukarı kaldırmak",
+  "eq": "çıtayı yükseltmek",
+  "s": "Her design raised the bar for the whole industry.",
+  "form": "raised the bar",
+  "tr": "Onun tasarımı bütün sektör için çıtayı yükseltti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/raise-the-bar",
+   "https://en.wiktionary.org/wiki/raise_the_bar"
+  ]
+ },
+ {
+  "w": "touch base",
+  "t": "kısaca irtibat kurmak, son durumu konuşmak",
+  "lit": "kaleye dokunmak",
+  "s": "Let's touch base on Friday morning before the launch.",
+  "form": "touch base",
+  "tr": "Lansmandan önce cuma sabahı kısaca bir haberleşelim.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/touch-base",
+   "https://en.wiktionary.org/wiki/touch_base"
+  ]
+ },
+ {
+  "w": "get the ball rolling",
+  "t": "ilk adımı atmak, işi başlatmak",
+  "lit": "topu yuvarlamaya başlamak",
+  "eq": "start vermek",
+  "s": "I called the printer to get the ball rolling on brochures.",
+  "form": "get the ball rolling",
+  "tr": "Broşür işini başlatmak için matbaayı aradım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-start-the-ball-rolling",
+   "https://en.wiktionary.org/wiki/get_the_ball_rolling"
+  ]
+ },
+ {
+  "w": "burn the candle at both ends",
+  "t": "kendini aşırı yorarak durmadan çalışmak",
+  "lit": "mumu iki ucundan yakmak",
+  "s": "Working two jobs means burning the candle at both ends.",
+  "form": "burning the candle at both ends",
+  "tr": "İki işte birden çalışmak insanı gece gündüz demeden tüketiyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/burn-the-candle-at-both-ends",
+   "https://en.wiktionary.org/wiki/burn_the_candle_at_both_ends"
+  ]
+ },
+ {
+  "w": "leave no stone unturned",
+  "t": "gitmedik kapı bırakmamak, her yolu denemek",
+  "lit": "çevrilmedik taş bırakmamak",
+  "eq": "taş üstünde taş bırakmamak",
+  "s": "Detectives left no stone unturned searching for clues.",
+  "form": "left no stone unturned",
+  "tr": "Dedektifler ipucu ararken bakmadık yer bırakmadı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/leave-no-stone-unturned",
+   "https://en.wiktionary.org/wiki/leave_no_stone_unturned"
+  ]
+ },
+ {
+  "w": "pick up the slack",
+  "t": "aksayan işi toparlamak, açığı kapatmak",
+  "lit": "gevşekliği toplamak",
+  "eq": "açığı kapatmak",
+  "s": "When two staff fell ill, Mia picked up the slack.",
+  "form": "picked up the slack",
+  "tr": "İki çalışan hastalanınca aksayan işleri Mia toparladı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pick-up-the-slack",
+   "https://en.wiktionary.org/wiki/pick_up_the_slack"
+  ]
+ },
+ {
+  "w": "on the back burner",
+  "t": "askıya alınmış, şimdilik ertelenmiş",
+  "lit": "arka ocak gözünde",
+  "eq": "rafa kaldırmak",
+  "s": "Plans to remodel the kitchen are on the back burner.",
+  "form": "on the back burner",
+  "tr": "Mutfağı yenileme planları şimdilik askıya alındı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-the-back-burner",
+   "https://en.wiktionary.org/wiki/on_the_back_burner"
+  ]
+ },
+ {
+  "w": "behind the scenes",
+  "t": "perde arkasında, gözden uzak",
+  "lit": "sahnelerin arkasında",
+  "eq": "perde arkasında",
+  "s": "Volunteers worked behind the scenes to run the festival.",
+  "form": "behind the scenes",
+  "tr": "Gönüllüler festivali yürütmek için perde arkasında çok çalıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/behind-the-scenes",
+   "https://en.wiktionary.org/wiki/behind_the_scenes"
+  ]
+ },
+ {
+  "w": "throw in the towel",
+  "t": "havlu atmak, pes etmek",
+  "lit": "havluyu ringe atmak",
+  "eq": "havlu atmak",
+  "s": "After three rejected drafts, he refused to throw in the towel.",
+  "form": "throw in the towel",
+  "tr": "Üç taslağı reddedildikten sonra bile pes etmeyi reddetti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/throw-in-the-towel",
+   "https://en.wiktionary.org/wiki/throw_in_the_towel"
+  ]
+ },
+ {
+  "w": "keep one's nose to the grindstone",
+  "t": "başını kaldırmadan sıkı çalışmak",
+  "lit": "burnunu bileme taşında tutmak",
+  "s": "Keep your nose to the grindstone until finals wrap up.",
+  "form": "Keep your nose to the grindstone",
+  "tr": "Finaller bitene kadar başını kaldırmadan çalışmaya devam et.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/keep-nose-to-the-grindstone",
+   "https://en.wiktionary.org/wiki/keep_one's_nose_to_the_grindstone"
+  ]
+ },
+ {
+  "w": "reinvent the wheel",
+  "t": "Amerika'yı yeniden keşfetmek, olan şeyi baştan icat etmek",
+  "lit": "tekerleği yeniden icat etmek",
+  "eq": "Amerika'yı yeniden keşfetmek",
+  "s": "Use an existing template; no need to reinvent the wheel.",
+  "form": "reinvent the wheel",
+  "tr": "Hazır bir şablon kullan; Amerika'yı yeniden keşfetmeye gerek yok.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/reinvent-the-wheel",
+   "https://en.wiktionary.org/wiki/reinvent_the_wheel"
+  ]
+ },
+ {
+  "w": "pass the buck",
+  "t": "sorumluluğu başkasının üstüne atmak",
+  "lit": "markayı elden geçirmek",
+  "eq": "topu taca atmak",
+  "s": "Instead of fixing the bug, they tried to pass the buck.",
+  "form": "pass the buck",
+  "tr": "Hatayı düzeltmek yerine suçu başkasına atmaya çalıştılar.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pass-the-buck",
+   "https://en.wiktionary.org/wiki/pass_the_buck"
+  ]
+ },
+ {
+  "w": "pull strings",
+  "t": "torpil yaptırmak, nüfuzunu kullanmak",
+  "lit": "ipleri çekmek",
+  "eq": "araya adam koymak",
+  "s": "His uncle pulled strings to get him an interview.",
+  "form": "pulled strings",
+  "tr": "Amcası ona mülakat ayarlamak için tanıdıklarını devreye soktu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pull-strings",
+   "https://en.wiktionary.org/wiki/pull_strings"
+  ]
+ },
+ {
+  "w": "step up to the plate",
+  "t": "sorumluluk alıp öne çıkmak",
+  "lit": "vuruş çizgisine adım atmak",
+  "eq": "elini taşın altına koymak",
+  "s": "Someone has to step up to the plate and lead.",
+  "form": "step up to the plate",
+  "tr": "Birinin sorumluluk alıp liderliği üstlenmesi gerekiyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/step-up-to-the-plate",
+   "https://en.wiktionary.org/wiki/step_up_to_the_plate"
+  ]
+ },
+ {
+  "w": "move the goalposts",
+  "t": "oyun oynanırken kuralları değiştirmek",
+  "lit": "kale direklerini kaydırmak",
+  "s": "Clients shouldn't move the goalposts after signing a scope.",
+  "form": "move the goalposts",
+  "tr": "Müşteriler kapsamı imzaladıktan sonra hedefleri değiştirmemeli.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/move-the-goalposts",
+   "https://en.wiktionary.org/wiki/move_the_goalposts"
+  ]
+ },
+ {
+  "w": "carry the can",
+  "t": "suçun veya hatanın faturasını tek başına üstlenmek",
+  "lit": "teneke kutuyu taşımak",
+  "eq": "ihale üstüne kalmak",
+  "s": "Junior analysts often end up carrying the can for poor forecasts.",
+  "form": "carrying the can",
+  "tr": "Kötü tahminlerin faturası genelde kıdemsiz uzmanların sırtına kalıyor.",
+  "reg": "informal",
+  "area": "UK",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/carry-the-can",
+   "https://en.wiktionary.org/wiki/carry_the_can"
+  ]
+ },
+ {
+  "w": "spin one's wheels",
+  "t": "yerinde saymak, boşa kürek çekmek",
+  "lit": "tekerleklerini boşa döndürmek",
+  "eq": "yerinde saymak",
+  "s": "Without clear data, our team was just spinning its wheels.",
+  "form": "spinning its wheels",
+  "tr": "Net veri olmadan ekibimiz sadece yerinde sayıyordu.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/spin-wheels",
+   "https://en.wiktionary.org/wiki/spin_one's_wheels"
+  ]
+ },
+ {
+  "w": "dead wood",
+  "t": "işe yaramayan verimsiz personel veya unsur",
+  "lit": "ölü odun",
+  "s": "The merger forced management to trim dead wood.",
+  "form": "dead wood",
+  "tr": "Birleşme yönetimi artık verim vermeyen kadroları azaltmaya zorladı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/dead-wood",
+   "https://en.wiktionary.org/wiki/dead_wood"
+  ]
+ },
+ {
+  "w": "work one's fingers to the bone",
+  "t": "canını dişine takıp çok çalışmak",
+  "lit": "parmaklarını kemiğe kadar çalıştırmak",
+  "eq": "canını dişine takmak",
+  "s": "Parents often work their fingers to the bone for tuition.",
+  "form": "work their fingers to the bone",
+  "tr": "Anne babalar okul parası için canlarını dişlerine takıp çalışır.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/work-fingers-to-the-bone",
+   "https://en.wiktionary.org/wiki/work_one's_fingers_to_the_bone"
+  ]
+ },
+ {
+  "w": "hit the ground running",
+  "t": "başlar başlamaz tam hızla verimli çalışmak",
+  "lit": "yere koşarak çarpmak",
+  "s": "Good onboarding helps new hires hit the ground running.",
+  "form": "hit the ground running",
+  "tr": "İyi bir oryantasyon yeni çalışanların işe hemen ısınmasını sağlar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hit-the-ground-running",
+   "https://en.wiktionary.org/wiki/hit_the_ground_running"
+  ]
+ },
+ {
+  "w": "pull out all the stops",
+  "t": "bütün imkânları seferber etmek",
+  "lit": "tüm org sürgülerini çekmek",
+  "eq": "varını yoğunu ortaya koymak",
+  "s": "The chef pulled out all the stops for the anniversary menu.",
+  "form": "pulled out all the stops",
+  "tr": "Şef yıl dönümü menüsü için tüm hünerini seferber etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pull-out-all-the-stops",
+   "https://en.wiktionary.org/wiki/pull_out_all_the_stops"
+  ]
+ },
+ {
+  "w": "cut the mustard",
+  "t": "beklenen standardı yakalamak, yeterli olmak",
+  "lit": "hardalı kesmek",
+  "s": "Cheap tools simply won't cut the mustard on heavy oak.",
+  "form": "cut the mustard",
+  "tr": "Ucuz aletler kalın meşede gereken işi kesinlikle çıkarmaz.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/cut_the_mustard",
+   "https://www.ldoceonline.com/dictionary/cut-the-mustard"
+  ]
+ }
+]

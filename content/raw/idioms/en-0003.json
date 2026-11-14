@@ -1,0 +1,520 @@
+[
+ {
+  "w": "piece of cake",
+  "t": "çocuk oyuncağı, çok kolay iş",
+  "lit": "bir dilim kek",
+  "eq": "çocuk oyuncağı",
+  "s": "Compared to last year's exam, this one was a piece of cake.",
+  "form": "piece of cake",
+  "tr": "Geçen yılki sınava göre bu çocuk oyuncağıydı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/piece-of-cake",
+   "https://en.wiktionary.org/wiki/piece_of_cake"
+  ]
+ },
+ {
+  "w": "cup of tea",
+  "t": "ilgi alanı, zevkine uygun şey",
+  "lit": "bir fincan çay",
+  "eq": "kalemi olmak",
+  "s": "Horror movies aren't really my cup of tea.",
+  "form": "cup of tea",
+  "tr": "Korku filmleri pek bana göre değil.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/not-be-cup-of-tea",
+   "https://en.wiktionary.org/wiki/cup_of_tea"
+  ]
+ },
+ {
+  "w": "couch potato",
+  "t": "televizyon başından kalkmayan tembel",
+  "lit": "kanepe patatesi",
+  "s": "Since hurting his ankle, he's become a total couch potato.",
+  "form": "couch potato",
+  "tr": "Bileğini burktuğundan beri tam bir televizyon bağımlısı oldu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/couch-potato",
+   "https://en.wiktionary.org/wiki/couch_potato"
+  ]
+ },
+ {
+  "w": "smart cookie",
+  "t": "akıllı ve uyanık kişi",
+  "lit": "akıllı kurabiye",
+  "s": "Nadia is a smart cookie; she spotted the flaw fast.",
+  "form": "smart cookie",
+  "tr": "Nadia zeki biridir; hatayı hemen fark etti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/smart-cookie",
+   "https://en.wiktionary.org/wiki/smart_cookie"
+  ]
+ },
+ {
+  "w": "icing on the cake",
+  "t": "tuz biber değil, üstüne kaymak gibi gelen ek güzellik",
+  "lit": "keken üstündeki krema",
+  "eq": "kaymağı olmak",
+  "s": "Winning the trip was the icing on the cake.",
+  "form": "icing on the cake",
+  "tr": "Geziyi kazanmak güzel haberin üstüne kaymak oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/icing-on-the-cake",
+   "https://en.wiktionary.org/wiki/icing_on_the_cake"
+  ]
+ },
+ {
+  "w": "bread and butter",
+  "t": "ekmek kapısı, geçim kaynağı",
+  "lit": "ekmek ve tereyağı",
+  "eq": "ekmek teknesi",
+  "s": "Weddings are this photography studio's bread and butter.",
+  "form": "bread and butter",
+  "tr": "Düğün çekimleri bu fotoğraf stüdyosunun ekmek kapısı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bread-and-butter",
+   "https://en.wiktionary.org/wiki/bread_and_butter"
+  ]
+ },
+ {
+  "w": "in a nutshell",
+  "t": "özetle, kısacası",
+  "lit": "bir ceviz kabuğunun içinde",
+  "eq": "özetle",
+  "s": "That, in a nutshell, is why the project stalled.",
+  "form": "in a nutshell",
+  "tr": "Projenin durma sebebi özetle tam olarak bu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-a-nutshell",
+   "https://en.wiktionary.org/wiki/in_a_nutshell"
+  ]
+ },
+ {
+  "w": "take with a grain of salt",
+  "pat": "take something with a grain of salt",
+  "t": "ihtiyatla karşılamak, birebir inanmamak",
+  "lit": "bir tutam tuzla almak",
+  "s": "Take online restaurant reviews with a grain of salt.",
+  "form": "with a grain of salt",
+  "tr": "İnternetteki restoran yorumlarına biraz temkinli yaklaş.",
+  "reg": "neutral",
+  "area": "US",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-with-a-grain-of-salt",
+   "https://en.wiktionary.org/wiki/take_with_a_grain_of_salt"
+  ]
+ },
+ {
+  "w": "cry over spilled milk",
+  "t": "geçmişe yanmak, olan olmuş diye üzülmek",
+  "lit": "dökülmüş sütün arkasından ağlamak",
+  "eq": "son pişmanlık fayda etmez",
+  "s": "It's done now, so don't cry over spilled milk.",
+  "form": "cry over spilled milk",
+  "tr": "Artık olan oldu, geçmişin arkasından dövünme.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cry-over-spilled-milk",
+   "https://en.wiktionary.org/wiki/cry_over_spilled_milk"
+  ]
+ },
+ {
+  "w": "food for thought",
+  "t": "üzerinde düşünülecek mesele",
+  "lit": "düşünce için yiyecek",
+  "s": "Her lecture gave the whole panel plenty of food for thought.",
+  "form": "food for thought",
+  "tr": "Konuşması tüm kurula üzerinde düşünecek çok malzeme verdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/food-for-thought",
+   "https://en.wiktionary.org/wiki/food_for_thought"
+  ]
+ },
+ {
+  "w": "butter someone up",
+  "t": "yağ çekmek, övgüyle yumuşatmak",
+  "lit": "birini tereyağlamak",
+  "eq": "yağ çekmek",
+  "s": "Stop trying to butter me up before asking for money.",
+  "form": "butter me up",
+  "tr": "Para istemeden önce bana yağ çekmeye çalışmayı bırak.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/butter-up",
+   "https://en.wiktionary.org/wiki/butter_someone_up"
+  ]
+ },
+ {
+  "w": "bring home the bacon",
+  "t": "evin geçimini sağlamak",
+  "lit": "eve pastırma getirmek",
+  "eq": "evine ekmek götürmek",
+  "s": "Both parents work full time to bring home the bacon.",
+  "form": "bring home the bacon",
+  "tr": "Anne baba evin geçimini sağlamak için ikisi de tam zamanlı çalışıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bring-home-the-bacon",
+   "https://en.wiktionary.org/wiki/bring_home_the_bacon"
+  ]
+ },
+ {
+  "w": "hot potato",
+  "t": "kimsenin elini sürmek istemediği hassas konu",
+  "lit": "sıcak patates",
+  "s": "Zoning reform has become a political hot potato.",
+  "form": "hot potato",
+  "tr": "İmar düzenlemesi kimsenin yaklaşmak istemediği hassas bir konu oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hot-potato",
+   "https://en.wiktionary.org/wiki/hot_potato"
+  ]
+ },
+ {
+  "w": "bad apple",
+  "t": "çürük elma, çevresini bozan kişi",
+  "lit": "kötü elma",
+  "eq": "çürük elma",
+  "s": "One bad apple shouldn't spoil the reputation of the team.",
+  "form": "bad apple",
+  "tr": "Bir çürük elma bütün ekibin adını lekelememeli.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bad-apple",
+   "https://en.wiktionary.org/wiki/bad_apple"
+  ]
+ },
+ {
+  "w": "sour grapes",
+  "t": "kedi uzanamadığı ciğere pis der misali küçümseme",
+  "lit": "ekşi üzümler",
+  "s": "Saying the award is useless sounds like sour grapes.",
+  "form": "sour grapes",
+  "tr": "Ödülün değersiz olduğunu söylemek biraz hasetten küçümseme gibi duruyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/sour-grapes",
+   "https://en.wiktionary.org/wiki/sour_grapes"
+  ]
+ },
+ {
+  "w": "walk on eggshells",
+  "t": "kırılgan ortamda çok dikkatli davranmak",
+  "lit": "yumurta kabukları üstünde yürümek",
+  "eq": "bıçak sırtında yürümek",
+  "s": "We all walk on eggshells around him before deadlines.",
+  "form": "walk on eggshells",
+  "tr": "Teslim tarihlerinden önce yanında hepimiz pamuk ipliği üstünde yürür gibiyiz.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/walk-be-on-eggshells",
+   "https://en.wiktionary.org/wiki/walk_on_eggshells"
+  ]
+ },
+ {
+  "w": "tough cookie",
+  "t": "kolay yılmayan sert ve dirayetli kişi",
+  "lit": "sert kurabiye",
+  "eq": "çetin ceviz",
+  "s": "Our negotiator is a tough cookie under pressure.",
+  "form": "tough cookie",
+  "tr": "Müzakerecimiz baskı altında bile kolay kolay eğilmeyen çetin bir cevizdir.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tough-cookie",
+   "https://en.wiktionary.org/wiki/tough_cookie"
+  ]
+ },
+ {
+  "w": "full of beans",
+  "t": "yerinde duramayan, enerji dolu",
+  "lit": "fasulye dolu",
+  "eq": "cıva gibi",
+  "s": "The kids were full of beans after recess.",
+  "form": "full of beans",
+  "tr": "Çocuklar teneffüsten sonra enerji doluydu.",
+  "reg": "informal",
+  "area": "UK",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-full-of-beans",
+   "https://en.wiktionary.org/wiki/full_of_beans"
+  ]
+ },
+ {
+  "w": "have one's cake and eat it too",
+  "t": "hem ayranım dökülmesin hem yoğurdum ekşimesin demek",
+  "lit": "pastasına sahip olup onu da yemek",
+  "eq": "hem karnım doysun hem pastam dursun",
+  "s": "You can't keep both perks—don't try to have your cake and eat it too.",
+  "form": "have your cake and eat it too",
+  "tr": "İki avantajı birden tutamazsın—hem o hem bu olmaz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/have-cake-and-eat-it-too",
+   "https://en.wiktionary.org/wiki/have_one's_cake_and_eat_it_too"
+  ]
+ },
+ {
+  "w": "put all one's eggs in one basket",
+  "t": "bütün umudunu tek yere bağlamak",
+  "lit": "tüm yumurtalarını tek sepete koymak",
+  "s": "Don't put all your eggs in one basket; apply elsewhere too.",
+  "form": "put all your eggs in one basket",
+  "tr": "Bütün kozunu tek yere oynama; başka yerlere de başvur.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-all-eggs-in-one-basket",
+   "https://en.wiktionary.org/wiki/put_all_one's_eggs_in_one_basket"
+  ]
+ },
+ {
+  "w": "spill the tea",
+  "t": "dedikoduyu anlatmak, gerçeği dökmek",
+  "lit": "çayı dökmek",
+  "s": "Sit down and spill the tea about last night's dinner.",
+  "form": "spill the tea",
+  "tr": "Otur da dün akşamki yemekte neler olduğunu dökül bakalım.",
+  "reg": "slang",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/spill-the-tea",
+   "https://en.wiktionary.org/wiki/spill_the_tea"
+  ]
+ },
+ {
+  "w": "go bananas",
+  "t": "çıldırmak, kendinden geçmek",
+  "lit": "muza dönmek",
+  "eq": "keçileri kaçırmak",
+  "s": "The crowd went bananas when the band came back out.",
+  "form": "went bananas",
+  "tr": "Grup sahneye yeniden çıkınca kalabalık kendinden geçti.",
+  "reg": "slang",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-bananas",
+   "https://en.wiktionary.org/wiki/go_bananas"
+  ]
+ },
+ {
+  "w": "cool as a cucumber",
+  "t": "buz gibi soğukkanlı, hiç telaşsız",
+  "lit": "salatalık kadar serin",
+  "eq": "soğukkanlı",
+  "s": "Even during the audit, Sam stayed cool as a cucumber.",
+  "form": "cool as a cucumber",
+  "tr": "Denetim sırasında bile Sam son derece soğukkanlı kaldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/as-cool-as-a-cucumber",
+   "https://en.wiktionary.org/wiki/cool_as_a_cucumber"
+  ]
+ },
+ {
+  "w": "eat humble pie",
+  "t": "hatasını kabul edip alttan almak",
+  "lit": "alçakgönüllü turta yemek",
+  "eq": "yelkenleri suya indirmek",
+  "s": "After boasting all week, he had to eat humble pie.",
+  "form": "eat humble pie",
+  "tr": "Bütün hafta böbürlendikten sonra hatasını kabul etmek zorunda kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/eat-humble-pie",
+   "https://en.wiktionary.org/wiki/eat_humble_pie"
+  ]
+ },
+ {
+  "w": "gravy train",
+  "t": "zahmetsiz bol kazanç kapısı",
+  "lit": "sos treni",
+  "s": "Tax cuts won't keep that gravy train running forever.",
+  "form": "gravy train",
+  "tr": "Vergi indirimleri o zahmetsiz kazanç düzenini sonsuza dek sürdüremez.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/gravy-train",
+   "https://en.wiktionary.org/wiki/gravy_train"
+  ]
+ },
+ {
+  "w": "chew the fat",
+  "t": "çene çalmak, havadan sudan sohbet etmek",
+  "lit": "yağı çiğnemek",
+  "eq": "çene çalmak",
+  "s": "Old neighbors sat on the porch to chew the fat.",
+  "form": "chew the fat",
+  "tr": "Eski komşular verandada oturup uzun uzun çene çaldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/chew-the-fat",
+   "https://en.wiktionary.org/wiki/chew_the_fat"
+  ]
+ },
+ {
+  "w": "a drop in the bucket",
+  "t": "devede kulak, ihtiyaç yanında çok küçük kalan miktar",
+  "lit": "kovada bir damla",
+  "eq": "devede kulak",
+  "s": "Five thousand dollars is a drop in the bucket for repairs.",
+  "form": "a drop in the bucket",
+  "tr": "Beş bin dolar onarım masrafları yanında devede kulak kalır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/drop-in-the-bucket",
+   "https://en.wiktionary.org/wiki/a_drop_in_the_bucket"
+  ]
+ },
+ {
+  "w": "pie in the sky",
+  "t": "boş hayal, gerçekleşmesi uzak vaat",
+  "lit": "gökyüzündeki turta",
+  "eq": "ham hayal",
+  "s": "Free high-speed rail by next spring sounds like pie in the sky.",
+  "form": "pie in the sky",
+  "tr": "Gelecek bahara kadar ücretsiz hızlı tren fikri ham hayal gibi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pie-in-the-sky",
+   "https://en.wiktionary.org/wiki/pie_in_the_sky"
+  ]
+ },
+ {
+  "w": "cream of the crop",
+  "t": "en iyilerin en iyisi, kaymak tabakası",
+  "lit": "mahsulün kreması",
+  "eq": "en seçkin",
+  "s": "Only the cream of the crop gets into that academy.",
+  "form": "cream of the crop",
+  "tr": "O akademiye yalnızca en seçkin adaylar kabul ediliyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cream-of-the-crop",
+   "https://en.wiktionary.org/wiki/cream_of_the_crop"
+  ]
+ },
+ {
+  "w": "salt of the earth",
+  "t": "özü sözü doğru, dürüst ve mütevazı insan",
+  "lit": "yeryüzünün tuzu",
+  "eq": "özü sözü doğru",
+  "s": "My grandfather was salt of the earth, always helping quietly.",
+  "form": "salt of the earth",
+  "tr": "Dedem sessizce yardım etmeyi seven, özü sözü doğru bir insandı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/salt-of-the-earth",
+   "https://en.wiktionary.org/wiki/salt_of_the_earth"
+  ]
+ },
+ {
+  "w": "best thing since sliced bread",
+  "t": "çıkmış en harika buluş veya yenilik",
+  "lit": "dilimlenmiş ekmekten beri en iyi şey",
+  "s": "Everyone treats this new app like the best thing since sliced bread.",
+  "form": "best thing since sliced bread",
+  "tr": "Herkes bu yeni uygulamaya yüzyılın icadıymış gibi davranıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-the-best-thing-since-sliced-bread",
+   "https://en.wiktionary.org/wiki/best_thing_since_sliced_bread"
+  ]
+ }
+]

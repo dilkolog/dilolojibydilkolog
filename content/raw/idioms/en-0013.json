@@ -1,0 +1,527 @@
+[
+ {
+  "w": "knock on wood",
+  "t": "nazar değmesin, tahtaya vurmak",
+  "lit": "tahtaya vurmak",
+  "eq": "şeytan kulağına kurşun",
+  "s": "We haven't had a single delay yet—knock on wood.",
+  "form": "knock on wood",
+  "tr": "Şimdiye kadar hiç gecikme yaşamadık—tahtaya vuralım da nazar değmesin.",
+  "reg": "informal",
+  "area": "US",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/knock-on-wood",
+   "https://en.wiktionary.org/wiki/knock_on_wood"
+  ]
+ },
+ {
+  "w": "beginner's luck",
+  "t": "acemi şansı",
+  "lit": "yeni başlayanın şansı",
+  "eq": "acemi şansı",
+  "s": "Winning on your very first chess game is pure beginner's luck.",
+  "form": "beginner's luck",
+  "tr": "Daha ilk satranç oyununda kazanmak tamamen acemi şansı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/beginner-s-luck",
+   "https://en.wiktionary.org/wiki/beginner's_luck"
+  ]
+ },
+ {
+  "w": "stroke of luck",
+  "t": "şans eseri gelen büyük fırsat, talih kuşu",
+  "lit": "şans vuruşu",
+  "eq": "talihin yüzüne gülmesi",
+  "s": "Finding an open spot downtown felt like a stroke of luck.",
+  "form": "stroke of luck",
+  "tr": "Şehir merkezinde boş park yeri bulmak büyük bir şanstı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/stroke-of-luck-genius-etc",
+   "https://en.wiktionary.org/wiki/stroke_of_luck"
+  ]
+ },
+ {
+  "w": "out of luck",
+  "t": "şansı yaver gitmeyen, elinden fırsatı kaçırmış",
+  "lit": "şansın dışında",
+  "eq": "şansı yaver gitmemek",
+  "s": "Tickets sold out at noon, so latecomers are out of luck.",
+  "form": "out of luck",
+  "tr": "Biletler öğlen tükendi, bu yüzden geç kalanların şansı yok.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/out-of-luck",
+   "https://en.wiktionary.org/wiki/out_of_luck"
+  ]
+ },
+ {
+  "w": "push one's luck",
+  "t": "şansını fazla zorlamak, aşırıya kaçmak",
+  "lit": "şansını itmek",
+  "eq": "şansını zorlamak",
+  "s": "You got off lightly once—don't push your luck again.",
+  "form": "push your luck",
+  "tr": "Bir kez ucuz kurtuldun—şansını bir daha bu kadar zorlama.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/push-luck",
+   "https://en.wiktionary.org/wiki/push_one's_luck"
+  ]
+ },
+ {
+  "w": "third time lucky",
+  "t": "üçüncü denemede şansın gülmesi",
+  "lit": "üçüncü sefer şanslı",
+  "eq": "üçün hakkı",
+  "s": "Failed the road test twice, so let's hope third time lucky.",
+  "form": "third time lucky",
+  "tr": "Direksiyon sınavından iki kez kaldım, umarım üçüncüde şansım güler.",
+  "reg": "informal",
+  "area": "UK",
+  "level": "B1",
+  "theme": "luck",
+  "src": [
+   "https://en.wiktionary.org/wiki/third_time_lucky",
+   "https://www.ldoceonline.com/dictionary/third-time-lucky"
+  ]
+ },
+ {
+  "w": "against all odds",
+  "t": "her türlü imkânsızlığa rağmen, mucizevi şekilde",
+  "lit": "bütün ihtimallere karşı",
+  "eq": "bütün zorluklara rağmen",
+  "s": "Against all odds, the tiny ferry crossed the bay safely.",
+  "form": "Against all odds",
+  "tr": "Bütün olumsuz şartlara rağmen küçük vapur körfezi sağ salim geçti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/against-all-the-odds-against-all-odds",
+   "https://en.wiktionary.org/wiki/against_all_odds"
+  ]
+ },
+ {
+  "w": "safe bet",
+  "t": "kesin gibi görünen güvenli tercih",
+  "lit": "güvenli bahis",
+  "eq": "garanti yol",
+  "s": "Bringing an umbrella in April is always a safe bet.",
+  "form": "safe bet",
+  "tr": "Nisanda yanında şemsiye taşımak her zaman en garanti tercihtir.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/safe-bet",
+   "https://en.wiktionary.org/wiki/safe_bet"
+  ]
+ },
+ {
+  "w": "take a chance",
+  "t": "risk almak, şansını denemek",
+  "lit": "bir şans almak",
+  "eq": "şansını denemek",
+  "s": "She took a chance and applied directly to the design studio.",
+  "form": "took a chance",
+  "tr": "Risk alıp doğrudan tasarım stüdyosuna başvurdu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-a-chance",
+   "https://en.wiktionary.org/wiki/take_a_chance"
+  ]
+ },
+ {
+  "w": "in the same boat",
+  "t": "aynı gemide, benzer zorluğun içinde",
+  "lit": "aynı teknede",
+  "eq": "aynı gemide",
+  "s": "With trains canceled, everyone on the platform is in the same boat.",
+  "form": "in the same boat",
+  "tr": "Trenler iptal olunca perondaki herkes aynı durumun içinde kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-the-same-boat",
+   "https://en.wiktionary.org/wiki/in_the_same_boat"
+  ]
+ },
+ {
+  "w": "dodge a bullet",
+  "t": "büyük bir beladan kıl payı sıyrılmak",
+  "lit": "kurşundan sıyrılmak",
+  "eq": "ucuz atlatmak",
+  "s": "We really dodged a bullet by selling before prices dropped.",
+  "form": "dodged a bullet",
+  "tr": "Fiyatlar düşmeden satarak gerçekten büyük bir beladan ucuz sıyrıldık.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/dodge-a-bullet",
+   "https://en.wiktionary.org/wiki/dodge_a_bullet"
+  ]
+ },
+ {
+  "w": "hit the jackpot",
+  "t": "büyük ikramiyeyi vurmak, beklenmedik büyük kazanç sağlamak",
+  "lit": "büyük ödülü vurmak",
+  "eq": "turnayı gözünden vurmak",
+  "s": "With that sunlit corner apartment, they hit the jackpot.",
+  "form": "hit the jackpot",
+  "tr": "Güneş alan o köşe daireyle tam anlamıyla turnayı gözünden vurdular.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hit-the-jackpot",
+   "https://en.wiktionary.org/wiki/hit_the_jackpot"
+  ]
+ },
+ {
+  "w": "roll the dice",
+  "t": "şansa bırakıp riskli bir adım atmak",
+  "lit": "zarları atmak",
+  "eq": "zar atmak",
+  "s": "Opening a winter patio means rolling the dice on weather.",
+  "form": "rolling the dice",
+  "tr": "Kış bahçesi açmak havayla kumar oynamak demektir.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/roll-the-dice",
+   "https://en.wiktionary.org/wiki/roll_the_dice"
+  ]
+ },
+ {
+  "w": "play it safe",
+  "t": "riske girmeyip temkinli davranmak",
+  "lit": "güvenli oynamak",
+  "eq": "sağlam kazığa bağlamak",
+  "s": "Let's play it safe and book refundable hotel rooms.",
+  "form": "play it safe",
+  "tr": "İşimizi sağlama alıp iptal edilebilir otel odası ayırtalım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/play-it-safe",
+   "https://en.wiktionary.org/wiki/play_it_safe"
+  ]
+ },
+ {
+  "w": "on a roll",
+  "t": "şansı üst üste yaver giden, seri başarı yakalayan",
+  "lit": "yuvarlanma hâlinde",
+  "eq": "rüzgârı arkasına almak",
+  "s": "After three straight wins, our debate club is on a roll.",
+  "form": "on a roll",
+  "tr": "Üst üste üç galibiyetten sonra münazara kulübümüz rüzgârı arkasına aldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-a-roll",
+   "https://en.wiktionary.org/wiki/on_a_roll"
+  ]
+ },
+ {
+  "w": "long shot",
+  "t": "tutma ihtimali düşük cesur tahmin veya deneme",
+  "lit": "uzun atış",
+  "s": "Applying without years of practice was a long shot.",
+  "form": "long shot",
+  "tr": "Yıllarca tecrübe olmadan başvurmak zayıf bir ihtimaldi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/long-shot",
+   "https://en.wiktionary.org/wiki/long_shot"
+  ]
+ },
+ {
+  "w": "close shave",
+  "t": "kıl payı kurtuluş, kıl payı atlatılan kaza",
+  "lit": "yakın tıraş",
+  "eq": "kıl payı",
+  "s": "That cyclist had a close shave at the dark crossroads.",
+  "form": "close shave",
+  "tr": "Bisikletli karanlık kavşakta kazadan kıl payı kurtuldu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/close-shave",
+   "https://en.wiktionary.org/wiki/close_shave"
+  ]
+ },
+ {
+  "w": "tempt fate",
+  "t": "kaderi zorlamak, başa gelecek belayı çağırmak",
+  "lit": "kaderi ayartmak",
+  "eq": "belasını aramak",
+  "s": "Leaving tools unlocked outside is just tempting fate.",
+  "form": "tempting fate",
+  "tr": "Aletleri dışarıda kilitsiz bırakmak resmen belaya davetiye çıkarmaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tempt-fate",
+   "https://en.wiktionary.org/wiki/tempt_fate"
+  ]
+ },
+ {
+  "w": "a shot in the dark",
+  "t": "kör atış, bilgi olmadan yapılan tahmin",
+  "lit": "karanlıkta bir atış",
+  "eq": "rastgele atış",
+  "s": "Guessing the password from birthdates was a shot in the dark.",
+  "form": "a shot in the dark",
+  "tr": "Doğum tarihlerinden şifreyi tahmin etmeye çalışmak tamamen kör atıştı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/shot-in-the-dark",
+   "https://www.ldoceonline.com/dictionary/a-shot-in-the-dark"
+  ]
+ },
+ {
+  "w": "catch a break",
+  "t": "şansı dönmek, nihayet yüzüne şans gülmek",
+  "lit": "bir mola yakalamak",
+  "eq": "yüzü gülmek",
+  "s": "After months of rejections, the band finally caught a break.",
+  "form": "caught a break",
+  "tr": "Aylar süren retlerin ardından grup sonunda bir şans yakaladı.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/catch-a-break",
+   "https://en.wiktionary.org/wiki/catch_a_break"
+  ]
+ },
+ {
+  "w": "hedge one's bets",
+  "t": "riski dağıtıp iki tarafı da sağlama almak",
+  "lit": "bahislerini çitle çevrelemek",
+  "eq": "yumurtaları ayrı sepetlere koymak",
+  "s": "She applied to four colleges to hedge her bets.",
+  "form": "hedge her bets",
+  "tr": "Riskini dağıtmak için dört ayrı üniversiteye başvurdu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hedge-bets",
+   "https://en.wiktionary.org/wiki/hedge_one's_bets"
+  ]
+ },
+ {
+  "w": "play with fire",
+  "t": "ateşle oynamak, tehlikeli işle uğraşmak",
+  "lit": "ateşle oynamak",
+  "eq": "ateşle oynamak",
+  "s": "Ignoring safety alarms in a factory means playing with fire.",
+  "form": "playing with fire",
+  "tr": "Fabrikada güvenlik alarmlarını görmezden gelmek ateşle oynamaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/play-with-fire",
+   "https://en.wiktionary.org/wiki/play_with_fire"
+  ]
+ },
+ {
+  "w": "Russian roulette",
+  "t": "sonucu ölümcül veya çok yıkıcı olabilecek körü körüne kumar",
+  "lit": "Rus ruleti",
+  "eq": "Rus ruleti",
+  "s": "Driving on bald winter tires is pure Russian roulette.",
+  "form": "Russian roulette",
+  "tr": "Kabak kış lastikleriyle yola çıkmak resmen Rus ruleti oynamaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/russian-roulette",
+   "https://www.ldoceonline.com/dictionary/russian-roulette"
+  ]
+ },
+ {
+  "w": "double-edged sword",
+  "t": "iki ucu keskin bıçak, hem yararlı hem zararlı durum",
+  "lit": "iki ucu keskin kılıç",
+  "eq": "iki ucu keskin bıçak",
+  "s": "Remote access is a double-edged sword for work-life balance.",
+  "form": "double-edged sword",
+  "tr": "Uzaktan erişim iş-yaşam dengesi açısından iki ucu keskin bir bıçaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/double-edged-sword",
+   "https://en.wiktionary.org/wiki/double-edged_sword"
+  ]
+ },
+ {
+  "w": "luck of the draw",
+  "t": "kurada ne çıkarsa bahtına, tamamen şans işi",
+  "lit": "çekilişin şansı",
+  "eq": "bahtına ne çıkarsa",
+  "s": "Which dorm room you get is purely luck of the draw.",
+  "form": "luck of the draw",
+  "tr": "Hangi yurt odasına düşeceğin tamamen kuraya kalmış bir şans işi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-the-luck-of-the-draw",
+   "https://en.wiktionary.org/wiki/luck_of_the_draw"
+  ]
+ },
+ {
+  "w": "out on a limb",
+  "t": "tek başına riske atılmış, desteksiz ve savunmasız durumda",
+  "lit": "ince dalın ucunda",
+  "eq": "kendini tehlikeye atmak",
+  "s": "The senator went out on a limb backing that unpopular bill.",
+  "form": "out on a limb",
+  "tr": "Senatör o sevilmeyen tasarıyı destekleyerek kendini büyük riske attı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/out-on-a-limb",
+   "https://en.wiktionary.org/wiki/out_on_a_limb"
+  ]
+ },
+ {
+  "w": "fat chance",
+  "t": "hiç şansı yok, rüyanda görürsün (alaycı)",
+  "lit": "şişman şans",
+  "eq": "çok beklersin",
+  "s": "Get him to apologize first? Fat chance!",
+  "form": "Fat chance",
+  "tr": "Önce onun özür dilemesini mi bekliyorsun? Çok beklersin!",
+  "reg": "slang",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/fat-chance",
+   "https://en.wiktionary.org/wiki/fat_chance"
+  ]
+ },
+ {
+  "w": "chance one's arm",
+  "t": "başarma ihtimali düşük olsa da şansını denemek",
+  "lit": "kolunu şansa bırakmak",
+  "s": "He didn't meet every criterion, yet decided to chance his arm.",
+  "form": "chance his arm",
+  "tr": "Tüm şartları karşılamıyordu ama yine de şansını denemeye karar verdi.",
+  "reg": "informal",
+  "area": "UK",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/chance-arm",
+   "https://en.wiktionary.org/wiki/chance_one's_arm"
+  ]
+ },
+ {
+  "w": "charmed life",
+  "t": "tehlikelerden hep sıyrılan çok şanslı hayat",
+  "lit": "tılsımlı hayat",
+  "eq": "dört ayak üstüne düşmek",
+  "s": "Surviving three crashes unhurt, she seems to lead a charmed life.",
+  "form": "charmed life",
+  "tr": "Üç kazadan sıyrıksız kurtulduğuna göre doğuştan tılsımlı bir şansı var.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/lead-live-a-charmed-life",
+   "https://en.wiktionary.org/wiki/charmed_life"
+  ]
+ },
+ {
+  "w": "thank one's lucky stars",
+  "t": "şansına minnettar olmak, ucuz kurtulduğuna şükretmek",
+  "lit": "şanslı yıldızlarına teşekkür etmek",
+  "eq": "şansına dua etmek",
+  "s": "We can thank our lucky stars we pulled over before the tire blew.",
+  "form": "thank our lucky stars",
+  "tr": "Lastik patlamadan kenara çektiğimiz için şansımıza ne kadar dua etsek az.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/thank-lucky-stars",
+   "https://en.wiktionary.org/wiki/thank_one's_lucky_stars"
+  ]
+ },
+ {
+  "w": "count one's blessings",
+  "t": "hâline şükretmek, sahip olduğu iyiliklerin kıymetini bilmek",
+  "lit": "nasiplerini saymak",
+  "eq": "hâline şükretmek",
+  "s": "When storms spare our roof, we count our blessings.",
+  "form": "count our blessings",
+  "tr": "Fırtına çatımıza dokunmadan geçince sahip olduklarımıza şükrediyoruz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "luck",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/count-blessings",
+   "https://en.wiktionary.org/wiki/count_one's_blessings"
+  ]
+ }
+]

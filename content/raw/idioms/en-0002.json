@@ -1,0 +1,516 @@
+[
+ {
+  "w": "kill two birds with one stone",
+  "t": "bir taşla iki kuş vurmak",
+  "lit": "bir taşla iki kuş öldürmek",
+  "eq": "bir taşla iki kuş vurmak",
+  "s": "Cycling to work kills two birds with one stone.",
+  "form": "kills two birds with one stone",
+  "tr": "İşe bisikletle gitmek bir taşla iki kuş vuruyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/kill-two-birds-with-one-stone",
+   "https://en.wiktionary.org/wiki/kill_two_birds_with_one_stone"
+  ]
+ },
+ {
+  "w": "hold your horses",
+  "t": "sakin ol, acele etme",
+  "lit": "atlarını tut",
+  "eq": "ağır ol",
+  "s": "Hold your horses—we haven't read the full contract yet.",
+  "form": "Hold your horses",
+  "tr": "Acele etme—henüz sözleşmenin tamamını okumadık.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hold-horses",
+   "https://en.wiktionary.org/wiki/hold_your_horses"
+  ]
+ },
+ {
+  "w": "early bird",
+  "t": "erkenci kimse, sabahçı",
+  "lit": "erken kuş",
+  "s": "I'm an early bird and finish emails before eight.",
+  "form": "early bird",
+  "tr": "Erkenci biriyim, e-postaları saat sekizden önce bitiririm.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/early-bird",
+   "https://en.wiktionary.org/wiki/early_bird"
+  ]
+ },
+ {
+  "w": "night owl",
+  "t": "gece kuşu, geç yatan kimse",
+  "lit": "gece baykuşu",
+  "eq": "gece kuşu",
+  "s": "My roommate is a night owl who studies past two.",
+  "form": "night owl",
+  "tr": "Ev arkadaşım gece ikiden sonraya kadar ders çalışan bir gece kuşu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/night-owl",
+   "https://en.wiktionary.org/wiki/night_owl"
+  ]
+ },
+ {
+  "w": "busy as a bee",
+  "t": "arı gibi çalışkan, çok meşgul",
+  "lit": "bir arı kadar meşgul",
+  "eq": "arı gibi çalışmak",
+  "s": "She's been busy as a bee getting the shop ready.",
+  "form": "busy as a bee",
+  "tr": "Dükkânı hazırlamak için arı gibi çalışıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-as-busy-as-a-bee",
+   "https://en.wiktionary.org/wiki/busy_as_a_bee"
+  ]
+ },
+ {
+  "w": "butterflies in one's stomach",
+  "t": "heyecandan içi kıpır kıpır olmak",
+  "lit": "midesinde kelebekler",
+  "eq": "karnında kelebekler uçuşmak",
+  "s": "I still get butterflies in my stomach before giving talks.",
+  "form": "butterflies in my stomach",
+  "tr": "Konuşma yapmadan önce hâlâ içim kıpır kıpır oluyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/butterflies-in-stomach",
+   "https://en.wiktionary.org/wiki/butterflies_in_one's_stomach"
+  ]
+ },
+ {
+  "w": "let the cat out of the bag",
+  "t": "sırrı ağzından kaçırmak, baklayı çıkarmak",
+  "lit": "kediyi çantadan çıkarmak",
+  "eq": "baklayı ağzından çıkarmak",
+  "s": "Tom let the cat out of the bag about her promotion.",
+  "form": "let the cat out of the bag",
+  "tr": "Tom onun terfi edeceğini ağzından kaçırdı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/let-the-cat-out-of-the-bag",
+   "https://en.wiktionary.org/wiki/let_the_cat_out_of_the_bag"
+  ]
+ },
+ {
+  "w": "black sheep",
+  "t": "yüz karası, aykırı kişi",
+  "lit": "kara koyun",
+  "s": "He was treated as the black sheep for leaving medicine.",
+  "form": "black sheep",
+  "tr": "Tıbbı bıraktığı için ailenin aykırı üyesi sayıldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/black-sheep",
+   "https://en.wiktionary.org/wiki/black_sheep"
+  ]
+ },
+ {
+  "w": "crocodile tears",
+  "t": "timsah gözyaşları, sahte üzüntü",
+  "lit": "timsah gözyaşları",
+  "eq": "timsah gözyaşları",
+  "s": "Nobody believed his crocodile tears after the takeover.",
+  "form": "crocodile tears",
+  "tr": "Devirden sonra döktüğü timsah gözyaşlarına kimse inanmadı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/crocodile-tears",
+   "https://en.wiktionary.org/wiki/crocodile_tears"
+  ]
+ },
+ {
+  "w": "rat race",
+  "t": "amansız iş koşuşturmacası",
+  "lit": "fare yarışı",
+  "s": "They left the city to escape the corporate rat race.",
+  "form": "rat race",
+  "tr": "Kurumsal koşuşturmacadan kurtulmak için şehri terk ettiler.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rat-race",
+   "https://en.wiktionary.org/wiki/rat_race"
+  ]
+ },
+ {
+  "w": "get one's ducks in a row",
+  "t": "işlerini derleyip toparlamak",
+  "lit": "ördeklerini sıraya dizmek",
+  "s": "Get your ducks in a row before meeting the investors.",
+  "form": "Get your ducks in a row",
+  "tr": "Yatırımcılarla görüşmeden önce tüm hazırlıklarını sıraya koy.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-have-your-ducks-in-a-row",
+   "https://en.wiktionary.org/wiki/get_one's_ducks_in_a_row"
+  ]
+ },
+ {
+  "w": "barking up the wrong tree",
+  "t": "yanlış kapı çalmak, yanılmak",
+  "lit": "yanlış ağaca havlamak",
+  "eq": "yanlış kapı çalmak",
+  "s": "If you think I broke it, you're barking up the wrong tree.",
+  "form": "barking up the wrong tree",
+  "tr": "Onu benim kırdığımı sanıyorsan yanlış kapı çalıyorsun.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/barking-up-the-wrong-tree",
+   "https://en.wiktionary.org/wiki/barking_up_the_wrong_tree"
+  ]
+ },
+ {
+  "w": "smell a rat",
+  "t": "işkillenmek, bir iş olduğunu sezmek",
+  "lit": "bir sıçan koklamak",
+  "eq": "bit yeniği aramak",
+  "s": "When the numbers stayed blank, the auditor smelled a rat.",
+  "form": "smelled a rat",
+  "tr": "Rakamlar boş kalınca denetçi işin içinde bir bit yeniği sezdi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/smell-a-rat",
+   "https://en.wiktionary.org/wiki/smell_a_rat"
+  ]
+ },
+ {
+  "w": "take the bull by the horns",
+  "t": "sorunun üzerine cesurca gitmek",
+  "lit": "boğayı boynuzlarından tutmak",
+  "s": "She took the bull by the horns and renegotiated the lease.",
+  "form": "took the bull by the horns",
+  "tr": "Cesaretini toplayıp kira sözleşmesini yeniden pazarlığa açtı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-the-bull-by-the-horns",
+   "https://en.wiktionary.org/wiki/take_the_bull_by_the_horns"
+  ]
+ },
+ {
+  "w": "elephant in the room",
+  "t": "herkesin bilip konuşmadığı büyük sorun",
+  "lit": "odadaki fil",
+  "s": "The budget deficit was the elephant in the room.",
+  "form": "elephant in the room",
+  "tr": "Bütçe açığı, herkesin görüp de adını anmadığı sorundu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/elephant-in-the-room",
+   "https://en.wiktionary.org/wiki/elephant_in_the_room"
+  ]
+ },
+ {
+  "w": "fish out of water",
+  "t": "sudan çıkmış balık, ortama yabancı",
+  "lit": "sudan çıkmış balık",
+  "eq": "sudan çıkmış balık",
+  "s": "At my first formal gala, I felt like a fish out of water.",
+  "form": "fish out of water",
+  "tr": "İlk resmî davette kendimi sudan çıkmış balık gibi hissettim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/fish-out-of-water",
+   "https://en.wiktionary.org/wiki/fish_out_of_water"
+  ]
+ },
+ {
+  "w": "wild goose chase",
+  "t": "sonuçsuz arayış, boşuna çaba",
+  "lit": "yaban kazı kovalamacası",
+  "eq": "akıntıya kürek çekmek",
+  "s": "Searching the basement without a key was a wild goose chase.",
+  "form": "wild goose chase",
+  "tr": "Anahtar olmadan bodrumu aramak boşuna bir çabaydı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/wild-goose-chase",
+   "https://www.ldoceonline.com/dictionary/wild-goose-chase"
+  ]
+ },
+ {
+  "w": "lion's share",
+  "t": "aslan payı, en büyük kısım",
+  "lit": "aslanın payı",
+  "eq": "aslan payı",
+  "s": "Rent takes the lion's share of my monthly salary.",
+  "form": "lion's share",
+  "tr": "Kira aylık maaşımın aslan payını götürüyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/lion-s-share",
+   "https://en.wiktionary.org/wiki/lion's_share"
+  ]
+ },
+ {
+  "w": "red herring",
+  "t": "dikkat dağıtan sahte ipucu, hedef şaşırtmaca",
+  "lit": "kızıl ringa balığı",
+  "s": "That phone bill proved to be a red herring in the case.",
+  "form": "red herring",
+  "tr": "O telefon faturasının davada bir şaşırtmaca olduğu ortaya çıktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/red-herring",
+   "https://en.wiktionary.org/wiki/red_herring"
+  ]
+ },
+ {
+  "w": "open a can of worms",
+  "t": "başına iş açmak, yeni dertler doğurmak",
+  "lit": "bir kutu solucan açmak",
+  "eq": "çorap söküğü gibi gelmek",
+  "s": "Auditing old invoices could open a can of worms.",
+  "form": "open a can of worms",
+  "tr": "Eski faturaları denetlemek bir sürü yeni derdi deşebilir.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/open-a-can-of-worms",
+   "https://en.wiktionary.org/wiki/open_a_can_of_worms"
+  ]
+ },
+ {
+  "w": "straight from the horse's mouth",
+  "t": "birinci ağızdan, doğrudan yetkilisinden",
+  "lit": "doğrudan atın ağzından",
+  "eq": "birinci ağızdan",
+  "s": "I didn't believe it until I heard it straight from the horse's mouth.",
+  "form": "straight from the horse's mouth",
+  "tr": "Doğrudan kaynağın kendi ağzından duyana dek buna inanmadım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/straight-from-the-horse-s-mouth",
+   "https://en.wiktionary.org/wiki/straight_from_the_horse's_mouth"
+  ]
+ },
+ {
+  "w": "put the cat among the pigeons",
+  "t": "ortalığı karıştırmak, taşları yerinden oynatmak",
+  "lit": "kediyi güvercinlerin arasına koymak",
+  "eq": "ortalığı karıştırmak",
+  "s": "Her memo really put the cat among the pigeons upstairs.",
+  "form": "put the cat among the pigeons",
+  "tr": "Yazdığı not üst katta ortalığı fena karıştırdı.",
+  "reg": "informal",
+  "area": "UK",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-set-the-cat-among-the-pigeons",
+   "https://en.wiktionary.org/wiki/put_the_cat_among_the_pigeons"
+  ]
+ },
+ {
+  "w": "let sleeping dogs lie",
+  "t": "eski defterleri açmamak, kurcalamamak",
+  "lit": "uyuyan köpekleri rahat bırakmak",
+  "s": "The dispute ended years ago; let sleeping dogs lie.",
+  "form": "let sleeping dogs lie",
+  "tr": "Anlaşmazlık yıllar önce kapandı; eski meseleyi kurcalama.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/let-sleeping-dogs-lie",
+   "https://en.wiktionary.org/wiki/let_sleeping_dogs_lie"
+  ]
+ },
+ {
+  "w": "cook someone's goose",
+  "t": "işini bitirmek, planını bozmak",
+  "lit": "birinin kazını pişirmek",
+  "s": "A single leaked email cooked his goose at the firm.",
+  "form": "cooked his goose",
+  "tr": "Sızan tek bir e-posta şirketteki işini bitirdi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cook-goose",
+   "https://en.wiktionary.org/wiki/cook_someone's_goose"
+  ]
+ },
+ {
+  "w": "make a mountain out of a molehill",
+  "t": "pireyi deve yapmak",
+  "lit": "köstebek yuvasından dağ yapmak",
+  "eq": "pireyi deve yapmak",
+  "s": "Calm down—you're making a mountain out of a molehill.",
+  "form": "making a mountain out of a molehill",
+  "tr": "Sakin ol—küçük bir şeyi pireyi deve yapıyorsun.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/make-a-mountain-out-of-a-molehill",
+   "https://en.wiktionary.org/wiki/make_a_mountain_out_of_a_molehill"
+  ]
+ },
+ {
+  "w": "eat like a horse",
+  "t": "çok iştahlı ve fazla yemek",
+  "lit": "at gibi yemek",
+  "s": "After training all day, teenagers eat like a horse.",
+  "form": "eat like a horse",
+  "tr": "Bütün gün antrenman yapan gençler iştahla ne varsa yer.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/eat-like-a-horse",
+   "https://en.wiktionary.org/wiki/eat_like_a_horse"
+  ]
+ },
+ {
+  "w": "have a frog in one's throat",
+  "t": "sesi kısılmak, boğazı gıcıklanmak",
+  "lit": "boğazında kurbağa olmak",
+  "s": "Excuse me, I have a frog in my throat this morning.",
+  "form": "have a frog in my throat",
+  "tr": "Kusura bakmayın, bu sabah sesim biraz kısık.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/have-a-frog-in-throat",
+   "https://en.wiktionary.org/wiki/have_a_frog_in_one's_throat"
+  ]
+ },
+ {
+  "w": "beat a dead horse",
+  "t": "boşuna uğraşmak, kapanmış konuyu uzatmak",
+  "lit": "ölü atı dövmek",
+  "eq": "havanda su dövmek",
+  "s": "We already voted on that; stop beating a dead horse.",
+  "form": "beating a dead horse",
+  "tr": "Bunu zaten oyladık; artık havanda su dövmeyi bırak.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/beat-a-dead-horse",
+   "https://en.wiktionary.org/wiki/beat_a_dead_horse"
+  ]
+ },
+ {
+  "w": "cold turkey",
+  "t": "bir alışkanlığı bıçak gibi aniden kesmek",
+  "lit": "soğuk hindi",
+  "s": "She quit smoking cold turkey ten years ago.",
+  "form": "cold turkey",
+  "tr": "On yıl önce sigarayı bir günde bıçak gibi kesti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cold-turkey",
+   "https://en.wiktionary.org/wiki/cold_turkey"
+  ]
+ },
+ {
+  "w": "hair of the dog",
+  "t": "akşamdan kalmalığı azaltmak için alınan içki",
+  "lit": "köpeğin kılı",
+  "s": "He joked that a brunch mimosa was hair of the dog.",
+  "form": "hair of the dog",
+  "tr": "Kahvaltıdaki mimozanın akşamdan kalmalığa birebir olduğunu şakayla söyledi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hair-of-the-dog-that-bit-you",
+   "https://en.wiktionary.org/wiki/hair_of_the_dog"
+  ]
+ },
+ {
+  "w": "dog days",
+  "t": "yazın en bunaltıcı sıcak günleri",
+  "lit": "köpek günleri",
+  "eq": "eyyam-ı bahur",
+  "s": "The dog days of August emptied every office by noon.",
+  "form": "dog days",
+  "tr": "Ağustosun en bunaltıcı sıcakları öğlene doğru tüm ofisleri boşalttı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "animals",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/dog-days",
+   "https://en.wiktionary.org/wiki/dog_days"
+  ]
+ }
+]

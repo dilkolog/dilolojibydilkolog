@@ -1,0 +1,521 @@
+[
+ {
+  "w": "cost an arm and a leg",
+  "t": "ateş pahası olmak, servete mal olmak",
+  "lit": "bir kol ve bir bacağa mal olmak",
+  "eq": "ateş pahasına mal olmak",
+  "s": "Fixing the car roof will cost an arm and a leg.",
+  "form": "cost an arm and a leg",
+  "tr": "Arabanın tavanını yaptırmak ateş pahasına mal olacak.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cost-an-arm-and-a-leg",
+   "https://en.wiktionary.org/wiki/cost_an_arm_and_a_leg"
+  ]
+ },
+ {
+  "w": "break the bank",
+  "t": "bütçeyi sarsmak, çok pahalıya patlamak",
+  "lit": "bankayı kırmak",
+  "eq": "kesenin ağzını açtırmak",
+  "s": "A weekend trip nearby doesn't have to break the bank.",
+  "form": "break the bank",
+  "tr": "Yakın bir hafta sonu kaçamağı bütçeni sarsmak zorunda değil.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/break-the-bank",
+   "https://en.wiktionary.org/wiki/break_the_bank"
+  ]
+ },
+ {
+  "w": "save for a rainy day",
+  "t": "kara gün için para biriktirmek",
+  "lit": "yağmurlu bir gün için biriktirmek",
+  "eq": "ak akçe kara gün içindir",
+  "s": "Try to put ten percent aside to save for a rainy day.",
+  "form": "save for a rainy day",
+  "tr": "Kara günler için kenara yüzde on koymaya çalış.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/save-keep-money-for-a-rainy-day",
+   "https://en.wiktionary.org/wiki/save_for_a_rainy_day"
+  ]
+ },
+ {
+  "w": "make ends meet",
+  "t": "iki yakasını bir araya getirmek, kıt kanaat geçinmek",
+  "lit": "uçları buluşturmak",
+  "eq": "iki yakayı bir araya getirmek",
+  "s": "With rent rising, it is hard to make ends meet.",
+  "form": "make ends meet",
+  "tr": "Kiralar artarken iki yakayı bir araya getirmek zor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/make-ends-meet",
+   "https://en.wiktionary.org/wiki/make_ends_meet"
+  ]
+ },
+ {
+  "w": "on a shoestring",
+  "t": "kıt bütçeyle, çok az parayla",
+  "lit": "bir ayakkabı bağcığı üstünde",
+  "s": "They launched the indie magazine on a shoestring.",
+  "form": "on a shoestring",
+  "tr": "Bağımsız dergiyi çok kısıtlı bir bütçeyle çıkardılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-a-shoestring",
+   "https://en.wiktionary.org/wiki/on_a_shoestring"
+  ]
+ },
+ {
+  "w": "foot the bill",
+  "t": "hesabı ödemek, masrafı üstlenmek",
+  "lit": "faturayı ayaklamak",
+  "eq": "faturayı ödemek",
+  "s": "Taxpayers ended up footing the bill for the delay.",
+  "form": "footing the bill",
+  "tr": "Gecikmenin faturasını sonunda vergi mükellefleri ödedi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/foot-the-bill",
+   "https://en.wiktionary.org/wiki/foot_the_bill"
+  ]
+ },
+ {
+  "w": "a dime a dozen",
+  "t": "sudan ucuz, her yerde sürüyle bulunan",
+  "lit": "düzinesi on sent",
+  "eq": "sudan ucuz",
+  "s": "Generic travel mugs are a dime a dozen nowadays.",
+  "form": "a dime a dozen",
+  "tr": "Sıradan termos kupalar bugünlerde her yerde sürüyle var.",
+  "reg": "informal",
+  "area": "US",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/dime-a-dozen",
+   "https://en.wiktionary.org/wiki/a_dime_a_dozen"
+  ]
+ },
+ {
+  "w": "tighten one's belt",
+  "t": "kemer sıkmak, harcamaları kısmak",
+  "lit": "kemerini sıkmak",
+  "eq": "kemer sıkmak",
+  "s": "We need to tighten our belts until winter ends.",
+  "form": "tighten our belts",
+  "tr": "Kış bitene kadar kemerleri biraz sıkmamız gerekiyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tighten-belt",
+   "https://en.wiktionary.org/wiki/tighten_one's_belt"
+  ]
+ },
+ {
+  "w": "put one's money where one's mouth is",
+  "t": "sözünün arkasında eylem veya parayla durmak",
+  "lit": "parasını ağzının olduğu yere koymak",
+  "s": "If you back the startup, put your money where your mouth is.",
+  "form": "put your money where your mouth is",
+  "tr": "Girişimi destekliyorsan lafta bırakma, elini cebine at.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-money-where-mouth-is",
+   "https://en.wiktionary.org/wiki/put_one's_money_where_one's_mouth_is"
+  ]
+ },
+ {
+  "w": "in the red",
+  "t": "zararda, borçlu durumda",
+  "lit": "kırmızının içinde",
+  "eq": "içeride olmak",
+  "s": "Two slow quarters left the bookstore deep in the red.",
+  "form": "in the red",
+  "tr": "Kötü geçen iki çeyrek kitapçıyı derin bir zarara soktu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-the-red",
+   "https://en.wiktionary.org/wiki/in_the_red"
+  ]
+ },
+ {
+  "w": "in the black",
+  "t": "kârda, borçsuz ve artıda",
+  "lit": "siyahın içinde",
+  "s": "Strong holiday sales finally put the café back in the black.",
+  "form": "in the black",
+  "tr": "Güçlü tatil satışları kafeyi sonunda yeniden kâra geçirdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-the-black",
+   "https://en.wiktionary.org/wiki/in_the_black"
+  ]
+ },
+ {
+  "w": "money talks",
+  "t": "paranın sözü geçer, parayı veren düdüğü çalar",
+  "lit": "para konuşur",
+  "eq": "parayı veren düdüğü çalar",
+  "s": "In city real estate, unfortunately, money talks.",
+  "form": "money talks",
+  "tr": "Şehirdeki emlak piyasasında ne yazık ki paranın sözü geçiyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/money-talks",
+   "https://en.wiktionary.org/wiki/money_talks"
+  ]
+ },
+ {
+  "w": "on the house",
+  "t": "işletmenin ikramı, müesseseden",
+  "lit": "evin üstüne",
+  "eq": "müesseseden",
+  "s": "Because we waited long, dessert was on the house.",
+  "form": "on the house",
+  "tr": "Çok beklediğimiz için tatlı işletmenin ikramı oldu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-the-house",
+   "https://en.wiktionary.org/wiki/on_the_house"
+  ]
+ },
+ {
+  "w": "penny pincher",
+  "t": "eli sıkı, kuruş hesabı yapan cimri",
+  "lit": "kuruş çimdikleyen",
+  "eq": "kılı kırk yaran",
+  "s": "Don't be such a penny pincher on your mother's birthday.",
+  "form": "penny pincher",
+  "tr": "Annenin doğum gününde de bu kadar kuruş hesabı yapma.",
+  "reg": "informal",
+  "area": "US",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/penny-pincher",
+   "https://en.wiktionary.org/wiki/penny_pincher"
+  ]
+ },
+ {
+  "w": "born with a silver spoon in one's mouth",
+  "t": "varlıklı ailenin çocuğu olarak doğmak",
+  "lit": "ağzında gümüş kaşıkla doğmak",
+  "s": "Unlike his peers, he wasn't born with a silver spoon in his mouth.",
+  "form": "born with a silver spoon in his mouth",
+  "tr": "Akranlarının aksine o varlıklı bir ailede dünyaya gelmedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/born-with-a-silver-spoon-in-mouth",
+   "https://en.wiktionary.org/wiki/born_with_a_silver_spoon_in_one's_mouth"
+  ]
+ },
+ {
+  "w": "deep pockets",
+  "t": "bol para kaynağı, güçlü sermaye",
+  "lit": "derin cepler",
+  "eq": "kesesi dolu",
+  "s": "Competing against rivals with deep pockets is hard.",
+  "form": "deep pockets",
+  "tr": "Bütçesi çok geniş rakiplerle yarışmak zor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/deep-pockets",
+   "https://en.wiktionary.org/wiki/deep_pockets"
+  ]
+ },
+ {
+  "w": "blank check",
+  "t": "sınırsız harcama veya yetki özgürlüğü",
+  "lit": "boş çek",
+  "eq": "açık çek",
+  "s": "The board didn't give the director a blank check.",
+  "form": "blank check",
+  "tr": "Yönetim kurulu müdüre sınırsız harcama yetkisi vermedi.",
+  "reg": "neutral",
+  "area": "US",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/blank-check",
+   "https://en.wiktionary.org/wiki/blank_check"
+  ]
+ },
+ {
+  "w": "cut one's losses",
+  "t": "zararın neresinden dönülse kârdır deyip bırakmak",
+  "lit": "kayıplarını kesmek",
+  "eq": "zararın neresinden dönülse kârdır",
+  "s": "Let's cut our losses and close the unprofitable branch.",
+  "form": "cut our losses",
+  "tr": "Zararın neresinden dönersek kârdır deyip kâr etmeyen şubeyi kapatalım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cut-losses",
+   "https://en.wiktionary.org/wiki/cut_one's_losses"
+  ]
+ },
+ {
+  "w": "go Dutch",
+  "t": "hesabı Alman usulü paylaşmak",
+  "lit": "Hollandalı gibi gitmek",
+  "eq": "Alman usulü ödemek",
+  "s": "Since we're all students, let's go Dutch tonight.",
+  "form": "go Dutch",
+  "tr": "Hepimiz öğrenciyiz, bu akşam hesabı Alman usulü ödeyelim.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-dutch",
+   "https://en.wiktionary.org/wiki/go_dutch"
+  ]
+ },
+ {
+  "w": "pick up the tab",
+  "t": "hesabı üstlenip ödemek",
+  "lit": "adisyonu yerden almak",
+  "eq": "hesabı kapatmak",
+  "s": "The agency picked up the tab for our client dinner.",
+  "form": "picked up the tab",
+  "tr": "Müşteri yemeğinin hesabını ajans ödedi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pick-up-the-tab",
+   "https://en.wiktionary.org/wiki/pick_up_the_tab"
+  ]
+ },
+ {
+  "w": "nest egg",
+  "t": "gelecek veya zor günler için birikmiş para",
+  "lit": "yuva yumurtası",
+  "eq": "kefen parası",
+  "s": "She invested her small nest egg in government bonds.",
+  "form": "nest egg",
+  "tr": "Biriktirdiği küçük sermayeyi devlet tahvillerine yatırdı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/nest-egg",
+   "https://en.wiktionary.org/wiki/nest_egg"
+  ]
+ },
+ {
+  "w": "penny wise and pound foolish",
+  "t": "küçükten tasarruf edip büyükte kaybetmek",
+  "lit": "kuruşta akıllı sterlinde aptal",
+  "eq": "kaşıkla toplayıp kepçeyle dağıtmak",
+  "s": "Skipping bike maintenance is penny wise and pound foolish.",
+  "form": "penny wise and pound foolish",
+  "tr": "Bisiklet bakımından kaçmak küçük tasarruf uğruna büyük masraf çıkarmaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-penny-wise-and-pound-foolish",
+   "https://en.wiktionary.org/wiki/penny_wise_and_pound_foolish"
+  ]
+ },
+ {
+  "w": "highway robbery",
+  "t": "apaçık soygun, akıl almaz fahiş fiyat",
+  "lit": "otoyol soygunu",
+  "eq": "gündüz gözü soygun",
+  "s": "Charging twenty dollars for airport water is highway robbery.",
+  "form": "highway robbery",
+  "tr": "Havalimanında suya yirmi dolar istemek düpedüz soygun.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/highway-robbery",
+   "https://en.wiktionary.org/wiki/highway_robbery"
+  ]
+ },
+ {
+  "w": "nickel and dime",
+  "pat": "nickel and dime someone",
+  "t": "ufak tefek masraflarla yolmak",
+  "lit": "beş sent on sent yapmak",
+  "s": "Extra baggage fees really nickel and dime travelers.",
+  "form": "nickel and dime",
+  "tr": "Ek bagaj ücretleri yolcuları ufak ufak soyup soğana çeviriyor.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/nickel-and-dime",
+   "https://en.wiktionary.org/wiki/nickel_and_dime"
+  ]
+ },
+ {
+  "w": "golden handshake",
+  "t": "yüksek kıdem tazminatı, altın el sıkışma",
+  "lit": "altın tokalaşma",
+  "s": "The retiring executive left with a hefty golden handshake.",
+  "form": "golden handshake",
+  "tr": "Emekliye ayrılan yönetici yüklü bir tazminat paketiyle ayrıldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/golden-handshake",
+   "https://en.wiktionary.org/wiki/golden_handshake"
+  ]
+ },
+ {
+  "w": "pass the hat",
+  "t": "herkesten gönüllü para toplamak",
+  "lit": "şapkayı elden ele geçirmek",
+  "s": "Coworkers passed the hat to buy him a farewell gift.",
+  "form": "passed the hat",
+  "tr": "İş arkadaşları ona veda hediyesi almak için aralarında para topladı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pass-the-hat",
+   "https://en.wiktionary.org/wiki/pass_the_hat"
+  ]
+ },
+ {
+  "w": "feel the pinch",
+  "t": "maddi sıkıntıyı hissetmeye başlamak",
+  "lit": "çimdiklenmeyi hissetmek",
+  "s": "Many households are feeling the pinch of high energy bills.",
+  "form": "feeling the pinch",
+  "tr": "Birçok hane yüksek enerji faturalarının sıkıştırdığını hissediyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/feel-the-pinch",
+   "https://en.wiktionary.org/wiki/feel_the_pinch"
+  ]
+ },
+ {
+  "w": "clean someone out",
+  "t": "birinin tüm parasını tüketmek, meteliksiz bırakmak",
+  "lit": "birini temizleyip çıkarmak",
+  "eq": "beş parasız bırakmak",
+  "s": "Unexpected dental bills nearly cleaned me out.",
+  "form": "cleaned me out",
+  "tr": "Beklenmedik diş masrafları cebimi neredeyse tamamen boşalttı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/clean-out",
+   "https://en.wiktionary.org/wiki/clean_someone_out"
+  ]
+ },
+ {
+  "w": "strapped for cash",
+  "t": "nakit sıkıntısı çeken, eli sıkışık",
+  "lit": "nakit için bağlanmış",
+  "eq": "eli darda",
+  "s": "Sorry I can't join tonight—I'm strapped for cash right now.",
+  "form": "strapped for cash",
+  "tr": "Kusura bakma bu akşam katılamam—şu sıralar elim oldukça darda.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/strapped-for-cash",
+   "https://en.wiktionary.org/wiki/strapped_for_cash"
+  ]
+ },
+ {
+  "w": "rob Peter to pay Paul",
+  "t": "borcu başka borçla kapatmak",
+  "lit": "Paul'a ödemek için Peter'ı soymak",
+  "s": "Using one credit card to pay another is robbing Peter to pay Paul.",
+  "form": "robbing Peter to pay Paul",
+  "tr": "Bir kredi kartını diğeriyle kapatmak borcu borçla çevirmektir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rob-peter-to-pay-paul",
+   "https://www.ldoceonline.com/dictionary/rob-peter-to-pay-paul"
+  ]
+ },
+ {
+  "w": "burn a hole in one's pocket",
+  "t": "parayı harcamadan duramamak",
+  "lit": "cebinde delik yakmak",
+  "eq": "parası elinde durmamak",
+  "s": "His birthday bonus started burning a hole in his pocket.",
+  "form": "burning a hole in his pocket",
+  "tr": "Doğum günü harçlığı harcanana dek cebinde duramadı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "money",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/burn-a-hole-in-pocket",
+   "https://en.wiktionary.org/wiki/burn_a_hole_in_one's_pocket"
+  ]
+ }
+]

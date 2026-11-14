@@ -1,0 +1,526 @@
+[
+ {
+  "w": "over the moon",
+  "t": "havalara uçmak, çok mutlu olmak",
+  "lit": "ayın üstünde",
+  "eq": "etekleri zil çalmak",
+  "s": "Marta was over the moon about winning the scholarship.",
+  "form": "over the moon",
+  "tr": "Marta bursu kazandığı için sevinçten havalara uçtu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-over-the-moon",
+   "https://en.wiktionary.org/wiki/over_the_moon"
+  ]
+ },
+ {
+  "w": "on cloud nine",
+  "t": "keyfi yerinde, bulutların üstünde mutlu",
+  "lit": "dokuzuncu bulutun üstünde",
+  "eq": "mutluluktan havalara uçmak",
+  "s": "Ever since the wedding, Jonas has been on cloud nine.",
+  "form": "on cloud nine",
+  "tr": "Düğünden beri Jonas mutluluktan bulutların üstünde geziyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-on-cloud-nine",
+   "https://en.wiktionary.org/wiki/on_cloud_nine"
+  ]
+ },
+ {
+  "w": "down in the dumps",
+  "t": "morali bozuk, keyifsiz ve üzgün",
+  "lit": "çöplükte aşağıda",
+  "eq": "morali bozuk",
+  "s": "He looked down in the dumps after his team lost.",
+  "form": "down in the dumps",
+  "tr": "Takımı yenildikten sonra morali epey bozuk görünüyordu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/down-in-the-dumps",
+   "https://en.wiktionary.org/wiki/down_in_the_dumps"
+  ]
+ },
+ {
+  "w": "drive someone crazy",
+  "t": "çileden çıkarmak, delirtmek",
+  "lit": "birini deliliğe sürmek",
+  "eq": "çileden çıkarmak",
+  "s": "That constant dripping faucet drives me crazy.",
+  "form": "drives me crazy",
+  "tr": "O sürekli damlayan musluk beni çileden çıkarıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/drive-crazy",
+   "https://en.wiktionary.org/wiki/drive_someone_crazy"
+  ]
+ },
+ {
+  "w": "break someone's heart",
+  "t": "kalbini kırmak, derin acı vermek",
+  "lit": "birinin kalbini kırmak",
+  "eq": "kalbini kırmak",
+  "s": "It broke his heart to sell his childhood home.",
+  "form": "broke his heart",
+  "tr": "Çocukluğunun geçtiği evi satmak kalbini çok kırdı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/break-heart",
+   "https://en.wiktionary.org/wiki/break_someone's_heart"
+  ]
+ },
+ {
+  "w": "lose one's temper",
+  "t": "tepesi atmak, öfkesine yenilmek",
+  "lit": "huyunu kaybetmek",
+  "eq": "tepesi atmak",
+  "s": "Count to ten before you lose your temper.",
+  "form": "lose your temper",
+  "tr": "Öfkeni kontrolünü kaybetmeden önce ona kadar say.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/lose-temper",
+   "https://en.wiktionary.org/wiki/lose_one's_temper"
+  ]
+ },
+ {
+  "w": "on edge",
+  "t": "gergin ve tetikte, diken üstünde",
+  "lit": "kenarda",
+  "eq": "diken üstünde",
+  "s": "Everyone felt on edge waiting for the storm warning.",
+  "form": "on edge",
+  "tr": "Fırtına uyarısını beklerken herkes diken üstündeydi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-edge",
+   "https://en.wiktionary.org/wiki/on_edge"
+  ]
+ },
+ {
+  "w": "mixed feelings",
+  "t": "karışık duygular, hem sevinç hem tereddüt",
+  "lit": "karışık hisler",
+  "s": "I have mixed feelings about moving abroad right now.",
+  "form": "mixed feelings",
+  "tr": "Şu an yurt dışına taşınma konusunda karışık duygular içindeyim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/mixed-feelings",
+   "https://en.wiktionary.org/wiki/mixed_feelings"
+  ]
+ },
+ {
+  "w": "bent out of shape",
+  "t": "gereğinden fazla öfkelenmek veya içerlemek",
+  "lit": "biçimi bükülmüş",
+  "s": "Why did Dan get so bent out of shape over a joke?",
+  "form": "bent out of shape",
+  "tr": "Dan basit bir şakaya neden bu kadar içerledi?",
+  "reg": "informal",
+  "area": "US",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-bent-out-of-shape",
+   "https://en.wiktionary.org/wiki/bent_out_of_shape"
+  ]
+ },
+ {
+  "w": "blow off steam",
+  "t": "stres atmak, öfkesini dışa vurup rahatlamak",
+  "lit": "buharı üfleyip çıkarmak",
+  "eq": "stres atmak",
+  "s": "I run five kilometers after work to blow off steam.",
+  "form": "blow off steam",
+  "tr": "İşten sonra stres atmak için beş kilometre koşarım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/blow-off-steam",
+   "https://en.wiktionary.org/wiki/blow_off_steam"
+  ]
+ },
+ {
+  "w": "at one's wits' end",
+  "t": "ne yapacağını bilemez hâlde, çaresiz kalmış",
+  "lit": "aklının ucunda",
+  "eq": "eli kolu bağlanmak",
+  "s": "After three sleepless nights, the new parents were at their wits' end.",
+  "form": "at their wits' end",
+  "tr": "Uykusuz üç gecenin ardından yeni anne baba ne yapacağını şaşırmıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/at-wits-end",
+   "https://en.wiktionary.org/wiki/at_one's_wits'_end"
+  ]
+ },
+ {
+  "w": "jump for joy",
+  "t": "sevinçten havalara sıçramak",
+  "lit": "sevinç için zıplamak",
+  "eq": "sevinçten havalara uçmak",
+  "s": "The students jumped for joy when class got canceled.",
+  "form": "jumped for joy",
+  "tr": "Ders iptal edilince öğrenciler sevinçten havalara sıçradı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/jump-for-joy",
+   "https://en.wiktionary.org/wiki/jump_for_joy"
+  ]
+ },
+ {
+  "w": "get on someone's nerves",
+  "t": "sinirine dokunmak, asabını bozmak",
+  "lit": "birinin sinirlerine çıkmak",
+  "eq": "sinirine dokunmak",
+  "s": "His loud whistling is starting to get on my nerves.",
+  "form": "get on my nerves",
+  "tr": "Yüksek sesle ıslık çalması artık sinirlerime dokunmaya başladı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-on-nerves",
+   "https://en.wiktionary.org/wiki/get_on_someone's_nerves"
+  ]
+ },
+ {
+  "w": "see red",
+  "t": "gözü dönmek, öfkeden köpürmek",
+  "lit": "kırmızı görmek",
+  "eq": "gözü dönmek",
+  "s": "I saw red when I found my bike lock cut.",
+  "form": "saw red",
+  "tr": "Bisiklet kilidimin kesildiğini görünce öfkeden gözüm döndü.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/see-red",
+   "https://en.wiktionary.org/wiki/see_red"
+  ]
+ },
+ {
+  "w": "hit the roof",
+  "t": "küplere binmek, öfkeden patlamak",
+  "lit": "çatıya çarpmak",
+  "eq": "küplere binmek",
+  "s": "Wait until Mom sees the dent—she'll hit the roof.",
+  "form": "hit the roof",
+  "tr": "Annem göçüğü bir görsün—kesin küplere binecek.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hit-the-roof",
+   "https://en.wiktionary.org/wiki/hit_the_roof"
+  ]
+ },
+ {
+  "w": "walk on air",
+  "t": "ayakları yerden kesilmek, aşırı mutlu olmak",
+  "lit": "havada yürümek",
+  "eq": "ayakları yerden kesilmek",
+  "s": "After getting engaged, Clara felt like she was walking on air.",
+  "form": "walking on air",
+  "tr": "Nişanlandıktan sonra Clara'nın mutluluktan ayakları yerden kesilmişti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/walk-on-air",
+   "https://en.wiktionary.org/wiki/walk_on_air"
+  ]
+ },
+ {
+  "w": "green with envy",
+  "t": "kıskançlıktan çatlamak",
+  "lit": "kıskançlıktan yeşil",
+  "eq": "kıskançlıktan çatlamak",
+  "s": "Neighbors were green with envy over their new garden.",
+  "form": "green with envy",
+  "tr": "Komşular yeni bahçelerini görünce kıskançlıktan çatladı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/green-with-envy",
+   "https://en.wiktionary.org/wiki/green_with_envy"
+  ]
+ },
+ {
+  "w": "steal someone's thunder",
+  "t": "rol çalmak, başkasının başarısını gölgelemek",
+  "lit": "birinin gök gürültüsünü çalmak",
+  "eq": "rol çalmak",
+  "s": "Don't announce your move today and steal her thunder.",
+  "form": "steal her thunder",
+  "tr": "Taşınacağını bugün duyurup onun başarısını gölgeleme.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/steal-thunder",
+   "https://en.wiktionary.org/wiki/steal_someone's_thunder"
+  ]
+ },
+ {
+  "w": "at the end of one's tether",
+  "t": "sabrının sonuna gelmiş, tükenmiş",
+  "lit": "yularının ucunda",
+  "eq": "bıçak kemiğe dayanmak",
+  "s": "With delays every morning, commuters are at the end of their tether.",
+  "form": "at the end of their tether",
+  "tr": "Her sabah yaşanan gecikmeler yüzünden yolcuların sabrı tükendi.",
+  "reg": "neutral",
+  "area": "UK",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/at-the-end-of-tether",
+   "https://en.wiktionary.org/wiki/at_the_end_of_one's_tether"
+  ]
+ },
+ {
+  "w": "rub someone the wrong way",
+  "t": "birini gıcık etmek, ters gelip sinirlendirmek",
+  "lit": "birini ters yöne okşamak",
+  "s": "Something about his bragging tone rubs people the wrong way.",
+  "form": "rubs people the wrong way",
+  "tr": "Onun övüngen tavrında insanları rahatsız eden bir yan var.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rub-the-wrong-way",
+   "https://en.wiktionary.org/wiki/rub_someone_the_wrong_way"
+  ]
+ },
+ {
+  "w": "make someone's blood boil",
+  "t": "kanını beynine sıçratmak, çok kızdırmak",
+  "lit": "birinin kanını kaynatmak",
+  "eq": "kanını beynine sıçratmak",
+  "s": "Seeing litter along the trail makes my blood boil.",
+  "form": "makes my blood boil",
+  "tr": "Yürüyüş yolunda çöp görmek kanımı beynime sıçratıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/make-blood-boil",
+   "https://en.wiktionary.org/wiki/make_someone's_blood_boil"
+  ]
+ },
+ {
+  "w": "on pins and needles",
+  "t": "merak ve heyecan içinde diken üstünde",
+  "lit": "toplu iğne ve dikiş iğnesi üstünde",
+  "eq": "diken üstünde",
+  "s": "Applicants waited on pins and needles for email results.",
+  "form": "on pins and needles",
+  "tr": "Başvuru sahipleri sonuç e-postasını diken üstünde bekledi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-pins-and-needles",
+   "https://en.wiktionary.org/wiki/on_pins_and_needles"
+  ]
+ },
+ {
+  "w": "take something to heart",
+  "pat": "take something to heart",
+  "t": "içine dert etmek, çok ciddiye alıp üzülmek",
+  "lit": "bir şeyi kalbine almak",
+  "eq": "kafasına takmak",
+  "s": "Don't take to heart every hasty comment online.",
+  "form": "take to heart",
+  "tr": "İnternetteki her aceleci yorumu bu kadar içine dert etme.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-to-heart",
+   "https://www.ldoceonline.com/dictionary/take-something-to-heart"
+  ]
+ },
+ {
+  "w": "fly off the handle",
+  "t": "bir anda parlamak, kontrolsüzce öfkelenmek",
+  "lit": "saptan fırlayıp uçmak",
+  "eq": "parlamak",
+  "s": "Our coach used to fly off the handle over minor errors.",
+  "form": "fly off the handle",
+  "tr": "Antrenörümüz eskiden küçük hatalarda bile bir anda parlardı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/fly-off-the-handle",
+   "https://en.wiktionary.org/wiki/fly_off_the_handle"
+  ]
+ },
+ {
+  "w": "eat one's heart out",
+  "t": "kıskançlıktan içi içini yemek (şakacı)",
+  "lit": "kendi kalbini yemek",
+  "eq": "içi içini yemek",
+  "s": "Look at this homemade pasta—eat your heart out!",
+  "form": "eat your heart out",
+  "tr": "Şu el yapımı makarnaya bak—kıskananlar çatlasın!",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/eat-heart-out",
+   "https://en.wiktionary.org/wiki/eat_one's_heart_out"
+  ]
+ },
+ {
+  "w": "hang one's head",
+  "t": "utancından başını öne eğmek",
+  "lit": "başını asmak",
+  "eq": "boynunu bükmek",
+  "s": "Players hung their heads walking off the wet pitch.",
+  "form": "hung their heads",
+  "tr": "Oyuncular ıslak sahadan çıkarken başlarını öne eğdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hang-head",
+   "https://en.wiktionary.org/wiki/hang_one's_head"
+  ]
+ },
+ {
+  "w": "on tenterhooks",
+  "t": "meraktan çatlamak, heyecanla beklemek",
+  "lit": "germe kancalarında",
+  "eq": "meraktan çatlamak",
+  "s": "The whole jury kept the finalists on tenterhooks overnight.",
+  "form": "on tenterhooks",
+  "tr": "Jüri tüm finalistleri gece boyunca merak içinde bekletti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tenterhooks",
+   "https://en.wiktionary.org/wiki/on_tenterhooks"
+  ]
+ },
+ {
+  "w": "in high spirits",
+  "t": "neşesi yerinde, keyifli ve canlı",
+  "lit": "yüksek ruhlarda",
+  "eq": "keyfi gıcır",
+  "s": "Despite the drizzle, the hikers arrived in high spirits.",
+  "form": "in high spirits",
+  "tr": "Çiseleyen yağmura rağmen yürüyüşçüler neşe içinde vardı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-high-spirits",
+   "https://en.wiktionary.org/wiki/in_high_spirits"
+  ]
+ },
+ {
+  "w": "tickled pink",
+  "t": "çok hoşuna gitmek, sevinçten içi açılmak",
+  "lit": "pembe gıdıklanmış",
+  "s": "Grandma was tickled pink by the handwritten card.",
+  "form": "tickled pink",
+  "tr": "El yazısıyla yazılan kart büyükannemi çok sevindirdi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tickled-pink",
+   "https://en.wiktionary.org/wiki/tickled_pink"
+  ]
+ },
+ {
+  "w": "jump out of one's skin",
+  "t": "korkudan ödünün patlaması, yerinden sıçramak",
+  "lit": "derisinden dışarı fırlamak",
+  "eq": "ödü patlamak",
+  "s": "When the door slammed shut, I nearly jumped out of my skin.",
+  "form": "jumped out of my skin",
+  "tr": "Kapı gürültüyle çarpınca korkudan neredeyse yerimden sıçradım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/jump-out-of-skin",
+   "https://en.wiktionary.org/wiki/jump_out_of_one's_skin"
+  ]
+ },
+ {
+  "w": "down in the mouth",
+  "t": "suratı asık, cesareti ve neşesi sönmüş",
+  "lit": "ağzında aşağı",
+  "eq": "yüzünden düşen bin parça",
+  "s": "Why are you looking so down in the mouth today?",
+  "form": "down in the mouth",
+  "tr": "Bugün yüzün neden böyle asık görünüyor?",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "feelings",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-down-in-the-mouth",
+   "https://en.wiktionary.org/wiki/down_in_the_mouth"
+  ]
+ }
+]

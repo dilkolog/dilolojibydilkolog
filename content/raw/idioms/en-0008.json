@@ -1,0 +1,524 @@
+[
+ {
+  "w": "ring a bell",
+  "t": "bir yerden tanıdık gelmek, çağrışım yapmak",
+  "lit": "bir zil çalmak",
+  "eq": "tanıdık gelmek",
+  "s": "Her face looks familiar, though the name doesn't ring a bell.",
+  "form": "ring a bell",
+  "tr": "Yüzü tanıdık geliyor ama adı hiçbir şey çağrıştırmıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/ring-a-bell",
+   "https://en.wiktionary.org/wiki/ring_a_bell"
+  ]
+ },
+ {
+  "w": "keep in mind",
+  "pat": "keep something in mind",
+  "t": "aklında tutmak, hesaba katmak",
+  "lit": "akılda tutmak",
+  "eq": "aklında tutmak",
+  "s": "Keep in mind that museums close on Mondays here.",
+  "form": "Keep in mind",
+  "tr": "Burada müzelerin pazartesi günleri kapalı olduğunu aklında tut.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bear-keep-in-mind",
+   "https://en.wiktionary.org/wiki/keep_in_mind"
+  ]
+ },
+ {
+  "w": "change one's mind",
+  "t": "fikrini değiştirmek, kararından caymak",
+  "lit": "zihnini değiştirmek",
+  "eq": "fikrini değiştirmek",
+  "s": "You can still change your mind before Friday.",
+  "form": "change your mind",
+  "tr": "Cumaya kadar hâlâ fikrini değiştirebilirsin.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/change-mind",
+   "https://en.wiktionary.org/wiki/change_one's_mind"
+  ]
+ },
+ {
+  "w": "make up one's mind",
+  "t": "kararını vermek, aklını bir şeye yatırmak",
+  "lit": "zihnini tamamlamak",
+  "eq": "karar vermek",
+  "s": "Pick one coat soon; I can't wait while you make up your mind.",
+  "form": "make up your mind",
+  "tr": "Çabuk bir palto seç; sen karar verene kadar bekleyemem.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/make-up-mind",
+   "https://en.wiktionary.org/wiki/make_up_one's_mind"
+  ]
+ },
+ {
+  "w": "cross one's mind",
+  "t": "aklından geçmek, bir an düşünmek",
+  "lit": "zihninden geçmek",
+  "eq": "aklından geçmek",
+  "s": "It never crossed my mind to lock the shed door.",
+  "form": "crossed my mind",
+  "tr": "Depo kapısını kilitlemek hiç aklımdan geçmedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cross-mind",
+   "https://en.wiktionary.org/wiki/cross_one's_mind"
+  ]
+ },
+ {
+  "w": "draw a blank",
+  "t": "aklına hiçbir şey gelmemek, hatırlayamamak",
+  "lit": "boş kart çekmek",
+  "eq": "zihni durmak",
+  "s": "When asked for my PIN, I completely drew a blank.",
+  "form": "drew a blank",
+  "tr": "Şifremi sorduklarında zihnim tamamen durdu, hatırlayamadım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/draw-a-blank",
+   "https://en.wiktionary.org/wiki/draw_a_blank"
+  ]
+ },
+ {
+  "w": "have second thoughts",
+  "t": "tereddüde düşmek, yeniden gözden geçirmek",
+  "lit": "ikinci düşüncelere sahip olmak",
+  "s": "They had second thoughts after seeing the repair quote.",
+  "form": "had second thoughts",
+  "tr": "Onarım teklifini görünce tereddüde düştüler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://en.wiktionary.org/wiki/have_second_thoughts",
+   "https://www.ldoceonline.com/dictionary/have-second-thoughts"
+  ]
+ },
+ {
+  "w": "bear in mind",
+  "t": "göz önünde bulundurmak, unutmamak",
+  "lit": "akılda taşımak",
+  "eq": "göz önünde tutmak",
+  "s": "Bear in mind that mountain weather shifts fast.",
+  "form": "Bear in mind",
+  "tr": "Dağ havasının çok çabuk değiştiğini göz önünde bulundur.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bear-keep-in-mind",
+   "https://en.wiktionary.org/wiki/bear_in_mind"
+  ]
+ },
+ {
+  "w": "rack one's brain",
+  "t": "kafa patlatmak, hafızasını zorlamak",
+  "lit": "beynini gerdirmek",
+  "eq": "kafa patlatmak",
+  "s": "I racked my brain trying to recall our hotel street.",
+  "form": "racked my brain",
+  "tr": "Otelimizin bulunduğu sokağı hatırlamak için kafamı çok zorladım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rack-brain",
+   "https://en.wiktionary.org/wiki/rack_one's_brain"
+  ]
+ },
+ {
+  "w": "jog someone's memory",
+  "t": "hafızasını tazelemek, hatırlamasına yardım etmek",
+  "lit": "birinin hafızasını dürtmek",
+  "s": "Maybe this old ticket stub will jog your memory.",
+  "form": "jog your memory",
+  "tr": "Belki bu eski bilet koçanı hafızanı tazelemene yardım eder.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/jog-memory",
+   "https://en.wiktionary.org/wiki/jog_someone's_memory"
+  ]
+ },
+ {
+  "w": "read someone's mind",
+  "t": "birinin aklından geçeni okumak",
+  "lit": "birinin zihnini okumak",
+  "eq": "aklını okumak",
+  "s": "You brought tea without asking—did you read my mind?",
+  "form": "read my mind",
+  "tr": "Ben istemeden çay getirdin—aklımı mı okudun?",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/read-mind",
+   "https://en.wiktionary.org/wiki/read_someone's_mind"
+  ]
+ },
+ {
+  "w": "in two minds",
+  "t": "kararsız kalmak, iki düşünce arasında bocalamak",
+  "lit": "iki akılda",
+  "eq": "iki arada bir derede",
+  "s": "She was in two minds about taking the transfer.",
+  "form": "in two minds",
+  "tr": "Tayin teklifini kabul etme konusunda kararsız kalmıştı.",
+  "reg": "neutral",
+  "area": "UK",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-in-two-minds",
+   "https://en.wiktionary.org/wiki/in_two_minds"
+  ]
+ },
+ {
+  "w": "out of one's mind",
+  "t": "aklını kaçırmış, delice davranan",
+  "lit": "aklının dışında",
+  "eq": "aklını kaçırmak",
+  "s": "You must be out of your mind driving in that blizzard.",
+  "form": "out of your mind",
+  "tr": "O tipide araba kullanmak için aklını kaçırmış olmalısın.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-out-of-mind",
+   "https://en.wiktionary.org/wiki/out_of_one's_mind"
+  ]
+ },
+ {
+  "w": "sleep on it",
+  "t": "bir gece düşünüp ertesi gün karar vermek",
+  "lit": "üstünde uyumak",
+  "s": "No rush today; take the offer home and sleep on it.",
+  "form": "sleep on it",
+  "tr": "Bugün acele yok; teklifi eve götür, bir gece üstüne düşün.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/sleep-on-it",
+   "https://en.wiktionary.org/wiki/sleep_on_it"
+  ]
+ },
+ {
+  "w": "tunnel vision",
+  "t": "tek noktaya takılıp bütünü görememe durumu",
+  "lit": "tünel görüşü",
+  "eq": "at gözlüğü takmak",
+  "s": "Focusing only on clicks gave the team tunnel vision.",
+  "form": "tunnel vision",
+  "tr": "Sadece tıklanma sayılarına odaklanmak ekibe dar bir bakış açısı verdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tunnel-vision",
+   "https://en.wiktionary.org/wiki/tunnel_vision"
+  ]
+ },
+ {
+  "w": "slip one's mind",
+  "t": "aklının bir köşesinden çıkıp unutulmak",
+  "lit": "zihninden kayıp gitmek",
+  "eq": "aklından çıkmak",
+  "s": "I meant to water your plants, then it completely slipped my mind.",
+  "form": "slipped my mind",
+  "tr": "Çiçeklerini sulayacaktım ama tamamen aklımdan çıktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/slip-memory-mind",
+   "https://en.wiktionary.org/wiki/slip_one's_mind"
+  ]
+ },
+ {
+  "w": "spring to mind",
+  "t": "ilk anda akla gelmek",
+  "lit": "akla sıçramak",
+  "eq": "aklına gelmek",
+  "s": "Two reliable mechanics immediately spring to mind.",
+  "form": "spring to mind",
+  "tr": "Hemen aklıma güvenilir iki tamirci geliyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/spring-to-mind",
+   "https://en.wiktionary.org/wiki/spring_to_mind"
+  ]
+ },
+ {
+  "w": "on the same wavelength",
+  "t": "aynı frekansta, birbirini çok iyi anlayan",
+  "lit": "aynı dalga boyunda",
+  "eq": "aynı frekansta",
+  "s": "Right from day one, the co-founders were on the same wavelength.",
+  "form": "on the same wavelength",
+  "tr": "Ortaklar daha ilk günden aynı frekanstaydı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-the-same-wavelength",
+   "https://en.wiktionary.org/wiki/on_the_same_wavelength"
+  ]
+ },
+ {
+  "w": "lose one's marbles",
+  "t": "kafayı üşütmek, aklını oynatmak",
+  "lit": "misketlerini kaybetmek",
+  "eq": "tahtası eksik",
+  "s": "Walking barefoot in frost? Have you lost your marbles?",
+  "form": "lost your marbles",
+  "tr": "Ayazda yalınayak mı yürüyorsun? Aklını mı oynattın?",
+  "reg": "slang",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/lose-marbles",
+   "https://en.wiktionary.org/wiki/lose_one's_marbles"
+  ]
+ },
+ {
+  "w": "blow someone's mind",
+  "t": "akıllara durgunluk vermek, hayrete düşürmek",
+  "lit": "birinin aklını uçurmak",
+  "eq": "aklı başından gitmek",
+  "s": "The planetarium dome completely blew my mind.",
+  "form": "blew my mind",
+  "tr": "Planetaryum kubbesi beni tamamen hayrete düşürdü.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/blow-mind",
+   "https://en.wiktionary.org/wiki/blow_someone's_mind"
+  ]
+ },
+ {
+  "w": "on the ball",
+  "t": "uyanık, işine hâkim ve hızlı kavrayan",
+  "lit": "topun üstünde",
+  "eq": "cin gibi",
+  "s": "Our new receptionist is really on the ball.",
+  "form": "on the ball",
+  "tr": "Yeni resepsiyonistimiz işinde son derece uyanık ve hızlı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-the-ball",
+   "https://en.wiktionary.org/wiki/on_the_ball"
+  ]
+ },
+ {
+  "w": "a memory like a sieve",
+  "t": "balık hafızalı olmak, hiçbir şeyi aklında tutamamak",
+  "lit": "elek gibi bir hafıza",
+  "eq": "balık hafızalı",
+  "s": "Write down the gate code—I have a memory like a sieve.",
+  "form": "a memory like a sieve",
+  "tr": "Kapı şifresini not et—benim hafızam delik deşik.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/memory-mind-like-a-sieve",
+   "https://en.wiktionary.org/wiki/a_memory_like_a_sieve"
+  ]
+ },
+ {
+  "w": "second nature",
+  "t": "düşünmeden yapılan oturmuş alışkanlık",
+  "lit": "ikinci doğa",
+  "eq": "el alışkanlığı",
+  "s": "After years of practice, parallel parking feels like second nature.",
+  "form": "second nature",
+  "tr": "Yıllarca pratikten sonra paralel park etmek artık otomatikleşti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/second-nature",
+   "https://en.wiktionary.org/wiki/second_nature"
+  ]
+ },
+ {
+  "w": "put two and two together",
+  "t": "parçaları birleştirip gerçeği çözmek",
+  "lit": "iki ile ikiyi bir araya koymak",
+  "s": "Seeing both cars outside, she put two and two together.",
+  "form": "put two and two together",
+  "tr": "İki arabayı da dışarıda görünce parçaları hemen birleştirdi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-two-and-two-together",
+   "https://en.wiktionary.org/wiki/put_two_and_two_together"
+  ]
+ },
+ {
+  "w": "in one ear and out the other",
+  "t": "bir kulağından girip öbüründen çıkmak",
+  "lit": "bir kulaktan içeri diğerinden dışarı",
+  "eq": "bir kulağından girip öbüründen çıkmak",
+  "s": "My advice went in one ear and out the other.",
+  "form": "in one ear and out the other",
+  "tr": "Tavsiyelerim bir kulağından girip öbüründen çıktı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-in-one-ear-and-out-the-other",
+   "https://en.wiktionary.org/wiki/in_one_ear_and_out_the_other"
+  ]
+ },
+ {
+  "w": "go blank",
+  "t": "kafası durmak, bildiğini bir anda unutmak",
+  "lit": "boş gitmek",
+  "eq": "kafası durmak",
+  "s": "Midway through my speech, my mind suddenly went blank.",
+  "form": "went blank",
+  "tr": "Konuşmamın tam ortasında kafam bir anda durdu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-blank",
+   "https://www.ldoceonline.com/dictionary/go-blank"
+  ]
+ },
+ {
+  "w": "preach to the choir",
+  "t": "zaten ikna olmuş kişilere boşuna anlatmak",
+  "lit": "koroya vaaz vermek",
+  "s": "Telling cyclists to buy helmets is preaching to the choir.",
+  "form": "preaching to the choir",
+  "tr": "Bisikletçilere kask alın demek zaten ikna olmuşa öğüt vermektir.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/preach-to-the-choir",
+   "https://en.wiktionary.org/wiki/preach_to_the_choir"
+  ]
+ },
+ {
+  "w": "penny for your thoughts",
+  "t": "ne düşünüyorsun öyle dalgın dalgın",
+  "lit": "düşüncelerin için bir peni",
+  "s": "You've stared out the window for minutes—a penny for your thoughts.",
+  "form": "penny for your thoughts",
+  "tr": "Dakikalardır pencereden dışarı daldın—ne düşünüyorsun bakalım?",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/penny-for-your-thoughts",
+   "https://en.wiktionary.org/wiki/penny_for_your_thoughts"
+  ]
+ },
+ {
+  "w": "come to one's senses",
+  "t": "aklı başına gelmek, gerçeği görmek",
+  "lit": "duyularına gelmek",
+  "eq": "aklı başına gelmek",
+  "s": "I hope he comes to his senses before signing that loan.",
+  "form": "comes to his senses",
+  "tr": "Umarım o krediyi imzalamadan önce aklı başına gelir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/come-to-senses",
+   "https://en.wiktionary.org/wiki/come_to_one's_senses"
+  ]
+ },
+ {
+  "w": "make heads or tails of",
+  "pat": "make heads or tails of something",
+  "t": "bir anlam çıkarmak, ne olduğunu çözmek",
+  "lit": "bir şeyin başını veya kuyruğunu çıkarmak",
+  "eq": "başını sonunu anlamak",
+  "s": "I couldn't make heads or tails of the assembly diagram.",
+  "form": "make heads or tails of",
+  "tr": "Montaj şemasından hiçbir şey anlayamadım.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/not-make-heads-or-tails-of",
+   "https://en.wiktionary.org/wiki/make_heads_or_tails_of"
+  ]
+ },
+ {
+  "w": "cast one's mind back",
+  "t": "hafızasını geriye götürmek, geçmişi hatırlamaya çalışmak",
+  "lit": "zihnini geriye atmak",
+  "s": "Cast your mind back to the summer you first arrived.",
+  "form": "Cast your mind back",
+  "tr": "İlk geldiğin o yaza şöyle bir hafızanı geri götür.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cast-mind-back",
+   "https://en.wiktionary.org/wiki/cast_one's_mind_back"
+  ]
+ }
+]

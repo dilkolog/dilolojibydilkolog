@@ -1,0 +1,524 @@
+[
+ {
+  "w": "break the ice",
+  "t": "ortamdaki buzları eritmek, ilk sohbeti açmak",
+  "lit": "buzu kırmak",
+  "eq": "buzları eritmek",
+  "s": "A quick game helped break the ice at orientation.",
+  "form": "break the ice",
+  "tr": "Kısa bir oyun tanışma toplantısında buzları eritmeye yardımcı oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/break-the-ice",
+   "https://en.wiktionary.org/wiki/break_the_ice"
+  ]
+ },
+ {
+  "w": "word of mouth",
+  "t": "kulaktan kulağa yayılan tavsiye veya haber",
+  "lit": "ağız sözü",
+  "eq": "kulaktan kulağa",
+  "s": "Most of our bakery's customers come through word of mouth.",
+  "form": "word of mouth",
+  "tr": "Fırınımızın müşterilerinin çoğu kulaktan kulağa tavsiyeyle geliyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/word-of-mouth",
+   "https://en.wiktionary.org/wiki/word_of_mouth"
+  ]
+ },
+ {
+  "w": "small talk",
+  "t": "havadan sudan sohbet, ayaküstü konuşma",
+  "lit": "küçük konuşma",
+  "eq": "havadan sudan",
+  "s": "I'm terrible at small talk in crowded elevators.",
+  "form": "small talk",
+  "tr": "Kalabalık asansörlerde havadan sudan sohbet etmede hiç iyi değilim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/small-talk",
+   "https://en.wiktionary.org/wiki/small_talk"
+  ]
+ },
+ {
+  "w": "keep someone posted",
+  "t": "haber vermeyi sürdürmek, bilgilendirmek",
+  "lit": "birini postada tutmak",
+  "s": "Send a text once you land and keep me posted.",
+  "form": "keep me posted",
+  "tr": "Uçak inince mesaj at da beni haberdar et.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/keep-posted",
+   "https://en.wiktionary.org/wiki/keep_someone_posted"
+  ]
+ },
+ {
+  "w": "speak one's mind",
+  "t": "düşündüğünü çekinmeden açıkça söylemek",
+  "lit": "zihnini konuşmak",
+  "eq": "aklındakini söylemek",
+  "s": "In our family dinners, everyone feels free to speak their mind.",
+  "form": "speak their mind",
+  "tr": "Aile yemeklerimizde herkes düşündüğünü çekinmeden açıkça söyler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/speak-mind",
+   "https://en.wiktionary.org/wiki/speak_one's_mind"
+  ]
+ },
+ {
+  "w": "long story short",
+  "t": "uzun lafın kısası, kısacası",
+  "lit": "uzun hikâye kısa",
+  "eq": "uzun lafın kısası",
+  "s": "Long story short, we missed the train and walked home.",
+  "form": "Long story short",
+  "tr": "Uzun lafın kısası, treni kaçırıp eve yürüdük.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/long-story-short",
+   "https://en.wiktionary.org/wiki/long_story_short"
+  ]
+ },
+ {
+  "w": "on the same page",
+  "t": "aynı fikirde veya aynı anlayışta olmak",
+  "lit": "aynı sayfada",
+  "s": "Let's meet briefly to make sure we're on the same page.",
+  "form": "on the same page",
+  "tr": "Aynı noktada buluştuğumuzdan emin olmak için kısaca görüşelim.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://en.wiktionary.org/wiki/on_the_same_page",
+   "https://www.ldoceonline.com/dictionary/on-the-same-page"
+  ]
+ },
+ {
+  "w": "read between the lines",
+  "t": "satır aralarını okumak, ima edileni anlamak",
+  "lit": "satırların arasını okumak",
+  "eq": "satır aralarını okumak",
+  "s": "If you read between the lines, she isn't pleased.",
+  "form": "read between the lines",
+  "tr": "Satır aralarını okursan durumdan pek memnun olmadığını anlarsın.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/read-between-the-lines",
+   "https://en.wiktionary.org/wiki/read_between_the_lines"
+  ]
+ },
+ {
+  "w": "drop a hint",
+  "t": "üstü kapalı imada bulunmak, çıtlatmak",
+  "lit": "bir ipucu düşürmek",
+  "eq": "çıtlatmak",
+  "s": "He dropped a hint about wanting concert tickets.",
+  "form": "dropped a hint",
+  "tr": "Konser bileti istediğini üstü kapalı çıtlattı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/drop-a-hint",
+   "https://en.wiktionary.org/wiki/drop_a_hint"
+  ]
+ },
+ {
+  "w": "off the record",
+  "t": "kayıt dışı, yayımlanmamak kaydıyla söylenen",
+  "lit": "kaydın dışında",
+  "eq": "kayıt dışı",
+  "s": "The official shared those figures strictly off the record.",
+  "form": "off the record",
+  "tr": "Yetkili o rakamları kesinlikle kayıt dışı kalmak şartıyla paylaştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/off-the-record",
+   "https://en.wiktionary.org/wiki/off_the_record"
+  ]
+ },
+ {
+  "w": "break the news",
+  "t": "önemli veya kötü haberi ilk kez vermek",
+  "lit": "haberi kırmak",
+  "s": "Who will break the news about the schedule change?",
+  "form": "break the news",
+  "tr": "Program değişikliğini kim haber verecek?",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/break-the-news",
+   "https://en.wiktionary.org/wiki/break_the_news"
+  ]
+ },
+ {
+  "w": "have the last word",
+  "t": "son sözü söylemek",
+  "lit": "son kelimeye sahip olmak",
+  "eq": "son sözü söylemek",
+  "s": "Even on minor points, he always needs to have the last word.",
+  "form": "have the last word",
+  "tr": "En ufak konularda bile mutlaka son sözü o söylemek ister.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/have-the-last-word",
+   "https://en.wiktionary.org/wiki/have_the_last_word"
+  ]
+ },
+ {
+  "w": "hear through the grapevine",
+  "pat": "hear something through the grapevine",
+  "t": "sağdan soldan duymak, fısıltı gazetesinden öğrenmek",
+  "lit": "asma dalından duymak",
+  "s": "I heard through the grapevine that they're closing early.",
+  "form": "heard through the grapevine",
+  "tr": "Erken kapatacaklarını sağdan soldan duydum.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hear-through-on-the-grapevine",
+   "https://en.wiktionary.org/wiki/hear_through_the_grapevine"
+  ]
+ },
+ {
+  "w": "talk shop",
+  "t": "iş dışındayken bile iş konuşmak",
+  "lit": "dükkân konuşmak",
+  "s": "Please no talking shop at tonight's birthday dinner.",
+  "form": "talking shop",
+  "tr": "Bu akşamki doğum günü yemeğinde lütfen iş konuşmayalım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/talk-shop",
+   "https://en.wiktionary.org/wiki/talk_shop"
+  ]
+ },
+ {
+  "w": "hold one's tongue",
+  "t": "dilini tutmak, susup söylememek",
+  "lit": "dilini tutmak",
+  "eq": "dilini tutmak",
+  "s": "I decided to hold my tongue until all guests left.",
+  "form": "hold my tongue",
+  "tr": "Bütün konuklar gidene kadar dilimi tutmaya karar verdim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hold-tongue",
+   "https://en.wiktionary.org/wiki/hold_one's_tongue"
+  ]
+ },
+ {
+  "w": "mince words",
+  "t": "sözünü esirgemek, lafı yumuşatıp eğip bükmek",
+  "lit": "kelimeleri kıymak",
+  "eq": "lafı eğip bükmek",
+  "s": "The inspector didn't mince words about the fire hazards.",
+  "form": "mince words",
+  "tr": "Müfettiş yangın tehlikeleri konusunda sözünü hiç sakınmadı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/not-mince-words",
+   "https://en.wiktionary.org/wiki/mince_words"
+  ]
+ },
+ {
+  "w": "cut to the chase",
+  "t": "lafa girmeden doğrudan sadede gelmek",
+  "lit": "kovalamacaya kesmek",
+  "eq": "sadede gelmek",
+  "s": "We only have ten minutes, so let's cut to the chase.",
+  "form": "cut to the chase",
+  "tr": "Sadece on dakikamız var, o yüzden doğrudan sadede gelelim.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cut-to-the-chase",
+   "https://en.wiktionary.org/wiki/cut_to_the_chase"
+  ]
+ },
+ {
+  "w": "speak volumes",
+  "t": "tek başına çok şey anlatmak, açıkça göstermek",
+  "lit": "ciltlerce konuşmak",
+  "s": "His silence after the verdict spoke volumes.",
+  "form": "spoke volumes",
+  "tr": "Karardan sonraki sessizliği tek başına çok şey anlatıyordu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/speak-volumes",
+   "https://en.wiktionary.org/wiki/speak_volumes"
+  ]
+ },
+ {
+  "w": "skeleton in the closet",
+  "t": "herkesten saklanan utanç verici aile veya geçmiş sırrı",
+  "lit": "dolaptaki iskelet",
+  "s": "Every candidate worries a skeleton in the closet might surface.",
+  "form": "skeleton in the closet",
+  "tr": "Her aday geçmişteki gizli bir ayıbın ortaya çıkmasından çekinir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/skeleton-in-the-closet",
+   "https://en.wiktionary.org/wiki/skeleton_in_the_closet"
+  ]
+ },
+ {
+  "w": "slip of the tongue",
+  "t": "dil sürçmesi",
+  "lit": "dilin kayması",
+  "eq": "dil sürçmesi",
+  "s": "Calling the host by his brother's name was a slip of the tongue.",
+  "form": "slip of the tongue",
+  "tr": "Ev sahibine kardeşinin adıyla seslenmek bir dil sürçmesiydi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/slip-of-the-tongue",
+   "https://en.wiktionary.org/wiki/slip_of_the_tongue"
+  ]
+ },
+ {
+  "w": "call a spade a spade",
+  "t": "doğruya doğru demek, eğip bükmeden açıkça adlandırmak",
+  "lit": "küreğe kürek demek",
+  "eq": "eğriye eğri doğruya doğru",
+  "s": "Let's call a spade a spade: the launch failed.",
+  "form": "call a spade a spade",
+  "tr": "Adını açıkça koyalım: lansman başarısız oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/call-a-spade-a-spade",
+   "https://en.wiktionary.org/wiki/call_a_spade_a_spade"
+  ]
+ },
+ {
+  "w": "under one's breath",
+  "t": "alçak sesle kendi kendine, fısıltıyla",
+  "lit": "nefesinin altında",
+  "eq": "dişlerinin arasından",
+  "s": "He muttered an apology under his breath and walked out.",
+  "form": "under his breath",
+  "tr": "Ağzının içinde bir özür mırıldanıp dışarı çıktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/under-breath",
+   "https://en.wiktionary.org/wiki/under_one's_breath"
+  ]
+ },
+ {
+  "w": "blow the whistle",
+  "pat": "blow the whistle on something",
+  "t": "gizli usulsüzlüğü ihbar etmek, ortaya dökmek",
+  "lit": "düdüğü çalmak",
+  "s": "An accountant blew the whistle on the missing funds.",
+  "form": "blew the whistle",
+  "tr": "Bir muhasebeci kayıp fonlarla ilgili usulsüzlüğü ihbar etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/blow-the-whistle-on",
+   "https://en.wiktionary.org/wiki/blow_the_whistle"
+  ]
+ },
+ {
+  "w": "keep mum",
+  "t": "ağzını sıkı tutmak, tek kelime etmemek",
+  "lit": "sessiz kalmak",
+  "eq": "ağzı sıkı olmak",
+  "s": "The witnesses kept mum until reporters left the courtyard.",
+  "form": "kept mum",
+  "tr": "Tanıklar muhabirler avludan ayrılana kadar tek söz etmedi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/keep-mum",
+   "https://www.ldoceonline.com/dictionary/keep-mum"
+  ]
+ },
+ {
+  "w": "talk through one's hat",
+  "t": "bilmediği konuda saçmalamak, atıp tutmak",
+  "lit": "şapkasının içinden konuşmak",
+  "eq": "atıp tutmak",
+  "s": "Don't mind his weather forecast; he's talking through his hat.",
+  "form": "talking through his hat",
+  "tr": "Hava tahminine aldırma; bilmeden atıp tutuyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/talk-through-hat",
+   "https://en.wiktionary.org/wiki/talk_through_one's_hat"
+  ]
+ },
+ {
+  "w": "shoot the breeze",
+  "t": "laklak etmek, keyifli boş sohbet etmek",
+  "lit": "esintiyi vurmak",
+  "eq": "çene çalmak",
+  "s": "Mechanics sat outside shooting the breeze over cold iced tea.",
+  "form": "shooting the breeze",
+  "tr": "Tamirciler dışarıda buzlu çay içerek tatlı tatlı laklak ediyordu.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/shoot-the-breeze",
+   "https://en.wiktionary.org/wiki/shoot_the_breeze"
+  ]
+ },
+ {
+  "w": "spill one's guts",
+  "t": "içindeki her şeyi dökmek, sırrını bütünüyle anlatmak",
+  "lit": "bağırsaklarını dökmek",
+  "eq": "her şeyi kusmak",
+  "s": "Under questioning, the suspect quickly spilled his guts.",
+  "form": "spilled his guts",
+  "tr": "Sorguda şüpheli bildiği ne varsa hepsini bir çırpıda anlattı.",
+  "reg": "slang",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/spill-guts",
+   "https://en.wiktionary.org/wiki/spill_one's_guts"
+  ]
+ },
+ {
+  "w": "in confidence",
+  "t": "gizli kalmak koşuluyla, aramızda kalsın diyerek",
+  "lit": "güven içinde",
+  "eq": "aramızda",
+  "s": "She shared the family news with me strictly in confidence.",
+  "form": "in confidence",
+  "tr": "Aile haberini benimle kesinlikle aramızda kalmak şartıyla paylaştı.",
+  "reg": "formal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-confidence",
+   "https://en.wiktionary.org/wiki/in_confidence"
+  ]
+ },
+ {
+  "w": "tongue in cheek",
+  "t": "bıyık altından gülerek, ciddi görünüşlü şakacı",
+  "lit": "dil yanakta",
+  "eq": "bıyık altından",
+  "s": "His praise of airport food was clearly tongue in cheek.",
+  "form": "tongue in cheek",
+  "tr": "Havalimanı yemeklerini övmesi belli ki alaycı bir şakaydı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tongue-in-cheek",
+   "https://www.ldoceonline.com/dictionary/tongue-in-cheek"
+  ]
+ },
+ {
+  "w": "open secret",
+  "t": "herkesin bildiği ama resmen gizli tutulan sır",
+  "lit": "açık sır",
+  "eq": "sağır sultanın bile duyduğu sır",
+  "s": "Their plans to merge were an open secret downtown.",
+  "form": "open secret",
+  "tr": "Birleşme planları şehir merkezinde herkesin bildiği bir sırdı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/open-secret",
+   "https://en.wiktionary.org/wiki/open_secret"
+  ]
+ },
+ {
+  "w": "get wind of",
+  "pat": "get wind of something",
+  "t": "kokusunu almak, gizli bir haberi duymak",
+  "lit": "bir şeyin rüzgârını almak",
+  "eq": "kokusunu almak",
+  "s": "Rivals got wind of the launch weeks ahead of time.",
+  "form": "got wind of",
+  "tr": "Rakipler lansmanın kokusunu haftalar öncesinden aldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "talk",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-wind-of",
+   "https://en.wiktionary.org/wiki/get_wind_of"
+  ]
+ }
+]

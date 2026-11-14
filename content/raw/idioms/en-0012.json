@@ -1,0 +1,527 @@
+[
+ {
+  "w": "rain cats and dogs",
+  "t": "bardaktan boşanırcasına yağmak",
+  "lit": "kedi ve köpek yağmak",
+  "eq": "bardaktan boşanırcasına yağmak",
+  "s": "Bring boots—it's raining cats and dogs outside.",
+  "form": "raining cats and dogs",
+  "tr": "Çizmelerini al—dışarıda bardaktan boşanırcasına yağmur yağıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rain-cats-and-dogs",
+   "https://en.wiktionary.org/wiki/rain_cats_and_dogs"
+  ]
+ },
+ {
+  "w": "calm before the storm",
+  "t": "fırtına öncesi sessizlik",
+  "lit": "fırtınadan önceki sakinlik",
+  "eq": "fırtına öncesi sessizlik",
+  "s": "This quiet Monday feels like the calm before the storm.",
+  "form": "calm before the storm",
+  "tr": "Bu sakin pazartesi fırtına öncesi sessizlik gibi hissettiriyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/calm-before-the-storm",
+   "https://en.wiktionary.org/wiki/calm_before_the_storm"
+  ]
+ },
+ {
+  "w": "a breath of fresh air",
+  "t": "taze bir soluk, ortama canlılık getiren yenilik",
+  "lit": "taze hava nefesi",
+  "eq": "taze kan",
+  "s": "The new principal has been a breath of fresh air.",
+  "form": "a breath of fresh air",
+  "tr": "Yeni okul müdürü ortama gerçekten taze bir soluk getirdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/breath-of-fresh-air",
+   "https://en.wiktionary.org/wiki/a_breath_of_fresh_air"
+  ]
+ },
+ {
+  "w": "down to earth",
+  "t": "ayakları yere basan, mütevazı ve gerçekçi",
+  "lit": "toprağa inmiş",
+  "eq": "ayakları yere basan",
+  "s": "Despite his fame, the actor stayed surprisingly down to earth.",
+  "form": "down to earth",
+  "tr": "Ününe rağmen oyuncu şaşırtıcı derecede mütevazı kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/down-to-earth",
+   "https://www.ldoceonline.com/dictionary/down-to-earth"
+  ]
+ },
+ {
+  "w": "out of the blue",
+  "t": "hiç yoktan, beklenmedik bir anda",
+  "lit": "mavinin içinden çıkıp",
+  "eq": "damdan düşer gibi",
+  "s": "An old classmate messaged me completely out of the blue.",
+  "form": "out of the blue",
+  "tr": "Eski bir sınıf arkadaşım hiç yoktan bana mesaj attı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/out-of-the-blue",
+   "https://en.wiktionary.org/wiki/out_of_the_blue"
+  ]
+ },
+ {
+  "w": "make waves",
+  "t": "ortalığı dalgalandırmak, dikkat veya tartışma yaratmak",
+  "lit": "dalgalar yapmak",
+  "s": "Being new on the board, he avoided making waves.",
+  "form": "making waves",
+  "tr": "Kurulda yeni olduğu için tartışma çıkaracak adımlardan kaçındı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/make-waves",
+   "https://en.wiktionary.org/wiki/make_waves"
+  ]
+ },
+ {
+  "w": "fresh as a daisy",
+  "t": "turp gibi dinç, taptaze ve enerjik",
+  "lit": "papatya kadar taze",
+  "eq": "turp gibi",
+  "s": "After a short nap, Grandma woke up fresh as a daisy.",
+  "form": "fresh as a daisy",
+  "tr": "Kısa bir şekerlemeden sonra büyükannem papatya gibi dinç uyandı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-as-fresh-as-a-daisy",
+   "https://en.wiktionary.org/wiki/fresh_as_a_daisy"
+  ]
+ },
+ {
+  "w": "under the sun",
+  "t": "yeryüzündeki her şey, akla gelebilecek her konu",
+  "lit": "güneşin altında",
+  "eq": "dünya yüzünde",
+  "s": "That thrift store sells every odd tool under the sun.",
+  "form": "under the sun",
+  "tr": "O ikinci el dükkânı aklına gelebilecek her türlü ıvır zıvırı satıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/under-the-sun",
+   "https://en.wiktionary.org/wiki/under_the_sun"
+  ]
+ },
+ {
+  "w": "take by storm",
+  "pat": "take something by storm",
+  "t": "kasıp kavurmak, bir anda büyük beğeni toplamak",
+  "lit": "fırtınayla ele geçirmek",
+  "eq": "kasıp kavurmak",
+  "s": "Her debut novel took local book clubs by storm.",
+  "form": "by storm",
+  "tr": "İlk romanı yerel kitap kulüplerini kasıp kavurdu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-by-storm",
+   "https://en.wiktionary.org/wiki/take_by_storm"
+  ]
+ },
+ {
+  "w": "weather the storm",
+  "t": "fırtınayı atlatmak, zorlu süreci sağ salim geçirmek",
+  "lit": "fırtınayı göğüslemek",
+  "eq": "badireyi atlatmak",
+  "s": "Small cafés cut hours just to weather the storm.",
+  "form": "weather the storm",
+  "tr": "Küçük kafeler bu zor dönemi atlatmak için çalışma saatlerini kıstı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/weather-the-storm",
+   "https://en.wiktionary.org/wiki/weather_the_storm"
+  ]
+ },
+ {
+  "w": "in the dark",
+  "t": "karanlıkta, olup bitenden habersiz",
+  "lit": "karanlığın içinde",
+  "eq": "bilgisiz bırakılmak",
+  "s": "Staff were kept in the dark about the buyout.",
+  "form": "in the dark",
+  "tr": "Çalışanlar şirketin satışı konusunda habersiz bırakıldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-the-dark",
+   "https://en.wiktionary.org/wiki/in_the_dark"
+  ]
+ },
+ {
+  "w": "tip of the iceberg",
+  "t": "buzdağının görünen kısmı",
+  "lit": "buzdağının ucu",
+  "eq": "buzdağının görünen yüzü",
+  "s": "Two leaked invoices were just the tip of the iceberg.",
+  "form": "tip of the iceberg",
+  "tr": "Sızan iki fatura sorunun yalnızca buzdağının görünen kısmıydı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tip-of-the-iceberg",
+   "https://en.wiktionary.org/wiki/tip_of_the_iceberg"
+  ]
+ },
+ {
+  "w": "ray of sunshine",
+  "t": "etrafına neşe saçan kişi veya umut veren haber",
+  "lit": "güneş ışığı huzmesi",
+  "s": "Our cheerful neighbor has always been a ray of sunshine.",
+  "form": "ray of sunshine",
+  "tr": "Neşeli komşumuz sokağımıza her zaman ışık saçar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/ray-of-sunshine",
+   "https://en.wiktionary.org/wiki/ray_of_sunshine"
+  ]
+ },
+ {
+  "w": "go with the flow",
+  "t": "akışına bırakmak, ortama uyup direnmemek",
+  "lit": "akışla gitmek",
+  "eq": "akışına bırakmak",
+  "s": "Plans changed at noon, so we chose to go with the flow.",
+  "form": "go with the flow",
+  "tr": "Öğlen planlar değişince biz de akışına uymayı seçtik.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-with-the-flow",
+   "https://en.wiktionary.org/wiki/go_with_the_flow"
+  ]
+ },
+ {
+  "w": "snowed under",
+  "t": "işe gömülmüş, başını kaşıyacak vakti kalmamış",
+  "lit": "kar altında kalmış",
+  "eq": "işten başını alamamak",
+  "s": "Sorry for the delay—we've been snowed under since Monday.",
+  "form": "snowed under",
+  "tr": "Gecikme için kusura bakma—pazartesiden beri işe gömülmüş durumdayız.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/snowed-under",
+   "https://en.wiktionary.org/wiki/snowed_under"
+  ]
+ },
+ {
+  "w": "come rain or shine",
+  "t": "yağmur çamur demeden, ne olursa olsun",
+  "lit": "yağmur ya da güneş gelsin",
+  "eq": "yağmur çamur demeden",
+  "s": "The Saturday farmers market opens come rain or shine.",
+  "form": "come rain or shine",
+  "tr": "Cumartesi semt pazarı yağmur çamur demeden açılır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/come-rain-or-shine",
+   "https://www.ldoceonline.com/dictionary/come-rain-or-shine"
+  ]
+ },
+ {
+  "w": "silver lining",
+  "t": "kötü durumun içindeki umut ışığı, iyi yön",
+  "lit": "gümüş astar",
+  "eq": "şerden doğan hayır",
+  "s": "The train strike's silver lining was meeting our neighbors.",
+  "form": "silver lining",
+  "tr": "Tren grevinin iyi yanı komşularımızla tanışmamız oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/silver-lining",
+   "https://en.wiktionary.org/wiki/silver_lining"
+  ]
+ },
+ {
+  "w": "up in the air",
+  "t": "havada kalmış, henüz kesinleşmemiş",
+  "lit": "havada yukarıda",
+  "eq": "havada kalmak",
+  "s": "Our summer trip dates are still up in the air.",
+  "form": "up in the air",
+  "tr": "Yaz tatili tarihlerimiz hâlâ belirsiz.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/up-in-the-air",
+   "https://en.wiktionary.org/wiki/up_in_the_air"
+  ]
+ },
+ {
+  "w": "storm in a teacup",
+  "t": "pireyi deve etme, gereksiz yaygara",
+  "lit": "çay fincanında fırtına",
+  "eq": "bir kaşık suda fırtına",
+  "s": "The parking feud turned out to be a storm in a teacup.",
+  "form": "storm in a teacup",
+  "tr": "Park yeri tartışması meğer bir kaşık suda koparılan fırtınaymış.",
+  "reg": "neutral",
+  "area": "UK",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/storm-in-a-teacup",
+   "https://en.wiktionary.org/wiki/storm_in_a_teacup"
+  ]
+ },
+ {
+  "w": "take a rain check",
+  "t": "başka zamana ertelemek (daveti nazikçe)",
+  "lit": "yağmur fişi almak",
+  "s": "I'm swamped tonight—can I take a rain check on dinner?",
+  "form": "take a rain check",
+  "tr": "Bu akşam çok yoğunum—yemeği başka bir güne bırakabilir miyiz?",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-a-rain-check-on",
+   "https://en.wiktionary.org/wiki/take_a_rain_check"
+  ]
+ },
+ {
+  "w": "sail close to the wind",
+  "t": "tehlikeli sınırlarda dolaşmak, yasal sınırları zorlamak",
+  "lit": "rüzgâra çok yakın yelken açmak",
+  "eq": "ateşle oynamak",
+  "s": "That reckless tax scheme sails close to the wind.",
+  "form": "sails close to the wind",
+  "tr": "Bu pervasız vergi düzenlemesi yasaların sınırını tehlikeli biçimde zorluyor.",
+  "reg": "neutral",
+  "area": "UK",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/sail-close-to-the-wind",
+   "https://en.wiktionary.org/wiki/sail_close_to_the_wind"
+  ]
+ },
+ {
+  "w": "throw caution to the wind",
+  "t": "bütün tedbiri elden bırakıp gözü kara davranmak",
+  "lit": "tedbiri rüzgâra atmak",
+  "eq": "gözünü karartmak",
+  "s": "She threw caution to the wind and booked a one-way ticket.",
+  "form": "threw caution to the wind",
+  "tr": "Bütün çekinceleri bir kenara bırakıp tek yön bilet aldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/throw-caution-to-the-wind-winds",
+   "https://en.wiktionary.org/wiki/throw_caution_to_the_wind"
+  ]
+ },
+ {
+  "w": "head in the clouds",
+  "t": "aklı bir karış havada, hayal dünyasında yaşayan",
+  "lit": "başı bulutların içinde",
+  "eq": "aklı bir karış havada",
+  "s": "He walks into meetings with his head in the clouds.",
+  "form": "head in the clouds",
+  "tr": "Toplantılara hep aklı bir karış havada, dalgın geliyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/have-head-in-the-clouds",
+   "https://en.wiktionary.org/wiki/head_in_the_clouds"
+  ]
+ },
+ {
+  "w": "dead of winter",
+  "t": "kara kışın ortası, en soğuk dönem",
+  "lit": "kışın ölü noktası",
+  "eq": "kara kış",
+  "s": "Our furnace broke down in the dead of winter.",
+  "form": "dead of winter",
+  "tr": "Kalorifer kazanımız tam kara kışın ortasında bozuldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/dead-of-winter",
+   "https://en.wiktionary.org/wiki/dead_of_winter"
+  ]
+ },
+ {
+  "w": "into thin air",
+  "t": "sırra kadem basmak, iz bırakmadan kaybolmak",
+  "lit": "ince havanın içine",
+  "eq": "sırra kadem basmak",
+  "s": "The stolen bike seemed to vanish into thin air.",
+  "form": "into thin air",
+  "tr": "Çalınan bisiklet sanki buharlaşıp iz bırakmadan kayboldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/into-thin-air",
+   "https://en.wiktionary.org/wiki/into_thin_air"
+  ]
+ },
+ {
+  "w": "rain on someone's parade",
+  "t": "birinin sevincini kursağında bırakmak, keyfini kaçırmak",
+  "lit": "birinin geçit törenine yağmak",
+  "eq": "keyfini kaçırmak",
+  "s": "Sorry to rain on your parade, though our flight got delayed.",
+  "form": "rain on your parade",
+  "tr": "Hevesini kırmak istemem ama uçuşumuz rötar yaptı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rain-on-parade",
+   "https://en.wiktionary.org/wiki/rain_on_someone's_parade"
+  ]
+ },
+ {
+  "w": "put on ice",
+  "pat": "put something on ice",
+  "t": "buzluğa koymak, projeyi belirsiz süre ertelemek",
+  "lit": "buzun üstüne koymak",
+  "eq": "askıya almak",
+  "s": "We had to put on ice any new office renovations.",
+  "form": "put on ice",
+  "tr": "Yeni ofis tadilat işlerini şimdilik rafa kaldırmak zorunda kaldık.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-on-ice",
+   "https://en.wiktionary.org/wiki/put_on_ice"
+  ]
+ },
+ {
+  "w": "bolt from the blue",
+  "t": "gökten zembille iner gibi beklenmedik şok gelişme",
+  "lit": "mavi gökten yıldırım",
+  "eq": "başına yıldırım düşmek",
+  "s": "News of the studio closing came like a bolt from the blue.",
+  "form": "bolt from the blue",
+  "tr": "Stüdyonun kapanma haberi güpegündüz yıldırım gibi düştü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bolt-from-the-blue",
+   "https://en.wiktionary.org/wiki/bolt_from_the_blue"
+  ]
+ },
+ {
+  "w": "take the wind out of someone's sails",
+  "t": "birinin hevesini kırmak, rüzgârını kesmek",
+  "lit": "birinin yelkenlerinden rüzgârı almak",
+  "eq": "yelkenlerini suya indirtmek",
+  "s": "Budget cuts took the wind out of our team's sails.",
+  "form": "took the wind out of our team's sails",
+  "tr": "Bütçe kesintileri ekibimizin bütün heyecanını söndürdü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-the-wind-out-of-sails",
+   "https://en.wiktionary.org/wiki/take_the_wind_out_of_someone's_sails"
+  ]
+ },
+ {
+  "w": "ride out the storm",
+  "t": "fırtınayı atlatıp krizden çıkmayı beklemek",
+  "lit": "fırtınayı at sırtında geçirmek",
+  "s": "Cash reserves helped the bakery ride out the storm.",
+  "form": "ride out the storm",
+  "tr": "Nakit birikimi fırının krizi atlatmasına yardımcı oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/ride-out-the-storm",
+   "https://en.wiktionary.org/wiki/ride_out_the_storm"
+  ]
+ },
+ {
+  "w": "under a cloud",
+  "t": "şüphe altında, adı şaibeye karışmış",
+  "lit": "bir bulutun altında",
+  "eq": "şaibe altında",
+  "s": "After the audit report, the director resigned under a cloud.",
+  "form": "under a cloud",
+  "tr": "Denetim raporunun ardından müdür şaibe altında istifa etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "nature",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-under-a-cloud",
+   "https://en.wiktionary.org/wiki/under_a_cloud"
+  ]
+ }
+]
