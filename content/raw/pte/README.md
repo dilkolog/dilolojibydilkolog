@@ -1,63 +1,74 @@
-# PTE örnek partisi — PR 1
+# PTE örnek partisi — PR 1, araştırma sonrası sürüm
 
-Avustralya Work and Holiday (462) için işlevsel İngilizce hedefleyen Türk öğrencilerin çalışmasına yönelik özgün içerik. Bu parti **her görevden 20, toplam 100 öğedir**. İnternetten veya PTE soru bankalarından cümle alınmadı. Britanya yazımı kullanıldı. Görevler bir sınav puanı ya da vize sonucu garantisi sunmaz.
+Hedef, Work and Holiday (462) bağlamında **PTE 24** eşiğine hazırlanan Türk öğrenciler: A1 üstü / A2 başı. Kaynak: `belge/pte-462` dalındaki `docs/sinavlar/PTE-462.md`, **Ek Bölüm** (2026-11-14). Önceki “araştırma belgesi yoktu” notu artık geçerli değildir. Araştırma dalı içerik dalına birleştirilmedi; yalnız okundu.
 
-2026-11-14 tarihinde incelenen main: `cfdb8fa8`. **Araştırma belgesi yoktu**: `docs/sinavlar/PTE-462.md` bulunmadığından görev metnindeki uzunluklar esas alındı. `src/data/pte.ts` ve `scripts/build-pte.mjs` de henüz main'de yoktu; dolayısıyla `node scripts/build-pte.mjs` çalıştırıldı veya geçti denemez.
+Beş dosyanın her birinde 20 özgün öğe var. Her dosyada **4 A1, 10 A2, 6 B1**; toplamda **20 A1, 50 A2, 30 B1**. B2 yok. Mevcut kimlikler korundu. İnternetten veya sınav kaynaklarından cümle alınmadı; Britanya yazımı kullanıldı. PR 1 örnek onayı bekler; kalan 480 öğe onaydan sonra PR 2'de yazılacak.
 
-Veri biçiminin sahibi arayüz tarafıdır. Aşağıdaki denetleyici, o araç main'e gelene kadar ham örnek partisini denetlemek içindir. Arayüzün türlerine veya üretim mantığına alternatif bir uygulama katmanı değildir. Uygulama kodu ve üretilmiş uygulama verileri değiştirilmedi.
+## Alanlar ve uzunluklar
 
-## Alanlar
+Dosyalar JSON dizileridir. Görevdeki alanlara ek alan konmadı; veri biçiminin sahibi arayüz tarafıdır.
 
-Bütün JSON dosyalarının kökü dizidir. Kayıtlara görev metninde belirtilmeyen alan eklenmedi.
-
-| Dosya | Alanlar | Uzunluk / biçim |
+| Dosya | Alanlar | Biçim |
 |---|---|---|
-| `wfd.json` | `id`, `text`, `level`, `topic`, `tr` | Bir cümle, 7–12 kelime |
-| `rs.json` | `id`, `text`, `level`, `tr` | Bir cümle veya soru, 6–11 kelime |
-| `ra.json` | `id`, `text`, `level`, `topic`, `tr` | Bir paragraf, 2–3 cümle, 35–55 kelime |
-| `fib.json` | `id`, `text`, `blanks`, `level`, `topic`, `tr` | Bir paragraf, 60–90 kelime; sırasıyla `[[1]]`…`[[4]]` |
-| `asq.json` | `id`, `question`, `answers`, `level`, `tr` | Bir soru; kabul edilen her cevap 1–3 kelime |
+| wfd.json | id, text, level, topic, tr | Tek cümle, 8–12 kelime; hedef ses 3–5 sn |
+| rs.json | id, text, level, tr | Tek cümle/soru, 6–14 kelime; hedef ses 3–9 sn |
+| ra.json | id, text, level, topic, tr | Tek paragraf, 2–3 cümle; bu partide 35–60 kelime |
+| fib.json | id, text, blanks, level, topic, tr | 10 öğe 60–90, 10 öğe 120–180 kelime; 4–5 boşluk |
+| asq.json | id, question, answers, level, tr | Genel bilgi sorusu; her kabul edilen cevap 1–3 kelime |
 
-- `id`: tür öneki ve dört haneli kalıcı sıra (`pte-wfd-0001` gibi); dosyalar arasında da benzersiz. Sonraki parti mevcut kimlikleri değiştirmeden `0021` ile devam eder.
-- `text`: İngilizce cümle/paragraf; FIB'de boşluk işaretlerini içerir.
-- `question`: ASQ İngilizce sorusu.
-- `level`: `A2`, `B1` veya `B2`. Sözcük kontrolüne ek olarak cümle yapısı ve kavramsal yük editoryal olarak gözetildi.
-- `topic`: `daily_life`, `work`, `travel`, `education`, `health`, `environment`, `technology` değerlerinden biri. RS ve ASQ şemasına bu alan eklenmedi.
-- `tr`: İngilizce metnin doğal Türkçesi; ASQ'da sorunun, FIB'de **cevaplarla tamamlanmış paragrafın** çevirisi. Öğrenciye cevap sonrasında gösterilecek içeriktir.
-- `blanks`: metindeki sıraya karşılık gelen dört nesne. Her nesnenin yalnız `answer` ve `options` alanları vardır. `answer` tek sözcüktür; `options`, cevabı tam bir kez içeren dört farklı tek sözcükten oluşur. Çeldiriciler hedef sözcükle aynı sözcük türündedir. Cevap konumu döndürülmüştür.
-- `answers`: beklenen kısa cevabın kabul edilen biçimleri; sayısal cevaplarda yazı/rakam, uygun yerlerde artikelli/artikelsiz biçimler yer alır. Büyük/küçük harf değerlendirmesi arayüzün sorumluluğundadır; yalnız harf büyüklüğü farklı kopyalar eklenmedi.
+- `id`: kalıcı `pte-<tür>-0001` biçimi; her dosyada 0001–0020. Sonraki parti 0021'den devam eder.
+- `text` / `question`: özgün İngilizce metin / kısa soru.
+- `level`: A1, A2 veya B1. Seviye dağılımı dosya başına 4/10/6.
+- `topic`: daily_life, work, travel, education, health, environment, technology. RS ve ASQ'ya alan eklenmedi.
+- `tr`: doğal Türkçe çeviri; FIB'de cevaplarla tamamlanmış paragrafın, ASQ'da sorunun çevirisi. Cevap sonrasında gösterilir.
+- `blanks`: metin sırasıyla eşleşen `{ answer, options }` nesneleri. İşaretler `[[1]]`…`[[4]]` (beş boşluklu öğede `[[5]]`); her boşlukta dört farklı tek sözcüklük seçenek ve bunlardan biri olan tek sözcüklük cevap. Bu örnek partide bütün öğeler dört boşlukludur; denetleyici beşi de destekler. Çeldiriciler hedefle aynı sözcük türündedir.
+- `answers`: uygun kısa cevapların yazım/rakam ve gerekli artikel varyantları. Harf büyüklüğü normalleştirmesi arayüzün sorumluluğundadır.
 
-Kelime sayımı boşlukla ayrılan birimler üzerinden yapılır; apostrof ve kısa çizgi sözcüğü bölmez. FIB'deki her boşluk bir kelime yerine geçer; hem işaretli hem tamamlanmış metnin sınırlar içinde olması denetlenir.
+Kelime sayımı boşlukla ayrılan birimlerdir; apostrof/kısa çizgi birimi bölmez. FIB'de hem işaretli hem cevaplarla tamamlanmış metin denetlenir. Ses dosyası üretilmedi: kelime aralığı, ölçülmüş ses süresi demek değildir. Gerçek TTS/kayıt süresi arayüz/ses üretimi sırasında ayrıca ölçülmelidir.
 
 ## Doğrulama
 
-Depo kökünden, projenin bağımlılıkları kurulu olarak:
+Arayüzün `src/data/pte.ts` ve `scripts/build-pte.mjs` dosyaları kontrol edilen main'de henüz yok. Dolayısıyla bu üretim aracının geçtiği iddia edilmiyor. Mevcut yerel denetleyici, araç main'e gelene kadar kullanılır; uygulama kodu değiştirilmedi.
 
 ```sh
 node content/raw/pte/validate.mjs
 node --test content/raw/pte/validate.test.mjs
 ```
 
-`validate.mjs`: tam alan kümesi, benzersiz kimlik/metin, dolu Türkçe, uzunluklar, paragraf/cümle sayıları, seviye oranları, dört sıralı boşluk, dört farklı seçenek, cevabın seçeneklerde bir kez bulunması ve kısa cevap uzunluğunu denetler. Ardından `level-check.ts` dosyasını geçici dizine derleyip çalıştırır. Geçici derleme depoya yazılmaz.
+Denetleyici tam alan kümesini, kimlik/metin benzersizliğini, uzunlukları, cümle/paragraf sayısını, seviye dağılımını, FIB kısa/uzun yarılarını, 4–5 sıralı boşluğu, dört seçeneği ve cevabın bir kez bulunmasını denetler. B2 reddedilir. Seviye uyarlaması geçici dizinde derlenir; çıktı depoya yazılmaz.
 
 Fabrikanın mevcut `check.ts` iş emri şeması yalnız FR/ES içindir; İngilizce çekim tablosunu yüklemek desteklenmez. Bu nedenle PTE verisine FR/ES işi uydurulmadı. İngilizce uyarlama fabrikanın **aynı** `levelRank`, `LEVEL_FIT`, `parseCefrList` ve `readingKey` işlevlerini; `src/data/cefr/en.txt` ve İngilizce sözlük paketinin biçim→madde tablosunu kullanır. Fabrikadaki gibi yazılı biçim, sözlük biçimi ve kök için bulunan en düşük seviye alınır; desteklenmeyen İngilizce fiil çözümleyicisi çağrılmaz. Büyük harfli bilinmeyen kelimelere özel ad istisnası tanınmaz. Bu, her çekimin listede ayrıca yazılı olmasını gerektirmeyen **sözcük ailesi** denetimidir.
 
-Görev metni daha sıkı olduğu için fabrikanın %92 eşiği yerine bu partide **%100 seviye ve altı** aranır; FIB seçenekleri ve ASQ cevapları da hesaba katılır. Bütün 100 öğe geçti. Beş test geçti; kısa metin, çift kimlik, ek alan, eksik cevap, tekrar eden seçenek ve yanlış boşluk numarası gibi bozuk girdiler reddedildi. Bu kontroller çeldiricilerin anlamını veya Türkçe çevirinin doğruluğunu otomatik olarak kanıtlamaz.
 
-Bağımsız çözücü, Türkçe çevirileri ve cevap anahtarını görmeden 20 FIB paragrafındaki **80 boşluğu** çözdü: ilk kontrolde 80/80 anahtarla eşleşme, ikinci makul doğru şık yok; doğallık düzeltmelerinden sonra son sürüm de aynı çözücü tarafından tekrar kontrol edildi. Doğallık önerileri doğrultusunda `which train to take` kullanıldı, gereksiz tekrarlar temizlendi ve kolej bağlamındaki `passengers` → `students` düzeltildi. ASQ da anahtarsız çözüldü: yün sorusundaki ikinci doğru hayvan olasılığı, yetişkin böceğin bacak sayısı sorusuyla giderildi; kimya terimi sorusu, gündelik alışverişte ücret iadesi sorusuyla değiştirildi. Doğru kısa cevap varyantları genişletildi. B2 metinlerin A2–B1'e göre daha ağır olduğu not edildi; iki B2 öğe istenen %10 payıdır.
+Bu partide %92 yerine **%100 seviye ve altı** aranır; seçenekler ve kısa cevaplar da kontrol edilir. Büyük harfli bilinmeyenlere özel ad istisnası yoktur. Sonuç: **100/100 geçti, 6/6 test geçti**. Testler bozuk şema/kimlik/uzunluk/cevapları, yanlış boşlukları, B2 yasağını, beş boşluk desteğini ve iki uzunluk aralığı arasındaki yasak bandı kapsar.
 
-## Örnek parti raporu
+Araştırma sonrası değişen FIB'nin 20 paragrafı, anahtar ve Türkçeler gösterilmeden bağımsız çözücüye yeniden çözdürüldü: **80/80 eşleşme**, ikinci makul doğru şık yok. İşaret ettiği yazım, özne-fiil uyumu ve doğallık sorunları giderildi. Anlam, çeviri ve telaffuz kolaylığı yalnız kelime listesiyle kanıtlanmaz; örnek onayı bu nedenle hâlâ gereklidir.
 
-| Görev | Öğe | A2 | B1 | B2 | Min.–maks. kelime | Ortalama |
-|---|---:|---:|---:|---:|---:|---:|
-| WFD | 20 | 10 | 8 | 2 | 8–10 | 8,55 |
-| RS | 20 | 10 | 8 | 2 | 7–10 | 7,65 |
-| RA | 20 | 10 | 8 | 2 | 37–47 | 38,65 |
-| FIB | 20 | 10 | 8 | 2 | 60–74 | 66,95 |
-| ASQ | 20 | 10 | 8 | 2 | 6–15 | 9,55 |
-| **Toplam** | **100** | **50** | **40** | **10** | | |
+## Arayüze devir: süre ve puanlama
 
-ASQ uzunluk sütunu soruyu ölçer; 1–3 kelime sınırı ise her cevaba uygulanır. FIB ortalaması işaretli ve tamamlanmış metinde aynıdır.
+Bu bilgiler JSON şemasına eklenmedi ve bu PR'da uygulanmadı.
+
+| Görev | Hazırlık / cevap | Kayıt | Puanlama |
+|---|---|---|---|
+| WFD | Soru başına ayrı süre yok | Ses bir kez çalar; hedef 3–5 sn | Doğru yazılan her doğru kelime +1; yanlış 0, eksi yok |
+| RS | Hazırlık yok; cevap 15 sn | Ses sonrası kısa ton; 3 sn sessizlikte kapanır | İçerik 3: tümü doğru sırada; 2: en az yarısı; 1: yarısından azı; 0: hiç/alakasız. Telaffuz ve akıcılık ayrı ölçütlerdir |
+| RA | 30–40 sn hazırlık; cevap süresi metne bağlı | Kısa ton; 3 sn sessizlikte kapanır | İçerikte kelime değiştirme/atlama/ekleme birer hata; telaffuz ve akıcılık ayrıca değerlendirilir |
+| FIB | Soru başına ayrı süre yok | Kayıt yok | Her doğru boşluk +1; yanlış 0, eksi yok |
+| ASQ | Hazırlık yok; cevap 10 sn | Ses sonrasında ton olmadan açılır; 3 sn sessizlikte kapanır | Tam/yanlış: 1 veya 0; kısmi puan yok |
+
+WFD ve FIB'de ayrı soru süresi olmaması, gerçek sınavdaki bölüm süresinin olmadığı anlamına gelmez. Ham alıştırma puanları PTE genel puanı 24'e doğrudan çevrilemez.
+
+## Parti raporu
+
+| Görev | Öğe | A1/A2/B1 | Min.–maks. kelime | Ortalama |
+|---|---:|---|---:|---:|
+| WFD | 20 | 4/10/6 | 8–10 | 8.90 |
+| RS | 20 | 4/10/6 | 7–9 | 7.60 |
+| RA | 20 | 4/10/6 | 35–40 | 37.65 |
+| FIB | 20 | 4/10/6 | 60–136 | 96.80 |
+| ASQ | 20 | 4/10/6 | 6–14 | 9.55 |
+
+ASQ uzunlukları soruya aittir; cevaplar 1–3 kelimedir. FIB'de 10 kısa + 10 uzun paragraf bulunur. Konu dağılımları:
 
 | Görev | Gündelik | İş | Seyahat | Eğitim | Sağlık | Çevre | Teknoloji |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -67,9 +78,9 @@ ASQ uzunluk sütunu soruyu ölçer; 1–3 kelime sınırı ise her cevaba uygula
 | FIB | 2 | 5 | 3 | 3 | 2 | 3 | 2 |
 | ASQ | 6 | 0 | 2 | 4 | 4 | 4 | 0 |
 
-RS ve ASQ konu sayıları yalnız rapor için yapılan editoryal sınıflandırmadır; JSON'a alan eklenmedi. Denetlenebilir kimlik eşlemesi (son dört hane):
+RS/ASQ yalnız rapor için sınıflandırıldı; JSON'a konu alanı eklenmedi. Kimliklerin son dört hanesi:
 
-- RS: gündelik `0001,0004,0006,0008,0010,0013`; iş `0011,0014,0019,0020`; seyahat `0002,0012,0015`; eğitim `0003,0007,0017`; sağlık `0005,0018`; teknoloji `0009,0016`.
-- ASQ: gündelik `0001,0004,0005,0008,0015,0020`; eğitim `0002,0009,0014,0018`; sağlık `0003,0012,0013,0017`; seyahat `0010,0016`; çevre `0006,0007,0011,0019`.
+- RS: gündelik 0001,0004,0006,0008,0010,0013; iş 0011,0014,0019,0020; seyahat 0002,0012,0015; eğitim 0003,0007,0017; sağlık 0005,0018; teknoloji 0009,0016.
+- ASQ: gündelik 0001,0004,0005,0008,0015,0020; eğitim 0002,0009,0014,0018; sağlık 0003,0012,0013,0017; seyahat 0010,0016; çevre 0006,0007,0011,0019.
 
-PR 1 örnek onayı bekler. Onay gelmeden PR 2 için kalan 130 WFD, 130 RS, 60 RA, 60 FIB ve 100 ASQ yazılmayacak. Nihai sayılar ve oranlar: WFD/RS için 75 A2 + 60 B1 + 15 B2; RA/FIB için 40 + 32 + 8; ASQ için 60 + 48 + 12.
+Nihai hedefler: WFD/RS için 30 A1 + 75 A2 + 45 B1; RA/FIB için 16 + 40 + 24; ASQ için 24 + 60 + 36. Kalanlar, örnek onayından sonra bu dağılımları tamamlar.

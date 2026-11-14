@@ -6,7 +6,7 @@
       "seven",
       "7"
     ],
-    "level": "A2",
+    "level": "A1",
     "tr": "Bir haftada kaç gün vardır?"
   },
   {
@@ -16,29 +16,29 @@
       "teacher",
       "a teacher"
     ],
-    "level": "A2",
+    "level": "A1",
     "tr": "Okulda ders veren kişiye ne denir?"
   },
   {
     "id": "pte-asq-0003",
-    "question": "Which part of your body do you use to smell?",
+    "question": "What do you use to smell things?",
     "answers": [
       "nose",
       "the nose",
       "your nose",
       "my nose"
     ],
-    "level": "A2",
-    "tr": "Koklamak için vücudunuzun hangi bölümünü kullanırsınız?"
+    "level": "A1",
+    "tr": "Bir şeyleri koklamak için ne kullanırsınız?"
   },
   {
     "id": "pte-asq-0004",
-    "question": "What colour do you get when you mix red and white paint?",
+    "question": "What colour is the sky when there are no clouds?",
     "answers": [
-      "pink"
+      "blue"
     ],
-    "level": "A2",
-    "tr": "Kırmızı ve beyaz boyayı karıştırınca hangi rengi elde edersiniz?"
+    "level": "A1",
+    "tr": "Hiç bulut yokken gökyüzü ne renktir?"
   },
   {
     "id": "pte-asq-0005",
@@ -102,32 +102,34 @@
   },
   {
     "id": "pte-asq-0011",
-    "question": "What liquid freezes to form ice?",
+    "question": "What does water become when it gets very cold and freezes?",
     "answers": [
-      "water"
+      "ice"
     ],
-    "level": "B1",
-    "tr": "Hangi sıvı donarak buz oluşturur?"
+    "level": "A2",
+    "tr": "Su çok soğuyup donduğunda neye dönüşür?"
   },
   {
     "id": "pte-asq-0012",
-    "question": "Which organ pumps blood around the human body?",
+    "question": "What part of your body sends blood around it?",
     "answers": [
       "heart",
       "the heart",
-      "a heart"
+      "a heart",
+      "your heart"
     ],
-    "level": "B1",
-    "tr": "İnsan vücudunda kanı hangi organ pompalar?"
+    "level": "A2",
+    "tr": "Vücudunuzun hangi bölümü kanı vücudun içinde dolaştırır?"
   },
   {
     "id": "pte-asq-0013",
-    "question": "What gas do people breathe in to stay alive?",
+    "question": "What do we breathe through our nose and mouth?",
     "answers": [
-      "oxygen"
+      "air",
+      "the air"
     ],
-    "level": "B1",
-    "tr": "İnsanlar hayatta kalmak için hangi gazı solur?"
+    "level": "A2",
+    "tr": "Burnumuzdan ve ağzımızdan ne soluruz?"
   },
   {
     "id": "pte-asq-0014",
@@ -136,7 +138,7 @@
       "circle",
       "a circle"
     ],
-    "level": "B1",
+    "level": "A2",
     "tr": "Hangi düz şeklin köşesi yoktur ve kendisi tamamen yuvarlaktır?"
   },
   {
@@ -195,17 +197,17 @@
     "answers": [
       "recycling"
     ],
-    "level": "B2",
+    "level": "B1",
     "tr": "Kullanılmış malzemeleri yeni ürünlere dönüştürmeye ne denir?"
   },
   {
     "id": "pte-asq-0020",
-    "question": "What do we call the money a shop returns when a customer cancels a purchase?",
+    "question": "What do we call the money a shop gives back when we return something?",
     "answers": [
       "refund",
       "a refund"
     ],
-    "level": "B2",
-    "tr": "Bir müşteri alışverişini iptal ettiğinde mağazanın geri verdiği paraya ne denir?"
+    "level": "B1",
+    "tr": "Bir şeyi iade ettiğimizde mağazanın geri verdiği paraya ne denir?"
   }
 ]

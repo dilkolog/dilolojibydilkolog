@@ -2,25 +2,25 @@
   {
     "id": "pte-rs-0001",
     "text": "Could you open the window a little?",
-    "level": "A2",
+    "level": "A1",
     "tr": "Pencereyi biraz açabilir misin?"
   },
   {
     "id": "pte-rs-0002",
     "text": "I left my coat on the bus.",
-    "level": "A2",
+    "level": "A1",
     "tr": "Montumu otobüste unuttum."
   },
   {
     "id": "pte-rs-0003",
-    "text": "Shall we meet outside the library tomorrow?",
-    "level": "A2",
+    "text": "Can we meet outside the library tomorrow?",
+    "level": "A1",
     "tr": "Yarın kütüphanenin dışında buluşalım mı?"
   },
   {
     "id": "pte-rs-0004",
     "text": "Please give me a moment to finish.",
-    "level": "A2",
+    "level": "A1",
     "tr": "Lütfen bitirmem için bana biraz zaman ver."
   },
   {
@@ -61,27 +61,27 @@
   },
   {
     "id": "pte-rs-0011",
-    "text": "Would you mind checking the delivery address?",
-    "level": "B1",
-    "tr": "Teslimat adresini kontrol eder misin?"
+    "text": "Could you check the address on this box?",
+    "level": "A2",
+    "tr": "Bu kutunun üzerindeki adresi kontrol eder misin?"
   },
   {
     "id": "pte-rs-0012",
-    "text": "I thought we had already booked the tickets.",
-    "level": "B1",
-    "tr": "Biletleri çoktan ayırttığımızı sanıyordum."
+    "text": "I think we bought the tickets last week.",
+    "level": "A2",
+    "tr": "Sanırım biletleri geçen hafta aldık."
   },
   {
     "id": "pte-rs-0013",
-    "text": "Let me know if your plans change.",
-    "level": "B1",
-    "tr": "Planların değişirse bana haber ver."
+    "text": "Please tell me if your plans change.",
+    "level": "A2",
+    "tr": "Planların değişirse lütfen bana söyle."
   },
   {
     "id": "pte-rs-0014",
-    "text": "We should discuss the problem before making a decision.",
-    "level": "B1",
-    "tr": "Karar vermeden önce sorunu konuşmalıyız."
+    "text": "We can talk about the problem after lunch.",
+    "level": "A2",
+    "tr": "Öğle yemeğinden sonra sorun hakkında konuşabiliriz."
   },
   {
     "id": "pte-rs-0015",
@@ -109,14 +109,14 @@
   },
   {
     "id": "pte-rs-0019",
-    "text": "Had I known earlier, I could have rearranged my schedule.",
-    "level": "B2",
-    "tr": "Daha önce bilseydim programımı yeniden düzenleyebilirdim."
+    "text": "I could change my hours if that would help.",
+    "level": "B1",
+    "tr": "Yardımcı olacaksa çalışma saatlerimi değiştirebilirim."
   },
   {
     "id": "pte-rs-0020",
-    "text": "I appreciate your patience while we resolve the issue.",
-    "level": "B2",
-    "tr": "Sorunu çözerken gösterdiğiniz sabır için teşekkür ederim."
+    "text": "Thank you for waiting while we check the details.",
+    "level": "B1",
+    "tr": "Ayrıntıları kontrol ederken beklediğiniz için teşekkür ederiz."
   }
 ]

@@ -1,31 +1,31 @@
 [
   {
     "id": "pte-wfd-0001",
-    "text": "Please leave your shoes beside the front door.",
-    "level": "A2",
+    "text": "Please put your bag on the chair near the door.",
+    "level": "A1",
     "topic": "daily_life",
-    "tr": "Lütfen ayakkabılarınızı ön kapının yanına bırakın."
+    "tr": "Lütfen çantanı kapının yakınındaki sandalyeye koy."
   },
   {
     "id": "pte-wfd-0002",
-    "text": "The bus stop is opposite the small supermarket.",
-    "level": "A2",
+    "text": "The bus is outside the shop on the left.",
+    "level": "A1",
     "topic": "travel",
-    "tr": "Otobüs durağı küçük süpermarketin karşısında."
+    "tr": "Otobüs soldaki dükkânın dışında."
   },
   {
     "id": "pte-wfd-0003",
-    "text": "Our language class starts after lunch on Monday.",
-    "level": "A2",
+    "text": "Our class at school starts after lunch on Monday afternoon.",
+    "level": "A1",
     "topic": "education",
-    "tr": "Dil dersimiz pazartesi günü öğle yemeğinden sonra başlıyor."
+    "tr": "Okuldaki dersimiz pazartesi öğleden sonra, öğle yemeğinin ardından başlıyor."
   },
   {
     "id": "pte-wfd-0004",
-    "text": "You can keep your lunch in this fridge.",
-    "level": "A2",
+    "text": "You can put your food on this kitchen table.",
+    "level": "A1",
     "topic": "work",
-    "tr": "Öğle yemeğinizi bu buzdolabında saklayabilirsiniz."
+    "tr": "Yiyeceklerini bu mutfak masasına koyabilirsin."
   },
   {
     "id": "pte-wfd-0005",
@@ -71,31 +71,31 @@
   },
   {
     "id": "pte-wfd-0011",
-    "text": "The library has extended its opening hours this month.",
-    "level": "B1",
+    "text": "The library is open until late on Monday evenings.",
+    "level": "A2",
     "topic": "education",
-    "tr": "Kütüphane bu ay açık olduğu saatleri uzattı."
+    "tr": "Kütüphane pazartesi akşamları geç saate kadar açık."
   },
   {
     "id": "pte-wfd-0012",
-    "text": "Please confirm the delivery date before the meeting on Friday.",
-    "level": "B1",
+    "text": "Please check the date before our meeting on Friday.",
+    "level": "A2",
     "topic": "work",
-    "tr": "Lütfen cuma günkü toplantıdan önce teslimat tarihini teyit edin."
+    "tr": "Lütfen cuma günkü toplantımızdan önce tarihi kontrol edin."
   },
   {
     "id": "pte-wfd-0013",
-    "text": "Regular breaks can help you concentrate during long tasks.",
-    "level": "B1",
+    "text": "You can take a short break after this job.",
+    "level": "A2",
     "topic": "health",
-    "tr": "Düzenli molalar uzun süren işlerde odaklanmanıza yardımcı olabilir."
+    "tr": "Bu işten sonra kısa bir mola verebilirsin."
   },
   {
     "id": "pte-wfd-0014",
-    "text": "The council collects our recycling every other Wednesday.",
-    "level": "B1",
+    "text": "Please put your old paper in the green box.",
+    "level": "A2",
     "topic": "environment",
-    "tr": "Belediye geri dönüşüm atıklarımızı iki haftada bir çarşamba günleri topluyor."
+    "tr": "Lütfen eski kâğıtlarını yeşil kutuya koy."
   },
   {
     "id": "pte-wfd-0015",
@@ -127,16 +127,16 @@
   },
   {
     "id": "pte-wfd-0019",
-    "text": "The proposal was revised following feedback from local residents.",
-    "level": "B2",
+    "text": "Local people suggested planting more trees beside the road.",
+    "level": "B1",
     "topic": "environment",
-    "tr": "Öneri, bölge sakinlerinden gelen geri bildirim üzerine gözden geçirildi."
+    "tr": "Bölge halkı yol kenarına daha fazla ağaç dikilmesini önerdi."
   },
   {
     "id": "pte-wfd-0020",
-    "text": "Flexible arrangements enable employees to balance their competing responsibilities.",
-    "level": "B2",
+    "text": "Staff can change their working hours with the manager's permission.",
+    "level": "B1",
     "topic": "work",
-    "tr": "Esnek düzenlemeler çalışanların birbiriyle çakışan sorumluluklarını dengelemesini sağlar."
+    "tr": "Çalışanlar müdürün izniyle çalışma saatlerini değiştirebilir."
   }
 ]

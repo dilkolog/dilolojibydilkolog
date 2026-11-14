@@ -28,7 +28,7 @@ export function validateTask(kind, rows, seenIds = new Set(), seenTexts = new Se
     if (typeof row.id !== 'string' || !new RegExp(`^pte-${kind}-\\d{4}$`).test(row.id)) fail('invalid id')
     if (seenIds.has(row.id)) fail('duplicate id')
     seenIds.add(row.id)
-    if (!['A2', 'B1', 'B2'].includes(row.level)) fail('invalid level')
+    if (!['A1', 'A2', 'B1'].includes(row.level)) fail('invalid level')
     if (!filled(row.tr)) fail('missing Turkish translation')
     if (fields[kind].includes('topic') && !topics.includes(row.topic)) fail('invalid topic')
     const text = row.text ?? row.question
@@ -39,17 +39,17 @@ export function validateTask(kind, rows, seenIds = new Set(), seenTexts = new Se
     let completed = text
     if (kind === 'fib') {
       const markers = [...text.matchAll(/\[\[(\d+)\]\]/g)].map(m => m[1])
-      if (markers.join() !== '1,2,3,4' || (text.match(/\[\[/g) ?? []).length !== 4) fail('expected markers [[1]] through [[4]] once, in order')
-      if (!Array.isArray(row.blanks) || row.blanks.length !== 4) { fail('expected four blanks'); continue }
+      if (![4, 5].includes(markers.length) || markers.some((n, i) => n !== String(i + 1)) || (text.match(/\[\[/g) ?? []).length !== markers.length) fail('expected four or five consecutive markers once, in order')
+      if (!Array.isArray(row.blanks) || ![4, 5].includes(row.blanks.length) || row.blanks.length !== markers.length) { fail('expected four or five matching blanks'); continue }
       for (const blank of row.blanks) {
         if (!sameKeys(blank, ['answer', 'options']) || !filled(blank.answer) || words(blank.answer) !== 1 || !Array.isArray(blank.options) || blank.options.length !== 4 || !blank.options.every(o => filled(o) && words(o) === 1)) { fail('invalid blank'); continue }
         if (new Set(blank.options.map(normalise)).size !== 4) fail('duplicate options')
         if (blank.options.filter(o => o === blank.answer).length !== 1) fail('answer must appear exactly once')
       }
       completed = text.replace(/\[\[(\d+)\]\]/g, (_, n) => row.blanks[Number(n) - 1]?.answer ?? '')
-      if (words(text) < 60 || words(text) > 90) fail('FIB template must have 60–90 words')
+      if (!((words(text) >= 60 && words(text) <= 90) || (words(text) >= 120 && words(text) <= 180))) fail('FIB template must have 60–90 or 120–180 words')
     }
-    const bounds = { wfd: [7, 12], rs: [6, 11], ra: [35, 55], fib: [60, 90] }[kind]
+    const bounds = { wfd: [8, 12], rs: [6, 14], ra: [35, 60], fib: [60, 180] }[kind]
     if (bounds && (words(completed) < bounds[0] || words(completed) > bounds[1])) fail(`word count outside ${bounds.join('–')}`)
     if (['wfd', 'rs'].includes(kind) && (sentences(text) !== 1 || !(kind === 'rs' ? /[.!?]$/ : /\.$/).test(text))) fail('expected one sentence')
     if (kind === 'ra' && (sentences(text) < 2 || sentences(text) > 3)) fail('expected two or three sentences')
@@ -69,8 +69,9 @@ export function validateFiles(root = fileURLToPath(new URL('.', import.meta.url)
     const rows = JSON.parse(readFileSync(resolve(root, `${kind}.json`), 'utf8'))
     errors.push(...validateTask(kind, rows, ids, texts))
     if (rows.length !== 20) errors.push(`${kind}: sample must contain 20 items`)
-    const levels = Object.fromEntries(['A2', 'B1', 'B2'].map(l => [l, rows.filter(r => r.level === l).length]))
-    if (levels.A2 !== 10 || levels.B1 !== 8 || levels.B2 !== 2) errors.push(`${kind}: expected 10 A2, 8 B1, 2 B2`)
+    const levels = Object.fromEntries(['A1', 'A2', 'B1'].map(l => [l, rows.filter(r => r.level === l).length]))
+    if (levels.A1 !== 4 || levels.A2 !== 10 || levels.B1 !== 6) errors.push(`${kind}: expected 4 A1, 10 A2, 6 B1`)
+    if (kind === 'fib' && (rows.filter(r => words(r.text) <= 90).length !== 10 || rows.filter(r => words(r.text) >= 120).length !== 10)) errors.push('fib: expected ten short and ten long paragraphs')
     const counts = rows.map(r => words(r.text ?? r.question))
     const distribution = Object.fromEntries(topics.map(t => [t, rows.filter(r => r.topic === t).length]).filter(([, n]) => n))
     report[kind] = { count: rows.length, levels, topics: ['rs', 'asq'].includes(kind) ? 'see README editorial topic map' : distribution, words: { min: Math.min(...counts), max: Math.max(...counts), mean: counts.reduce((a, b) => a + b, 0) / counts.length } }

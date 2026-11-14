@@ -1,31 +1,31 @@
 [
   {
     "id": "pte-ra-0001",
-    "text": "Our street has a small food shop beside the bus stop. I go there after work to buy bread, milk and fruit, and the woman at the door always asks about my day before I walk home.",
-    "level": "A2",
+    "text": "There is a small shop near my house, and I go there after work. I buy milk and bread for my family, then walk home with my bag and put the food on the kitchen table.",
+    "level": "A1",
     "topic": "daily_life",
-    "tr": "Sokağımızda otobüs durağının yanında küçük bir gıda dükkânı var. İşten sonra ekmek, süt ve meyve almak için oraya giderim; kapıdaki kadın da ben eve doğru yürümeden önce her zaman günümün nasıl geçtiğini sorar."
+    "tr": "Evimin yakınında küçük bir dükkân var ve işten sonra oraya giderim. Ailem için süt ve ekmek alırım, sonra çantamla eve yürüyüp yiyecekleri mutfak masasına koyarım."
   },
   {
     "id": "pte-ra-0002",
-    "text": "The first bus into town is often quiet in the morning. I like to sit near the window with my bag on my knees, and I get off near the market to meet a friend for breakfast.",
-    "level": "A2",
+    "text": "I take the bus to town in the morning and sit near the window. My friend gets on at the bus stop, and we talk about our families before we get off near the shops.",
+    "level": "A1",
     "topic": "travel",
-    "tr": "Sabahları şehre giden ilk otobüs genellikle sakin olur. Çantam dizlerimin üzerindeyken pencere kenarında oturmayı severim ve kahvaltı için bir arkadaşımla buluşmak üzere pazarın yakınında inerim."
+    "tr": "Sabah şehre otobüsle gider ve pencere kenarında otururum. Arkadaşım otobüs durağında biner; dükkânların yakınında inmeden önce ailelerimiz hakkında konuşuruz."
   },
   {
     "id": "pte-ra-0003",
-    "text": "Our class has a new reading corner near the door. There are books about food, animals and travel, and we can take one home each week if we write our name on the list beside the shelf.",
-    "level": "A2",
+    "text": "There are many books on the table in our class, and we can read them at school. I like books about animals, but my friend likes books about food, so we each take a different book.",
+    "level": "A1",
     "topic": "education",
-    "tr": "Sınıfımızda kapının yakınında yeni bir okuma köşesi var. Yiyecekler, hayvanlar ve seyahat hakkında kitaplar bulunuyor; rafın yanındaki listeye adımızı yazarsak her hafta birini eve götürebiliyoruz."
+    "tr": "Sınıfımızdaki masada pek çok kitap var ve onları okulda okuyabiliyoruz. Ben hayvanlar hakkındaki kitapları severim ama arkadaşım yemek kitaplarını seviyor; bu yüzden her birimiz farklı bir kitap alıyoruz."
   },
   {
     "id": "pte-ra-0004",
-    "text": "At the hotel, my first job is to check the breakfast room. I put clean cups on the tables and fill the water bottles, then ask the cook if there is anything else to do before guests arrive.",
-    "level": "A2",
+    "text": "I work in a small hotel near the sea with my brother. In the morning, we put clean cups on the tables and open the windows, then we have some tea before the first people come in.",
+    "level": "A1",
     "topic": "work",
-    "tr": "Otelde ilk işim kahvaltı salonunu kontrol etmek. Masalara temiz fincanlar koyup su şişelerini doldururum, ardından misafirler gelmeden önce yapılacak başka bir şey olup olmadığını aşçıya sorarım."
+    "tr": "Kardeşimle deniz kenarındaki küçük bir otelde çalışıyorum. Sabah masalara temiz fincanlar koyup pencereleri açıyoruz, sonra ilk insanlar içeri girmeden önce çay içiyoruz."
   },
   {
     "id": "pte-ra-0005",
@@ -71,31 +71,31 @@
   },
   {
     "id": "pte-ra-0011",
-    "text": "The restaurant has introduced a short meeting before each evening shift. Staff discuss bookings and share information about the menu, which helps new workers feel more confident when customers ask questions about the dishes and how they are prepared.",
-    "level": "B1",
+    "text": "We have a short meeting before work at the restaurant each evening. The cook tells us about the food, and we talk about how many people are coming, so we know what to do when the doors open.",
+    "level": "A2",
     "topic": "work",
-    "tr": "Restoran her akşam vardiyasından önce kısa bir toplantı yapmaya başladı. Çalışanlar rezervasyonları konuşup menü hakkında bilgi paylaşıyor; bu da yeni çalışanların müşteriler yemekler ve hazırlanışları hakkında soru sorduğunda daha rahat hissetmesine yardımcı oluyor."
+    "tr": "Restoranda her akşam işten önce kısa bir toplantı yapıyoruz. Aşçı bize yemekleri anlatıyor ve kaç kişinin geleceğini konuşuyoruz; böylece kapılar açıldığında ne yapacağımızı biliyoruz."
   },
   {
     "id": "pte-ra-0012",
-    "text": "The health centre now sends messages about appointments by text message. Patients can reply to confirm or cancel their visit, allowing the centre to offer any available times to people who would otherwise have to wait for another day.",
-    "level": "B1",
+    "text": "The health centre sends a message to my phone before I visit the doctor. If I can not come, I call the centre to tell them, so another person can see the doctor at that time.",
+    "level": "A2",
     "topic": "health",
-    "tr": "Sağlık merkezi artık randevu hatırlatmalarını kısa mesajla gönderiyor. Hastalar ziyaretlerini onaylamak veya iptal etmek için cevap verebiliyor; böylece merkez boşalan saatleri, aksi hâlde başka bir günü beklemek zorunda kalacak kişilere verebiliyor."
+    "tr": "Sağlık merkezi doktora gitmeden önce telefonuma bir mesaj gönderiyor. Gelemeyeceksem bildirmek için merkezi arıyorum; böylece o saatte başka biri doktora görünebiliyor."
   },
   {
     "id": "pte-ra-0013",
-    "text": "A group of neighbours has started growing vegetables on land that nobody uses behind the shops. They share the work and divide what they grow, while a small notice board helps everyone keep track of which jobs still need attention.",
-    "level": "B1",
+    "text": "Our neighbours grow vegetables on a piece of land behind the shops. We help them at the weekend, and they give us some of the food to take home, so we can all enjoy eating it together.",
+    "level": "A2",
     "topic": "environment",
-    "tr": "Bir grup komşu dükkânların arkasındaki kullanılmayan arazide sebze yetiştirmeye başladı. İşi paylaşıp yetiştirdiklerini bölüşüyorlar; küçük bir ilan tahtası da herkesin hangi işlerin hâlâ ilgilenilmeyi beklediğini takip etmesine yardımcı oluyor."
+    "tr": "Komşularımız dükkânların arkasındaki bir arazide sebze yetiştiriyor. Hafta sonu onlara yardım ediyoruz, onlar da eve götürmemiz için bize yiyeceklerden veriyor; böylece hepimiz birlikte yiyebiliyoruz."
   },
   {
     "id": "pte-ra-0014",
-    "text": "Our college has replaced printed notices with an online message board. Students can check room changes before leaving home, although paper copies are still available at reception for anyone who can not use the system on their own phone.",
-    "level": "B1",
+    "text": "Our school now puts messages on its website instead of sending letters home. Students can read them on their phones, but anyone who needs help can go to the school office and ask to see a paper copy.",
+    "level": "A2",
     "topic": "technology",
-    "tr": "Kolejimiz basılı duyuruların yerine çevrim içi bir mesaj panosu kullanmaya başladı. Öğrenciler evden çıkmadan derslik değişikliklerini kontrol edebiliyor; ancak sistemi kendi telefonunda kullanamayanlar için danışmada hâlâ kâğıt kopyalar bulunuyor."
+    "tr": "Okulumuz artık eve mektup göndermek yerine mesajları internet sitesine koyuyor. Öğrenciler bunları telefonlarında okuyabiliyor ama yardıma ihtiyacı olanlar okulun ofisine gidip kâğıt bir kopya görmek isteyebiliyor."
   },
   {
     "id": "pte-ra-0015",
@@ -127,16 +127,16 @@
   },
   {
     "id": "pte-ra-0019",
-    "text": "Although repairing household items can initially cost more than replacing them, a local workshop argues that the comparison should include environmental consequences. By teaching residents simple repair techniques, the organisers hope to challenge the assumption that a broken object has reached the end of its useful life.",
-    "level": "B2",
+    "text": "A local group has started helping people repair things instead of throwing them away. At their weekly meeting, anyone can bring a broken item and learn how to fix it, which can save money and reduce the amount of waste.",
+    "level": "B1",
     "topic": "environment",
-    "tr": "Ev eşyalarını onarmak başlangıçta yenisini almaktan daha pahalı olabilse de yerel bir atölye bu karşılaştırmaya çevresel sonuçların da katılması gerektiğini savunuyor. Organizatörler bölge sakinlerine basit onarım teknikleri öğreterek bozuk bir eşyanın artık işe yaramaz olduğu varsayımını sorgulatmayı umuyor."
+    "tr": "Yerel bir grup insanların eşyalarını atmak yerine onarmasına yardım etmeye başladı. Haftalık toplantılarına herkes bozuk bir eşya getirip nasıl tamir edileceğini öğrenebiliyor; bu da para tasarrufu sağlayıp atık miktarını azaltabiliyor."
   },
   {
     "id": "pte-ra-0020",
-    "text": "Introducing new software does not automatically improve a team's performance, particularly when training is overlooked. A successful transition requires time for employees to practise unfamiliar tasks and opportunities to explain which features support their work and which create unnecessary problems.",
-    "level": "B2",
+    "text": "Our office introduced a new computer system last month, but some staff found it difficult to use. The manager has arranged extra training so everyone can practise the main tasks and ask questions before they start using it with customers.",
+    "level": "B1",
     "topic": "technology",
-    "tr": "Yeni bir yazılım kullanmaya başlamak, özellikle eğitim ihmal edildiğinde, bir ekibin performansını kendiliğinden artırmaz. Başarılı bir geçiş için çalışanların alışık olmadıkları işleri uygulamaya zaman ayırması ve hangi özelliklerin işlerine yardımcı olduğunu, hangilerinin gereksiz zorluklar yarattığını anlatabilmesi gerekir."
+    "tr": "Ofisimiz geçen ay yeni bir bilgisayar sistemi kullanmaya başladı ama bazı çalışanlar bunu kullanmakta zorlandı. Müdür, müşterilerle kullanmaya başlamadan önce herkes temel işleri uygulayıp soru sorabilsin diye ek eğitim düzenledi."
   }
 ]

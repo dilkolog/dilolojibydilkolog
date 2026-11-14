@@ -34,3 +34,13 @@ test('short answers have one to three words and read-aloud paragraphs have two t
   assert.match(validateTask('ra', [{ ...load('ra')[0], text: 'A single sentence ' + 'word '.repeat(35) + 'ends.' }]).join(), /two or three sentences/)
   assert.equal(words('a one-word answer'), 3)
 })
+
+test('research revision accepts five blanks, rejects B2 and the gap between FIB length bands', () => {
+  const row = load('fib')[0]
+  const five = structuredClone(row)
+  five.text = five.text.replace(/family\.$/, '[[5]].')
+  five.blanks.push({ answer: 'family', options: ['family', 'school', 'work', 'town'] })
+  assert.deepEqual(validateTask('fib', [five]), [])
+  assert.match(validateTask('fib', [{ ...row, text: row.text + ' word'.repeat(100 - words(row.text)) }]).join(), /60–90 or 120–180/)
+  assert.match(validateTask('wfd', [{ ...load('wfd')[0], level: 'B2' }]).join(), /invalid level/)
+})
