@@ -24,7 +24,8 @@ export function YearCalendar({ db }: { db: KelimeDB }) {
       <p className="small muted">
         {map.activeDays} gün çalıştın, {map.total.toLocaleString('tr-TR')} cevap verdin; en uzun aralıksız dönem {map.longestStreak} gün.
       </p>
-      <div className="year-scroll">
+      {/* It scrolls sideways on a phone: a keyboard reaches it too (Tab, then the arrows). */}
+      <div className="year-scroll" tabIndex={0} role="group" aria-label="Son bir yılın çalışma takvimi, yana kaydırılır">
         <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} className="year-calendar" role="img" aria-label="Yıllık çalışma takvimi">
           {['Pzt', 'Çar', 'Cum'].map((d, i) => (
             <text key={d} x={0} y={18 + (i * 2) * (CELL + GAP) + CELL - 2} className="yc-label">

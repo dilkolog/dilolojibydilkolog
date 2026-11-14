@@ -656,6 +656,7 @@
 .mc-key { display: inline-block; width: 0.625rem; height: 0.625rem; border-radius: var(--r-full); margin: 0 0.25rem 0 0.5rem; vertical-align: middle; }
 .mc-key-ok { background: var(--ok); } .mc-key-bad { background: var(--bad); }
 .year-scroll { overflow-x: auto; direction: rtl; }
+.year-scroll:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; border-radius: var(--r-sm); }
 .year-calendar { direction: ltr; display: block; }
 .yc-label { fill: var(--ink-soft); font-size: 10px; }
 .yc-cell { fill: var(--rule); }

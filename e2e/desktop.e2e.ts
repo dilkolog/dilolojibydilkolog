@@ -8,7 +8,7 @@ import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { unzipSync } from 'fflate'
-import { aiRoute, approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples, gameCard } from './helpers'
+import { aiRoute, approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples, gameCard, seedAnswers } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -59,6 +59,8 @@ test('settings on a wide screen: title row, group strip and cards end on one lin
 
 test('tablet width: one top bar row, the word list in two columns, the profile numbers in one row', async ({ page }) => {
   await startWithSamples(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
   await page.setViewportSize({ width: 820, height: 900 })
   await page.waitForTimeout(300)
   // Brand, languages, places and profile share one row; the brand name stays on one line.
@@ -2056,6 +2058,8 @@ test('shadowing a text: a sentence played from its recording, then said back, th
 
 test('CEFR levels: progress by textbook level, the missing words of a level, a word’s level', async ({ page }) => {
   await startWithSamples(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
   await openScreen(page, 'İlerleme')
   await expect(page.getByRole('heading', { name: 'Seviyelerin kelimelerinden ne kadarını biliyorsun' })).toBeVisible()
   const rows = page.locator('.band-list li')
@@ -3294,6 +3298,8 @@ test('streak repair: broken streak offers recall exam, >=70% score restores stre
 
 test('progress report: print opens a popup window and Excel (.xlsx) download contains at least 7 sheets', async ({ page }) => {
   await startWithSamples(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
   await openScreen(page, 'İlerleme')
   await expect(page.getByRole('heading', { name: 'İlerleme' })).toBeVisible()
 
