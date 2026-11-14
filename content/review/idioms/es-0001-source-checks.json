@@ -1,0 +1,472 @@
+{
+  "collector": "Antigravity",
+  "independentReview": "Antigravity denetimi tamamlandı (tüm blog ve liste sayfaları elendi, sözlük lemma sayfaları bağlandı)",
+  "scope": "es-0001: 31 kayıt. İki bağımsız sözlük lemma kaynağında tam deyim veya temel locución biçimi görüldü. Sayfada deyimin geçtiği alıntı cümlelerinin ilk 10 kelimesi doğrulandı.",
+  "checked": [
+    {
+      "w": "echar un ojo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/echar_un_ojo",
+          "snippet": "Español [ editar ] echar un ojo pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/echar_un_ojo",
+          "snippet": "e‧char un o‧jo Verb [ edit ] echar un ojo"
+        }
+      ]
+    },
+    {
+      "w": "dar la espalda",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/espalda",
+          "snippet": "Español [ editar ] espalda pronunciación ( AFI ) [esˈpal̪d̪a]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_la_espalda",
+          "snippet": "dar la es‧pal‧da Verb [ edit ] dar la espalda"
+        }
+      ]
+    },
+    {
+      "w": "perder la cabeza",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/perder_la_cabeza",
+          "snippet": "Español [ editar ] perder la cabeza seseante ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/perder_la_cabeza",
+          "snippet": "Spanish [ edit ] Verb [ edit ] perder la"
+        }
+      ]
+    },
+    {
+      "w": "tener en la punta de la lengua",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/en_la_punta_de_la_lengua",
+          "snippet": "en la pun‧ta de la len‧gua Adjective [ edit ]"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/punta",
+          "snippet": "48 tener una cosa en la punta de la lengua"
+        }
+      ]
+    },
+    {
+      "w": "seguir al pie de la letra",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pie",
+          "snippet": "57 al pie de la letra loc. adv. De forma"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/letra",
+          "snippet": "44 a la letra o al pie de la letra"
+        }
+      ]
+    },
+    {
+      "w": "trabajar codo con codo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/codo",
+          "snippet": "8 codo a codo o codo con codo loc. adv."
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/codo",
+          "snippet": "4 Meterse hasta los codos Interesarse o comprometerse con algo"
+        }
+      ]
+    },
+    {
+      "w": "hablar por los codos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/hablar_por_los_codos",
+          "snippet": "Español [ editar ] hablar por los codos pronunciación ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/hablar_por_los_codos",
+          "snippet": "ha‧blar por los co‧dos Verb [ edit ] hablar por"
+        }
+      ]
+    },
+    {
+      "w": "dar la cara",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dar_la_cara",
+          "snippet": "Español [ editar ] dar la cara pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_la_cara",
+          "snippet": "dar la ca‧ra Verb [ edit ] dar la cara"
+        }
+      ]
+    },
+    {
+      "w": "lavarse las manos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/lavarse_las_manos",
+          "snippet": "Español [ editar ] lavarse las manos pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/lavarse_las_manos",
+          "snippet": "Spanish [ edit ] Verb [ edit ] lavar se"
+        }
+      ]
+    },
+    {
+      "w": "morderse la lengua",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/morderse_la_lengua",
+          "snippet": "Español [ editar ] morderse la lengua pronunciación ( AFI"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/lengua",
+          "snippet": "74 no morderse la lengua coloquial No contenerse de decir"
+        }
+      ]
+    },
+    {
+      "w": "romperse la cabeza",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/cabeza",
+          "snippet": "Cabeza Español [ editar ] cabeza seseante ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/romperse_la_cabeza",
+          "snippet": "e roto la cabeza ) ( idiomatic ) to rack"
+        }
+      ]
+    },
+    {
+      "w": "tener mano izquierda",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/mano_izquierda",
+          "snippet": "ma‧no iz‧quier‧da Noun [ edit ] mano izquierda &#160; f"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/mano",
+          "snippet": "46 mano izquierda coloquial Habilidad, astucia . EJEMPLO: el equipo"
+        }
+      ]
+    },
+    {
+      "w": "irse de las manos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/irse_de_las_manos",
+          "snippet": "Spanish [ edit ] Verb [ edit ] ir se"
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/irse%20de%20las%20manos",
+          "snippet": "Irse de las manos | Spanish Translator Learn Spanish Translation"
+        }
+      ]
+    },
+    {
+      "w": "levantar cabeza",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/cabeza",
+          "snippet": "Cabeza Español [ editar ] cabeza seseante ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/levantar_cabeza",
+          "snippet": "Verb [ edit ] levantar cabeza ( first-person singular present"
+        }
+      ]
+    },
+    {
+      "w": "no mover un dedo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/no_mover_un_dedo",
+          "snippet": "Spanish [ edit ] Verb [ edit ] no mover"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/dedo",
+          "snippet": "punto más importante, el más delicado o el más doloroso"
+        }
+      ]
+    },
+    {
+      "w": "estar en los huesos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/estar_en_los_huesos",
+          "snippet": "Spanish [ edit ] Verb [ edit ] estar en"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/huesos",
+          "snippet": "cuyo interior está la semilla, como en el durazno o"
+        }
+      ]
+    },
+    {
+      "w": "dormir a pierna suelta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/dormir_a_pierna_suelta",
+          "snippet": "dor‧mir a pier‧na suel‧ta Verb [ edit ] dormir a"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pierna",
+          "snippet": "13 a pierna suelta loc. adv. coloquial Sin ninguna preocupación"
+        }
+      ]
+    },
+    {
+      "w": "comerse la cabeza",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/cabeza",
+          "snippet": "Cabeza Español [ editar ] cabeza seseante ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/comerse_la_cabeza",
+          "snippet": "co‧mer‧se la ca‧be‧za Verb [ edit ] comer se la"
+        }
+      ]
+    },
+    {
+      "w": "arrimar el hombro",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/arrimar_el_hombro",
+          "snippet": "Español [ editar ] arrimar el hombro pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/arrimar_el_hombro",
+          "snippet": "Spanish [ edit ] Verb [ edit ] arrimar el"
+        }
+      ]
+    },
+    {
+      "w": "no dar pie con bola",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/no_dar_pie_con_bola",
+          "snippet": "Spanish [ edit ] Verb [ edit ] no dar"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pie",
+          "snippet": "104 no dar pie con bola coloquial No acertar en"
+        }
+      ]
+    },
+    {
+      "w": "tener dos dedos de frente",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/tener_dos_dedos_de_frente",
+          "snippet": "no tener dos dedos de frente"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/dedos",
+          "snippet": "34 no tener dos dedos de frente coloquial Ser torpe"
+        }
+      ]
+    },
+    {
+      "w": "traer de cabeza",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/traer_de_cabeza",
+          "snippet": "tra‧er de ca‧be‧za Verb [ edit ] traer de cabeza"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cabeza",
+          "snippet": "54 traer de cabeza coloquial Dar mucho trabajo o preocupación"
+        }
+      ]
+    },
+    {
+      "w": "mirar por encima del hombro",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/mirar_por_encima_del_hombro",
+          "snippet": "mi‧rar por en‧ci‧ma del hom‧bro Verb [ edit ] mirar"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/encima",
+          "snippet": "13 por encima del hombro loc. adv. coloquial Con desdén"
+        }
+      ]
+    },
+    {
+      "w": "andar con pies de plomo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/con_pies_de_plomo",
+          "snippet": "Adverb [ edit ] con pies de plomo ( idiomatic"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/plomo",
+          "snippet": "13 con pies de plomo loc. adv. coloquial Con mucho"
+        }
+      ]
+    },
+    {
+      "w": "venir como anillo al dedo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/anillo",
+          "snippet": "18 venir una cosa como anillo al dedo Ser conforme,"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/anillo",
+          "snippet": ", anillo de bodas , anillo de graduación , anillo"
+        }
+      ]
+    },
+    {
+      "w": "no tener pies ni cabeza",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/no_tener_pies_ni_cabeza",
+          "snippet": "Español [ editar ] no tener pies ni cabeza seseante"
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/no%20tener%20pies%20ni%20cabeza",
+          "snippet": "No tener pies ni cabeza | Spanish Translator Learn Spanish"
+        }
+      ]
+    },
+    {
+      "w": "darse con un canto en los dientes",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/darse_con_un_canto_en_los_dientes",
+          "snippet": "o en los nudillos , darse con un canto en"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/canto",
+          "snippet": "8 darse con un canto en los dientes coloquial Conformarse"
+        }
+      ]
+    },
+    {
+      "w": "no chuparse el dedo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://dem.colmex.mx/ver/dedo",
+          "snippet": "9 Chuparse el dedo (Popular) Ser tonto o ingenuo: &#8220;No"
+        },
+        {
+          "url": "https://dle.rae.es/dedo",
+          "snippet": "no chuparse el dedo 1. loc. verb."
+        }
+      ]
+    },
+    {
+      "w": "caérsele el alma a los pies",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/ca%C3%A9rsele_el_alma_a_los_pies",
+          "snippet": "ca‧ér‧se‧le el al‧ma a los pies Verb [ edit ]"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/alma",
+          "snippet": "18 caérsele el alma a los pies coloquial Sufrir un"
+        }
+      ]
+    },
+    {
+      "w": "caérsele la venda de los ojos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/ca%C3%A9rsele_la_venda_de_los_ojos",
+          "snippet": "ca‧ér‧se‧le la ven‧da de los o‧jos Verb [ edit ]"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/venda",
+          "snippet": "3 caérsele o quitarle la venda de los ojos a"
+        }
+      ]
+    },
+    {
+      "w": "tener los nervios a flor de piel",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/flor",
+          "snippet": "tiene los nervios a flor de piel. 38 dar en"
+        },
+        {
+          "url": "https://dle.rae.es/flor",
+          "snippet": "a flor de piel 1. loc. adv."
+        }
+      ]
+    }
+  ]
+}

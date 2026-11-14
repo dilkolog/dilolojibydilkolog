@@ -1,0 +1,487 @@
+[
+ {
+  "w": "caerse de un guindo",
+  "t": "çok saf olmak, herkesin bildiği bir gerçeği geç fark etmek",
+  "lit": "bir vişne ağacından düşmek",
+  "s": "¿De verdad no sabías que eran socios o acabas de caerte de un guindo?",
+  "form": "caerte de un guindo",
+  "tr": "Ortak olduklarını gerçekten bilmiyor muydun yoksa dünyadan haberin mi yok?",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://en.wiktionary.org/wiki/caerse_de_un_guindo",
+   "https://es.pons.com/traducci%C3%B3n/espa%C3%B1ol-ingl%C3%A9s/guindo"
+  ]
+ },
+ {
+  "w": "no haber inventado la pólvora",
+  "t": "pek parlak zekâlı olmamak, kurnaz veya yaratıcı olmamak",
+  "lit": "barutu icat etmemiş olmak",
+  "s": "Es un muchacho trabajador, aunque está claro que no ha inventado la pólvora.",
+  "form": "no ha inventado la pólvora",
+  "tr": "Çalışkan bir genç ama pek parlak zekâlı olmadığı ortada.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://en.wiktionary.org/wiki/no_haber_inventado_la_p%C3%B3lvora",
+   "https://www.diccionarios.com/diccionario/espanol/p%C3%B3lvora"
+  ]
+ },
+ {
+  "w": "no tener ni idea",
+  "t": "hiçbir fikri olmamak, hiç bilmemek",
+  "lit": "fikri bile olmamak",
+  "s": "Sinceramente, no tengo ni idea de dónde guardaron las carpetas antiguas.",
+  "form": "no tengo ni idea",
+  "tr": "Açıkçası eski klasörleri nereye kaldırdıkları hakkında hiçbir fikrim yok.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://en.wiktionary.org/wiki/no_tener_ni_idea",
+   "https://www.diccionarios.com/diccionario/espanol/idea"
+  ]
+ },
+ {
+  "w": "dar por hecho",
+  "t": "kesin gözüyle bakmak, olmuş varsaymak",
+  "lit": "yapılmış olarak vermek",
+  "s": "No des por hecho el resultado antes de terminar el recuento.",
+  "form": "des por hecho",
+  "tr": "Sayım bitmeden önce sonuca kesin gözüyle bakma.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/dar_por_hecho",
+   "https://en.wiktionary.org/wiki/dar_por_hecho"
+  ]
+ },
+ {
+  "w": "estar en la higuera",
+  "t": "dünyadan habersiz olmak, dikkati dağınık olmak",
+  "lit": "incir ağacında olmak",
+  "s": "No se enteró del cambio de aula porque siempre está en la higuera.",
+  "form": "está en la higuera",
+  "tr": "Hep dalgın olduğu için derslik değişikliğinden haberi olmadı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://en.wiktionary.org/wiki/estar_en_la_higuera",
+   "https://www.diccionarios.com/diccionario/espanol/higuera"
+  ]
+ },
+ {
+  "w": "coger con pinzas",
+  "pat": "coger algo con pinzas",
+  "t": "bir bilgiye ihtiyatla yaklaşmak, doğruluğuna hemen güvenmemek",
+  "lit": "cımbızla tutmak",
+  "s": "Esos rumores sin fuente oficial hay que cogerlos con pinzas.",
+  "form": "cogerlos con pinzas",
+  "tr": "Resmi kaynağı olmayan o söylentilere ihtiyatla yaklaşmak gerekir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://en.wiktionary.org/wiki/coger_con_pinzas",
+   "https://dem.colmex.mx/ver/pinzas"
+  ]
+ },
+ {
+  "w": "caer en la cuenta",
+  "pat": "caer en la cuenta de algo",
+  "t": "sonradan farkına varmak, birden hatırlayıp anlamak",
+  "lit": "hesaba düşmek",
+  "eq": "jetonu düşmek",
+  "s": "Al revisar el calendario caí en la cuenta de que era festivo.",
+  "form": "caí en la cuenta",
+  "tr": "Takvime bakınca o günün resmi tatil olduğunu birden fark ettim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://en.wiktionary.org/wiki/caer_en_la_cuenta",
+   "https://www.diccionarios.com/diccionario/espanol/cuenta"
+  ]
+ },
+ {
+  "w": "consultar con la almohada",
+  "t": "bir karar vermeden önce üzerine bir gece düşünmek",
+  "lit": "yastığa danışmak",
+  "s": "Es una decisión importante; prefiero consultarlo con la almohada hasta mañana.",
+  "form": "consultarlo con la almohada",
+  "tr": "Önemli bir karar; yarına kadar üzerine bir gece düşünmeyi tercih ederim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://en.wiktionary.org/wiki/consultar_con_la_almohada",
+   "https://www.diccionarios.com/diccionario/espanol/almohada"
+  ]
+ },
+ {
+  "w": "estar al loro",
+  "t": "gözünü dört açmak, gelişmelerden haberdar olmak",
+  "lit": "papağanda olmak",
+  "s": "Hay que estar al loro por si publican las listas esta tarde.",
+  "form": "estar al loro",
+  "tr": "Listeleri bu öğleden sonra yayınlarlar diye takipte olmak lazım.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/estar_al_loro",
+   "https://en.wiktionary.org/wiki/estar_al_loro"
+  ]
+ },
+ {
+  "w": "sonar a chino",
+  "pat": "sonarle a chino algo a alguien",
+  "t": "hiçbir şey anlamamak, tamamen yabancı gelmek",
+  "lit": "Çince gibi tınlamak",
+  "eq": "Fransız kalmak",
+  "s": "Como nunca estudié contabilidad, todos esos términos me suenan a chino.",
+  "form": "suenan a chino",
+  "tr": "Hiç muhasebe okumadığım için bütün o terimler bana tamamen yabancı geliyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/sonar_a_chino",
+   "https://en.wiktionary.org/wiki/sonar_a_chino"
+  ]
+ },
+ {
+  "w": "cambiar el chip",
+  "t": "zihniyetini değiştirmek, düşüncesini yeni duruma uyarlamak",
+  "lit": "çipi değiştirmek",
+  "s": "Al empezar las vacaciones me costó dos días cambiar el chip.",
+  "form": "cambiar el chip",
+  "tr": "Tatil başladığında kafamı işten uzaklaştırıp yeni tempoya uyum sağlamam iki gün sürdü.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/cambiar_el_chip",
+   "https://en.wiktionary.org/wiki/cambiar_el_chip"
+  ]
+ },
+ {
+  "w": "estar sobre aviso",
+  "t": "önceden haberdar olup hazırlıklı ve tetikte olmak",
+  "lit": "uyarı üstünde olmak",
+  "eq": "tetikte olmak",
+  "s": "Como ya estábamos sobre aviso, detectamos el correo fraudulento enseguida.",
+  "form": "estábamos sobre aviso",
+  "tr": "Önceden uyarıldığımız için sahte e-postayı hemen fark ettik.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://en.wiktionary.org/wiki/estar_sobre_aviso",
+   "https://www.diccionarios.com/diccionario/espanol/aviso"
+  ]
+ },
+ {
+  "w": "cruzársele los cables",
+  "pat": "cruzársele los cables a alguien",
+  "t": "bir anlığına aklı karışmak, ne yaptığını şaşırmak",
+  "lit": "kabloları birbirine çaprazlanmak",
+  "eq": "devreleri yanmak",
+  "s": "Con el cansancio del viaje se me cruzaron los cables y equivoqué la salida.",
+  "form": "cruzaron los cables",
+  "tr": "Yolculuk yorgunluğuyla bir an kafam karıştı ve yanlış çıkışa girdim.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/cruz%C3%A1rsele_los_cables",
+   "https://en.wiktionary.org/wiki/cruz%C3%A1rsele_los_cables"
+  ]
+ },
+ {
+  "w": "estar como una regadera",
+  "t": "tahtası eksik olmak, biraz kaçık olmak",
+  "lit": "bir sulama kabı gibi olmak",
+  "eq": "tahtası eksik olmak",
+  "s": "Propone unas ideas tan disparatadas que parece estar como una regadera.",
+  "form": "estar como una regadera",
+  "tr": "Öyle uçuk fikirler öne sürüyor ki biraz tahtası eksik gibi görünüyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/estar_como_una_regadera",
+   "https://en.wiktionary.org/wiki/como_una_regadera"
+  ]
+ },
+ {
+  "w": "parar mientes",
+  "t": "üzerinde durup dikkatle düşünmek, hesaba katmak",
+  "lit": "zihinleri durdurmak",
+  "s": "Tomó aquella decisión apresurada sin parar mientes en las consecuencias.",
+  "form": "parar mientes",
+  "tr": "Sonuçları üzerinde hiç durup düşünmeden o aceleci kararı verdi.",
+  "reg": "formal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/parar_mientes",
+   "https://en.wiktionary.org/wiki/mientes"
+  ]
+ },
+ {
+  "w": "comulgar con ruedas de molino",
+  "t": "akla mantığa sığmayan şeylere safça inanmak",
+  "lit": "değirmen taşlarıyla komünyon almak",
+  "s": "Conocemos bien los datos reales y no vamos a comulgar con ruedas de molino.",
+  "form": "comulgar con ruedas de molino",
+  "tr": "Gerçek verileri çok iyi biliyoruz, akla sığmayan masallara inanacak değiliz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/comulgar_con_ruedas_de_molino",
+   "https://en.wiktionary.org/wiki/comulgar_con_ruedas_de_molino"
+  ]
+ },
+ {
+  "w": "darse cuenta",
+  "pat": "darse cuenta de algo",
+  "t": "farkına varmak, anlamak",
+  "lit": "kendine hesap vermek",
+  "eq": "farkına varmak",
+  "s": "Al salir del edificio me di cuenta de que no llevaba las llaves.",
+  "form": "di cuenta",
+  "tr": "Binadan çıkarken anahtarları yanıma almadığımın farkına vardım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/darse_cuenta",
+   "https://en.wiktionary.org/wiki/darse_cuenta"
+  ]
+ },
+ {
+  "w": "tener en cuenta",
+  "t": "göz önünde bulundurmak, hesaba katmak",
+  "lit": "hesapta tutmak",
+  "eq": "hesaba katmak",
+  "s": "Antes de elegir la ruta conviene tener en cuenta el pronóstico del tiempo.",
+  "form": "tener en cuenta",
+  "tr": "Rotayı seçmeden önce hava tahminini göz önünde bulundurmak gerekir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/tener_en_cuenta",
+   "https://en.wiktionary.org/wiki/tener_en_cuenta"
+  ]
+ },
+ {
+  "w": "atar cabos",
+  "t": "ipuçlarını birleştirmek, olaylar arasında bağlantı kurup anlamak",
+  "lit": "ip uçlarını bağlamak",
+  "s": "Después de escuchar ambas versiones, el periodista empezó a atar cabos.",
+  "form": "atar cabos",
+  "tr": "Her iki tarafı da dinledikten sonra gazeteci ipuçlarını birleştirmeye başladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/cabos",
+   "https://en.wiktionary.org/wiki/atar_cabos"
+  ]
+ },
+ {
+  "w": "leer entre líneas",
+  "t": "satır aralarını okumak, açıkça söylenmeyeni sezmek",
+  "lit": "satırlar arasını okumak",
+  "eq": "satır aralarını okumak",
+  "s": "El comunicado oficial era diplomático, pero bastaba con leer entre líneas.",
+  "form": "leer entre líneas",
+  "tr": "Resmi açıklama diplomatik bir dille yazılmıştı ama satır aralarını okumak yetiyordu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/leer_entre_l%C3%ADneas",
+   "https://en.wiktionary.org/wiki/leer_entre_l%C3%ADneas"
+  ]
+ },
+ {
+  "w": "perder de vista",
+  "t": "gözden kaçırmak, dikkatinden uzaklaştırmak",
+  "lit": "görüşten kaybetmek",
+  "eq": "gözden kaçırmak",
+  "s": "En medio del debate no debemos perder de vista el objetivo principal.",
+  "form": "perder de vista",
+  "tr": "Tartışmanın ortasında asıl hedefi gözden kaçırmamalıyız.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/perder_de_vista",
+   "https://en.wiktionary.org/wiki/perder_de_vista"
+  ]
+ },
+ {
+  "w": "bajar la guardia",
+  "t": "tedbiri elden bırakmak, dikkati gevşetmek",
+  "lit": "nöbeti indirmek",
+  "eq": "gardını düşürmek",
+  "s": "Aunque hayamos mejorado las cifras, no conviene bajar la guardia todavía.",
+  "form": "bajar la guardia",
+  "tr": "Rakamları iyileştirmiş olsak da henüz tedbiri elden bırakmamak gerekir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/guardia",
+   "https://en.wiktionary.org/wiki/bajar_la_guardia"
+  ]
+ },
+ {
+  "w": "estar en Babia",
+  "t": "dalıp gitmek, aklı bambaşka yerde olmak",
+  "lit": "Babia bölgesinde olmak",
+  "s": "Le pregunté dos veces la hora, pero hoy está en Babia.",
+  "form": "está en Babia",
+  "tr": "Ona saati iki kez sordum ama bugün aklı başka yerde, dalıp gitmiş.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/estar_en_Babia",
+   "https://en.wiktionary.org/wiki/estar_en_Babia"
+  ]
+ },
+ {
+  "w": "perder la chaveta",
+  "t": "aklını kaçırmak, sağduyusunu yitirmek",
+  "lit": "kama çivisini kaybetmek",
+  "eq": "çivisi çıkmak",
+  "s": "Al ver aquella compra tan absurda, pensamos que había perdido la chaveta.",
+  "form": "perdido la chaveta",
+  "tr": "O saçma sapan alışverişi görünce aklını kaçırdığını düşündük.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/perder_la_chaveta",
+   "https://en.wiktionary.org/wiki/perder_la_chaveta"
+  ]
+ },
+ {
+  "w": "caer el veinte",
+  "pat": "caerle el veinte a alguien",
+  "t": "jetonu düşmek, bir durumu nihayet kavramak",
+  "lit": "yirminin düşmesi",
+  "eq": "jetonu düşmek",
+  "s": "Tardó unos segundos en reaccionar hasta que por fin le cayó el veinte.",
+  "form": "cayó el veinte",
+  "tr": "Nihayet jetonu düşene kadar tepki vermesi birkaç saniye sürdü.",
+  "reg": "informal",
+  "area": "Meksika",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/veinte",
+   "https://en.wiktionary.org/wiki/caer_el_veinte"
+  ]
+ },
+ {
+  "w": "llamar la atención",
+  "t": "dikkat çekmek, göze çarpmak",
+  "lit": "dikkati çağırmak",
+  "eq": "dikkat çekmek",
+  "s": "Aquel edificio de ladrillo rojo llamaba la atención desde la plaza.",
+  "form": "llamaba la atención",
+  "tr": "O kırmızı tuğlalı bina meydandan hemen dikkat çekiyordu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/llamar_la_atenci%C3%B3n",
+   "https://en.wiktionary.org/wiki/llamar_la_atenci%C3%B3n"
+  ]
+ },
+ {
+  "w": "devanarse los sesos",
+  "t": "kafa patlatmak, bir şeyi bulmak için zihnini çok yormak",
+  "lit": "beyinlerini makaraya sarmak",
+  "eq": "kafa patlatmak",
+  "s": "Nos devanamos los sesos toda la mañana buscando una solución técnica.",
+  "form": "devanamos los sesos",
+  "tr": "Teknik bir çözüm bulmak için bütün sabah kafa patlattık.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/sesos",
+   "https://en.wiktionary.org/wiki/devanarse_los_sesos"
+  ]
+ },
+ {
+  "w": "cazar al vuelo",
+  "t": "havada kapmak, bir imayı veya fırsatı anında kavramak",
+  "lit": "uçuşta avlamak",
+  "eq": "havada kapmak",
+  "s": "Tiene una mente muy ágil y caza al vuelo cualquier indirecta.",
+  "form": "caza al vuelo",
+  "tr": "Çok kıvrak bir zekâsı var, her imayı anında havada kapar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/al_vuelo",
+   "https://en.wiktionary.org/wiki/cazar_al_vuelo"
+  ]
+ },
+ {
+  "w": "poner en tela de juicio",
+  "t": "şüpheyle yaklaşmak, doğruluğunu sorgulamak",
+  "lit": "yargı bezine koymak",
+  "s": "Nadie en el comité quiso poner en tela de juicio su honestidad.",
+  "form": "poner en tela de juicio",
+  "tr": "Komitedeki hiç kimse onun dürüstlüğünü sorgulamak istemedi.",
+  "reg": "formal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "mind",
+  "src": [
+   "https://es.wiktionary.org/wiki/poner_en_tela_de_juicio",
+   "https://en.wiktionary.org/wiki/poner_en_tela_de_juicio"
+  ]
+ }
+]

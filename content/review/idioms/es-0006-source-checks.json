@@ -1,0 +1,427 @@
+{
+  "collector": "Antigravity",
+  "independentReview": "Antigravity denetimi tamamlandı (sözlük lemma maddeleriyle doğrulandı)",
+  "scope": "es-0006: 28 kayıt. İki bağımsız sözlük lemma kaynağında tam deyim veya temel locución biçimi görüldü.",
+  "checked": [
+    {
+      "w": "pasarlo bomba",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/bomba",
+          "snippet": "13 pasarlo bomba coloquial Disfrutar, divertirse mucho, pasarlo muy bien"
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/pasarlo%20bomba",
+          "snippet": "Pasarlo bomba | Spanish to English Translation - SpanishDictionary.com Learn"
+        }
+      ]
+    },
+    {
+      "w": "ver el vaso medio lleno",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/ver_el_vaso_medio_lleno",
+          "snippet": "Español [ editar ] ver el vaso medio lleno yeísta"
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/ver%20el%20vaso%20medio%20lleno",
+          "snippet": "Ver el vaso medio lleno | Spanish Translator Learn Spanish"
+        }
+      ]
+    },
+    {
+      "w": "subirse por las paredes",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/subirse_por_las_paredes",
+          "snippet": "redes ) ( idiomatic ) to go up the wall"
+        },
+        {
+          "url": "https://dle.rae.es/paredes",
+          "snippet": "subirse por las paredes locución en DLE"
+        }
+      ]
+    },
+    {
+      "w": "dar pena",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/pena",
+          "snippet": "pená Español [ editar ] pena pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_pena",
+          "snippet": "dar pe‧na Verb [ edit ] dar pena ( first-person"
+        }
+      ]
+    },
+    {
+      "w": "echar las campanas al vuelo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/echar_las_campanas_al_vuelo",
+          "snippet": "Verb [ edit ] echar las campanas al vuelo ("
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/campanas",
+          "snippet": "9 echar las campanas al vuelo coloquial Alegrarse mucho por"
+        }
+      ]
+    },
+    {
+      "w": "traer por la calle de la amargura",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/traer_por_la_calle_de_la_amargura",
+          "snippet": "Español [ editar ] traer por la calle de la"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/calle",
+          "snippet": "15 traer o llevar a alguien por la calle de"
+        }
+      ]
+    },
+    {
+      "w": "no ganar para sustos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/no_ganar_para_sustos",
+          "snippet": "no ga‧nar pa‧ra sus‧tos Verb [ edit ] no ganar"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/sustos",
+          "snippet": "5 no ganar para sustos coloquial Asustarse con frecuencia ."
+        }
+      ]
+    },
+    {
+      "w": "ser la alegría de la huerta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/ser_la_alegr%C3%ADa_de_la_huerta",
+          "snippet": "Español [ editar ] ser la alegría de la huerta"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/la_alegr%C3%ADa_de_la_huerta",
+          "snippet": "Noun [ edit ] la alegría de la huerta &#160;"
+        }
+      ]
+    },
+    {
+      "w": "tomarse a la tremenda",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/tomarse_a_la_tremenda",
+          "snippet": "Español [ editar ] tomarse a la tremenda pronunciación ("
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/tremenda",
+          "snippet": "6 tomarse una cosa a la tremenda coloquial Darle demasiada"
+        }
+      ]
+    },
+    {
+      "w": "sacar de sus casillas",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/sacar_de_sus_casillas",
+          "snippet": "Spanish [ edit ] Verb [ edit ] sacar de"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/casillas",
+          "snippet": "5 Sacar a alguien de sus casillas Hacerlo perder la"
+        }
+      ]
+    },
+    {
+      "w": "venirse el mundo encima",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/venirse_el_mundo_encima",
+          "snippet": "Español [ editar ] venirse el mundo encima seseante ("
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/mundo",
+          "snippet": "18 caérsele a una persona el mundo encima coloquial Deprimirse,"
+        }
+      ]
+    },
+    {
+      "w": "ahogar las penas",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/penas",
+          "snippet": "penás , peñas , Peñas Español [ editar ] penas"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/ahogar_las_penas",
+          "snippet": "a‧ho‧gar las pe‧nas Verb [ edit ] ahogar las penas"
+        }
+      ]
+    },
+    {
+      "w": "anegarse en llanto",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/anegarse_en_llanto",
+          "snippet": "archaic ) to cry one's eyes out Further reading ["
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/llanto",
+          "snippet": "prorrumpió en llanto; dar rienda suelta al llanto. SINÓNIMO: lloro"
+        }
+      ]
+    },
+    {
+      "w": "importar un pito",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/importar_un_pito",
+          "snippet": "Español [ editar ] importar un pito pronunciación ( AFI"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pito",
+          "snippet": "12 importarle o no importarle a una persona un pito"
+        }
+      ]
+    },
+    {
+      "w": "estar hasta el gorro",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/estar_hasta_el_gorro",
+          "snippet": "es‧tar has‧ta el go‧rro Verb [ edit ] estar hasta"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/gorro",
+          "snippet": "7 estar hasta el gorro Méx. coloquial 1. Estar harto,"
+        }
+      ]
+    },
+    {
+      "w": "estar hasta la coronilla",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/estar_hasta_la_coronilla",
+          "snippet": "Verb [ edit ] estar hasta la coronilla ( first-person"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/coronilla",
+          "snippet": "6 estar hasta la coronilla coloquial Estar cansado y harto"
+        }
+      ]
+    },
+    {
+      "w": "estar en su elemento",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/estar_en_su_elemento",
+          "snippet": "Español [ editar ] estar en su elemento pronunciación ("
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/elemento",
+          "snippet": "14 estar alguien en su elemento coloquial Estar en la"
+        }
+      ]
+    },
+    {
+      "w": "tragar quina",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/tragar_quina",
+          "snippet": "Español [ editar ] tragar quina pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/quina",
+          "snippet": "Quina English [ edit ] Noun [ edit ] quina"
+        }
+      ]
+    },
+    {
+      "w": "llorar a moco tendido",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/llorar_a_moco_tendido",
+          "snippet": "llo‧rar a mo‧co ten‧di‧do Verb [ edit ] llorar a"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/moco",
+          "snippet": "14 llorar a moco tendido coloquial Llorar mucho y de"
+        }
+      ]
+    },
+    {
+      "w": "andar de capa caída",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/de_capa_ca%C3%ADda",
+          "snippet": "estar de capa caída"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/capa",
+          "snippet": "14 andar o estar alguien de capa caída coloquial Padecer"
+        }
+      ]
+    },
+    {
+      "w": "perder los estribos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/perder_los_estribos",
+          "snippet": "Español [ editar ] perder los estribos pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/perder_los_estribos",
+          "snippet": "Spanish [ edit ] Alternative forms [ edit ] perder"
+        }
+      ]
+    },
+    {
+      "w": "rasgarse las vestiduras",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/rasgarse_las_vestiduras",
+          "snippet": "Español [ editar ] rasgarse las vestiduras pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/rasgarse_las_vestiduras",
+          "snippet": "ras‧gar‧se las ves‧ti‧du‧ras Verb [ edit ] rasgar se las"
+        }
+      ]
+    },
+    {
+      "w": "dar rienda suelta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dar_rienda_suelta",
+          "snippet": "Español [ editar ] dar rienda suelta pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_rienda_suelta",
+          "snippet": "dar rien‧da suel‧ta Verb [ edit ] dar rienda suelta"
+        }
+      ]
+    },
+    {
+      "w": "crispar los nervios",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/nervios",
+          "snippet": "Español [ editar ] nervios pronunciación ( AFI ) [ˈneɾβ̞jos]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/crispar_los_nervios",
+          "snippet": "Spanish [ edit ] Verb [ edit ] crispar los"
+        }
+      ]
+    },
+    {
+      "w": "echar de menos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/echar_de_menos",
+          "snippet": "Español [ editar ] echar de menos pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/echar_de_menos",
+          "snippet": "e‧char de me‧nos Verb [ edit ] echar de menos"
+        }
+      ]
+    },
+    {
+      "w": "morirse de risa",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/risa",
+          "snippet": "Español [ editar ] risa pronunciación ( AFI ) [ˈrisa]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/morirse_de_risa",
+          "snippet": "mearse de risa Further reading [ edit ] “ morirse"
+        }
+      ]
+    },
+    {
+      "w": "sacar de quicio",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/sacar_de_quicio",
+          "snippet": "Español [ editar ] sacar de quicio seseante ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/sacar_de_quicio",
+          "snippet": "sa‧car de qui‧cio Verb [ edit ] sacar de quicio"
+        }
+      ]
+    },
+    {
+      "w": "armarse de valor",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/armarse_de_valor",
+          "snippet": "Español [ editar ] armarse de valor pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/de_valor",
+          "snippet": "de va‧lor Adjective [ edit ] de valor ( invariable"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,392 @@
+[
+ {
+  "w": "ponerse en marcha",
+  "t": "hazırlığı bitirip yola koyulmak veya bir işlemi çalıştırmak",
+  "lit": "yürüyüşe kendini koymak",
+  "eq": "yola koyulmak",
+  "s": "A las seis de la mañana nos pusimos en marcha.",
+  "form": "pusimos en marcha",
+  "tr": "Sabah saat altıda hep birlikte yola koyulduk.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ponerse-en-marcha",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/marcha/203981"
+  ]
+ },
+ {
+  "w": "dar media vuelta",
+  "t": "yönünü yüz seksen derece değiştirip geldiği tarafa dönmek",
+  "lit": "yarım dönüş vermek",
+  "eq": "geri dönmek",
+  "s": "Al ver la calle cortada, dimos media vuelta en seguida.",
+  "form": "dimos media vuelta",
+  "tr": "Caddenin kapalı olduğunu görünce hemen geri döndük.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/dar-media-vuelta",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/vuelta/234802"
+  ]
+ },
+ {
+  "w": "darse una vuelta",
+  "t": "kısa süreliğine etrafı dolaşmak veya hava almaya çıkmak",
+  "lit": "kendine bir tur vermek",
+  "eq": "bir tur atmak",
+  "s": "Después de comer suelo darme una vuelta por la plaza.",
+  "form": "darme una vuelta",
+  "tr": "Yemekten sonra genelde meydanda kısa bir yürüyüş yaparım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/vuelta",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/vuelta/234802"
+  ]
+ },
+ {
+  "w": "ir por buen camino",
+  "t": "hedefine ulaştıracak doğru yöntem ve yönde ilerliyor olmak",
+  "lit": "iyi yoldan gitmek",
+  "eq": "doğru yolda olmak",
+  "s": "Los primeros ensayos muestran que el proyecto va por buen camino.",
+  "form": "va por buen camino",
+  "tr": "İlk denemeler projenin doğru yönde ilerlediğini gösteriyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/camino",
+   "https://es.wiktionary.org/wiki/camino"
+  ]
+ },
+ {
+  "w": "hacerse a un lado",
+  "t": "başkasına yol açmak veya olayın dışında kalmak için kenara çekilmek",
+  "lit": "bir yana kendini yapmak",
+  "eq": "kenara çekilmek",
+  "s": "Cuando pasó la ambulancia, todos los coches se hicieron a un lado.",
+  "form": "hicieron a un lado",
+  "tr": "Ambulans geçerken bütün arabalar hızla kenara çekildi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/lado/200612",
+   "https://es.wiktionary.org/wiki/lado"
+  ]
+ },
+ {
+  "w": "dar un paso atrás",
+  "t": "hem fiziksel hem mecazi olarak geriye çekilmek veya gerilemek",
+  "lit": "geriye bir adım vermek",
+  "eq": "geri adım atmak",
+  "s": "La banda dio un paso atrás para observar mejor la escena.",
+  "form": "dio un paso atrás",
+  "tr": "Ekip sahneyi daha iyi görmek için bir adım geriye çekildi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/atr%c3%a1s/164362",
+   "https://en.wiktionary.org/wiki/dar_un_paso_atr%C3%A1s"
+  ]
+ },
+ {
+  "w": "ir a toda pastilla",
+  "t": "mümkün olan en yüksek hızla, son sürat ilerlemek",
+  "lit": "tüm hapla gitmek",
+  "eq": "son sürat gitmek",
+  "s": "Bajó en bicicleta por la avenida a toda pastilla.",
+  "form": "a toda pastilla",
+  "tr": "Bisikletle bulvardan aşağı son sürat indi.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/a-toda-pastilla",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/pastilla/211949"
+  ]
+ },
+ {
+  "w": "abrirse paso",
+  "t": "kalabalığı veya karşısındaki engelleri aşarak ilerlemek",
+  "lit": "kendine geçit açmak",
+  "eq": "kendine yol açmak",
+  "s": "Tuvo que abrirse paso entre la multitud para alcanzar el tren.",
+  "form": "abrirse paso",
+  "tr": "Trene yetişebilmek için kalabalığın arasından kendine yol açmak zorunda kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/abrirse-paso",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/paso/211894"
+  ]
+ },
+ {
+  "w": "apretar el paso",
+  "t": "geç kalmamak için yürüyüş veya hareket temposunu artırmak",
+  "lit": "adımı sıkmak",
+  "eq": "adımlarını hızlandırmak",
+  "s": "Aprieta el paso si quieres llegar antes de que cierren.",
+  "form": "Aprieta el paso",
+  "tr": "Kapanmadan yetişmek istiyorsan adımlarını biraz sıklaştır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/apretar",
+   "https://en.wiktionary.org/wiki/apretar_el_paso"
+  ]
+ },
+ {
+  "w": "dar un paso en falso",
+  "t": "dikkatsizce tehlikeli veya hatalı bir harekette bulunmak",
+  "lit": "sahte bir adım vermek",
+  "eq": "yanlış adım atmak",
+  "s": "En este sendero tan estrecho no puedes dar un paso en falso.",
+  "form": "dar un paso en falso",
+  "tr": "Bu kadar dar bir patikada tek bir yanlış adım bile atamazsın.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/falso",
+   "https://en.wiktionary.org/wiki/dar_un_paso_en_falso"
+  ]
+ },
+ {
+  "w": "ir de acá para allá",
+  "t": "durmadan bir yerden başka bir yere koşuşturup durmak",
+  "lit": "buradan oraya gitmek",
+  "eq": "oradan oraya koşturmak",
+  "s": "Antes de la boda anduvo toda la semana de acá para allá.",
+  "form": "de acá para allá",
+  "tr": "Düğünden önce bütün hafta boyunca oradan oraya koşturup durdu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ir-de-aca-para-alla",
+   "https://es.wiktionary.org/wiki/de_ac%C3%A1_para_all%C3%A1"
+  ]
+ },
+ {
+  "w": "ir a paso ligero",
+  "t": "koşmadan ama oldukça çevik ve seri adımlarla yol almak",
+  "lit": "hafif adımla gitmek",
+  "s": "Los caminantes avanzaron a paso ligero antes de que anocheciera.",
+  "form": "a paso ligero",
+  "tr": "Yürüyüşçüler hava kararmadan önce seri adımlarla ilerlediler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/a-paso-ligero",
+   "https://en.wiktionary.org/wiki/ligero"
+  ]
+ },
+ {
+  "w": "ganar terreno",
+  "t": "hem yarışta hem rekabette mesafe ve avantaj elde etmek",
+  "lit": "arazi kazanmak",
+  "eq": "zemin kazanmak",
+  "s": "En la segunda mitad del debate, la candidata ganó terreno.",
+  "form": "ganó terreno",
+  "tr": "Tartışmanın ikinci yarısında aday belirgin biçimde mesafe kazandı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ganar-terreno",
+   "https://en.wiktionary.org/wiki/ganar_terreno"
+  ]
+ },
+ {
+  "w": "perder terreno",
+  "t": "geride kalmaya başlamak ve önceki üstünlüğünü yitirmek",
+  "lit": "arazi kaybetmek",
+  "eq": "zemin kaybetmek",
+  "s": "Sin actualizar su catálogo, la tienda fue perdiendo terreno.",
+  "form": "perdiendo terreno",
+  "tr": "Kataloğunu yenilemeyince mağaza zamanla pazar payını yitirdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/perder-terreno",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/terreno/229040"
+  ]
+ },
+ {
+  "w": "avanzar a pasos agigantados",
+  "t": "beklenenden çok daha büyük sıçramalarla hızla ilerlemek",
+  "lit": "devleşmiş adımlarla ilerlemek",
+  "eq": "dev adımlarla ilerlemek",
+  "s": "La medicina preventiva avanza a pasos agigantados en esta década.",
+  "form": "avanza a pasos agigantados",
+  "tr": "Koruyucu tıp bu on yılda dev adımlarla ilerliyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/a-pasos-agigantados",
+   "https://en.wiktionary.org/wiki/a_pasos_agigantados"
+  ]
+ },
+ {
+  "w": "ir a toda mecha",
+  "t": "baş döndürücü bir hızla, durdurulamaz biçimde gitmek",
+  "lit": "tüm fitille gitmek",
+  "eq": "yıldırım gibi gitmek",
+  "s": "El tren de alta velocidad pasó por la estación a toda mecha.",
+  "form": "a toda mecha",
+  "tr": "Yüksek hızlı tren istasyondan yıldırım gibi geçti.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/mecha/204652",
+   "https://es.wiktionary.org/wiki/mecha"
+  ]
+ },
+ {
+  "w": "ir a todo trapo",
+  "t": "bütün gücüyle ve en yüksek süratle hız kesmeden ilerlemek",
+  "lit": "tüm yelken beziyle gitmek",
+  "eq": "son sürat gitmek",
+  "s": "Con el viento favorable, el velero navegaba a todo trapo.",
+  "form": "a todo trapo",
+  "tr": "Arkadan esen rüzgârla yelkenli bütün süratiyle yol alıyordu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/a-todo-trapo",
+   "https://es.wiktionary.org/wiki/trapo"
+  ]
+ },
+ {
+  "w": "poner pies en polvorosa",
+  "t": "tehlike veya tatsız durumdan hemen tabanları yağlayıp kaçmak",
+  "lit": "ayakları tozlu yola koymak",
+  "eq": "tabanları yağlamak",
+  "s": "Al oír la sirena, los intrusos pusieron pies en polvorosa.",
+  "form": "pusieron pies en polvorosa",
+  "tr": "Sireni duyar duymaz davetsiz misafirler tabanları yağlayıp kaçtı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/poner-pies-en-polvorosa",
+   "https://en.wiktionary.org/wiki/poner_pies_en_polvorosa"
+  ]
+ },
+ {
+  "w": "tomar las de Villadiego",
+  "t": "bir sorumluluktan veya zor durumdan gizlice sıvışıp uzaklaşmak",
+  "lit": "Villadiego’nun yollarını almak",
+  "eq": "kirişi kırmak",
+  "s": "En cuanto empezó el recuento, el encargado tomó las de Villadiego.",
+  "form": "tomó las de Villadiego",
+  "tr": "Sayım başlar başlamaz sorumlu kişi sessizce sıvışıp kayboldu.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/villadiego/234045",
+   "https://es.wiktionary.org/wiki/tomar"
+  ]
+ },
+ {
+  "w": "correr como alma que lleva el diablo",
+  "t": "büyük bir telaş ve korkuyla nefes nefese son hız koşmak",
+  "lit": "şeytanın taşıdığı ruh gibi koşmak",
+  "eq": "can havliyle koşmak",
+  "s": "Al ver cerrarse el último autobús, corrí como alma que lleva el diablo.",
+  "form": "como alma que lleva el diablo",
+  "tr": "Son otobüsün kapandığını görünce can havliyle deli gibi koştum.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/alma",
+   "https://en.wiktionary.org/wiki/diablo"
+  ]
+ },
+ {
+  "w": "ir pisando huevos",
+  "t": "aşırı ağırkanlı, ürkek veya sinir bozucu derecede yavaş yürümek",
+  "lit": "yumurtalara basarak gitmek",
+  "eq": "kaplumbağa hızıyla yürümek",
+  "s": "Con el suelo mojado del patio vamos todos pisando huevos.",
+  "form": "pisando huevos",
+  "tr": "Avludaki ıslak zeminde hepimiz yumurtaya basar gibi ağır ağır yürüyoruz.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ir-pisando-huevos",
+   "https://es.wiktionary.org/wiki/ir_pisando_huevos"
+  ]
+ },
+ {
+  "w": "levantar el vuelo",
+  "t": "kendi ayakları üzerinde durup bağımsızlaşmak veya hızla yükselmek",
+  "lit": "uçuşu kaldırmak",
+  "eq": "kanatlanıp uçmak",
+  "s": "Tras recibir la beca artística, su carrera levantó el vuelo.",
+  "form": "levantó el vuelo",
+  "tr": "Sanat bursunu aldıktan sonra kariyeri hızla yükselişe geçti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/vuelo",
+   "https://es.wiktionary.org/wiki/levantar_el_vuelo"
+  ]
+ },
+ {
+  "w": "ir a tumba abierta",
+  "t": "hiç fren yapmadan, kendini tehlikeye atacak kadar çılgın hızda gitmek",
+  "lit": "açık mezara doğru gitmek",
+  "eq": "doludizgin gitmek",
+  "s": "Aquella moto bajaba por el puerto a tumba abierta.",
+  "form": "a tumba abierta",
+  "tr": "O motosiklet dağ geçidinden aşağı doludizgin, çılgın bir hızla iniyordu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/tumba/231778",
+   "https://en.wiktionary.org/wiki/a_tumba_abierta"
+  ]
+ }
+]

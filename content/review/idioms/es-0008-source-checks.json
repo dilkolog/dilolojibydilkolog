@@ -1,0 +1,442 @@
+{
+  "collector": "Antigravity",
+  "independentReview": "Antigravity denetimi tamamlandı (sözlük lemma maddeleriyle doğrulandı)",
+  "scope": "es-0008: 29 kayıt. İki bağımsız sözlük lemma kaynağında tam deyim veya temel locución biçimi görüldü.",
+  "checked": [
+    {
+      "w": "caerse de un guindo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/caerse_de_un_guindo",
+          "snippet": "Verb [ edit ] caer se de un guindo ("
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/caerse%20de%20un%20guindo",
+          "snippet": "Caerse de un guindo | Spanish Translator Learn Spanish Translation"
+        }
+      ]
+    },
+    {
+      "w": "no haber inventado la pólvora",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/no_haber_inventado_la_p%C3%B3lvora",
+          "snippet": "Verb [ edit ] no haber inventado la pólvora ("
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/no%20haber%20inventado%20la%20p%C3%B3lvora",
+          "snippet": "No haber inventado la pólvora | Spanish Translator Learn Spanish"
+        }
+      ]
+    },
+    {
+      "w": "no tener ni idea",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/no_tener_ni_idea",
+          "snippet": "Spanish [ edit ] Verb [ edit ] no tener"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/idea",
+          "snippet": "23 no tener ni idea o ni la más remota"
+        }
+      ]
+    },
+    {
+      "w": "dar por hecho",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dar_por_hecho",
+          "snippet": "Español [ editar ] dar por hecho pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_por_hecho",
+          "snippet": "dar por he‧cho Verb [ edit ] dar por hecho"
+        }
+      ]
+    },
+    {
+      "w": "estar en la higuera",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/estar_en_la_higuera",
+          "snippet": "es‧tar en la hi‧gue‧ra Verb [ edit ] estar en"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/higuera",
+          "snippet": "9 estar en la higuera coloquial Estar distraído, desorientado o"
+        }
+      ]
+    },
+    {
+      "w": "coger con pinzas",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/coger_con_pinzas",
+          "snippet": "Spanish [ edit ] Verb [ edit ] coger con"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/pinzas",
+          "snippet": ", pinza de cirujano , pinzas para colgar la ropa"
+        }
+      ]
+    },
+    {
+      "w": "caer en la cuenta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/caer_en_la_cuenta",
+          "snippet": "ca‧er en la cuen‧ta Verb [ edit ] caer en"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cuenta",
+          "snippet": "25 caer en la cuenta coloquial Entender o acordarse de"
+        }
+      ]
+    },
+    {
+      "w": "consultar con la almohada",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/consultar_con_la_almohada",
+          "snippet": "con‧sul‧tar con la al‧mo‧ha‧da Verb [ edit ] consultar con"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/almohada",
+          "snippet": "almohadón 3 consultar algo con la almohada coloquial Pensar, meditar"
+        }
+      ]
+    },
+    {
+      "w": "estar al loro",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/estar_al_loro",
+          "snippet": "Español [ editar ] estar al loro pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/estar_al_loro",
+          "snippet": "Spanish [ edit ] Verb [ edit ] estar al"
+        }
+      ]
+    },
+    {
+      "w": "sonar a chino",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/sonar_a_chino",
+          "snippet": "Español [ editar ] sonar a chino pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/sonar_a_chino",
+          "snippet": "so‧nar a chi‧no Verb [ edit ] sonar a chino"
+        }
+      ]
+    },
+    {
+      "w": "cambiar el chip",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/cambiar_el_chip",
+          "snippet": "Español [ editar ] cambiar el chip pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/cambiar_el_chip",
+          "snippet": "cam‧biar el chip Verb [ edit ] cambiar el chip"
+        }
+      ]
+    },
+    {
+      "w": "estar sobre aviso",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/estar_sobre_aviso",
+          "snippet": "es‧tar so‧bre a‧vi‧so Verb [ edit ] estar sobre aviso"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/aviso",
+          "snippet": "5 estar sobre aviso Estar prevenido o preparado para lo"
+        }
+      ]
+    },
+    {
+      "w": "cruzársele los cables",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/cruz%C3%A1rsele_los_cables",
+          "snippet": "Español [ editar ] cruzársele los cables seseante ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/cruz%C3%A1rsele_los_cables",
+          "snippet": "os cables ) ( idiomatic ) to get one's wires"
+        }
+      ]
+    },
+    {
+      "w": "estar como una regadera",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/estar_como_una_regadera",
+          "snippet": "Español [ editar ] estar como una regadera pronunciación ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/como_una_regadera",
+          "snippet": "Spanish [ edit ] Alternative forms [ edit ] loco"
+        }
+      ]
+    },
+    {
+      "w": "parar mientes",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/parar_mientes",
+          "snippet": "Español [ editar ] parar mientes pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/mientes",
+          "snippet": "Spanish [ edit ] Noun [ edit ] mientes &#160;"
+        }
+      ]
+    },
+    {
+      "w": "comulgar con ruedas de molino",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/comulgar_con_ruedas_de_molino",
+          "snippet": "Español [ editar ] comulgar con ruedas de molino pronunciación"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/comulgar_con_ruedas_de_molino",
+          "snippet": "Spanish [ edit ] Verb [ edit ] comulgar con"
+        }
+      ]
+    },
+    {
+      "w": "darse cuenta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/darse_cuenta",
+          "snippet": "Español [ editar ] darse cuenta pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/darse_cuenta",
+          "snippet": "Pocos pueden darse cuenta de sus defectos. Few people can"
+        }
+      ]
+    },
+    {
+      "w": "tener en cuenta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/tener_en_cuenta",
+          "snippet": "Español [ editar ] tener en cuenta pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/tener_en_cuenta",
+          "snippet": "te‧ner en cuen‧ta Verb [ edit ] tener en cuenta"
+        }
+      ]
+    },
+    {
+      "w": "atar cabos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/cabos",
+          "snippet": "Español [ editar ] cabos pronunciación ( AFI ) [ˈkaβ̞os]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/atar_cabos",
+          "snippet": "Spanish [ edit ] Verb [ edit ] atar cabos"
+        }
+      ]
+    },
+    {
+      "w": "leer entre líneas",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/leer_entre_l%C3%ADneas",
+          "snippet": "Español [ editar ] leer entre líneas pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/leer_entre_l%C3%ADneas",
+          "snippet": "Spanish [ edit ] Verb [ edit ] leer entre"
+        }
+      ]
+    },
+    {
+      "w": "perder de vista",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/perder_de_vista",
+          "snippet": "Español [ editar ] perder de vista pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/perder_de_vista",
+          "snippet": "Portuguese [ edit ] Verb [ edit ] perder de"
+        }
+      ]
+    },
+    {
+      "w": "bajar la guardia",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/guardia",
+          "snippet": "Guardia Español [ editar ] guardia pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/bajar_la_guardia",
+          "snippet": "Spanish [ edit ] Verb [ edit ] bajar la"
+        }
+      ]
+    },
+    {
+      "w": "estar en Babia",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/estar_en_Babia",
+          "snippet": "Español [ editar ] estar en Babia pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/estar_en_Babia",
+          "snippet": "es‧tar en Ba‧bia Verb [ edit ] estar en Babia"
+        }
+      ]
+    },
+    {
+      "w": "perder la chaveta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/perder_la_chaveta",
+          "snippet": "Español [ editar ] perder la chaveta pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/perder_la_chaveta",
+          "snippet": ") Verb [ edit ] perder la chaveta ( first-person"
+        }
+      ]
+    },
+    {
+      "w": "caer el veinte",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/veinte",
+          "snippet": "Español [ editar ] veinte pronunciación ( AFI ) [ˈbẽjn̪t̪e]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/caer_el_veinte",
+          "snippet": "ca‧er el vein‧te Verb [ edit ] caer el veinte"
+        }
+      ]
+    },
+    {
+      "w": "llamar la atención",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/llamar_la_atenci%C3%B3n",
+          "snippet": "Español [ editar ] llamar la atención seseante, yeísta ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/llamar_la_atenci%C3%B3n",
+          "snippet": "lla‧mar la a‧ten‧ción Verb [ edit ] llamar la atención"
+        }
+      ]
+    },
+    {
+      "w": "devanarse los sesos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/sesos",
+          "snippet": "Español [ editar ] sesos pronunciación ( AFI ) [ˈsesos]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/devanarse_los_sesos",
+          "snippet": "Verb [ edit ] devanar se los sesos ( first-person"
+        }
+      ]
+    },
+    {
+      "w": "cazar al vuelo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/al_vuelo",
+          "snippet": "Español [ editar ] al vuelo pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/cazar_al_vuelo",
+          "snippet": "Spanish [ edit ] Verb [ edit ] cazar al"
+        }
+      ]
+    },
+    {
+      "w": "poner en tela de juicio",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/poner_en_tela_de_juicio",
+          "snippet": "Español [ editar ] poner en tela de juicio seseante"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/poner_en_tela_de_juicio",
+          "snippet": "Spanish [ edit ] Verb [ edit ] poner en"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,502 @@
+[
+ {
+  "w": "romper el hielo",
+  "t": "soğukluğu dağıtmak, ortamdaki gerginliği yumuşatmak",
+  "lit": "buzu kırmak",
+  "eq": "buzları eritmek",
+  "s": "Contó una anécdota divertida al principio para romper el hielo.",
+  "form": "romper el hielo",
+  "tr": "Ortamı yumuşatmak için başta eğlenceli bir anısını anlattı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/romper-el-hielo",
+   "https://es.wiktionary.org/wiki/romper_el_hielo"
+  ]
+ },
+ {
+  "w": "ser la mano derecha",
+  "pat": "ser la mano derecha de alguien",
+  "t": "en güvendiği yardımcısı ve baş destekçisi olmak",
+  "lit": "birinin sağ eli olmak",
+  "eq": "sağ kolu olmak",
+  "s": "Marta lleva diez años aquí y es la mano derecha de la directora.",
+  "form": "es la mano derecha",
+  "tr": "Marta on yıldır burada ve müdürün sağ kolu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/mano",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/mano/203663"
+  ]
+ },
+ {
+  "w": "tener un corazón de oro",
+  "t": "çok iyi kalpli ve merhametli olmak",
+  "lit": "altından bir kalbi olmak",
+  "eq": "altın gibi kalbi olmak",
+  "s": "Mi vecino siempre ayuda a todos porque tiene un corazón de oro.",
+  "form": "tiene un corazón de oro",
+  "tr": "Komşum altın gibi kalbi olduğu için herkese her zaman yardım eder.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/oro/210123",
+   "https://en.wiktionary.org/wiki/tener_un_coraz%C3%B3n_de_oro"
+  ]
+ },
+ {
+  "w": "dar la lata",
+  "pat": "dar la lata a alguien",
+  "t": "ısrarla rahatsız etmek, başının etini yemek",
+  "lit": "tenekeyi vermek",
+  "eq": "kafa ütülemek",
+  "s": "El niño estuvo dando la lata toda la tarde hasta que salimos.",
+  "form": "dando la lata",
+  "tr": "Çocuk biz dışarı çıkana kadar bütün öğleden sonra başımızın etini yedi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/dar-la-lata",
+   "https://es.wiktionary.org/wiki/dar_la_lata"
+  ]
+ },
+ {
+  "w": "dejar plantado",
+  "pat": "dejar plantado a alguien",
+  "t": "sözleşilen buluşmaya gelmeyip bekletmek",
+  "lit": "dikilmiş bırakmak",
+  "eq": "ekmek",
+  "s": "Esperé media hora en la cafetería, pero al final me dejó plantado.",
+  "form": "dejó plantado",
+  "tr": "Kafede yarım saat bekledim ama sonunda beni ekti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/plantado/214302",
+   "https://es.wiktionary.org/wiki/dejar_plantado"
+  ]
+ },
+ {
+  "w": "ser uña y carne",
+  "t": "çok yakın dost olmak, hiç ayrılmamak",
+  "lit": "tırnak ve et olmak",
+  "eq": "etle tırnak gibi olmak",
+  "s": "Desde el colegio, Ana y Laura son uña y carne en todo.",
+  "form": "son uña y carne",
+  "tr": "Okul yıllarından beri Ana ile Laura her konuda etle tırnak gibidir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/ser-una-y-carne",
+   "https://en.wiktionary.org/wiki/ser_u%C3%B1a_y_carne"
+  ]
+ },
+ {
+  "w": "hacer la pelota",
+  "pat": "hacer la pelota a alguien",
+  "t": "çıkarı için aşırı övgü ve yaltaklanma yapmak",
+  "lit": "topu yapmak",
+  "eq": "yağ çekmek",
+  "s": "No soporta a los compañeros que le hacen la pelota al jefe.",
+  "form": "hacen la pelota",
+  "tr": "Patrona yağ çeken iş arkadaşlarına hiç tahammül edemiyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/pelota/212566",
+   "https://en.wiktionary.org/wiki/hacer_la_pelota"
+  ]
+ },
+ {
+  "w": "hacer el vacío",
+  "pat": "hacer el vacío a alguien",
+  "t": "birini kasten görmezden gelip dışlamak",
+  "lit": "boşluğu yapmak",
+  "s": "Cuando cambió de opinión, sus antiguos amigos empezaron a hacerle el vacío.",
+  "form": "hacerle el vacío",
+  "tr": "Fikrini değiştirince eski arkadaşları onu dışlamaya başladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/vacio",
+   "https://en.wiktionary.org/wiki/hacer_el_vac%C3%ADo"
+  ]
+ },
+ {
+  "w": "ser un cero a la izquierda",
+  "t": "hiçbir sözü veya ağırlığı olmamak, önemsenmemek",
+  "lit": "soldaki bir sıfır olmak",
+  "eq": "solda sıfır kalmak",
+  "s": "En esa reunión me sentí un cero a la izquierda.",
+  "form": "un cero a la izquierda",
+  "tr": "O toplantıda kendimi tamamen önemsiz hissettim.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cero",
+   "https://es.wiktionary.org/wiki/ser_un_cero_a_la_izquierda"
+  ]
+ },
+ {
+  "w": "hacer sombra",
+  "pat": "hacer sombra a alguien",
+  "t": "başarısı veya yeteneğiyle birini geride bırakmak",
+  "lit": "gölge yapmak",
+  "eq": "gölgede bırakmak",
+  "s": "La joven actriz brilló tanto que le hizo sombra al protagonista.",
+  "form": "hizo sombra",
+  "tr": "Genç oyuncu o kadar parladı ki başrolü gölgede bıraktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hacer-sombra",
+   "https://en.wiktionary.org/wiki/hacer_sombra"
+  ]
+ },
+ {
+  "w": "tener don de gentes",
+  "t": "insanlarla kolayca sıcak ilişki kurabilmek",
+  "lit": "insanlar armağanına sahip olmak",
+  "s": "Es ideal para recibir clientes porque tiene mucho don de gentes.",
+  "form": "don de gentes",
+  "tr": "İnsan ilişkileri çok güçlü olduğu için müşteri karşılamak için biçilmiş kaftan.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/don/183111",
+   "https://en.wiktionary.org/wiki/don_de_gentes"
+  ]
+ },
+ {
+  "w": "hacerse de rogar",
+  "t": "kabul etmeden önce nazlanıp ağırdan almak",
+  "lit": "kendine yalvartmak",
+  "eq": "nazlanmak",
+  "s": "Sabemos que quieres cantar, así que no te hagas de rogar.",
+  "form": "hagas de rogar",
+  "tr": "Şarkı söylemek istediğini biliyoruz, o yüzden nazlanma.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hacerse",
+   "https://en.wiktionary.org/wiki/hacerse_de_rogar"
+  ]
+ },
+ {
+  "w": "tener cara dura",
+  "t": "hiç utanmadan yüzsüzce davranmak",
+  "lit": "sert yüzü olmak",
+  "s": "Llega tarde cada día y aún pide aumento; qué cara dura.",
+  "form": "cara dura",
+  "tr": "Her gün geç kalıyor, üstüne bir de zam istiyor; ne yüzsüzlük.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cara-dura",
+   "https://en.wiktionary.org/wiki/cara_dura"
+  ]
+ },
+ {
+  "w": "dar la nota",
+  "t": "yersiz davranışla tüm dikkatleri üstüne çekmek",
+  "lit": "notayı vermek",
+  "s": "En cada boda acaba bebiendo de más y dando la nota.",
+  "form": "dando la nota",
+  "tr": "Her düğünde fazla içip sonunda olay çıkararak göze batıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/nota",
+   "https://es.wiktionary.org/wiki/dar_la_nota"
+  ]
+ },
+ {
+  "w": "ser tal para cual",
+  "t": "huyları bakımından birbirine tıpatıp denk düşmek",
+  "lit": "öyleye böyle olmak",
+  "eq": "tencere yuvarlanmış kapağını bulmuş",
+  "s": "Los dos son igual de testarudos; la verdad es que son tal para cual.",
+  "form": "son tal para cual",
+  "tr": "İkisi de aynı derecede inatçı; doğrusu tam birbirlerine göreler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/tal",
+   "https://es.wiktionary.org/wiki/tal_para_cual"
+  ]
+ },
+ {
+  "w": "ser un trozo de pan",
+  "t": "son derece uysal, zararsız ve iyi huylu olmak",
+  "lit": "bir parça ekmek olmak",
+  "eq": "pamuk gibi olmak",
+  "s": "Aunque parezca serio al principio, tu abuelo es un trozo de pan.",
+  "form": "es un trozo de pan",
+  "tr": "Başta ciddi görünse de deden pamuk gibi bir insan.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/trozo",
+   "https://es.wiktionary.org/wiki/trozo"
+  ]
+ },
+ {
+  "w": "seguir la corriente",
+  "pat": "seguir la corriente a alguien",
+  "t": "tartışmamak için karşıdakinin dediğine uyar görünmek",
+  "lit": "akıntıyı izlemek",
+  "eq": "suyuna gitmek",
+  "s": "Cuando se pone pesado, prefiero seguirle la corriente y cambiar de tema.",
+  "form": "seguirle la corriente",
+  "tr": "Çekişmeye başlayınca suyuna gidip konuyu değiştirmeyi tercih ediyorum.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/corriente",
+   "https://en.wiktionary.org/wiki/seguir_la_corriente"
+  ]
+ },
+ {
+  "w": "caer en gracia",
+  "pat": "caer en gracia a alguien",
+  "t": "sempati uyandırmak, birinin hoşuna gitmek",
+  "lit": "zarafete düşmek",
+  "eq": "kanına girmek",
+  "s": "Su sentido del humor le cayó en gracia a toda la familia.",
+  "form": "cayó en gracia",
+  "tr": "Mizah anlayışı tüm ailenin çok hoşuna gitti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/gracia",
+   "https://en.wiktionary.org/wiki/caer_en_gracia"
+  ]
+ },
+ {
+  "w": "estar a partir un piñón",
+  "pat": "estar a partir un piñón con alguien",
+  "t": "aralarından su sızmayacak kadar sıkı fıkı olmak",
+  "lit": "bir çam fıstığını bölüşecek halde olmak",
+  "eq": "yedikleri içtikleri ayrı gitmemek",
+  "s": "Antes discutían mucho, pero ahora están a partir un piñón.",
+  "form": "están a partir un piñón",
+  "tr": "Eskiden çok tartışırlardı ama şimdi aralarından su sızmıyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/pi%c3%b1%c3%b3n/213947",
+   "https://en.wiktionary.org/wiki/estar_a_partir_un_pi%C3%B1%C3%B3n"
+  ]
+ },
+ {
+  "w": "tener entre ceja y ceja",
+  "pat": "tener entre ceja y ceja a alguien o algo",
+  "t": "birine veya bir şeye takıntı derecesinde odaklanmak",
+  "lit": "iki kaşın arasında tutmak",
+  "eq": "kafaya takmak",
+  "s": "Ese entrenador tiene entre ceja y ceja al delantero desde enero.",
+  "form": "tiene entre ceja y ceja",
+  "tr": "O teknik direktör ocak ayından beri forvete kafayı takmış durumda.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/tener-algo-metido-entre-ceja-y-ceja",
+   "https://en.wiktionary.org/wiki/tener_entre_ceja_y_ceja"
+  ]
+ },
+ {
+  "w": "llevar la voz cantante",
+  "t": "bir grupta yön veren ve sözü geçen kişi olmak",
+  "lit": "şarkı söyleyen sesi taşımak",
+  "eq": "dümende olmak",
+  "s": "En las negociaciones del sindicato siempre lleva la voz cantante Julia.",
+  "form": "lleva la voz cantante",
+  "tr": "Sendika görüşmelerinde her zaman başı Julia çeker.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/voz",
+   "https://en.wiktionary.org/wiki/llevar_la_voz_cantante"
+  ]
+ },
+ {
+  "w": "meter cizaña",
+  "t": "insanların arasını bozacak dedikodu ve fitne yaymak",
+  "lit": "delice otu sokmak",
+  "eq": "ara bozmak",
+  "s": "Todo iba tranquilo hasta que empezó a meter cizaña entre hermanos.",
+  "form": "meter cizaña",
+  "tr": "Kardeşlerin arasına fitne sokmaya başlayana kadar her şey sakindi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/meter",
+   "https://es.wiktionary.org/wiki/meter_ciza%C3%B1a"
+  ]
+ },
+ {
+  "w": "poner de vuelta y media",
+  "pat": "poner de vuelta y media a alguien",
+  "t": "birini acımasızca azarlamak veya arkasından yerden yere vurmak",
+  "lit": "bir tur ve yarım koymak",
+  "eq": "yerden yere vurmak",
+  "s": "Al enterarse del retraso, el cliente nos puso de vuelta y media.",
+  "form": "puso de vuelta y media",
+  "tr": "Gecikmeyi öğrenince müşteri bizi ağzına geleni sayıp haşladı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/vuelta",
+   "https://en.wiktionary.org/wiki/poner_de_vuelta_y_media"
+  ]
+ },
+ {
+  "w": "dar el cante",
+  "t": "uygunsuz davranışla dikkat çekip ortamı garip duruma sokmak",
+  "lit": "şarkıyı vermek",
+  "s": "Con esa chaqueta chillona diste el cante en la ceremonia.",
+  "form": "diste el cante",
+  "tr": "O cırtlak ceketle törende bütün bakışları tuhaf biçimde üstüne çektin.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/cante",
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/cante/169562"
+  ]
+ },
+ {
+  "w": "tener sangre de horchata",
+  "t": "hiçbir olay karşısında heyecanlanmayıp aşırı tepkisiz kalmak",
+  "lit": "horchata kanı olmak",
+  "eq": "soğukkanlılıktan da öte uyuşuk olmak",
+  "s": "Suena la alarma y no se mueve; tiene sangre de horchata.",
+  "form": "tiene sangre de horchata",
+  "tr": "Alarm çalıyor ama kılı kıpırdamıyor; adamın damarlarında buz akıyor sanki.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/sangre/223388",
+   "https://es.wiktionary.org/wiki/sangre"
+  ]
+ },
+ {
+  "w": "subirse a la parra",
+  "t": "haddini aşacak kadar öfkelenmek veya kibirlenmek",
+  "lit": "asmaya tırmanmak",
+  "eq": "tepesi atmak",
+  "s": "Le hice una crítica menor y se subió a la parra enseguida.",
+  "form": "subió a la parra",
+  "tr": "Küçük bir eleştiri yaptım, hemen tepesi atıp parladı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/parra/211597",
+   "https://es.wiktionary.org/wiki/parra"
+  ]
+ },
+ {
+  "w": "arrimar el ascua a su sardina",
+  "t": "konuyu veya durumu kendi çıkarına yontmak",
+  "lit": "koru kendi sardalyasına yaklaştırmak",
+  "eq": "kendi değirmenine su taşımak",
+  "s": "En el reparto de tareas, cada socio arrima el ascua a su sardina.",
+  "form": "arrima el ascua a su sardina",
+  "tr": "İş paylaşımında her ortak yorganı kendi tarafına çekiyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/ascua/163671",
+   "https://en.wiktionary.org/wiki/arrimar_el_ascua_a_su_sardina"
+  ]
+ },
+ {
+  "w": "hacerse el sueco",
+  "t": "duymamış veya anlamamış gibi davranıp işten sıyrılmak",
+  "lit": "İsveçli gibi davranmak",
+  "eq": "duymazlıktan gelmek",
+  "s": "Cuando tocó pagar la cena, mi primo se hizo el sueco.",
+  "form": "hizo el sueco",
+  "tr": "Akşam yemeğini ödeme sırası gelince kuzenim anlamazlıktan geldi.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://www.larousse.fr/dictionnaires/espagnol-francais/sueco/226926",
+   "https://es.wiktionary.org/wiki/hacerse_el_sueco"
+  ]
+ },
+ {
+  "w": "hacer caso omiso",
+  "pat": "hacer caso omiso de algo",
+  "t": "uyarıyı veya kuralı bilinçli biçimde hiç dikkate almamak",
+  "lit": "ihmal edilmiş ilgi göstermek",
+  "eq": "kulak ardı etmek",
+  "s": "El conductor hizo caso omiso de las señales y siguió adelante.",
+  "form": "hizo caso omiso",
+  "tr": "Sürücü işaretlere hiç aldırış etmeden yoluna devam etti.",
+  "reg": "formal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hacer-caso-omiso-de",
+   "https://es.wiktionary.org/wiki/hacer_caso_omiso"
+  ]
+ }
+]

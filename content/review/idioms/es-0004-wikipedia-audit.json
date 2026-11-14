@@ -1,0 +1,247 @@
+{
+  "collector": "Codex",
+  "independentReview": false,
+  "scope": "es-0004 kalan 30 Wikipedia atfı; açılan sayfalara dayanan toplayan denetimi",
+  "checked": [
+    {
+      "w": "llegar a fin de mes",
+      "u": "https://es.wikipedia.org/wiki/Outerlands",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Film özeti içinde doğal kullanım var; URL içerik sözcüğü kuralına uymuyor."
+    },
+    {
+      "w": "apretarse el cinturón",
+      "u": "https://es.wikipedia.org/wiki/Deudas",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Kaynakça başlığında geçiyor; doğrudan deyim açıklaması değil."
+    },
+    {
+      "w": "andar mal de dinero",
+      "u": "https://es.wikipedia.org/wiki/Cuerda_de_presos",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Çekimli kullanım var; şeffaf kalıp olduğu için aday da elenecek."
+    },
+    {
+      "w": "ir a medias",
+      "u": "https://es.wikipedia.org/wiki/Carlos_del_Frade",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Biyografide kullanım var; açıklama yok ve URL kuralına uymuyor."
+    },
+    {
+      "w": "estar en números rojos",
+      "u": "https://es.wikipedia.org/wiki/Sobregiro",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Números rojos açıklanıyor; URL kuralına uymuyor."
+    },
+    {
+      "w": "comprar a precio de saldo",
+      "u": "https://es.wikipedia.org/wiki/Esc%C3%A1ndalo_de_Enron",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Şeffaf fiyat kalıbı; deyim niteliği nedeniyle elenecek."
+    },
+    {
+      "w": "nadar en la abundancia",
+      "u": "https://es.wikipedia.org/wiki/Mill%C3%B3n",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "İfade eş anlamlı açıklamasında var; URL kuralına uymuyor."
+    },
+    {
+      "w": "rascarse el bolsillo",
+      "u": "https://es.wikipedia.org/wiki/Mississippi_Queen_%26_The_Wet_Dogs",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Gazete başlığına atıfta geçiyor; gazetenin kendisi tercih edilmeli."
+    },
+    {
+      "w": "hacer su agosto",
+      "u": "https://es.wikipedia.org/wiki/Agosto",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Hacer su agosto açıklaması var; bağımsız sözlük sayfasıyla değiştirilecek."
+    },
+    {
+      "w": "vivir al día",
+      "u": "https://es.wikipedia.org/wiki/Osvaldo_Miranda",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Tiyatro eseri adı; mali anlam doğrulanmıyor."
+    },
+    {
+      "w": "pagar a pachas",
+      "u": "https://es.wikipedia.org/wiki/Provincia_de_Huamal%C3%ADes",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Pachas yer adı; deyim yok."
+    },
+    {
+      "w": "hacerse de oro",
+      "u": "https://es.wikipedia.org/wiki/Eric_Frattini",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Kaynakça başlığında çekimli biçim var; doğrudan sözlük tercih edilecek."
+    },
+    {
+      "w": "ser una mina de oro",
+      "u": "https://es.wikipedia.org/wiki/Elmina",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Mina de Oro yer adı; mecaz anlam yok."
+    },
+    {
+      "w": "costar un pico",
+      "u": "https://es.wikipedia.org/wiki/Maruxa",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "1916 alıntısında çekimli kullanım var; güncel kullanım için yeterli değil."
+    },
+    {
+      "w": "salir a cuenta",
+      "u": "https://es.wikipedia.org/wiki/Metro_(supermercado)",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Reklam sloganında çekimli kullanım var; URL kuralına uymuyor."
+    },
+    {
+      "w": "quedarse con lo puesto",
+      "u": "https://es.wikipedia.org/wiki/Guerra_de_Arauco",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Salvar con lo puesto var; başlıktaki tam kalıp açıklanmıyor."
+    },
+    {
+      "w": "cobrar en dinero negro",
+      "u": "https://es.wikipedia.org/wiki/Dinero_negro",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Dinero negro terimi açıklanıyor; cobrar fiilli başlık doğrudan desteklenmiyor."
+    },
+    {
+      "w": "quedar por puertas",
+      "u": "https://es.wikipedia.org/wiki/Sistema_combinacional",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Elektronik mantık devreleri; deyim yok."
+    },
+    {
+      "w": "no tener donde caerse muerto",
+      "u": "https://es.wikipedia.org/wiki/Pipiolos",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "1876 romanından alıntıda var; güncel kullanım için tek başına yeterli değil."
+    },
+    {
+      "w": "estar a dos velas",
+      "u": "https://es.wikipedia.org/wiki/Starlite_Festival",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "A Dos Velas müzik grubu; deyim açıklanmıyor."
+    },
+    {
+      "w": "valer un potosí",
+      "u": "https://es.wikipedia.org/wiki/Potos%C3%AD_(moneda)",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Vale un potosí örneği var; kaynak gerektiren tarih iddiası yerine sözlük tercih edilecek."
+    },
+    {
+      "w": "pagar a escote",
+      "u": "https://es.wikipedia.org/wiki/Antimio_de_Arriba",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Se pagó a escote kullanımı var; URL kuralına uymuyor."
+    },
+    {
+      "w": "pagar a tocateja",
+      "u": "https://es.wikipedia.org/wiki/Pandemia_de_COVID-19_en_Espa%C3%B1a",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Kaynakça başlığında tocateja var; asıl sayfa tercih edilmeli."
+    },
+    {
+      "w": "hacer caja",
+      "u": "https://es.wikipedia.org/wiki/Tour_de_Pek%C3%ADn",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Alıntıda hacer caja geçiyor; URL kuralına uymuyor."
+    },
+    {
+      "w": "tirar de talonario",
+      "u": "https://es.wikipedia.org/wiki/Gog",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "A golpe de talonario varyantı var; tirar de başlığının doğrudan açıklaması değil."
+    },
+    {
+      "w": "vivir de gorra",
+      "u": "https://es.wikipedia.org/wiki/Gorra",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Başlık aksesuarı anlatıyor; vivir de gorra yok."
+    },
+    {
+      "w": "pagar contante y sonante",
+      "u": "https://es.wikipedia.org/wiki/Dinero_en_efectivo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Dinero contante y sonante açıklanıyor; URL kuralına uymuyor."
+    },
+    {
+      "w": "pedir el oro y el moro",
+      "u": "https://es.wikipedia.org/wiki/El_oro_y_el_moro",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Radyo programı; pedir el oro y el moro deyimi yok."
+    },
+    {
+      "w": "hacer un simpa",
+      "u": "https://es.wikipedia.org/wiki/Irse_sin_pagar",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Müşterinin ödeme yapmadan ayrılmasını anlatıyor; URL simpa içerik kelimesini taşımıyor."
+    },
+    {
+      "w": "no tener ni cobre",
+      "u": "https://es.wikipedia.org/wiki/Is%C3%B3topo",
+      "checkedAt": "2026-11-13",
+      "method": "Web aracıyla açıldı ve deyim/çekimli kullanım sayfada arandı.",
+      "decision": "Değiştirilecek; mevcut atıf yeni parti için tutulmayacak.",
+      "note": "Kimyasal izotop; deyim yok."
+    }
+  ]
+}

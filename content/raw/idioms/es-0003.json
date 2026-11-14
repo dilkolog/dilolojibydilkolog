@@ -1,0 +1,520 @@
+[
+ {
+  "w": "encontrar su media naranja",
+  "t": "hayatını paylaşacağı uygun eşi bulmak",
+  "lit": "yarım portakalını bulmak",
+  "eq": "ruh ikizini bulmak",
+  "s": "Después de tantos años soltero, cree haber encontrado su media naranja.",
+  "form": "encontrado su media naranja",
+  "tr": "Bunca yıl bekâr kaldıktan sonra ruh ikizini bulduğuna inanıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/media_naranja",
+   "https://www.diccionarios.com/diccionario/espanol/naranja"
+  ],
+  "pat": "encontrar su media naranja"
+ },
+ {
+  "w": "estar como una sopa",
+  "t": "sırılsıklam olmak, sucuk gibi ıslanmak",
+  "lit": "bir çorba gibi olmak",
+  "eq": "sucuk gibi ıslanmak",
+  "s": "Como olvidé el paraguas en casa, al llegar estaba como una sopa.",
+  "form": "estaba como una sopa",
+  "tr": "Şemsiyeyi evde unuttuğum için vardığımda sucuk gibi ıslanmıştım.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/como_una_sopa",
+   "https://www.diccionarios.com/diccionario/espanol/sopa"
+  ]
+ },
+ {
+  "w": "ser del año de la pera",
+  "t": "çok eski olmak, modası çoktan geçmiş olmak",
+  "lit": "armut yılından olmak",
+  "eq": "Nuh Nebi'den kalma olmak",
+  "s": "Este ordenador portátil tarda mucho en encender porque es del año de la pera.",
+  "form": "es del año de la pera",
+  "tr": "Bu dizüstü bilgisayar çok eski olduğu için açılması uzun sürüyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/del_a%C3%B1o_de_la_pera",
+   "https://www.diccionarios.com/diccionario/espanol/a%C3%B1o"
+  ]
+ },
+ {
+  "w": "estar como un flan",
+  "t": "heyecandan eli ayağı titremek, çok gergin olmak",
+  "lit": "bir krem karamel gibi olmak",
+  "s": "Antes del examen de conducir, estaba como un flan.",
+  "form": "estaba como un flan",
+  "tr": "Direksiyon sınavından önce heyecandan tir tir titriyordum.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/como_un_flan",
+   "https://www.diccionarios.com/diccionario/espanol/flan"
+  ]
+ },
+ {
+  "w": "ser el pan de cada día",
+  "t": "her gün yaşanan sıradan bir durum olmak",
+  "lit": "her günün ekmeği olmak",
+  "s": "Los atascos en la avenida principal ya son el pan de cada día.",
+  "form": "son el pan de cada día",
+  "tr": "Ana caddedeki trafik sıkışıklığı artık her günkü sıradan bir durum oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/el_pan_de_cada_d%C3%ADa",
+   "https://www.diccionarios.com/diccionario/espanol/pan"
+  ]
+ },
+ {
+  "w": "estar en el ajo",
+  "t": "bir işin iç yüzünü bilmek, işin içinde olmak",
+  "lit": "sarımsağın içinde olmak",
+  "s": "Clara está en el ajo y sabe quién organizó la sorpresa.",
+  "form": "está en el ajo",
+  "tr": "Clara işin içinde ve sürprizi kimin düzenlediğini biliyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/en_el_ajo",
+   "https://www.diccionarios.com/diccionario/espanol/ajo"
+  ]
+ },
+ {
+  "w": "poner toda la carne en el asador",
+  "t": "bütün kozlarını oynamak, her şeyini ortaya koymak",
+  "lit": "bütün eti ızgaraya koymak",
+  "eq": "bütün kozlarını oynamak",
+  "s": "Para ganar la final tendremos que poner toda la carne en el asador.",
+  "form": "poner toda la carne en el asador",
+  "tr": "Finali kazanmak için her şeyimizi ortaya koymamız gerekecek.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/poner_toda_la_carne_en_el_asador",
+   "https://www.diccionarios.com/diccionario/espanol/carne"
+  ]
+ },
+ {
+  "w": "tener mala leche",
+  "t": "kötü niyetli olmak, ters huylu olmak",
+  "lit": "kötü sütü olmak",
+  "s": "Ese comentario sarcástico demuestra que a veces tiene mala leche.",
+  "form": "tiene mala leche",
+  "tr": "O iğneleyici yorum, bazen kötü niyetli olabildiğini gösteriyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/mala_leche",
+   "https://en.wiktionary.org/wiki/mala_leche"
+  ]
+ },
+ {
+  "w": "dejar con la miel en los labios",
+  "pat": "dejar a alguien con la miel en los labios",
+  "t": "hevesini kursağında bırakmak",
+  "lit": "dudaklarında balla bırakmak",
+  "eq": "hevesini kursağında bırakmak",
+  "s": "La cancelación del viaje nos dejó con la miel en los labios.",
+  "form": "dejó con la miel en los labios",
+  "tr": "Gezinin iptali hevesimizi kursağımızda bıraktı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://www.diccionarios.com/diccionario/espanol/miel",
+   "https://dem.colmex.mx/ver/miel"
+  ]
+ },
+ {
+  "w": "descubrir el pastel",
+  "t": "gizli bir işi ortaya çıkarmak, foyasını meydana çıkarmak",
+  "lit": "pastayı keşfetmek",
+  "eq": "foyasını ortaya çıkarmak",
+  "s": "Guardaron el secreto durante meses hasta que alguien descubrió el pastel.",
+  "form": "descubrió el pastel",
+  "tr": "Birisi işin iç yüzünü ortaya çıkarana kadar sırrı aylarca sakladılar.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/pastel",
+   "https://en.wiktionary.org/wiki/descubrir_el_pastel"
+  ]
+ },
+ {
+  "w": "pedir peras al olmo",
+  "t": "imkânsızı istemek, olmayacak bir şey beklemek",
+  "lit": "karaağaçtan armut istemek",
+  "s": "Esperar que sea puntual a estas alturas es pedir peras al olmo.",
+  "form": "pedir peras al olmo",
+  "tr": "Bu saatten sonra onun dakik olmasını beklemek imkânsızı istemektir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/pedir_peras_al_olmo",
+   "https://en.wiktionary.org/wiki/pedir_peras_al_olmo"
+  ]
+ },
+ {
+  "w": "sacar las castañas del fuego",
+  "pat": "sacarle las castañas del fuego a alguien",
+  "t": "birini zor durumdan kurtarmak, başkasının sorununu çözmek",
+  "lit": "kestaneleri ateşten çıkarmak",
+  "s": "Siempre acude a su hermana mayor para que le saque las castañas del fuego.",
+  "form": "saque las castañas del fuego",
+  "tr": "Başını derde soktuğunda kendisini kurtarması için hep ablasına koşar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/sacar_las_casta%C3%B1as_del_fuego",
+   "https://www.diccionarios.com/diccionario/espanol/casta%C3%B1as"
+  ]
+ },
+ {
+  "w": "ser harina de otro costal",
+  "t": "bambaşka bir konu olmak, ayrı bir mesele olmak",
+  "lit": "başka çuvalın unu olmak",
+  "s": "La teoría es sencilla, pero aplicarla en la práctica es harina de otro costal.",
+  "form": "es harina de otro costal",
+  "tr": "Teori basittir ama onu uygulamaya dökmek bambaşka bir meseledir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/ser_harina_de_otro_costal",
+   "https://en.wiktionary.org/wiki/harina_de_otro_costal"
+  ]
+ },
+ {
+  "w": "estar hasta en la sopa",
+  "t": "her yerden çıkmak, bıktıracak kadar sık görünmek",
+  "lit": "çorbada bile olmak",
+  "s": "Aquella canción del verano sonaba tanto que estaba hasta en la sopa.",
+  "form": "estaba hasta en la sopa",
+  "tr": "O yaz şarkısı o kadar çok çalıyordu ki her yerden çıkıyordu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/hasta_en_la_sopa",
+   "https://www.diccionarios.com/diccionario/espanol/sopa"
+  ]
+ },
+ {
+  "w": "dar calabazas",
+  "pat": "darle calabazas a alguien",
+  "t": "birinin romantik yakınlaşmasını reddetmek",
+  "lit": "kabak vermek",
+  "s": "Se declaró por fin el viernes, pero ella le dio calabazas.",
+  "form": "dio calabazas",
+  "tr": "Cuma günü nihayet aşkını ilan etti ama kız onu reddetti.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/dar_calabazas",
+   "https://en.wiktionary.org/wiki/dar_calabazas"
+  ],
+  "eq": "yüz vermemek"
+ },
+ {
+  "w": "no estar el horno para bollos",
+  "t": "ortam çok gergin olmak, sırası olmamak",
+  "lit": "fırın çörek için uygun olmamak",
+  "s": "Mejor no pidas un aumento hoy, porque no está el horno para bollos.",
+  "form": "no está el horno para bollos",
+  "tr": "Bugün zam istemesen iyi olur çünkü ortam hiç uygun değil.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/no_estar_el_horno_para_bollos",
+   "https://en.wiktionary.org/wiki/no_estar_el_horno_para_bollos"
+  ]
+ },
+ {
+  "w": "mandar a freír espárragos",
+  "pat": "mandar a alguien a freír espárragos",
+  "t": "başından savmak, sertçe kovmak",
+  "lit": "kuşkonmaz kızartmaya göndermek",
+  "s": "Se cansó de sus quejas constantes y lo mandó a freír espárragos.",
+  "form": "mandó a freír espárragos",
+  "tr": "Sürekli şikâyet etmesinden bıktı ve onu başından savdı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/mandar_a_fre%C3%ADr_esp%C3%A1rragos",
+   "https://www.diccionarios.com/diccionario/espanol/esp%C3%A1rragos"
+  ]
+ },
+ {
+  "w": "estar como agua para chocolate",
+  "t": "küplere binmek, öfkeden köpürmek",
+  "lit": "sıcak çikolata suyu gibi kaynar olmak",
+  "eq": "küplere binmek",
+  "s": "Al ver el desorden del salón, mi madre estaba como agua para chocolate.",
+  "form": "estaba como agua para chocolate",
+  "tr": "Salondaki dağınıklığı görünce annem öfkeden küplere binmişti.",
+  "reg": "informal",
+  "area": "Meksika",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/estar_como_agua_para_chocolate",
+   "https://en.wiktionary.org/wiki/estar_como_agua_para_chocolate"
+  ]
+ },
+ {
+  "w": "cortar el bacalao",
+  "t": "sözü geçmek, yönetimi elinde tutmak",
+  "lit": "morina balığını kesmek",
+  "eq": "borusu ötmek",
+  "s": "Aunque no tiene el cargo más alto, en esta empresa ella corta el bacalao.",
+  "form": "corta el bacalao",
+  "tr": "En yüksek unvana sahip olmasa da bu şirkette onun sözü geçer.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/bacalao",
+   "https://en.wiktionary.org/wiki/cortar_el_bacalao"
+  ]
+ },
+ {
+  "w": "abrir el melón",
+  "t": "hassas ve tartışmalı bir konuyu gündeme getirmek",
+  "lit": "kavunu açmak",
+  "s": "Durante la junta vecinal nadie quería abrir el melón de las obras.",
+  "form": "abrir el melón",
+  "tr": "Apartman toplantısında kimse tadilat gibi çetrefilli bir konuyu açmak istemiyordu.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/mel%C3%B3n",
+   "https://en.wiktionary.org/wiki/abrir_el_mel%C3%B3n"
+  ]
+ },
+ {
+  "w": "tener la sartén por el mango",
+  "t": "ipleri elinde tutmak, üstün durumda olmak",
+  "lit": "tavayı sapından tutmak",
+  "eq": "ipleri elinde tutmak",
+  "s": "Como son el único proveedor de la zona, tienen la sartén por el mango.",
+  "form": "tienen la sartén por el mango",
+  "tr": "Bölgedeki tek tedarikçi oldukları için ipleri ellerinde tutuyorlar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/tener_la_sart%C3%A9n_por_el_mango",
+   "https://en.wiktionary.org/wiki/tener_la_sart%C3%A9n_por_el_mango"
+  ]
+ },
+ {
+  "w": "estar en su salsa",
+  "t": "tam kendi havasında olmak, en sevdiği ortamda bulunmak",
+  "lit": "kendi sosunda olmak",
+  "s": "Rodeado de libros antiguos y mapas, el historiador estaba en su salsa.",
+  "form": "estaba en su salsa",
+  "tr": "Eski kitaplar ve haritalarla çevrili olan tarihçi tam kendi havasındaydı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/en_su_salsa",
+   "https://www.diccionarios.com/diccionario/espanol/salsa"
+  ]
+ },
+ {
+  "w": "hacer buenas migas",
+  "pat": "hacer buenas migas con alguien",
+  "t": "çok iyi anlaşmak, çabucak kaynaşmak",
+  "lit": "iyi ekmek kırıntısı yemeği yapmak",
+  "s": "Desde el primer día de clase, los dos compañeros hicieron buenas migas.",
+  "form": "hicieron buenas migas",
+  "tr": "Dersin ilk gününden itibaren iki sınıf arkadaşı çok iyi anlaştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/hacer_buenas_migas",
+   "https://dictionary.cambridge.org/dictionary/spanish-english/hacer-buenas-migas"
+  ]
+ },
+ {
+  "w": "volverse la tortilla",
+  "t": "durum tam tersine dönmek, dengeler değişmek",
+  "lit": "omletin ters dönmesi",
+  "s": "Ahora se ha vuelto la tortilla y los favoritos necesitan nuestra ayuda.",
+  "form": "se ha vuelto la tortilla",
+  "tr": "Şimdi dengeler değişti ve favorilerin bizim yardımımıza ihtiyacı var.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/tortilla",
+   "https://en.wiktionary.org/wiki/tortilla"
+  ]
+ },
+ {
+  "w": "ser la leche",
+  "t": "inanılmaz olmak, olağanüstü ya da çok tuhaf olmak",
+  "lit": "süt olmak",
+  "s": "Esta nueva herramienta para traducir textos antiguos es la leche.",
+  "form": "es la leche",
+  "tr": "Eski metinleri çevirmeye yarayan bu yeni araç gerçekten inanılmaz.",
+  "reg": "slang",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/leche",
+   "https://en.wiktionary.org/wiki/ser_la_leche"
+  ]
+ },
+ {
+  "w": "ponerse como un tomate",
+  "t": "utançtan yüzü kıpkırmızı olmak",
+  "lit": "domates gibi olmak",
+  "eq": "yüzü kızarmak",
+  "s": "Cuando le preguntaron por su primer amor, se puso como un tomate.",
+  "form": "se puso como un tomate",
+  "tr": "İlk aşkını sorduklarında yüzü kıpkırmızı oldu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "food",
+  "src": [
+   "https://www.diccionarios.com/diccionario/espanol/tomate",
+   "https://es.pons.com/traducci%C3%B3n/espa%C3%B1ol-ingl%C3%A9s/tomate"
+  ]
+ },
+ {
+  "w": "estar de mala uva",
+  "t": "suratı asık olmak, keyifsiz ve sinirli olmak",
+  "lit": "kötü üzümde olmak",
+  "eq": "ters tarafından kalkmak",
+  "s": "Hoy el encargado está de mala uva, así que evita molestarlo.",
+  "form": "está de mala uva",
+  "tr": "Bugün sorumlu ters tarafından kalkmış, o yüzden onu rahatsız etmekten kaçın.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/estar_de_mala_uva",
+   "https://www.diccionarios.com/diccionario/espanol/uva"
+  ]
+ },
+ {
+  "w": "apartar el grano de la paja",
+  "t": "sapla samanı ayırmak, değerliyi değersizden ayırt etmek",
+  "lit": "taneyi samandan ayırmak",
+  "eq": "sapla samanı ayırmak",
+  "s": "Con tanta información en internet, cuesta apartar el grano de la paja.",
+  "form": "apartar el grano de la paja",
+  "tr": "İnternetteki bunca bilgi arasında sapla samanı ayırmak zor oluyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/apartar_el_grano_de_la_paja",
+   "https://www.diccionarios.com/diccionario/espanol/grano"
+  ]
+ },
+ {
+  "w": "dorar la píldora",
+  "pat": "dorarle la píldora a alguien",
+  "t": "kötü bir haberi yumuşatarak söylemek, tatlı dille avutmak",
+  "lit": "hapı altınla kaplamak",
+  "s": "El portavoz intentó dorar la píldora al anunciar el recorte.",
+  "form": "dorar la píldora",
+  "tr": "Sözcü kesintiyi duyururken kötü haberi yumuşatmaya çalıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/dorar_la_p%C3%ADldora",
+   "https://en.wiktionary.org/wiki/dorar_la_p%C3%ADldora"
+  ]
+ },
+ {
+  "w": "dársela con queso",
+  "pat": "dársela con queso a alguien",
+  "t": "kurnazca kandırmak, oyuna getirmek",
+  "lit": "onu peynirle vermek",
+  "eq": "oyuna getirmek",
+  "s": "Intentaron dársela con queso mediante un contrato engañoso.",
+  "form": "dársela con queso",
+  "tr": "Yanıltıcı bir sözleşmeyle onu oyuna getirmeye çalıştılar.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://es.wiktionary.org/wiki/d%C3%A1rsela_con_queso",
+   "https://en.wiktionary.org/wiki/d%C3%A1rsela_con_queso"
+  ]
+ },
+ {
+  "w": "comer la sopa boba",
+  "t": "elini işe sürmeden başkasının sırtından geçinmek",
+  "lit": "aptal çorbasını yemek",
+  "s": "Ya tiene treinta años y sigue en casa comiendo la sopa boba.",
+  "form": "comiendo la sopa boba",
+  "tr": "Otuz yaşına geldi ve hâlâ evde çalışmadan ailesinin sırtından geçiniyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "food",
+  "src": [
+   "https://en.wiktionary.org/wiki/comer_la_sopa_boba",
+   "https://www.diccionarios.com/diccionario/espanol/sopa"
+  ]
+ }
+]

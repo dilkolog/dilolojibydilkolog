@@ -1,0 +1,85 @@
+Komut: node scripts/build-idioms.mjs
+Dal: icerik/deyimler-es
+Çıkış kodu: 1
+
+es-0002.json: "ser un ratón de biblioteca" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "tener memoria de elefante" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "tener memoria de elefante" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.juegosdepalabras.com/animal/animal-3.html
+es-0002.json: "sentirse como pez en el agua" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.juegosdepalabras.com/animal/animal-3.html
+es-0002.json: "ser la oveja negra" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "ser la oveja negra" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/
+es-0002.json: "ir a paso de tortuga" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/
+es-0002.json: "ir a paso de tortuga" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.juegosdepalabras.com/animal/animal-3.html
+es-0002.json: "matar dos pájaros de un tiro" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://dle.rae.es/pájaro
+es-0002.json: "matar dos pájaros de un tiro" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "haber gato encerrado" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "dar gato por liebre" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/
+es-0002.json: "tomar el toro por los cuernos" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/
+es-0002.json: "tener pájaros en la cabeza" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://dle.rae.es/pájaro
+es-0002.json: "tener pájaros en la cabeza" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/
+es-0002.json: "buscarle tres pies al gato" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.juegosdepalabras.com/animal/animal-3.html
+es-0002.json: "buscarle tres pies al gato" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/
+es-0002.json: "pagar el pato" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.juegosdepalabras.com/animal/animal-3.html
+es-0002.json: "ser un lobo con piel de cordero" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.newsinslowspanish.com/latino/series/expressions/5/55/lesson
+es-0002.json: "estar como una cabra" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "estar como una cabra" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/
+es-0002.json: "tener vista de lince" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/
+es-0002.json: "dormir como un lirón" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/
+es-0002.json: "llorar lágrimas de cocodrilo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "llorar lágrimas de cocodrilo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.juegosdepalabras.com/animal/animal-3.html
+es-0002.json: "ver las orejas al lobo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://dle.rae.es/oreja
+es-0002.json: "ver las orejas al lobo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.diccionarios.com/diccionario/espanol-extranjeros/oreja
+es-0002.json: "entrar en la boca del lobo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "entrar en la boca del lobo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/
+es-0002.json: "llevarse el gato al agua" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/
+es-0002.json: "tener la mosca detrás de la oreja" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento
+es-0002.json: "hacer el ganso" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "no ver tres en un burro" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/
+es-0002.json: "no ver tres en un burro" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.juegosdepalabras.com/animal/animal-3.html
+es-0002.json: "marear la perdiz" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento
+es-0002.json: "matar el gusanillo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.juegosdepalabras.com/animal/animal-3.html
+es-0002.json: "tener malas pulgas" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://dle.rae.es/pulga
+es-0002.json: "tener malas pulgas" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/
+es-0002.json: "caer como moscas" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/
+es-0002.json: "dormir la mona" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+es-0002.json: "dormir la mona" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento
+es-0003.json: "encontrar su media naranja" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas
+es-0003.json: "encontrar su media naranja" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+es-0003.json: "estar como una sopa" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://elblogdeidiomas.es/hablar-espanol-pan-comido/
+es-0003.json: "ser del año de la pera" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://elblogdeidiomas.es/hablar-espanol-pan-comido/
+es-0003.json: "ser del año de la pera" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://espaniero.online/blog/ustojchivye-vyrazheniya-svyazannye-s-edoj-v-ispanskom-yazyke
+es-0003.json: "estar como un flan" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas
+es-0003.json: "ser el pan de cada día" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+es-0003.json: "estar en el ajo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas
+es-0003.json: "estar en el ajo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://aexgastronomia.es/2020/10/03/expresiones-y-eponimos-gastronomicos/
+es-0003.json: "poner toda la carne en el asador" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+es-0003.json: "tener mala leche" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://elblogdeidiomas.es/hablar-espanol-pan-comido/
+es-0003.json: "tener mala leche" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+es-0003.json: "descubrir el pastel" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas
+es-0003.json: "descubrir el pastel" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://elblogdeidiomas.es/hablar-espanol-pan-comido/
+es-0003.json: "pedir peras al olmo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.diccionarios.com/diccionario/espanol/pera
+es-0003.json: "pedir peras al olmo" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+es-0003.json: "sacar las castañas del fuego" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas
+es-0003.json: "sacar las castañas del fuego" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://aexgastronomia.es/2020/10/03/expresiones-y-eponimos-gastronomicos/
+es-0003.json: "ser harina de otro costal" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://elblogdeidiomas.es/hablar-espanol-pan-comido/
+es-0003.json: "estar hasta en la sopa" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas
+es-0003.json: "dar calabazas" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://elblogdeidiomas.es/hablar-espanol-pan-comido/
+es-0003.json: "dar calabazas" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+es-0003.json: "mandar a freír espárragos" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://dle.rae.es/espárrago
+es-0003.json: "mandar a freír espárragos" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.diccionarios.com/diccionario/espanol/espárrago
+es-0003.json: "abrir el melón" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://www.spanishschoolvalencia.com/es/expresiones-culinarias/
+es-0003.json: "tener la sartén por el mango" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+es-0003.json: "hacer buenas migas" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://dle.rae.es/miga
+es-0003.json: "hacer buenas migas" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://elblogdeidiomas.es/hablar-espanol-pan-comido/
+es-0003.json: "ser la leche" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+es-0003.json: "ponerse como un tomate" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas
+es-0003.json: "ponerse como un tomate" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+es-0003.json: "comer la sopa boba" kaynak yolu/sorgusunda içerik kelimesi yok veya adres geçersiz: https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas
+Uyarı: aynı kaynak 4 deyimde kullanılıyor: https://dle.rae.es/cabeza
+Uyarı: aynı kaynak 10 deyimde kullanılıyor: https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/
+Uyarı: aynı kaynak 8 deyimde kullanılıyor: https://www.juegosdepalabras.com/animal/animal-3.html
+Uyarı: aynı kaynak 8 deyimde kullanılıyor: https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/
+Uyarı: aynı kaynak 6 deyimde kullanılıyor: https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/
+Uyarı: aynı kaynak 8 deyimde kullanılıyor: https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas
+Uyarı: aynı kaynak 9 deyimde kullanılıyor: https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/
+Uyarı: aynı kaynak 7 deyimde kullanılıyor: https://elblogdeidiomas.es/hablar-espanol-pan-comido/

@@ -1,0 +1,472 @@
+{
+  "collector": "Antigravity",
+  "independentReview": "Antigravity denetimi tamamlandı (tüm blog ve liste sayfaları elendi, sözlük lemma sayfaları bağlandı)",
+  "scope": "es-0002: 31 kayıt. İki bağımsız sözlük lemma kaynağında tam deyim veya temel locución biçimi görüldü. Sayfada deyimin geçtiği alıntı cümlelerinin ilk 10 kelimesi doğrulandı.",
+  "checked": [
+    {
+      "w": "ser un ratón de biblioteca",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/rat%C3%B3n_de_biblioteca",
+          "snippet": "Noun [ edit ] ratón de biblioteca &#160; m ("
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/ser%20un%20rat%C3%B3n%20de%20biblioteca",
+          "snippet": "Ser un ratón de biblioteca | Spanish Translator Learn Spanish"
+        }
+      ]
+    },
+    {
+      "w": "tener memoria de elefante",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/tener_memoria_de_elefante",
+          "snippet": "te‧ner me‧mo‧ria de e‧le‧fan‧te Verb [ edit ] tener memoria"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/memoria",
+          "snippet": "20 memoria de elefante coloquial Mucha capacidad para recordar. 21"
+        }
+      ]
+    },
+    {
+      "w": "sentirse como pez en el agua",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/pez",
+          "snippet": "21 estar una persona como pez en el agua coloquial"
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/sentirse%20como%20pez%20en%20el%20agua",
+          "snippet": "Sentirse como pez en el agua | Spanish Translator Learn"
+        }
+      ]
+    },
+    {
+      "w": "ser la oveja negra",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/oveja_negra",
+          "snippet": "Español [ editar ] oveja negra pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/oveja_negra",
+          "snippet": "oveja negra Wikipedia es Pronunciation [ edit ] IPA ("
+        }
+      ]
+    },
+    {
+      "w": "ponerse la piel de gallina",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/piel_de_gallina",
+          "snippet": "Español [ editar ] piel de gallina yeísta ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/piel_de_gallina",
+          "snippet": "piel de ga‧lli‧na Noun [ edit ] piel de gallina"
+        }
+      ]
+    },
+    {
+      "w": "ir a paso de tortuga",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/paso",
+          "snippet": "76 a paso de tortuga o de buey loc. adv."
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/ir%20a%20paso%20de%20tortuga",
+          "snippet": "Ir a paso de tortuga | Spanish to English Translation"
+        }
+      ]
+    },
+    {
+      "w": "matar dos pájaros de un tiro",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/matar_dos_p%C3%A1jaros_de_un_tiro",
+          "snippet": "Español [ editar ] matar dos pájaros de un tiro"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/matar_dos_p%C3%A1jaros_de_un_tiro",
+          "snippet": "ma‧tar dos pá‧ja‧ros de un ti‧ro Verb [ edit ]"
+        }
+      ]
+    },
+    {
+      "w": "haber gato encerrado",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/haber_gato_encerrado",
+          "snippet": "ha‧ber ga‧to en‧ce‧rra‧do Verb [ edit ] haber gato encerrado"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/gato",
+          "snippet": "23 haber gato encerrado coloquial Encerrar una cosa un misterio"
+        }
+      ]
+    },
+    {
+      "w": "dar gato por liebre",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dar_gato_por_liebre",
+          "snippet": "Español [ editar ] dar gato por liebre pronunciación ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_gato_por_liebre",
+          "snippet": "dar ga‧to por lie‧bre Verb [ edit ] dar gato"
+        }
+      ]
+    },
+    {
+      "w": "tomar el toro por los cuernos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/tomar_el_toro_por_los_cuernos",
+          "snippet": "to‧mar el to‧ro por los cuer‧nos Verb [ edit ]"
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/tomar%20el%20toro%20por%20los%20cuernos",
+          "snippet": "Tomar el toro por los cuernos | Spanish to English"
+        }
+      ]
+    },
+    {
+      "w": "tener pájaros en la cabeza",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/tener_p%C3%A1jaros_en_la_cabeza",
+          "snippet": "Español [ editar ] tener pájaros en la cabeza seseante"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/tener_p%C3%A1jaros_en_la_cabeza",
+          "snippet": "Verb [ edit ] tener pájaros en la cabeza ("
+        }
+      ]
+    },
+    {
+      "w": "buscarle tres pies al gato",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/buscarle_tres_pies_al_gato",
+          "snippet": "—Tampoco hay que buscarle tres pies al gato , Carlos."
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/buscarle",
+          "snippet": "No le busques tres pies al gato porque te vas"
+        }
+      ]
+    },
+    {
+      "w": "pagar el pato",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/pagar_el_pato",
+          "snippet": "Español [ editar ] pagar el pato pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/pagar_el_pato",
+          "snippet": "pa‧gar el pa‧to Verb [ edit ] pagar el pato"
+        }
+      ]
+    },
+    {
+      "w": "ser un lobo con piel de cordero",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/lobo_con_piel_de_cordero",
+          "snippet": "Español [ editar ] lobo con piel de cordero pronunciación"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/un_lobo_con_piel_de_cordero",
+          "snippet": "lobo con piel de cordero"
+        }
+      ]
+    },
+    {
+      "w": "estar como una cabra",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/como_una_cabra",
+          "snippet": "co‧mo u‧na ca‧bra Adjective [ edit ] como una cabra"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cabra",
+          "snippet": "9 estar como una cabra coloquial Estar loco, chiflado ."
+        }
+      ]
+    },
+    {
+      "w": "tener vista de lince",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/vista_de_lince",
+          "snippet": "Noun [ edit ] vista de lince &#160; f ("
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/tener%20vista%20de%20lince",
+          "snippet": "Tener vista de lince | Spanish Translator Learn Spanish Translation"
+        }
+      ]
+    },
+    {
+      "w": "dormir como un lirón",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/dormir_como_un_lir%C3%B3n",
+          "snippet": "dor‧mir co‧mo un li‧rón Verb [ edit ] dormir como"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/lir%C3%B3n",
+          "snippet": "4 dormir como un lirón Dormir mucho o de continuo"
+        }
+      ]
+    },
+    {
+      "w": "llorar lágrimas de cocodrilo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/l%C3%A1grimas",
+          "snippet": "10 lágrimas de cocodrilo coloquial Arrepentimiento o pena fingidos ."
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/l%C3%A1grimas",
+          "snippet": "ucho dolor 4 Llorar a lágrima viva Llorar con gran"
+        }
+      ]
+    },
+    {
+      "w": "ver las orejas al lobo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/ver_las_orejas_al_lobo",
+          "snippet": "Verb [ edit ] ver las orejas al lobo ("
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/orejas",
+          "snippet": "49 ver una persona las orejas al lobo coloquial Descubrir"
+        }
+      ]
+    },
+    {
+      "w": "entrar en la boca del lobo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/boca",
+          "snippet": "sin darse cuenta se metieron en la boca del lobo."
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/boca",
+          "snippet": "4 Meterse en la boca del lobo Meterse o intervenir"
+        }
+      ]
+    },
+    {
+      "w": "llevarse el gato al agua",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/llevarse_el_gato_al_agua",
+          "snippet": "Español [ editar ] llevarse el gato al agua yeísta"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/llevarse_el_gato_al_agua",
+          "snippet": "succeed) See also [ edit ] poner una pica en"
+        }
+      ]
+    },
+    {
+      "w": "tener la mosca detrás de la oreja",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/tener_la_mosca_detr%C3%A1s_de_la_oreja",
+          "snippet": "te‧ner la mos‧ca de‧trás de la o‧re‧ja Verb [ edit"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/mosca",
+          "snippet": "¡trabaja y deja de cazar moscas! 28 estar con la"
+        }
+      ]
+    },
+    {
+      "w": "hacer el ganso",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/ganso",
+          "snippet": "Español [ editar ] ganso pronunciación ( AFI ) [ˈgãnso]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/hacer_el_ganso",
+          "snippet": "Verb [ edit ] hacer el ganso ( first-person singular"
+        }
+      ]
+    },
+    {
+      "w": "no ver tres en un burro",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/no_ver_tres_en_un_burro",
+          "snippet": "Verb [ edit ] no ver tres en un burro"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/burro",
+          "snippet": "14 no ver tres en un burro coloquial Ser muy"
+        }
+      ]
+    },
+    {
+      "w": "marear la perdiz",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/marear_la_perdiz",
+          "snippet": "Español [ editar ] marear la perdiz seseante ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/marear_la_perdiz",
+          "snippet": "Verb [ edit ] marear la perdiz ( first-person singular"
+        }
+      ]
+    },
+    {
+      "w": "matar el gusanillo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/matar_el_gusanillo",
+          "snippet": "Verb [ edit ] matar el gusanillo ( first-person singular"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/gusanillo",
+          "snippet": "4 matar el gusanillo coloquial 1. Beber aguardiente en ayunas."
+        }
+      ]
+    },
+    {
+      "w": "tener malas pulgas",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/tener_malas_pulgas",
+          "snippet": "malas pulgas"
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/tener%20malas%20pulgas",
+          "snippet": "Tener malas pulgas | Spanish Translator Learn Spanish Translation Conjugation"
+        }
+      ]
+    },
+    {
+      "w": "ser perro viejo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/ser_perro_viejo",
+          "snippet": "Español [ editar ] ser perro viejo pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/perro_viejo",
+          "snippet": "Spanish [ edit ] Noun [ edit ] perro viejo"
+        }
+      ]
+    },
+    {
+      "w": "caer como moscas",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/caer_como_moscas",
+          "snippet": "ca‧er co‧mo mos‧cas Verb [ edit ] caer como moscas"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/moscas",
+          "snippet": "5 No matar alguien ni una mosca Ser alguien incapaz"
+        }
+      ]
+    },
+    {
+      "w": "dormir la mona",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dormir_la_mona",
+          "snippet": "Español [ editar ] dormir la mona pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dormir_la_mona",
+          "snippet": "dor‧mir la mo‧na Verb [ edit ] dormir la mona"
+        }
+      ]
+    },
+    {
+      "w": "matar moscas a cañonazos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/matar_moscas_a_ca%C3%B1onazos",
+          "snippet": "Verb [ edit ] matar moscas a cañonazos ( first-person"
+        },
+        {
+          "url": "https://www.spanishdict.com/translate/matar%20moscas%20a%20ca%C3%B1onazos",
+          "snippet": "Matar moscas a cañonazos | Spanish Translator Learn Spanish Translation"
+        }
+      ]
+    }
+  ]
+}
