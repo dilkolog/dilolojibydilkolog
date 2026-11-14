@@ -104,10 +104,13 @@ async function render(node: React.ReactNode): Promise<string> {
   await act(async () => {
     root.render(node)
   })
-  // Let effects with async loads settle.
-  await act(async () => {
-    await new Promise((r) => setTimeout(r, 150))
-  })
+  // Let effects with async loads settle. A screen that waits for its data shows nothing until then, and on a busy CI
+  // runner 150 ms was not always enough (the reading screen came back empty): wait for text, up to 3 s.
+  for (let waited = 0; waited === 0 || (!el.textContent && waited < 3000); waited += 150) {
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 150))
+    })
+  }
   const text = el.textContent ?? ''
   await act(async () => root.unmount())
   el.remove()
