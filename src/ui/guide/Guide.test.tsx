@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../../data/instance'
 import * as lessonOfModule from '../../data/guide/lessonOf'
-import { checkPool, lessonFor, lessonsOf } from '../../data/guide/lessonOf'
+import { checkPool, lessonFor, lessonsOf, lessonTitle } from '../../data/guide/lessonOf'
 import { GuideScreen } from './Guide'
 
 let root: ReturnType<typeof createRoot> | undefined
@@ -314,11 +314,14 @@ describe('GuideScreen', () => {
     expect(snippets.every((n) => /depuis/i.test(n.textContent ?? ''))).toBe(true)
   })
 
-  it('a lesson that builds on another says so on its card and in the lesson, until that one is read', async () => {
+  it('a lesson that builds on another says so on its row and in the lesson, until that one is read', async () => {
     const { host } = await mount('fr')
-    const card = [...host.querySelectorAll<HTMLElement>('.guide-card')].find((c) => c.querySelector('strong')?.textContent === 'Subjonctif')!
-    expect(card.textContent).toContain('Önce: ')
-    await act(async () => card.click())
+    const row = [...host.querySelectorAll<HTMLElement>('.guide-row')].find((c) => c.querySelector('strong')?.textContent === 'Subjonctif')!
+    // A dashed dot, the lesson to read first named to a screen reader and on hover.
+    expect(row.classList.contains('path-waiting')).toBe(true)
+    expect(row.textContent).toContain('önce: ')
+    expect(row.querySelector('button')!.title).toMatch(/^Önce: /)
+    await act(async () => row.querySelector('button')!.click())
     expect(host.querySelector('.guide-needs')?.textContent).toContain('Önce şunu oku')
     // The lesson it builds on opens from the note.
     await act(async () => host.querySelector<HTMLButtonElement>('.guide-needs button')!.click())
@@ -336,7 +339,7 @@ describe('GuideScreen', () => {
     await act(async () => button(host, 'Rehber')!.click())
     expect(host.querySelector('.guide-tag-hard')).not.toBeNull()
     await act(async () => button(host, /Zor bulduklarım \(1\)/)!.click())
-    expect([...host.querySelectorAll('.guide-card strong')].map((n) => n.textContent)).toEqual(['Ser ve estar'])
+    expect([...host.querySelectorAll('.guide-row strong')].map((n) => n.textContent)).toEqual(['Ser ve estar'])
   })
 
   it('prints a lesson as a sheet', async () => {
@@ -354,7 +357,7 @@ describe('GuideScreen', () => {
   it('shows the lessons as a path in learning order, marks the next one, and remembers the view', async () => {
     const { host } = await mount('fr')
     await act(async () => button(host, 'Yol')!.click())
-    expect(host.querySelector('.guide-card')).toBeNull()
+    expect(host.querySelector('.guide-row')).toBeNull()
     const steps = [...host.querySelectorAll<HTMLElement>('.guide-path-item')]
     expect(steps.length).toBeGreaterThan(30)
     const titles = steps.map((st) => st.querySelector('strong')?.textContent)
@@ -376,7 +379,7 @@ describe('GuideScreen', () => {
     expect(host.querySelector('.path-learned strong')?.textContent).toBe('Être ve avoir')
     await act(async () => button(host, 'Liste')!.click())
     expect(host.querySelector('.guide-path')).toBeNull()
-    expect(host.querySelectorAll('.guide-card').length).toBeGreaterThan(10)
+    expect(host.querySelectorAll('.guide-row').length).toBeGreaterThan(10)
   })
 
   it('shows the progress of each level, and a finished level as a certificate that can be shared', async () => {
@@ -479,7 +482,7 @@ describe('GuideScreen', () => {
 
     // Navigate back to the guide list
     await act(async () => button(host, 'Rehber')!.click())
-    const noteTag = host.querySelector('.guide-tag-note')
+    const noteTag = host.querySelector('.guide-row-note')
     expect(noteTag).not.toBeNull()
     expect(noteTag?.textContent).toContain('Not')
   })
@@ -546,5 +549,59 @@ describe('GuideScreen', () => {
     expect(conjTable).not.toBeNull()
     expect(conjTable?.textContent).toContain('parler')
     expect(conjTable?.textContent).toContain('parle')
+  })
+})
+
+describe('GuideScreen on a phone: one level open, one line per lesson', () => {
+  const narrow = () => vi.stubGlobal('matchMedia', (q: string) => ({ matches: false, media: q, addEventListener: () => {}, removeEventListener: () => {} }))
+  afterEach(() => vi.unstubAllGlobals())
+  const head = (host: HTMLElement, lv: string) => [...host.querySelectorAll<HTMLButtonElement>('.guide-level-group .group-toggle')].find((b) => b.textContent?.startsWith(lv))!
+  const rowsOf = (host: HTMLElement) => [...host.querySelectorAll<HTMLElement>('.guide-row')]
+
+  it('opens only the level the learner is at; the others open on a tap', async () => {
+    narrow()
+    const { host } = await mount('fr')
+    const a1 = lessonsOf('fr').filter((l) => l.level === 'A1')
+    expect(head(host, 'A1').getAttribute('aria-expanded')).toBe('true')
+    expect(head(host, 'B1').getAttribute('aria-expanded')).toBe('false')
+    expect(rowsOf(host)).toHaveLength(a1.length)
+    // Each row is one line: a name, the level and the questions, no summary.
+    expect(rowsOf(host)[0]!.querySelector('.guide-level-badge')?.textContent).toBe('A1')
+    expect(rowsOf(host)[0]!.querySelector('.guide-row-stat')?.textContent).toMatch(/soru|Anlatım/)
+    expect(host.querySelector('.guide-row .guide-card-summary')).toBeNull()
+    const b1 = lessonsOf('fr').find((l) => l.level === 'B1')!
+    expect(rowsOf(host).some((r) => r.querySelector('strong')?.textContent === lessonTitle(b1))).toBe(false)
+    await act(async () => head(host, 'B1').click())
+    expect(rowsOf(host).some((r) => r.querySelector('strong')?.textContent === lessonTitle(b1))).toBe(true)
+    await act(async () => head(host, 'A1').click())
+    expect(head(host, 'A1').getAttribute('aria-expanded')).toBe('false')
+  })
+
+  it('follows where the learner is: with A1 read, A2 is the open one', async () => {
+    narrow()
+    await db.saveGuideMarks(Object.fromEntries(lessonsOf('fr').filter((l) => l.level === 'A1').map((l) => [l.topic, { read: '2026-10-01' }])))
+    const { host } = await mount('fr')
+    expect(head(host, 'A1').getAttribute('aria-expanded')).toBe('false')
+    expect(head(host, 'A2').getAttribute('aria-expanded')).toBe('true')
+  })
+
+  it('a search or a level chosen shows its lessons, whichever level they are in', async () => {
+    narrow()
+    const { host } = await mount('fr')
+    const search = host.querySelector<HTMLInputElement>('.guide-search')!
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(search, 'subjonctif')
+      search.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    expect(rowsOf(host).some((r) => r.textContent?.includes('Subjonctif'))).toBe(true)
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(search, '')
+      search.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    // The level menu (one row with Liste / Yol) narrows the list to one level, opened.
+    await act(async () => host.querySelector<HTMLButtonElement>('.guide-level-select .select-trigger')!.click())
+    await act(async () => [...host.querySelectorAll<HTMLElement>('.select-option')].find((o) => o.textContent?.startsWith('C1'))!.dispatchEvent(new MouseEvent('mousedown', { bubbles: true })))
+    expect(rowsOf(host).length).toBe(lessonsOf('fr').filter((l) => l.level === 'C1').length)
+    expect(host.querySelectorAll('.guide-level-group')).toHaveLength(1)
   })
 })

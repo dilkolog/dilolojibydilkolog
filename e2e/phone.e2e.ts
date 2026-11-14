@@ -1381,7 +1381,7 @@ test('guide on phone: open basic lesson, pass quiz for learned tag, Today review
   await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
 
   // Open basic lesson (basics_es_hay_estar: "Hay mı, está mı?")
-  const card = page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: 'Hay mı, está mı?' }) })
+  const card = page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: 'Hay mı, está mı?' }) })
   await expect(card).toBeVisible()
   await card.click()
 
@@ -1424,9 +1424,10 @@ test('guide on phone: open basic lesson, pass quiz for learned tag, Today review
   await page.locator('.guide-lesson button.link', { hasText: 'Rehber' }).click()
   await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
 
-  // Card now has "Öğrenildi" tag
-  const learnedCard = page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: 'Hay mı, está mı?' }) })
-  await expect(learnedCard.locator('.guide-tag')).toHaveText('Öğrenildi')
+  // Its row now says learned (the check in its dot, and the word for a screen reader)
+  const learnedCard = page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: 'Hay mı, está mı?' }) })
+  await expect(learnedCard).toHaveClass(/path-learned/)
+  await expect(learnedCard).toContainText('Öğrenildi')
   expect(await overflow(page), 'guide list overflow').toEqual([])
 
   // The check's marks are saved a moment after it: wait for them, or they would land on top of the seeded ones.
@@ -1483,7 +1484,7 @@ test('guide on phone: placement test modal, terms inspection, and sticky steps h
   await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
 
   // 2. Open Subjonctif lesson
-  const subjonctifCard = page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) })
+  const subjonctifCard = page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) })
   await expect(subjonctifCard).toBeVisible()
   await subjonctifCard.click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
