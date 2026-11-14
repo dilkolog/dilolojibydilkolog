@@ -2712,7 +2712,7 @@ test('the guide: a lesson leads to its own grammar questions, the links open out
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
   await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
   await page.getByRole('button', { name: /Bu konuda \d+ soru çöz/ }).click()
   // The topic is chosen in the grammar catalog: its row is pressed and the selection names it.
@@ -2747,7 +2747,7 @@ test('the guide: a lesson read days ago comes back on Today for a short check', 
 test('the guide: a lesson has steps that stay in view and lead to its parts', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   // The terms of the lesson open a small card.
   const termChip = page.getByRole('group', { name: 'Dilbilgisi terimleri' }).getByRole('button').first()
   await termChip.click()
@@ -2850,7 +2850,7 @@ test('the guide: passing levels in placement test marks easier lessons as known 
 test('the guide: lesson grammar terms can be inspected with definition, translation and pronunciation', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
 
   const termsSection = page.locator('.lesson-terms')
@@ -2876,7 +2876,7 @@ test('the guide: lesson grammar terms can be inspected with definition, translat
 test('the guide: a lesson can be reported and the list is kept for the author', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await page.getByRole('button', { name: 'Derste hata var' }).click()
   await page.getByLabel('Neyi yanlış ya da eksik buldun?').fill('Tablodaki örnek yanlış')
   await page.locator('.report-issue').getByRole('button', { name: 'Kaydet' }).click()
@@ -2904,7 +2904,7 @@ test('the guide: a weekly goal brings today\'s lesson to Today and shows the wee
 test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, and browser back returns to question', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
   await page.getByRole('button', { name: /Bu konuda \d+ soru çöz/ }).click()
 

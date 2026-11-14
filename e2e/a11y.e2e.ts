@@ -960,7 +960,7 @@ test('guide lesson, mini quiz states (question, feedback, score) and Today revie
   await expect(page.locator('.guide-path-item').first()).toBeVisible()
   await scanBoth('guide-path-view')
   await page.getByRole('button', { name: 'Liste', exact: true }).click()
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
   await scanBoth('guide-lesson-page')
 
