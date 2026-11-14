@@ -75,7 +75,6 @@ beforeEach(() => {
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
   vi.stubEnv('OWNER_EMAIL', 'sahip@example.com')
-  vi.stubEnv('ADMIN_TOKEN', '')
   vi.stubGlobal('fetch', async (input: string | URL | Request, init?: RequestInit) => fakeSupabase(String(input), init))
 })
 afterEach(() => {
@@ -86,7 +85,7 @@ afterEach(() => {
 describe("the owner's admin screen: people", () => {
   it('says who the owner is, and to nobody else', async () => {
     expect(await (await get('?view=me')).json()).toEqual({ owner: true })
-    expect((await get('?view=me', 'tok-other')).status).toBe(503)
+    expect((await get('?view=me', 'tok-other')).status).toBe(403)
   })
 
   it('lists who waits, who is approved, and finds by e-mail', async () => {
@@ -116,7 +115,7 @@ describe("the owner's admin screen: people", () => {
   it('refuses a made-up level, a bad id and another person', async () => {
     expect((await post({ action: 'person', user: B, level: 'super' })).status).toBe(400)
     expect((await post({ action: 'person', user: 'not-a-uuid', change: 'approve' })).status).toBe(400)
-    expect((await post({ action: 'person', user: A, change: 'approve' }, 'tok-other')).status).toBe(503)
+    expect((await post({ action: 'person', user: A, change: 'approve' }, 'tok-other')).status).toBe(403)
     expect(patches).toHaveLength(0)
   })
 
@@ -131,7 +130,7 @@ describe("the owner's admin screen: people", () => {
   it("deletes someone's account only with their e-mail typed, and never an owner's", async () => {
     expect((await post({ action: 'person-delete', user: A })).status).toBe(400)
     expect((await post({ action: 'person-delete', user: A, confirm: 'veli@example.com' })).status).toBe(400)
-    expect((await post({ action: 'person-delete', user: A, confirm: 'ayse@example.com' }, 'tok-other')).status).toBe(503)
+    expect((await post({ action: 'person-delete', user: A, confirm: 'ayse@example.com' }, 'tok-other')).status).toBe(403)
     expect(deletedUsers).toEqual([])
     expect((await post({ action: 'person-delete', user: A, confirm: ' AYSE@example.com ' })).status).toBe(200)
     expect(deletedUsers).toEqual([A])
@@ -139,5 +138,33 @@ describe("the owner's admin screen: people", () => {
     profiles.push({ user_id: B.replace('2222', '9999'), email: 'sahip@example.com', username: 'sahip', approved: true, rejected: false, created_at: '2026-01-01T00:00:00Z', ai_level: 'tam' })
     expect((await post({ action: 'person-delete', user: B.replace('2222', '9999'), confirm: 'sahip@example.com' })).status).toBe(403)
     expect(deletedUsers).toEqual([A])
+  })
+})
+
+describe("the owner's second secret (OWNER_STEP_SECRET)", () => {
+  const SECRET = 'a-long-second-secret-1234'
+  const postWith = (body: unknown, secret?: string) =>
+    admin.POST(new Request('https://app.test/api/admin', { method: 'POST', headers: { authorization: 'Bearer tok-owner', ...(secret ? { 'x-owner-secret': secret } : {}) }, body: JSON.stringify(body) }))
+
+  it('is asked for deleting someone once it is set: the owner\'s sign-in alone is not enough', async () => {
+    vi.stubEnv('OWNER_STEP_SECRET', SECRET)
+    const del = { action: 'person-delete', user: A, confirm: 'ayse@example.com' }
+    expect(await (await postWith(del)).json()).toEqual({ error: 'owner_secret' })
+    expect(await (await postWith(del, 'wrong-wrong-wrong-wrong')).json()).toEqual({ error: 'owner_secret_wrong' })
+    expect(deletedUsers).toEqual([])
+    expect((await postWith(del, SECRET)).status).toBe(200)
+    expect(deletedUsers).toEqual([A])
+  })
+
+  it('guards approving everyone and the limits too, not the everyday steps', async () => {
+    vi.stubEnv('OWNER_STEP_SECRET', SECRET)
+    expect((await postWith({ action: 'approve-all' })).status).toBe(403)
+    expect((await postWith({ action: 'settings', settings: { aiDailyCalls: 10 } })).status).toBe(403)
+    // Approving one person or changing their AI level stays a single step.
+    expect((await postWith({ action: 'person', user: A, change: 'approve' })).status).toBe(200)
+  })
+
+  it('changes nothing while it is not set', async () => {
+    expect((await postWith({ action: 'person-delete', user: A, confirm: 'ayse@example.com' })).status).toBe(200)
   })
 })

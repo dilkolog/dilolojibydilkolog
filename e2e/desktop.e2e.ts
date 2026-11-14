@@ -1,5 +1,6 @@
 import { answer as liveAnswer, emptyRoom, handle as liveHandle, join as liveJoin, viewFor } from '../src/engine/liveDuel'
 import { numberWords } from '../src/engine/numbers'
+import type { RegisterItem } from '../src/engine/register'
 import type { FriendView } from '../src/data/friends'
 import { spellOut } from '../src/engine/spelling'
 import { clubViewFor, emptyClub, handleClub, joinClub, look as clubLook, share as clubShare, type ClubState } from '../src/engine/readingClub'
@@ -7,7 +8,7 @@ import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { unzipSync } from 'fflate'
-import { aiRoute, approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples, gameCard } from './helpers'
+import { aiRoute, approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples, gameCard, seedAnswers } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -58,6 +59,8 @@ test('settings on a wide screen: title row, group strip and cards end on one lin
 
 test('tablet width: one top bar row, the word list in two columns, the profile numbers in one row', async ({ page }) => {
   await startWithSamples(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
   await page.setViewportSize({ width: 820, height: 900 })
   await page.waitForTimeout(300)
   // Brand, languages, places and profile share one row; the brand name stays on one line.
@@ -414,6 +417,58 @@ test('exam-style tasks: a text and three questions to read, a listening mode tha
   await expect(page.locator('.examtask [lang="tr"]').first()).toBeVisible()
 })
 
+test('the exams screen: an exam and a level from the content, a set and a task opened in their own flows, kept after a reload', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Sınavlar')
+  await expect(page.getByRole('heading', { name: 'Sınavlar', level: 1 })).toBeVisible()
+  const exams = page.getByRole('group', { name: 'Sınav' })
+  await expect(exams.getByRole('button')).toHaveText(['DELF tarzı', 'DALF tarzı'])
+  const levels = page.getByRole('group', { name: 'Seviye' })
+  // Only the levels with content: DELF stops at B2, C1 is DALF's.
+  await expect(levels.getByRole('button')).toHaveText(['A2', 'B1', 'B2'])
+  await exams.getByRole('button', { name: 'DALF tarzı' }).click()
+  await expect(levels.getByRole('button')).toHaveText(['C1'])
+  await exams.getByRole('button', { name: 'DELF tarzı' }).click()
+  await levels.getByRole('button', { name: 'B1' }).click()
+  await expect(page.getByText('resmî sınav kurumlarıyla bir bağlantı yoktur')).toBeVisible()
+  // Kept after a reload: the screen, the exam and the level.
+  await page.reload()
+  await expect(page.getByRole('group', { name: 'Seviye' }).getByRole('button', { name: 'B1' })).toHaveAttribute('aria-pressed', 'true')
+  // A set opens the exam-style tasks game on it; leaving it comes back here, with the result on the row.
+  const reading = page.getByRole('region', { name: /Okuma ve dinleme/ })
+  const title = (await reading.locator('.examtask-item strong').first().textContent())!.trim()
+  await reading.locator('.examtask-item').first().click()
+  await expect(page.locator('.examtask-text')).toBeVisible()
+  await expect(page.getByRole('button', { name: '← Sınavlar' })).toBeVisible()
+  for (const n of [1, 2, 3]) await page.getByRole('region', { name: `Soru ${n}` }).locator('.option').first().click()
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.getByRole('region', { name: 'Sonuç' })).toContainText('/ 3 doğru')
+  await page.getByRole('button', { name: 'Sınavlara dön' }).click()
+  await expect(reading.locator('.examtask-item', { hasText: title })).toContainText('Son sonuç %')
+  // The browser's Back closes an opened set too.
+  await reading.locator('.examtask-item').first().click()
+  await expect(page.locator('.examtask-text')).toBeVisible()
+  await page.goBack()
+  await expect(page.getByRole('heading', { name: 'Sınavlar', level: 1 })).toBeVisible()
+  // A writing task opens the journal of "Yaz & konuş" with it chosen; what is written there is dated on the row.
+  const writing = page.getByRole('region', { name: /Yazma/ })
+  const task = (await writing.locator('.examtask-item strong').first().textContent())!.trim()
+  await writing.locator('.examtask-item').first().click()
+  await expect(page.locator('.exam-instruction')).toBeVisible()
+  await expect(page.locator('.exam-task')).toContainText('DELF tarzında özgün bir görev')
+  await page.getByLabel('Günlük').fill('Chère Léa, je t’écris pour te dire que je viens samedi avec mon frère.')
+  await page.getByRole('button', { name: 'Kaydet', exact: true }).click()
+  await expect(page.locator('.journal-item')).toHaveCount(1)
+  await page.goBack()
+  await expect(page.getByRole('region', { name: /Yazma/ }).locator('.examtask-item', { hasText: task })).toContainText('Son yazış')
+  // Another language, its own exams.
+  await page.getByRole('button', { name: /İspanyolca/ }).click()
+  await expect(page.getByText('DELE adları yalnızca görevlerin tarzını anlatır')).toBeVisible()
+  await expect(page.getByRole('group', { name: 'Sınav' })).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
 test('English verb lab: irregular verbs and phrasal verbs, a list to look through and a round to practise', async ({ page }) => {
   await startWithSamples(page)
   await page.getByRole('button', { name: /İngilizce/ }).click()
@@ -606,6 +661,38 @@ test('verb lab forms due are mixed into the day\'s session, and the answers go t
         }),
     )
   await expect.poll(wrong).toBe(3)
+})
+
+test('the end of a daily round asks for one sentence with a word of the round, saved as the word’s own example', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await playSession(page)
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').first().click()
+  for (let i = 0; i < 6 && (await page.locator('.badge-moment').count()); i++) await page.locator('.badge-moment button').first().click()
+  const step = page.getByRole('region', { name: 'Bir cümle yaz' })
+  await expect(step).toBeVisible()
+  const input = step.getByRole('textbox')
+  const lemma = ((await input.getAttribute('placeholder')) ?? '').replace(/ ile, kendinle ilgili bir cümle…$/, '')
+  expect(lemma).not.toBe('')
+  // Without the word the sentence is refused, and the form stays.
+  await input.fill('Je suis content aujourd’hui.')
+  await step.getByRole('button', { name: 'Kaydet' }).click()
+  await expect(step.locator('.error')).toContainText(`Cümlede "${lemma}" bulunamadı`)
+  await input.fill(`Ce matin, j’ai pensé à « ${lemma} » au travail.`)
+  await step.getByRole('button', { name: 'Kaydet' }).click()
+  await expect(page.getByRole('status').filter({ hasText: 'Cümlen kaydedildi' })).toBeVisible()
+  const personal = () =>
+    page.evaluate(
+      () =>
+        new Promise<string[]>((resolve) => {
+          const open = indexedDB.open('kelime-koc')
+          open.onsuccess = () => {
+            const all = open.result.transaction('vocabulary').objectStore('vocabulary').getAll()
+            all.onsuccess = () => resolve((all.result as { senses: { examples: { text: string; personal?: boolean }[] }[] }[]).flatMap((e) => e.senses[0].examples.filter((x) => x.personal).map((x) => x.text)))
+          }
+        }),
+    )
+  await expect.poll(personal).toContainEqual(expect.stringContaining('Ce matin'))
 })
 
 test('verb lab: add a verb to the list, hear all six, the E and A keys', async ({ page }) => {
@@ -2023,6 +2110,8 @@ test('shadowing a text: a sentence played from its recording, then said back, th
 
 test('CEFR levels: progress by textbook level, the missing words of a level, a word’s level', async ({ page }) => {
   await startWithSamples(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
   await openScreen(page, 'İlerleme')
   await expect(page.getByRole('heading', { name: 'Seviyelerin kelimelerinden ne kadarını biliyorsun' })).toBeVisible()
   const rows = page.locator('.band-list li')
@@ -2274,35 +2363,40 @@ test('compound tenses: reading card reveals full compound form and infinitive on
   await expect(formAnalysis).toContainText('passé composé')
 })
 
-test('register game: regional usage note shows for entries with notes and is absent otherwise', async ({ page }) => {
+test('register game: usage notes match their entries and are absent otherwise', async ({ page }) => {
+  const items: RegisterItem[] = fs.readdirSync('src/data/register').filter((name) => name.endsWith('.json')).sort()
+    .flatMap((name) => JSON.parse(fs.readFileSync(`src/data/register/${name}`, 'utf8')) as RegisterItem[])
   await startWithSamples(page)
-  // Switch to Spanish where es-job, es-eat, es-car etc. have regional notes
   await page.getByRole('button', { name: /İspanyolca/ }).click()
   await openScreen(page, 'Oyunlar')
-
   await (await gameCard(page, 'Resmî mi, günlük mü?')).click()
+  // This seed includes a non-regional idiom note and entries with no note.
+  await page.clock.setFixedTime(new Date('2026-11-13T09:00:00.008Z'))
   await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
 
   let seenNote = false
-  for (let round = 0; round < 4 && !seenNote; round++) {
-    for (let i = 0; i < 8; i++) {
-      const opt = page.locator('.option:not([disabled])').first()
-      await expect(opt).toBeVisible()
-      await opt.click()
-      const noteLocator = page.locator('.stack[role="status"] p.small.muted')
-      if (await noteLocator.count()) {
-        await expect(noteLocator).toBeVisible()
-        await expect(noteLocator).toContainText(/İspanya|Latin Amerika|Meksika|Arjantin|chamba|curro|papear|cacharro|pasta|guay|visto/i)
-        seenNote = true
-        break
-      }
-      await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  let seenWithoutNote = false
+  for (let index = 0; index < 8; index++) {
+    const options = page.locator('.register-card .option-serif')
+    await expect(options).toHaveCount(3)
+    const forms = await options.allTextContents()
+    const thought = await page.locator('.register-card h1.word').innerText()
+    const matches = items.filter((item) => item.language === 'es' && thought.includes(item.tr) && [item.informal, item.standard, item.formal].every((form) => forms.includes(form)))
+    expect(matches).toHaveLength(1)
+    const item = matches[0]
+    await page.locator('.option:not([disabled])').first().click()
+    const note = page.locator('.stack[role="status"] p.small.muted')
+    if (item.note) {
+      await expect(note).toHaveText(item.note)
+      seenNote = true
+    } else {
+      await expect(note).toHaveCount(0)
+      seenWithoutNote = true
     }
-    if (!seenNote && (await page.getByRole('button', { name: /Tekrar oyna|Yeniden oyna/ }).count()) > 0) {
-      await page.getByRole('button', { name: /Tekrar oyna|Yeniden oyna/ }).click()
-    }
+    await page.getByRole('button', { name: 'Devam', exact: true }).click()
   }
   expect(seenNote).toBe(true)
+  expect(seenWithoutNote).toBe(true)
 })
 
 
@@ -2674,7 +2768,7 @@ test('the guide: a lesson leads to its own grammar questions, the links open out
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
   await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
   await page.getByRole('button', { name: /Bu konuda \d+ soru çöz/ }).click()
   // The topic is chosen in the grammar catalog: its row is pressed and the selection names it.
@@ -2709,7 +2803,7 @@ test('the guide: a lesson read days ago comes back on Today for a short check', 
 test('the guide: a lesson has steps that stay in view and lead to its parts', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   // The terms of the lesson open a small card.
   const termChip = page.getByRole('group', { name: 'Dilbilgisi terimleri' }).getByRole('button').first()
   await termChip.click()
@@ -2812,7 +2906,7 @@ test('the guide: passing levels in placement test marks easier lessons as known 
 test('the guide: lesson grammar terms can be inspected with definition, translation and pronunciation', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
 
   const termsSection = page.locator('.lesson-terms')
@@ -2838,7 +2932,7 @@ test('the guide: lesson grammar terms can be inspected with definition, translat
 test('the guide: a lesson can be reported and the list is kept for the author', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await page.getByRole('button', { name: 'Derste hata var' }).click()
   await page.getByLabel('Neyi yanlış ya da eksik buldun?').fill('Tablodaki örnek yanlış')
   await page.locator('.report-issue').getByRole('button', { name: 'Kaydet' }).click()
@@ -2866,7 +2960,7 @@ test('the guide: a weekly goal brings today\'s lesson to Today and shows the wee
 test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, and browser back returns to question', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
-  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
   await page.getByRole('button', { name: /Bu konuda \d+ soru çöz/ }).click()
 
@@ -3256,6 +3350,8 @@ test('streak repair: broken streak offers recall exam, >=70% score restores stre
 
 test('progress report: print opens a popup window and Excel (.xlsx) download contains at least 7 sheets', async ({ page }) => {
   await startWithSamples(page)
+  // A learner with answers: Progress and Profile show their sections (a learner with none sees one invitation).
+  await seedAnswers(page)
   await openScreen(page, 'İlerleme')
   await expect(page.getByRole('heading', { name: 'İlerleme' })).toBeVisible()
 

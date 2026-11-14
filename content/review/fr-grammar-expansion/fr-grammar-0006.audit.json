@@ -1,0 +1,511 @@
+{
+  "job": "fr-grammar-0006",
+  "count": 50,
+  "solver": {
+    "checked": 50,
+    "disagreements": 0,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "fr-g-000221",
+      "target": "Il",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000222",
+      "target": "Elle",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000223",
+      "target": "Je",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000224",
+      "target": "Tu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000225",
+      "target": "Elle",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000226",
+      "target": "Il",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000227",
+      "target": "Je",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000228",
+      "target": "Tu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000229",
+      "target": "Elle",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000230",
+      "target": "Il",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : tekil"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000231",
+      "target": "Ils",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000232",
+      "target": "Elles",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000233",
+      "target": "nous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000234",
+      "target": "vous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000235",
+      "target": "Ils",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000236",
+      "target": "Elles",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000237",
+      "target": "Ils",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000238",
+      "target": "Elles",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000239",
+      "target": "Ils",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000240",
+      "target": "Elles",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "özne zamiri : çoğul"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000241",
+      "target": "On",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000242",
+      "target": "On",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000243",
+      "target": "Vous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000244",
+      "target": "Tu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000245",
+      "target": "Vous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000246",
+      "target": "On",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000247",
+      "target": "Tu",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000248",
+      "target": "Vous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000249",
+      "target": "On",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000250",
+      "target": "Vous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tu, vous et on"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000251",
+      "target": "moi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000252",
+      "target": "toi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000253",
+      "target": "lui",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000254",
+      "target": "elles",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000255",
+      "target": "eux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000256",
+      "target": "nous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000257",
+      "target": "vous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000258",
+      "target": "elle",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000259",
+      "target": "toi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000260",
+      "target": "moi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "edattan sonra vurgulu zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000261",
+      "target": "Moi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000262",
+      "target": "lui",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000263",
+      "target": "moi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000264",
+      "target": "Toi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000265",
+      "target": "eux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000266",
+      "target": "Moi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000267",
+      "target": "toi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000268",
+      "target": "Nous",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000269",
+      "target": "Eux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000270",
+      "target": "moi",
+      "reference": {
+        "path": "src/data/guide/lessons-fr-2.ts",
+        "topic": "basics_fr_pronoms",
+        "section": "tek başına ve vurguda zamir"
+      },
+      "independentSolver": "passed"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 -- 1. counter_give: the server sets an AI call's money (and a translation's or speech's characters) aside before the
 --    call with counter_take, then gives back what it did not use. Until this runs the server simply cannot give
 --    back (an account has a little less left that day, never more).
--- 2. Media: the update policy (an upload with upsert over an existing file) now checks the same 200 MB per person
+-- 2. Media: the update policy (an upload with upsert over an existing file) now checks the same limit per person (50 MB since 2026-11-12, as in 0005)
 --    as the insert policy; before, small files could be uploaded and each one rewritten at 6 MB. A person may also
 --    delete their own files (nothing could, before).
 -- 3. Sign-up: the name a person chooses is cut to 40 characters, like the note to 200.
@@ -26,7 +26,7 @@ create policy "own media update" on storage.objects for update to authenticated
   using (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text)
   with check (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text
     and exists (select 1 from public.profiles where user_id = auth.uid() and approved)
-    and (select u.bytes < 200000000 from public.my_media_usage() u));
+    and (select u.bytes < 50000000 from public.my_media_usage() u));
 drop policy if exists "own media delete" on storage.objects;
 create policy "own media delete" on storage.objects for delete to authenticated
   using (bucket_id = 'media' and (storage.foldername(name))[1] = auth.uid()::text);

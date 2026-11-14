@@ -1,0 +1,262 @@
+{
+  "job": "fr-grammar-0005",
+  "results": [
+    {
+      "id": "fr-g-000171",
+      "answer": "ne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000172",
+      "answer": "ne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000173",
+      "answer": "ne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000174",
+      "answer": "ne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000175",
+      "answer": "ne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000176",
+      "answer": "ne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000177",
+      "answer": "ne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000178",
+      "answer": "ne",
+      "single": true
+    },
+    {
+      "id": "fr-g-000179",
+      "answer": "aussi",
+      "single": true,
+      "note": "Doğru düzeltme: pas."
+    },
+    {
+      "id": "fr-g-000180",
+      "answer": "aussi",
+      "single": true,
+      "note": "Doğru düzeltme: pas."
+    },
+    {
+      "id": "fr-g-000181",
+      "answer": "n'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000182",
+      "answer": "n'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000183",
+      "answer": "n'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000184",
+      "answer": "n'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000185",
+      "answer": "n'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000186",
+      "answer": "n'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000187",
+      "answer": "n'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000188",
+      "answer": "n'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000189",
+      "answer": "aussi",
+      "single": true,
+      "note": "Doğru düzeltme: pas."
+    },
+    {
+      "id": "fr-g-000190",
+      "answer": "aussi",
+      "single": true,
+      "note": "Doğru düzeltme: pas."
+    },
+    {
+      "id": "fr-g-000191",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000192",
+      "answer": "d'",
+      "single": true
+    },
+    {
+      "id": "fr-g-000193",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000194",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000195",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000196",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000197",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000198",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000199",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000200",
+      "answer": "de",
+      "single": true
+    },
+    {
+      "id": "fr-g-000201",
+      "answer": "un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000202",
+      "answer": "une",
+      "single": true
+    },
+    {
+      "id": "fr-g-000203",
+      "answer": "des",
+      "single": true
+    },
+    {
+      "id": "fr-g-000204",
+      "answer": "un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000205",
+      "answer": "une",
+      "single": true
+    },
+    {
+      "id": "fr-g-000206",
+      "answer": "des",
+      "single": true
+    },
+    {
+      "id": "fr-g-000207",
+      "answer": "un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000208",
+      "answer": "des",
+      "single": true
+    },
+    {
+      "id": "fr-g-000209",
+      "answer": "de",
+      "single": true,
+      "note": "Doğru düzeltme: une."
+    },
+    {
+      "id": "fr-g-000210",
+      "answer": "un",
+      "single": true
+    },
+    {
+      "id": "fr-g-000211",
+      "answer": "Si",
+      "single": true
+    },
+    {
+      "id": "fr-g-000212",
+      "answer": "Si",
+      "single": true
+    },
+    {
+      "id": "fr-g-000213",
+      "answer": "Si",
+      "single": true
+    },
+    {
+      "id": "fr-g-000214",
+      "answer": "Si",
+      "single": true
+    },
+    {
+      "id": "fr-g-000215",
+      "answer": "Si",
+      "single": true
+    },
+    {
+      "id": "fr-g-000216",
+      "answer": "Si",
+      "single": true
+    },
+    {
+      "id": "fr-g-000217",
+      "answer": "Si",
+      "single": true
+    },
+    {
+      "id": "fr-g-000218",
+      "answer": "Si",
+      "single": true
+    },
+    {
+      "id": "fr-g-000219",
+      "answer": "Oui",
+      "single": true,
+      "note": "Doğru düzeltme: Si."
+    },
+    {
+      "id": "fr-g-000220",
+      "answer": "Oui",
+      "single": true,
+      "note": "Doğru düzeltme: Si."
+    }
+  ]
+}

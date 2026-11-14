@@ -1,0 +1,925 @@
+{
+  "job": "es-reading-0003",
+  "rows": [
+    {
+      "id": "es-r-000006",
+      "position": 1,
+      "words": 50,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "amigo",
+          "lemma": "amigo",
+          "tr": "arkadaş"
+        },
+        {
+          "word": "Madrid",
+          "lemma": "Madrid",
+          "tr": "Madrid (şehir)"
+        }
+      ],
+      "outside": [
+        "madrid"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 13
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000007",
+      "position": 2,
+      "words": 58,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "amigo",
+          "lemma": "amigo",
+          "tr": "arkadaş"
+        },
+        {
+          "word": "casa",
+          "lemma": "casa",
+          "tr": "ev"
+        },
+        {
+          "word": "Madrid",
+          "lemma": "Madrid",
+          "tr": "Madrid (şehir)"
+        }
+      ],
+      "outside": [
+        "madrid"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_posesivos",
+          "uses": 6
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000008",
+      "position": 3,
+      "words": 61,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "amigo",
+          "lemma": "amigo",
+          "tr": "arkadaş"
+        },
+        {
+          "word": "casa",
+          "lemma": "casa",
+          "tr": "ev"
+        },
+        {
+          "word": "mesa",
+          "lemma": "mesa",
+          "tr": "masa"
+        },
+        {
+          "word": "Madrid",
+          "lemma": "Madrid",
+          "tr": "Madrid (şehir)"
+        }
+      ],
+      "outside": [
+        "madrid"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_hay_estar",
+          "uses": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000009",
+      "position": 4,
+      "words": 59,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "casa",
+          "lemma": "casa",
+          "tr": "ev"
+        },
+        {
+          "word": "mesa",
+          "lemma": "mesa",
+          "tr": "masa"
+        },
+        {
+          "word": "silla",
+          "lemma": "silla",
+          "tr": "sandalye"
+        },
+        {
+          "word": "México",
+          "lemma": "México",
+          "tr": "Meksiko (şehir)"
+        }
+      ],
+      "outside": [
+        "méxico"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_posesivos",
+          "uses": 5
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000010",
+      "position": 5,
+      "words": 58,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "mesa",
+          "lemma": "mesa",
+          "tr": "masa"
+        },
+        {
+          "word": "silla",
+          "lemma": "silla",
+          "tr": "sandalye"
+        },
+        {
+          "word": "agua",
+          "lemma": "agua",
+          "tr": "su"
+        },
+        {
+          "word": "México",
+          "lemma": "México",
+          "tr": "Meksiko (şehir)"
+        }
+      ],
+      "outside": [
+        "méxico"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_negacion",
+          "uses": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000011",
+      "position": 6,
+      "words": 62,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "silla",
+          "lemma": "silla",
+          "tr": "sandalye"
+        },
+        {
+          "word": "agua",
+          "lemma": "agua",
+          "tr": "su"
+        },
+        {
+          "word": "pan",
+          "lemma": "pan",
+          "tr": "ekmek"
+        },
+        {
+          "word": "México",
+          "lemma": "México",
+          "tr": "Meksiko (şehir)"
+        }
+      ],
+      "outside": [
+        "méxico"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 15
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000012",
+      "position": 7,
+      "words": 58,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "agua",
+          "lemma": "agua",
+          "tr": "su"
+        },
+        {
+          "word": "pan",
+          "lemma": "pan",
+          "tr": "ekmek"
+        },
+        {
+          "word": "café",
+          "lemma": "café",
+          "tr": "kahve"
+        },
+        {
+          "word": "Bogotá",
+          "lemma": "Bogotá",
+          "tr": "Bogotá (şehir)"
+        }
+      ],
+      "outside": [
+        "bogotá"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 13
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000013",
+      "position": 8,
+      "words": 64,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "pan",
+          "lemma": "pan",
+          "tr": "ekmek"
+        },
+        {
+          "word": "café",
+          "lemma": "café",
+          "tr": "kahve"
+        },
+        {
+          "word": "leche",
+          "lemma": "leche",
+          "tr": "süt"
+        },
+        {
+          "word": "Bogotá",
+          "lemma": "Bogotá",
+          "tr": "Bogotá (şehir)"
+        }
+      ],
+      "outside": [
+        "bogotá"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_negacion",
+          "uses": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000014",
+      "position": 9,
+      "words": 63,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "café",
+          "lemma": "café",
+          "tr": "kahve"
+        },
+        {
+          "word": "leche",
+          "lemma": "leche",
+          "tr": "süt"
+        },
+        {
+          "word": "manzana",
+          "lemma": "manzana",
+          "tr": "elma"
+        },
+        {
+          "word": "Bogotá",
+          "lemma": "Bogotá",
+          "tr": "Bogotá (şehir)"
+        }
+      ],
+      "outside": [
+        "bogotá"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 17
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000015",
+      "position": 10,
+      "words": 64,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "leche",
+          "lemma": "leche",
+          "tr": "süt"
+        },
+        {
+          "word": "manzana",
+          "lemma": "manzana",
+          "tr": "elma"
+        },
+        {
+          "word": "queso",
+          "lemma": "queso",
+          "tr": "peynir"
+        },
+        {
+          "word": "Lima",
+          "lemma": "Lima",
+          "tr": "Lima (şehir)"
+        }
+      ],
+      "outside": [
+        "lima"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 16
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000016",
+      "position": 11,
+      "words": 63,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "manzana",
+          "lemma": "manzana",
+          "tr": "elma"
+        },
+        {
+          "word": "queso",
+          "lemma": "queso",
+          "tr": "peynir"
+        },
+        {
+          "word": "arroz",
+          "lemma": "arroz",
+          "tr": "pirinç"
+        },
+        {
+          "word": "Lima",
+          "lemma": "Lima",
+          "tr": "Lima (şehir)"
+        }
+      ],
+      "outside": [
+        "lima"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_posesivos",
+          "uses": 5
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000017",
+      "position": 12,
+      "words": 68,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "queso",
+          "lemma": "queso",
+          "tr": "peynir"
+        },
+        {
+          "word": "arroz",
+          "lemma": "arroz",
+          "tr": "pirinç"
+        },
+        {
+          "word": "huevo",
+          "lemma": "huevo",
+          "tr": "yumurta"
+        },
+        {
+          "word": "Lima",
+          "lemma": "Lima",
+          "tr": "Lima (şehir)"
+        }
+      ],
+      "outside": [
+        "lima"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 14
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000018",
+      "position": 13,
+      "words": 62,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "arroz",
+          "lemma": "arroz",
+          "tr": "pirinç"
+        },
+        {
+          "word": "huevo",
+          "lemma": "huevo",
+          "tr": "yumurta"
+        },
+        {
+          "word": "colegio",
+          "lemma": "colegio",
+          "tr": "okul"
+        },
+        {
+          "word": "Sevilla",
+          "lemma": "Sevilla",
+          "tr": "Sevilla (şehir)"
+        }
+      ],
+      "outside": [
+        "sevilla"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 15
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000019",
+      "position": 14,
+      "words": 73,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "huevo",
+          "lemma": "huevo",
+          "tr": "yumurta"
+        },
+        {
+          "word": "colegio",
+          "lemma": "colegio",
+          "tr": "okul"
+        },
+        {
+          "word": "clase",
+          "lemma": "clase",
+          "tr": "ders"
+        },
+        {
+          "word": "Sevilla",
+          "lemma": "Sevilla",
+          "tr": "Sevilla (şehir)"
+        }
+      ],
+      "outside": [
+        "sevilla"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_posesivos",
+          "uses": 4
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000020",
+      "position": 15,
+      "words": 65,
+      "levelFit": 96.55,
+      "vocabulary": [
+        {
+          "word": "colegio",
+          "lemma": "colegio",
+          "tr": "okul"
+        },
+        {
+          "word": "clase",
+          "lemma": "clase",
+          "tr": "ders"
+        },
+        {
+          "word": "profesor",
+          "lemma": "profesor",
+          "tr": "öğretmen"
+        },
+        {
+          "word": "Sevilla",
+          "lemma": "Sevilla",
+          "tr": "Sevilla (şehir)"
+        }
+      ],
+      "outside": [
+        "sevilla"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 10
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000021",
+      "position": 16,
+      "words": 65,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "clase",
+          "lemma": "clase",
+          "tr": "ders"
+        },
+        {
+          "word": "profesor",
+          "lemma": "profesor",
+          "tr": "öğretmen"
+        },
+        {
+          "word": "trabajo",
+          "lemma": "trabajo",
+          "tr": "iş"
+        },
+        {
+          "word": "Santiago",
+          "lemma": "Santiago",
+          "tr": "Santiago (şehir)"
+        }
+      ],
+      "outside": [
+        "santiago"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 14
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000022",
+      "position": 17,
+      "words": 62,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "profesor",
+          "lemma": "profesor",
+          "tr": "öğretmen"
+        },
+        {
+          "word": "trabajo",
+          "lemma": "trabajo",
+          "tr": "iş"
+        },
+        {
+          "word": "oficina",
+          "lemma": "oficina",
+          "tr": "ofis"
+        },
+        {
+          "word": "Santiago",
+          "lemma": "Santiago",
+          "tr": "Santiago (şehir)"
+        }
+      ],
+      "outside": [
+        "santiago"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_posesivos",
+          "uses": 7
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000023",
+      "position": 18,
+      "words": 58,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "trabajo",
+          "lemma": "trabajo",
+          "tr": "iş"
+        },
+        {
+          "word": "oficina",
+          "lemma": "oficina",
+          "tr": "ofis"
+        },
+        {
+          "word": "compañero",
+          "lemma": "compañero",
+          "tr": "iş arkadaşı"
+        },
+        {
+          "word": "Santiago",
+          "lemma": "Santiago",
+          "tr": "Santiago (şehir)"
+        }
+      ],
+      "outside": [
+        "santiago"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_negacion",
+          "uses": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000024",
+      "position": 19,
+      "words": 69,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "oficina",
+          "lemma": "oficina",
+          "tr": "ofis"
+        },
+        {
+          "word": "compañero",
+          "lemma": "compañero",
+          "tr": "iş arkadaşı"
+        },
+        {
+          "word": "calle",
+          "lemma": "calle",
+          "tr": "sokak"
+        },
+        {
+          "word": "Mendoza",
+          "lemma": "Mendoza",
+          "tr": "Mendoza (şehir)"
+        }
+      ],
+      "outside": [
+        "mendoza"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 12
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000025",
+      "position": 20,
+      "words": 67,
+      "levelFit": 100,
+      "vocabulary": [
+        {
+          "word": "compañero",
+          "lemma": "compañero",
+          "tr": "iş arkadaşı"
+        },
+        {
+          "word": "calle",
+          "lemma": "calle",
+          "tr": "sokak"
+        },
+        {
+          "word": "tienda",
+          "lemma": "tienda",
+          "tr": "dükkân"
+        },
+        {
+          "word": "Mendoza",
+          "lemma": "Mendoza",
+          "tr": "Mendoza (şehir)"
+        }
+      ],
+      "outside": [
+        "mendoza"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 11
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000026",
+      "position": 21,
+      "words": 68,
+      "levelFit": 96.72,
+      "vocabulary": [
+        {
+          "word": "calle",
+          "lemma": "calle",
+          "tr": "sokak"
+        },
+        {
+          "word": "tienda",
+          "lemma": "tienda",
+          "tr": "dükkân"
+        },
+        {
+          "word": "mercado",
+          "lemma": "mercado",
+          "tr": "pazar"
+        },
+        {
+          "word": "Mendoza",
+          "lemma": "Mendoza",
+          "tr": "Mendoza (şehir)"
+        }
+      ],
+      "outside": [
+        "mendoza"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 14
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000027",
+      "position": 22,
+      "words": 69,
+      "levelFit": 96.72,
+      "vocabulary": [
+        {
+          "word": "tienda",
+          "lemma": "tienda",
+          "tr": "dükkân"
+        },
+        {
+          "word": "mercado",
+          "lemma": "mercado",
+          "tr": "pazar"
+        },
+        {
+          "word": "sol",
+          "lemma": "sol",
+          "tr": "güneş"
+        },
+        {
+          "word": "Medellín",
+          "lemma": "Medellín",
+          "tr": "Medellín (şehir)"
+        }
+      ],
+      "outside": [
+        "medellín"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 12
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000028",
+      "position": 23,
+      "words": 72,
+      "levelFit": 98.41,
+      "vocabulary": [
+        {
+          "word": "mercado",
+          "lemma": "mercado",
+          "tr": "pazar"
+        },
+        {
+          "word": "sol",
+          "lemma": "sol",
+          "tr": "güneş"
+        },
+        {
+          "word": "lluvia",
+          "lemma": "lluvia",
+          "tr": "yağmur"
+        },
+        {
+          "word": "Medellín",
+          "lemma": "Medellín",
+          "tr": "Medellín (şehir)"
+        }
+      ],
+      "outside": [
+        "medellín"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 14
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000029",
+      "position": 24,
+      "words": 73,
+      "levelFit": 97.1,
+      "vocabulary": [
+        {
+          "word": "sol",
+          "lemma": "sol",
+          "tr": "güneş"
+        },
+        {
+          "word": "lluvia",
+          "lemma": "lluvia",
+          "tr": "yağmur"
+        },
+        {
+          "word": "Medellín",
+          "lemma": "Medellín",
+          "tr": "Medellín (şehir)"
+        }
+      ],
+      "outside": [
+        "medellín"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_hay_estar",
+          "uses": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "es-r-000030",
+      "position": 25,
+      "words": 75,
+      "levelFit": 97.22,
+      "vocabulary": [
+        {
+          "word": "lluvia",
+          "lemma": "lluvia",
+          "tr": "yağmur"
+        },
+        {
+          "word": "Medellín",
+          "lemma": "Medellín",
+          "tr": "Medellín (şehir)"
+        }
+      ],
+      "outside": [
+        "medellín"
+      ],
+      "grammar": [
+        {
+          "topic": "basics_es_presente",
+          "uses": 14
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

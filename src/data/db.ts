@@ -98,6 +98,8 @@ export interface JournalEntry {
   at: string
   text: string
   review?: JournalReview
+  /** The exam-style writing task it answers (ExamTask id), when one was chosen; older entries lack it. */
+  task?: string
 }
 
 export interface VocabTestRecord {

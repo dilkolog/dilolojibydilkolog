@@ -1,3 +1,2 @@
-// Live smoke test: runs the unified deploy verification and live account sync roundtrip.
-// Accepts BASE_URL (default https://diloloji.com), SMOKE_USER, SMOKE_PASS and ADMIN_TOKEN.
+// Live smoke test: runs the deploy verification (scripts/verify-deploy.mjs). Accepts BASE_URL (default https://diloloji.com).
 import './verify-deploy.mjs'

@@ -255,7 +255,7 @@ export function DictionaryScreen({ language, vocabulary, states = [], lists: pro
   }
   const targetListName = currentPlacementInfo.listId ? currentPlacementInfo.label : 'Listesiz'
   // The idiom pack: an idiom typed whole gets its own card; a word shows the idioms it is in.
-  const idiomHit = useMemo(() => findIdioms(idioms, typed), [idioms, typed])
+  const idiomHit = useMemo(() => findIdioms(idioms, typed, 8, tables ? language : undefined), [idioms, typed, language, tables])
   const idiomEntry = useMemo(() => (idiomHit.exact ? keyEntries(idiomItems([idiomHit.exact]), language, new Date(), '')[0] : undefined), [idiomHit.exact, language])
   const idiomOwn = idiomEntry ? vocabulary.find((v) => v.id === idiomEntry.id) : undefined
   const addIdiom = async () => {

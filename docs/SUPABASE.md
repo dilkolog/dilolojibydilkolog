@@ -101,7 +101,7 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
   3. Eski depodaki çekirdeğe `movedTo: 'supabase'` yazar.
 
   Hâlâ eski yolla girişli bir cihaz eşitlemeye kalkınca durur ve "çıkış yapıp e-posta ya da Google ile gir" der (`SyncMovedError`). Tablo yoksa (SQL çalıştırılmadıysa) her şey eskisi gibi Blob'la sürer.
-- **Onay:** veritabanı yalnızca `profiles.approved` olan kişiye yazdırır. Yönetici kartından verilen onay, `SYNC_ALLOWED` ve `ADMIN_TOKEN` yokken herkesin onaylı sayılması profile kendiliğinden yansır:
+- **Onay:** veritabanı yalnızca `profiles.approved` olan kişiye yazdırır. Eski onay işaretleri (`access/approved/…`) profile kendiliğinden yansır (`ADMIN_TOKEN` ve `SYNC_ALLOWED` 2026-11-13'te kalktı):
   - girişte (`/api/access?vault=1`),
   - bağlarken,
   - Yönetici kartında onayla/reddet anında.
@@ -194,10 +194,10 @@ node scripts/smoke-supabase.mjs --mock
 ```
 
 ### Depolama sınırları (0005)
-`supabase/migrations/0005_storage_limits.sql` kişi başına sınır koyar: eşitleme verisi 100 MB (geri dönüş noktaları hariç) ve en çok 5000 okuma metni; medya dosyası en çok 6 MB, yalnız JSON, kişi başı 3000 dosya / 200 MB. Kayıt açık ve yeni hesap onaylı sayıldığı için tek bir hesabın veritabanını (ücretsiz planda 500 MB) doldurmasını önler. **Sahibinin yapacağı:** SQL Editor'de bir kez çalıştırmak (0002'den sonra). Sınırı aşan eşitleme uygulamada "veri çok büyük" uyarısıyla durur; sayıları değiştirip dosyayı yeniden çalıştırmak yeterli.
+`supabase/migrations/0005_storage_limits.sql` kişi başına sınır koyar: eşitleme verisi 30 MB (geri dönüş noktaları hariç; onlar da kişi başı 20 MB içinde tutulur, en eskisi önce silinir, bugünkü hep kalır) ve en çok 5000 okuma metni; medya dosyası en çok 6 MB, yalnız JSON, kişi başı 3000 dosya / 50 MB (2026-11-12'ye dek 100 MB, sınırsız geri dönüş noktası ve 200 MB: birkaç dolu hesap ücretsiz planı doldurabiliyordu; sınırı aşmış kişinin verisi silinmez, yalnızca yeni yazma durur). **2026-11-12 değişikliği için sahibinin yapacağı:** 0013'ten sonra 0005'i SQL Editor'de yeniden çalıştırmak. Kayıt açık ve yeni hesap onaylı sayıldığı için tek bir hesabın veritabanını (ücretsiz planda 500 MB) doldurmasını önler. **Sahibinin yapacağı:** SQL Editor'de bir kez çalıştırmak (0002'den sonra). Sınırı aşan eşitleme uygulamada "veri çok büyük" uyarısıyla durur; sayıları değiştirip dosyayı yeniden çalıştırmak yeterli.
 
 ### Kota iadesi, medya güncelleme sınırı, kullanıcı adı (0013, 2026-11-10)
-`supabase/migrations/0013_quota_media_limits.sql` (güvenlik incelemesi 2026-11-10): (1) `counter_give`: sunucu YZ çağrısının tahmini tutarını (çeviri ve sesli okumanın karakterini) çağrıdan **önce** `counter_take` ile ayırır, sonra kullanılmayanı bununla geri verir; çalışmadan önce geri verme yapılmaz (hesabın o gün biraz daha az hakkı kalır, fazlası değil). (2) Medya: güncelleme politikası (var olan dosyanın `upsert` ile yeniden yüklenmesi) eklemeyle aynı 200 MB sınırına bakar (önce küçük dosya ekleyip her birini 6 MB'a güncellemek sınırı aşıyordu); kişi kendi dosyalarını silebilir. (3) Kayıt tetikleyicisi kullanıcı adını 40 karaktere keser. **Sahibinin yapacağı:** SQL Editor'de bir kez çalıştırmak (0012'den sonra). 0005 de aynı medya politikalarını taşır: 0002'den sonra 0005'i yeniden çalıştırmak sınırı geri almaz (`supabaseMigrations.test.ts`).
+`supabase/migrations/0013_quota_media_limits.sql` (güvenlik incelemesi 2026-11-10): (1) `counter_give`: sunucu YZ çağrısının tahmini tutarını (çeviri ve sesli okumanın karakterini) çağrıdan **önce** `counter_take` ile ayırır, sonra kullanılmayanı bununla geri verir; çalışmadan önce geri verme yapılmaz (hesabın o gün biraz daha az hakkı kalır, fazlası değil). (2) Medya: güncelleme politikası (var olan dosyanın `upsert` ile yeniden yüklenmesi) eklemeyle aynı sınıra bakar (2026-11-12'den beri 50 MB) (önce küçük dosya ekleyip her birini 6 MB'a güncellemek sınırı aşıyordu); kişi kendi dosyalarını silebilir. (3) Kayıt tetikleyicisi kullanıcı adını 40 karaktere keser. **Sahibinin yapacağı:** SQL Editor'de bir kez çalıştırmak (0012'den sonra). 0005 de aynı medya politikalarını taşır: 0002'den sonra 0005'i yeniden çalıştırmak sınırı geri almaz (`supabaseMigrations.test.ts`).
 
 ### Tek kullanımlık e-postalar (0006)
 `supabase/migrations/0006_disposable_emails.sql` (üretilen dosya: `node scripts/build-disposable-sql.mjs`, kaynak `supabase/disposable/domains.txt`, ~9.900 alan adı, [disposable-email-domains](https://github.com/disposable-email-domains/disposable-email-domains), CC0) `blocked_email_domains` tablosunu ve `hook_before_user_created` işlevini kurar; son sorgu bu adreslerle açılmış hesapları listeler. **Sahibinin yapacağı:** (1) SQL Editor'de dosyayı bir kez çalıştırmak, (2) Authentication → Auth Hooks → Add hook → **Before User Created** → Postgres → `public.hook_before_user_created`. Sonra e-posta, bağlantı ve Google ile kayıtta alan adı (ya da alt alan adı) listedeyse kayıt reddedilir; uygulama "Tek kullanımlık (geçici) e-posta adresleriyle hesap açılamıyor" der (`authErrorText`, `disposable_email`). Tek alan adı eklemek: `insert into public.blocked_email_domains (domain) values ('ornek.com') on conflict do nothing;`. Listeyi yenilemek: `domains.txt`i güncelle, betiği çalıştır, dosyayı yeniden çalıştır (var olanlar atlanır). Yerel Postgres 16'da denendi (alt alan adı, büyük harf, `supabase_auth_admin` rolüyle okuma).
@@ -205,3 +205,27 @@ node scripts/smoke-supabase.mjs --mock
 ### Turnstile (robot kontrolü)
 Derlemede `VITE_TURNSTILE_SITE_KEY` varsa giriş formu (giriş, kayıt, bağlantı, şifre yenileme, onay mailini yeniden gönderme) Cloudflare Turnstile kutusunu gösterir (`src/ui/account/Turnstile.tsx`) ve jetonu Supabase çağrısına `captchaToken` olarak ekler; jeton tek kullanımlık, her denemeden sonra kutu yenilenir. Google girişi jeton istemez. Anahtar yoksa hiçbir şey görünmez. CSP `script-src` ve `frame-src` `https://challenges.cloudflare.com`a izin verir. **Açma sırası (yoksa kimse giriş yapamaz):** (1) Cloudflare → Turnstile → Add widget (alan adı `diloloji.com`, mod Managed) → site anahtarı ve gizli anahtar; (2) Workers → diloloji → Settings → Builds → Build variables: `VITE_TURNSTILE_SITE_KEY` = site anahtarı (Diloloji: `0x4AAAAAAFhgkKwu5cL9VZED`, açık bir değer), yeniden derle ve canlıda kutunun göründüğünü gör; (3) ancak sonra Supabase → Authentication → Attack Protection → Enable CAPTCHA protection → sağlayıcı **Turnstile** → gizli anahtar → Save. Geri almak: önce Supabase'te kapat, sonra değişkeni sil.
 
+### Doluluk denetimi (0014, 2026-11-12)
+`supabase/migrations/0014_storage_usage.sql`: `storage_usage()` veritabanının boyutunu (`pg_database_size`) ve `media` kovasındaki toplamı döndürür; yalnızca sunucu (service role) çağırabilir. Saatlik sağlık denetimi (`api/_health.ts` `fullness`) veritabanı 500 MB'ın, dosya deposu 1 GB'ın %80'ini ve %90'ını geçince sahibine bir kez mail atar (oran değil basamak yazılır, sayı oynadıkça mail gelmez). Plan büyürse Worker değişkenleri `SUPABASE_DB_LIMIT_MB` / `SUPABASE_STORAGE_LIMIT_MB`. Fonksiyon yoksa denetim sessizce atlanır. **Sahibinin yapacağı:** 0013 ve yeniden 0005'ten sonra SQL Editor'de bir kez çalıştırmak.
+
+### Yedek ve geri yükleme (2026-11-12)
+Ücretsiz planda Supabase yedek tutmuyor; Worker'ın ücretsiz plandaki CPU payı da veritabanını kopyalamaya yetmiyor. Yedek sahibinin bilgisayarında alınır: `scripts/backup-supabase.mjs`.
+
+**Kurulum (bir kez):** `brew install postgresql@17` (projenin Postgres sürümü ya da daha yenisi; `pg_dump --version`). Supabase → Connect → **Session pooler** adresini veritabanı şifresiyle kopyala (doğrudan bağlantı yalnızca IPv6). Medya için `SUPABASE_URL` ve `SUPABASE_SECRET_KEY` (Cloudflare'deki değerler).
+
+**Yedek (haftada bir):**
+```bash
+SUPABASE_DB_URL='postgresql://…pooler.supabase.com:5432/postgres' SUPABASE_URL='https://….supabase.co' SUPABASE_SECRET_KEY='sb_secret_…' node scripts/backup-supabase.mjs
+```
+`~/Diloloji-yedek/<tarih>/schema.sql` (public tablolar, fonksiyonlar, politikalar) ve `data.dump` (public tabloların, `auth.users`/`auth.identities`'in ve `storage` kayıtlarının satırları), `~/Diloloji-yedek/media/` (medya kovasının aynası; yalnızca yeni/değişmiş dosya iner). En yeni 8 yedek kalır (`--keep N`), `--no-media` medyayı atlar, `--out DIR` başka yer. Son yedeğin zamanı `SON-YEDEK.txt`. **Yedekte herkesin verisi var:** şifreli diskte (FileVault) tut, buluta/paylaşılan klasöre koyma. Yerel Postgres 16'da döküm ve geri yükleme denendi (kişi, profil, eşitleme ve medya kayıtları aynen döndü).
+
+**Kendiliğinden (Mac, 2026-11-12):** `bash scripts/backup-mac.sh install` üç gizliyi bir kez sorar (oturum Anahtar Zinciri'nde, `diloloji-backup`), `~/Library/LaunchAgents/com.diloloji.backup.plist`'i kurar ve ilk yedeği alır. `launchd` her gün 03:30'da ve her oturum açılışında çağırır; son yedek 7 günden eskiyse yedek alınır (Mac kapalı kalan hafta sonraki açılışta tamamlanır). Hata olursa macOS bildirimi, ayrıntı `~/Diloloji-yedek/yedek.log`. `now` hemen yedek, `status` son yedek ve görev durumu, `remove` görevi ve gizlileri kaldırır (yedekler kalır). Depo klasörü taşınırsa `install` yeniden. Linux'ta sahte `security`/`osascript`/`node` ile denendi; gerçek Mac'te ilk `install` çıktısına bakılmalı.
+
+**Geri yükleme (yeni ya da boşaltılmış proje):** 1) `supabase/migrations/` dosyalarını sırayla SQL Editor'de çalıştır. 2) Satırları yükle:
+```bash
+pg_restore --data-only -f data.sql ~/Diloloji-yedek/<tarih>/data.dump
+```
+```bash
+psql "$SUPABASE_DB_URL" -c 'set session_replication_role = replica' -f data.sql
+```
+Göçlerin kendisinin eklediği satırlarda (`blocked_email_domains`, `server_flags`, `storage.buckets`) "duplicate key" hatası beklenir, zararsız. 3) Medyayı geri koymak için `media/` altındaki dosyaları aynı yollarla kovaya yükle (Storage arayüzü ya da `supabase storage cp`). `schema.sql` yalnızca karşılaştırma içindir (göçlerle aynı olmalı).

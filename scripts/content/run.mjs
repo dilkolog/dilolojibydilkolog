@@ -8,7 +8,7 @@ import { existsSync, mkdirSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
 const [tool, ...rest] = process.argv.slice(2)
-const tools = ['jobs', 'check', 'sample', 'build', 'coverage', 'derive']
+const tools = ['jobs', 'check', 'sample', 'build', 'coverage', 'derive', 'first-steps']
 if (!tools.includes(tool)) {
   console.error(`usage: npm run content -- <${tools.join('|')}> [arguments]`)
   process.exit(2)

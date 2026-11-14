@@ -15,8 +15,6 @@ import {
   loadStats,
   loadUsage,
   loadSystem,
-  moveStep,
-  moveTablesStep,
   saveSettings,
   unblock,
   unpublishSet,
@@ -32,8 +30,10 @@ import {
   type Person,
   type SystemState,
 } from '../../data/adminApi'
-import { CheckCircleIcon, ChevronRightIcon, SearchIcon } from '../shared/icons'
+import { ChevronRightIcon, SearchIcon } from '../shared/icons'
 import { ConfirmDialog } from '../shared/Dialog'
+import { OwnerSecretDialog } from './OwnerSecretDialog'
+import { OwnerCodeDialog, SecurityCard } from './OwnerMfa'
 import { PageHeader } from '../shared/PageHeader'
 import { Toggle } from '../settings/settingsWidgets'
 import { Sticker } from '../shared/Sticker'
@@ -387,7 +387,6 @@ function ReportsCard({ tell }: { tell: Tell }) {
 function SystemCard({ tell }: { tell: Tell }) {
   const [state, setState] = useState<SystemState | null>(null)
   const [error, setError] = useState('')
-  const [moving, setMoving] = useState<{ copied: number; at: string; wait?: number } | null>(null)
 
   const load = useCallback(() => {
     loadSystem()
@@ -398,33 +397,6 @@ function SystemCard({ tell }: { tell: Tell }) {
       .catch((e: unknown) => setError(failText(e)))
   }, [tell])
   useEffect(load, [load])
-
-  /** Runs a move a step at a time until it is done, waiting where the server asks to. */
-  const run = async (step: typeof moveStep, unit: string) => {
-    let copied = 0
-    let next: Awaited<ReturnType<typeof moveStep>>['next'] | undefined
-    setMoving({ copied, at: '' })
-    try {
-      do {
-        const done = await step(next ?? undefined)
-        copied += done.copied
-        next = done.next
-        setMoving({ copied, at: done.at, wait: done.wait })
-        if (done.wait) await new Promise((r) => setTimeout(r, done.wait))
-      } while (next)
-      showToast(`Taşıma bitti: ${copied} ${unit} Supabase'e geçti.`)
-      load()
-    } catch (e) {
-      showToast(`Taşıma durdu (${copied} ${unit} geçti, yeniden başlatılabilir): ${failText(e)}`, undefined, 8000, 'info')
-      load()
-    } finally {
-      setMoving(null)
-    }
-  }
-  const move = () => run(moveStep, 'dosya')
-  const moveTables = () => run(moveTablesStep, 'kayıt')
-  const progress = (m: NonNullable<typeof moving>) =>
-    m.wait ? `Başlıyor… (${Math.ceil(m.wait / 1000)} sn bekleniyor)` : `Taşınıyor… ${m.copied}${m.at ? ` (${TABLE_KINDS[m.at] ?? m.at})` : ''}`
 
   const part = (name: string, s: 'ok' | 'down' | 'off') => (
     <li className="admin-check">
@@ -465,58 +437,12 @@ function SystemCard({ tell }: { tell: Tell }) {
               </ul>
             </div>
           )}
-          <div className="stack admin-move">
-            <strong>Küçük sunucu belgeleri Supabase'te</strong>
-            {state.docs === 'on' ? (
-              <p className="small muted admin-done">
-                <CheckCircleIcon size={16} />
-                Taşındı: adlar, istekler, engellemeler, şikâyetler ve eski kayıtlar artık yalnızca Supabase'ten okunuyor.
-              </p>
-            ) : state.docs === 'ready' ? (
-              <>
-                <p className="small muted">Yeni yazılanlar zaten Supabase'te; eski R2 dosyaları da taşınınca R2 bu iş için artık okunmaz. Yarıda kalırsa yeniden başlatmak güvenli.</p>
-                <div>
-                  <button type="button" className="btn btn-sm" disabled={!!moving} onClick={() => void move()}>
-                    {moving ? progress(moving) : 'Eski dosyaları taşı'}
-                  </button>
-                </div>
-              </>
-            ) : (
-              <p className="small muted">Önce Supabase'te 0010 göçünü çalıştır.</p>
-            )}
-          </div>
-          <div className="stack admin-move">
-            <strong>Arkadaşlar, paylaşılan listeler ve hatırlatmalar Supabase'te</strong>
-            {state.tables === 'on' ? (
-              <p className="small muted admin-done">
-                <CheckCircleIcon size={16} />
-                Taşındı: arkadaş kartları, takipler, paylaşılan listeler ve hatırlatmalar artık yalnızca Supabase'ten okunuyor.
-              </p>
-            ) : state.tables === 'ready' || state.tables === 'moving' ? (
-              <>
-                <p className="small muted">
-                  {state.tables === 'moving'
-                    ? 'Taşıma başlamış ama bitmemiş: yeni yazılanlar Supabase\'te, eskiler hem oradan hem R2\'den okunuyor. Kaldığı yerden sürdürmek güvenli.'
-                    : 'Şimdilik R2\'de. Taşıma başlayınca yeni yazılanlar Supabase\'e gider, eskiler birkaç dosya birkaç dosya kopyalanır; yarıda kalırsa hiçbir şey kaybolmaz.'}
-                </p>
-                <div>
-                  <button type="button" className="btn btn-sm" disabled={!!moving} onClick={() => void moveTables()}>
-                    {moving ? progress(moving) : state.tables === 'moving' ? 'Taşımayı sürdür' : 'Taşımayı başlat'}
-                  </button>
-                </div>
-              </>
-            ) : state.tables === 'missing' ? (
-              <p className="small muted">Önce Supabase'te 0003 göçünü çalıştır.</p>
-            ) : null}
-          </div>
         </>
       )}
     </section>
   )
 }
 
-/** What the table move is copying, said in Turkish. */
-const TABLE_KINDS: Record<string, string> = { 'friends/card/': 'arkadaş kartları', 'friends/follow/': 'takipler', 'share/': 'paylaşılan listeler', 'push/': 'hatırlatmalar' }
 const count = (n: number) => n.toLocaleString('tr-TR')
 const usd = (n: number) => `${n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $`
 const sizeOf = (bytes: number) => (bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1024 / 1024).toLocaleString('tr-TR', { maximumFractionDigits: 1 })} MB`)
@@ -639,6 +565,7 @@ const LIMIT_ROWS: { name: LimitName; label: string; unit: string; step: number }
   { name: 'aiDailyBudgetUsd', label: 'YZ harcaması', unit: '$', step: 0.05 },
   { name: 'translateChars', label: 'Çeviri', unit: 'karakter', step: 500 },
   { name: 'ttsChars', label: 'Doğal ses', unit: 'karakter', step: 500 },
+  { name: 'aiSiteBudgetUsd', label: 'Tüm sitenin YZ harcaması', unit: '$', step: 0.05 },
 ]
 
 function UsageTotalsList({ title, t }: { title: string; t: Usage['today'] }) {
@@ -754,8 +681,8 @@ function UsageCard() {
       )}
       {view && (
         <form className="stack admin-limits" onSubmit={submit}>
-          <h3 className="small admin-sub">Kişi başına günlük sınırlar</h3>
-          {LIMIT_ROWS.map((row) => (
+          <h3 className="small admin-sub">Günlük sınırlar (kişi başına; son satır tüm site)</h3>
+          {LIMIT_ROWS.filter((row) => view.effective[row.name] !== undefined).map((row) => (
             <label key={row.name} className="admin-limit">
               <span>
                 {row.label}
@@ -1008,6 +935,9 @@ export function AdminScreen() {
       <SettingsCard />
       <BlocksCard />
       <SystemCard tell={tell} />
+      <SecurityCard />
+      <OwnerSecretDialog />
+      <OwnerCodeDialog />
     </div>
   )
 }

@@ -1,0 +1,24 @@
+{
+  "id": "fr-grammar-0006",
+  "language": "fr",
+  "kind": "grammar",
+  "level": "A1",
+  "grammar": [
+    "basics_fr_pronoms"
+  ],
+  "count": 50,
+  "subskills": [
+    "özne zamiri : tekil",
+    "özne zamiri : çoğul",
+    "tu, vous et on",
+    "edattan sonra vurgulu zamir",
+    "tek başına ve vurguda zamir"
+  ],
+  "ids": {
+    "from": 221,
+    "to": 270
+  },
+  "createdAt": "2026-11-13T07:27:29.006Z",
+  "claimedBy": "Codex/diloloji-fr-grammar-2",
+  "claimedAt": "2026-11-13T07:31:54.107887+00:00"
+}

@@ -175,6 +175,16 @@ export async function quotaReserve(name: string, id: string, amount: number, max
   return true
 }
 
+/** Until when counter_give is known missing (0013 not run): nothing set aside is given back then. */
+let giveMissingUntil = 0
+export const resetGiveBack = () => void (giveMissingUntil = 0)
+
+/**
+ * Whether what is set aside can be given back: false while the counters are in Supabase and counter_give (0013) is
+ * missing. A caller that would set aside much more than it expects to use (the AI's worst case) sets aside less then.
+ */
+export const canGiveBack = (now = Date.now()) => !(supabaseOn() && now < giveMissingUntil)
+
 /**
  * Gives back part of what `quotaReserve` or `quotaTake` took (the call failed, or cost less than was set aside).
  * Never below zero. A failure is ignored: the account then has a little less left today, never more.
@@ -184,7 +194,11 @@ export async function quotaGiveBack(name: string, id: string, amount: number, st
   if (inTable(store, now)) {
     // Called directly, not through counter(): an old project without counter_give (migration 0013) must not switch every
     // counter back to the files.
-    await rest('rpc/counter_give', { method: 'POST', body: JSON.stringify({ p_name: name, p_subject: id, p_amount: amount, p_day: today(now) }) }).catch(() => null)
+    const res = await rest('rpc/counter_give', { method: 'POST', body: JSON.stringify({ p_name: name, p_subject: id, p_amount: amount, p_day: today(now) }) }).catch(() => null)
+    if (res && !res.ok) {
+      const body = await res.text().catch(() => '')
+      if (res.status === 404 || /PGRST202|42883/.test(body)) giveMissingUntil = now + MISSING_MS
+    }
     return
   }
   const path = pathOf(name, id, now)

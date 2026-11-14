@@ -74,7 +74,7 @@ export class SyncAuthError extends Error {
   override name = 'SyncAuthError'
 }
 
-/** The server only serves the accounts and codes on its list (SYNC_ALLOWED), and this isn't one. */
+/** The server refuses this account or code (an approval missing, or a code without an account where accounts are on). */
 export class SyncNotAllowedError extends Error {
   override name = 'SyncNotAllowedError'
 }
@@ -377,6 +377,10 @@ export interface PartStore {
   put(part: string, data: Bytes, opts?: { ifMatch?: string; createOnly?: boolean }): Promise<number>
   /** Days with a restore point, newest first. */
   history(): Promise<string[]>
+  /** The media parts the server keeps for the person, with when each was last written (ms); stores that cannot list leave it out. */
+  listMedia?(): Promise<{ part: string; at: number }[]>
+  /** Deletes media parts (pictures and recordings nothing names any more). */
+  removeMedia?(parts: string[]): Promise<void>
 }
 
 export function blobStore(code: Credential): PartStore {
@@ -526,10 +530,23 @@ export class SyncTooLargeError extends Error {
   override name = 'SyncTooLargeError'
 }
 
-/** Another device wrote the file after this one read it (HTTP 412). */
+/** How a refused write was made: only if nobody had made the part yet, or only if it was still as read. */
+export type ConflictMode = 'create' | 'match' | 'any'
+
+/** Another device wrote the file after this one read it (HTTP 412, Postgres 40001). `part`: the one refused, when known. */
 export class SyncConflictError extends Error {
   override name = 'SyncConflictError'
+  readonly part?: string
+  readonly mode?: ConflictMode
+  constructor(message: string, part?: string, mode?: ConflictMode) {
+    super(part ? `${message}: ${part} (${mode ?? 'any'})` : message)
+    this.part = part
+    this.mode = mode
+  }
 }
+
+/** The mode a write was made in, for the conflict it may raise. */
+export const conflictMode = (opts: { ifMatch?: string; createOnly?: boolean } = {}): ConflictMode => (opts.createOnly ? 'create' : opts.ifMatch ? 'match' : 'any')
 
 /** Sends one sealed part; returns its size in bytes. `ifMatch`: only if the part is still as read; `createOnly`: only if nobody made it yet. */
 async function upload(id: string, part: string, data: Bytes, code: Credential, { ifMatch, createOnly }: { ifMatch?: string; createOnly?: boolean } = {}): Promise<number> {
@@ -537,10 +554,61 @@ async function upload(id: string, part: string, data: Bytes, code: Credential, {
   const headers = { 'content-type': 'application/octet-stream', ...authHeaders(code), ...(ifMatch ? { 'if-match': ifMatch } : {}), ...(createOnly ? { 'if-none-match': '*' } : {}) }
   const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: sealed, headers })
   if (res.status === 403) throw await refusal(res)
-  if (res.status === 412) throw new SyncConflictError('changed meanwhile')
+  if (res.status === 412) throw new SyncConflictError('changed meanwhile', part, conflictMode({ ifMatch, createOnly }))
   if (res.status === 413 && !part.startsWith('m-')) throw new SyncTooLargeError(`${part} too large`)
   if (!res.ok) throw await failure(res)
   return sealed.length
+}
+
+/** Media caches (natural voices, audiobook chapters) stay on their device: never synced, never collected. */
+const isCache = (mediaId: string) => mediaId.startsWith('tts:') || mediaId.startsWith('aud:')
+
+/**
+ * The media ids the data names anywhere (a word's picture or recording, a list's cover, the profile photo, a labelled
+ * picture…), found among `candidates` by reading every string in it: a new kind of reference cannot be missed, and a
+ * stray match only keeps a file.
+ */
+export function referencedMedia(backup: Backup, candidates: ReadonlySet<string>): Set<string> {
+  const found = new Set<string>()
+  const walk = (v: unknown): void => {
+    if (typeof v === 'string') {
+      if (candidates.has(v)) found.add(v)
+    } else if (Array.isArray(v)) for (const x of v) walk(x)
+    else if (v && typeof v === 'object') for (const x of Object.values(v)) walk(x)
+  }
+  // The media list itself is not a reference.
+  const { media: _media, mediaIds: _ids, ...rest } = backup as Backup & { mediaIds?: unknown }
+  walk(rest)
+  return found
+}
+
+/** At most this many server files go per sync (a first clean-up of a long-used account spreads over a few). */
+const MEDIA_REMOVE_BATCH = 100
+/** A file on the server that no list ever named is left this long (another device may be about to write the list naming it). */
+const STRAY_MEDIA_MS = 24 * 3600_000
+const MEDIA_SWEEP_KEY = 'mediaSweepAt'
+
+/**
+ * Deletes the server's copies of pictures and recordings nothing names any more: those the last list named that the merge
+ * no longer does, and once a day the files older than a day that no list names (an upload whose list was never written).
+ * Only after the new list is written, and never on the device: its own copy stays. A failure is left for the next sync.
+ */
+async function collectMedia(db: KelimeDB, store: PartStore, named: Set<string>, keep: ReadonlySet<string>, now = Date.now()): Promise<number> {
+  if (!store.removeMedia) return 0
+  try {
+    const gone = new Set(await Promise.all([...named].filter((m) => !keep.has(m) && !isCache(m)).map(mediaPart)))
+    const last = (await db.meta.get(MEDIA_SWEEP_KEY))?.value as number | undefined
+    if (store.listMedia && !(typeof last === 'number' && now - last < 24 * 3600_000)) {
+      const kept = new Set(await Promise.all([...keep].map(mediaPart)))
+      for (const file of await store.listMedia()) if (!kept.has(file.part) && now - file.at > STRAY_MEDIA_MS) gone.add(file.part)
+      await db.meta.put({ key: MEDIA_SWEEP_KEY, value: now })
+    }
+    const batch = [...gone].slice(0, MEDIA_REMOVE_BATCH)
+    if (batch.length) await store.removeMedia(batch)
+    return batch.length
+  } catch {
+    return 0
+  }
 }
 
 /** Media ids become file names on the server; hashing keeps them to a safe alphabet. */
@@ -650,19 +718,32 @@ export async function accountStatus(account: Account): Promise<'new' | 'ok' | 'w
   }
 }
 
+/** Tries of one sync when a write is refused (another device wrote in between). */
+export const SYNC_ATTEMPTS = 4
+
 export async function syncNow(db: KelimeDB, code: Credential | PartStore): Promise<SyncResult> {
   const store = isStore(code) ? code : blobStore(code)
+  // A part whose write was refused is read again on the next try, whatever the core file says of it: the try merges
+  // with what the server really holds and writes against its version. Without it a device whose idea of a part went
+  // stale could be refused on every try, for good (2026-11-12: the live log showed 40001 every second).
+  const reread = new Set<string>()
   // Two devices syncing at once: the one that loses the race on the core file merges again with what the other wrote.
   for (let attempt = 1; ; attempt++) {
     try {
-      return await syncOnce(db, store)
+      return await syncOnce(db, store, reread)
     } catch (e) {
-      if (!(e instanceof SyncConflictError) || attempt >= 3) throw e
+      if (!(e instanceof SyncConflictError)) throw e
+      if (attempt >= SYNC_ATTEMPTS) {
+        // Still refused: say which part and how, so the log names it (a stuck sync is otherwise only "conflict").
+        void import('./errorReport').then(({ reportError }) => reportError(e, 'sync')).catch(() => undefined)
+        throw e
+      }
+      if (e.part && e.part !== 'core') reread.add(e.part)
     }
   }
 }
 
-async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
+async function syncOnce(db: KelimeDB, store: PartStore, reread: ReadonlySet<string> = new Set()): Promise<SyncResult> {
   const fetched = await store.fetch('core')
   const remoteText = fetched ? new TextDecoder().decode(fetched.bytes) : null
   if (remoteText && store.kind === 'blob' && MOVED.test(remoteText)) throw new SyncMovedError('moved to supabase')
@@ -695,7 +776,7 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
       localShards = await splitShards(local)
     }
     // The parts that differ between here and the server, or that the server's list does not know: fetch them to merge.
-    const differing = [...new Set([...Object.keys(manifest), ...localShards.keys()])].filter((n) => manifest[n] !== localShards.get(n)?.fp && !pulled.has(n))
+    const differing = [...new Set([...Object.keys(manifest), ...localShards.keys(), ...reread])].filter((n) => (reread.has(n) || manifest[n] !== localShards.get(n)?.fp) && !pulled.has(n))
     await pullShards(store, differing, pulled)
     const snapshot = remoteSnapshot()
     merged = snapshot ? mergeBackups(local, snapshot) : local
@@ -717,9 +798,11 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
   const replaced = remote && !joined ? replacedByRemote(local, merged) : []
   if (replaced.length) await db.meta.put({ key: REPLACED_KEY, value: { at: new Date().toISOString(), entries: replaced.slice(0, REPLACED_KEPT) } })
 
-  // Media: the remote list says which pictures/recordings exist elsewhere.
+  // Media: the remote list says which pictures/recordings exist elsewhere; only what the merged data still names travels
+  // (a picture taken off a word on another device is neither fetched again nor sent up, and its server copy goes).
   const localMedia = new Set((await db.media.toCollection().primaryKeys()) as string[])
   const remoteMedia = new Set((remote as (Backup & { mediaIds?: string[] }) | null)?.mediaIds ?? [])
+  const named = referencedMedia(merged, new Set([...localMedia, ...remoteMedia]))
   let received = 0
   let skipped = 0
   // One broken or oversized item must not stop the rest, least of all the core file that carries the words.
@@ -732,7 +815,7 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
     }
   }
   // A few at a time: one by one, a first sign-in on a new device waited a round trip per picture and recording.
-  await inBatches([...remoteMedia].filter((mid) => !localMedia.has(mid)), 6, (mid) =>
+  await inBatches([...remoteMedia].filter((mid) => !localMedia.has(mid) && named.has(mid)), 6, (mid) =>
     isolated(async () => {
       const bytes = (await store.fetch(await mediaPart(mid)))?.bytes
       if (!bytes) return
@@ -745,7 +828,7 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
   )
   let sent = 0
   const unsent = new Set<string>()
-  await inBatches([...localMedia].filter((mid) => !remoteMedia.has(mid) && !mid.startsWith('tts:') && !mid.startsWith('aud:')), 4, (mid) =>
+  await inBatches([...localMedia].filter((mid) => !remoteMedia.has(mid) && !isCache(mid) && named.has(mid)), 4, (mid) =>
     isolated(async () => {
       const row = await db.media.get(mid)
       if (!row) return
@@ -761,16 +844,22 @@ async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
     }),
   )
   // Items that did not go up stay off the list, so other devices don't ask for what the server doesn't have.
-  const mediaIds = [...localMedia].filter((m) => !m.startsWith('tts:') && !m.startsWith('aud:') && !unsent.has(m))
+  const mediaIds = [...localMedia].filter((m) => !isCache(m) && named.has(m) && !unsent.has(m))
   // The parts that changed go up first; the core, which lists them, goes last and is the one that must still be as read.
   let biggest = 0
   await inBatches([...shards].filter(([name, shard]) => shard.fp !== manifest[name]), 6, async ([name, shard]) => {
     const was = pulled.get(name)
-    biggest = Math.max(biggest, await store.put(name, shardFile(shard), was?.exists ? { ifMatch: was.etag } : { createOnly: true }))
+    const opts = was?.exists ? { ifMatch: was.etag } : { createOnly: true }
+    biggest = Math.max(biggest, await store.put(name, shardFile(shard), opts).catch((e: unknown) => {
+      throw e instanceof SyncConflictError && !e.part ? new SyncConflictError('changed meanwhile', name, conflictMode(opts)) : e
+    }))
   })
   const listed = Object.fromEntries([...shards].map(([name, shard]) => [name, shard.fp]))
   const coreBytes = await store.put('core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), fetched ? { ifMatch: fetched.etag } : { createOnly: true })
   await db.meta.put({ key: 'syncSize', value: Math.max(coreBytes, biggest) })
+  // The list is written: what it no longer names may go from the server (and from nowhere else). A first sync of a device
+  // (no list read) collects nothing: it does not know what the others name.
+  if (remote) await collectMedia(db, store, remoteMedia, named)
   // What this sync left behind (a picture too big, a recording that would not go up): Settings → Account says so even after a background sync.
   await db.meta.put({ key: 'syncSkipped', value: skipped })
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })

@@ -14,14 +14,12 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const access = await import('../../api/access')
-const admin = await import('../../api/admin')
 const sync = await import('../../api/sync')
 const translate = await import('../../api/translate')
 const clips = await import('../../api/clips')
 const news = await import('../../api/news')
 const { clearAccessCache, requireApproved } = await import('../../api/_account')
 const { resetRate } = await import('../../api/_rate')
-const { idOfUsername } = await import('../../api/_allow')
 
 const ALI = 'a'.repeat(64)
 const ALI_TOKEN = '1'.repeat(64)
@@ -29,19 +27,22 @@ const VELI = 'b'.repeat(64)
 const VELI_TOKEN = '2'.repeat(64)
 const APP = { 'sec-fetch-site': 'same-origin' }
 const as = (id: string, token: string) => ({ ...APP, 'x-sync-id': id, 'x-sync-auth': token })
-const ADMIN = { authorization: 'Bearer owner-secret' }
 
 const get = (headers: Record<string, string>) => access.GET(new Request('https://app.test/api/access', { headers }))
 const post = (headers: Record<string, string>, body: unknown) => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers, body: JSON.stringify(body) }))
-const adminGet = (headers: Record<string, string> = ADMIN) => admin.GET(new Request('https://app.test/api/admin', { headers }))
-const adminPost = (action: string, id: string, headers: Record<string, string> = ADMIN) => admin.POST(new Request('https://app.test/api/admin', { method: 'POST', headers, body: JSON.stringify({ action, id }) }))
+/** The owner's word on an account, as the approval marks hold it (the admin screen decides through Supabase profiles). */
+const mark = (id: string, word: 'approve' | 'reject' | 'revoke') => {
+  for (const kind of ['requests', 'approved', 'rejected']) blobs.delete(`access/${kind}/${id}.json`)
+  blobs.set(`access/${word === 'approve' ? 'approved' : 'rejected'}/${id}.json`, new TextEncoder().encode('{}'))
+  clearAccessCache()
+}
 const json = async (r: Response) => ({ status: r.status, ...(await r.json()) })
 
 beforeEach(() => {
   blobs.clear()
   clearAccessCache()
   resetRate()
-  vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
+  vi.stubEnv('APPROVAL', 'on')
   vi.stubEnv('DEEPL_AUTH_KEY', 'abc123:fx')
 })
 afterEach(() => {
@@ -83,86 +84,19 @@ describe('/api/access: signing up for the owner\'s approval', () => {
   })
 })
 
-describe('/api/admin: the owner decides', () => {
-  const signUp = async () => {
+describe('the owner\'s word on an account', () => {
+  it('approving, turning down and taking back change what the account is told', async () => {
     await post(as(ALI, ALI_TOKEN), { username: 'ali', note: 'arkadaşım' })
     await post(as(VELI, VELI_TOKEN), { username: 'veli' })
-  }
-
-  it('is off without ADMIN_TOKEN and closed to a wrong one', async () => {
-    vi.stubEnv('ADMIN_TOKEN', '')
-    expect((await adminGet()).status).toBe(503)
-    vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
-    expect((await adminGet({ authorization: 'Bearer nope' })).status).toBe(403)
-    expect((await adminGet({})).status).toBe(403)
-    expect((await adminPost('approve', ALI, { authorization: 'Bearer nope' })).status).toBe(403)
-  })
-
-  it('shows who waits with their username and note; approving, turning down and taking back move them between the lists', async () => {
-    await signUp()
-    const first = await json(await adminGet())
-    expect(first.pending.map((e: { username: string }) => e.username).sort()).toEqual(['ali', 'veli'])
-    expect(first.pending.find((e: { username: string }) => e.username === 'ali')).toMatchObject({ id: ALI, note: 'arkadaşım' })
-
-    expect((await adminPost('approve', ALI)).status).toBe(200)
-    expect((await adminPost('reject', VELI)).status).toBe(200)
-    const after = await json(await adminGet())
-    expect(after.pending).toEqual([])
-    expect(after.approved.map((e: { username: string }) => e.username)).toEqual(['ali'])
-    expect(after.rejected.map((e: { username: string }) => e.username)).toEqual(['veli'])
+    mark(ALI, 'approve')
+    mark(VELI, 'reject')
     expect(await json(await get(as(ALI, ALI_TOKEN)))).toMatchObject({ status: 'approved' })
     expect(await json(await get(as(VELI, VELI_TOKEN)))).toMatchObject({ status: 'rejected' })
-
     // An answer stands: signing up again does not put a turned-down account back in the queue.
     await post(as(VELI, VELI_TOKEN), { username: 'veli' })
-    expect((await json(await adminGet())).pending).toEqual([])
-
-    await adminPost('revoke', ALI)
+    expect(blobs.has(`access/requests/${VELI}.json`)).toBe(false)
+    mark(ALI, 'revoke')
     expect(await json(await get(as(ALI, ALI_TOKEN)))).toMatchObject({ status: 'rejected' })
-    await adminPost('approve', VELI)
-    expect(await json(await get(as(VELI, VELI_TOKEN)))).toMatchObject({ status: 'approved' })
-    expect((await adminPost('promote', ALI)).status).toBe(400)
-    expect((await adminPost('approve', 'zz')).status).toBe(400)
-  })
-
-  it('a username in SYNC_ALLOWED is approved from the start (how the owner\'s own account begins)', async () => {
-    const ali = ALI
-    vi.stubEnv('SYNC_ALLOWED', ali)
-    await post(as(ALI, ALI_TOKEN), { username: 'ali' })
-    expect(await json(await get(as(ALI, ALI_TOKEN)))).toMatchObject({ status: 'approved' })
-    expect(await json(await get(as(VELI, VELI_TOKEN)))).toMatchObject({ status: 'none' })
-  })
-})
-
-describe('/api/admin: rotating the key and freeing a name', () => {
-  const release = (username: string, headers: Record<string, string> = ADMIN) =>
-    admin.POST(new Request('https://app.test/api/admin', { method: 'POST', headers, body: JSON.stringify({ action: 'release', username }) }))
-
-  it('takes several keys at once, so an old and a new one can both work during a rotation', async () => {
-    vi.stubEnv('ADMIN_TOKEN', 'old-key new-key')
-    expect((await adminGet({ authorization: 'Bearer old-key' })).status).toBe(200)
-    expect((await adminGet({ authorization: 'Bearer new-key' })).status).toBe(200)
-    expect((await adminGet({ authorization: 'Bearer third' })).status).toBe(403)
-    vi.stubEnv('ADMIN_TOKEN', 'new-key')
-    expect((await adminGet({ authorization: 'Bearer old-key' })).status).toBe(403)
-  })
-
-  it('frees a username that someone else claimed: its claim and files go, so the owner can claim it', async () => {
-    const id = await idOfUsername('Ali')
-    vi.stubEnv('SYNC_ALLOWED', 'ali')
-    // A stranger got there first.
-    await post(as(id, VELI_TOKEN), { username: 'ali' })
-    blobs.set(`sync/${id}/core.bin`, new Uint8Array([1]))
-    expect(await json(await get(as(id, ALI_TOKEN)))).toMatchObject({ exists: true, match: false })
-
-    expect((await release('ali', { authorization: 'Bearer nope' })).status).toBe(403)
-    expect((await release('a')).status).toBe(400)
-    expect(await json(await release('Ali'))).toMatchObject({ ok: true, removed: 2 })
-    expect([...blobs.keys()].some((k) => k.startsWith(`sync/${id}/`))).toBe(false)
-
-    // Now the owner's own token claims it.
-    await post(as(id, ALI_TOKEN), { username: 'ali' })
-    expect(await json(await get(as(id, ALI_TOKEN)))).toMatchObject({ exists: true, match: true })
   })
 })
 
@@ -176,11 +110,11 @@ describe('what needs an approved account', () => {
     await post(as(ALI, ALI_TOKEN), { username: 'ali' })
     expect(await json((await ask(as(ALI, VELI_TOKEN)))!)).toMatchObject({ error: 'account_required' })
     expect(await json((await ask(as(ALI, ALI_TOKEN)))!)).toMatchObject({ error: 'approval_required', status: 'pending' })
-    await adminPost('reject', ALI)
+    mark(ALI, 'reject')
     expect(await json((await ask(as(ALI, ALI_TOKEN)))!)).toMatchObject({ error: 'approval_required', status: 'rejected' })
-    await adminPost('approve', ALI)
+    mark(ALI, 'approve')
     expect(await ask(as(ALI, ALI_TOKEN))).toBeNull()
-    await adminPost('revoke', ALI)
+    mark(ALI, 'revoke')
     expect(await ask(as(ALI, ALI_TOKEN))).not.toBeNull()
   })
 
@@ -211,7 +145,7 @@ describe('/api/sync and the approval', () => {
     expect((await read(ALI, h)).status).toBe(403)
     expect([...blobs.keys()].filter((k) => k.startsWith('sync/'))).toEqual([])
     await post(as(ALI, ALI_TOKEN), { username: 'ali' })
-    await adminPost('approve', ALI)
+    mark(ALI, 'approve')
     expect((await put(ALI, h)).status).toBe(204)
     expect((await read(ALI, h)).status).toBe(200)
     // The wrong token on an approved id is still refused by the password check.
@@ -224,9 +158,9 @@ describe('/api/sync and the approval', () => {
   })
 })
 
-describe('before the owner has set ADMIN_TOKEN', () => {
+describe('with the approval off (local development without APPROVAL=on)', () => {
   it('nothing is withheld: every account counts as approved, sync and the quota endpoints work as before', async () => {
-    vi.stubEnv('ADMIN_TOKEN', '')
+    vi.stubEnv('APPROVAL', '')
     // A visitor is told approval is not asked for.
     expect(await json(await get(APP))).toMatchObject({ enabled: false })
     expect((await post(as(ALI, ALI_TOKEN), { username: 'ali' })).status).toBe(200)
@@ -238,13 +172,5 @@ describe('before the owner has set ADMIN_TOKEN', () => {
     expect(await requireApproved(new Request('https://app.test/api/x'))).toBeNull()
     const put = await sync.PUT(new Request(`https://app.test/api/sync?id=${VELI}&part=core`, { method: 'PUT', headers: { 'x-sync-auth': VELI_TOKEN }, body: 'sealed' }))
     expect(put.status).toBe(204)
-  })
-
-  it('the old SYNC_ALLOWED list still decides which accounts may sync', async () => {
-    vi.stubEnv('ADMIN_TOKEN', '')
-    vi.stubEnv('SYNC_ALLOWED', ALI)
-    const ask = (id: string, token: string) => sync.GET(new Request(`https://app.test/api/sync?id=${id}&part=core`, { headers: { 'x-sync-auth': token } }))
-    expect(await (await ask(VELI, VELI_TOKEN)).text()).toBe('not allowed')
-    expect((await ask(ALI, ALI_TOKEN)).status).toBe(404)
   })
 })

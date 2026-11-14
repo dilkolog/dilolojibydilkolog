@@ -68,7 +68,7 @@ beforeEach(async () => {
   resetRate()
   resetQuota()
   mails = []
-  vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
+  vi.stubEnv('APPROVAL', 'on')
   vi.stubEnv('RESEND_API_KEY', 're_test')
   vi.stubEnv('OWNER_EMAIL', 'owner@example.com')
   vi.stubGlobal('fetch', async (_url: string, init: RequestInit) => {

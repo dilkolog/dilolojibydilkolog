@@ -75,16 +75,31 @@ export async function rest(path: string, init: RequestInit = {}): Promise<Respon
 }
 
 /** The request's sign-in, when its email is confirmed by Supabase (an unconfirmed address proves nothing). */
-export async function confirmedUser(request: Request): Promise<{ id: string; email: string } | null> {
+export async function confirmedUser(request: Request): Promise<{ id: string; email: string; aal2: boolean; factor: boolean } | null> {
   if (!supabaseOn()) return null
   const token = (request.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '').trim()
   if (!token || token.length > 4096) return null
   try {
     const res = await fetch(`${base()}/auth/v1/user`, { headers: { apikey: serviceKey(), authorization: `Bearer ${token}` } })
     if (!res.ok) return null
-    const u = (await res.json()) as { id?: unknown; email?: unknown; email_confirmed_at?: unknown }
+    const u = (await res.json()) as { id?: unknown; email?: unknown; email_confirmed_at?: unknown; factors?: unknown }
     if (typeof u.id !== 'string' || !UUID.test(u.id) || typeof u.email !== 'string' || !u.email_confirmed_at) return null
-    return { id: u.id, email: u.email }
+    // A verified second factor (TOTP), and whether this session proved it: Supabase writes the level into the token it
+    // just accepted (`aal`: aal1 a password or a link, aal2 the code as well).
+    const factor = Array.isArray(u.factors) && u.factors.some((f) => (f as { status?: unknown })?.status === 'verified')
+    return { id: u.id, email: u.email, aal2: tokenAal(token) === 'aal2', factor }
+  } catch {
+    return null
+  }
+}
+
+/** The `aal` claim of an access token Supabase has accepted (its payload, read; the signature was Supabase's to check). */
+export function tokenAal(token: string): string | null {
+  try {
+    const part = token.split('.')[1] ?? ''
+    const json = atob(part.replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(part.length / 4) * 4, '='))
+    const aal = (JSON.parse(json) as { aal?: unknown }).aal
+    return typeof aal === 'string' ? aal : null
   } catch {
     return null
   }
@@ -120,6 +135,16 @@ export async function saveVault(userId: string, vault: Vault): Promise<'ok' | 't
   if (res.status === 409) return 'taken'
   if (!res.ok) throw new Error(`supabase ${res.status}`)
   return 'ok'
+}
+
+/** Puts a new token on the person's sync account (the key was renewed). Throws when Supabase cannot be written. */
+export async function setVaultAuth(userId: string, syncId: string, auth: string): Promise<void> {
+  const res = await rest(`sync_keys?user_id=eq.${encodeURIComponent(userId)}&sync_id=eq.${syncId}`, {
+    method: 'PATCH',
+    headers: { prefer: 'return=minimal' },
+    body: JSON.stringify({ auth }),
+  })
+  if (!res.ok) throw new Error(`supabase ${res.status}`)
 }
 
 /**
@@ -176,8 +201,7 @@ export async function deleteSupabaseUser(userId: string): Promise<void> {
 }
 
 /**
- * Carries the owner's word on a sync account (from the Yönetici card, SYNC_ALLOWED or before
- * ADMIN_TOKEN) to its person's profile: the database lets only approved people write their data.
+ * Carries the owner's word on a sync account (an old approval mark) to its person's profile: the database lets only approved people write their data.
  * Nothing happens when no person has this sync account. Never throws: the next sign-in tries again.
  */
 export async function mirrorApproval(syncId: string, status: 'approved' | 'rejected' | 'pending' | 'none'): Promise<void> {

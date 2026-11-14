@@ -19,8 +19,7 @@ export interface FriendStore {
 }
 
 export async function friendStore(): Promise<FriendStore> {
-  const mode = await tablesMode()
-  return mode === 'table' ? tableFriends : mode === 'moving' ? movingFriends : blobFriends
+  return (await tablesMode()) === 'table' ? tableFriends : blobFriends
 }
 
 const cardPath = (id: string) => `friends/card/${id}.json`
@@ -176,37 +175,4 @@ export const tableFriends: FriendStore = {
       write(`friend_follows?sync_id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } }),
     ])
   },
-}
-
-/**
- * While the owner's move is under way (_tables.ts 'moving'): written to the tables, read from the tables first and
- * then from the old files (a card or a follow not copied yet is still found), taken out of both.
- */
-export const movingFriends: FriendStore = {
-  card: async (id) => (await tableFriends.card(id)) ?? (await blobFriends.card(id)),
-  async create(id, card) {
-    if (await blobFriends.card(id)) return 'exists'
-    const owner = await blobFriends.ownerOf(card.code)
-    if (owner && owner !== id) return 'taken'
-    return tableFriends.create(id, card)
-  },
-  // An upsert, not tableFriends' PATCH: the card may be in the old file only, and a PATCH would change nothing.
-  save: async (id, card) => void (await upsert('friend_cards', 'sync_id', rowOfCard(id, card))),
-  ownerOf: async (code) => (await tableFriends.ownerOf(code)) ?? (await blobFriends.ownerOf(code)),
-  async cardsOf(codes) {
-    const inTable = await tableFriends.cardsOf(codes)
-    const missing = codes.filter((c) => !inTable.some((card) => card.code === c))
-    const inBlob = missing.length ? await blobFriends.cardsOf(missing) : []
-    const found = [...inTable, ...inBlob]
-    return codes.map((c) => found.find((card) => card.code === c)).filter((c): c is FriendCard => !!c)
-  },
-  follows: async (id) => [...new Set([...(await tableFriends.follows(id)), ...(await blobFriends.follows(id))])],
-  followers: async (code) => [...new Set([...(await tableFriends.followers!(code)), ...(await blobFriends.followers!(code))])],
-  follow: (id, code, current) => tableFriends.follow(id, code, current),
-  async unfollow(id, code, current) {
-    await tableFriends.unfollow(id, code, current)
-    const inBlob = await blobFriends.follows(id)
-    if (inBlob.includes(code)) await blobFriends.unfollow(id, code, inBlob)
-  },
-  forget: async (id) => void (await Promise.all([tableFriends.forget(id), blobFriends.forget(id)])),
 }

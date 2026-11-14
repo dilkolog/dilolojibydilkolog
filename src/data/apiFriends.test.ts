@@ -62,7 +62,7 @@ beforeEach(async () => {
   expired.clear()
   clearAccessCache()
   resetRate()
-  vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
+  vi.stubEnv('APPROVAL', 'on')
   set(`sync/${ALI}/auth.txt`, await hex(ALI_TOKEN))
   set(`sync/${VELI}/auth.txt`, await hex(VELI_TOKEN))
   set(`access/approved/${ALI}.json`, '{}')

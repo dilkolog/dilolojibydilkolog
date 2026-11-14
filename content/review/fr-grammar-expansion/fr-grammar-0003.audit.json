@@ -1,0 +1,511 @@
+{
+  "job": "fr-grammar-0003",
+  "count": 50,
+  "solver": {
+    "checked": 50,
+    "disagreements": 0,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "fr-g-000071",
+      "target": "Le",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000072",
+      "target": "la",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000073",
+      "target": "le",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000074",
+      "target": "La",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000075",
+      "target": "le",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000076",
+      "target": "la",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000077",
+      "target": "La",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000078",
+      "target": "le",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000079",
+      "target": "Le",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000080",
+      "target": "la",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirli artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000081",
+      "target": "un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000082",
+      "target": "une",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000083",
+      "target": "un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000084",
+      "target": "une",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000085",
+      "target": "un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000086",
+      "target": "une",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000087",
+      "target": "un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000088",
+      "target": "une",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000089",
+      "target": "un",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000090",
+      "target": "une",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "belirsiz artikel"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000091",
+      "target": "L'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000092",
+      "target": "l'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000093",
+      "target": "L'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000094",
+      "target": "l'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000095",
+      "target": "l'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000096",
+      "target": "L'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000097",
+      "target": "l'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000098",
+      "target": "L'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000099",
+      "target": "l'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000100",
+      "target": "L'",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "sesli harf ve sessiz h"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000101",
+      "target": "au",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000102",
+      "target": "aux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000103",
+      "target": "du",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000104",
+      "target": "au",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000105",
+      "target": "du",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000106",
+      "target": "aux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000107",
+      "target": "des",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000108",
+      "target": "au",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000109",
+      "target": "du",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000110",
+      "target": "aux",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "edat ve artikel birleşimi"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000111",
+      "target": "Les",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000112",
+      "target": "les",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000113",
+      "target": "Les",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000114",
+      "target": "les",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000115",
+      "target": "les",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000116",
+      "target": "des",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000117",
+      "target": "des",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000118",
+      "target": "des",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000119",
+      "target": "des",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    },
+    {
+      "id": "fr-g-000120",
+      "target": "des",
+      "reference": {
+        "path": "src/data/guide/lessons-fr.ts",
+        "topic": "basics_fr_articles",
+        "section": "çoğul artikeller"
+      },
+      "independentSolver": "passed"
+    }
+  ]
+}

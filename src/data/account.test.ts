@@ -16,7 +16,7 @@ vi.mock('@vercel/blob', () => ({
 
 const api = await import('../../api/sync')
 const { clearAccessCache } = await import('../../api/_account')
-const { accountStatus, deriveAccount, syncNow, SyncAuthError, SyncNotAllowedError } = await import('./sync')
+const { accountStatus, deriveAccount, syncNow, SyncAuthError } = await import('./sync')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
@@ -70,11 +70,4 @@ describe('accounts', () => {
     expect((await other.vocabulary.toArray()).map((e) => e.lemma)).toContain('decision')
   }, 60_000)
 
-  it('tells an account the server does not serve apart from a wrong password', async () => {
-    vi.stubEnv('SYNC_ALLOWED', 'ali')
-    const stranger = await deriveAccount('veli', 'correct horse')
-    await expect(accountStatus(stranger)).rejects.toBeInstanceOf(SyncNotAllowedError)
-    await expect(syncNow(new KelimeDB('t-account-4'), stranger)).rejects.toBeInstanceOf(SyncNotAllowedError)
-    expect(await accountStatus(await deriveAccount('ALİ', 'correct horse'))).toBe('new')
-  }, 20_000)
 })

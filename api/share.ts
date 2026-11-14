@@ -1,4 +1,4 @@
-import { del, get, list, put } from './_blob'
+import { del, get, put } from './_blob'
 import { accountOf, requireApproved, StorageError } from './_account.js'
 import { eq, rows, tablesMode, write } from './_tables.js'
 import { fromApp } from './_origin.js'
@@ -114,8 +114,7 @@ export interface ShareStore {
 }
 
 export async function shareStore(): Promise<ShareStore> {
-  const mode = await tablesMode()
-  return mode === 'table' ? tableShares : mode === 'moving' ? movingShares : blobShares
+  return (await tablesMode()) === 'table' ? tableShares : blobShares
 }
 
 async function readJson<T>(path: string): Promise<{ value: T; etag?: string } | null> {
@@ -174,23 +173,6 @@ export const blobShares: ShareStore = {
     const all = (await readJson<LibraryItem[]>(LIBRARY))?.value ?? []
     return language ? all.filter((x) => x.language === language) : all
   },
-}
-
-/** Every shared list in Blob with its library entry, for the move to the tables. */
-export async function blobSharesForMove(): Promise<{ id: string; doc: SharedDoc; published?: LibraryItem }[]> {
-  const library = (await readJson<LibraryItem[]>(LIBRARY))?.value ?? []
-  const out: { id: string; doc: SharedDoc; published?: LibraryItem }[] = []
-  let cursor: string | undefined
-  do {
-    const page = await list({ prefix: 'share/', cursor })
-    for (const b of page.blobs) {
-      const id = /^share\/([0-9a-f]{32})\.json$/.exec(b.pathname)?.[1]
-      const found = id ? await readJson<SharedDoc>(b.pathname).catch(() => null) : null
-      if (id && found?.value?.words) out.push({ id, doc: found.value, published: library.find((x) => x.id === id) })
-    }
-    cursor = page.hasMore ? page.cursor : undefined
-  } while (cursor)
-  return out
 }
 
 interface ShareRow {
@@ -262,35 +244,6 @@ export const tableShares: ShareStore = {
       `shared_lists?published=eq.true${filter}&select=id,name,language,word_count,published_by,created_at&order=created_at.desc&limit=${LIBRARY_KEPT}`,
     )
     return found.map((r) => ({ id: r.id, name: r.name, language: r.language, count: r.word_count, ...opt('by', r.published_by ?? undefined), at: new Date(r.created_at).toISOString() }))
-  },
-}
-
-/**
- * While the owner's move is under way (_tables.ts 'moving'): a list is read from the table first and then from its old
- * file; a new list goes to the table; a list still in its old file moves to the table on its first change (as version 1,
- * if the If-Match is the old file's tag, so two people editing at once still learn of each other); removals reach both.
- */
-export const movingShares: ShareStore = {
-  get: async (id) => (await tableShares.get(id)) ?? (await blobShares.get(id)),
-  create: (id, doc, publish) => tableShares.create(id, doc, publish),
-  async update(id, doc, ifMatch) {
-    if ((await rows<{ id: string }>(`shared_lists?id=${eq(id)}&select=id`)).length) return tableShares.update(id, doc, ifMatch)
-    const old = await blobShares.get(id)
-    if (!old || (ifMatch !== undefined && ifMatch !== old.etag)) return 'changed'
-    const published = (await blobShares.library(null)).find((x) => x.id === id)
-    // 409: the move or another writer put it in the table a moment ago; the app reads it again and merges.
-    const res = await write('shared_lists', { method: 'POST', headers: { prefer: 'return=minimal' }, body: JSON.stringify(rowOfShare(id, doc, published ? { by: published.by } : undefined)) }, [409])
-    return res.ok ? 'ok' : 'changed'
-  },
-  remove: async (id) => void (await Promise.all([tableShares.remove(id), blobShares.remove(id)])),
-  unpublish: async (id) => void (await Promise.all([tableShares.unpublish(id), blobShares.unpublish(id)])),
-  async library(language) {
-    const [inTable, inBlob] = await Promise.all([tableShares.library(language), blobShares.library(language)])
-    // A list the table holds at all (published or taken off) is the table's to show.
-    const ids = inBlob.map((x) => x.id)
-    const known = new Set<string>()
-    for (let i = 0; i < ids.length; i += 100) for (const r of await rows<{ id: string }>(`shared_lists?id=in.(${ids.slice(i, i + 100).join(',')})&select=id`)) known.add(r.id)
-    return [...inTable, ...inBlob.filter((x) => !known.has(x.id))].sort((a, b) => b.at.localeCompare(a.at)).slice(0, LIBRARY_KEPT)
   },
 }
 

@@ -36,6 +36,8 @@ import { progressVerdict, type VerdictGo } from '../../engine/progressVerdict'
 import { ExamCard, VocabTestCard } from './ProgressTests'
 import { HardWordsCard, MetacognitionCard, RecallCalibrationCard, StageDistributionCard } from './ProgressMemory'
 import { dayLabel, lastWeeks } from './progressShared'
+import { progressUnlocks, UNLOCK_ANSWERS } from './progressUnlocks'
+import { EmptyState } from '../shared/EmptyState'
 
 const DAYS = 14
 
@@ -130,24 +132,57 @@ export function ProgressScreen({
   const forecastTotal = forecast.reduce((n, f) => n + f.count, 0)
   const busiest = forecast.reduce((a, b) => (b.count > a.count ? b : a), forecast[0])
   const topStage = [...MASTERY_STAGES].sort((a, b) => stats.stageCounts[b] - stats.stageCounts[a])[0]
+  const unlocks = progressUnlocks(events.length)
   const knownSkills = SKILLS.filter((sk) => profile[sk] !== null && (sk !== 'gender' || profile.gender !== null)).sort((a, b) => (profile[b] ?? 0) - (profile[a] ?? 0))
+
+  const header = (
+    <PageHeader
+      art="time"
+      inline
+      title="İlerleme"
+      sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın."
+      action={
+        <ShareProgress
+          build={() =>
+            buildProgressReport({ language, name: learnerName ?? '', now, stats, events, states, vocabulary, profile, hard: hardWords(events, 15), errors: errorsByType, exams, game })
+          }
+          words={{ entries: vocabulary.filter((v) => v.language === language && v.source !== 'sample'), states }}
+        />
+      }
+    />
+  )
+
+  // No answers yet: one invitation instead of rows of zeros (the sections open as answers come; progressUnlocks.ts).
+  if (unlocks.empty)
+    return (
+      <div className="progress-page">
+        {header}
+        <div className="span-2">
+          <EmptyState
+            art="garden"
+            title="İlerlemen burada büyüyecek"
+            action={
+              <div className="row">
+                {onVerdict && (
+                  <button type="button" className="btn" onClick={() => onVerdict({ day: true })}>
+                    İlk turuna başla
+                  </button>
+                )}
+                <button type="button" className="btn btn-quiet" onClick={onVocabTest}>
+                  Kelime testini yap
+                </button>
+              </div>
+            }
+          >
+            İlk turundan sonra haftalık ritmin, tekrar takvimin ve kelimelerinin ne kadarını hatırladığın burada görünür; {UNLOCK_ANSWERS.skills} cevaptan sonra becerilerin ve hata türlerin de eklenir.
+          </EmptyState>
+        </div>
+      </div>
+    )
 
   return (
     <div className="progress-page">
-      <PageHeader
-        art="time"
-        inline
-        title="İlerleme"
-        sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın."
-        action={
-          <ShareProgress
-            build={() =>
-              buildProgressReport({ language, name: learnerName ?? '', now, stats, events, states, vocabulary, profile, hard: hardWords(events, 15), errors: errorsByType, exams, game })
-            }
-            words={{ entries: vocabulary.filter((v) => v.language === language && v.source !== 'sample'), states }}
-          />
-        }
-      />
+      {header}
       {/* The page's main message: one finding, tied to one thing to do this week. */}
       <ProgressVerdictCard verdict={progressVerdict({ profile, daysPractised: stats.daysPractised, answers: events.length })} onGo={onVerdict} />
       {/* The page in four numbers, each with its last six weeks. */}
@@ -160,7 +195,7 @@ export function ProgressScreen({
         active={stats.activeVocabulary}
         focus={weakestSkill(skillProfile(states, scheduler, now))}
       />
-      <JumpNav groups={PROGRESS_GROUPS} label="İlerleme bölümleri" onPick={open} />
+      <JumpNav groups={unlocks.skills ? PROGRESS_GROUPS : PROGRESS_GROUPS.filter(([id]) => id !== 'p-skills')} label="İlerleme bölümleri" onPick={open} />
       <GroupToggle id="p-overview" icon={<StarIcon size={18} />} open={isOpen('p-overview')} onToggle={() => toggle('p-overview')}>Genel bakış</GroupToggle>
       {isOpen('p-overview') && (
         <section className="section stack span-2 overview-grid">
@@ -218,8 +253,13 @@ export function ProgressScreen({
           <BestHoursCard db={db} />
         </>
       )}
-      <GroupToggle id="p-skills" icon={<TargetIcon size={18} />} open={isOpen('p-skills')} onToggle={() => toggle('p-skills')}>Beceriler ve hatalar</GroupToggle>
-      {isOpen('p-skills') && (
+      {!unlocks.skills && (
+        <p className="note span-2 progress-locked">
+          <TargetIcon size={16} className="inline-icon" /> Becerilerin ve hata türlerin {UNLOCK_ANSWERS.skills} cevaptan sonra burada açılır: {unlocks.skillsLeft} cevap kaldı.
+        </p>
+      )}
+      {unlocks.skills && <GroupToggle id="p-skills" icon={<TargetIcon size={18} />} open={isOpen('p-skills')} onToggle={() => toggle('p-skills')}>Beceriler ve hatalar</GroupToggle>}
+      {unlocks.skills && isOpen('p-skills') && (
         <>
           <section className="section stack">
             <p className="eyebrow eyebrow-icon"><StarIcon size={16} /> Beceriler</p>

@@ -76,3 +76,61 @@ describe('idiom pack', () => {
     expect(findIdioms(fr, 'etre dans la lune').exact?.w).toBe('être dans la lune')
   })
 })
+
+describe('inflected idiom searches', () => {
+  const fixture = (w: string): Idiom => ({ w, t: 'özgün test anlamı', lit: 'test imgesi', s: 'Stored example.', form: 'Stored example', tr: 'Örnek.', reg: 'neutral', area: 'genel', level: 'B2', theme: 'talk' })
+
+  it('finds Spanish conjugations, reflexive forms, attached and intervening pronouns', async () => {
+    const { loadTenses } = await import('./tenseData')
+    await loadTenses('es')
+    const idioms = ['darse fatal', 'tomar el pelo', 'meter la pata'].map(fixture)
+    for (const [q, w] of [
+      ['se me da fatal', 'darse fatal'], ['se te daba fatal', 'darse fatal'],
+      ['me tomó el pelo', 'tomar el pelo'], ['te tomarán el pelo', 'tomar el pelo'], ['tú me tomaste el pelo', 'tomar el pelo'],
+      ['tomarle el pelo', 'tomar el pelo'], ['hemos metido la pata', 'meter la pata'],
+    ]) expect(findIdioms(idioms, q, 8, 'es').exact?.w, q).toBe(w)
+    for (const q of ['me cortó el pelo', 'se me da bien', 'me tomó la mano', 'tomó pelo', 'me tomó no el pelo', 'pelo tomó el', 'ayer me tomó el pelo', 'da fatal']) {
+      expect(findIdioms(idioms, q, 8, 'es').exact, q).toBeUndefined()
+    }
+  })
+
+  it('finds French simple and compound tenses with elided and indirect object pronouns', async () => {
+    const { loadTenses } = await import('./tenseData')
+    await loadTenses('fr')
+    const idioms = ['poser un lapin', 'prendre la mouche', "s'arracher les cheveux", 'se creuser la tête'].map(fixture)
+    for (const [q, w] of [
+      ['elle lui pose un lapin', 'poser un lapin'], ["il m'a posé un lapin", 'poser un lapin'],
+      ['nous lui avons posé un lapin', 'poser un lapin'], ['tu prends la mouche', 'prendre la mouche'],
+      ['elle a pris la mouche', 'prendre la mouche'], ['je me creuse la tête', 'se creuser la tête'],
+      ["je m'arrache les cheveux", "s'arracher les cheveux"],
+    ]) expect(findIdioms(idioms, q, 8, 'fr').exact?.w, q).toBe(w)
+    for (const q of ['il mange un lapin', 'elle prend la tête', 'elle ne prend pas la mouche', 'pris mouche', 'un lapin pose', 'je creuse la tête']) {
+      expect(findIdioms(idioms, q, 8, 'fr').exact, q).toBeUndefined()
+    }
+  })
+
+  it('finds English irregular past, regular -ing/-ed and simple auxiliaries', () => {
+    const idioms = ['take the plunge', "pull someone's leg", 'spill the beans', 'bite the bullet'].map(fixture)
+    for (const [q, w] of [
+      ['took the plunge', 'take the plunge'], ['she takes the plunge', 'take the plunge'],
+      ['pulling my leg', "pull someone's leg"], ['he was pulling your leg', "pull someone's leg"],
+      ['has spilled the beans', 'spill the beans'], ['she spilled the beans', 'spill the beans'],
+      ['he bit the bullet', 'bite the bullet'],
+    ]) expect(findIdioms(idioms, q, 8, 'en').exact?.w, q).toBe(w)
+    for (const q of ['pulled the beans', 'has cooked the beans', 'has not spilled the beans', 'the beans spilled', 'take plunge', 'pulling the leg', 'taked the plunge', 'has took the plunge', 'has pulling my leg', 'took 12 the plunge']) {
+      expect(findIdioms(idioms, q, 8, 'en').exact, q).toBeUndefined()
+    }
+  })
+
+  it('requires two content words and preserves exact, partial-word and Turkish searches', () => {
+    for (const [w, q] of [['under the weather', 'undered the weather'], ['piece of cake', 'piecing of cake'], ['blessing in disguise', 'blessinging in disguise']]) {
+      expect(findIdioms([fixture(w)], q, 8, 'en').exact, q).toBeUndefined()
+    }
+    expect(findIdioms([fixture('be on it')], 'was on it', 8, 'en').exact).toBeUndefined()
+    expect(findIdioms([fixture('pull leg')], 'pulling arm', 8, 'en').exact).toBeUndefined()
+    expect(findIdioms([fixture('take the plunge')], 'takes the plunge').exact?.w).toBe('take the plunge')
+    expect(findIdioms([fixture('tomar el pelo')], 'tomar el pelo', 8, 'es').exact?.w).toBe('tomar el pelo')
+    expect(findIdioms([fixture('tomar el pelo')], 'pelo', 8, 'es').others).toHaveLength(1)
+    expect(findIdioms([fixture('tomar el pelo')], 'özgün test anlamı', 8, 'es').others).toHaveLength(1)
+  })
+})

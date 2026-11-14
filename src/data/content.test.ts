@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { ContentManifest, PublishedGrammar, PublishedReading } from '../engine/contentTypes'
-import { contentLevelOf, contentReadingText, contentTextId, grammarForIds, grammarForTopic, grammarTopics, loadManifest, readingPage, resetContentCache } from './content'
+import { beginnerRank, contentLevelOf, contentReadingText, contentTextId, grammarForIds, grammarForTopic, grammarTopics, loadManifest, readingPage, resetContentCache } from './content'
 
 const text: PublishedReading = {
   id: 'fr-r-000001',
@@ -89,5 +89,12 @@ describe('content client', () => {
     vi.stubGlobal('fetch', async () => new Response('', { status: 503 }))
     await expect(grammarForTopic('fr', manifest, 'futur_fr')).rejects.toThrow()
     expect(await grammarForIds('fr', manifest, ['fr-g-000003'])).toEqual([])
+  })
+})
+
+describe('beginner order', () => {
+  it('puts the first-step series first, in its order, and keeps the rest in place', () => {
+    const texts = [{ id: 'a' }, { id: 's3', firstStep: { series: 's', position: 3, length: 3 } }, { id: 'b' }, { id: 's1', firstStep: { series: 's', position: 1, length: 3 } }]
+    expect([...texts].sort((x, y) => beginnerRank(x) - beginnerRank(y)).map((t) => t.id)).toEqual(['s1', 's3', 'a', 'b'])
   })
 })

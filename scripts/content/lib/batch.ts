@@ -1,6 +1,7 @@
 import type { ContentGrammar, ReadingItem } from '../../../src/engine/contentTypes'
 import type { CheckContext } from './context'
 import { checkGrammarItem, checkReading } from './rules'
+import { sequenceErrors } from './firstSteps'
 import { SimilarityIndex } from './similarity'
 import type { CheckIssue, ContentJob, ContentKind } from './types'
 
@@ -24,11 +25,13 @@ export function checkBatch(kind: ContentKind, items: readonly (ReadingItem | Con
     ids.add(o.id)
   }
   const out: BatchResult = { accepted: [], rejected: [], warnings: [] }
+  const sequences = kind === 'reading' ? sequenceErrors([...(opts.others ?? []), ...items] as ReadingItem[]) : new Map<string, string[]>()
   for (const item of items) {
     const v =
       kind === 'reading'
         ? checkReading(item as ReadingItem, ctx, { job: opts.job, index })
         : checkGrammarItem(item as ContentGrammar, ctx, { job: opts.job, index })
+    v.errors.push(...(sequences.get(item.id) ?? []))
     if (ids.has(item.id)) v.errors.unshift(`id ${item.id} is used twice`)
     if (v.errors.length) out.rejected.push({ id: item.id, reasons: v.errors })
     else {

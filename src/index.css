@@ -2378,7 +2378,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 }
 .milestone-kicker {
   display: inline-flex; align-items: center; gap: 0.35rem;
-  font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: var(--t-sm); font-weight: 700;
   color: var(--gold-text); background: color-mix(in srgb, var(--gold) 18%, var(--surface));
   padding: 0.3rem 0.85rem; border-radius: var(--r-full);
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent);
@@ -2986,6 +2986,8 @@ p, .help, .small { text-wrap: pretty; }
   .empty-action { justify-content: center; }
 }
 .empty-art { width: 9rem; height: 7.5rem; }
+/* The picture fits its box: with an auto row it took its own height and ran onto the title under it. */
+.empty-art { grid-template-rows: minmax(0, 1fr); }
 .empty-illustration { width: 8.5rem; height: auto; }
 
 /* ── Study settings inside a session: header, scrolling groups, footer ───────────────────── */
