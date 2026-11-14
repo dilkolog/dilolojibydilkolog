@@ -609,6 +609,38 @@ test('verb lab forms due are mixed into the day\'s session, and the answers go t
   await expect.poll(wrong).toBe(3)
 })
 
+test('the end of a daily round asks for one sentence with a word of the round, saved as the word’s own example', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await playSession(page)
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').first().click()
+  for (let i = 0; i < 6 && (await page.locator('.badge-moment').count()); i++) await page.locator('.badge-moment button').first().click()
+  const step = page.getByRole('region', { name: 'Bir cümle yaz' })
+  await expect(step).toBeVisible()
+  const input = step.getByRole('textbox')
+  const lemma = ((await input.getAttribute('placeholder')) ?? '').replace(/ ile, kendinle ilgili bir cümle…$/, '')
+  expect(lemma).not.toBe('')
+  // Without the word the sentence is refused, and the form stays.
+  await input.fill('Je suis content aujourd’hui.')
+  await step.getByRole('button', { name: 'Kaydet' }).click()
+  await expect(step.locator('.error')).toContainText(`Cümlede "${lemma}" bulunamadı`)
+  await input.fill(`Ce matin, j’ai pensé à « ${lemma} » au travail.`)
+  await step.getByRole('button', { name: 'Kaydet' }).click()
+  await expect(page.getByRole('status').filter({ hasText: 'Cümlen kaydedildi' })).toBeVisible()
+  const personal = () =>
+    page.evaluate(
+      () =>
+        new Promise<string[]>((resolve) => {
+          const open = indexedDB.open('kelime-koc')
+          open.onsuccess = () => {
+            const all = open.result.transaction('vocabulary').objectStore('vocabulary').getAll()
+            all.onsuccess = () => resolve((all.result as { senses: { examples: { text: string; personal?: boolean }[] }[] }[]).flatMap((e) => e.senses[0].examples.filter((x) => x.personal).map((x) => x.text)))
+          }
+        }),
+    )
+  await expect.poll(personal).toContainEqual(expect.stringContaining('Ce matin'))
+})
+
 test('verb lab: add a verb to the list, hear all six, the E and A keys', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'finir')
