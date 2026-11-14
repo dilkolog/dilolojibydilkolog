@@ -1,7 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { validateTask, validateFiles, words } from './validate.mjs'
-const load = kind => JSON.parse(readFileSync(new URL(`./${kind}.json`, import.meta.url), 'utf8'))
+// The validator and the five task files live in content/raw/pte (kept out of vitest's own search: content/** holds no
+// app tests); this file runs their checks with the rest of the suite, so CI keeps them.
+import { validateTask, validateFiles, words } from '../../content/raw/pte/validate.mjs'
+const load = kind => JSON.parse(readFileSync(new URL(`../../content/raw/pte/${kind}.json`, import.meta.url), 'utf8'))
 
 describe('PTE raw content validation', () => {
   it('the five complete files meet their schema, count, balance and length requirements', () => {

@@ -32,7 +32,7 @@ Kontrol edilen main'de `src/data/pte.ts` ve `scripts/build-pte.mjs` henüz yok. 
 
 ```sh
 node content/raw/pte/validate.mjs
-npx vitest run content/raw/pte/validate.test.mjs
+npx vitest run src/data/pteRawContent.test.mjs
 ```
 
 Tam alan kümesi, benzersiz kimlik/metin, cümle/paragraf ve kelime sınırları, B2 yasağı, her görevde %20/%50/%30 dağılımı, FIB kısa/uzun yarıları, sıralı 4–5 boşluk, dört farklı seçenek, cevabın tam bir kez bulunması ve kısa cevaplar denetlenir.
