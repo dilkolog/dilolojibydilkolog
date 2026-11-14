@@ -1,0 +1,142 @@
+[
+  {
+    "id": "pte-wfd-0001",
+    "text": "Please leave your shoes beside the front door.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Lütfen ayakkabılarınızı ön kapının yanına bırakın."
+  },
+  {
+    "id": "pte-wfd-0002",
+    "text": "The bus stop is opposite the small supermarket.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Otobüs durağı küçük süpermarketin karşısında."
+  },
+  {
+    "id": "pte-wfd-0003",
+    "text": "Our language class starts after lunch on Monday.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Dil dersimiz pazartesi günü öğle yemeğinden sonra başlıyor."
+  },
+  {
+    "id": "pte-wfd-0004",
+    "text": "You can keep your lunch in this fridge.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Öğle yemeğinizi bu buzdolabında saklayabilirsiniz."
+  },
+  {
+    "id": "pte-wfd-0005",
+    "text": "I usually drink water before my morning walk.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Sabah yürüyüşümden önce genellikle su içerim."
+  },
+  {
+    "id": "pte-wfd-0006",
+    "text": "Please put the empty bottles in this box.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Lütfen boş şişeleri bu kutuya koyun."
+  },
+  {
+    "id": "pte-wfd-0007",
+    "text": "My phone needs a new battery this week.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Telefonumun bu hafta yeni bir pile ihtiyacı var."
+  },
+  {
+    "id": "pte-wfd-0008",
+    "text": "The kitchen window looks out over the garden.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Mutfak penceresi bahçeye bakıyor."
+  },
+  {
+    "id": "pte-wfd-0009",
+    "text": "We need clean towels for the guest room.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Misafir odası için temiz havlulara ihtiyacımız var."
+  },
+  {
+    "id": "pte-wfd-0010",
+    "text": "The train leaves from the station near the beach.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Tren plajın yakınındaki istasyondan kalkıyor."
+  },
+  {
+    "id": "pte-wfd-0011",
+    "text": "The library has extended its opening hours this month.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Kütüphane bu ay açık olduğu saatleri uzattı."
+  },
+  {
+    "id": "pte-wfd-0012",
+    "text": "Please confirm the delivery date before the meeting on Friday.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Lütfen cuma günkü toplantıdan önce teslimat tarihini teyit edin."
+  },
+  {
+    "id": "pte-wfd-0013",
+    "text": "Regular breaks can help you concentrate during long tasks.",
+    "level": "B1",
+    "topic": "health",
+    "tr": "Düzenli molalar uzun süren işlerde odaklanmanıza yardımcı olabilir."
+  },
+  {
+    "id": "pte-wfd-0014",
+    "text": "The council collects our recycling every other Wednesday.",
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Belediye geri dönüşüm atıklarımızı iki haftada bir çarşamba günleri topluyor."
+  },
+  {
+    "id": "pte-wfd-0015",
+    "text": "You should save your document before closing the programme.",
+    "level": "B1",
+    "topic": "technology",
+    "tr": "Programı kapatmadan önce belgenizi kaydetmelisiniz."
+  },
+  {
+    "id": "pte-wfd-0016",
+    "text": "Our landlord has agreed to repair the broken heating.",
+    "level": "B1",
+    "topic": "daily_life",
+    "tr": "Ev sahibimiz bozuk ısıtma sistemini onarmayı kabul etti."
+  },
+  {
+    "id": "pte-wfd-0017",
+    "text": "Passengers must keep the emergency exit clear of luggage.",
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Yolcular acil çıkışı bagajla kapatmamalıdır."
+  },
+  {
+    "id": "pte-wfd-0018",
+    "text": "Students may borrow equipment after completing the safety training.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Öğrenciler güvenlik eğitimini tamamladıktan sonra ekipman ödünç alabilirler."
+  },
+  {
+    "id": "pte-wfd-0019",
+    "text": "The proposal was revised following feedback from local residents.",
+    "level": "B2",
+    "topic": "environment",
+    "tr": "Öneri, bölge sakinlerinden gelen geri bildirim üzerine gözden geçirildi."
+  },
+  {
+    "id": "pte-wfd-0020",
+    "text": "Flexible arrangements enable employees to balance their competing responsibilities.",
+    "level": "B2",
+    "topic": "work",
+    "tr": "Esnek düzenlemeler çalışanların birbiriyle çakışan sorumluluklarını dengelemesini sağlar."
+  }
+]

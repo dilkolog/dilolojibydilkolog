@@ -1,0 +1,142 @@
+[
+  {
+    "id": "pte-ra-0001",
+    "text": "Our street has a small food shop beside the bus stop. I go there after work to buy bread, milk and fruit, and the woman at the door always asks about my day before I walk home.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Sokağımızda otobüs durağının yanında küçük bir gıda dükkânı var. İşten sonra ekmek, süt ve meyve almak için oraya giderim; kapıdaki kadın da ben eve doğru yürümeden önce her zaman günümün nasıl geçtiğini sorar."
+  },
+  {
+    "id": "pte-ra-0002",
+    "text": "The first bus into town is often quiet in the morning. I like to sit near the window with my bag on my knees, and I get off near the market to meet a friend for breakfast.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Sabahları şehre giden ilk otobüs genellikle sakin olur. Çantam dizlerimin üzerindeyken pencere kenarında oturmayı severim ve kahvaltı için bir arkadaşımla buluşmak üzere pazarın yakınında inerim."
+  },
+  {
+    "id": "pte-ra-0003",
+    "text": "Our class has a new reading corner near the door. There are books about food, animals and travel, and we can take one home each week if we write our name on the list beside the shelf.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Sınıfımızda kapının yakınında yeni bir okuma köşesi var. Yiyecekler, hayvanlar ve seyahat hakkında kitaplar bulunuyor; rafın yanındaki listeye adımızı yazarsak her hafta birini eve götürebiliyoruz."
+  },
+  {
+    "id": "pte-ra-0004",
+    "text": "At the hotel, my first job is to check the breakfast room. I put clean cups on the tables and fill the water bottles, then ask the cook if there is anything else to do before guests arrive.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Otelde ilk işim kahvaltı salonunu kontrol etmek. Masalara temiz fincanlar koyup su şişelerini doldururum, ardından misafirler gelmeden önce yapılacak başka bir şey olup olmadığını aşçıya sorarım."
+  },
+  {
+    "id": "pte-ra-0005",
+    "text": "I walk to the park with my neighbour after dinner. We talk about our families as we go, and we often sit by the lake for a few minutes before we return home along the same path.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Akşam yemeğinden sonra komşumla parka yürürüm. Yolda ailelerimiz hakkında konuşuruz ve aynı yoldan eve dönmeden önce sık sık göl kenarında birkaç dakika otururuz."
+  },
+  {
+    "id": "pte-ra-0006",
+    "text": "There are two large boxes near the school kitchen door. We put used paper in one and empty bottles in the other, so the floor stays clear and the things we throw away are easier to collect.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Okulun mutfak kapısının yakınında iki büyük kutu var. Kullanılmış kâğıtları birine, boş şişeleri diğerine koyuyoruz; böylece zemin boş kalıyor ve attığımız şeyleri toplamak daha kolay oluyor."
+  },
+  {
+    "id": "pte-ra-0007",
+    "text": "My new phone has a bigger screen than my old one. I can read messages more easily now, but it does not fit in my small coat pocket, so I keep it in my bag when I walk.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Yeni telefonumun ekranı eskisinden daha büyük. Artık mesajları daha kolay okuyabiliyorum ama telefon montumun küçük cebine sığmıyor; bu yüzden yürürken onu çantamda tutuyorum."
+  },
+  {
+    "id": "pte-ra-0008",
+    "text": "The washing machine in our house is next to the kitchen. We share it with the family upstairs, so everyone writes a time on the board and leaves the door open after taking their clean clothes out.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Evimizdeki çamaşır makinesi mutfağın yanında. Onu üst kattaki aileyle ortak kullanıyoruz; bu yüzden herkes tahtaya bir saat yazıyor ve temiz çamaşırlarını çıkardıktan sonra kapağı açık bırakıyor."
+  },
+  {
+    "id": "pte-ra-0009",
+    "text": "The train to the beach is very busy on warm days. We leave home early to find seats together, and we bring some water and food because the small shop near the beach does not open until lunch.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Sıcak günlerde plaja giden tren çok kalabalık oluyor. Birlikte oturacak yer bulmak için evden erken çıkıyoruz ve plajın yakınındaki küçük dükkân öğleye kadar açılmadığı için yanımıza su ve yiyecek alıyoruz."
+  },
+  {
+    "id": "pte-ra-0010",
+    "text": "My language teacher brings a large picture to class every Friday. We work in pairs to talk about what we can see, and then each person writes a few sentences to read to the other people in the group.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Dil öğretmenim her cuma derse büyük bir resim getiriyor. Gördüklerimiz hakkında konuşmak için ikili çalışıyoruz, ardından herkes gruptaki diğer kişilere okumak üzere birkaç cümle yazıyor."
+  },
+  {
+    "id": "pte-ra-0011",
+    "text": "The restaurant has introduced a short meeting before each evening shift. Staff discuss bookings and share information about the menu, which helps new workers feel more confident when customers ask questions about the dishes and how they are prepared.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Restoran her akşam vardiyasından önce kısa bir toplantı yapmaya başladı. Çalışanlar rezervasyonları konuşup menü hakkında bilgi paylaşıyor; bu da yeni çalışanların müşteriler yemekler ve hazırlanışları hakkında soru sorduğunda daha rahat hissetmesine yardımcı oluyor."
+  },
+  {
+    "id": "pte-ra-0012",
+    "text": "The health centre now sends messages about appointments by text message. Patients can reply to confirm or cancel their visit, allowing the centre to offer any available times to people who would otherwise have to wait for another day.",
+    "level": "B1",
+    "topic": "health",
+    "tr": "Sağlık merkezi artık randevu hatırlatmalarını kısa mesajla gönderiyor. Hastalar ziyaretlerini onaylamak veya iptal etmek için cevap verebiliyor; böylece merkez boşalan saatleri, aksi hâlde başka bir günü beklemek zorunda kalacak kişilere verebiliyor."
+  },
+  {
+    "id": "pte-ra-0013",
+    "text": "A group of neighbours has started growing vegetables on land that nobody uses behind the shops. They share the work and divide what they grow, while a small notice board helps everyone keep track of which jobs still need attention.",
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Bir grup komşu dükkânların arkasındaki kullanılmayan arazide sebze yetiştirmeye başladı. İşi paylaşıp yetiştirdiklerini bölüşüyorlar; küçük bir ilan tahtası da herkesin hangi işlerin hâlâ ilgilenilmeyi beklediğini takip etmesine yardımcı oluyor."
+  },
+  {
+    "id": "pte-ra-0014",
+    "text": "Our college has replaced printed notices with an online message board. Students can check room changes before leaving home, although paper copies are still available at reception for anyone who can not use the system on their own phone.",
+    "level": "B1",
+    "topic": "technology",
+    "tr": "Kolejimiz basılı duyuruların yerine çevrim içi bir mesaj panosu kullanmaya başladı. Öğrenciler evden çıkmadan derslik değişikliklerini kontrol edebiliyor; ancak sistemi kendi telefonunda kullanamayanlar için danışmada hâlâ kâğıt kopyalar bulunuyor."
+  },
+  {
+    "id": "pte-ra-0015",
+    "text": "Before signing the agreement for a shared flat, we discussed how to divide the bills. Everyone agreed to pay the same amount for internet access, but heating costs would be reviewed if someone spent a long period away.",
+    "level": "B1",
+    "topic": "daily_life",
+    "tr": "Ortak bir ev için sözleşmeyi imzalamadan önce faturaları nasıl bölüşeceğimizi konuştuk. Herkes internet erişimi için aynı tutarı ödemeyi kabul etti; ancak biri uzun süre evden uzak kalırsa ısınma giderleri yeniden değerlendirilecekti."
+  },
+  {
+    "id": "pte-ra-0016",
+    "text": "The travel information desk offers a free map of local walking paths. Each route includes an estimated journey time and details about public transport, so visitors can choose a walk that matches both their interests and the weather.",
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Seyahat danışma masası yerel yürüyüş rotalarının ücretsiz bir haritasını sunuyor. Her rota tahminî bir yolculuk süresi ve toplu taşıma bilgileri içeriyor; böylece ziyaretçiler hem ilgi alanlarına hem de hava durumuna uygun bir yürüyüş seçebiliyor."
+  },
+  {
+    "id": "pte-ra-0017",
+    "text": "The evening course allows adults to develop practical skills while continuing to work. Lessons combine short explanations with group activities, and students receive comments on their progress rather than a single mark at the end of the course.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Akşam kursu yetişkinlerin çalışmaya devam ederken uygulamalı beceriler geliştirmesine olanak tanıyor. Derslerde kısa açıklamalar ve grup etkinlikleri bir arada kullanılıyor; öğrenciler kurs sonunda tek bir not almak yerine ilerlemeleri hakkında geri bildirim alıyor."
+  },
+  {
+    "id": "pte-ra-0018",
+    "text": "The shop manager asked employees to suggest ways of reducing food waste. One idea was to offer smaller amounts of food near closing time, while another involved checking recent sales before deciding how much fresh food to prepare each morning.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Mağaza müdürü çalışanlardan gıda israfını azaltma yolları önermelerini istedi. Fikirlerden biri kapanışa yakın daha küçük porsiyonlar sunmaktı; bir diğeri de her sabah ne kadar taze yiyecek hazırlanacağına karar vermeden önce son satışları kontrol etmeyi içeriyordu."
+  },
+  {
+    "id": "pte-ra-0019",
+    "text": "Although repairing household items can initially cost more than replacing them, a local workshop argues that the comparison should include environmental consequences. By teaching residents simple repair techniques, the organisers hope to challenge the assumption that a broken object has reached the end of its useful life.",
+    "level": "B2",
+    "topic": "environment",
+    "tr": "Ev eşyalarını onarmak başlangıçta yenisini almaktan daha pahalı olabilse de yerel bir atölye bu karşılaştırmaya çevresel sonuçların da katılması gerektiğini savunuyor. Organizatörler bölge sakinlerine basit onarım teknikleri öğreterek bozuk bir eşyanın artık işe yaramaz olduğu varsayımını sorgulatmayı umuyor."
+  },
+  {
+    "id": "pte-ra-0020",
+    "text": "Introducing new software does not automatically improve a team's performance, particularly when training is overlooked. A successful transition requires time for employees to practise unfamiliar tasks and opportunities to explain which features support their work and which create unnecessary problems.",
+    "level": "B2",
+    "topic": "technology",
+    "tr": "Yeni bir yazılım kullanmaya başlamak, özellikle eğitim ihmal edildiğinde, bir ekibin performansını kendiliğinden artırmaz. Başarılı bir geçiş için çalışanların alışık olmadıkları işleri uygulamaya zaman ayırması ve hangi özelliklerin işlerine yardımcı olduğunu, hangilerinin gereksiz zorluklar yarattığını anlatabilmesi gerekir."
+  }
+]

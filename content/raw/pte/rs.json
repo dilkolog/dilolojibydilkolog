@@ -1,0 +1,122 @@
+[
+  {
+    "id": "pte-rs-0001",
+    "text": "Could you open the window a little?",
+    "level": "A2",
+    "tr": "Pencereyi biraz açabilir misin?"
+  },
+  {
+    "id": "pte-rs-0002",
+    "text": "I left my coat on the bus.",
+    "level": "A2",
+    "tr": "Montumu otobüste unuttum."
+  },
+  {
+    "id": "pte-rs-0003",
+    "text": "Shall we meet outside the library tomorrow?",
+    "level": "A2",
+    "tr": "Yarın kütüphanenin dışında buluşalım mı?"
+  },
+  {
+    "id": "pte-rs-0004",
+    "text": "Please give me a moment to finish.",
+    "level": "A2",
+    "tr": "Lütfen bitirmem için bana biraz zaman ver."
+  },
+  {
+    "id": "pte-rs-0005",
+    "text": "My sister works at the local hospital.",
+    "level": "A2",
+    "tr": "Kız kardeşim yakındaki hastanede çalışıyor."
+  },
+  {
+    "id": "pte-rs-0006",
+    "text": "We can take these bags home later.",
+    "level": "A2",
+    "tr": "Bu çantaları daha sonra eve götürebiliriz."
+  },
+  {
+    "id": "pte-rs-0007",
+    "text": "Is there a quiet place to study?",
+    "level": "A2",
+    "tr": "Ders çalışmak için sessiz bir yer var mı?"
+  },
+  {
+    "id": "pte-rs-0008",
+    "text": "This room gets cold in the evening.",
+    "level": "A2",
+    "tr": "Bu oda akşamları soğuyor."
+  },
+  {
+    "id": "pte-rs-0009",
+    "text": "You can use my phone to call.",
+    "level": "A2",
+    "tr": "Aramak için telefonumu kullanabilirsin."
+  },
+  {
+    "id": "pte-rs-0010",
+    "text": "The shop closes early on Sunday afternoons.",
+    "level": "A2",
+    "tr": "Dükkân pazar öğleden sonraları erken kapanıyor."
+  },
+  {
+    "id": "pte-rs-0011",
+    "text": "Would you mind checking the delivery address?",
+    "level": "B1",
+    "tr": "Teslimat adresini kontrol eder misin?"
+  },
+  {
+    "id": "pte-rs-0012",
+    "text": "I thought we had already booked the tickets.",
+    "level": "B1",
+    "tr": "Biletleri çoktan ayırttığımızı sanıyordum."
+  },
+  {
+    "id": "pte-rs-0013",
+    "text": "Let me know if your plans change.",
+    "level": "B1",
+    "tr": "Planların değişirse bana haber ver."
+  },
+  {
+    "id": "pte-rs-0014",
+    "text": "We should discuss the problem before making a decision.",
+    "level": "B1",
+    "tr": "Karar vermeden önce sorunu konuşmalıyız."
+  },
+  {
+    "id": "pte-rs-0015",
+    "text": "I would rather walk than wait for another bus.",
+    "level": "B1",
+    "tr": "Başka bir otobüs beklemektense yürümeyi tercih ederim."
+  },
+  {
+    "id": "pte-rs-0016",
+    "text": "Have you managed to upload the file yet?",
+    "level": "B1",
+    "tr": "Dosyayı yüklemeyi başarabildin mi?"
+  },
+  {
+    "id": "pte-rs-0017",
+    "text": "The instructions were clearer than I had expected.",
+    "level": "B1",
+    "tr": "Talimatlar beklediğimden daha açıktı."
+  },
+  {
+    "id": "pte-rs-0018",
+    "text": "Could we move the appointment until next week?",
+    "level": "B1",
+    "tr": "Randevuyu gelecek haftaya erteleyebilir miyiz?"
+  },
+  {
+    "id": "pte-rs-0019",
+    "text": "Had I known earlier, I could have rearranged my schedule.",
+    "level": "B2",
+    "tr": "Daha önce bilseydim programımı yeniden düzenleyebilirdim."
+  },
+  {
+    "id": "pte-rs-0020",
+    "text": "I appreciate your patience while we resolve the issue.",
+    "level": "B2",
+    "tr": "Sorunu çözerken gösterdiğiniz sabır için teşekkür ederim."
+  }
+]
