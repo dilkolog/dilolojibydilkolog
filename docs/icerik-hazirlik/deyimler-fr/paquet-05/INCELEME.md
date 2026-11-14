@@ -1,8 +1,8 @@
 # Paket 05 — Karar, risk ve tedbir
 
-26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.
+26 deyim · 52 özgün örnek/çeviri · 26 soru.
 
-Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.
+Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.
 
 Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.
 
@@ -18,7 +18,7 @@ Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm iç
 2. Pour choisir son logement, elle a pesé le pour et le contre.
    Türkçesi: Evini seçmek için artıları ve eksileri tarttı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/peser_le_pour_et_le_contre) — peser le pour et le contre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/peser_le_pour_et_le_contre) — peser le pour et le contre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -39,7 +39,7 @@ Buradaki anlamı: Artıları ve eksileri tartmak. Karardan önce olumlu ve olums
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000106 — couper les cheveux en quatre
 
@@ -53,7 +53,7 @@ Buradaki anlamı: Artıları ve eksileri tartmak. Karardan önce olumlu ve olums
 2. Il coupe les cheveux en quatre et bloque la discussion sur un détail insignifiant.
    Türkçesi: Önemsiz bir ayrıntıya gereksizce takılıp tartışmayı tıkıyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/couper_les_cheveux_en_quatre) — couper les cheveux en quatre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/couper_les_cheveux_en_quatre) — couper les cheveux en quatre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -74,7 +74,7 @@ Buradaki anlamı: Gereksiz ölçüde ince ayrıntılara takılmak. Aşırı titi
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000107 — prendre du recul
 
@@ -88,7 +88,7 @@ Buradaki anlamı: Gereksiz ölçüde ince ayrıntılara takılmak. Aşırı titi
 2. Après une pause, elle a pris du recul sur les critiques.
    Türkçesi: Bir aradan sonra eleştirilere daha mesafeli bakabildi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_du_recul) — prendre du recul : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_du_recul) — prendre du recul : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -109,7 +109,7 @@ Buradaki anlamı: Olaydan biraz uzaklaşıp daha nesnel bakmak. Duygusal veya zi
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000108 — prendre de la hauteur
 
@@ -123,7 +123,7 @@ Buradaki anlamı: Olaydan biraz uzaklaşıp daha nesnel bakmak. Duygusal veya zi
 2. Au lieu de discuter chaque ligne, le groupe a pris de la hauteur.
    Türkçesi: Grup her satırı tartışmak yerine bütünü geniş açıdan değerlendirdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_de_la_hauteur) — prendre de la hauteur : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_de_la_hauteur) — prendre de la hauteur : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -144,7 +144,7 @@ Buradaki anlamı: Ayrıntıların üstüne çıkıp geniş açıdan değerlendir
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000109 — mettre les choses à plat
 
@@ -158,7 +158,7 @@ Buradaki anlamı: Ayrıntıların üstüne çıkıp geniş açıdan değerlendir
 2. Ils ont mis les choses à plat pour comprendre leurs désaccords.
    Türkçesi: Anlaşmazlıklarını anlamak için meseleleri açıkça ortaya koydular.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_%C3%A0_plat) — mettre les choses à plat : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_%C3%A0_plat) — mettre les choses à plat : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -179,7 +179,7 @@ Buradaki anlamı: Meseleleri açıkça ortaya koyup ayrıntıları incelemek. So
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000110 — jouer cartes sur table
 
@@ -193,7 +193,7 @@ Buradaki anlamı: Meseleleri açıkça ortaya koyup ayrıntıları incelemek. So
 2. Pendant la négociation, elle a joué cartes sur table sur ses moyens financiers.
    Türkçesi: Müzakerede maddi imkânlarını saklamadan ortaya koydu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/jouer_cartes_sur_table) — jouer cartes sur table : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/jouer_cartes_sur_table) — jouer cartes sur table : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -214,7 +214,7 @@ Buradaki anlamı: Niyet ve bilgilerini saklamadan ortaya koymak. Kart oyunu dı�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000111 — changer son fusil d'épaule
 
@@ -228,7 +228,7 @@ Buradaki anlamı: Niyet ve bilgilerini saklamadan ortaya koymak. Kart oyunu dı�
 2. Après le refus du client, l'agence a changé son fusil d'épaule.
    Türkçesi: Müşteri reddedince ajans stratejisini değiştirdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/changer_son_fusil_d'%C3%A9paule) — changer son fusil d'épaule : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/changer_son_fusil_d'%C3%A9paule) — changer son fusil d'épaule : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -249,7 +249,7 @@ Buradaki anlamı: Yöntem veya tutumunu bütünüyle değiştirmek. Yeni koşull
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000112 — faire machine arrière
 
@@ -263,7 +263,7 @@ Buradaki anlamı: Yöntem veya tutumunu bütünüyle değiştirmek. Yeni koşull
 2. L'entreprise a fait machine arrière et a renoncé à fermer l'atelier.
    Türkçesi: Şirket geri adım attı ve atölyeyi kapatmaktan vazgeçti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_machine_arri%C3%A8re) — faire machine arrière : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_machine_arri%C3%A8re) — faire machine arrière : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -284,7 +284,7 @@ Buradaki anlamı: Giriştiği işten geri adım atmak. Proje veya eylemden vazge
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000113 — revenir sur ses pas
 
@@ -298,7 +298,7 @@ Buradaki anlamı: Giriştiği işten geri adım atmak. Proje veya eylemden vazge
 2. Ayant oublié ses clés, elle est revenue sur ses pas jusqu'au café.
    Türkçesi: Anahtarlarını unutunca geldiği yoldan kafeye geri döndü.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/revenir_sur_ses_pas) — revenir sur ses pas : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/revenir_sur_ses_pas) — revenir sur ses pas : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -319,7 +319,7 @@ Buradaki anlamı: Geldiği yolu geri dönmek. Bu kart yerleşik kalıbın gerçe
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000114 — mettre un bémol
 
@@ -333,7 +333,9 @@ Buradaki anlamı: Geldiği yolu geri dönmek. Bu kart yerleşik kalıbın gerçe
 2. L'experte a mis un bémol aux prévisions en rappelant les incertitudes.
    Türkçesi: Uzman belirsizlikleri hatırlatarak tahminlere çekince ekledi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_un_b%C3%A9mol) — mettre un bémol : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_un_b%C3%A9mol) — mettre un bémol : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A9B0817) — Expression figurée mettre un bémol à ses propos (2026-11-14).
 
 **Soru:**
 
@@ -354,7 +356,7 @@ Buradaki anlamı: Söylenen iddiayı yumuşatıp bir çekince eklemek. Müzik d�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000115 — mettre un frein à quelque chose
 
@@ -368,7 +370,7 @@ Buradaki anlamı: Söylenen iddiayı yumuşatıp bir çekince eklemek. Müzik d�
 2. La nouvelle règle a mis un frein aux retards répétés.
    Türkçesi: Yeni kural tekrarlanan gecikmelerin önünü kesti.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/frein/35159) — mettre un frein à quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/frein/35159) — mettre un frein à quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -389,7 +391,7 @@ Buradaki anlamı: Bir gelişmeyi sınırlamak veya durdurmak. Mecaz anlam; harca
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000116 — marcher sur des œufs
 
@@ -403,7 +405,7 @@ Buradaki anlamı: Bir gelişmeyi sınırlamak veya durdurmak. Mecaz anlam; harca
 2. Pendant la médiation, chacun marchait sur des œufs pour éviter une nouvelle dispute.
    Türkçesi: Arabuluculukta herkes yeni bir tartışmadan kaçınmak için çok ihtiyatlıydı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/marcher_sur_des_%C5%93ufs) — marcher sur des œufs : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/marcher_sur_des_%C5%93ufs) — marcher sur des œufs : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -424,7 +426,7 @@ Buradaki anlamı: Sorun çıkarmamak için çok ihtiyatlı davranmak. Kırılgan
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000117 — s'avancer en terrain miné
 
@@ -438,9 +440,13 @@ Buradaki anlamı: Sorun çıkarmamak için çok ihtiyatlı davranmak. Kırılgan
 2. En abordant les anciennes rivalités, le médiateur s'avançait en terrain miné.
    Türkçesi: Arabulucu eski rekabetleri ele alırken hassas ve tehlikeli bir alana giriyordu.
 
-**Kaynak:** [Le Robert](https://dictionnaire.lerobert.com/definition/miner) — s'avancer en terrain miné : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Le Robert](https://dictionnaire.lerobert.com/definition/miner) — s'avancer en terrain miné : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Kaynak sınırı:** Tanım arama sonucunda okundu; doğrudan madde isteği 403 döndürdü. Sayfa içeriği doğrudan açılmış olarak sayılmadı.
+
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/min%C3%A9) — Adjectif, sens figuré: dangereux, périlleux (2026-11-14).
+
+**Kaynak:** [www.estrepublicain.fr](https://www.estrepublicain.fr/actualite/2017/06/17/ce-que-je-vous-dis) — İlk paragrafta s’avancer en terrain miné mecaz kullanımı (2026-11-14).
 
 **Soru:**
 
@@ -461,7 +467,7 @@ Buradaki anlamı: Gizli güçlükler taşıyan hassas bir alana girmek. Mecaz; t
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000118 — sauter le pas
 
@@ -475,7 +481,9 @@ Buradaki anlamı: Gizli güçlükler taşıyan hassas bir alana girmek. Mecaz; t
 2. Il a enfin sauté le pas et s'est inscrit au cours de théâtre.
    Türkçesi: Sonunda kararını verip tiyatro kursuna yazıldı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sauter_le_pas) — sauter le pas : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sauter_le_pas) — sauter le pas : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.leprogres.fr](https://www.leprogres.fr/economie/2024/07/06/conge-menstruel-cette-entreprise-jurassienne-a-saute-le-pas) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -496,7 +504,7 @@ Buradaki anlamı: Uzun tereddütten sonra karar verip harekete geçmek. Eşiği 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000119 — faire le grand saut
 
@@ -507,14 +515,16 @@ Buradaki anlamı: Uzun tereddütten sonra karar verip harekete geçmek. Eşiği 
 1. Quitter son emploi pour créer son atelier, c'est faire le grand saut.
    Türkçesi: İşini bırakıp kendi atölyesini açmak büyük bir değişime adım atmaktır.
 
-2. Après dix ans dans la même ville, ils ont fait le grand saut en partant vivre ailleurs.
-   Türkçesi: Aynı şehirde on yıldan sonra başka yerde yaşamaya giderek büyük bir değişime adım attılar.
+2. Après dix ans ici, ils ont fait le grand saut en partant vivre ailleurs.
+   Türkçesi: Burada on yıl yaşadıktan sonra başka bir yere taşınmaya cesaret ettiler.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/grand_saut) — faire le grand saut : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/grand_saut) — faire le grand saut : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.presences-grenoble.fr](https://www.presences-grenoble.fr/actualites-management-formation-rh-grenoble/melanie-de-vulpian-fait-le-grand-saut.htm) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
-Après dix ans dans la même ville, ils ont fait le grand saut en partant vivre ailleurs.
+Après dix ans ici, ils ont fait le grand saut en partant vivre ailleurs.
 
 Bu bağlamda « faire le grand saut » ne anlama geliyor?
 
@@ -531,7 +541,7 @@ Buradaki anlamı: Büyük bir değişime cesaret edip başlamak. Hayat veya işt
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000120 — se jeter à l'eau
 
@@ -545,7 +555,7 @@ Buradaki anlamı: Büyük bir değişime cesaret edip başlamak. Hayat veya işt
 2. Timide, elle s'est pourtant jetée à l'eau pour présenter son idée.
    Türkçesi: Utangaçtı ama çekinmesini yenip fikrini sundu.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/eau/27209) — se jeter à l'eau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/eau/27209) — se jeter à l'eau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -566,7 +576,7 @@ Buradaki anlamı: Çekinmesini yenip bir işe girişmek. Mecaz; ilk adımı atma
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000121 — se lancer à corps perdu
 
@@ -580,7 +590,11 @@ Buradaki anlamı: Çekinmesini yenip bir işe girişmek. Mecaz; ilk adımı atma
 2. Dès son arrivée, elle s'est lancée à corps perdu dans le projet associatif.
    Türkçesi: Gelir gelmez kendini bütün coşkusuyla dernek projesine verdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_corps_perdu) — se lancer à corps perdu : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_corps_perdu) — se lancer à corps perdu : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.tf1info.fr](https://www.tf1info.fr/culture/maissiat-une-chanteuse-romantique-qui-sest-jetee-a-corps-perdu-dans-le-grand-amour-1257073.html) — Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm (2026-11-14).
+
+**Kaynak sınırı:** Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez.
 
 **Soru:**
 
@@ -601,7 +615,7 @@ Buradaki anlamı: Kendini bütünüyle ve coşkuyla bir işe atmak. Yoğun bağl
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000122 — brûler les étapes
 
@@ -612,14 +626,16 @@ Buradaki anlamı: Kendini bütünüyle ve coşkuyla bir işe atmak. Yoğun bağl
 1. Sans les bases, tu risques de brûler les étapes.
    Türkçesi: Temel bilgiler olmadan gerekli aşamaları atlama riskin var.
 
-2. Elle voulait publier avant de relire ; son éditeur lui a conseillé de ne pas brûler les étapes.
-   Türkçesi: Yeniden okumadan yayımlamak istiyordu; editörü aşamaları atlamamasını önerdi.
+2. Son éditeur lui conseille de relire avant de publier, pour éviter de brûler les étapes.
+   Türkçesi: Yayıncısı, aşamaları atlamamak için yayımlamadan önce yeniden okumasını öneriyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/br%C3%BBler_les_%C3%A9tapes) — brûler les étapes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/br%C3%BBler_les_%C3%A9tapes) — brûler les étapes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [video.lefigaro.fr](https://video.lefigaro.fr/figaro/politique/il-cherche-a-bruler-les-etapes-marine-le-pen-esquive-la-proposition-de-debat-avec-gabriel-attal-20240220) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
-Elle voulait publier avant de relire ; son éditeur lui a conseillé de ne pas brûler les étapes.
+Son éditeur lui conseille de relire avant de publier, pour éviter de brûler les étapes.
 
 Bu bağlamda « brûler les étapes » ne anlama geliyor?
 
@@ -636,7 +652,7 @@ Buradaki anlamı: Gerekli aşamaları atlayarak sonuca koşmak. Çok hızlı ile
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000123 — foncer tête baissée
 
@@ -650,7 +666,7 @@ Buradaki anlamı: Gerekli aşamaları atlayarak sonuca koşmak. Çok hızlı ile
 2. Il a foncé tête baissée dans cet achat sans vérifier les frais.
    Türkçesi: Masrafları kontrol etmeden bu alışverişe düşüncesizce atıldı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/foncer_t%C3%AAte_baiss%C3%A9e) — foncer tête baissée : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/foncer_t%C3%AAte_baiss%C3%A9e) — foncer tête baissée : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -671,7 +687,7 @@ Buradaki anlamı: Düşünmeden aceleyle atılmak. Ölçüp biçmeden girişme v
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000124 — avoir les yeux plus gros que le ventre
 
@@ -685,7 +701,7 @@ Buradaki anlamı: Düşünmeden aceleyle atılmak. Ölçüp biçmeden girişme v
 2. Il n'a pas fini son assiette : il avait les yeux plus gros que le ventre.
    Türkçesi: Tabağını bitiremedi; yiyebileceğinden fazlasını istemişti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_les_yeux_plus_gros_que_le_ventre) — avoir les yeux plus gros que le ventre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_les_yeux_plus_gros_que_le_ventre) — avoir les yeux plus gros que le ventre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -706,7 +722,7 @@ Buradaki anlamı: Yiyebileceğinden fazlasını istemek. Bu kart yemek bağlamı
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000125 — jouer avec le feu
 
@@ -720,7 +736,7 @@ Buradaki anlamı: Yiyebileceğinden fazlasını istemek. Bu kart yemek bağlamı
 2. Sans sauvegarde, modifier ces fichiers essentiels, c'est jouer avec le feu.
    Türkçesi: Yedek almadan bu temel dosyaları değiştirmek tehlikeli risk almaktır.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/jouer_avec_le_feu) — jouer avec le feu : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/jouer_avec_le_feu) — jouer avec le feu : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -741,7 +757,7 @@ Buradaki anlamı: Tehlikeyi küçümseyip riskli davranmak. Mecaz; gerçek ateş
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000126 — tenter le diable
 
@@ -755,7 +771,7 @@ Buradaki anlamı: Tehlikeyi küçümseyip riskli davranmak. Mecaz; gerçek ateş
 2. Il refusait de réparer ses freins ; ses proches disaient qu'il tentait le diable.
    Türkçesi: Frenlerini tamir ettirmiyordu; yakınları tehlikeyi davet ettiğini söylüyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tenter_le_diable) — tenter le diable : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tenter_le_diable) — tenter le diable : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -776,7 +792,7 @@ Buradaki anlamı: Bile bile tehlikeyi davet etmek. Düşüncesiz risk alma; din�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000127 — mettre tous ses œufs dans le même panier
 
@@ -790,7 +806,7 @@ Buradaki anlamı: Bile bile tehlikeyi davet etmek. Düşüncesiz risk alma; din�
 2. Elle a évité de mettre tous ses œufs dans le même panier en gardant plusieurs fournisseurs.
    Türkçesi: Birkaç tedarikçiyle çalışarak bütün imkânlarını tek seçeneğe bağlamaktan kaçındı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_tous_ses_%C5%93ufs_dans_le_m%C3%AAme_panier) — mettre tous ses œufs dans le même panier : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_tous_ses_%C5%93ufs_dans_le_m%C3%AAme_panier) — mettre tous ses œufs dans le même panier : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -811,7 +827,7 @@ Buradaki anlamı: Bütün imkânlarını tek bir seçeneğe bağlamak. Riskin te
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000128 — garder une poire pour la soif
 
@@ -825,7 +841,7 @@ Buradaki anlamı: Bütün imkânlarını tek bir seçeneğe bağlamak. Riskin te
 2. Ils ont conservé une petite réserve, une poire pour la soif.
    Türkçesi: Gelecekteki ihtiyaçlar için küçük bir yedek ayırdılar.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/garder_une_poire_pour_la_soif) — garder une poire pour la soif : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/garder_une_poire_pour_la_soif) — garder une poire pour la soif : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -846,7 +862,7 @@ Buradaki anlamı: Gelecekteki ihtiyaçlar için bir şey ayırmak. Yedek imkân 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000129 — assurer ses arrières
 
@@ -860,7 +876,7 @@ Buradaki anlamı: Gelecekteki ihtiyaçlar için bir şey ayırmak. Yedek imkân 
 2. Il a assuré ses arrières en conservant une copie de tous les accords.
    Türkçesi: Bütün anlaşmaların kopyasını saklayarak kendini olası tersliklere karşı güvenceye aldı.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/assurer/5921) — assurer ses arrières : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/assurer/5921) — assurer ses arrières : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -881,7 +897,7 @@ Buradaki anlamı: Olası tersliklere karşı kendini güvenceye almak. Geri dön
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000130 — tâter le terrain
 
@@ -895,7 +911,7 @@ Buradaki anlamı: Olası tersliklere karşı kendini güvenceye almak. Geri dön
 2. Elle a tâté le terrain auprès de l'équipe avant d'annoncer son idée.
    Türkçesi: Fikrini açıklamadan önce ekipte durumu yokladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/t%C3%A2ter_le_terrain) — tâter le terrain : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/t%C3%A2ter_le_terrain) — tâter le terrain : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -916,4 +932,4 @@ Buradaki anlamı: Adım atmadan önce durumu yoklamak. Tepkileri ve koşulları 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.

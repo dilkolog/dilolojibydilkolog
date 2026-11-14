@@ -147,7 +147,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000220
 
-Le contrat a été annulé, mais elle est retombée sur ses pieds grâce à une autre commande.
+L'atelier a fermé, mais il a retrouvé un emploi : il retombe sur ses pieds.
 
 Bu bağlamda « retomber sur ses pieds » ne anlama geliyor?
 

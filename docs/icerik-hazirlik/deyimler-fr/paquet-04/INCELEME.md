@@ -1,8 +1,8 @@
 # Paket 04 — Çalışma ve çaba
 
-26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.
+25 deyim · 50 özgün örnek/çeviri · 25 soru.
 
-Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.
+Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.
 
 Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.
 
@@ -18,7 +18,7 @@ Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm iç
 2. Même la directrice a mis la main à la pâte pour préparer les colis.
    Türkçesi: Müdür bile kolileri hazırlamak için işe bizzat katıldı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_la_main_%C3%A0_la_p%C3%A2te) — mettre la main à la pâte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_la_main_%C3%A0_la_p%C3%A2te) — mettre la main à la pâte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -39,7 +39,7 @@ Buradaki anlamı: İşe bizzat katılıp el atmak. Somut katkı vurgulanır; sad
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000080 — se retrousser les manches
 
@@ -53,7 +53,7 @@ Buradaki anlamı: İşe bizzat katılıp el atmak. Somut katkı vurgulanır; sad
 2. Devant le chantier, les bénévoles se sont retroussé les manches.
    Türkçesi: Gönüllüler yapılacak işleri görünce kolları sıvayıp işe koyuldu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_retrousser_les_manches) — se retrousser les manches : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_retrousser_les_manches) — se retrousser les manches : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -74,7 +74,7 @@ Buradaki anlamı: Kolları sıvayıp işe koyulmak. Başlamaya hazır, kararlı 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000081 — mettre les bouchées doubles
 
@@ -88,7 +88,11 @@ Buradaki anlamı: Kolları sıvayıp işe koyulmak. Başlamaya hazır, kararlı 
 2. Après la panne, l'atelier a mis les bouchées doubles pour rattraper le retard.
    Türkçesi: Arızadan sonra atölye gecikmeyi telafi etmek için tempoyu artırdı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_les_bouch%C3%A9es_doubles) — mettre les bouchées doubles : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_les_bouch%C3%A9es_doubles) — mettre les bouchées doubles : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.tf1info.fr](https://www.tf1info.fr/sante/depistage-des-cancers-la-france-doit-mettre-les-bouchees-doubles-2284145.html) — Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm (2026-11-14).
+
+**Kaynak sınırı:** Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez.
 
 **Soru:**
 
@@ -109,7 +113,7 @@ Buradaki anlamı: İşi hızlandırıp çabayı artırmak. Acil işi yetiştirme
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000082 — travailler d'arrache-pied
 
@@ -123,7 +127,7 @@ Buradaki anlamı: İşi hızlandırıp çabayı artırmak. Acil işi yetiştirme
 2. Elle a travaillé d'arrache-pied pendant deux semaines sur sa traduction.
    Türkçesi: İki hafta boyunca çevirisi üzerinde yoğun biçimde çalıştı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/d%E2%80%99arrache-pied) — travailler d'arrache-pied : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/d%E2%80%99arrache-pied) — travailler d'arrache-pied : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -144,7 +148,7 @@ Buradaki anlamı: Durmaksızın yoğun biçimde çalışmak. Uzun ve yoğun çab
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000083 — se donner du mal
 
@@ -158,7 +162,7 @@ Buradaki anlamı: Durmaksızın yoğun biçimde çalışmak. Uzun ve yoğun çab
 2. Les élèves se sont donné du mal pour rendre leur exposé clair.
    Türkçesi: Öğrenciler sunumlarını anlaşılır kılmak için çaba harcadı.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/mal/48790) — se donner du mal : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/mal/48790) — se donner du mal : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -179,7 +183,7 @@ Buradaki anlamı: Bir şey için emek ve çaba harcamak. Se donner du mal çaba 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000084 — se donner à fond
 
@@ -193,7 +197,7 @@ Buradaki anlamı: Bir şey için emek ve çaba harcamak. Se donner du mal çaba 
 2. Même sans gagner, l'équipe s'est donnée à fond jusqu'à la fin.
    Türkçesi: Kazanmasa da ekip sonuna kadar bütün enerjisini ortaya koydu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_donner_%C3%A0_fond) — se donner à fond : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_donner_%C3%A0_fond) — se donner à fond : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -214,7 +218,7 @@ Buradaki anlamı: Bütün enerjisini ortaya koymak. Kendini tam olarak verme; so
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000085 — mettre du cœur à l'ouvrage
 
@@ -228,7 +232,7 @@ Buradaki anlamı: Bütün enerjisini ortaya koymak. Kendini tam olarak verme; so
 2. Pour restaurer le vieux décor, chacun a mis du cœur à l'ouvrage.
    Türkçesi: Eski dekoru onarmak için herkes gönülden çalıştı.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/college/c%C5%93ur/8362) — mettre du cœur à l'ouvrage : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/college/c%C5%93ur/8362) — mettre du cœur à l'ouvrage : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -249,7 +253,7 @@ Buradaki anlamı: İşe gönlünü ve hevesini katmak. İstekli çalışma vurgu
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000086 — ne pas compter ses heures
 
@@ -263,7 +267,7 @@ Buradaki anlamı: İşe gönlünü ve hevesini katmak. İstekli çalışma vurgu
 2. Il ne comptait plus ses heures, puis a décidé de mieux protéger son repos.
    Türkçesi: Artık çalışırken saat hesabı yapmıyordu; sonra dinlenmesini daha iyi korumaya karar verdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_compter_ses_heures) — ne pas compter ses heures : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_compter_ses_heures) — ne pas compter ses heures : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -284,7 +288,7 @@ Buradaki anlamı: Çalışırken saat hesabı yapmamak. Süre sınırını göze
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000087 — travailler comme un forçat
 
@@ -298,7 +302,7 @@ Buradaki anlamı: Çalışırken saat hesabı yapmamak. Süre sınırını göze
 2. Après avoir travaillé comme un forçat, il a demandé de l'aide.
    Türkçesi: Çok ağır ve yorucu biçimde çalıştıktan sonra yardım istedi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/for%C3%A7at) — travailler comme un forçat : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/for%C3%A7at) — travailler comme un forçat : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -319,7 +323,7 @@ Buradaki anlamı: Çok ağır ve yorucu biçimde çalışmak. Forçat benzetmesi
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000088 — faire des pieds et des mains
 
@@ -333,7 +337,7 @@ Buradaki anlamı: Çok ağır ve yorucu biçimde çalışmak. Forçat benzetmesi
 2. Il a fait des pieds et des mains pour obtenir un rendez-vous urgent.
    Türkçesi: Acil randevu alabilmek için her türlü girişimde bulundu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_des_pieds_et_des_mains) — faire des pieds et des mains : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_des_pieds_et_des_mains) — faire des pieds et des mains : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -354,7 +358,7 @@ Buradaki anlamı: Bir sonuç için her türlü girişimde bulunmak. Hizmet veya 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000089 — remuer ciel et terre
 
@@ -368,7 +372,9 @@ Buradaki anlamı: Bir sonuç için her türlü girişimde bulunmak. Hizmet veya 
 2. La famille a remué ciel et terre pour réunir les documents perdus.
    Türkçesi: Aile kayıp belgeleri toplamak için her yolu denedi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/remuer_ciel_et_terre) — remuer ciel et terre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/remuer_ciel_et_terre) — remuer ciel et terre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.lemonde.fr](https://www.lemonde.fr/m-perso/article/2026/03/23/je-voulais-passer-plus-de-temps-avec-mes-patients-d-elle-meme-une-docteure-s-installe-dans-un-village-de-300-habitants-en-eure-et-loir_6673855_4497916.html) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -389,7 +395,7 @@ Buradaki anlamı: Amacına ulaşmak için her yolu denemek. Büyük seferberlik 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000090 — se plier en quatre
 
@@ -403,7 +409,7 @@ Buradaki anlamı: Amacına ulaşmak için her yolu denemek. Büyük seferberlik 
 2. Elle s'est pliée en quatre pour adapter le repas aux goûts de chacun.
    Türkçesi: Yemeği herkesin zevkine uydurmak için büyük çaba harcadı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_plier_en_quatre) — se plier en quatre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_plier_en_quatre) — se plier en quatre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -424,42 +430,7 @@ Buradaki anlamı: Birini memnun etmek için çok çabalamak. Başkasını memnun
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000091 — se creuser la tête
-
-**Anlam:** Çözüm bulmak için kafa yormak
-
-**Kullanım:** Yoğun düşünme veya hatırlama; fiziksel bir eylem değildir.
-
-1. Je me creuse la tête pour résoudre cette énigme.
-   Türkçesi: Bu bilmeceyi çözmek için kafa yoruyorum.
-
-2. Les techniciens se sont creusé la tête pour comprendre cette panne étrange.
-   Türkçesi: Teknisyenler bu tuhaf arızayı anlamak için kafa yordu.
-
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_creuser_la_t%C3%AAte) — se creuser la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Les techniciens se sont creusé la tête pour comprendre cette panne étrange.
-
-Bu bağlamda « se creuser la tête » ne anlama geliyor?
-
-- A) İşe bizzat katılıp el atmak
-- B) Bir işin alışkanlığını edinmek
-- C) Çok miktarda işi tamamlamak
-- D) Çözüm bulmak için kafa yormak
-
-<details><summary>Cevap ve açıklama</summary>
-
-D) Çözüm bulmak için kafa yormak
-
-Buradaki anlamı: Çözüm bulmak için kafa yormak. Yoğun düşünme veya hatırlama; fiziksel bir eylem değildir.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000092 — se casser la tête
 
@@ -467,13 +438,15 @@ Buradaki anlamı: Çözüm bulmak için kafa yormak. Yoğun düşünme veya hat�
 
 **Kullanım:** Samimi kullanım; sıklıkla olumsuz yapıda gereksiz zorluğu azaltma önerisi verir.
 
-1. Ne te casse pas la tête, un simple message suffira.
-   Türkçesi: Kafana takıp durma; basit bir mesaj yeter.
+1. Tu te casses la tête pour ce message pourtant simple.
+   Türkçesi: Aslında basit olan bu mesaj için kafa patlatıyorsun.
 
 2. Nous nous sommes cassé la tête sur ce calcul toute la matinée.
    Türkçesi: Bütün sabah bu hesap üzerinde kafa patlattık.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_casser_la_t%C3%AAte) — se casser la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_casser_la_t%C3%AAte) — se casser la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.alloprof.qc.ca](https://www.alloprof.qc.ca/fr/zone-entraide/discussion/97798/question) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -494,7 +467,7 @@ Buradaki anlamı: Bir meseleyi çözmek için çok kafa patlatmak. Samimi kullan
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000093 — avoir plusieurs cordes à son arc
 
@@ -508,7 +481,7 @@ Buradaki anlamı: Bir meseleyi çözmek için çok kafa patlatmak. Samimi kullan
 2. Pour changer de métier, il peut compter sur plusieurs cordes à son arc.
    Türkçesi: Meslek değiştirmek için farklı becerilerine güvenebilir.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_plusieurs_cordes_%C3%A0_son_arc) — avoir plusieurs cordes à son arc : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_plusieurs_cordes_%C3%A0_son_arc) — avoir plusieurs cordes à son arc : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -529,7 +502,7 @@ Buradaki anlamı: Birden fazla beceri veya çözüm yoluna sahip olmak. Mecaz; f
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000094 — avoir plus d'un tour dans son sac
 
@@ -540,14 +513,16 @@ Buradaki anlamı: Birden fazla beceri veya çözüm yoluna sahip olmak. Mecaz; f
 1. Ce réparateur a plus d'un tour dans son sac.
    Türkçesi: Bu tamircinin çözüm üretecek çok hüneri var.
 
-2. Même sans la pièce habituelle, elle avait plus d'un tour dans son sac pour réparer la lampe.
-   Türkçesi: Alışılmış parça olmadan da lambayı onaracak farklı hünerleri vardı.
+2. Sans outil adapté, elle avait plus d'un tour dans son sac pour réparer cette lampe.
+   Türkçesi: Uygun alet yokken bile bu lambayı onaracak farklı çözümler bulabiliyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_plus_d%E2%80%99un_tour_dans_son_sac) — avoir plus d'un tour dans son sac : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_plus_d%E2%80%99un_tour_dans_son_sac) — avoir plus d'un tour dans son sac : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.francetvpro.fr](https://www.francetvpro.fr/sites/default/files/telechargements/documents/grille%20NoA%20N%C2%B0%2019_2.pdf) — Grille NoA 03–09 mai 2025, p. 57, présentation du paysan André (2026-11-14).
 
 **Soru:**
 
-Même sans la pièce habituelle, elle avait plus d'un tour dans son sac pour réparer la lampe.
+Sans outil adapté, elle avait plus d'un tour dans son sac pour réparer cette lampe.
 
 Bu bağlamda « avoir plus d'un tour dans son sac » ne anlama geliyor?
 
@@ -564,7 +539,7 @@ Buradaki anlamı: Çözüm üretmek için çok sayıda hüneri olmak. Pratik zek
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000095 — apprendre sur le tas
 
@@ -578,7 +553,7 @@ Buradaki anlamı: Çözüm üretmek için çok sayıda hüneri olmak. Pratik zek
 2. Sans formation en cuisine, elle a appris sur le tas auprès de l'équipe.
    Türkçesi: Mutfak eğitimi olmadan, ekiple çalışırken uygulama içinde öğrendi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_le_tas) — apprendre sur le tas : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_le_tas) — apprendre sur le tas : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -599,7 +574,7 @@ Buradaki anlamı: İşi yaparken uygulama içinde öğrenmek. Önceden tam eğit
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000096 — prendre le pli
 
@@ -613,7 +588,7 @@ Buradaki anlamı: İşi yaparken uygulama içinde öğrenmek. Önceden tam eğit
 2. Après deux semaines, les nouveaux ont pris le pli des horaires décalés.
    Türkçesi: İki hafta sonra yeniler farklı çalışma saatlerinin alışkanlığını edindi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_le_pli) — prendre le pli : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_le_pli) — prendre le pli : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -634,7 +609,7 @@ Buradaki anlamı: Bir işin alışkanlığını edinmek. Tekrarla uyum sağlamak
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000097 — faire ses premières armes
 
@@ -648,7 +623,7 @@ Buradaki anlamı: Bir işin alışkanlığını edinmek. Tekrarla uyum sağlamak
 2. Ce cuisinier a fait ses premières armes dans le restaurant familial.
    Türkçesi: Bu aşçı ilk deneyimlerini ailesinin lokantasında edindi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_ses_premi%C3%A8res_armes) — faire ses premières armes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_ses_premi%C3%A8res_armes) — faire ses premières armes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -669,7 +644,7 @@ Buradaki anlamı: Bir alanda ilk deneyimlerini edinmek. Askerî anlam dışında
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000098 — prendre son envol
 
@@ -683,7 +658,9 @@ Buradaki anlamı: Bir alanda ilk deneyimlerini edinmek. Askerî anlam dışında
 2. Avec ce nouveau contrat, la jeune entreprise a pris son envol.
    Türkçesi: Bu yeni sözleşmeyle genç şirket gelişip yükselmeye başladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_son_envol) — prendre son envol : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_son_envol) — prendre son envol : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.lemonde.fr](https://www.lemonde.fr/economie/article/2021/11/26/les-commerces-en-circuit-court-se-multiplient_6103693_3234.html) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -704,7 +681,7 @@ Buradaki anlamı: Kendi alanında gelişip yükselmeye başlamak. Kariyer veya g
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000099 — voler de ses propres ailes
 
@@ -718,7 +695,7 @@ Buradaki anlamı: Kendi alanında gelişip yükselmeye başlamak. Kariyer veya g
 2. Il a quitté l'entreprise familiale pour voler de ses propres ailes.
    Türkçesi: Kendi imkânlarıyla bağımsız çalışmak için aile şirketinden ayrıldı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voler_de_ses_propres_ailes) — voler de ses propres ailes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voler_de_ses_propres_ailes) — voler de ses propres ailes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -739,7 +716,7 @@ Buradaki anlamı: Kendi imkânlarıyla bağımsız hareket etmek. Bağımsızlı
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000100 — être sur tous les fronts
 
@@ -753,7 +730,7 @@ Buradaki anlamı: Kendi imkânlarıyla bağımsız hareket etmek. Bağımsızlı
 2. Le coordinateur était sur tous les fronts pendant le festival.
    Türkçesi: Koordinatör festival boyunca her alanda aynı anda uğraşıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_tous_les_fronts) — être sur tous les fronts : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_tous_les_fronts) — être sur tous les fronts : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -774,7 +751,7 @@ Buradaki anlamı: Birden çok alanda aynı anda uğraş vermek. Gerçek savaş a
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000101 — être au four et au moulin
 
@@ -788,7 +765,7 @@ Buradaki anlamı: Birden çok alanda aynı anda uğraş vermek. Gerçek savaş a
 2. Il gérait seul les commandes et les livraisons ; impossible d'être au four et au moulin.
    Türkçesi: Siparişlerle teslimatı tek başına yürütüyordu; her işe birden yetişmek imkânsızdı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_au_four_et_au_moulin) — être au four et au moulin : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_au_four_et_au_moulin) — être au four et au moulin : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -809,7 +786,7 @@ Buradaki anlamı: Aynı anda birçok işe yetişmeye çalışmak. Çoğu zaman b
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000102 — avoir la tête dans le guidon
 
@@ -823,7 +800,7 @@ Buradaki anlamı: Aynı anda birçok işe yetişmeye çalışmak. Çoğu zaman b
 2. Elle avait la tête dans le guidon et ne voyait plus les priorités.
    Türkçesi: İşe öyle gömülmüştü ki öncelikleri artık göremiyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/la_t%C3%AAte_dans_le_guidon) — avoir la tête dans le guidon : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/la_t%C3%AAte_dans_le_guidon) — avoir la tête dans le guidon : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -844,7 +821,7 @@ Buradaki anlamı: İşe gömülüp bütünü değerlendirememek. Yoğun uğraş 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000103 — abattre du travail
 
@@ -858,7 +835,7 @@ Buradaki anlamı: İşe gömülüp bütünü değerlendirememek. Yoğun uğraş 
 2. En une journée, elle a abattu le travail prévu pour trois.
    Türkçesi: Bir günde üç günlük işi tamamladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/abattre) — abattre du travail : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/abattre) — abattre du travail : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -879,7 +856,7 @@ Buradaki anlamı: Çok miktarda işi tamamlamak. Tamamlanan iş hacmi vurgulanı
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000104 — mettre la dernière main à quelque chose
 
@@ -893,7 +870,7 @@ Buradaki anlamı: Çok miktarda işi tamamlamak. Tamamlanan iş hacmi vurgulanı
 2. Avant l'impression, elle a mis la dernière main à son recueil.
    Türkçesi: Baskıdan önce derlemesine son rötuşları yaptı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_la_derni%C3%A8re_main_%C3%A0) — mettre la dernière main à quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_la_derni%C3%A8re_main_%C3%A0) — mettre la dernière main à quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -914,4 +891,4 @@ Buradaki anlamı: Bir işe son rötuşları yapmak. Tamamlamaya yaklaşmış bir
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.

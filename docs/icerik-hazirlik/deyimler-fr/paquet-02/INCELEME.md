@@ -1,8 +1,8 @@
 # Paket 02 — Duygular ve tepkiler
 
-26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.
+24 deyim · 48 özgün örnek/çeviri · 24 soru.
 
-Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.
+Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.
 
 Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.
 
@@ -18,7 +18,7 @@ Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm iç
 2. Au départ de sa meilleure amie, Lina avait le cœur gros.
    Türkçesi: En yakın arkadaşı giderken Lina'nın içi hüzünle doluydu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_c%C5%93ur_gros) — avoir le cœur gros : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_c%C5%93ur_gros) — avoir le cœur gros : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -39,7 +39,7 @@ Buradaki anlamı: İçi hüzünle dolmak. Üzüntüyü anlatır; öfke veya cöm
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000028 — avoir le cœur serré
 
@@ -53,7 +53,7 @@ Buradaki anlamı: İçi hüzünle dolmak. Üzüntüyü anlatır; öfke veya cöm
 2. En voyant la salle de classe vide, le professeur a eu le cœur serré.
    Türkçesi: Öğretmen boş sınıfı görünce içi burkuldu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_c%C5%93ur_serr%C3%A9) — avoir le cœur serré : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_c%C5%93ur_serr%C3%A9) — avoir le cœur serré : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -74,7 +74,7 @@ Buradaki anlamı: İçi burkulmak. Duygusal sıkışma anlatılır; fiziksel kal
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000029 — avoir le moral dans les chaussettes
 
@@ -88,7 +88,7 @@ Buradaki anlamı: İçi burkulmak. Duygusal sıkışma anlatılır; fiziksel kal
 2. Depuis l'annulation du voyage, j'ai le moral dans les chaussettes.
    Türkçesi: Yolculuk iptal edildiğinden beri moralim çok bozuk.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_moral_dans_les_chaussettes) — avoir le moral dans les chaussettes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_moral_dans_les_chaussettes) — avoir le moral dans les chaussettes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -109,7 +109,7 @@ Buradaki anlamı: Morali çok bozuk olmak. Samimi konuşmada moralin çok düş�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000030 — avoir le blues
 
@@ -123,7 +123,9 @@ Buradaki anlamı: Morali çok bozuk olmak. Samimi konuşmada moralin çok düş�
 2. Tout allait bien, pourtant Maëlle avait le blues ce matin-là.
    Türkçesi: Her şey yolundaydı ama o sabah Maëlle'nin içinde bir hüzün vardı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_blues) — avoir le blues : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_blues) — avoir le blues : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.lemonde.fr](https://www.lemonde.fr/realites-biomedicales/2020/03/12/dysphorie-post-coitale-avoir-le-blues-apres-lamour/) — Titre, emploi au sens de tristesse (2026-11-14).
 
 **Soru:**
 
@@ -144,7 +146,7 @@ Buradaki anlamı: Nedeni tam belirgin olmayan bir hüzün duymak. Hafif melankol
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000031 — broyer du noir
 
@@ -158,7 +160,7 @@ Buradaki anlamı: Nedeni tam belirgin olmayan bir hüzün duymak. Hafif melankol
 2. Au lieu de broyer du noir toute la soirée, Zoé a appelé une amie.
    Türkçesi: Zoé bütün akşam karamsarlığa gömülmek yerine bir arkadaşını aradı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/broyer_du_noir) — broyer du noir : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/broyer_du_noir) — broyer du noir : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -179,7 +181,7 @@ Buradaki anlamı: Karamsar düşüncelere dalmak. Olumsuz düşüncelerle zihnin
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000032 — voir la vie en rose
 
@@ -193,7 +195,7 @@ Buradaki anlamı: Karamsar düşüncelere dalmak. Olumsuz düşüncelerle zihnin
 2. Même face aux petits soucis, Marc voit la vie en rose.
    Türkçesi: Marc küçük sorunlar karşısında bile hayata iyimser bakıyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_la_vie_en_rose) — voir la vie en rose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_la_vie_en_rose) — voir la vie en rose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -214,7 +216,7 @@ Buradaki anlamı: Hayatın hep iyi tarafını görmek. İyimser bakışı, bazen
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000033 — être aux anges
 
@@ -228,7 +230,7 @@ Buradaki anlamı: Hayatın hep iyi tarafını görmek. İyimser bakışı, bazen
 2. Sa sœur lui a offert un billet de concert ; il était aux anges.
    Türkçesi: Kız kardeşi ona konser bileti hediye etti; sevinçten havalara uçuyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_aux_anges) — être aux anges : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_aux_anges) — être aux anges : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -249,7 +251,7 @@ Buradaki anlamı: Sevinçten havalara uçmak. Çok büyük mutluluk anlatılır;
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000034 — être sur un petit nuage
 
@@ -263,7 +265,7 @@ Buradaki anlamı: Sevinçten havalara uçmak. Çok büyük mutluluk anlatılır;
 2. Admise dans l'école de son choix, Ana était sur un petit nuage.
    Türkçesi: İstediği okula kabul edilen Ana mutluluktan bulutların üzerindeydi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_sur_un_petit_nuage) — être sur un petit nuage : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_sur_un_petit_nuage) — être sur un petit nuage : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -284,42 +286,7 @@ Buradaki anlamı: Mutluluktan bulutların üzerinde olmak. Güzel bir olayın ar
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000035 — sauter de joie
-
-**Anlam:** Sevinçten zıplamak
-
-**Kullanım:** Sevincin hareketli dışavurumu; korkuyla irkilmekten ayrılır.
-
-1. Il a sauté de joie en apprenant la bonne nouvelle.
-   Türkçesi: İyi haberi öğrenince sevinçten zıpladı.
-
-2. Quand leur équipe a gagné, les supporters ont sauté de joie.
-   Türkçesi: Takımları kazanınca taraftarlar sevinçten zıpladı.
-
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sauter) — sauter de joie : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Quand leur équipe a gagné, les supporters ont sauté de joie.
-
-Bu bağlamda « sauter de joie » ne anlama geliyor?
-
-- A) İçi burkulmak
-- B) Sevinçten zıplamak
-- C) Yaprak gibi titremek
-- D) Sinirleri çok hassas olmak
-
-<details><summary>Cevap ve açıklama</summary>
-
-B) Sevinçten zıplamak
-
-Buradaki anlamı: Sevinçten zıplamak. Sevincin hareketli dışavurumu; korkuyla irkilmekten ayrılır.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000036 — avoir le sourire jusqu'aux oreilles
 
@@ -333,7 +300,7 @@ Buradaki anlamı: Sevinçten zıplamak. Sevincin hareketli dışavurumu; korkuyl
 2. Après la surprise de ses amis, Yanis avait le sourire jusqu'aux oreilles.
    Türkçesi: Arkadaşlarının sürprizinden sonra Yanis'in ağzı kulaklarına varmıştı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sourire_jusqu%E2%80%99aux_oreilles) — avoir le sourire jusqu'aux oreilles : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sourire_jusqu%E2%80%99aux_oreilles) — avoir le sourire jusqu'aux oreilles : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -354,7 +321,7 @@ Buradaki anlamı: Mutluluktan ağzı kulaklarına varmak. Geniş gülümsemeyle 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000037 — avoir la peur au ventre
 
@@ -368,7 +335,7 @@ Buradaki anlamı: Mutluluktan ağzı kulaklarına varmak. Geniş gülümsemeyle 
 2. Avant de traverser le pont suspendu, elle avait la peur au ventre.
    Türkçesi: Asma köprüden geçmeden önce içinde yoğun bir korku vardı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_peur_au_ventre) — avoir la peur au ventre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_peur_au_ventre) — avoir la peur au ventre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -389,7 +356,7 @@ Buradaki anlamı: İçinde yoğun bir korku taşımak. Beklenen tehdit karşıs�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000038 — trembler comme une feuille
 
@@ -403,7 +370,7 @@ Buradaki anlamı: İçinde yoğun bir korku taşımak. Beklenen tehdit karşıs�
 2. Pendant son premier vol, Karim tremblait comme une feuille au décollage.
    Türkçesi: İlk uçuşunda Karim kalkış sırasında yaprak gibi titriyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/trembler_comme_une_feuille) — trembler comme une feuille : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/trembler_comme_une_feuille) — trembler comme une feuille : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -424,7 +391,7 @@ Buradaki anlamı: Yaprak gibi titremek. Korku veya soğuktan titremek; örnekler
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000039 — avoir la chair de poule
 
@@ -438,7 +405,7 @@ Buradaki anlamı: Yaprak gibi titremek. Korku veya soğuktan titremek; örnekler
 2. En entendant des pas derrière elle dans le noir, elle a eu la chair de poule.
    Türkçesi: Karanlıkta arkasından gelen ayak seslerini duyunca tüyleri diken diken oldu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_chair_de_poule) — avoir la chair de poule : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_chair_de_poule) — avoir la chair de poule : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -459,7 +426,7 @@ Buradaki anlamı: Tüyleri diken diken olmak. Soğuk, korku veya güçlü bir du
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000040 — avoir des sueurs froides
 
@@ -473,7 +440,7 @@ Buradaki anlamı: Tüyleri diken diken olmak. Soğuk, korku veya güçlü bir du
 2. Quand la porte de l'ascenseur est restée bloquée, j'ai eu des sueurs froides.
    Türkçesi: Asansörün kapısı sıkışıp kalınca korkudan soğuk terler döktüm.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_des_sueurs_froides) — avoir des sueurs froides : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_des_sueurs_froides) — avoir des sueurs froides : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -494,7 +461,7 @@ Buradaki anlamı: Korkudan soğuk terler dökmek. Korku anlatılır; sıcak hava
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000041 — avoir des papillons dans le ventre
 
@@ -508,7 +475,7 @@ Buradaki anlamı: Korkudan soğuk terler dökmek. Korku anlatılır; sıcak hava
 2. En attendant le message de celui qui lui plaisait, Lou avait des papillons dans le ventre.
    Türkçesi: Hoşlandığı kişinin mesajını beklerken Lou'nun midesinde kelebekler uçuşuyordu.
 
-**Kaynak:** [Wiktionary](https://en.wiktionary.org/wiki/papillons_dans_le_ventre) — avoir des papillons dans le ventre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionary](https://en.wiktionary.org/wiki/papillons_dans_le_ventre) — avoir des papillons dans le ventre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -529,42 +496,7 @@ Buradaki anlamı: Heyecandan midesinde kelebekler uçuşmak. Olumlu heyecan ve b
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000042 — être rouge de colère
-
-**Anlam:** Öfkeden kıpkırmızı kesilmek
-
-**Kullanım:** Kızarma öfkeye bağlanır; utanma veya güneşte yanma anlamı seçilmez.
-
-1. Accusé injustement, il est devenu rouge de colère.
-   Türkçesi: Haksız yere suçlanınca öfkeden kıpkırmızı kesildi.
-
-2. La cliente était rouge de colère après cette réponse méprisante.
-   Türkçesi: Müşteri bu küçümseyici cevaptan sonra öfkeden kıpkırmızıydı.
-
-**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A9C2894) — être rouge de colère : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-La cliente était rouge de colère après cette réponse méprisante.
-
-Bu bağlamda « être rouge de colère » ne anlama geliyor?
-
-- A) Öfkeden kıpkırmızı kesilmek
-- B) Nedeni tam belirgin olmayan bir hüzün duymak
-- C) Sevinçten zıplamak
-- D) İçinde yoğun bir korku taşımak
-
-<details><summary>Cevap ve açıklama</summary>
-
-A) Öfkeden kıpkırmızı kesilmek
-
-Buradaki anlamı: Öfkeden kıpkırmızı kesilmek. Kızarma öfkeye bağlanır; utanma veya güneşte yanma anlamı seçilmez.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000043 — voir rouge
 
@@ -578,7 +510,7 @@ Buradaki anlamı: Öfkeden kıpkırmızı kesilmek. Kızarma öfkeye bağlanır;
 2. En découvrant qu'on avait détruit ses dessins, elle a vu rouge.
    Türkçesi: Çizimlerinin yok edildiğini görünce bir anda öfkeye kapıldı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_rouge) — voir rouge : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_rouge) — voir rouge : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -599,7 +531,7 @@ Buradaki anlamı: Bir anda öfkeye kapılmak. Voir rouge mecazdır; gerçek renk
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000044 — sortir de ses gonds
 
@@ -613,7 +545,7 @@ Buradaki anlamı: Bir anda öfkeye kapılmak. Voir rouge mecazdır; gerçek renk
 2. La provocation a fait sortir Nora de ses gonds ; elle s'est mise à crier.
    Türkçesi: Kışkırtma Nora'yı çileden çıkardı; bağırmaya başladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sortir_de_ses_gonds) — sortir de ses gonds : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sortir_de_ses_gonds) — sortir de ses gonds : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -634,7 +566,7 @@ Buradaki anlamı: Öfkeden kendini kaybetmek. Kontrolünü yitirecek kadar öfke
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000045 — monter sur ses grands chevaux
 
@@ -648,7 +580,7 @@ Buradaki anlamı: Öfkeden kendini kaybetmek. Kontrolünü yitirecek kadar öfke
 2. Au lieu d'écouter la critique, elle est montée sur ses grands chevaux.
    Türkçesi: Eleştiriyi dinlemek yerine sert ve üstten bir tavırla çıkıştı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/monter_sur_ses_grands_chevaux) — monter sur ses grands chevaux : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/monter_sur_ses_grands_chevaux) — monter sur ses grands chevaux : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -669,7 +601,7 @@ Buradaki anlamı: Sert ve üstten bir tavırla çıkışmak. Öfkeli veya mağru
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000046 — prendre la mouche
 
@@ -683,7 +615,7 @@ Buradaki anlamı: Sert ve üstten bir tavırla çıkışmak. Öfkeli veya mağru
 2. Il a pris la mouche parce qu'on avait mal prononcé son prénom.
    Türkçesi: Adı yanlış telaffuz edildi diye bir anda alındı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_la_mouche) — prendre la mouche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_la_mouche) — prendre la mouche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -704,7 +636,7 @@ Buradaki anlamı: Küçük bir söze aniden alınmak. Ani ve kolay gücenme anla
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000047 — avoir une dent contre quelqu'un
 
@@ -718,7 +650,7 @@ Buradaki anlamı: Küçük bir söze aniden alınmak. Ani ve kolay gücenme anla
 2. Elle a encore une dent contre celui qui a trahi sa confiance.
    Türkçesi: Güvenini boşa çıkaran kişiye hâlâ kin besliyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_une_dent_contre_quelqu'un) — avoir une dent contre quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_une_dent_contre_quelqu'un) — avoir une dent contre quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -739,7 +671,7 @@ Buradaki anlamı: Birine uzun süredir kin beslemek. Geçmiş bir olaya bağlı 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000048 — en avoir gros sur le cœur
 
@@ -753,7 +685,7 @@ Buradaki anlamı: Birine uzun süredir kin beslemek. Geçmiş bir olaya bağlı 
 2. Écartée sans explication, la bénévole en avait gros sur le cœur.
    Türkçesi: Açıklama yapılmadan dışlanan gönüllünün içi üzüntü ve kırgınlıkla doluydu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_avoir_gros_sur_le_c%C5%93ur) — en avoir gros sur le cœur : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_avoir_gros_sur_le_c%C5%93ur) — en avoir gros sur le cœur : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -774,7 +706,7 @@ Buradaki anlamı: İçi büyük bir üzüntü ve kırgınlıkla dolu olmak. Bura
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000049 — avoir les nerfs à fleur de peau
 
@@ -785,14 +717,16 @@ Buradaki anlamı: İçi büyük bir üzüntü ve kırgınlıkla dolu olmak. Bura
 1. Après cette semaine agitée, elle a les nerfs à fleur de peau.
    Türkçesi: Bu çalkantılı haftadan sonra sinirleri çok hassas.
 
-2. Épuisé par le bruit, Sami avait les nerfs à fleur de peau et supportait mal les remarques.
-   Türkçesi: Gürültüden bitkin düşen Sami'nin sinirleri çok hassastı; yorumlara tahammül edemiyordu.
+2. Épuisé, Sami avait les nerfs à fleur de peau et s'irritait facilement.
+   Türkçesi: Bitkin düşen Sami'nin sinirleri çok hassastı; kolayca sinirleniyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_les_nerfs_%C3%A0_fleur_de_peau) — avoir les nerfs à fleur de peau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_les_nerfs_%C3%A0_fleur_de_peau) — avoir les nerfs à fleur de peau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.lemonde.fr](https://www.lemonde.fr/international/article/2016/04/21/le-parlement-espagnol-ce-grand-theatre-de-l-absurde_4905792_3210.html) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
-Épuisé par le bruit, Sami avait les nerfs à fleur de peau et supportait mal les remarques.
+Épuisé, Sami avait les nerfs à fleur de peau et s'irritait facilement.
 
 Bu bağlamda « avoir les nerfs à fleur de peau » ne anlama geliyor?
 
@@ -809,7 +743,7 @@ Buradaki anlamı: Sinirleri çok hassas olmak. Küçük bir uyarana bile kolayca
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000050 — être au bout du rouleau
 
@@ -823,7 +757,7 @@ Buradaki anlamı: Sinirleri çok hassas olmak. Küçük bir uyarana bile kolayca
 2. Entre les examens et le travail du soir, elle était au bout du rouleau.
    Türkçesi: Sınavlarla akşam işi arasında dayanacak gücü kalmamıştı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_au_bout_du_rouleau) — être au bout du rouleau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_au_bout_du_rouleau) — être au bout du rouleau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -844,7 +778,7 @@ Buradaki anlamı: Gücü ve dayanma kapasitesi tükenmiş olmak. Fiziksel veya r
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000051 — avoir l'estomac noué
 
@@ -858,7 +792,7 @@ Buradaki anlamı: Gücü ve dayanma kapasitesi tükenmiş olmak. Fiziksel veya r
 2. En attendant cet appel décisif, Thomas avait l'estomac noué.
    Türkçesi: Bu belirleyici telefonu beklerken Thomas'ın midesi kaygıdan düğümlenmişti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_l%E2%80%99estomac_nou%C3%A9) — avoir l'estomac noué : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_l%E2%80%99estomac_nou%C3%A9) — avoir l'estomac noué : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -879,7 +813,7 @@ Buradaki anlamı: Kaygıdan midesi düğümlenmek. Beklenti kaygısının bedens
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000052 — être vert de rage
 
@@ -893,7 +827,9 @@ Buradaki anlamı: Kaygıdan midesi düğümlenmek. Beklenti kaygısının bedens
 2. Son collègue s'était attribué tout le mérite ; il était vert de rage.
    Türkçesi: İş arkadaşı bütün başarıyı kendine mal etmişti; öfkeden kuduruyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_vert_de_rage) — être vert de rage : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_vert_de_rage) — être vert de rage : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.decitre.fr](https://www.decitre.fr/livres/meri-jaan-9782755671131.html) — Résumé du roman, colère du personnage Ola (2026-11-14).
 
 **Soru:**
 
@@ -914,4 +850,4 @@ Buradaki anlamı: Öfkeden kuduracak hâle gelmek. Abartılı öfke ifadesi; yü
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.

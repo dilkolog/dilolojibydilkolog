@@ -3,7 +3,7 @@
   "batch": "fr-idioms-0002",
   "language": "fr",
   "themeTr": "Duygular ve tepkiler",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
@@ -49,8 +49,9 @@
         "explanationTr": "Buradaki anlamı: İçi hüzünle dolmak. Üzüntüyü anlatır; öfke veya cömertlik anlamı verilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -92,8 +93,9 @@
         "explanationTr": "Buradaki anlamı: İçi burkulmak. Duygusal sıkışma anlatılır; fiziksel kalp rahatsızlığına ilişkin bir teşhis değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -135,8 +137,9 @@
         "explanationTr": "Buradaki anlamı: Morali çok bozuk olmak. Samimi konuşmada moralin çok düşük olmasını anlatır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -162,6 +165,13 @@
           "locator": "avoir le blues : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/realites-biomedicales/2020/03/12/dysphorie-post-coitale-avoir-le-blues-apres-lamour/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Titre, emploi au sens de tristesse"
         }
       ],
       "exercise": {
@@ -178,8 +188,9 @@
         "explanationTr": "Buradaki anlamı: Nedeni tam belirgin olmayan bir hüzün duymak. Hafif melankoliyi anlatır; müzik türü dinlemek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -221,8 +232,9 @@
         "explanationTr": "Buradaki anlamı: Karamsar düşüncelere dalmak. Olumsuz düşüncelerle zihnini meşgul etmek; yalnız siyah rengi düşünmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -264,8 +276,9 @@
         "explanationTr": "Buradaki anlamı: Hayatın hep iyi tarafını görmek. İyimser bakışı, bazen aşırı iyimserliği anlatır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -307,8 +320,9 @@
         "explanationTr": "Buradaki anlamı: Sevinçten havalara uçmak. Çok büyük mutluluk anlatılır; bütün olumlu ruh hâlleriyle eşitlenmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -350,51 +364,9 @@
         "explanationTr": "Buradaki anlamı: Mutluluktan bulutların üzerinde olmak. Güzel bir olayın ardından süren coşkulu mutluluk anlatılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000035",
-      "expression": "sauter de joie",
-      "meaningTr": "Sevinçten zıplamak",
-      "usageNoteTr": "Sevincin hareketli dışavurumu; korkuyla irkilmekten ayrılır.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Il a sauté de joie en apprenant la bonne nouvelle.",
-          "tr": "İyi haberi öğrenince sevinçten zıpladı."
-        },
-        {
-          "fr": "Quand leur équipe a gagné, les supporters ont sauté de joie.",
-          "tr": "Takımları kazanınca taraftarlar sevinçten zıpladı."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://fr.wiktionary.org/wiki/sauter",
-          "verification": "dictionary_entry_opened",
-          "locator": "sauter de joie : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Quand leur équipe a gagné, les supporters ont sauté de joie.",
-        "promptTr": "Bu bağlamda « sauter de joie » ne anlama geliyor?",
-        "optionsTr": [
-          "İçi burkulmak",
-          "Sevinçten zıplamak",
-          "Yaprak gibi titremek",
-          "Sinirleri çok hassas olmak"
-        ],
-        "answerIndex": 1,
-        "explanationTr": "Buradaki anlamı: Sevinçten zıplamak. Sevincin hareketli dışavurumu; korkuyla irkilmekten ayrılır."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -436,8 +408,9 @@
         "explanationTr": "Buradaki anlamı: Mutluluktan ağzı kulaklarına varmak. Geniş gülümsemeyle görülen mutluluk; sahte iltifat değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -479,8 +452,9 @@
         "explanationTr": "Buradaki anlamı: İçinde yoğun bir korku taşımak. Beklenen tehdit karşısındaki korku; yalnızca açlık veya karın ağrısı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -522,8 +496,9 @@
         "explanationTr": "Buradaki anlamı: Yaprak gibi titremek. Korku veya soğuktan titremek; örnekler korku anlamını seçer."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -565,8 +540,9 @@
         "explanationTr": "Buradaki anlamı: Tüyleri diken diken olmak. Soğuk, korku veya güçlü bir duyguyla oluşabilir; bu kart korku bağlamındadır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -608,8 +584,9 @@
         "explanationTr": "Buradaki anlamı: Korkudan soğuk terler dökmek. Korku anlatılır; sıcak hava yüzünden terlemek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -651,51 +628,9 @@
         "explanationTr": "Buradaki anlamı: Heyecandan midesinde kelebekler uçuşmak. Olumlu heyecan ve bazen kaygı anlatır; burada romantik beklenti seçilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000042",
-      "expression": "être rouge de colère",
-      "meaningTr": "Öfkeden kıpkırmızı kesilmek",
-      "usageNoteTr": "Kızarma öfkeye bağlanır; utanma veya güneşte yanma anlamı seçilmez.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Accusé injustement, il est devenu rouge de colère.",
-          "tr": "Haksız yere suçlanınca öfkeden kıpkırmızı kesildi."
-        },
-        {
-          "fr": "La cliente était rouge de colère après cette réponse méprisante.",
-          "tr": "Müşteri bu küçümseyici cevaptan sonra öfkeden kıpkırmızıydı."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.dictionnaire-academie.fr/article/A9C2894",
-          "verification": "dictionary_entry_opened",
-          "locator": "être rouge de colère : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "La cliente était rouge de colère après cette réponse méprisante.",
-        "promptTr": "Bu bağlamda « être rouge de colère » ne anlama geliyor?",
-        "optionsTr": [
-          "Öfkeden kıpkırmızı kesilmek",
-          "Nedeni tam belirgin olmayan bir hüzün duymak",
-          "Sevinçten zıplamak",
-          "İçinde yoğun bir korku taşımak"
-        ],
-        "answerIndex": 0,
-        "explanationTr": "Buradaki anlamı: Öfkeden kıpkırmızı kesilmek. Kızarma öfkeye bağlanır; utanma veya güneşte yanma anlamı seçilmez."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -737,8 +672,9 @@
         "explanationTr": "Buradaki anlamı: Bir anda öfkeye kapılmak. Voir rouge mecazdır; gerçek renk algısını anlatmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -780,8 +716,9 @@
         "explanationTr": "Buradaki anlamı: Öfkeden kendini kaybetmek. Kontrolünü yitirecek kadar öfkelenmek; sessiz küskünlük değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -823,8 +760,9 @@
         "explanationTr": "Buradaki anlamı: Sert ve üstten bir tavırla çıkışmak. Öfkeli veya mağrur bir çıkış; yalnız at binmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -866,8 +804,9 @@
         "explanationTr": "Buradaki anlamı: Küçük bir söze aniden alınmak. Ani ve kolay gücenme anlatılır; uzun süreli kin tutmaktan ayrılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -909,8 +848,9 @@
         "explanationTr": "Buradaki anlamı: Birine uzun süredir kin beslemek. Geçmiş bir olaya bağlı kalıcı kırgınlık; anlık şaşkınlık değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -952,8 +892,9 @@
         "explanationTr": "Buradaki anlamı: İçi büyük bir üzüntü ve kırgınlıkla dolu olmak. Burada duygusal yük anlamı seçilir; kaynakta görülen başka kaba anlamlar öğretilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -968,8 +909,8 @@
           "tr": "Bu çalkantılı haftadan sonra sinirleri çok hassas."
         },
         {
-          "fr": "Épuisé par le bruit, Sami avait les nerfs à fleur de peau et supportait mal les remarques.",
-          "tr": "Gürültüden bitkin düşen Sami'nin sinirleri çok hassastı; yorumlara tahammül edemiyordu."
+          "fr": "Épuisé, Sami avait les nerfs à fleur de peau et s'irritait facilement.",
+          "tr": "Bitkin düşen Sami'nin sinirleri çok hassastı; kolayca sinirleniyordu."
         }
       ],
       "sources": [
@@ -979,11 +920,18 @@
           "locator": "avoir les nerfs à fleur de peau : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/international/article/2016/04/21/le-parlement-espagnol-ce-grand-theatre-de-l-absurde_4905792_3210.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Épuisé par le bruit, Sami avait les nerfs à fleur de peau et supportait mal les remarques.",
+        "context": "Épuisé, Sami avait les nerfs à fleur de peau et s'irritait facilement.",
         "promptTr": "Bu bağlamda « avoir les nerfs à fleur de peau » ne anlama geliyor?",
         "optionsTr": [
           "İçi hüzünle dolmak",
@@ -995,8 +943,9 @@
         "explanationTr": "Buradaki anlamı: Sinirleri çok hassas olmak. Küçük bir uyarana bile kolayca gerilme; sevinç coşkusu değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -1038,8 +987,9 @@
         "explanationTr": "Buradaki anlamı: Gücü ve dayanma kapasitesi tükenmiş olmak. Fiziksel veya ruhsal tükenmişlik; tıbbi tanı iddiası taşımaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -1081,8 +1031,9 @@
         "explanationTr": "Buradaki anlamı: Kaygıdan midesi düğümlenmek. Beklenti kaygısının bedensel ifadesi; sağlık tanısı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     },
     {
@@ -1108,6 +1059,13 @@
           "locator": "être vert de rage : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.decitre.fr/livres/meri-jaan-9782755671131.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Résumé du roman, colère du personnage Ola"
         }
       ],
       "exercise": {
@@ -1124,9 +1082,11 @@
         "explanationTr": "Buradaki anlamı: Öfkeden kuduracak hâle gelmek. Abartılı öfke ifadesi; yüzün gerçekten yeşile dönmesi gerekmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0002.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

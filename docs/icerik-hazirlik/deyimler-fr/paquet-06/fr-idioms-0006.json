@@ -3,7 +3,7 @@
   "batch": "fr-idioms-0006",
   "language": "fr",
   "themeTr": "İlişkiler ve dayanışma",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
@@ -49,8 +49,9 @@
         "explanationTr": "Buradaki anlamı: Cömert ve yardımsever olmak. Bu kart cömertlik anlamını seçer; fiziksel kalp konumu değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -92,8 +93,9 @@
         "explanationTr": "Buradaki anlamı: Birbirinden ayrılmayacak kadar yakın olmak. İki kişi arasındaki güçlü bağ; benzer görünmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -135,8 +137,9 @@
         "explanationTr": "Buradaki anlamı: Birlikte yaramazlık yapacak kadar iyi anlaşmak. Samimi ifade; suç ortaklığı veya muzipçe işbirliği çağrışımı vardır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -178,8 +181,9 @@
         "explanationTr": "Buradaki anlamı: Aynı düşünce çizgisinde olup iyi anlaşmak. Mecaz; radyo frekansı değil, anlayış uyumu anlatılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -221,8 +225,9 @@
         "explanationTr": "Buradaki anlamı: Birbirine destek olup dayanışmak. Karşılıklı yardım; yalnız fiziksel yakınlık değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -264,8 +269,9 @@
         "explanationTr": "Buradaki anlamı: Birine küçük ama yararlı bir destek vermek. İlerlemeyi kolaylaştıran yardım; gerçek başparmak hareketi seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -307,8 +313,9 @@
         "explanationTr": "Buradaki anlamı: Birine bir konuyu açma fırsatı vermek. Konuşmada elverişli bir giriş sunmak; her tür maddi yardım değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -350,8 +357,9 @@
         "explanationTr": "Buradaki anlamı: Birini zor durumdan kurtarmak. Sorununu çözmesine yardım etmek; sadece övmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -393,8 +401,9 @@
         "explanationTr": "Buradaki anlamı: Birini göklere çıkararak övmek. Övgünün çok güçlü, bazen ölçüsüz olması vurgulanır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -436,8 +445,9 @@
         "explanationTr": "Buradaki anlamı: Çıkar için birine yağ çekmek. Küçümseyici mecaz; gerçek merhem sürmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -479,8 +489,9 @@
         "explanationTr": "Buradaki anlamı: Birinin hoşuna gidecek şekilde davranıp güvenini kazanmak. Özellikle iltifatla yaklaşma; gerçek fırçalama değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -522,8 +533,9 @@
         "explanationTr": "Buradaki anlamı: Birini kusursuz görüp aşırı yüceltmek. İdealize etme vurgulanır; yalnız bir başarısını kutlamak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -565,8 +577,9 @@
         "explanationTr": "Buradaki anlamı: Birini büyük çabayla ayakta tutmak. Mecaz; uzun veya yoğun destek, fiziksel taşıma değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -608,8 +621,9 @@
         "explanationTr": "Buradaki anlamı: Söz verdiği desteği vermeyip birini yarı yolda bırakmak. Gelmemek veya yükümlülüğü yerine getirmemek; önceden uzlaşılmış iptal değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -651,8 +665,9 @@
         "explanationTr": "Buradaki anlamı: Birinden yüz çevirip uzaklaşmak. Mecaz ilişkisel uzaklaşma; yalnız bedenini döndürmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -694,8 +709,9 @@
         "explanationTr": "Buradaki anlamı: Birini desteksiz bırakıp terk etmek. Bu kart kişi nesnesiyle kullanımı seçer; bir eşyayı düşürmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -737,8 +753,9 @@
         "explanationTr": "Buradaki anlamı: Küsüp somurtmak. Samimi ifade; başla ilgili gerçek hareket değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -780,8 +797,9 @@
         "explanationTr": "Buradaki anlamı: Birbirine çok düşman olmak. Güçlü gerginlik ve karşıtlık; gerçek silahlı olay gerekmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -823,8 +841,9 @@
         "explanationTr": "Buradaki anlamı: Birbirine soğuk ve kuşkulu bakmak. Yan yana olup konuşmadan karşılıklı soğukluk göstermek."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -866,8 +885,9 @@
         "explanationTr": "Buradaki anlamı: Gerginliği daha da artırmak. Çatışmayı körükleyen söz veya davranış; gerçek yangın anlatılmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -909,8 +929,9 @@
         "explanationTr": "Buradaki anlamı: İlişkilerin veya işleyişin pürüzlerini azaltmak. Kolaylaştırıcı, yumuşatıcı arabuluculuk; gerçek mekanik yağlama değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -952,8 +973,9 @@
         "explanationTr": "Buradaki anlamı: Birinin işine engeller çıkarmak. İlerleyişi aksatan davranış; gerçek tekerlek anlatılmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -995,8 +1017,9 @@
         "explanationTr": "Buradaki anlamı: Birini zayıflatmak için gizlice uğraşmak. Samimi mecaz; kötücül rekabet. Genel eleştiriyle eşitlenmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -1038,8 +1061,9 @@
         "explanationTr": "Buradaki anlamı: Özel anlaşmazlıkları kendi içinde çözmek. Aile veya grubun sorunlarını dışarıya taşırmadan ele alma; gerçek çamaşır değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -1081,8 +1105,9 @@
         "explanationTr": "Buradaki anlamı: Husumeti bırakıp barışmak. Kavga veya anlaşmazlığa son verme; gerçek savaş eylemi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     },
     {
@@ -1124,9 +1149,11 @@
         "explanationTr": "Buradaki anlamı: İstenmeden söze veya işe karışmak. Samimi kullanım; gereksiz müdahale çağrışımı taşır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0006.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

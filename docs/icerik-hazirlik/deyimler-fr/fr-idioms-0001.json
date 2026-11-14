@@ -2,185 +2,13 @@
   "schemaVersion": 1,
   "batch": "fr-idioms-0001",
   "language": "fr",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
   "levelPolicy": "Unassigned until the full task plan and independent pedagogical review are available. Dictionary citations do not certify CEFR levels.",
   "contentOrigin": "Original examples, translations, explanations and exercises by Diloloji; dictionary links verify lexical meaning only.",
   "items": [
-    {
-      "id": "fr-idiom-000001",
-      "expression": "donner sa langue au chat",
-      "meaningTr": "Bir sorunun cevabını bulamayıp pes etmek",
-      "usageNoteTr": "Bilmece veya cevabı bulunamayan soru için kullanılır. Her tür vazgeçmenin karşılığı değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Je ne trouve pas la réponse à ton énigme. Je donne ma langue au chat !",
-          "tr": "Bilmecenin cevabını bulamıyorum. Pes ediyorum!"
-        },
-        {
-          "fr": "Après plusieurs tentatives, Léa a donné sa langue au chat et a demandé la solution.",
-          "tr": "Léa birkaç denemeden sonra cevabı bulmaktan vazgeçip çözümü sordu."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/chat/14892",
-          "locator": "Expressions : Donner sa langue au chat",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Après plusieurs tentatives, Léa a donné sa langue au chat et a demandé la solution.",
-        "promptTr": "Bu bağlamda « donner sa langue au chat » ne anlama geliyor?",
-        "optionsTr": [
-          "Bir sorunun cevabını bulamayıp pes etmek",
-          "Bir sırrı yanlışlıkla açıklamak",
-          "Bir soruya hemen doğru cevap vermek",
-          "Birinin konuşmasını engellemek"
-        ],
-        "answerIndex": 0,
-        "explanationTr": "Bilmece veya cevabı bulunamayan soru için kullanılır. Her tür vazgeçmenin karşılığı değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000002",
-      "expression": "avoir un coup de foudre",
-      "meaningTr": "İlk görüşte âşık olmak",
-      "usageNoteTr": "Bu kart romantik anlamı öğretir. Coup de foudre bir şeye aniden hayran kalma bağlamında da kullanılabilir; bu örnekler insan ilişkisiyle sınırlandırılmıştır.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Dès leur première rencontre, ils ont eu un coup de foudre l'un pour l'autre.",
-          "tr": "Daha ilk karşılaşmalarında birbirlerine âşık oldular."
-        },
-        {
-          "fr": "Quand Nora a rencontré Malik à la bibliothèque, elle a eu un coup de foudre pour lui.",
-          "tr": "Nora, Malik ile kütüphanede tanıştığında ona ilk görüşte âşık oldu."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/college/foudre/17002",
-          "locator": "Coup de foudre",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Quand Nora a rencontré Malik à la bibliothèque, elle a eu un coup de foudre pour lui.",
-        "promptTr": "Bu bağlamda « avoir un coup de foudre » ne anlama geliyor?",
-        "optionsTr": [
-          "Bir tartışmadan sonra barışmak",
-          "İlk görüşte âşık olmak",
-          "Birinden giderek uzaklaşmak",
-          "Birine duyduğu sevgiyi yıllarca gizlemek"
-        ],
-        "answerIndex": 1,
-        "explanationTr": "Bu kart romantik anlamı öğretir. Coup de foudre bir şeye aniden hayran kalma bağlamında da kullanılabilir; bu örnekler insan ilişkisiyle sınırlandırılmıştır."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000003",
-      "expression": "poser un lapin à quelqu'un",
-      "meaningTr": "Buluşmaya gelmeyip birini bekletmek",
-      "usageNoteTr": "Samimi konuşmada kullanılır; Larousse genel sözlüğü populaire etiketi verir. Buluşmayı önceden iptal etmek veya yalnızca geç kalmakla aynı değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Elle m'a posé un lapin : je l'ai attendue une heure au café.",
-          "tr": "Buluşmaya gelmedi; onu kafede bir saat bekledim."
-        },
-        {
-          "fr": "Hugo avait promis de venir à midi, mais il m'a posé un lapin sans même me prévenir.",
-          "tr": "Hugo öğlen geleceğine söz vermişti ama haber bile vermeden beni bekletti, gelmedi."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/lapin/46241",
-          "locator": "Expressions : Poser un lapin à quelqu'un",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Hugo avait promis de venir à midi, mais il m'a posé un lapin sans même me prévenir.",
-        "promptTr": "Bu bağlamda « poser un lapin à quelqu'un » ne anlama geliyor?",
-        "optionsTr": [
-          "Buluşma yerine erken gelmek",
-          "Birine sürpriz bir hediye vermek",
-          "Buluşmaya gelmeyip birini bekletmek",
-          "Buluşmayı bir gün önceden iptal etmek"
-        ],
-        "answerIndex": 2,
-        "explanationTr": "Samimi konuşmada kullanılır; Larousse genel sözlüğü populaire etiketi verir. Buluşmayı önceden iptal etmek veya yalnızca geç kalmakla aynı değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000004",
-      "expression": "mettre les pieds dans le plat",
-      "meaningTr": "Hassas bir konuya patavatsızca girmek",
-      "usageNoteTr": "Konuşma dili. Hassas bir konuda düşüncesizce veya doğrudan konuşmak; genel bir teknik hata yapmak değildir. Bu örneklerde düşüncesizlik öne çıkar.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "En demandant pourquoi ils avaient rompu, j'ai mis les pieds dans le plat.",
-          "tr": "Neden ayrıldıklarını sorarak patavatsızlık ettim."
-        },
-        {
-          "fr": "Au dîner, Paul a mis les pieds dans le plat en demandant à Zoé pourquoi elle avait été licenciée.",
-          "tr": "Paul yemekte Zoé'ye neden işten çıkarıldığını sorarak hassas bir konuya patavatsızca girdi."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/pied/60776",
-          "locator": "Expressions : Mettre les pieds dans le plat",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Au dîner, Paul a mis les pieds dans le plat en demandant à Zoé pourquoi elle avait été licenciée.",
-        "promptTr": "Bu bağlamda « mettre les pieds dans le plat » ne anlama geliyor?",
-        "optionsTr": [
-          "Sofrayı hazırlamak için yardım etmek",
-          "Zor bir soruyu ustalıkla geçiştirmek",
-          "Birinin özel hayatını dikkatle korumak",
-          "Hassas bir konuya patavatsızca girmek"
-        ],
-        "answerIndex": 3,
-        "explanationTr": "Konuşma dili. Hassas bir konuda düşüncesizce veya doğrudan konuşmak; genel bir teknik hata yapmak değildir. Bu örneklerde düşüncesizlik öne çıkar."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
     {
       "id": "fr-idiom-000005",
       "expression": "avoir le cafard",
@@ -220,94 +48,9 @@
         "explanationTr": "Konuşma dili; geçici üzüntü veya karamsarlığı anlatabilir. Klinik depresyon tanısı olarak öğretilmemelidir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000006",
-      "expression": "coûter les yeux de la tête",
-      "meaningTr": "Çok pahalıya mal olmak",
-      "usageNoteTr": "Konuşma dili ve abartılı anlatım. Gerçek bir yaralanmayı değil, yüksek fiyatı anlatır.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Nous avons renoncé à cet hôtel : la chambre coûtait les yeux de la tête.",
-          "tr": "O otelden vazgeçtik; odası aşırı pahalıydı."
-        },
-        {
-          "fr": "La réparation de cette vieille voiture m'a coûté les yeux de la tête.",
-          "tr": "Bu eski arabanın tamiri bana çok pahalıya mal oldu."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/co%C3%BBter/20015",
-          "locator": "Expressions : Coûter les yeux de la tête",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "La réparation de cette vieille voiture m'a coûté les yeux de la tête.",
-        "promptTr": "Bu bağlamda « coûter les yeux de la tête » ne anlama geliyor?",
-        "optionsTr": [
-          "Bir eşyanın değerini artırmak",
-          "Çok pahalıya mal olmak",
-          "Hiç masraf çıkarmamak",
-          "Beklenenden çok daha kısa sürmek"
-        ],
-        "answerIndex": 1,
-        "explanationTr": "Konuşma dili ve abartılı anlatım. Gerçek bir yaralanmayı değil, yüksek fiyatı anlatır."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000007",
-      "expression": "tomber dans les pommes",
-      "meaningTr": "Bayılmak",
-      "usageNoteTr": "Konuşma dili; bilincini kaybetmek anlamındadır. Uykuya dalmak veya yalnızca şaşırmak değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Dans la salle bondée, une spectatrice est tombée dans les pommes.",
-          "tr": "Tıklım tıklım salonda bir kadın seyirci bayıldı."
-        },
-        {
-          "fr": "À la vue du sang, Luc est tombé dans les pommes et ses amis ont appelé les secours.",
-          "tr": "Luc kanı görünce bayıldı; arkadaşları da yardım çağırdı."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/pomme/62473",
-          "locator": "Expressions : Tomber dans les pommes",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "À la vue du sang, Luc est tombé dans les pommes et ses amis ont appelé les secours.",
-        "promptTr": "Bu bağlamda « tomber dans les pommes » ne anlama geliyor?",
-        "optionsTr": [
-          "Korkusuna rağmen sakin kalmak",
-          "Bir haberi duyunca şaşırmak",
-          "Bayılmak",
-          "Derin bir uykuya dalmak"
-        ],
-        "answerIndex": 2,
-        "explanationTr": "Konuşma dili; bilincini kaybetmek anlamındadır. Uykuya dalmak veya yalnızca şaşırmak değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
@@ -349,8 +92,9 @@
         "explanationTr": "Bir uğraşı veya mücadeleyi sürdürmekten vazgeçmek. Sadece kısa bir mola vermek değildir. Bu kart boks dışındaki mecaz anlamı öğretir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
@@ -392,8 +136,9 @@
         "explanationTr": "Bahçecilik veya bitki bakımındaki beceriyi anlatır. Elin rengiyle ilgili değildir. Kanada Fransızcasında avoir le pouce vert biçimi de görülür; bu paket onu sınamaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
@@ -408,8 +153,8 @@
           "tr": "Anlaşmaya varmak için iki taraf da taleplerini yumuşattı."
         },
         {
-          "fr": "Il exigeait trois jours de télétravail ; il a mis de l'eau dans son vin et en a accepté deux.",
-          "tr": "Üç gün evden çalışmakta ısrar ediyordu; talebini yumuşatıp iki günü kabul etti."
+          "fr": "Pour obtenir cet accord, il a mis de l'eau dans son vin.",
+          "tr": "Bu anlaşmaya varmak için taleplerini yumuşattı."
         }
       ],
       "sources": [
@@ -419,11 +164,18 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.watson.ch/fr/sport/football/556672786-football-luis-enrique-a-transforme-le-psg",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Il exigeait trois jours de télétravail ; il a mis de l'eau dans son vin et en a accepté deux.",
+        "context": "Pour obtenir cet accord, il a mis de l'eau dans son vin.",
         "promptTr": "Bu bağlamda « mettre de l'eau dans son vin » ne anlama geliyor?",
         "optionsTr": [
           "Tartışmayı daha da sertleştirmek",
@@ -435,51 +187,9 @@
         "explanationTr": "İstek veya tutumun sertliğini azaltmak. Diğer tarafı kandırmak ya da her talebinden bütünüyle vazgeçmek zorunda olmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000011",
-      "expression": "chercher midi à quatorze heures",
-      "meaningTr": "Gereksiz yere işi karmaşıklaştırmak",
-      "usageNoteTr": "Güçlük olmayan yerde güçlük aramayı anlatır. Ayrıntılı incelemenin her türü bu deyimle nitelenmez.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Le câble est débranché ; inutile de chercher midi à quatorze heures.",
-          "tr": "Kablo takılı değil; işi gereksiz yere karmaşıklaştırmaya gerek yok."
-        },
-        {
-          "fr": "La consigne demande simplement ton nom. Ne cherche pas midi à quatorze heures.",
-          "tr": "Yönergede yalnızca adın isteniyor. İşi gereksiz yere karmaşıklaştırma."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/midi/51356",
-          "locator": "Expressions : Chercher midi à quatorze heures",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "La consigne demande simplement ton nom. Ne cherche pas midi à quatorze heures.",
-        "promptTr": "Bu bağlamda « chercher midi à quatorze heures » ne anlama geliyor?",
-        "optionsTr": [
-          "Bir sorunu hiç düşünmeden geçmek",
-          "Gecikmiş bir işi hızla bitirmek",
-          "Gereksiz yere işi karmaşıklaştırmak",
-          "Bir toplantının saatini değiştirmek"
-        ],
-        "answerIndex": 2,
-        "explanationTr": "Güçlük olmayan yerde güçlük aramayı anlatır. Ayrıntılı incelemenin her türü bu deyimle nitelenmez."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
@@ -521,13 +231,14 @@
         "explanationTr": "İçinde bulunulan ana odaklanamayıp başka bir şeyi düşünmek. Unutkanlığın her türünü kapsamaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
       "id": "fr-idiom-000013",
-      "expression": "donner un coup de main à quelqu'un",
+      "expression": "donner un coup de main",
       "meaningTr": "Birine yardım etmek",
       "usageNoteTr": "Bu kart yardım anlamını öğretir. Coup de main başka bağlamlarda ani askerî baskın anlamına da gelebilir; örnekler gündelik işle sınırlandırılır.",
       "level": null,
@@ -548,12 +259,19 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/societe/article/2020/04/22/coronavirus-l-aide-alimentaire-confrontee-a-l-arrivee-de-nouveaux-publics_6037362_3224.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
         "context": "Samedi, mes voisins m'ont donné un coup de main pour monter les meubles.",
-        "promptTr": "Bu bağlamda « donner un coup de main à quelqu'un » ne anlama geliyor?",
+        "promptTr": "Bu bağlamda « donner un coup de main » ne anlama geliyor?",
         "optionsTr": [
           "Birine yardım etmek",
           "Birine istemeden vurmak",
@@ -564,181 +282,11 @@
         "explanationTr": "Bu kart yardım anlamını öğretir. Coup de main başka bağlamlarda ani askerî baskın anlamına da gelebilir; örnekler gündelik işle sınırlandırılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000014",
-      "expression": "avoir du pain sur la planche",
-      "meaningTr": "Yapacak çok işi olmak",
-      "usageNoteTr": "Konuşma dili. Yapılması gereken işin çokluğunu anlatır; kazanılmış para veya hazır yemek anlamında öğretilmez.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Avec trente dossiers à relire, nous avons du pain sur la planche.",
-          "tr": "Yeniden okumamız gereken otuz dosyayla yapacak çok işimiz var."
-        },
-        {
-          "fr": "Le festival commence demain et rien n'est installé : nous avons du pain sur la planche.",
-          "tr": "Festival yarın başlıyor ve henüz hiçbir şey kurulmadı; yapacak çok işimiz var."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/pain/57279",
-          "locator": "Expressions : Avoir du pain sur la planche",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Le festival commence demain et rien n'est installé : nous avons du pain sur la planche.",
-        "promptTr": "Bu bağlamda « avoir du pain sur la planche » ne anlama geliyor?",
-        "optionsTr": [
-          "Bir işi yapacak malzemesi olmamak",
-          "Yapacak çok işi olmak",
-          "Bütün işleri bitirmiş olmak",
-          "Gelecek için yeterince para biriktirmiş olmak"
-        ],
-        "answerIndex": 1,
-        "explanationTr": "Konuşma dili. Yapılması gereken işin çokluğunu anlatır; kazanılmış para veya hazır yemek anlamında öğretilmez."
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000015",
-      "expression": "couper la poire en deux",
-      "meaningTr": "Karşılıklı ödün verip orta yolu bulmak",
-      "usageNoteTr": "Uzlaşma anlamında kullanılır. Bu örneklerde teklifler arasında sayısal orta nokta vardır; her uzlaşmanın kesin yarı yarıya olması gerekmez.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Tu proposes vingt euros, j'en demande trente : coupons la poire en deux à vingt-cinq.",
-          "tr": "Sen yirmi avro öneriyorsun, ben otuz istiyorum; yirmi beşte orta yolu bulalım."
-        },
-        {
-          "fr": "Elle voulait partir à huit heures, lui à dix ; ils ont coupé la poire en deux et sont partis à neuf heures.",
-          "tr": "Kadın sekizde, adam onda yola çıkmak istiyordu; orta yolu bulup dokuzda çıktılar."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/poire/62046",
-          "locator": "Expressions : Couper la poire en deux",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Elle voulait partir à huit heures, lui à dix ; ils ont coupé la poire en deux et sont partis à neuf heures.",
-        "promptTr": "Bu bağlamda « couper la poire en deux » ne anlama geliyor?",
-        "optionsTr": [
-          "Kararı başka birine bırakmak",
-          "Karşı tarafın isteğini bütünüyle kabul etmek",
-          "Karşılıklı ödün verip orta yolu bulmak",
-          "Bir öneriyi görüşmeden reddetmek"
-        ],
-        "answerIndex": 2,
-        "explanationTr": "Uzlaşma anlamında kullanılır. Bu örneklerde teklifler arasında sayısal orta nokta vardır; her uzlaşmanın kesin yarı yarıya olması gerekmez."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000016",
-      "expression": "prendre ses jambes à son cou",
-      "meaningTr": "Tabanları yağlayıp hızla kaçmak",
-      "usageNoteTr": "Konuşma dili. Koşarak kaçmak; gündelik bir yere sakin biçimde yürümek değildir. İyelik sözcükleri özneye göre değişir : mes jambes à mon cou, ses jambes à son cou.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Quand l'oie s'est mise à le poursuivre, le facteur a pris ses jambes à son cou.",
-          "tr": "Kaz kendisini kovalamaya başlayınca postacı tabanları yağlayıp kaçtı."
-        },
-        {
-          "fr": "Quand l'alarme a retenti dans le musée, le voleur a pris ses jambes à son cou.",
-          "tr": "Müzede alarm çalınca hırsız tabanları yağlayıp kaçtı."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/jambe/44692",
-          "locator": "Expressions : Prendre ses jambes à son cou",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Quand l'alarme a retenti dans le musée, le voleur a pris ses jambes à son cou.",
-        "promptTr": "Bu bağlamda « prendre ses jambes à son cou » ne anlama geliyor?",
-        "optionsTr": [
-          "Korkusuna rağmen yerinde beklemek",
-          "Yavaşça yürüyüşe çıkmak",
-          "Birini yakalamak için geri dönmek",
-          "Tabanları yağlayıp hızla kaçmak"
-        ],
-        "answerIndex": 3,
-        "explanationTr": "Konuşma dili. Koşarak kaçmak; gündelik bir yere sakin biçimde yürümek değildir. İyelik sözcükleri özneye göre değişir : mes jambes à mon cou, ses jambes à son cou."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000017",
-      "expression": "en faire tout un fromage",
-      "meaningTr": "Küçük bir meseleyi büyütmek",
-      "usageNoteTr": "Konuşma dili; bir şeye gereğinden fazla önem vermek. En zamiri söz konusu olaya gönderme yapar. En faire un fromage biçimi de vardır.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "J'ai oublié une virgule, ce n'est pas la peine d'en faire tout un fromage.",
-          "tr": "Bir virgülü unutmuşum; bunu büyütmeye gerek yok."
-        },
-        {
-          "fr": "Le train avait deux minutes de retard, mais Rémi en a fait tout un fromage.",
-          "tr": "Tren iki dakika gecikmişti ama Rémi bunu büyük bir mesele yaptı."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/fromage/35369",
-          "locator": "Expressions : En faire (tout) un fromage",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Le train avait deux minutes de retard, mais Rémi en a fait tout un fromage.",
-        "promptTr": "Bu bağlamda « en faire tout un fromage » ne anlama geliyor?",
-        "optionsTr": [
-          "Küçük bir meseleyi büyütmek",
-          "Önemli bir sorunu küçümsemek",
-          "Bir hatayı kimseye söylemeden düzeltmek",
-          "Bir konuyu olduğu gibi aktarmak"
-        ],
-        "answerIndex": 0,
-        "explanationTr": "Konuşma dili; bir şeye gereğinden fazla önem vermek. En zamiri söz konusu olaya gönderme yapar. En faire un fromage biçimi de vardır."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
+      "pattern": "donner un coup de main à quelqu'un"
     },
     {
       "id": "fr-idiom-000018",
@@ -752,8 +300,8 @@
           "tr": "Odayı ölçmeden mobilya almak, işleri ters sırayla yapmaktır."
         },
         {
-          "fr": "N'imprime pas les invitations avant de réserver la salle : tu mets la charrue avant les bœufs.",
-          "tr": "Salonu ayırtmadan davetiyeleri bastırma; yapılacak işlerin sırasını tersine çeviriyorsun."
+          "fr": "Elle achète les meubles avant de mesurer : elle met la charrue avant les bœufs.",
+          "tr": "Ölçü almadan mobilya satın alarak işleri ters sırayla yapıyor."
         }
       ],
       "sources": [
@@ -763,11 +311,18 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/sport/article/2021/03/26/tournoi-des-6-nations-gagner-sans-s-egarer-dans-les-calculs-la-derniere-equation-du-xv-de-france_6074515_3242.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "N'imprime pas les invitations avant de réserver la salle : tu mets la charrue avant les bœufs.",
+        "context": "Elle achète les meubles avant de mesurer : elle met la charrue avant les bœufs.",
         "promptTr": "Bu bağlamda « mettre la charrue avant les bœufs » ne anlama geliyor?",
         "optionsTr": [
           "Bir işi zamanında teslim etmek",
@@ -779,8 +334,9 @@
         "explanationTr": "Ön koşulları yerine getirmeden sonraki aşamaya atlamayı anlatır. Sadece çok hızlı çalışmak değildir. Deyimsel fiil grubu olarak seçildi; atasözü/deyim ayrımı son görev planında ayrıca kontrol edilmeli."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
@@ -791,12 +347,12 @@
       "level": null,
       "examples": [
         {
-          "fr": "Avant que l'affaire ne tourne mal, elle a récupéré son investissement et a tiré son épingle du jeu.",
-          "tr": "İş kötüye gitmeden yatırımını geri alıp zor durumdan ustalıkla sıyrıldı."
+          "fr": "Face aux difficultés, elle a tiré son épingle du jeu en renégociant son contrat.",
+          "tr": "Güçlükler karşısında sözleşmesini yeniden görüşerek durumdan ustalıkla sıyrıldı."
         },
         {
-          "fr": "En renégociant son contrat à temps, l'artisan a tiré son épingle du jeu et a évité de lourdes pertes.",
-          "tr": "Zanaatkâr sözleşmesini zamanında yeniden müzakere ederek zor durumdan sıyrıldı ve büyük kayıplardan kurtuldu."
+          "fr": "Grâce à un accord habile, l'artisan a tiré son épingle du jeu sans pertes.",
+          "tr": "Usta, akıllıca bir anlaşmayla durumdan zarar görmeden sıyrıldı."
         }
       ],
       "sources": [
@@ -806,11 +362,18 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/argent/article/2026/03/23/placements-comment-tirer-son-epingle-du-jeu-sur-les-etf-monde_6673856_1657007.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Titre sur les placements ETF, sens figuré de tirer son épingle du jeu"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "En renégociant son contrat à temps, l'artisan a tiré son épingle du jeu et a évité de lourdes pertes.",
+        "context": "Grâce à un accord habile, l'artisan a tiré son épingle du jeu sans pertes.",
         "promptTr": "Bu bağlamda « tirer son épingle du jeu » ne anlama geliyor?",
         "optionsTr": [
           "Bir işi incelemeden tehlikeye atılmak",
@@ -822,8 +385,9 @@
         "explanationTr": "Bu kart zor bir işten zarar görmeden sıyrılma anlamını öğretir. Deyim başka bağlamlarda başarılı olmayı da vurgulayabilir; sınav sorusu bu iki nüansı karşı karşıya koymaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
@@ -834,12 +398,12 @@
       "level": null,
       "examples": [
         {
-          "fr": "En refusant de soutenir un camp, le président du club essaie de ménager la chèvre et le chou.",
-          "tr": "Kulüp başkanı bir tarafı desteklemekten kaçınarak iki tarafı da gücendirmemeye çalışıyor."
+          "fr": "Pour plaire aux deux camps, la présidente essaie de ménager la chèvre et le chou.",
+          "tr": "Başkan, iki tarafa da yaranmak için kimseyi gücendirmemeye çalışıyor."
         },
         {
-          "fr": "La responsable promet une baisse des prix aux clients et des revenus stables aux fournisseurs : elle veut ménager la chèvre et le chou.",
-          "tr": "Sorumlu kişi müşterilere fiyat indirimi, tedarikçilere sabit gelir sözü veriyor; iki tarafı da gücendirmek istemiyor."
+          "fr": "Entre clients et fournisseurs, elle veut ménager la chèvre et le chou.",
+          "tr": "Müşterilerle tedarikçiler arasında iki tarafı da gücendirmemek istiyor."
         }
       ],
       "sources": [
@@ -849,11 +413,18 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/economie/article/2023/04/10/le-village-d-etretat-ronge-par-le-surtourisme-suffoque-il-y-a-tellement-de-monde-que-les-gens-font-n-importe-quoi_6168900_3234.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "La responsable promet une baisse des prix aux clients et des revenus stables aux fournisseurs : elle veut ménager la chèvre et le chou.",
+        "context": "Entre clients et fournisseurs, elle veut ménager la chèvre et le chou.",
         "promptTr": "Bu bağlamda « ménager la chèvre et le chou » ne anlama geliyor?",
         "optionsTr": [
           "Taraflardan birini açıkça desteklemek",
@@ -865,8 +436,9 @@
         "explanationTr": "Konuşma dili; çelişen çıkarları olan iki tarafı kollamak. Kesin bir uzlaşma sağlandığı anlamına gelmez; bazen eleştirel bir ton taşır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
@@ -881,8 +453,8 @@
           "tr": "Harcamanın nedenini açıklamak yerine ilgisiz ayrıntılarla konuyu bulandırıyor."
         },
         {
-          "fr": "Interrogée sur la facture manquante, elle a noyé le poisson en parlant longuement de l'organisation du bureau.",
-          "tr": "Eksik fatura sorulduğunda ofisin düzeninden uzun uzun söz ederek konuyu bulandırdı."
+          "fr": "Questionnée sur la dépense, elle a noyé le poisson avec des détails inutiles.",
+          "tr": "Harcama sorulunca gereksiz ayrıntılarla konuyu bulandırdı."
         }
       ],
       "sources": [
@@ -892,11 +464,18 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/societe/article/2025/03/07/au-proces-sarkozy-kadhafi-alexandre-djouhri-et-la-villa-de-mougins_6576859_3224.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Interrogée sur la facture manquante, elle a noyé le poisson en parlant longuement de l'organisation du bureau.",
+        "context": "Questionnée sur la dépense, elle a noyé le poisson avec des détails inutiles.",
         "promptTr": "Bu bağlamda « noyer le poisson » ne anlama geliyor?",
         "optionsTr": [
           "Asıl meseleden kaçınmak için konuyu bulandırmak",
@@ -908,51 +487,9 @@
         "explanationTr": "Mecaz anlamı konuşma dilinde kullanılır; yanıltmak veya karşıdakini yıldırmak için bilerek karışıklık yaratmak. Doğrudan ve dürüstçe ayrıntı vermekten ayrılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000022",
-      "expression": "tourner autour du pot",
-      "meaningTr": "Asıl söyleyeceğini dolandırarak anlatmak",
-      "usageNoteTr": "Doğrudan konuya girmek yerine lafı dolandırmak. Noyer le poisson ile anlam yakınlığı vardır; alıştırmada birbirlerinin çeldiricisi yapılmaz.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Arrête de tourner autour du pot et dis-moi ce que tu veux me demander.",
-          "tr": "Lafı dolandırmayı bırak da bana ne sormak istediğini söyle."
-        },
-        {
-          "fr": "Il a parlé de la météo et de ses voisins avant de demander un prêt ; il tournait autour du pot.",
-          "tr": "Borç istemeden önce havadan ve komşularından söz etti; lafı dolandırıyordu."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://www.larousse.fr/dictionnaires/francais/pot/62966",
-          "locator": "Expressions : Tourner autour du pot",
-          "checkedOn": "2026-11-10",
-          "verification": "dictionary_entry_opened",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Il a parlé de la météo et de ses voisins avant de demander un prêt ; il tournait autour du pot.",
-        "promptTr": "Bu bağlamda « tourner autour du pot » ne anlama geliyor?",
-        "optionsTr": [
-          "Birinin söylediklerini kelimesi kelimesine aktarmak",
-          "Asıl söyleyeceğini dolandırarak anlatmak",
-          "Söyleyeceğini doğrudan ifade etmek",
-          "Konuşmayı hiç başlamadan bitirmek"
-        ],
-        "answerIndex": 1,
-        "explanationTr": "Doğrudan konuya girmek yerine lafı dolandırmak. Noyer le poisson ile anlam yakınlığı vardır; alıştırmada birbirlerinin çeldiricisi yapılmaz."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
@@ -967,8 +504,8 @@
           "tr": "Bu konuşmayı ertelemek yerine meselenin üzerine kararlılıkla gidelim."
         },
         {
-          "fr": "Face aux plaintes répétées, la directrice a pris le taureau par les cornes et a réuni toute l'équipe pour chercher une solution.",
-          "tr": "Tekrarlanan şikâyetler karşısında müdür sorunun üzerine kararlılıkla gidip çözüm bulmak için bütün ekibi topladı."
+          "fr": "Face aux plaintes, la directrice a pris le taureau par les cornes en réunissant l'équipe.",
+          "tr": "Müdür, şikâyetler üzerine ekibi toplayarak sorunun üstüne kararlılıkla gitti."
         }
       ],
       "sources": [
@@ -978,11 +515,18 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/campus/article/2024/01/15/parcoursup-et-le-controle-continu-a-la-recherche-de-l-equite-entre-candidats_6210952_4401467.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Intertitre et passage sur le contrôle continu, prendre le taureau par les cornes"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Face aux plaintes répétées, la directrice a pris le taureau par les cornes et a réuni toute l'équipe pour chercher une solution.",
+        "context": "Face aux plaintes, la directrice a pris le taureau par les cornes en réunissant l'équipe.",
         "promptTr": "Bu bağlamda « prendre le taureau par les cornes » ne anlama geliyor?",
         "optionsTr": [
           "Sorumluluğu başka birine yüklemek",
@@ -994,13 +538,14 @@
         "explanationTr": "Bir sorunu kaçınmadan ele almak. Fiziksel cesaret veya düşüncesiz risk alma zorunluluğu yoktur; örnekler gündelik sorun çözmeyle sınırlandırılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     },
     {
       "id": "fr-idiom-000024",
-      "expression": "mettre la puce à l'oreille de quelqu'un",
+      "expression": "mettre la puce à l'oreille",
       "meaningTr": "Birinin içine şüphe düşürmek, onu kuşkulandırmak",
       "usageNoteTr": "Bir ayrıntının birini şüphelendirmesi veya uyarması. Şüphe kesin kanıt değildir. Örneklerde à l'oreille de quelqu'un yerine dolaylı nesne zamiri kullanılır.",
       "level": null,
@@ -1010,8 +555,8 @@
           "tr": "Alışılmadık sessizliği içime şüphe düşürdü."
         },
         {
-          "fr": "Le prix anormalement bas de l'appartement nous a mis la puce à l'oreille ; nous avons demandé à vérifier les documents.",
-          "tr": "Dairenin olağandışı düşük fiyatı bizi kuşkulandırdı; belgeleri kontrol etmek istedik."
+          "fr": "Ce prix anormalement bas nous a mis la puce à l'oreille.",
+          "tr": "Bu olağanüstü düşük fiyat bizi kuşkulandırdı."
         }
       ],
       "sources": [
@@ -1021,12 +566,19 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/culture/article/2026/10/13/les-series-de-la-semaine-la-diplomate-below-visioquest-et-crystal-lake_6793044_3246.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Le prix anormalement bas de l'appartement nous a mis la puce à l'oreille ; nous avons demandé à vérifier les documents.",
-        "promptTr": "Bu bağlamda « mettre la puce à l'oreille de quelqu'un » ne anlama geliyor?",
+        "context": "Ce prix anormalement bas nous a mis la puce à l'oreille.",
+        "promptTr": "Bu bağlamda « mettre la puce à l'oreille » ne anlama geliyor?",
         "optionsTr": [
           "Birinin bütün şüphelerini gidermek",
           "Bir iddiayı kesin olarak kanıtlamak",
@@ -1037,13 +589,15 @@
         "explanationTr": "Bir ayrıntının birini şüphelendirmesi veya uyarması. Şüphe kesin kanıt değildir. Örneklerde à l'oreille de quelqu'un yerine dolaylı nesne zamiri kullanılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
+      },
+      "pattern": "mettre la puce à l'oreille de quelqu'un"
     },
     {
       "id": "fr-idiom-000025",
-      "expression": "couper l'herbe sous le pied de quelqu'un",
+      "expression": "couper l'herbe sous le pied",
       "meaningTr": "Birinden önce davranıp onun fırsatını elinden almak",
       "usageNoteTr": "Bir rakibi veya başka bir kişiyi önce davranarak geride bırakmak. Her engel çıkarma bu deyimin karşılığı değildir; önüne geçme unsuru örneklerde açık tutulur.",
       "level": null,
@@ -1053,8 +607,8 @@
           "tr": "Rakibimiz teklifini bizden önce vererek fırsatımızı elimizden aldı."
         },
         {
-          "fr": "Je comptais proposer cette idée en réunion, mais Éva l'a présentée avant moi et m'a coupé l'herbe sous le pied.",
-          "tr": "Toplantıda bu fikri önermeyi düşünüyordum ama Éva benden önce sunup fırsatımı elimden aldı."
+          "fr": "Éva a présenté mon idée avant moi : elle m'a coupé l'herbe sous le pied.",
+          "tr": "Éva fikrimi benden önce sunarak fırsatımı elimden aldı."
         }
       ],
       "sources": [
@@ -1064,12 +618,19 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/economie/article/2023/03/17/dans-le-sillage-de-chatgpt-la-course-a-l-intelligence-artificielle_6165875_3234.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Je comptais proposer cette idée en réunion, mais Éva l'a présentée avant moi et m'a coupé l'herbe sous le pied.",
-        "promptTr": "Bu bağlamda « couper l'herbe sous le pied de quelqu'un » ne anlama geliyor?",
+        "context": "Éva a présenté mon idée avant moi : elle m'a coupé l'herbe sous le pied.",
+        "promptTr": "Bu bağlamda « couper l'herbe sous le pied » ne anlama geliyor?",
         "optionsTr": [
           "Birinden önce davranıp onun fırsatını elinden almak",
           "Birinin işini bitirmesine yardım etmek",
@@ -1080,9 +641,11 @@
         "explanationTr": "Bir rakibi veya başka bir kişiyi önce davranarak geride bırakmak. Her engel çıkarma bu deyimin karşılığı değildir; önüne geçme unsuru örneklerde açık tutulur."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
+      },
+      "pattern": "couper l'herbe sous le pied de quelqu'un"
     },
     {
       "id": "fr-idiom-000026",
@@ -1092,12 +655,12 @@
       "level": null,
       "examples": [
         {
-          "fr": "Il s'est trompé, mais il débutait et n'avait reçu aucune formation ; il faut faire la part des choses.",
-          "tr": "Hata yaptı ama işe yeni başlamıştı ve hiç eğitim almamıştı; değerlendirirken bunları da gözetmek gerekir."
+          "fr": "Il débutait sans formation : il faut faire la part des choses avant de le juger.",
+          "tr": "Eğitim almadan işe yeni başlamıştı; onu yargılamadan önce koşulları gözetmek gerekir."
         },
         {
-          "fr": "Le spectacle avait des défauts, mais les acteurs n'avaient répété que deux jours ; la critique a su faire la part des choses.",
-          "tr": "Gösterinin kusurları vardı ama oyuncular yalnızca iki gün prova yapmıştı; eleştirmen değerlendirmesinde bu koşulu da gözetti."
+          "fr": "La critique a su faire la part des choses : les acteurs avaient peu répété.",
+          "tr": "Eleştirmen, oyuncuların az prova yapmış olduğunu gözeterek değerlendirmesini ölçülü tuttu."
         }
       ],
       "sources": [
@@ -1107,11 +670,18 @@
           "checkedOn": "2026-11-10",
           "verification": "dictionary_entry_opened",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/culture/article/2019/12/18/comment-eduquer-une-adolescente-quand-on-est-une-mere-feministe-un-dialogue-a-podcaster_6023379_3246.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Le spectacle avait des défauts, mais les acteurs n'avaient répété que deux jours ; la critique a su faire la part des choses.",
+        "context": "La critique a su faire la part des choses : les acteurs avaient peu répété.",
         "promptTr": "Bu bağlamda « faire la part des choses » ne anlama geliyor?",
         "optionsTr": [
           "Bir davranışı hiç sorgulamadan haklı bulmak",
@@ -1123,9 +693,11 @@
         "explanationTr": "Değerlendirirken bütün koşulları hesaba katmak; herkese eşit miktarda pay vermek veya kötü bir davranışı koşulsuz haklı bulmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0001.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

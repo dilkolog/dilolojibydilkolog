@@ -3,7 +3,7 @@
   "batch": "fr-idioms-0005",
   "language": "fr",
   "themeTr": "Karar, risk ve tedbir",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
@@ -49,8 +49,9 @@
         "explanationTr": "Buradaki anlamı: Artıları ve eksileri tartmak. Karardan önce olumlu ve olumsuz yönleri karşılaştırmak."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -92,8 +93,9 @@
         "explanationTr": "Buradaki anlamı: Gereksiz ölçüde ince ayrıntılara takılmak. Aşırı titizlik eleştirilir; yararlı karşılaştırmanın her türü değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -135,8 +137,9 @@
         "explanationTr": "Buradaki anlamı: Olaydan biraz uzaklaşıp daha nesnel bakmak. Duygusal veya zihinsel mesafe; fiziksel geri adım zorunlu değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -178,8 +181,9 @@
         "explanationTr": "Buradaki anlamı: Ayrıntıların üstüne çıkıp geniş açıdan değerlendirmek. Genel görünümü ve farklı bakışı öne çıkarır; üstünlük taslamak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -221,8 +225,9 @@
         "explanationTr": "Buradaki anlamı: Meseleleri açıkça ortaya koyup ayrıntıları incelemek. Sorunu görünür ve tartışılabilir hâle getirmek; fiziksel düzleştirme değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -264,8 +269,9 @@
         "explanationTr": "Buradaki anlamı: Niyet ve bilgilerini saklamadan ortaya koymak. Kart oyunu dışındaki dürüst ve açık konuşma bağlamı."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -307,8 +313,9 @@
         "explanationTr": "Buradaki anlamı: Yöntem veya tutumunu bütünüyle değiştirmek. Yeni koşullar karşısında strateji değişimi; gerçek silah kullanımı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -350,8 +357,9 @@
         "explanationTr": "Buradaki anlamı: Giriştiği işten geri adım atmak. Proje veya eylemden vazgeçme anlamı; araç manevrası seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -393,8 +401,9 @@
         "explanationTr": "Buradaki anlamı: Geldiği yolu geri dönmek. Bu kart yerleşik kalıbın gerçek yön bulma anlamını öğretir; fikir değiştirme olarak sınamaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -420,6 +429,13 @@
           "locator": "mettre un bémol : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.dictionnaire-academie.fr/article/A9B0817",
+          "checkedOn": "2026-11-14",
+          "verification": "dictionary_entry_opened",
+          "purpose": "meaning_and_scope",
+          "locator": "Expression figurée mettre un bémol à ses propos"
         }
       ],
       "exercise": {
@@ -436,8 +452,9 @@
         "explanationTr": "Buradaki anlamı: Söylenen iddiayı yumuşatıp bir çekince eklemek. Müzik dışındaki mecaz anlam; bütünüyle geri çekilme değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -479,8 +496,9 @@
         "explanationTr": "Buradaki anlamı: Bir gelişmeyi sınırlamak veya durdurmak. Mecaz anlam; harcamalar veya ilerleyiş denetim altına alınır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -522,8 +540,9 @@
         "explanationTr": "Buradaki anlamı: Sorun çıkarmamak için çok ihtiyatlı davranmak. Kırılgan bir ortamda dikkat; gerçek yumurta üzerinde yürümek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -550,6 +569,20 @@
           "locator": "s'avancer en terrain miné : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://fr.wiktionary.org/wiki/min%C3%A9",
+          "checkedOn": "2026-11-14",
+          "verification": "dictionary_entry_opened",
+          "purpose": "meaning_and_expression",
+          "locator": "Adjectif, sens figuré: dangereux, périlleux"
+        },
+        {
+          "url": "https://www.estrepublicain.fr/actualite/2017/06/17/ce-que-je-vous-dis",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "İlk paragrafta s’avancer en terrain miné mecaz kullanımı"
         }
       ],
       "exercise": {
@@ -566,8 +599,9 @@
         "explanationTr": "Buradaki anlamı: Gizli güçlükler taşıyan hassas bir alana girmek. Mecaz; tartışmalı konuda saklı tehlikeler anlatılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -593,6 +627,13 @@
           "locator": "sauter le pas : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.leprogres.fr/economie/2024/07/06/conge-menstruel-cette-entreprise-jurassienne-a-saute-le-pas",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -609,8 +650,9 @@
         "explanationTr": "Buradaki anlamı: Uzun tereddütten sonra karar verip harekete geçmek. Eşiği aşan karar vurgulanır; fiziksel zıplama gerekmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -625,8 +667,8 @@
           "tr": "İşini bırakıp kendi atölyesini açmak büyük bir değişime adım atmaktır."
         },
         {
-          "fr": "Après dix ans dans la même ville, ils ont fait le grand saut en partant vivre ailleurs.",
-          "tr": "Aynı şehirde on yıldan sonra başka yerde yaşamaya giderek büyük bir değişime adım attılar."
+          "fr": "Après dix ans ici, ils ont fait le grand saut en partant vivre ailleurs.",
+          "tr": "Burada on yıl yaşadıktan sonra başka bir yere taşınmaya cesaret ettiler."
         }
       ],
       "sources": [
@@ -636,11 +678,18 @@
           "locator": "faire le grand saut : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.presences-grenoble.fr/actualites-management-formation-rh-grenoble/melanie-de-vulpian-fait-le-grand-saut.htm",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Après dix ans dans la même ville, ils ont fait le grand saut en partant vivre ailleurs.",
+        "context": "Après dix ans ici, ils ont fait le grand saut en partant vivre ailleurs.",
         "promptTr": "Bu bağlamda « faire le grand saut » ne anlama geliyor?",
         "optionsTr": [
           "Gereksiz ölçüde ince ayrıntılara takılmak",
@@ -652,8 +701,9 @@
         "explanationTr": "Buradaki anlamı: Büyük bir değişime cesaret edip başlamak. Hayat veya işte önemli geçiş; gerçek yükseklikten atlama seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -695,8 +745,9 @@
         "explanationTr": "Buradaki anlamı: Çekinmesini yenip bir işe girişmek. Mecaz; ilk adımı atma cesareti. Yüzme anlamı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -722,6 +773,14 @@
           "locator": "se lancer à corps perdu : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.tf1info.fr/culture/maissiat-une-chanteuse-romantique-qui-sest-jetee-a-corps-perdu-dans-le-grand-amour-1257073.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
         }
       ],
       "exercise": {
@@ -738,8 +797,9 @@
         "explanationTr": "Buradaki anlamı: Kendini bütünüyle ve coşkuyla bir işe atmak. Yoğun bağlanma; mutlaka düşüncesizlik veya başarısızlık anlamına gelmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -754,8 +814,8 @@
           "tr": "Temel bilgiler olmadan gerekli aşamaları atlama riskin var."
         },
         {
-          "fr": "Elle voulait publier avant de relire ; son éditeur lui a conseillé de ne pas brûler les étapes.",
-          "tr": "Yeniden okumadan yayımlamak istiyordu; editörü aşamaları atlamamasını önerdi."
+          "fr": "Son éditeur lui conseille de relire avant de publier, pour éviter de brûler les étapes.",
+          "tr": "Yayıncısı, aşamaları atlamamak için yayımlamadan önce yeniden okumasını öneriyor."
         }
       ],
       "sources": [
@@ -765,11 +825,18 @@
           "locator": "brûler les étapes : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://video.lefigaro.fr/figaro/politique/il-cherche-a-bruler-les-etapes-marine-le-pen-esquive-la-proposition-de-debat-avec-gabriel-attal-20240220",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Elle voulait publier avant de relire ; son éditeur lui a conseillé de ne pas brûler les étapes.",
+        "context": "Son éditeur lui conseille de relire avant de publier, pour éviter de brûler les étapes.",
         "promptTr": "Bu bağlamda « brûler les étapes » ne anlama geliyor?",
         "optionsTr": [
           "Artıları ve eksileri tartmak",
@@ -781,8 +848,9 @@
         "explanationTr": "Buradaki anlamı: Gerekli aşamaları atlayarak sonuca koşmak. Çok hızlı ilerleyip ara basamakları geçme; sadece hızlı çalışmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -824,8 +892,9 @@
         "explanationTr": "Buradaki anlamı: Düşünmeden aceleyle atılmak. Ölçüp biçmeden girişme vurgulanır; bütün cesaret davranışları değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -867,8 +936,9 @@
         "explanationTr": "Buradaki anlamı: Yiyebileceğinden fazlasını istemek. Bu kart yemek bağlamındaki anlamı seçer; genel aşırı hırs anlamı burada sınanmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -910,8 +980,9 @@
         "explanationTr": "Buradaki anlamı: Tehlikeyi küçümseyip riskli davranmak. Mecaz; gerçek ateşle oynamak örneklenmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -953,8 +1024,9 @@
         "explanationTr": "Buradaki anlamı: Bile bile tehlikeyi davet etmek. Düşüncesiz risk alma; dinî bir inancı onaylama veya öğüt değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -996,8 +1068,9 @@
         "explanationTr": "Buradaki anlamı: Bütün imkânlarını tek bir seçeneğe bağlamak. Riskin tek yerde toplanması; yatırım tavsiyesi olarak sunulmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -1039,8 +1112,9 @@
         "explanationTr": "Buradaki anlamı: Gelecekteki ihtiyaçlar için bir şey ayırmak. Yedek imkân saklamak; gerçek meyveyle sınırlı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -1082,8 +1156,9 @@
         "explanationTr": "Buradaki anlamı: Olası tersliklere karşı kendini güvenceye almak. Geri dönüş veya koruma imkânı; askerî anlamla sınırlı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     },
     {
@@ -1125,9 +1200,11 @@
         "explanationTr": "Buradaki anlamı: Adım atmadan önce durumu yoklamak. Tepkileri ve koşulları gözleyip değerlendirmek; kesin karar verilmiş olması gerekmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0005.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

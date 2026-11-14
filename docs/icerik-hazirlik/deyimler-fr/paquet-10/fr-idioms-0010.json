@@ -3,7 +3,7 @@
   "batch": "fr-idioms-0010",
   "language": "fr",
   "themeTr": "Anlama, sezgi ve yanılgı",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
@@ -49,8 +49,9 @@
         "explanationTr": "Buradaki anlamı: Sorunun veya önemli noktanın yerini bulmak. Mecaz; bir şeyi parmakla göstermeyle sınırlı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -92,8 +93,9 @@
         "explanationTr": "Buradaki anlamı: Sezgisiyle doğru tahmin etmek. Öngörü veya iyi sezgi; gerçek burun biçimi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -135,8 +137,9 @@
         "explanationTr": "Buradaki anlamı: Bir şeyi sezebilme yeteneği olmak. İnsan sezgisi seçilir; hayvanların koku alma yetisi sınanmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -178,8 +181,9 @@
         "explanationTr": "Buradaki anlamı: Durumun yön değiştirdiğini sezmek. Koşulların lehe veya aleyhe dönmesi; gerçek hava tahmini değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -221,8 +225,9 @@
         "explanationTr": "Buradaki anlamı: Birinin niyetini önceden anlamak. Bu kart kişinin gizli amacını sezme anlamını seçer; gerçek gelişini görmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -264,8 +269,9 @@
         "explanationTr": "Buradaki anlamı: Açıkça yazılmayan anlamı çıkarmak. Metindeki ima; yalnızca sözcükleri seslendirmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -307,8 +313,9 @@
         "explanationTr": "Buradaki anlamı: Birinin duygu veya düşüncesini kolayca anlamak. Bu kart lire en quelqu'un comme dans un livre ouvert kalıbını seçer; hazırlıksız müzik okuma anlamı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -323,8 +330,8 @@
           "tr": "Bütün eğitimi kaldırarak yalnızca yakın vadeyi düşünüyorlar."
         },
         {
-          "fr": "Il économisait aujourd'hui en créant des coûts futurs ; il ne voyait pas plus loin que le bout de son nez.",
-          "tr": "Gelecekte masraf doğuracak biçimde bugün tasarruf ediyordu; ileriyi göremiyordu."
+          "fr": "Il néglige l'avenir : il ne voit pas plus loin que le bout de son nez.",
+          "tr": "Geleceği önemsemiyor; burnunun ucundan ötesini göremiyor."
         }
       ],
       "sources": [
@@ -334,11 +341,19 @@
           "locator": "ne pas voir plus loin que le bout de son nez : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.tf1.fr/fr-dz/tf1/demain-nous-appartient/videos/demain-nous-appartient-du-vendredi-23-fevrier-2024-episode-1629-34125098.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Il économisait aujourd'hui en créant des coûts futurs ; il ne voyait pas plus loin que le bout de son nez.",
+        "context": "Il néglige l'avenir : il ne voit pas plus loin que le bout de son nez.",
         "promptTr": "Bu bağlamda « ne pas voir plus loin que le bout de son nez » ne anlama geliyor?",
         "optionsTr": [
           "Sorunun veya önemli noktanın yerini bulmak",
@@ -350,8 +365,9 @@
         "explanationTr": "Buradaki anlamı: Yalnız yakın vadeyi görüp ileriyi düşünememek. Dar görüş ve öngörüsüzlük; gerçek görme mesafesi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -393,8 +409,9 @@
         "explanationTr": "Buradaki anlamı: Durumu yalnız kendi çıkarına göre değerlendirmek. Öznel çıkar bakışı; gerçek öğle saati değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -436,8 +453,9 @@
         "explanationTr": "Buradaki anlamı: Bir şeyi gerçeğinden çok farklı sanıp fena yanılmak. Samimi ifade; kaba bir yanılsama veya aldanma vurgusu."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -479,8 +497,9 @@
         "explanationTr": "Buradaki anlamı: Duyduğunu sorgulamadan doğru kabul etmek. Bilgi veya sözün gerçekliğini sınamadan inanma; nakit para anlamı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -522,8 +541,9 @@
         "explanationTr": "Buradaki anlamı: Bir konuda bütünüyle yanılmak. Samimi mecaz; gerçek göz yaralanması değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -565,8 +585,9 @@
         "explanationTr": "Buradaki anlamı: Hoşuna gitmeyen gerçeği kabul etmekten kaçınmak. Kendi kendine gerçeği inkâr; bilinen bir kusura hoşgörü göstermekten ayrılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -608,8 +629,9 @@
         "explanationTr": "Buradaki anlamı: Bilinen bir kusuru bilerek görmezden gelmek. Mecaz; fark edilmiş duruma göz yumma. Gerçeğin bilinmemesi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -651,8 +673,9 @@
         "explanationTr": "Buradaki anlamı: Birinin gerçeği fark etmesini sağlamak. Bir başkasına durumu kavratma; yalnız uykudan uyandırmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -694,8 +717,9 @@
         "explanationTr": "Buradaki anlamı: Beklenmedik haber karşısında çok şaşırmak. Büyük şaşkınlık; gerçek yüksekten düşme değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -737,8 +761,9 @@
         "explanationTr": "Buradaki anlamı: Gördüğü şeye inanamayacak kadar şaşırmak. Görsel şaşkınlık; kalıcı görme sorunu değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -780,8 +805,9 @@
         "explanationTr": "Buradaki anlamı: Duyduğu şeye inanamayacak kadar şaşırmak. İşitilen sözün yarattığı hayret; işitme güçlüğü değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -823,8 +849,9 @@
         "explanationTr": "Buradaki anlamı: Hiçbir şey anlayamaz hâle gelmek. Bu kart karmaşa karşısındaki anlamama hâlini seçer; Latince bilgisi sınanmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -866,8 +893,9 @@
         "explanationTr": "Buradaki anlamı: Her şeyi öğrenmeden bildiğini sanmak. Genellikle ironik veya olumsuz; gerçekten sınırsız bilgi iddiası değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -909,51 +937,9 @@
         "explanationTr": "Buradaki anlamı: Bir konuyu çok iyi bilmek. Ustalıkla bilme; gerçek parmak uçlarına bakmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000256",
-      "expression": "être incollable sur quelque chose",
-      "meaningTr": "Bir konuda her soruyu cevaplayabilecek kadar bilgili olmak",
-      "usageNoteTr": "Konu alanı açıkça belirtilir; her konuda her şeyi bilmek değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Sur les oiseaux de la région, elle est incollable.",
-          "tr": "Bölgenin kuşları konusunda her soruyu cevaplayacak kadar bilgili."
-        },
-        {
-          "fr": "Passionné de trains, il est incollable sur les anciennes locomotives.",
-          "tr": "Trenlere tutkuyla bağlı; eski lokomotifler konusunda her soruyu cevaplayacak kadar bilgili."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://fr.wiktionary.org/wiki/incollable",
-          "verification": "dictionary_entry_opened",
-          "locator": "être incollable sur quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Passionné de trains, il est incollable sur les anciennes locomotives.",
-        "promptTr": "Bu bağlamda « être incollable sur quelque chose » ne anlama geliyor?",
-        "optionsTr": [
-          "Bir şeyi gerçeğinden çok farklı sanıp fena yanılmak",
-          "Hoşuna gitmeyen gerçeği kabul etmekten kaçınmak",
-          "Durumu anlayamayıp zihni karışık olmak",
-          "Bir konuda her soruyu cevaplayabilecek kadar bilgili olmak"
-        ],
-        "answerIndex": 3,
-        "explanationTr": "Buradaki anlamı: Bir konuda her soruyu cevaplayabilecek kadar bilgili olmak. Konu alanı açıkça belirtilir; her konuda her şeyi bilmek değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -995,8 +981,9 @@
         "explanationTr": "Buradaki anlamı: Her itiraza karşı bir cevap bulmak. Bazen eleştirel ton; her cevabın doğru veya bilgili olduğu anlamına gelmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -1011,8 +998,8 @@
           "tr": "Bu cevabınla konunun özünü kaçırıyorsun."
         },
         {
-          "fr": "La question portait sur le prix, mais il parlait de couleur ; il était à côté de la plaque.",
-          "tr": "Soru fiyatla ilgiliydi ama renkten söz ediyordu; konuyu kaçırmıştı."
+          "fr": "On parle des prix; elle répond sur les horaires : elle est à côté de la plaque.",
+          "tr": "Fiyatlardan söz edilirken saatler hakkında cevap veriyor; konuyu tamamen kaçırıyor."
         }
       ],
       "sources": [
@@ -1022,11 +1009,18 @@
           "locator": "être à côté de la plaque : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.unsa-education.com/article-/a-cote-de-la-plaque-2/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "La question portait sur le prix, mais il parlait de couleur ; il était à côté de la plaque.",
+        "context": "On parle des prix; elle répond sur les horaires : elle est à côté de la plaque.",
         "promptTr": "Bu bağlamda « être à côté de la plaque » ne anlama geliyor?",
         "optionsTr": [
           "Sorunun veya önemli noktanın yerini bulmak",
@@ -1038,8 +1032,9 @@
         "explanationTr": "Buradaki anlamı: Konunun özünü kaçırıp ilgisiz bir cevap vermek. Samimi kullanım; fiziksel konum değil, yanlış anlama veya konu dışılık."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -1081,8 +1076,9 @@
         "explanationTr": "Buradaki anlamı: Durumu anlayamayıp zihni karışık olmak. Bu kart zihinsel belirsizliği seçer; gerçek sisli hava değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     },
     {
@@ -1124,9 +1120,11 @@
         "explanationTr": "Buradaki anlamı: Şaşkınlıkla ne yapacağını bilemez hâle gelmek. Mecaz; çoğu kez olumsuz yapıda aklını kaybetmeme anlatılır. Gerçek pusula kaybı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0010.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

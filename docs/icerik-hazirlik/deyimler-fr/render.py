@@ -11,7 +11,7 @@ from validate import normalized, validate
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parents[2]
-DATE = '10 Kasım 2026'
+DATE = '14 Kasım 2026'
 
 
 def write(path, lines):
@@ -39,8 +39,9 @@ def render_batch(file, number):
     data = json.loads(file.read_text())
     rows, folder = data['items'], file.parent
     theme = data.get('themeTr', 'İlk karma paket')
-    cards = [f'# Paket {number:02} — {theme}', '', '26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.', '',
-             'Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.', '',
+    count = len(rows)
+    cards = [f'# Paket {number:02} — {theme}', '', f'{count} deyim · {count * 2} özgün örnek/çeviri · {count} soru.', '',
+             'Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.', '',
              'Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.', '']
     quiz = [f'# Paket {number:02} — cevap anahtarsız sorular', '',
             'Önce bu dosyayı çöz; sonra INCELEME.md veya JSON anahtarıyla karşılaştır. İkinci geçerli seçenek varsa ayrıca bildir.', '']
@@ -56,9 +57,12 @@ def render_batch(file, number):
             cards += [f"{i}. {example['fr']}", f"   Türkçesi: {example['tr']}", '']
         for source in row['sources']:
             label = publisher(source['url'])
-            method = 'Madde açıldı' if source['verification'] == 'dictionary_entry_opened' else 'Arama sonucu tanımı okundu; doğrudan erişim eksik'
+            method = {'dictionary_entry_opened': 'Sözlük maddesi açıldı',
+                      'dictionary_search_excerpt': 'Sözlük arama özeti okundu; tam sayfa erişimi iddia edilmez',
+                      'usage_page_opened': 'Kullanım sayfası açıldı',
+                      'usage_search_excerpt': 'Bağımsız kullanım arama özetinde okundu; tam sayfa erişimi iddia edilmez'}[source['verification']]
             refs += [f"| {rid} | {row['expression']} | [{label}]({source['url']}) | {method} |"]
-            cards += [f"**Kaynak:** [{label}]({source['url']}) — {source['locator']} ({DATE}).", '']
+            cards += [f"**Kaynak:** [{label}]({source['url']}) — {source['locator']} ({source['checkedOn']}).", '']
             if source.get('verificationNoteTr'):
                 partial.append(f"- {rid}: {source['verificationNoteTr']}")
                 cards += [f"**Kaynak sınırı:** {source['verificationNoteTr']}", '']
@@ -66,7 +70,8 @@ def render_batch(file, number):
         quiz += [f'## {rid}', '', e['context'], '', e['promptTr'], '']
         opts = [f'- {chr(65+i)}) {option}' for i, option in enumerate(e['optionsTr'])]
         cards += opts + ['', '<details><summary>Cevap ve açıklama</summary>', '',
-                         f"{chr(65+e['answerIndex'])}) {row['meaningTr']}", '', e['explanationTr'], '', '</details>', '', '**Bağımsız inceleme:** bekliyor.', '']
+                         f"{chr(65+e['answerIndex'])}) {row['meaningTr']}", '', e['explanationTr'], '', '</details>', '',
+                         '**Bağımsız inceleme:** ' + ('Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.' if row['independentReview']['status'] == 'reported_clean' else 'Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.'), '']
         quiz += opts + ['', 'Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …', '']
     if partial:
         refs += ['', '## Erişim sınırı', ''] + partial
@@ -74,12 +79,12 @@ def render_batch(file, number):
     write(folder/'SORULAR.md', quiz)
     write(folder/'KAYNAKLAR.md', refs)
     if number != 1:
-        write(folder/'README.md', [f'# Paket {number:02} — {theme}', '', '26 kayıt · 52 özgün örnek/çeviri · 26 soru.', '',
+        write(folder/'README.md', [f'# Paket {number:02} — {theme}', '', f'{count} kayıt · {count * 2} özgün örnek/çeviri · {count} soru.', '',
               f'- [Asıl veri]({file.name})', '- [Öğretim kartları ve cevaplar](INCELEME.md)',
               '- [Cevap anahtarsız sorular](SORULAR.md)', '- [Kaynaklar](KAYNAKLAR.md)',
               '- [Yapı kontrolü](DOGRULAMA.json)', '- [Ana dizin](../README.md)',
               '- [Claude ve denetleyici devir notları](../CLAUDE-DEVIR.md)', '',
-              'Bağımsız inceleme ve CEFR dağılımı bekliyor. Uygulamaya bağlanmadı. Editoryal JSON, mevcut uygulama veri şemasıyla uyumlu kabul edilmemeli. Kimlikler korunmalı.', '',
+              'Antigravity raporu alındı; düzeltmelerin yeniden denetimi ve CEFR dağılımı bekliyor. Uygulamaya bağlanmadı. Kalan kimlikler korundu; çıkarılanlar ana dizindeki RETIRED.json içinde.', '',
               'Kontrol ve yeniden üretim: ana klasördeki `validate.py` ve `render.py` bütün 10 paketi birlikte işler.'])
     return data
 
@@ -135,7 +140,7 @@ def make_archives(entries):
             for file in members:
                 archive.write(file, f'paket-{number:02}/' + ('DOGRULAMA.json' if file.name.startswith('DOGRULAMA') else file.name))
             archive.write(ROOT/'CLAUDE-DEVIR.md', f'paket-{number:02}/CLAUDE-DEVIR.md')
-            archive.writestr(f'paket-{number:02}/README.md', f'# Fransızca deyimler — paket {number:02}\n\n26 kayıt, 52 örnek/çeviri ve 26 soru.\n\n- [Asıl veri]({source.name})\n- [Kartlar ve cevaplar](INCELEME.md)\n- [Cevapsız sorular](SORULAR.md)\n- [Kaynaklar](KAYNAKLAR.md)\n- [Kontrol](DOGRULAMA.json)\n- [Devir notları](CLAUDE-DEVIR.md)\n\nBağımsız dil denetimi ve CEFR dağılımı bekliyor. Yeniden üretim araçları toplu 10 paket arşivindedir.\n')
+            archive.writestr(f'paket-{number:02}/README.md', f'# Fransızca deyimler — paket {number:02}\n\n{entry["items"]} kayıt, {entry["examples"]} örnek/çeviri ve {entry["exercises"]} soru.\n\n- [Asıl veri]({source.name})\n- [Kartlar ve cevaplar](INCELEME.md)\n- [Cevapsız sorular](SORULAR.md)\n- [Kaynaklar](KAYNAKLAR.md)\n- [Kontrol](DOGRULAMA.json)\n- [Devir notları](CLAUDE-DEVIR.md)\n\nAntigravity raporu alındı; düzeltmelerin tekrar denetimi ve CEFR dağılımı bekliyor. Yeniden üretim araçları toplu 10 paket arşivindedir.\n')
         with zipfile.ZipFile(dest) as archive:
             if archive.testzip() is not None:
                 raise ValueError(f'Invalid archive: {dest}')
@@ -166,16 +171,16 @@ def main():
     data = [render_batch(file, i) for i, file in enumerate(files, 1)]
     entries = []
     for i, (file, batch) in enumerate(zip(files, data), 1):
-        check = dict(validation['batches'][i-1], structuralCheck='passed', independentLanguageReview='pending', cefrAllocation='pending')
+        check = dict(validation['batches'][i-1], structuralCheck='passed', independentLanguageReview='revisions_pending_recheck', cefrAllocation='pending')
         (file.parent/('DOGRULAMA-PAKET-01.json' if i == 1 else 'DOGRULAMA.json')).write_text(json.dumps(check, ensure_ascii=False, indent=2)+'\n')
         entries.append({'number': i, 'batch': batch['batch'], 'themeTr': batch.get('themeTr', 'İlk karma paket'),
-                        'path': file.relative_to(ROOT).as_posix(), 'items': 26, 'examples': 52, 'exercises': 26,
+                        'path': file.relative_to(ROOT).as_posix(), 'items': len(batch['items']), 'examples': len(batch['items']) * 2, 'exercises': len(batch['items']),
                         'idStart': batch['items'][0]['id'], 'idEnd': batch['items'][-1]['id']})
     scan = scan_existing(data)
     validation['existingContentScan'] = scan
     (ROOT/'DOGRULAMA.json').write_text(json.dumps(validation, ensure_ascii=False, indent=2)+'\n')
     (ROOT/'PAKET-DIZINI.json').write_text(json.dumps({'schemaVersion': 1, 'language': 'fr', 'packages': entries,
-        'totals': validation['totals'], 'status': 'ready_for_independent_review', 'cefrAllocation': 'pending'}, ensure_ascii=False, indent=2)+'\n')
+        'totals': validation['totals'], 'status': 'revised_for_recheck', 'cefrAllocation': 'pending', 'retired': validation['retired']}, ensure_ascii=False, indent=2)+'\n')
     # The root README and handoff are editorial documents and stay hand-edited.
     make_archives(entries)
     print(json.dumps({'totals': validation['totals'], 'sources': validation['sourceMethods'], 'scan': scan, 'archives': 11}, ensure_ascii=False))

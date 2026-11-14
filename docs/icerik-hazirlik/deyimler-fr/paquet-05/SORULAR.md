@@ -186,7 +186,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000119
 
-Après dix ans dans la même ville, ils ont fait le grand saut en partant vivre ailleurs.
+Après dix ans ici, ils ont fait le grand saut en partant vivre ailleurs.
 
 Bu bağlamda « faire le grand saut » ne anlama geliyor?
 
@@ -225,7 +225,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000122
 
-Elle voulait publier avant de relire ; son éditeur lui a conseillé de ne pas brûler les étapes.
+Son éditeur lui conseille de relire avant de publier, pour éviter de brûler les étapes.
 
 Bu bağlamda « brûler les étapes » ne anlama geliyor?
 

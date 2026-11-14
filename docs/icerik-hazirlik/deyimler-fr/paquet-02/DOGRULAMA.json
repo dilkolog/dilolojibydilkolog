@@ -1,15 +1,15 @@
 {
   "batch": "fr-idioms-0002",
-  "items": 26,
-  "examples": 52,
-  "exercises": 26,
+  "items": 24,
+  "examples": 48,
+  "exercises": 24,
   "answerPositions": {
-    "0": 6,
-    "1": 7,
+    "0": 5,
+    "1": 6,
     "2": 7,
     "3": 6
   },
   "structuralCheck": "passed",
-  "independentLanguageReview": "pending",
+  "independentLanguageReview": "revisions_pending_recheck",
   "cefrAllocation": "pending"
 }

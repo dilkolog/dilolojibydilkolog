@@ -1,8 +1,8 @@
 # Paket 06 — İlişkiler ve dayanışma
 
-26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.
+26 deyim · 52 özgün örnek/çeviri · 26 soru.
 
-Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.
+Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.
 
 Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.
 
@@ -18,7 +18,7 @@ Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm iç
 2. Il a le cœur sur la main et partage même son dernier repas.
    Türkçesi: Çok cömert; son yemeğini bile paylaşır.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_c%C5%93ur_sur_la_main) — avoir le cœur sur la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_c%C5%93ur_sur_la_main) — avoir le cœur sur la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -39,7 +39,7 @@ Buradaki anlamı: Cömert ve yardımsever olmak. Bu kart cömertlik anlamını s
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000132 — être comme les deux doigts de la main
 
@@ -53,7 +53,7 @@ Buradaki anlamı: Cömert ve yardımsever olmak. Bu kart cömertlik anlamını s
 2. Depuis l'enfance, ils sont comme les deux doigts de la main.
    Türkçesi: Çocukluktan beri birbirinden ayrılmayacak kadar yakınlar.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/comme_les_deux_doigts_de_la_main) — être comme les deux doigts de la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/comme_les_deux_doigts_de_la_main) — être comme les deux doigts de la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -74,7 +74,7 @@ Buradaki anlamı: Birbirinden ayrılmayacak kadar yakın olmak. İki kişi aras�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000133 — s'entendre comme larrons en foire
 
@@ -88,7 +88,7 @@ Buradaki anlamı: Birbirinden ayrılmayacak kadar yakın olmak. İki kişi aras�
 2. Pour cacher le cadeau et piéger gentiment leur ami, ils s'entendaient comme larrons en foire.
    Türkçesi: Hediyeyi saklayıp arkadaşlarına tatlı bir oyun oynarken tam bir işbirliği içindeydiler.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/s%E2%80%99entendre_comme_larrons_en_foire) — s'entendre comme larrons en foire : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/s%E2%80%99entendre_comme_larrons_en_foire) — s'entendre comme larrons en foire : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -109,7 +109,7 @@ Buradaki anlamı: Birlikte yaramazlık yapacak kadar iyi anlaşmak. Samimi ifade
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000134 — être sur la même longueur d'onde
 
@@ -123,7 +123,7 @@ Buradaki anlamı: Birlikte yaramazlık yapacak kadar iyi anlaşmak. Samimi ifade
 2. Ils se comprennent vite : ils sont sur la même longueur d'onde.
    Türkçesi: Birbirlerini çabuk anlıyorlar; aynı düşünce çizgisindeler.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_sur_la_m%C3%AAme_longueur_d'onde) — être sur la même longueur d'onde : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_sur_la_m%C3%AAme_longueur_d'onde) — être sur la même longueur d'onde : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -144,7 +144,7 @@ Buradaki anlamı: Aynı düşünce çizgisinde olup iyi anlaşmak. Mecaz; radyo 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000135 — se serrer les coudes
 
@@ -158,7 +158,7 @@ Buradaki anlamı: Aynı düşünce çizgisinde olup iyi anlaşmak. Mecaz; radyo 
 2. Les voisins se sont serré les coudes après la fermeture du magasin.
    Türkçesi: Mağazanın kapanmasından sonra komşular birbirine destek oldu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_serrer_les_coudes) — se serrer les coudes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_serrer_les_coudes) — se serrer les coudes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -179,7 +179,7 @@ Buradaki anlamı: Birbirine destek olup dayanışmak. Karşılıklı yardım; ya
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000136 — donner un coup de pouce à quelqu'un
 
@@ -193,7 +193,7 @@ Buradaki anlamı: Birbirine destek olup dayanışmak. Karşılıklı yardım; ya
 2. Sa professeure lui a donné un coup de pouce en relisant son dossier.
    Türkçesi: Öğretmeni dosyasını yeniden okuyarak ona küçük ama yararlı bir destek verdi.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/college/coup/9822) — donner un coup de pouce à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/college/coup/9822) — donner un coup de pouce à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -214,7 +214,7 @@ Buradaki anlamı: Birine küçük ama yararlı bir destek vermek. İlerlemeyi ko
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000137 — tendre la perche à quelqu'un
 
@@ -228,7 +228,7 @@ Buradaki anlamı: Birine küçük ama yararlı bir destek vermek. İlerlemeyi ko
 2. Elle lui a tendu la perche en demandant comment avançait son roman.
    Türkçesi: Romanının nasıl gittiğini sorarak ona konuyu açma fırsatı verdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tendre_la_perche) — tendre la perche à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tendre_la_perche) — tendre la perche à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -249,7 +249,7 @@ Buradaki anlamı: Birine bir konuyu açma fırsatı vermek. Konuşmada elverişl
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000138 — tirer quelqu'un d'affaire
 
@@ -263,7 +263,7 @@ Buradaki anlamı: Birine bir konuyu açma fırsatı vermek. Konuşmada elverişl
 2. Quand ma voiture est tombée en panne, une voisine m'a tiré d'affaire.
    Türkçesi: Arabam bozulunca bir komşum beni zor durumdan kurtardı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tirer_d%E2%80%99affaire) — tirer quelqu'un d'affaire : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tirer_d%E2%80%99affaire) — tirer quelqu'un d'affaire : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -284,7 +284,7 @@ Buradaki anlamı: Birini zor durumdan kurtarmak. Sorununu çözmesine yardım et
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000139 — porter quelqu'un aux nues
 
@@ -298,7 +298,7 @@ Buradaki anlamı: Birini zor durumdan kurtarmak. Sorununu çözmesine yardım et
 2. Après un seul concert, certains journalistes le portaient déjà aux nues.
    Türkçesi: Tek bir konserden sonra bazı gazeteciler onu göklere çıkarıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/porter_aux_nues) — porter quelqu'un aux nues : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/porter_aux_nues) — porter quelqu'un aux nues : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -319,7 +319,7 @@ Buradaki anlamı: Birini göklere çıkararak övmek. Övgünün çok güçlü, 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000140 — passer de la pommade à quelqu'un
 
@@ -333,7 +333,7 @@ Buradaki anlamı: Birini göklere çıkararak övmek. Övgünün çok güçlü, 
 2. Avant de demander un congé, elle lui a passé de la pommade.
    Türkçesi: İzin istemeden önce ona yağ çekti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/passer_de_la_pommade) — passer de la pommade à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/passer_de_la_pommade) — passer de la pommade à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -354,7 +354,7 @@ Buradaki anlamı: Çıkar için birine yağ çekmek. Küçümseyici mecaz; gerç
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000141 — brosser quelqu'un dans le sens du poil
 
@@ -368,7 +368,7 @@ Buradaki anlamı: Çıkar için birine yağ çekmek. Küçümseyici mecaz; gerç
 2. Pour gagner sa confiance, il l'a brossée dans le sens du poil.
    Türkçesi: Güvenini kazanmak için onun hoşuna gidecek biçimde davrandı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/brosser_dans_le_sens_du_poil) — brosser quelqu'un dans le sens du poil : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/brosser_dans_le_sens_du_poil) — brosser quelqu'un dans le sens du poil : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -389,7 +389,7 @@ Buradaki anlamı: Birinin hoşuna gidecek şekilde davranıp güvenini kazanmak.
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000142 — mettre quelqu'un sur un piédestal
 
@@ -403,7 +403,7 @@ Buradaki anlamı: Birinin hoşuna gidecek şekilde davranıp güvenini kazanmak.
 2. Elle mettait son auteur préféré sur un piédestal et refusait toute critique.
    Türkçesi: Sevdiği yazarı kusursuz görüp yüceltiyor, bütün eleştirileri reddediyordu.
 
-**Kaynak:** [CNRTL / TLFi](https://www.cnrtl.fr/definition/pi%C3%A9destal) — mettre quelqu'un sur un piédestal : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [CNRTL / TLFi](https://www.cnrtl.fr/definition/pi%C3%A9destal) — mettre quelqu'un sur un piédestal : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -424,7 +424,7 @@ Buradaki anlamı: Birini kusursuz görüp aşırı yüceltmek. İdealize etme vu
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000143 — tenir quelqu'un à bout de bras
 
@@ -438,7 +438,7 @@ Buradaki anlamı: Birini kusursuz görüp aşırı yüceltmek. İdealize etme vu
 2. Sans revenu stable, il était tenu à bout de bras par sa famille.
    Türkçesi: Düzenli geliri yoktu; ailesi onu büyük çabayla ayakta tutuyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_bout_de_bras) — tenir quelqu'un à bout de bras : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_bout_de_bras) — tenir quelqu'un à bout de bras : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -459,7 +459,7 @@ Buradaki anlamı: Birini büyük çabayla ayakta tutmak. Mecaz; uzun veya yoğun
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000144 — faire faux bond à quelqu'un
 
@@ -473,7 +473,7 @@ Buradaki anlamı: Birini büyük çabayla ayakta tutmak. Mecaz; uzun veya yoğun
 2. Le bénévole chargé des clés nous a fait faux bond le matin de l'événement.
    Türkçesi: Anahtarlardan sorumlu gönüllü etkinlik sabahı bizi yarı yolda bıraktı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_faux_bond) — faire faux bond à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_faux_bond) — faire faux bond à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -494,7 +494,7 @@ Buradaki anlamı: Söz verdiği desteği vermeyip birini yarı yolda bırakmak. 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000145 — tourner le dos à quelqu'un
 
@@ -508,7 +508,7 @@ Buradaki anlamı: Söz verdiği desteği vermeyip birini yarı yolda bırakmak. 
 2. Après le scandale, plusieurs soutiens lui ont tourné le dos.
    Türkçesi: Skandaldan sonra birçok destekçisi ona yüz çevirdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tourner_le_dos) — tourner le dos à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tourner_le_dos) — tourner le dos à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -529,7 +529,7 @@ Buradaki anlamı: Birinden yüz çevirip uzaklaşmak. Mecaz ilişkisel uzaklaşm
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000146 — laisser tomber quelqu'un
 
@@ -543,7 +543,7 @@ Buradaki anlamı: Birinden yüz çevirip uzaklaşmak. Mecaz ilişkisel uzaklaşm
 2. Au premier problème, ses partenaires l'ont laissé tomber.
    Türkçesi: İlk sorunda ortakları onu desteksiz bıraktı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/laisser_tomber) — laisser tomber quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/laisser_tomber) — laisser tomber quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -564,7 +564,7 @@ Buradaki anlamı: Birini desteksiz bırakıp terk etmek. Bu kart kişi nesnesiyl
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000147 — faire la tête
 
@@ -578,7 +578,7 @@ Buradaki anlamı: Birini desteksiz bırakıp terk etmek. Bu kart kişi nesnesiyl
 2. Après cette remarque, il a fait la tête toute la soirée.
    Türkçesi: Bu sözden sonra bütün akşam küsüp somurttu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_la_t%C3%AAte) — faire la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_la_t%C3%AAte) — faire la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -599,7 +599,7 @@ Buradaki anlamı: Küsüp somurtmak. Samimi ifade; başla ilgili gerçek hareket
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000148 — être à couteaux tirés
 
@@ -613,7 +613,7 @@ Buradaki anlamı: Küsüp somurtmak. Samimi ifade; başla ilgili gerçek hareket
 2. Depuis le partage de l'héritage, ils sont à couteaux tirés.
    Türkçesi: Miras paylaşıldığından beri birbirlerine çok düşmanlar.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_couteaux_tir%C3%A9s) — être à couteaux tirés : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_couteaux_tir%C3%A9s) — être à couteaux tirés : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -634,7 +634,7 @@ Buradaki anlamı: Birbirine çok düşman olmak. Güçlü gerginlik ve karşıtl
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000149 — se regarder en chiens de faïence
 
@@ -648,7 +648,7 @@ Buradaki anlamı: Birbirine çok düşman olmak. Güçlü gerginlik ve karşıtl
 2. Après la dispute, les voisins se regardaient en chiens de faïence.
    Türkçesi: Tartışmadan sonra komşular birbirlerine soğuk ve kuşkulu bakıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_regarder_en_chiens_de_fa%C3%AFence) — se regarder en chiens de faïence : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_regarder_en_chiens_de_fa%C3%AFence) — se regarder en chiens de faïence : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -669,7 +669,7 @@ Buradaki anlamı: Birbirine soğuk ve kuşkulu bakmak. Yan yana olup konuşmadan
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000150 — jeter de l'huile sur le feu
 
@@ -683,7 +683,7 @@ Buradaki anlamı: Birbirine soğuk ve kuşkulu bakmak. Yan yana olup konuşmadan
 2. En accusant tout le monde, il a jeté de l'huile sur le feu.
    Türkçesi: Herkesi suçlayarak gerginliği daha da artırdı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/jeter_de_l'huile_sur_le_feu) — jeter de l'huile sur le feu : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/jeter_de_l'huile_sur_le_feu) — jeter de l'huile sur le feu : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -704,7 +704,7 @@ Buradaki anlamı: Gerginliği daha da artırmak. Çatışmayı körükleyen söz
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000151 — mettre de l'huile dans les rouages
 
@@ -718,7 +718,7 @@ Buradaki anlamı: Gerginliği daha da artırmak. Çatışmayı körükleyen söz
 2. La médiatrice a mis de l'huile dans les rouages entre les deux services.
    Türkçesi: Arabulucu iki birim arasındaki işleyişin pürüzlerini azalttı.
 
-**Kaynak:** [Usito](https://usito.usherbrooke.ca/expressions/rouage) — mettre de l'huile dans les rouages : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Usito](https://usito.usherbrooke.ca/expressions/rouage) — mettre de l'huile dans les rouages : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -739,7 +739,7 @@ Buradaki anlamı: İlişkilerin veya işleyişin pürüzlerini azaltmak. Kolayla
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000152 — mettre des bâtons dans les roues de quelqu'un
 
@@ -753,7 +753,7 @@ Buradaki anlamı: İlişkilerin veya işleyişin pürüzlerini azaltmak. Kolayla
 2. En retenant les documents, il nous a mis des bâtons dans les roues.
    Türkçesi: Belgeleri vermeyerek işimize engeller çıkardı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_des_b%C3%A2tons_dans_les_roues) — mettre des bâtons dans les roues de quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_des_b%C3%A2tons_dans_les_roues) — mettre des bâtons dans les roues de quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -774,7 +774,7 @@ Buradaki anlamı: Birinin işine engeller çıkarmak. İlerleyişi aksatan davra
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000153 — tirer dans les pattes de quelqu'un
 
@@ -788,7 +788,7 @@ Buradaki anlamı: Birinin işine engeller çıkarmak. İlerleyişi aksatan davra
 2. Au lieu de coopérer, ils se tiraient dans les pattes pour obtenir le poste.
    Türkçesi: İşbirliği yapmak yerine görevi kapmak için birbirlerini zayıflatmaya çalışıyorlardı.
 
-**Kaynak:** [CNRTL / TLFi](https://www.cnrtl.fr/definition/TIRAIT) — tirer dans les pattes de quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [CNRTL / TLFi](https://www.cnrtl.fr/definition/TIRAIT) — tirer dans les pattes de quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -809,7 +809,7 @@ Buradaki anlamı: Birini zayıflatmak için gizlice uğraşmak. Samimi mecaz; k�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000154 — laver son linge sale en famille
 
@@ -823,7 +823,7 @@ Buradaki anlamı: Birini zayıflatmak için gizlice uğraşmak. Samimi mecaz; k�
 2. Le club a préféré laver son linge sale en famille plutôt que se disputer en public.
    Türkçesi: Kulüp herkesin önünde tartışmak yerine sorunlarını kendi içinde çözmeyi seçti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/laver_son_linge_sale_en_famille) — laver son linge sale en famille : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/laver_son_linge_sale_en_famille) — laver son linge sale en famille : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -844,7 +844,7 @@ Buradaki anlamı: Özel anlaşmazlıkları kendi içinde çözmek. Aile veya gru
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000155 — enterrer la hache de guerre
 
@@ -858,7 +858,7 @@ Buradaki anlamı: Özel anlaşmazlıkları kendi içinde çözmek. Aile veya gru
 2. Les deux voisins ont enterré la hache de guerre autour d'un café.
    Türkçesi: İki komşu bir kahve eşliğinde husumeti bırakıp barıştı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/enterrer_la_hache_de_guerre) — enterrer la hache de guerre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/enterrer_la_hache_de_guerre) — enterrer la hache de guerre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -879,7 +879,7 @@ Buradaki anlamı: Husumeti bırakıp barışmak. Kavga veya anlaşmazlığa son 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000156 — mettre son grain de sel
 
@@ -893,7 +893,7 @@ Buradaki anlamı: Husumeti bırakıp barışmak. Kavga veya anlaşmazlığa son 
 2. Sans connaître le dossier, elle a mis son grain de sel dans la négociation.
    Türkçesi: Dosyayı bilmeden müzakereye istenmeden karıştı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_son_grain_de_sel) — mettre son grain de sel : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_son_grain_de_sel) — mettre son grain de sel : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -914,4 +914,4 @@ Buradaki anlamı: İstenmeden söze veya işe karışmak. Samimi kullanım; gere
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.

@@ -1,0 +1,1349 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-11-14",
+  "inputReports": "content/review/idioms/fr-0001.md..fr-0010.md",
+  "summary": {
+    "inputItems": 260,
+    "problem": 33,
+    "suspect": 30,
+    "reportedClean": 197,
+    "removed": 23,
+    "remaining": 237,
+    "revisedExamples": 26,
+    "suspectsWithSecondSource": 30,
+    "mismatchedReasonExpressions": 22
+  },
+  "resolutions": [
+    {
+      "id": "fr-idiom-000001",
+      "expression": "donner sa langue au chat",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/chat/14892"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000002",
+      "expression": "avoir un coup de foudre",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/college/foudre/17002"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000003",
+      "expression": "poser un lapin à quelqu'un",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/lapin/46241"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000004",
+      "expression": "mettre les pieds dans le plat",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/pied/60776"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000006",
+      "expression": "coûter les yeux de la tête",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/co%C3%BBter/20015"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000007",
+      "expression": "tomber dans les pommes",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/pomme/62473"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000010",
+      "expression": "mettre de l'eau dans son vin",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/eau/27209"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.watson.ch/fr/sport/football/556672786-football-luis-enrique-a-transforme-le-psg",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000011",
+      "expression": "chercher midi à quatorze heures",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/midi/51356"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000013",
+      "expression": "donner un coup de main à quelqu'un",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "Yer tutucu sözlük biçiminden ayrılıp pattern alanına taşındı; yardım etme anlamı bağımsız kullanımda doğrulandı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/college/coup/9822"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/societe/article/2020/04/22/coronavirus-l-aide-alimentaire-confrontee-a-l-arrivee-de-nouveaux-publics_6037362_3224.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Sözlük biçimindeki kişi yer tutucusu pattern alanına taşındı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000014",
+      "expression": "avoir du pain sur la planche",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/pain/57279"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000015",
+      "expression": "couper la poire en deux",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/poire/62046"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000016",
+      "expression": "prendre ses jambes à son cou",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/jambe/44692"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000017",
+      "expression": "en faire tout un fromage",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/fromage/35369"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000018",
+      "expression": "mettre la charrue avant les bœufs",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "Mastar biçimli mecaz söz öbeği tam cümle atasözü değildir; sözlük ve spor haberindeki kullanım doğrulandı, uzun örnek kısaltıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/college/charrue/7432"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/sport/article/2021/03/26/tournoi-des-6-nations-gagner-sans-s-egarer-dans-les-calculs-la-derniere-equation-du-xv-de-france_6074515_3242.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000019",
+      "expression": "tirer son épingle du jeu",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/%C3%A9pingle/30463"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/argent/article/2026/03/23/placements-comment-tirer-son-epingle-du-jeu-sur-les-etf-monde_6673856_1657007.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Titre sur les placements ETF, sens figuré de tirer son épingle du jeu"
+        }
+      ],
+      "changes": [
+        "Örnek 1 ve Türkçesi düzeltilip 16 kelime sınırına indirildi.",
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000020",
+      "expression": "ménager la chèvre et le chou",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/ch%C3%A8vre/15217"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/economie/article/2023/04/10/le-village-d-etretat-ronge-par-le-surtourisme-suffoque-il-y-a-tellement-de-monde-que-les-gens-font-n-importe-quoi_6168900_3234.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 1 ve Türkçesi düzeltilip 16 kelime sınırına indirildi.",
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000021",
+      "expression": "noyer le poisson",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/noyer/55155"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/societe/article/2025/03/07/au-proces-sarkozy-kadhafi-alexandre-djouhri-et-la-villa-de-mougins_6576859_3224.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000022",
+      "expression": "tourner autour du pot",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/pot/62966"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000023",
+      "expression": "prendre le taureau par les cornes",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/taureau/76848"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/campus/article/2024/01/15/parcoursup-et-le-controle-continu-a-la-recherche-de-l-equite-entre-candidats_6210952_4401467.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Intertitre et passage sur le contrôle continu, prendre le taureau par les cornes"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000024",
+      "expression": "mettre la puce à l'oreille de quelqu'un",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/puce/64975"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/culture/article/2026/10/13/les-series-de-la-semaine-la-diplomate-below-visioquest-et-crystal-lake_6793044_3246.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Sözlük biçimindeki kişi yer tutucusu pattern alanına taşındı.",
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000025",
+      "expression": "couper l'herbe sous le pied de quelqu'un",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/college/herbe/19563"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/economie/article/2023/03/17/dans-le-sillage-de-chatgpt-la-course-a-l-intelligence-artificielle_6165875_3234.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Sözlük biçimindeki kişi yer tutucusu pattern alanına taşındı.",
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000026",
+      "expression": "faire la part des choses",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0001.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://www.larousse.fr/dictionnaires/francais/part/58338"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/culture/article/2019/12/18/comment-eduquer-une-adolescente-quand-on-est-une-mere-feministe-un-dialogue-a-podcaster_6023379_3246.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 1 ve Türkçesi düzeltilip 16 kelime sınırına indirildi.",
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000030",
+      "expression": "avoir le blues",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0002.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "Alıntı blues sözcüğüne rağmen avoir le blues Fransızcada yerleşik kalıptır; başka dilden çevrilmiş yeni bir deyim olarak sunulmadı.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/avoir_le_blues"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/realites-biomedicales/2020/03/12/dysphorie-post-coitale-avoir-le-blues-apres-lamour/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Titre, emploi au sens de tristesse"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ]
+    },
+    {
+      "id": "fr-idiom-000035",
+      "expression": "sauter de joie",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0002.md",
+      "decision": "removed",
+      "reasonTr": "Anlamı bileşenlerinden doğrudan çıkan saydam kalıp; dar mecaz deyim kapsamından çıkarıldı.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/sauter"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000042",
+      "expression": "être rouge de colère",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0002.md",
+      "decision": "removed",
+      "reasonTr": "Anlamı bileşenlerinden doğrudan çıkan saydam kalıp; dar mecaz deyim kapsamından çıkarıldı.",
+      "originalSources": [
+        "https://www.dictionnaire-academie.fr/article/A9C2894"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000049",
+      "expression": "avoir les nerfs à fleur de peau",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0002.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/avoir_les_nerfs_%C3%A0_fleur_de_peau"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/international/article/2016/04/21/le-parlement-espagnol-ce-grand-theatre-de-l-absurde_4905792_3210.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000052",
+      "expression": "être vert de rage",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0002.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « respirer un grand coup » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/%C3%AAtre_vert_de_rage"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.decitre.fr/livres/meri-jaan-9782755671131.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Résumé du roman, colère du personnage Ola"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "respirer un grand coup"
+    },
+    {
+      "id": "fr-idiom-000064",
+      "expression": "raconter des salades",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0003.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « garder un secret pour soi » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/raconter_des_salades"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://lepetitjournal.com/inde/communaute/raconter-des-salades-ou-se-creuser-la-tete-249477",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 1 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ],
+      "reasonExpressionInReport": "garder un secret pour soi"
+    },
+    {
+      "id": "fr-idiom-000067",
+      "expression": "vendre la mèche",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0003.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/vendre_la_m%C3%A8che"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/international/article/2021/04/20/a-new-york-le-jour-ou-j-ai-recu-une-facture-de-43-970-dollars-de-mon-chirurgien_6077343_3210.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 1 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000073",
+      "expression": "avoir voix au chapitre",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0003.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « dialogue de sourds » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/avoir_voix_au_chapitre"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.letemps.ch/opinions/ia-au-temps-avoir-voix-au-chapitre",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "dialogue de sourds"
+    },
+    {
+      "id": "fr-idiom-000076",
+      "expression": "remettre les pendules à l'heure",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0003.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/remettre_les_pendules_%C3%A0_l%E2%80%99heure"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.chga.fm/antecedents-judiciaires-le-csshbo-tient-a-remettre-les-pendules-a-lheure/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000081",
+      "expression": "mettre les bouchées doubles",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0004.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « se mettre au travail » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/mettre_les_bouch%C3%A9es_doubles"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.tf1info.fr/sante/depistage-des-cancers-la-france-doit-mettre-les-bouchees-doubles-2284145.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "se mettre au travail"
+    },
+    {
+      "id": "fr-idiom-000089",
+      "expression": "remuer ciel et terre",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0004.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « ne pas ménager ses efforts » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/remuer_ciel_et_terre"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/m-perso/article/2026/03/23/je-voulais-passer-plus-de-temps-avec-mes-patients-d-elle-meme-une-docteure-s-installe-dans-un-village-de-300-habitants-en-eure-et-loir_6673855_4497916.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "ne pas ménager ses efforts"
+    },
+    {
+      "id": "fr-idiom-000091",
+      "expression": "se creuser la tête",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0004.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/se_creuser_la_t%C3%AAte"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000092",
+      "expression": "se casser la tête",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0004.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « jeter l’éponge » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/se_casser_la_t%C3%AAte"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.alloprof.qc.ca/fr/zone-entraide/discussion/97798/question",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 1 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ],
+      "reasonExpressionInReport": "jeter l’éponge"
+    },
+    {
+      "id": "fr-idiom-000094",
+      "expression": "avoir plus d'un tour dans son sac",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0004.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/avoir_plus_d%E2%80%99un_tour_dans_son_sac"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.francetvpro.fr/sites/default/files/telechargements/documents/grille%20NoA%20N%C2%B0%2019_2.pdf",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Grille NoA 03–09 mai 2025, p. 57, présentation du paysan André"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000098",
+      "expression": "prendre son envol",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0004.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « se creuser la tête » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/prendre_son_envol"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/economie/article/2021/11/26/les-commerces-en-circuit-court-se-multiplient_6103693_3234.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "se creuser la tête"
+    },
+    {
+      "id": "fr-idiom-000114",
+      "expression": "mettre un bémol",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0005.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « prendre des risques calculés » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/mettre_un_b%C3%A9mol"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.dictionnaire-academie.fr/article/A9B0817",
+          "checkedOn": "2026-11-14",
+          "verification": "dictionary_entry_opened",
+          "purpose": "meaning_and_scope",
+          "locator": "Expression figurée mettre un bémol à ses propos"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "prendre des risques calculés"
+    },
+    {
+      "id": "fr-idiom-000117",
+      "expression": "s'avancer en terrain miné",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0005.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "Le Robert 403 sınırı gizlenmedi; miné maddesindeki mecaz anlam ve bağımsız haberde tam s’avancer en terrain miné kullanımı erişilerek doğrulandı.",
+      "originalSources": [
+        "https://dictionnaire.lerobert.com/definition/miner"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://fr.wiktionary.org/wiki/min%C3%A9",
+          "checkedOn": "2026-11-14",
+          "verification": "dictionary_entry_opened",
+          "purpose": "meaning_and_expression",
+          "locator": "Adjectif, sens figuré: dangereux, périlleux"
+        },
+        {
+          "url": "https://www.estrepublicain.fr/actualite/2017/06/17/ce-que-je-vous-dis",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "İlk paragrafta s’avancer en terrain miné mecaz kullanımı"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ]
+    },
+    {
+      "id": "fr-idiom-000118",
+      "expression": "sauter le pas",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0005.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « jouer sa va-tout » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/sauter_le_pas"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.leprogres.fr/economie/2024/07/06/conge-menstruel-cette-entreprise-jurassienne-a-saute-le-pas",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "jouer sa va-tout"
+    },
+    {
+      "id": "fr-idiom-000119",
+      "expression": "faire le grand saut",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0005.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/grand_saut"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.presences-grenoble.fr/actualites-management-formation-rh-grenoble/melanie-de-vulpian-fait-le-grand-saut.htm",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000121",
+      "expression": "se lancer à corps perdu",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0005.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « parer à toute éventualité » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/%C3%A0_corps_perdu"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.tf1info.fr/culture/maissiat-une-chanteuse-romantique-qui-sest-jetee-a-corps-perdu-dans-le-grand-amour-1257073.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "parer à toute éventualité"
+    },
+    {
+      "id": "fr-idiom-000122",
+      "expression": "brûler les étapes",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0005.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/br%C3%BBler_les_%C3%A9tapes"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://video.lefigaro.fr/figaro/politique/il-cherche-a-bruler-les-etapes-marine-le-pen-esquive-la-proposition-de-debat-avec-gabriel-attal-20240220",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000160",
+      "expression": "être cousu d'or",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0007.md",
+      "decision": "removed",
+      "reasonTr": "Deyimin sözlük anlamı reddedilmedi; bu turda yeterli güncel bağımsız kullanım doğrulanamadığı için paketten çıkarıldı. Rapor gerekçesindeki « avoir les moyens » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://usito.usherbrooke.ca/d%C3%A9finitions/cousu/lexies"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ],
+      "reasonExpressionInReport": "avoir les moyens"
+    },
+    {
+      "id": "fr-idiom-000173",
+      "expression": "avoir un poil dans la main",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0007.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/avoir_un_poil_dans_la_main"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.closermag.fr/royautes/harry-et-meghan-un-poil-dans-la-main-des-sussex-malgre-le-chaos-ils-se-tournent-les-pouces-3414294",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000175",
+      "expression": "manger son blé en herbe",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0007.md",
+      "decision": "removed",
+      "reasonTr": "Deyimin sözlük anlamı reddedilmedi; bu turda yeterli güncel bağımsız kullanım doğrulanamadığı için paketten çıkarıldı. Rapor gerekçesindeki « placer son argent » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/manger_son_bl%C3%A9_en_herbe"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ],
+      "reasonExpressionInReport": "placer son argent"
+    },
+    {
+      "id": "fr-idiom-000181",
+      "expression": "faire d'une pierre deux coups",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0007.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/faire_d%E2%80%99une_pierre_deux_coups"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lapresse.tn/2024/10/30/pourquoi-dune-pierre-deux-coups/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 1 ve Türkçesi düzeltilip 16 kelime sınırına indirildi.",
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000183",
+      "expression": "prendre son temps",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0008.md",
+      "decision": "removed",
+      "reasonTr": "Anlamı bileşenlerinden doğrudan çıkan saydam kalıp; dar mecaz deyim kapsamından çıkarıldı.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/prendre_son_temps"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000185",
+      "expression": "traîner les pieds",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0008.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « gagner du temps » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/tra%C3%AEner_les_pieds"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://bamada.net/presidentielle-au-senegal-15-candidats-accusent-le-president-sall-de-trainer-les-pieds",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "gagner du temps"
+    },
+    {
+      "id": "fr-idiom-000186",
+      "expression": "être à la bourre",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0008.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « perdre son temps » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/%C3%AAtre_%C3%A0_la_bourre"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.europe1.fr/culture/dun-jeu-de-carte-aux-retardataires-les-origines-de-lexpression-etre-a-la-bourre-4025943",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "perdre son temps"
+    },
+    {
+      "id": "fr-idiom-000193",
+      "expression": "remettre aux calendes grecques",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0008.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « à la dernière minute » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/remettre_aux_calendes_grecques"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lacsq.org/actualite/remettre-aux-calendes-grecques/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "à la dernière minute"
+    },
+    {
+      "id": "fr-idiom-000199",
+      "expression": "de fil en aiguille",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0008.md",
+      "decision": "removed",
+      "reasonTr": "İkinci sözlükte mecaz anlam doğrulandı; Latince olduğu gerekçesi bu kayda ait değil, ancak fiilsiz zarf öbeği dar paket kapsamından çıkarıldı. Rapor gerekçesindeki « reporter sine die » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/de_fil_en_aiguille"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.dictionnaire-academie.fr/article/A9A0986",
+          "checkedOn": "2026-11-14",
+          "verification": "dictionary_entry_opened",
+          "purpose": "meaning_and_scope",
+          "locator": "Aiguille, expressions figurées: de fil en aiguille"
+        }
+      ],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ],
+      "reasonExpressionInReport": "reporter sine die"
+    },
+    {
+      "id": "fr-idiom-000200",
+      "expression": "au pied levé",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0008.md",
+      "decision": "removed",
+      "reasonTr": "Fiilsiz zarf öbeği; başlıktaki au pied levé ile gerekçedeki revenir sur ses pas aynı ifade değil, dar kapsamdan çıkarıldı. Rapor gerekçesindeki « revenir sur ses pas » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/au_pied_lev%C3%A9"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ],
+      "reasonExpressionInReport": "revenir sur ses pas"
+    },
+    {
+      "id": "fr-idiom-000203",
+      "expression": "dès potron-minet",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0008.md",
+      "decision": "removed",
+      "reasonTr": "Güncel Académie maddesi anlamı doğruluyor; eskimiş olduğu iddia edilmedi, fiilsiz zarf öbeği kapsam dışında bırakıldı. Rapor gerekçesindeki « battre le fer tant qu’il est chaud » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/d%C3%A8s_potron-minet"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.dictionnaire-academie.fr/article/A9P3699",
+          "checkedOn": "2026-11-14",
+          "verification": "dictionary_entry_opened",
+          "purpose": "meaning_and_scope",
+          "locator": "Potron-minet (dès), locution adverbiale"
+        }
+      ],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ],
+      "reasonExpressionInReport": "battre le fer tant qu’il est chaud"
+    },
+    {
+      "id": "fr-idiom-000207",
+      "expression": "passer une nuit blanche",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0008.md",
+      "decision": "removed",
+      "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/nuit_blanche"
+      ],
+      "additionalSources": [],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000208",
+      "expression": "dormir à poings fermés",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0008.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « une fois n’est pas coutume » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/dormir_%C3%A0_poings_ferm%C3%A9s"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lorientlejour.com/article/1410217/-un-vaudeville-des-libanais-reagissent-aux-frappes-iraniennes-contre-israel.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "une fois n’est pas coutume"
+    },
+    {
+      "id": "fr-idiom-000209",
+      "expression": "avoir le vent en poupe",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0009.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « remporter un franc succès » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/avoir_le_vent_en_poupe"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.vbs.admin.ch/dam/fr/sd-web/DWJTsatJ6C-I/NDB_Sicherheit_Schweiz_2024_f.pdf",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Rapport 2024, p. 27, avoir le vent en poupe au figuré"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "remporter un franc succès"
+    },
+    {
+      "id": "fr-idiom-000216",
+      "expression": "faire un tabac",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0009.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « tirer son épingle du jeu » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/faire_un_tabac"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lemonde.fr/politique/article/2023/08/04/eelv-defend-son-invitation-au-rappeur-medine-a-ses-journees-d-ete_6184438_823448.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "tirer son épingle du jeu"
+    },
+    {
+      "id": "fr-idiom-000217",
+      "expression": "avoir le beurre et l'argent du beurre",
+      "category": "problem",
+      "report": "content/review/idioms/fr-0009.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi. Rapor gerekçesindeki « s’en sortir indemne » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/avoir_le_beurre_et_l'argent_du_beurre"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.ulc.lu/fr/actualites/toutes-nos-actualites/gestion-des-articles/le-beurre-et-l-argent-du-beurre-histoire-d-une-garantie-locative-finalement-restituee/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Kaynak ve rapor-kayıt eşleştirmesi düzeltildi; geçerli deyim korundu."
+      ],
+      "reasonExpressionInReport": "s’en sortir indemne"
+    },
+    {
+      "id": "fr-idiom-000220",
+      "expression": "retomber sur ses pieds",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0009.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/retomber_sur_ses_pieds"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.fcpe.asso.fr/sites/default/files/revue-des-parents/RDP_453_2024_04.pdf",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000242",
+      "expression": "ne pas voir plus loin que le bout de son nez",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0010.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/ne_pas_voir_plus_loin_que_le_bout_de_son_nez"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.tf1.fr/fr-dz/tf1/demain-nous-appartient/videos/demain-nous-appartient-du-vendredi-23-fevrier-2024-episode-1629-34125098.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    },
+    {
+      "id": "fr-idiom-000256",
+      "expression": "être incollable sur quelque chose",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0010.md",
+      "decision": "removed",
+      "reasonTr": "Spor basınında kullanım doğrulandı; özgül deyim yerine sıradan sıfat + edat yapısı olduğu için dar kapsamdan çıkarıldı.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/incollable"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.lequipe.fr/Football/Actualites/Quiz-etes-vous-incollable-sur-l-actualite-footballistique-en-2024/1528341",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Titre du quiz football, emploi adjectival incollable sur"
+        }
+      ],
+      "changes": [
+        "Kayıt ve ona ait iki örnek ile soru aktif paketten çıkarıldı; kimlik yeniden kullanılmadı."
+      ]
+    },
+    {
+      "id": "fr-idiom-000258",
+      "expression": "être à côté de la plaque",
+      "category": "suspect",
+      "report": "content/review/idioms/fr-0010.md",
+      "decision": "corrected_and_verified",
+      "reasonTr": "İkinci kaynak, sözlükte verilen mecaz anlamı destekliyor; kayıt ve özgün örnekler yeniden kontrol edildi.",
+      "originalSources": [
+        "https://fr.wiktionary.org/wiki/%C3%A0_c%C3%B4t%C3%A9_de_la_plaque"
+      ],
+      "additionalSources": [
+        {
+          "url": "https://www.unsa-education.com/article-/a-cote-de-la-plaque-2/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
+        }
+      ],
+      "changes": [
+        "Örnek 2 ve Türkçesi düzeltilip 16 kelime sınırına indirildi."
+      ]
+    }
+  ]
+}

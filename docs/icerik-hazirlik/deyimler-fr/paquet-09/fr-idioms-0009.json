@@ -3,7 +3,7 @@
   "batch": "fr-idioms-0009",
   "language": "fr",
   "themeTr": "Başarı ve güçlükler",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
@@ -33,6 +33,13 @@
           "locator": "avoir le vent en poupe : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.vbs.admin.ch/dam/fr/sd-web/DWJTsatJ6C-I/NDB_Sicherheit_Schweiz_2024_f.pdf",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Rapport 2024, p. 27, avoir le vent en poupe au figuré"
         }
       ],
       "exercise": {
@@ -49,8 +56,9 @@
         "explanationTr": "Buradaki anlamı: Başarıyı destekleyen elverişli bir dönemde olmak. Mecaz; işin veya kişinin yükseliş dönemini anlatır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -92,8 +100,9 @@
         "explanationTr": "Buradaki anlamı: Seçimlerinde veya girişimlerinde şanslı olmak. Başarılı sonuç getiren seçim; bitki bakımı anlamı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -135,8 +144,9 @@
         "explanationTr": "Buradaki anlamı: Birinin bir işe başlamasına yardımcı olmak. İlk adımı kolaylaştıran destek; gerçek binicilik değil."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -178,8 +188,9 @@
         "explanationTr": "Buradaki anlamı: Başarıya yakın ve avantajlı konumda olmak. Başarı henüz kesinleşmemiş olabilir; olumlu gidişat vurgulanır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -221,8 +232,9 @@
         "explanationTr": "Buradaki anlamı: Hedefe ulaşmak veya çok yaklaşmak. Bu kart sürecin sonuna yaklaşma bağlamını seçer."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -264,8 +276,9 @@
         "explanationTr": "Buradaki anlamı: Sözüyle veya işiyle hedefi tam tutturmak. Etkili ve yerinde sonuç; gerçek atış anlamı seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -307,8 +320,9 @@
         "explanationTr": "Buradaki anlamı: Çok büyük ilgi ve başarı kazanmak. Samimi mecaz; gerçek hedefe atış veya kutu yapmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -334,6 +348,13 @@
           "locator": "faire un tabac : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/politique/article/2023/08/04/eelv-defend-son-invitation-au-rappeur-medine-a-ses-journees-d-ete_6184438_823448.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -350,8 +371,9 @@
         "explanationTr": "Buradaki anlamı: Seyirciden büyük başarı ve alkış almak. Samimi ifade; tütünle ilgili gerçek kullanım değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -377,6 +399,13 @@
           "locator": "avoir le beurre et l'argent du beurre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.ulc.lu/fr/actualites/toutes-nos-actualites/gestion-des-articles/le-beurre-et-l-argent-du-beurre-histoire-d-une-garantie-locative-finalement-restituee/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -393,8 +422,9 @@
         "explanationTr": "Buradaki anlamı: Birbiriyle bağdaşmayan bütün avantajları birden istemek. Genellikle eleştirel veya olumsuz yapıda kullanılır; elde edilmiş başarı garantisi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -436,8 +466,9 @@
         "explanationTr": "Buradaki anlamı: Çok zor görünen büyük bir başarı elde etmek. Mecaz; gerçek Ay yolculuğu veya her küçük kazanım değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -479,8 +510,9 @@
         "explanationTr": "Buradaki anlamı: Çok parlak bir performans göstermek. Kişinin etkileyici başarısı; gerçek kıvılcımlar seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -495,8 +527,8 @@
           "tr": "Reddedilse bile toparlanıp yeniden dengesini buluyor."
         },
         {
-          "fr": "Le contrat a été annulé, mais elle est retombée sur ses pieds grâce à une autre commande.",
-          "tr": "Sözleşme iptal oldu ama başka bir siparişle toparlandı."
+          "fr": "L'atelier a fermé, mais il a retrouvé un emploi : il retombe sur ses pieds.",
+          "tr": "Atölye kapandı ama yeniden iş buldu; zor durumdan sıyrılıp dengesini buluyor."
         }
       ],
       "sources": [
@@ -506,11 +538,19 @@
           "locator": "retomber sur ses pieds : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.fcpe.asso.fr/sites/default/files/revue-des-parents/RDP_453_2024_04.pdf",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Le contrat a été annulé, mais elle est retombée sur ses pieds grâce à une autre commande.",
+        "context": "L'atelier a fermé, mais il a retrouvé un emploi : il retombe sur ses pieds.",
         "promptTr": "Bu bağlamda « retomber sur ses pieds » ne anlama geliyor?",
         "optionsTr": [
           "Birbiriyle bağdaşmayan bütün avantajları birden istemek",
@@ -522,8 +562,9 @@
         "explanationTr": "Buradaki anlamı: Zor bir durumdan sıyrılıp dengesini yeniden bulmak. Talihsizliği toparlayabilme; gerçek yere düşme değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -565,8 +606,9 @@
         "explanationTr": "Buradaki anlamı: Zor bir dönemden yavaş yavaş çıkmak. İyileşen gidişat; sadece fiziksel yokuş tırmanışı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -608,8 +650,9 @@
         "explanationTr": "Buradaki anlamı: Zorluğun baskısından kurtulup yeniden rahatlamak. Mecaz; yüzme veya boğulma bağlamı seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -651,8 +694,9 @@
         "explanationTr": "Buradaki anlamı: Zorlu sürecin sonunun yaklaştığını görmek. Tamamen bitmiş olması şart değildir; sona ilişkin umut belirir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -694,8 +738,9 @@
         "explanationTr": "Buradaki anlamı: Kendini ciddi bir sıkıntının içinde bulmak. İronik kullanım; iyi yatak takımı anlamı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -737,8 +782,9 @@
         "explanationTr": "Buradaki anlamı: Başı belada olmak. Samimi mecaz; hamur yoğurma anlamı seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -780,8 +826,9 @@
         "explanationTr": "Buradaki anlamı: Çözüm yolu görünmeyen bir çıkmaza girmek. Bu kart müzakere veya problem çözmedeki mecaz anlamı seçer."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -823,8 +870,9 @@
         "explanationTr": "Buradaki anlamı: Aynı şekilde devam ederse kesin başarısızlığa ilerlemek. Yanlış yönün doğuracağı sonuç vurgulanır; gerçek çarpışma seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -866,8 +914,9 @@
         "explanationTr": "Buradaki anlamı: Yeni bir uygulamanın ilk aksaklıklarını yaşamak. İlk kullanıcı veya denek olmanın güçlüğü; gerçek inşaat temizliği değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -909,8 +958,9 @@
         "explanationTr": "Buradaki anlamı: Bir girişimde ağır yenilgi veya mali çöküş yaşamak. Bu kart mecaz başarısızlık anlamını seçer; yüzerken su yutmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -952,8 +1002,9 @@
         "explanationTr": "Buradaki anlamı: Bir güçlüğü aşmaya çalışıp başarısız olmak. Çetin engel karşısında sonuç alamamak; gerçek diş yaralanması değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -995,8 +1046,9 @@
         "explanationTr": "Buradaki anlamı: Aşılamayan bir engelle karşılaşmak. Mecaz; kesin ret veya çözülmeyen güçlük. Fiziksel çarpışma gerekmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -1038,8 +1090,9 @@
         "explanationTr": "Buradaki anlamı: Türlü türlü sıkıntılar çekmek. Samimi kullanım; renk görme deneyimi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -1081,8 +1134,9 @@
         "explanationTr": "Buradaki anlamı: Hayatının zor bir dönemini geçirmek. Mecaz; bu dönem kalıcı olmak zorunda değildir, gerçek ekmek türü seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     },
     {
@@ -1124,9 +1178,11 @@
         "explanationTr": "Buradaki anlamı: İşletmeyi tamamen kapatmak. Bu kart ticari kapanış anlamını seçer; gerçek anahtar saklama değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0009.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

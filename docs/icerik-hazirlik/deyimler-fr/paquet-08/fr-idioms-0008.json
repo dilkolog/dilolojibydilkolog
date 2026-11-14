@@ -3,56 +3,13 @@
   "batch": "fr-idioms-0008",
   "language": "fr",
   "themeTr": "Zaman ve gündelik ritim",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
   "levelPolicy": "CEFR levels remain unassigned pending the full task plan and independent pedagogical review. Dictionary citations do not certify levels.",
   "contentOrigin": "Original examples, translations, explanations and exercises by Diloloji; dictionaries are lexical references, not sources of copied examples.",
   "items": [
-    {
-      "id": "fr-idiom-000183",
-      "expression": "prendre son temps",
-      "meaningTr": "Acele etmeden yapmak",
-      "usageNoteTr": "Yerleşik kalıp; gecikmek veya isteksizlik anlamı zorunlu değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Prends ton temps, le train ne part que dans une heure.",
-          "tr": "Acele etme; tren ancak bir saat sonra kalkacak."
-        },
-        {
-          "fr": "Pour apprécier l'exposition, elle a pris son temps devant chaque tableau.",
-          "tr": "Serginin tadını çıkarmak için her tablonun önünde acele etmeden durdu."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://fr.wiktionary.org/wiki/prendre_son_temps",
-          "verification": "dictionary_entry_opened",
-          "locator": "prendre son temps : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Pour apprécier l'exposition, elle a pris son temps devant chaque tableau.",
-        "promptTr": "Bu bağlamda « prendre son temps » ne anlama geliyor?",
-        "optionsTr": [
-          "Geç kalmış olmak",
-          "Akşam alacakaranlığında",
-          "Bir yerde ayakta uzun süre beklemek",
-          "Acele etmeden yapmak"
-        ],
-        "answerIndex": 3,
-        "explanationTr": "Buradaki anlamı: Acele etmeden yapmak. Yerleşik kalıp; gecikmek veya isteksizlik anlamı zorunlu değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
     {
       "id": "fr-idiom-000184",
       "expression": "traîner la patte",
@@ -92,8 +49,9 @@
         "explanationTr": "Buradaki anlamı: Yorgunlukla ağır ağır ilerlemek. Yavaş ve zor hareket etme; örneklerde yorgunluk seçilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -119,6 +77,14 @@
           "locator": "traîner les pieds : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://bamada.net/presidentielle-au-senegal-15-candidats-accusent-le-president-sall-de-trainer-les-pieds",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
         }
       ],
       "exercise": {
@@ -135,8 +101,9 @@
         "explanationTr": "Buradaki anlamı: İsteksizce oyalanıp işi ağırdan almak. Mecaz; bedensel yorgunluk değil, geciktiren isteksizlik seçilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -162,6 +129,14 @@
           "locator": "être à la bourre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.europe1.fr/culture/dun-jeu-de-carte-aux-retardataires-les-origines-de-lexpression-etre-a-la-bourre-4025943",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
         }
       ],
       "exercise": {
@@ -178,8 +153,9 @@
         "explanationTr": "Buradaki anlamı: Geç kalmış olmak. Samimi kullanım; resmî yazışmada nötr en retard tercih edilebilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -221,8 +197,9 @@
         "explanationTr": "Buradaki anlamı: Tam ihtiyaç duyulan anda gelmek. Zamanın elverişliliği; yalnız takvim saatine uymak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -264,8 +241,9 @@
         "explanationTr": "Buradaki anlamı: Tam zamanında işe yaramak. Elverişli an vurgulanır; gerçek düşme veya sivrilik değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -307,8 +285,9 @@
         "explanationTr": "Buradaki anlamı: Göz açıp kapayıncaya kadar. Çok kısa süre; gerçek göz kırpma hareketi gerekmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -350,8 +329,9 @@
         "explanationTr": "Buradaki anlamı: Çok kısa sürede kolayca yapmak. Hızlı sonuç alma; bütün el hareketleri anlamına gelmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -393,8 +373,9 @@
         "explanationTr": "Buradaki anlamı: Son anda. Sürenin bitimine çok yakın; her zaman fırsat açısından uygun anlamı taşımaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -436,8 +417,9 @@
         "explanationTr": "Buradaki anlamı: Belirsiz bir gelecekte, belki de hiçbir zaman. Alaycı bir tarih ifadesi; gerçek aziz günü değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -463,6 +445,13 @@
           "locator": "remettre aux calendes grecques : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lacsq.org/actualite/remettre-aux-calendes-grecques/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -479,8 +468,9 @@
         "explanationTr": "Buradaki anlamı: Bir işi gerçekleşmeyecek bir tarihe ertelemek. Sonu gelmeyen erteleme; belirli bir takvim günü anlatılmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -522,8 +512,9 @@
         "explanationTr": "Buradaki anlamı: Hiçbir zaman, balık kavağa çıkınca. Alaycı imkânsız gelecek ifadesi; gerçekten hayvan gelişimi anlatılmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -565,8 +556,9 @@
         "explanationTr": "Buradaki anlamı: Çok seyrek, neredeyse hiç. Alaycı sıklık ifadesi; gerçek ayın günü değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -608,8 +600,9 @@
         "explanationTr": "Buradaki anlamı: Bir kerelik istisna yapmak. Atasözü niteliğinde kalıplaşmış söyleyiş; alışkanlığı değiştirme zorunluluğu yoktur."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -651,8 +644,9 @@
         "explanationTr": "Buradaki anlamı: Gelişmeler oldukça aşama aşama. Bu kart işlerin sırayla ele alınma anlamını seçer; akıntıda yüzme değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -694,94 +688,9 @@
         "explanationTr": "Buradaki anlamı: Geleceği planlamadan günü gününe yaşamak. Bu kart plansız günlük yaşama anlamını seçer; günlük kayıt tutma değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000199",
-      "expression": "de fil en aiguille",
-      "meaningTr": "Bir şey diğerine bağlanarak",
-      "usageNoteTr": "Mantıksal veya doğal ilerleyiş; aniden ilgisiz konuya atlamak değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "De fil en aiguille, nous avons parlé de nos enfances.",
-          "tr": "Bir şey diğerine bağlandı, çocukluklarımızdan söz etmeye başladık."
-        },
-        {
-          "fr": "Un voisin en a invité un autre et, de fil en aiguille, toute la rue s'est réunie.",
-          "tr": "Bir komşu diğerini çağırdı; derken bütün sokak bir araya geldi."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://fr.wiktionary.org/wiki/de_fil_en_aiguille",
-          "verification": "dictionary_entry_opened",
-          "locator": "de fil en aiguille : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Un voisin en a invité un autre et, de fil en aiguille, toute la rue s'est réunie.",
-        "promptTr": "Bu bağlamda « de fil en aiguille » ne anlama geliyor?",
-        "optionsTr": [
-          "Geç kalmış olmak",
-          "Akşam alacakaranlığında",
-          "Derin ve deliksiz uyumak",
-          "Bir şey diğerine bağlanarak"
-        ],
-        "answerIndex": 3,
-        "explanationTr": "Buradaki anlamı: Bir şey diğerine bağlanarak. Mantıksal veya doğal ilerleyiş; aniden ilgisiz konuya atlamak değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000200",
-      "expression": "au pied levé",
-      "meaningTr": "Hazırlıksız ve son anda devreye girerek",
-      "usageNoteTr": "Öngörülmemiş göreve hemen katılma; gerçek ayak hareketi değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Elle a remplacé le présentateur au pied levé.",
-          "tr": "Sunucunun yerine hazırlıksız ve son anda geçti."
-        },
-        {
-          "fr": "Prévenu le matin même, il a animé l'atelier au pied levé.",
-          "tr": "Aynı sabah haber verilince atölyeyi hazırlıksız biçimde yönetti."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://fr.wiktionary.org/wiki/au_pied_lev%C3%A9",
-          "verification": "dictionary_entry_opened",
-          "locator": "au pied levé : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Prévenu le matin même, il a animé l'atelier au pied levé.",
-        "promptTr": "Bu bağlamda « au pied levé » ne anlama geliyor?",
-        "optionsTr": [
-          "Hazırlıksız ve son anda devreye girerek",
-          "Çok seyrek, neredeyse hiç",
-          "Akşam alacakaranlığında",
-          "Derin ve deliksiz uyumak"
-        ],
-        "answerIndex": 0,
-        "explanationTr": "Buradaki anlamı: Hazırlıksız ve son anda devreye girerek. Öngörülmemiş göreve hemen katılma; gerçek ayak hareketi değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -823,8 +732,9 @@
         "explanationTr": "Buradaki anlamı: Ayaküstü ve hızlıca yiyerek. Yeme içme bağlamıyla sınırlı; bütün hızlı işler için kullanılmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -866,51 +776,9 @@
         "explanationTr": "Buradaki anlamı: Akşam alacakaranlığında. Günün ışığı azalmış zaman; köpek ve kurt karşılaşması değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000203",
-      "expression": "dès potron-minet",
-      "meaningTr": "Sabahın çok erken saatinde",
-      "usageNoteTr": "Nükteli, eskice tınlayan ifade; sıradan her sabah saati değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Le boulanger travaille dès potron-minet.",
-          "tr": "Fırıncı sabahın çok erken saatinde çalışıyor."
-        },
-        {
-          "fr": "Dès potron-minet, les pêcheurs étaient déjà sur le quai.",
-          "tr": "Sabahın çok erken saatinde balıkçılar çoktan rıhtımdaydı."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://fr.wiktionary.org/wiki/d%C3%A8s_potron-minet",
-          "verification": "dictionary_entry_opened",
-          "locator": "dès potron-minet : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Dès potron-minet, les pêcheurs étaient déjà sur le quai.",
-        "promptTr": "Bu bağlamda « dès potron-minet » ne anlama geliyor?",
-        "optionsTr": [
-          "Geç kalmış olmak",
-          "Çok seyrek, neredeyse hiç",
-          "Akşam alacakaranlığında",
-          "Sabahın çok erken saatinde"
-        ],
-        "answerIndex": 3,
-        "explanationTr": "Buradaki anlamı: Sabahın çok erken saatinde. Nükteli, eskice tınlayan ifade; sıradan her sabah saati değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -952,8 +820,9 @@
         "explanationTr": "Buradaki anlamı: Sessiz ve ihtiyatlı adımlarla. Gizlice veya ses çıkarmadan hareket; gerçekten kurt yürüyüşü değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -995,8 +864,9 @@
         "explanationTr": "Buradaki anlamı: Sokaklarda amaçsızca dolaşmak. Avare dolaşma anlamı; çalışmak veya sabit yerde beklemek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -1038,51 +908,9 @@
         "explanationTr": "Buradaki anlamı: Bir yerde ayakta uzun süre beklemek. Samimi ifade; birinin gelmesini aynı yerde beklemek."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000207",
-      "expression": "passer une nuit blanche",
-      "meaningTr": "Geceyi hiç uyumadan geçirmek",
-      "usageNoteTr": "Uykusuz geçirilen gece; beyaz renk veya gece kıyafeti değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "À cause du bruit, nous avons passé une nuit blanche.",
-          "tr": "Gürültü yüzünden geceyi hiç uyumadan geçirdik."
-        },
-        {
-          "fr": "Il a passé une nuit blanche en attendant des nouvelles de sa famille.",
-          "tr": "Ailesinden haber beklerken geceyi hiç uyumadan geçirdi."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://fr.wiktionary.org/wiki/nuit_blanche",
-          "verification": "dictionary_entry_opened",
-          "locator": "passer une nuit blanche : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Il a passé une nuit blanche en attendant des nouvelles de sa famille.",
-        "promptTr": "Bu bağlamda « passer une nuit blanche » ne anlama geliyor?",
-        "optionsTr": [
-          "Çok seyrek, neredeyse hiç",
-          "Akşam alacakaranlığında",
-          "Derin ve deliksiz uyumak",
-          "Geceyi hiç uyumadan geçirmek"
-        ],
-        "answerIndex": 3,
-        "explanationTr": "Buradaki anlamı: Geceyi hiç uyumadan geçirmek. Uykusuz geçirilen gece; beyaz renk veya gece kıyafeti değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     },
     {
@@ -1108,6 +936,13 @@
           "locator": "dormir à poings fermés : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lorientlejour.com/article/1410217/-un-vaudeville-des-libanais-reagissent-aux-frappes-iraniennes-contre-israel.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -1124,9 +959,11 @@
         "explanationTr": "Buradaki anlamı: Derin ve deliksiz uyumak. İyice uyuma; yumrukların gerçek duruşuyla sınırlı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0008.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

@@ -3,7 +3,7 @@
   "batch": "fr-idioms-0004",
   "language": "fr",
   "themeTr": "Çalışma ve çaba",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
@@ -49,8 +49,9 @@
         "explanationTr": "Buradaki anlamı: İşe bizzat katılıp el atmak. Somut katkı vurgulanır; sadece talimat vermek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -92,8 +93,9 @@
         "explanationTr": "Buradaki anlamı: Kolları sıvayıp işe koyulmak. Başlamaya hazır, kararlı çalışma tavrı anlatılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -119,6 +121,14 @@
           "locator": "mettre les bouchées doubles : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.tf1info.fr/sante/depistage-des-cancers-la-france-doit-mettre-les-bouchees-doubles-2284145.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
         }
       ],
       "exercise": {
@@ -135,8 +145,9 @@
         "explanationTr": "Buradaki anlamı: İşi hızlandırıp çabayı artırmak. Acil işi yetiştirme bağlamı; fiziksel yeme hızı seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -178,8 +189,9 @@
         "explanationTr": "Buradaki anlamı: Durmaksızın yoğun biçimde çalışmak. Uzun ve yoğun çaba; işin sonucunun mutlaka başarılı olması gerekmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -221,8 +233,9 @@
         "explanationTr": "Buradaki anlamı: Bir şey için emek ve çaba harcamak. Se donner du mal çaba göstermek; kendine zarar vermek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -264,8 +277,9 @@
         "explanationTr": "Buradaki anlamı: Bütün enerjisini ortaya koymak. Kendini tam olarak verme; sonuç garantisi veya sağlık öğüdü değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -307,8 +321,9 @@
         "explanationTr": "Buradaki anlamı: İşe gönlünü ve hevesini katmak. İstekli çalışma vurgulanır; sadece süre uzunluğu değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -350,8 +365,9 @@
         "explanationTr": "Buradaki anlamı: Çalışırken saat hesabı yapmamak. Süre sınırını gözetmeden çalışma; fazla mesai önerisi veya övgüsü sayılmamalı."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -393,8 +409,9 @@
         "explanationTr": "Buradaki anlamı: Çok ağır ve yorucu biçimde çalışmak. Forçat benzetmesi abartılıdır; gerçek hükümlülük bağlamı öğretilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -436,8 +453,9 @@
         "explanationTr": "Buradaki anlamı: Bir sonuç için her türlü girişimde bulunmak. Hizmet veya imkân elde etmek için yoğun çaba; gerçek el-ayak hareketi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -463,6 +481,13 @@
           "locator": "remuer ciel et terre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/m-perso/article/2026/03/23/je-voulais-passer-plus-de-temps-avec-mes-patients-d-elle-meme-une-docteure-s-installe-dans-un-village-de-300-habitants-en-eure-et-loir_6673855_4497916.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -479,8 +504,9 @@
         "explanationTr": "Buradaki anlamı: Amacına ulaşmak için her yolu denemek. Büyük seferberlik ve çaba; başarma garantisi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -522,51 +548,9 @@
         "explanationTr": "Buradaki anlamı: Birini memnun etmek için çok çabalamak. Başkasını memnun etme vurgusu taşır; gerçek katlanma hareketi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000091",
-      "expression": "se creuser la tête",
-      "meaningTr": "Çözüm bulmak için kafa yormak",
-      "usageNoteTr": "Yoğun düşünme veya hatırlama; fiziksel bir eylem değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Je me creuse la tête pour résoudre cette énigme.",
-          "tr": "Bu bilmeceyi çözmek için kafa yoruyorum."
-        },
-        {
-          "fr": "Les techniciens se sont creusé la tête pour comprendre cette panne étrange.",
-          "tr": "Teknisyenler bu tuhaf arızayı anlamak için kafa yordu."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://fr.wiktionary.org/wiki/se_creuser_la_t%C3%AAte",
-          "verification": "dictionary_entry_opened",
-          "locator": "se creuser la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Les techniciens se sont creusé la tête pour comprendre cette panne étrange.",
-        "promptTr": "Bu bağlamda « se creuser la tête » ne anlama geliyor?",
-        "optionsTr": [
-          "İşe bizzat katılıp el atmak",
-          "Bir işin alışkanlığını edinmek",
-          "Çok miktarda işi tamamlamak",
-          "Çözüm bulmak için kafa yormak"
-        ],
-        "answerIndex": 3,
-        "explanationTr": "Buradaki anlamı: Çözüm bulmak için kafa yormak. Yoğun düşünme veya hatırlama; fiziksel bir eylem değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -577,8 +561,8 @@
       "level": null,
       "examples": [
         {
-          "fr": "Ne te casse pas la tête, un simple message suffira.",
-          "tr": "Kafana takıp durma; basit bir mesaj yeter."
+          "fr": "Tu te casses la tête pour ce message pourtant simple.",
+          "tr": "Aslında basit olan bu mesaj için kafa patlatıyorsun."
         },
         {
           "fr": "Nous nous sommes cassé la tête sur ce calcul toute la matinée.",
@@ -592,6 +576,13 @@
           "locator": "se casser la tête : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.alloprof.qc.ca/fr/zone-entraide/discussion/97798/question",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -608,8 +599,9 @@
         "explanationTr": "Buradaki anlamı: Bir meseleyi çözmek için çok kafa patlatmak. Samimi kullanım; sıklıkla olumsuz yapıda gereksiz zorluğu azaltma önerisi verir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -651,8 +643,9 @@
         "explanationTr": "Buradaki anlamı: Birden fazla beceri veya çözüm yoluna sahip olmak. Mecaz; farklı yetenek ve yöntemler sayesinde seçenek sahibi olmak."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -667,8 +660,8 @@
           "tr": "Bu tamircinin çözüm üretecek çok hüneri var."
         },
         {
-          "fr": "Même sans la pièce habituelle, elle avait plus d'un tour dans son sac pour réparer la lampe.",
-          "tr": "Alışılmış parça olmadan da lambayı onaracak farklı hünerleri vardı."
+          "fr": "Sans outil adapté, elle avait plus d'un tour dans son sac pour réparer cette lampe.",
+          "tr": "Uygun alet yokken bile bu lambayı onaracak farklı çözümler bulabiliyordu."
         }
       ],
       "sources": [
@@ -678,11 +671,18 @@
           "locator": "avoir plus d'un tour dans son sac : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.francetvpro.fr/sites/default/files/telechargements/documents/grille%20NoA%20N%C2%B0%2019_2.pdf",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Grille NoA 03–09 mai 2025, p. 57, présentation du paysan André"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Même sans la pièce habituelle, elle avait plus d'un tour dans son sac pour réparer la lampe.",
+        "context": "Sans outil adapté, elle avait plus d'un tour dans son sac pour réparer cette lampe.",
         "promptTr": "Bu bağlamda « avoir plus d'un tour dans son sac » ne anlama geliyor?",
         "optionsTr": [
           "Çalışırken saat hesabı yapmamak",
@@ -694,8 +694,9 @@
         "explanationTr": "Buradaki anlamı: Çözüm üretmek için çok sayıda hüneri olmak. Pratik zekâ ve beklenmedik yöntemler; gerçek çanta içeriği değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -737,8 +738,9 @@
         "explanationTr": "Buradaki anlamı: İşi yaparken uygulama içinde öğrenmek. Önceden tam eğitim almadan pratikle öğrenme; bütün eğitimlerin gereksiz olduğu iddia edilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -780,8 +782,9 @@
         "explanationTr": "Buradaki anlamı: Bir işin alışkanlığını edinmek. Tekrarla uyum sağlamak; yalnız kumaş kıvrımı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -823,8 +826,9 @@
         "explanationTr": "Buradaki anlamı: Bir alanda ilk deneyimlerini edinmek. Askerî anlam dışındaki mesleki başlangıç kullanımı seçilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -850,6 +854,13 @@
           "locator": "prendre son envol : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/economie/article/2021/11/26/les-commerces-en-circuit-court-se-multiplient_6103693_3234.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -866,8 +877,9 @@
         "explanationTr": "Buradaki anlamı: Kendi alanında gelişip yükselmeye başlamak. Kariyer veya girişimin gelişmesi; gerçek uçuş anlamı seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -909,8 +921,9 @@
         "explanationTr": "Buradaki anlamı: Kendi imkânlarıyla bağımsız hareket etmek. Bağımsızlık vurgusu; yalnızca başarılı veya çok meşgul olmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -952,8 +965,9 @@
         "explanationTr": "Buradaki anlamı: Birden çok alanda aynı anda uğraş vermek. Gerçek savaş alanları değil, farklı sorumluluklar anlatılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -995,8 +1009,9 @@
         "explanationTr": "Buradaki anlamı: Aynı anda birçok işe yetişmeye çalışmak. Çoğu zaman bunun güçlüğü veya imkânsızlığı olumsuz yapıyla belirtilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -1038,8 +1053,9 @@
         "explanationTr": "Buradaki anlamı: İşe gömülüp bütünü değerlendirememek. Yoğun uğraş yüzünden geri çekilip bakamama; yalnız bisiklet sürüşü değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -1081,8 +1097,9 @@
         "explanationTr": "Buradaki anlamı: Çok miktarda işi tamamlamak. Tamamlanan iş hacmi vurgulanır; çalışarak bir şeyi yıkmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     },
     {
@@ -1124,9 +1141,11 @@
         "explanationTr": "Buradaki anlamı: Bir işe son rötuşları yapmak. Tamamlamaya yaklaşmış bir çalışmayı son kez düzenlemek."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0004.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

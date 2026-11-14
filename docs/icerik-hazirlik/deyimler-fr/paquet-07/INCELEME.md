@@ -1,8 +1,8 @@
 # Paket 07 — Para ve kaynaklar
 
-26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.
+24 deyim · 48 özgün örnek/çeviri · 24 soru.
 
-Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.
+Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.
 
 Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.
 
@@ -18,7 +18,7 @@ Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm iç
 2. Avec ces abonnements inutiles, il jetait l'argent par les fenêtres.
    Türkçesi: Bu gereksiz aboneliklerle parayı savuruyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/jeter_l%E2%80%99argent_par_les_fen%C3%AAtres) — jeter l'argent par les fenêtres : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/jeter_l%E2%80%99argent_par_les_fen%C3%AAtres) — jeter l'argent par les fenêtres : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -39,7 +39,7 @@ Buradaki anlamı: Parayı gereksiz yere savurmak. Aşırı ve akılsızca harcam
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000158 — rouler sur l'or
 
@@ -53,7 +53,7 @@ Buradaki anlamı: Parayı gereksiz yere savurmak. Aşırı ve akılsızca harcam
 2. Ne suppose pas qu'il roule sur l'or parce qu'il possède une voiture neuve.
    Türkçesi: Yeni arabası var diye çok zengin olduğunu varsayma.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/rouler_sur_l'or) — rouler sur l'or : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/rouler_sur_l'or) — rouler sur l'or : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -74,7 +74,7 @@ Buradaki anlamı: Çok zengin olmak. Mecaz; altın üzerinde hareket etmek deği
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000159 — être plein aux as
 
@@ -88,7 +88,7 @@ Buradaki anlamı: Çok zengin olmak. Mecaz; altın üzerinde hareket etmek deği
 2. Elle peut financer le projet seule : elle est pleine aux as.
    Türkçesi: Projeyi tek başına finanse edebilir; çok varlıklı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/plein_aux_as) — être plein aux as : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/plein_aux_as) — être plein aux as : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -109,42 +109,7 @@ Buradaki anlamı: Çok varlıklı olmak. Samimi ve abartılı ifade; kart oyunu 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000160 — être cousu d'or
-
-**Anlam:** Servet sahibi olacak kadar zengin olmak
-
-**Kullanım:** Abartılı zenginlik ifadesi; gerçek altınla dikilmiş giysi anlatılmaz.
-
-1. Ses voisins le croient cousu d'or.
-   Türkçesi: Komşuları onun büyük bir serveti olduğunu düşünüyor.
-
-2. Malgré son apparence modeste, elle est cousue d'or.
-   Türkçesi: Mütevazı görünümüne rağmen büyük bir servet sahibi.
-
-**Kaynak:** [Usito](https://usito.usherbrooke.ca/d%C3%A9finitions/cousu/lexies) — être cousu d'or : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Malgré son apparence modeste, elle est cousue d'or.
-
-Bu bağlamda « être cousu d'or » ne anlama geliyor?
-
-- A) Hesabı eksi bakiyede olmak
-- B) Servet sahibi olacak kadar zengin olmak
-- C) Para harcamaya yanaşmayacak kadar cimri olmak
-- D) Çalışmaya üşenen tembel biri olmak
-
-<details><summary>Cevap ve açıklama</summary>
-
-B) Servet sahibi olacak kadar zengin olmak
-
-Buradaki anlamı: Servet sahibi olacak kadar zengin olmak. Abartılı zenginlik ifadesi; gerçek altınla dikilmiş giysi anlatılmaz.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000161 — être dans le rouge
 
@@ -158,7 +123,7 @@ Buradaki anlamı: Servet sahibi olacak kadar zengin olmak. Abartılı zenginlik 
 2. Avec un solde de moins cent euros, elle était dans le rouge.
    Türkçesi: Bakiyesi eksi yüz avroydu; hesabı eksideydi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_rouge) — être dans le rouge : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_rouge) — être dans le rouge : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -179,7 +144,7 @@ Buradaki anlamı: Hesabı eksi bakiyede olmak. Bu kart banka hesabının mali du
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000162 — être à sec
 
@@ -193,7 +158,7 @@ Buradaki anlamı: Hesabı eksi bakiyede olmak. Bu kart banka hesabının mali du
 2. Après avoir payé les billets, il était à sec jusqu'au salaire.
    Türkçesi: Biletleri ödedikten sonra maaşa kadar elinde para kalmamıştı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_sec) — être à sec : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_sec) — être à sec : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -214,7 +179,7 @@ Buradaki anlamı: Elinde para kalmamış olmak. Bu kart paranın tükenmesi anla
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000163 — être fauché comme les blés
 
@@ -228,7 +193,7 @@ Buradaki anlamı: Elinde para kalmamış olmak. Bu kart paranın tükenmesi anla
 2. Elle a payé ses frais d'inscription et se retrouve fauchée comme les blés.
    Türkçesi: Kayıt ücretini ödedi; şimdi tamamen parasız kaldı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/fauch%C3%A9_comme_les_bl%C3%A9s) — être fauché comme les blés : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/fauch%C3%A9_comme_les_bl%C3%A9s) — être fauché comme les blés : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -249,7 +214,7 @@ Buradaki anlamı: Tamamen parasız olmak. Samimi, abartılı yoksulluk ifadesi; 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000164 — tirer le diable par la queue
 
@@ -263,7 +228,7 @@ Buradaki anlamı: Tamamen parasız olmak. Samimi, abartılı yoksulluk ifadesi; 
 2. Depuis la perte de son emploi, il tire le diable par la queue.
    Türkçesi: İşini kaybettiğinden beri geçim sıkıntısı çekiyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tirer_le_diable_par_la_queue) — tirer le diable par la queue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tirer_le_diable_par_la_queue) — tirer le diable par la queue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -284,7 +249,7 @@ Buradaki anlamı: Geçim sıkıntısı içinde yaşamak. Gelir ve ihtiyaçlar ar
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000165 — joindre les deux bouts
 
@@ -298,7 +263,7 @@ Buradaki anlamı: Geçim sıkıntısı içinde yaşamak. Gelir ve ihtiyaçlar ar
 2. Malgré la hausse du loyer, elle réussit encore à joindre les deux bouts.
    Türkçesi: Kira artışına rağmen hâlâ temel giderlerini karşılayabiliyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/joindre_les_deux_bouts) — joindre les deux bouts : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/joindre_les_deux_bouts) — joindre les deux bouts : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -319,7 +284,7 @@ Buradaki anlamı: Geliriyle temel giderlerini karşılayabilmek. Çoğu kez gü�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000166 — se serrer la ceinture
 
@@ -333,7 +298,7 @@ Buradaki anlamı: Geliriyle temel giderlerini karşılayabilmek. Çoğu kez gü�
 2. Après la baisse de ses revenus, elle s'est serré la ceinture.
    Türkçesi: Geliri azalınca masraflarını kıstı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_serrer_la_ceinture) — se serrer la ceinture : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_serrer_la_ceinture) — se serrer la ceinture : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -354,7 +319,7 @@ Buradaki anlamı: Masrafları kısmak, kemer sıkmak. Harcamaları zorunlu olara
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000167 — mettre du beurre dans les épinards
 
@@ -368,7 +333,7 @@ Buradaki anlamı: Masrafları kısmak, kemer sıkmak. Harcamaları zorunlu olara
 2. Son petit travail du week-end met du beurre dans les épinards.
    Türkçesi: Hafta sonundaki küçük işi ek gelirle maddi durumunu biraz rahatlatıyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_du_beurre_dans_les_%C3%A9pinards) — mettre du beurre dans les épinards : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_du_beurre_dans_les_%C3%A9pinards) — mettre du beurre dans les épinards : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -389,7 +354,7 @@ Buradaki anlamı: Ek gelirle maddi durumunu biraz rahatlatmak. Geliri artıran k
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000168 — faire bouillir la marmite
 
@@ -403,7 +368,7 @@ Buradaki anlamı: Ek gelirle maddi durumunu biraz rahatlatmak. Geliri artıran k
 2. Dans cette famille, la petite épicerie fait bouillir la marmite.
    Türkçesi: Bu ailede küçük bakkal evin geçimini sağlıyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_bouillir_la_marmite) — faire bouillir la marmite : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_bouillir_la_marmite) — faire bouillir la marmite : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -424,7 +389,7 @@ Buradaki anlamı: Evin geçimini sağlayacak parayı kazanmak. Aileyi yaşatan g
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000169 — gagner sa croûte
 
@@ -438,7 +403,7 @@ Buradaki anlamı: Evin geçimini sağlayacak parayı kazanmak. Aileyi yaşatan g
 2. Elle gagne sa croûte comme photographe indépendante.
    Türkçesi: Serbest fotoğrafçı olarak ekmeğini kazanıyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/gagner_sa_cro%C3%BBte) — gagner sa croûte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/gagner_sa_cro%C3%BBte) — gagner sa croûte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -459,7 +424,7 @@ Buradaki anlamı: Çalışarak ekmeğini kazanmak. Samimi, halk dili ifadesi; i�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000170 — mettre les petits plats dans les grands
 
@@ -473,7 +438,7 @@ Buradaki anlamı: Çalışarak ekmeğini kazanmak. Samimi, halk dili ifadesi; i�
 2. Pour le repas d'anniversaire, les hôtes avaient mis les petits plats dans les grands.
    Türkçesi: Doğum günü yemeği için ev sahipleri gösterişli bir sofra hazırlamıştı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_les_petits_plats_dans_les_grands) — mettre les petits plats dans les grands : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_les_petits_plats_dans_les_grands) — mettre les petits plats dans les grands : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -494,7 +459,7 @@ Buradaki anlamı: Birini ağırlamak için gösterişli bir sofra hazırlamak. G
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000171 — avoir des oursins dans les poches
 
@@ -508,7 +473,7 @@ Buradaki anlamı: Birini ağırlamak için gösterişli bir sofra hazırlamak. G
 2. Il refuse toujours de payer sa part : il a des oursins dans les poches.
    Türkçesi: Kendi payını ödemeyi hep reddediyor; çok cimri.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_des_oursins_dans_les_poches) — avoir des oursins dans les poches : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_des_oursins_dans_les_poches) — avoir des oursins dans les poches : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -529,7 +494,7 @@ Buradaki anlamı: Para harcamaya yanaşmayacak kadar cimri olmak. Eleştirel ve 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000172 — avoir le bras long
 
@@ -543,7 +508,7 @@ Buradaki anlamı: Para harcamaya yanaşmayacak kadar cimri olmak. Eleştirel ve 
 2. Pour obtenir une audience si vite, il devait avoir le bras long.
    Türkçesi: Bu kadar çabuk görüşme ayarlayabildiğine göre güçlü bağlantıları olmalıydı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_bras_long) — avoir le bras long : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_bras_long) — avoir le bras long : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -564,7 +529,7 @@ Buradaki anlamı: Etkili bağlantılara ve nüfuza sahip olmak. Mali servetle ay
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000173 — avoir un poil dans la main
 
@@ -575,14 +540,16 @@ Buradaki anlamı: Etkili bağlantılara ve nüfuza sahip olmak. Mali servetle ay
 1. Il évite toutes les corvées ; on dit qu'il a un poil dans la main.
    Türkçesi: Bütün işleri geçiştiriyor; onun için tembel diyorlar.
 
-2. Dans la comédie, le personnage a un poil dans la main et laisse tout faire aux autres.
-   Türkçesi: Komedideki karakter tembel; bütün işi başkalarına bırakıyor.
+2. Ce personnage a un poil dans la main : les autres font tout.
+   Türkçesi: Bu karakter çalışmaya hiç yanaşmıyor; her şeyi başkaları yapıyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_un_poil_dans_la_main) — avoir un poil dans la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_un_poil_dans_la_main) — avoir un poil dans la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.closermag.fr](https://www.closermag.fr/royautes/harry-et-meghan-un-poil-dans-la-main-des-sussex-malgre-le-chaos-ils-se-tournent-les-pouces-3414294) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
-Dans la comédie, le personnage a un poil dans la main et laisse tout faire aux autres.
+Ce personnage a un poil dans la main : les autres font tout.
 
 Bu bağlamda « avoir un poil dans la main » ne anlama geliyor?
 
@@ -599,7 +566,7 @@ Buradaki anlamı: Çalışmaya üşenen tembel biri olmak. Eleştirel, samimi et
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000174 — avoir les poches percées
 
@@ -613,7 +580,7 @@ Buradaki anlamı: Çalışmaya üşenen tembel biri olmak. Eleştirel, samimi et
 2. Elle voudrait économiser, mais elle a les poches percées.
    Türkçesi: Biriktirmek istiyor ama eline geçen parayı tutamıyor.
 
-**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A9P3031) — avoir les poches percées : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A9P3031) — avoir les poches percées : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -634,42 +601,7 @@ Buradaki anlamı: Eline geçen parayı tutamayıp harcamak. Parayı elde tutamam
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000175 — manger son blé en herbe
-
-**Anlam:** Henüz gelmemiş geliri önceden harcamak
-
-**Kullanım:** Gelecekteki kaynağı tüketme; yalnız bugünkü yüksek harcama değildir.
-
-1. N'achète pas à crédit sur cette prime incertaine : tu manges ton blé en herbe.
-   Türkçesi: Bu belirsiz ikramiyeye güvenip borçla alışveriş yapma; gelecek gelirini önceden tüketiyorsun.
-
-2. Il avait déjà dépensé sa commission avant de la recevoir ; il mangeait son blé en herbe.
-   Türkçesi: Komisyonunu almadan harcamıştı; gelmemiş gelirini önceden tüketiyordu.
-
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/manger_son_bl%C3%A9_en_herbe) — manger son blé en herbe : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Il avait déjà dépensé sa commission avant de la recevoir ; il mangeait son blé en herbe.
-
-Bu bağlamda « manger son blé en herbe » ne anlama geliyor?
-
-- A) Henüz gelmemiş geliri önceden harcamak
-- B) Para harcamaya yanaşmayacak kadar cimri olmak
-- C) Etkili bağlantılara ve nüfuza sahip olmak
-- D) Borcunu eksiksiz ve hemen ödemek
-
-<details><summary>Cevap ve açıklama</summary>
-
-A) Henüz gelmemiş geliri önceden harcamak
-
-Buradaki anlamı: Henüz gelmemiş geliri önceden harcamak. Gelecekteki kaynağı tüketme; yalnız bugünkü yüksek harcama değildir.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000176 — faire des économies de bouts de chandelle
 
@@ -683,7 +615,7 @@ Buradaki anlamı: Henüz gelmemiş geliri önceden harcamak. Gelecekteki kaynağ
 2. L'entreprise a fait des économies de bouts de chandelle en supprimant le savon.
    Türkçesi: Şirket sabunu kaldırarak önemsiz tutarlar uğruna anlamsız tasarruf yaptı.
 
-**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A9B1888) — faire des économies de bouts de chandelle : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A9B1888) — faire des économies de bouts de chandelle : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -704,7 +636,7 @@ Buradaki anlamı: Önemsiz tutarlar için anlamsız tasarruf yapmak. Tasarrufun 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000177 — payer rubis sur l'ongle
 
@@ -718,7 +650,7 @@ Buradaki anlamı: Önemsiz tutarlar için anlamsız tasarruf yapmak. Tasarrufun 
 2. Sans demander de délai, la cliente a payé rubis sur l'ongle.
    Türkçesi: Müşteri süre istemeden eksiksiz ve hemen ödedi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/rubis_sur_l%E2%80%99ongle) — payer rubis sur l'ongle : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/rubis_sur_l%E2%80%99ongle) — payer rubis sur l'ongle : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -739,7 +671,7 @@ Buradaki anlamı: Borcunu eksiksiz ve hemen ödemek. Tam ödeme vurgulanır; tak
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000178 — payer les pots cassés
 
@@ -753,7 +685,7 @@ Buradaki anlamı: Borcunu eksiksiz ve hemen ödemek. Tam ödeme vurgulanır; tak
 2. Les dirigeants se sont trompés, mais les usagers ont payé les pots cassés.
    Türkçesi: Yöneticiler hata yaptı ama sonuçların bedelini kullanıcılar üstlendi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/payer_les_pots_cass%C3%A9s) — payer les pots cassés : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/payer_les_pots_cass%C3%A9s) — payer les pots cassés : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -774,7 +706,7 @@ Buradaki anlamı: Bir işin kötü sonuçlarının bedelini üstlenmek. Sorumlus
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000179 — en être pour ses frais
 
@@ -788,7 +720,7 @@ Buradaki anlamı: Bir işin kötü sonuçlarının bedelini üstlenmek. Sorumlus
 2. Les billets ont rapporté moins que la location ; nous en avons été pour nos frais.
    Türkçesi: Bilet geliri kiradan azdı; masrafımızı karşılayamayıp zararda kaldık.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_%C3%AAtre_pour_ses_frais) — en être pour ses frais : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_%C3%AAtre_pour_ses_frais) — en être pour ses frais : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -809,7 +741,7 @@ Buradaki anlamı: Yaptığı harcamayı karşılayamayıp zararda kalmak. Bu kar
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000180 — faire chou blanc
 
@@ -823,7 +755,7 @@ Buradaki anlamı: Yaptığı harcamayı karşılayamayıp zararda kalmak. Bu kar
 2. Malgré trois visites chez les brocanteurs, elle a fait chou blanc.
    Türkçesi: Eskicilere üç kez gitmesine rağmen aradığını bulamadı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_chou_blanc) — faire chou blanc : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_chou_blanc) — faire chou blanc : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -844,7 +776,7 @@ Buradaki anlamı: Aradığı sonucu elde edememek. Samimi mecaz; araştırma vey
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000181 — faire d'une pierre deux coups
 
@@ -852,17 +784,19 @@ Buradaki anlamı: Aradığı sonucu elde edememek. Samimi mecaz; araştırma vey
 
 **Kullanım:** İki hedefin aynı eylemle karşılanması; gerçek taş atmak değildir.
 
-1. En venant à vélo, je fais du sport et économise : d'une pierre deux coups.
-   Türkçesi: Bisikletle gelerek spor yapıyor ve tasarruf ediyorum; bir taşla iki kuş.
+1. Je fais d'une pierre deux coups : je marche et je poste mon colis.
+   Türkçesi: Yürüyüp kolimi postalayarak bir taşla iki kuş vuruyorum.
 
-2. En allant à pied poster son colis, elle a fait d'une pierre deux coups : une course et de l'exercice.
-   Türkçesi: Paketini göndermeye yürüyerek gidip hem işini gördü hem spor yaptı; bir taşla iki kuş vurdu.
+2. Elle a fait d'une pierre deux coups : poster son colis lui a permis de marcher.
+   Türkçesi: Koliyi postalamaya yürüyerek gidip bir taşla iki kuş vurdu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_d%E2%80%99une_pierre_deux_coups) — faire d'une pierre deux coups : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_d%E2%80%99une_pierre_deux_coups) — faire d'une pierre deux coups : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.lapresse.tn](https://www.lapresse.tn/2024/10/30/pourquoi-dune-pierre-deux-coups/) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
-En allant à pied poster son colis, elle a fait d'une pierre deux coups : une course et de l'exercice.
+Elle a fait d'une pierre deux coups : poster son colis lui a permis de marcher.
 
 Bu bağlamda « faire d'une pierre deux coups » ne anlama geliyor?
 
@@ -879,7 +813,7 @@ Buradaki anlamı: Tek bir işle iki sonuç elde etmek. İki hedefin aynı eyleml
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000182 — mettre la main à la poche
 
@@ -893,7 +827,7 @@ Buradaki anlamı: Tek bir işle iki sonuç elde etmek. İki hedefin aynı eyleml
 2. Les membres ont mis la main à la poche pour réparer le toit.
    Türkçesi: Üyeler çatıyı onarmak için ceplerinden para verdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_la_main_%C3%A0_la_poche) — mettre la main à la poche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_la_main_%C3%A0_la_poche) — mettre la main à la poche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -914,4 +848,4 @@ Buradaki anlamı: Masrafı karşılamak için cebinden para vermek. Mecaz ödeme
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.

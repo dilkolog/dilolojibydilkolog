@@ -95,7 +95,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000242
 
-Il économisait aujourd'hui en créant des coûts futurs ; il ne voyait pas plus loin que le bout de son nez.
+Il néglige l'avenir : il ne voit pas plus loin que le bout de son nez.
 
 Bu bağlamda « ne pas voir plus loin que le bout de son nez » ne anlama geliyor?
 
@@ -275,19 +275,6 @@ Bu bağlamda « connaître quelque chose sur le bout des doigts » ne anlama gel
 
 Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
-## fr-idiom-000256
-
-Passionné de trains, il est incollable sur les anciennes locomotives.
-
-Bu bağlamda « être incollable sur quelque chose » ne anlama geliyor?
-
-- A) Bir şeyi gerçeğinden çok farklı sanıp fena yanılmak
-- B) Hoşuna gitmeyen gerçeği kabul etmekten kaçınmak
-- C) Durumu anlayamayıp zihni karışık olmak
-- D) Bir konuda her soruyu cevaplayabilecek kadar bilgili olmak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
 ## fr-idiom-000257
 
 On lui montrait les contradictions, mais elle avait réponse à tout.
@@ -303,7 +290,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000258
 
-La question portait sur le prix, mais il parlait de couleur ; il était à côté de la plaque.
+On parle des prix; elle répond sur les horaires : elle est à côté de la plaque.
 
 Bu bağlamda « être à côté de la plaque » ne anlama geliyor?
 

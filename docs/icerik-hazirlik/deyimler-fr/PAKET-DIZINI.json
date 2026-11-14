@@ -7,10 +7,10 @@
       "batch": "fr-idioms-0001",
       "themeTr": "İlk karma paket",
       "path": "fr-idioms-0001.json",
-      "items": 26,
-      "examples": 52,
-      "exercises": 26,
-      "idStart": "fr-idiom-000001",
+      "items": 14,
+      "examples": 28,
+      "exercises": 14,
+      "idStart": "fr-idiom-000005",
       "idEnd": "fr-idiom-000026"
     },
     {
@@ -18,9 +18,9 @@
       "batch": "fr-idioms-0002",
       "themeTr": "Duygular ve tepkiler",
       "path": "paquet-02/fr-idioms-0002.json",
-      "items": 26,
-      "examples": 52,
-      "exercises": 26,
+      "items": 24,
+      "examples": 48,
+      "exercises": 24,
       "idStart": "fr-idiom-000027",
       "idEnd": "fr-idiom-000052"
     },
@@ -40,9 +40,9 @@
       "batch": "fr-idioms-0004",
       "themeTr": "Çalışma ve çaba",
       "path": "paquet-04/fr-idioms-0004.json",
-      "items": 26,
-      "examples": 52,
-      "exercises": 26,
+      "items": 25,
+      "examples": 50,
+      "exercises": 25,
       "idStart": "fr-idiom-000079",
       "idEnd": "fr-idiom-000104"
     },
@@ -73,9 +73,9 @@
       "batch": "fr-idioms-0007",
       "themeTr": "Para ve kaynaklar",
       "path": "paquet-07/fr-idioms-0007.json",
-      "items": 26,
-      "examples": 52,
-      "exercises": 26,
+      "items": 24,
+      "examples": 48,
+      "exercises": 24,
       "idStart": "fr-idiom-000157",
       "idEnd": "fr-idiom-000182"
     },
@@ -84,10 +84,10 @@
       "batch": "fr-idioms-0008",
       "themeTr": "Zaman ve gündelik ritim",
       "path": "paquet-08/fr-idioms-0008.json",
-      "items": 26,
-      "examples": 52,
-      "exercises": 26,
-      "idStart": "fr-idiom-000183",
+      "items": 21,
+      "examples": 42,
+      "exercises": 21,
+      "idStart": "fr-idiom-000184",
       "idEnd": "fr-idiom-000208"
     },
     {
@@ -106,19 +106,20 @@
       "batch": "fr-idioms-0010",
       "themeTr": "Anlama, sezgi ve yanılgı",
       "path": "paquet-10/fr-idioms-0010.json",
-      "items": 26,
-      "examples": 52,
-      "exercises": 26,
+      "items": 25,
+      "examples": 50,
+      "exercises": 25,
       "idStart": "fr-idiom-000235",
       "idEnd": "fr-idiom-000260"
     }
   ],
   "totals": {
     "packages": 10,
-    "items": 260,
-    "examples": 520,
-    "exercises": 260
+    "items": 237,
+    "examples": 474,
+    "exercises": 237
   },
-  "status": "ready_for_independent_review",
-  "cefrAllocation": "pending"
+  "status": "revised_for_recheck",
+  "cefrAllocation": "pending",
+  "retired": 23
 }

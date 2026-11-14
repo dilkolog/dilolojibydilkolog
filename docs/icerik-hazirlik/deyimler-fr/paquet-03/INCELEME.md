@@ -1,8 +1,8 @@
 # Paket 03 — Konuşma ve iletişim
 
-26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.
+26 deyim · 52 özgün örnek/çeviri · 26 soru.
 
-Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.
+Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.
 
 Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.
 
@@ -18,7 +18,7 @@ Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm iç
 2. Confidente de sa sœur, Iris a tenu sa langue malgré les questions.
    Türkçesi: Kız kardeşinin sırdaşı olan Iris sorulara rağmen sırrı sakladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tenir_sa_langue) — tenir sa langue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tenir_sa_langue) — tenir sa langue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -39,7 +39,7 @@ Buradaki anlamı: Sırrı söylemeyip dilini tutmak. Bu kart gizli bilgiyi sakla
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000054 — avoir la langue bien pendue
 
@@ -53,7 +53,7 @@ Buradaki anlamı: Sırrı söylemeyip dilini tutmak. Bu kart gizli bilgiyi sakla
 2. Cette voisine a la langue bien pendue : elle parle sans arrêt.
    Türkçesi: Bu komşunun çenesi düşük; durmadan konuşuyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_langue_bien_pendue) — avoir la langue bien pendue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_langue_bien_pendue) — avoir la langue bien pendue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -74,7 +74,7 @@ Buradaki anlamı: Çenesi düşük olup çok konuşmak. Konuşkanlık, bazen kü
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000055 — ne pas avoir sa langue dans sa poche
 
@@ -88,7 +88,7 @@ Buradaki anlamı: Çenesi düşük olup çok konuşmak. Konuşkanlık, bazen kü
 2. Même devant le directeur, il n'a pas sa langue dans sa poche.
    Türkçesi: Müdürün karşısında bile sözünü sakınmadan fikrini söylüyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_avoir_sa_langue_dans_sa_poche) — ne pas avoir sa langue dans sa poche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_avoir_sa_langue_dans_sa_poche) — ne pas avoir sa langue dans sa poche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -109,7 +109,7 @@ Buradaki anlamı: Sözünü sakınmadan fikrini söylemek. Samimi kullanım; çe
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000056 — avoir un mot sur le bout de la langue
 
@@ -123,7 +123,7 @@ Buradaki anlamı: Sözünü sakınmadan fikrini söylemek. Samimi kullanım; çe
 2. Ce mot était sur le bout de sa langue, sans qu'elle puisse le retrouver.
    Türkçesi: Sözcük dilinin ucundaydı ama bir türlü hatırlayamıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_le_bout_de_la_langue) — avoir un mot sur le bout de la langue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_le_bout_de_la_langue) — avoir un mot sur le bout de la langue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -144,7 +144,7 @@ Buradaki anlamı: Bildiği bir sözcüğü bir türlü hatırlayamamak. Sözcü�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000057 — ne pas mâcher ses mots
 
@@ -158,7 +158,7 @@ Buradaki anlamı: Bildiği bir sözcüğü bir türlü hatırlayamamak. Sözcü�
 2. Il n'a pas mâché ses mots en dénonçant ces retards répétés.
    Türkçesi: Bu sürekli gecikmeleri eleştirirken lafını esirgemeden konuştu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_m%C3%A2cher_ses_mots) — ne pas mâcher ses mots : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_m%C3%A2cher_ses_mots) — ne pas mâcher ses mots : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -179,7 +179,7 @@ Buradaki anlamı: Lafını esirgemeden sertçe konuşmak. Olumsuz yapıda kullan
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000058 — appeler un chat un chat
 
@@ -193,7 +193,7 @@ Buradaki anlamı: Lafını esirgemeden sertçe konuşmak. Olumsuz yapıda kullan
 2. Elle appelle un chat un chat et parle de fraude, pas de simple maladresse.
    Türkçesi: Lafı dolandırmıyor; basit beceriksizlikten değil, dolandırıcılıktan söz ediyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/appeler_un_chat_un_chat) — appeler un chat un chat : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/appeler_un_chat_un_chat) — appeler un chat un chat : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -214,7 +214,7 @@ Buradaki anlamı: Bir şeyi adıyla açıkça söylemek. Üstü kapalı anlatım
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000059 — mettre les points sur les i
 
@@ -228,7 +228,7 @@ Buradaki anlamı: Bir şeyi adıyla açıkça söylemek. Üstü kapalı anlatım
 2. La responsable a mis les points sur les i concernant les délais.
    Türkçesi: Sorumlu kişi teslim tarihlerini açık ve kesin biçimde netleştirdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_les_points_sur_les_i) — mettre les points sur les i : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_les_points_sur_les_i) — mettre les points sur les i : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -249,7 +249,7 @@ Buradaki anlamı: Yanlış anlaşılmayacak biçimde açık ve kesin konuşmak. 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000060 — ne pas y aller par quatre chemins
 
@@ -263,7 +263,7 @@ Buradaki anlamı: Yanlış anlaşılmayacak biçimde açık ve kesin konuşmak. 
 2. Sans y aller par quatre chemins, elle lui a demandé de rembourser sa dette.
    Türkçesi: Lafı dolandırmadan borcunu geri ödemesini istedi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_y_aller_par_quatre_chemins) — ne pas y aller par quatre chemins : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_y_aller_par_quatre_chemins) — ne pas y aller par quatre chemins : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -284,7 +284,7 @@ Buradaki anlamı: Doğrudan konuya girmek. Samimi kullanım; dolambaçlı giriş
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000061 — parler à bâtons rompus
 
@@ -298,7 +298,7 @@ Buradaki anlamı: Doğrudan konuya girmek. Samimi kullanım; dolambaçlı giriş
 2. Au café, ils parlaient à bâtons rompus de voyages et de souvenirs.
    Türkçesi: Kafede yolculuklardan ve anılardan serbestçe, belirli bir sıra izlemeden konuşuyorlardı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_b%C3%A2tons_rompus) — parler à bâtons rompus : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_b%C3%A2tons_rompus) — parler à bâtons rompus : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -319,7 +319,7 @@ Buradaki anlamı: Belirli bir sıra izlemeden serbestçe sohbet etmek. Konuşma 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000062 — passer du coq à l'âne
 
@@ -333,7 +333,7 @@ Buradaki anlamı: Belirli bir sıra izlemeden serbestçe sohbet etmek. Konuşma 
 2. Elle parlait des impôts, puis des volcans : elle passait du coq à l'âne.
    Türkçesi: Vergilerden söz ederken volkanlara geçti; konudan ilgisiz başka konuya atlıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/passer_du_coq_%C3%A0_l%E2%80%99%C3%A2ne) — passer du coq à l'âne : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/passer_du_coq_%C3%A0_l%E2%80%99%C3%A2ne) — passer du coq à l'âne : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -354,7 +354,7 @@ Buradaki anlamı: Bir konudan ilgisiz başka bir konuya atlamak. Konu değişimi
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000063 — revenir à ses moutons
 
@@ -368,7 +368,7 @@ Buradaki anlamı: Bir konudan ilgisiz başka bir konuya atlamak. Konu değişimi
 2. Le débat s'éloignait du projet ; Léa a proposé de revenir à nos moutons.
    Türkçesi: Tartışma projeden uzaklaşıyordu; Léa asıl konuya dönmeyi önerdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/revenir_%C3%A0_ses_moutons) — revenir à ses moutons : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/revenir_%C3%A0_ses_moutons) — revenir à ses moutons : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -389,7 +389,7 @@ Buradaki anlamı: Asıl konuşulan konuya dönmek. Burada yaygın konuşmaya ger
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000064 — raconter des salades
 
@@ -397,13 +397,15 @@ Buradaki anlamı: Asıl konuşulan konuya dönmek. Burada yaygın konuşmaya ger
 
 **Kullanım:** Konuşma dili; uydurma haber veya açıklamalar anlatmak.
 
-1. Ne raconte pas de salades : je t'ai vu sortir.
-   Türkçesi: Yalan dolan anlatma; dışarı çıktığını gördüm.
+1. Il raconte des salades pour cacher son erreur.
+   Türkçesi: Hatasını gizlemek için yalan dolan anlatıyor.
 
 2. Il racontait des salades sur un diplôme qu'il n'avait jamais obtenu.
    Türkçesi: Hiç almadığı bir diploma hakkında yalanlar anlatıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/raconter_des_salades) — raconter des salades : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/raconter_des_salades) — raconter des salades : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [lepetitjournal.com](https://lepetitjournal.com/inde/communaute/raconter-des-salades-ou-se-creuser-la-tete-249477) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -424,7 +426,7 @@ Buradaki anlamı: Yalan dolan anlatmak. Konuşma dili; uydurma haber veya açık
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000065 — mener quelqu'un en bateau
 
@@ -438,7 +440,7 @@ Buradaki anlamı: Yalan dolan anlatmak. Konuşma dili; uydurma haber veya açık
 2. Ce vendeur la menait en bateau en promettant une livraison déjà impossible.
    Türkçesi: Satıcı artık mümkün olmayan bir teslimat sözü vererek onu kandırıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mener_en_bateau) — mener quelqu'un en bateau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mener_en_bateau) — mener quelqu'un en bateau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -459,7 +461,7 @@ Buradaki anlamı: Birini uydurma anlatımlarla kandırmak. Gerçek tekne yolculu
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000066 — faire marcher quelqu'un
 
@@ -473,7 +475,7 @@ Buradaki anlamı: Birini uydurma anlatımlarla kandırmak. Gerçek tekne yolculu
 2. Il prétendait connaître une star, mais il me faisait marcher.
    Türkçesi: Bir ünlüyü tanıdığını söylüyordu ama beni işletiyordu.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/marcher/49395) — faire marcher quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/marcher/49395) — faire marcher quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -494,7 +496,7 @@ Buradaki anlamı: Birini şakayla kandırıp işletmek. Samimi kullanım; gerçe
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000067 — vendre la mèche
 
@@ -502,13 +504,15 @@ Buradaki anlamı: Birini şakayla kandırıp işletmek. Samimi kullanım; gerçe
 
 **Kullanım:** İstemeden veya bilerek sırrı açığa vurma; itiraf baskısı zorunlu değildir.
 
-1. Ne vends pas la mèche avant la fête surprise.
-   Türkçesi: Sürpriz partiden önce sırrı açıklama.
+1. Jules a vendu la mèche sur notre fête surprise.
+   Türkçesi: Jules sürpriz partimizin sırrını açıkladı.
 
 2. En parlant du gâteau, Jules a vendu la mèche sur l'anniversaire surprise.
    Türkçesi: Jules pastadan söz ederek sürpriz doğum gününün sırrını açıkladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/vendre_la_m%C3%A8che) — vendre la mèche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/vendre_la_m%C3%A8che) — vendre la mèche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.lemonde.fr](https://www.lemonde.fr/international/article/2021/04/20/a-new-york-le-jour-ou-j-ai-recu-une-facture-de-43-970-dollars-de-mon-chirurgien_6077343_3210.html) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -529,7 +533,7 @@ Buradaki anlamı: Gizli kalması gereken şeyi açıklamak. İstemeden veya bile
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000068 — cracher le morceau
 
@@ -543,7 +547,7 @@ Buradaki anlamı: Gizli kalması gereken şeyi açıklamak. İstemeden veya bile
 2. Acculé par les preuves, il a craché le morceau et révélé son complice.
    Türkçesi: Kanıtlar karşısında sıkışınca itiraf edip suç ortağını açıkladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/cracher_le_morceau) — cracher le morceau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/cracher_le_morceau) — cracher le morceau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -564,7 +568,7 @@ Buradaki anlamı: Sakladığı bilgiyi sonunda itiraf etmek. Argo kökenli samim
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000069 — couper la parole à quelqu'un
 
@@ -578,7 +582,7 @@ Buradaki anlamı: Sakladığı bilgiyi sonunda itiraf etmek. Argo kökenli samim
 2. Pendant son exposé, un collègue lui a coupé la parole pour poser une question.
    Türkçesi: Sunumu sırasında bir iş arkadaşı soru sormak için sözünü kesti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/couper_la_parole) — couper la parole à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/couper_la_parole) — couper la parole à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -599,7 +603,7 @@ Buradaki anlamı: Birinin konuşmasını yarıda kesmek. Konuşan kişiyi kesip 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000070 — clouer le bec à quelqu'un
 
@@ -613,7 +617,7 @@ Buradaki anlamı: Birinin konuşmasını yarıda kesmek. Konuşan kişiyi kesip 
 2. Sa réplique précise lui a cloué le bec ; il n'a rien trouvé à répondre.
    Türkçesi: Kesin cevabı onu susturdu; söyleyecek bir şey bulamadı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/clouer_le_bec) — clouer le bec à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/clouer_le_bec) — clouer le bec à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -634,7 +638,7 @@ Buradaki anlamı: Birini cevap veremez hâle getirip susturmak. Keskin yanıt ve
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000071 — rester bouche bée
 
@@ -648,7 +652,7 @@ Buradaki anlamı: Birini cevap veremez hâle getirip susturmak. Keskin yanıt ve
 2. Le résultat dépassait toutes ses attentes ; elle est restée bouche bée.
    Türkçesi: Sonuç bütün beklentilerini aşıyordu; hayretten ağzı açık kaldı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/bouche_b%C3%A9e) — rester bouche bée : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/bouche_b%C3%A9e) — rester bouche bée : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -669,7 +673,7 @@ Buradaki anlamı: Şaşkınlıktan ağzı açık kalmak. Hayretin etkisiyle konu
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000072 — donner le ton
 
@@ -683,7 +687,7 @@ Buradaki anlamı: Şaşkınlıktan ağzı açık kalmak. Hayretin etkisiyle konu
 2. Dès les premières lignes, l'humour donne le ton du récit.
    Türkçesi: Daha ilk satırlardan mizah öykünün havasını belirliyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/donner_le_ton) — donner le ton : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/donner_le_ton) — donner le ton : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -704,7 +708,7 @@ Buradaki anlamı: Ortamın veya konuşmanın havasını belirlemek. Müzik dış
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000073 — avoir voix au chapitre
 
@@ -718,7 +722,11 @@ Buradaki anlamı: Ortamın veya konuşmanın havasını belirlemek. Müzik dış
 2. Pour choisir le programme, les élèves doivent avoir voix au chapitre.
    Türkçesi: Program seçilirken öğrencilerin de söz hakkı olmalı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_voix_au_chapitre) — avoir voix au chapitre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_voix_au_chapitre) — avoir voix au chapitre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.letemps.ch](https://www.letemps.ch/opinions/ia-au-temps-avoir-voix-au-chapitre) — Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm (2026-11-14).
+
+**Kaynak sınırı:** Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez.
 
 **Soru:**
 
@@ -739,7 +747,7 @@ Buradaki anlamı: Kararda söz hakkı olmak. Fikir belirtme ve kararı etkileme 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000074 — prêcher dans le désert
 
@@ -753,7 +761,7 @@ Buradaki anlamı: Kararda söz hakkı olmak. Fikir belirtme ve kararı etkileme 
 2. Personne ne suivait ses conseils ; elle avait le sentiment de prêcher dans le désert.
    Türkçesi: Kimse öğütlerini uygulamıyordu; boşuna konuştuğunu hissediyordu.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/d%C3%A9sert/24388) — prêcher dans le désert : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/d%C3%A9sert/24388) — prêcher dans le désert : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -774,7 +782,7 @@ Buradaki anlamı: Dinleyen olmadığı için boşuna konuşmak. Bu kart yaygın 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000075 — parler pour ne rien dire
 
@@ -788,7 +796,7 @@ Buradaki anlamı: Dinleyen olmadığı için boşuna konuşmak. Bu kart yaygın 
 2. Le discours n'apportait aucune idée ; l'orateur parlait pour ne rien dire.
    Türkçesi: Konuşma hiçbir fikir sunmuyordu; konuşmacı boş sözler söylüyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/parler_pour_ne_rien_dire) — parler pour ne rien dire : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/parler_pour_ne_rien_dire) — parler pour ne rien dire : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -809,7 +817,7 @@ Buradaki anlamı: İçi boş sözlerle konuşmak. Söylenenin bilgi veya katkı 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000076 — remettre les pendules à l'heure
 
@@ -820,14 +828,16 @@ Buradaki anlamı: İçi boş sözlerle konuşmak. Söylenenin bilgi veya katkı 
 1. Il faut remettre les pendules à l'heure sur ce dossier.
    Türkçesi: Bu dosyayla ilgili yanlış algıları düzeltip durumu netleştirmek gerekiyor.
 
-2. On lui attribuait tout l'échec ; elle a remis les pendules à l'heure en présentant les faits.
-   Türkçesi: Başarısızlığın tamamı ona yükleniyordu; gerçekleri sunup durumu netleştirdi.
+2. Elle a remis les pendules à l'heure en présentant les faits.
+   Türkçesi: Gerçekleri ortaya koyarak yanlış algıyı düzeltti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/remettre_les_pendules_%C3%A0_l%E2%80%99heure) — remettre les pendules à l'heure : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/remettre_les_pendules_%C3%A0_l%E2%80%99heure) — remettre les pendules à l'heure : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.chga.fm](https://www.chga.fm/antecedents-judiciaires-le-csshbo-tient-a-remettre-les-pendules-a-lheure/) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
-On lui attribuait tout l'échec ; elle a remis les pendules à l'heure en présentant les faits.
+Elle a remis les pendules à l'heure en présentant les faits.
 
 Bu bağlamda « remettre les pendules à l'heure » ne anlama geliyor?
 
@@ -844,7 +854,7 @@ Buradaki anlamı: Yanlış algıyı düzeltip durumu netleştirmek. Saat ayarı 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000077 — faire la sourde oreille
 
@@ -858,7 +868,7 @@ Buradaki anlamı: Yanlış algıyı düzeltip durumu netleştirmek. Saat ayarı 
 2. Malgré nos rappels, le propriétaire faisait la sourde oreille à nos demandes.
    Türkçesi: Hatırlatmalarımıza rağmen ev sahibi taleplerimizi duymazdan geliyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_la_sourde_oreille) — faire la sourde oreille : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_la_sourde_oreille) — faire la sourde oreille : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -879,7 +889,7 @@ Buradaki anlamı: Duymazdan gelmek. İsteği veya uyarıyı bilerek dikkate alma
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000078 — tenir le crachoir
 
@@ -893,7 +903,7 @@ Buradaki anlamı: Duymazdan gelmek. İsteği veya uyarıyı bilerek dikkate alma
 2. Elle tenait le crachoir et ses invités ne pouvaient placer un mot.
    Türkçesi: Konuşmayı tekeline almıştı; misafirleri araya tek söz sokamıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tenir_le_crachoir) — tenir le crachoir : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tenir_le_crachoir) — tenir le crachoir : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -914,4 +924,4 @@ Buradaki anlamı: Konuşmayı tekeline alıp başkalarına söz bırakmamak. Sam
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.

@@ -158,19 +158,6 @@ Bu bağlamda « se plier en quatre » ne anlama geliyor?
 
 Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
-## fr-idiom-000091
-
-Les techniciens se sont creusé la tête pour comprendre cette panne étrange.
-
-Bu bağlamda « se creuser la tête » ne anlama geliyor?
-
-- A) İşe bizzat katılıp el atmak
-- B) Bir işin alışkanlığını edinmek
-- C) Çok miktarda işi tamamlamak
-- D) Çözüm bulmak için kafa yormak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
 ## fr-idiom-000092
 
 Nous nous sommes cassé la tête sur ce calcul toute la matinée.
@@ -199,7 +186,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000094
 
-Même sans la pièce habituelle, elle avait plus d'un tour dans son sac pour réparer la lampe.
+Sans outil adapté, elle avait plus d'un tour dans son sac pour réparer cette lampe.
 
 Bu bağlamda « avoir plus d'un tour dans son sac » ne anlama geliyor?
 

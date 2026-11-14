@@ -1,8 +1,8 @@
 # Paket 09 — Başarı ve güçlükler
 
-26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.
+26 deyim · 52 özgün örnek/çeviri · 26 soru.
 
-Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.
+Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.
 
 Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.
 
@@ -18,7 +18,9 @@ Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm iç
 2. Ce genre de spectacle a le vent en poupe cette année.
    Türkçesi: Bu tür gösteriler bu yıl yükselişte.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_vent_en_poupe) — avoir le vent en poupe : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_vent_en_poupe) — avoir le vent en poupe : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.vbs.admin.ch](https://www.vbs.admin.ch/dam/fr/sd-web/DWJTsatJ6C-I/NDB_Sicherheit_Schweiz_2024_f.pdf) — Rapport 2024, p. 27, avoir le vent en poupe au figuré (2026-11-14).
 
 **Soru:**
 
@@ -39,7 +41,7 @@ Buradaki anlamı: Başarıyı destekleyen elverişli bir dönemde olmak. Mecaz; 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000210 — avoir la main heureuse
 
@@ -53,7 +55,7 @@ Buradaki anlamı: Başarıyı destekleyen elverişli bir dönemde olmak. Mecaz; 
 2. En choisissant ce petit éditeur, elle a eu la main heureuse.
    Türkçesi: Bu küçük yayınevini seçerek şanslı bir tercih yaptı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_main_heureuse) — avoir la main heureuse : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_main_heureuse) — avoir la main heureuse : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -74,7 +76,7 @@ Buradaki anlamı: Seçimlerinde veya girişimlerinde şanslı olmak. Başarılı
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000211 — mettre le pied à l'étrier à quelqu'un
 
@@ -88,7 +90,7 @@ Buradaki anlamı: Seçimlerinde veya girişimlerinde şanslı olmak. Başarılı
 2. Son professeur lui a mis le pied à l'étrier en le recommandant pour son premier rôle.
    Türkçesi: Öğretmeni ilk rolü için onu önererek mesleğe başlamasına yardımcı oldu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_le_pied_%C3%A0_l%E2%80%99%C3%A9trier) — mettre le pied à l'étrier à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_le_pied_%C3%A0_l%E2%80%99%C3%A9trier) — mettre le pied à l'étrier à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -109,7 +111,7 @@ Buradaki anlamı: Birinin bir işe başlamasına yardımcı olmak. İlk adımı 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000212 — tenir le bon bout
 
@@ -123,7 +125,7 @@ Buradaki anlamı: Birinin bir işe başlamasına yardımcı olmak. İlk adımı 
 2. Avec un financement presque acquis, l'équipe tenait le bon bout.
    Türkçesi: Finansman neredeyse kesinleşmişken ekip avantajlı konumdaydı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tenir_le_bon_bout) — tenir le bon bout : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tenir_le_bon_bout) — tenir le bon bout : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -144,7 +146,7 @@ Buradaki anlamı: Başarıya yakın ve avantajlı konumda olmak. Başarı henüz
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000213 — toucher au but
 
@@ -158,7 +160,7 @@ Buradaki anlamı: Başarıya yakın ve avantajlı konumda olmak. Başarı henüz
 2. Il ne restait qu'une signature ; elle touchait au but.
    Türkçesi: Yalnızca bir imza kalmıştı; hedefe ulaşmak üzereydi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/toucher_au_but) — toucher au but : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/toucher_au_but) — toucher au but : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -179,7 +181,7 @@ Buradaki anlamı: Hedefe ulaşmak veya çok yaklaşmak. Bu kart sürecin sonuna 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000214 — faire mouche
 
@@ -193,7 +195,7 @@ Buradaki anlamı: Hedefe ulaşmak veya çok yaklaşmak. Bu kart sürecin sonuna 
 2. La dernière phrase du discours a fait mouche et convaincu les hésitants.
    Türkçesi: Konuşmanın son cümlesi hedefi tam tutturup kararsızları ikna etti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_mouche) — faire mouche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_mouche) — faire mouche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -214,7 +216,7 @@ Buradaki anlamı: Sözüyle veya işiyle hedefi tam tutturmak. Etkili ve yerinde
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000215 — faire un carton
 
@@ -228,7 +230,7 @@ Buradaki anlamı: Sözüyle veya işiyle hedefi tam tutturmak. Etkili ve yerinde
 2. Leur premier roman a fait un carton et a été réimprimé.
    Türkçesi: İlk romanları büyük başarı kazandı ve yeniden basıldı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_un_carton) — faire un carton : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_un_carton) — faire un carton : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -249,7 +251,7 @@ Buradaki anlamı: Çok büyük ilgi ve başarı kazanmak. Samimi mecaz; gerçek 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000216 — faire un tabac
 
@@ -263,7 +265,9 @@ Buradaki anlamı: Çok büyük ilgi ve başarı kazanmak. Samimi mecaz; gerçek 
 2. Son numéro a fait un tabac : le public l'a longuement applaudie.
    Türkçesi: Gösterisi büyük başarı kazandı; seyirciler onu uzun süre alkışladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_un_tabac) — faire un tabac : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_un_tabac) — faire un tabac : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.lemonde.fr](https://www.lemonde.fr/politique/article/2023/08/04/eelv-defend-son-invitation-au-rappeur-medine-a-ses-journees-d-ete_6184438_823448.html) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -284,7 +288,7 @@ Buradaki anlamı: Seyirciden büyük başarı ve alkış almak. Samimi ifade; t�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000217 — avoir le beurre et l'argent du beurre
 
@@ -298,7 +302,9 @@ Buradaki anlamı: Seyirciden büyük başarı ve alkış almak. Samimi ifade; t�
 2. Il veut vendre son vélo et continuer à l'utiliser : le beurre et l'argent du beurre.
    Türkçesi: Bisikletini satıp kullanmayı sürdürmek istiyor; bütün avantajları birden istiyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_beurre_et_l'argent_du_beurre) — avoir le beurre et l'argent du beurre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_beurre_et_l'argent_du_beurre) — avoir le beurre et l'argent du beurre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.ulc.lu](https://www.ulc.lu/fr/actualites/toutes-nos-actualites/gestion-des-articles/le-beurre-et-l-argent-du-beurre-histoire-d-une-garantie-locative-finalement-restituee/) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -319,7 +325,7 @@ Buradaki anlamı: Birbiriyle bağdaşmayan bütün avantajları birden istemek. 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000218 — décrocher la lune
 
@@ -333,7 +339,7 @@ Buradaki anlamı: Birbiriyle bağdaşmayan bütün avantajları birden istemek. 
 2. Obtenir cette salle gratuitement, c'était décrocher la lune pour notre petit groupe.
    Türkçesi: O salonu ücretsiz almak küçük grubumuz için çok büyük bir başarıydı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/d%C3%A9crocher_la_lune) — décrocher la lune : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/d%C3%A9crocher_la_lune) — décrocher la lune : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -354,7 +360,7 @@ Buradaki anlamı: Çok zor görünen büyük bir başarı elde etmek. Mecaz; ger
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000219 — faire des étincelles
 
@@ -368,7 +374,7 @@ Buradaki anlamı: Çok zor görünen büyük bir başarı elde etmek. Mecaz; ger
 2. Lors du débat, elle a fait des étincelles par la précision de ses réponses.
    Türkçesi: Tartışmada kesin cevaplarıyla çok parlak bir performans gösterdi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_des_%C3%A9tincelles) — faire des étincelles : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_des_%C3%A9tincelles) — faire des étincelles : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -389,7 +395,7 @@ Buradaki anlamı: Çok parlak bir performans göstermek. Kişinin etkileyici ba�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000220 — retomber sur ses pieds
 
@@ -400,14 +406,18 @@ Buradaki anlamı: Çok parlak bir performans göstermek. Kişinin etkileyici ba�
 1. Même après un refus, il retombe sur ses pieds.
    Türkçesi: Reddedilse bile toparlanıp yeniden dengesini buluyor.
 
-2. Le contrat a été annulé, mais elle est retombée sur ses pieds grâce à une autre commande.
-   Türkçesi: Sözleşme iptal oldu ama başka bir siparişle toparlandı.
+2. L'atelier a fermé, mais il a retrouvé un emploi : il retombe sur ses pieds.
+   Türkçesi: Atölye kapandı ama yeniden iş buldu; zor durumdan sıyrılıp dengesini buluyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/retomber_sur_ses_pieds) — retomber sur ses pieds : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/retomber_sur_ses_pieds) — retomber sur ses pieds : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.fcpe.asso.fr](https://www.fcpe.asso.fr/sites/default/files/revue-des-parents/RDP_453_2024_04.pdf) — Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm (2026-11-14).
+
+**Kaynak sınırı:** Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez.
 
 **Soru:**
 
-Le contrat a été annulé, mais elle est retombée sur ses pieds grâce à une autre commande.
+L'atelier a fermé, mais il a retrouvé un emploi : il retombe sur ses pieds.
 
 Bu bağlamda « retomber sur ses pieds » ne anlama geliyor?
 
@@ -424,7 +434,7 @@ Buradaki anlamı: Zor bir durumdan sıyrılıp dengesini yeniden bulmak. Talihsi
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000221 — remonter la pente
 
@@ -438,7 +448,7 @@ Buradaki anlamı: Zor bir durumdan sıyrılıp dengesini yeniden bulmak. Talihsi
 2. Avec le retour des clients, le café a commencé à remonter la pente.
    Türkçesi: Müşteriler dönünce kafe zor dönemden yavaş yavaş çıkmaya başladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/remonter_la_pente) — remonter la pente : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/remonter_la_pente) — remonter la pente : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -459,7 +469,7 @@ Buradaki anlamı: Zor bir dönemden yavaş yavaş çıkmak. İyileşen gidişat;
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000222 — sortir la tête de l'eau
 
@@ -473,7 +483,7 @@ Buradaki anlamı: Zor bir dönemden yavaş yavaş çıkmak. İyileşen gidişat;
 2. Une fois les dettes réglées, l'association a sorti la tête de l'eau.
    Türkçesi: Borçlar ödenince dernek zorluğun baskısından kurtulup rahatladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sortir_la_t%C3%AAte_de_l'eau) — sortir la tête de l'eau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sortir_la_t%C3%AAte_de_l'eau) — sortir la tête de l'eau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -494,7 +504,7 @@ Buradaki anlamı: Zorluğun baskısından kurtulup yeniden rahatlamak. Mecaz; y�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000223 — voir le bout du tunnel
 
@@ -508,7 +518,7 @@ Buradaki anlamı: Zorluğun baskısından kurtulup yeniden rahatlamak. Mecaz; y�
 2. Il ne reste que deux chapitres : elle voit le bout du tunnel.
    Türkçesi: Yalnızca iki bölüm kaldı; zorlu sürecin sonunun yaklaştığını görüyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_le_bout_du_tunnel) — voir le bout du tunnel : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_le_bout_du_tunnel) — voir le bout du tunnel : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -529,7 +539,7 @@ Buradaki anlamı: Zorlu sürecin sonunun yaklaştığını görmek. Tamamen bitm
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000224 — être dans de beaux draps
 
@@ -543,7 +553,7 @@ Buradaki anlamı: Zorlu sürecin sonunun yaklaştığını görmek. Tamamen bitm
 2. Il avait effacé la seule copie ; il était dans de beaux draps.
    Türkçesi: Tek kopyayı silmişti; ciddi bir sıkıntı içindeydi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_dans_de_beaux_draps) — être dans de beaux draps : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_dans_de_beaux_draps) — être dans de beaux draps : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -564,7 +574,7 @@ Buradaki anlamı: Kendini ciddi bir sıkıntının içinde bulmak. İronik kulla
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000225 — être dans le pétrin
 
@@ -578,7 +588,7 @@ Buradaki anlamı: Kendini ciddi bir sıkıntının içinde bulmak. İronik kulla
 2. Sans passeport à la frontière, elle s'est retrouvée dans le pétrin.
    Türkçesi: Sınırda pasaportsuz kalınca başını belaya soktu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_p%C3%A9trin) — être dans le pétrin : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_p%C3%A9trin) — être dans le pétrin : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -599,7 +609,7 @@ Buradaki anlamı: Başı belada olmak. Samimi mecaz; hamur yoğurma anlamı seç
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000226 — être dans une impasse
 
@@ -613,7 +623,7 @@ Buradaki anlamı: Başı belada olmak. Samimi mecaz; hamur yoğurma anlamı seç
 2. Chaque proposition était refusée ; les négociateurs étaient dans une impasse.
    Türkçesi: Bütün öneriler reddediliyordu; müzakereciler çıkmaza girmişti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/impasse) — être dans une impasse : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/impasse) — être dans une impasse : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -634,7 +644,7 @@ Buradaki anlamı: Çözüm yolu görünmeyen bir çıkmaza girmek. Bu kart müza
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000227 — aller droit dans le mur
 
@@ -648,7 +658,7 @@ Buradaki anlamı: Çözüm yolu görünmeyen bir çıkmaza girmek. Bu kart müza
 2. Sans changer de méthode, l'équipe allait droit dans le mur.
    Türkçesi: Yöntemini değiştirmezse ekip kesin başarısızlığa doğru gidiyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/aller_droit_dans_le_mur) — aller droit dans le mur : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/aller_droit_dans_le_mur) — aller droit dans le mur : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -669,7 +679,7 @@ Buradaki anlamı: Aynı şekilde devam ederse kesin başarısızlığa ilerlemek
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000228 — essuyer les plâtres
 
@@ -683,7 +693,7 @@ Buradaki anlamı: Aynı şekilde devam ederse kesin başarısızlığa ilerlemek
 2. Notre classe a essuyé les plâtres de la plateforme encore instable.
    Türkçesi: Sınıfımız henüz kararsız platformun ilk aksaklıklarını yaşadı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/essuyer_les_pl%C3%A2tres) — essuyer les plâtres : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/essuyer_les_pl%C3%A2tres) — essuyer les plâtres : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -704,7 +714,7 @@ Buradaki anlamı: Yeni bir uygulamanın ilk aksaklıklarını yaşamak. İlk kul
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000229 — boire la tasse
 
@@ -718,7 +728,7 @@ Buradaki anlamı: Yeni bir uygulamanın ilk aksaklıklarını yaşamak. İlk kul
 2. Après trois investissements ratés, la société a bu la tasse.
    Türkçesi: Üç başarısız yatırımdan sonra şirket mali çöküş yaşadı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/boire_la_tasse) — boire la tasse : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/boire_la_tasse) — boire la tasse : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -739,7 +749,7 @@ Buradaki anlamı: Bir girişimde ağır yenilgi veya mali çöküş yaşamak. Bu
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000230 — se casser les dents sur quelque chose
 
@@ -753,7 +763,7 @@ Buradaki anlamı: Bir girişimde ağır yenilgi veya mali çöküş yaşamak. Bu
 2. Malgré son expérience, il s'est cassé les dents sur cette négociation.
    Türkçesi: Deneyimine rağmen bu müzakereyi sonuçlandırmayı başaramadı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_casser_les_dents) — se casser les dents sur quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_casser_les_dents) — se casser les dents sur quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -774,7 +784,7 @@ Buradaki anlamı: Bir güçlüğü aşmaya çalışıp başarısız olmak. Çeti
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000231 — se heurter à un mur
 
@@ -788,7 +798,7 @@ Buradaki anlamı: Bir güçlüğü aşmaya çalışıp başarısız olmak. Çeti
 2. En proposant ce changement, elle s'est heurtée à un mur de refus.
    Türkçesi: Bu değişikliği önerdiğinde aşılamayan bir ret duvarıyla karşılaştı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_heurter_%C3%A0_un_mur) — se heurter à un mur : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_heurter_%C3%A0_un_mur) — se heurter à un mur : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -809,7 +819,7 @@ Buradaki anlamı: Aşılamayan bir engelle karşılaşmak. Mecaz; kesin ret veya
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000232 — en voir de toutes les couleurs
 
@@ -823,7 +833,7 @@ Buradaki anlamı: Aşılamayan bir engelle karşılaşmak. Mecaz; kesin ret veya
 2. Entre pannes et retards, les voyageurs en ont vu de toutes les couleurs.
    Türkçesi: Arızalarla gecikmeler arasında yolcular türlü türlü sıkıntılar çekti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_voir_de_toutes_les_couleurs) — en voir de toutes les couleurs : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_voir_de_toutes_les_couleurs) — en voir de toutes les couleurs : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -844,7 +854,7 @@ Buradaki anlamı: Türlü türlü sıkıntılar çekmek. Samimi kullanım; renk 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000233 — manger son pain noir
 
@@ -858,7 +868,7 @@ Buradaki anlamı: Türlü türlü sıkıntılar çekmek. Samimi kullanım; renk 
 2. Privée de commandes, cette entreprise mangeait son pain noir.
    Türkçesi: Siparişsiz kalan bu şirket zor bir dönem geçiriyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/manger_son_pain_noir) — manger son pain noir : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/manger_son_pain_noir) — manger son pain noir : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -879,7 +889,7 @@ Buradaki anlamı: Hayatının zor bir dönemini geçirmek. Mecaz; bu dönem kal�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000234 — mettre la clé sous la porte
 
@@ -893,7 +903,7 @@ Buradaki anlamı: Hayatının zor bir dönemini geçirmek. Mecaz; bu dönem kal�
 2. Faute de clients, l'atelier a mis la clé sous la porte.
    Türkçesi: Müşteri olmadığı için atölye tamamen kapandı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_la_cl%C3%A9_sous_la_porte) — mettre la clé sous la porte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_la_cl%C3%A9_sous_la_porte) — mettre la clé sous la porte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -914,4 +924,4 @@ Buradaki anlamı: İşletmeyi tamamen kapatmak. Bu kart ticari kapanış anlamı
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.

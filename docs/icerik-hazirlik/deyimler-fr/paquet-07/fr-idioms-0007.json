@@ -3,7 +3,7 @@
   "batch": "fr-idioms-0007",
   "language": "fr",
   "themeTr": "Para ve kaynaklar",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
@@ -49,8 +49,9 @@
         "explanationTr": "Buradaki anlamı: Parayı gereksiz yere savurmak. Aşırı ve akılsızca harcama; gerçek pencereden atma değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -92,8 +93,9 @@
         "explanationTr": "Buradaki anlamı: Çok zengin olmak. Mecaz; altın üzerinde hareket etmek değildir. Diğer zenginlik deyimleri çeldirici yapılmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -135,51 +137,9 @@
         "explanationTr": "Buradaki anlamı: Çok varlıklı olmak. Samimi ve abartılı ifade; kart oyunu eliyle sınırlı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000160",
-      "expression": "être cousu d'or",
-      "meaningTr": "Servet sahibi olacak kadar zengin olmak",
-      "usageNoteTr": "Abartılı zenginlik ifadesi; gerçek altınla dikilmiş giysi anlatılmaz.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "Ses voisins le croient cousu d'or.",
-          "tr": "Komşuları onun büyük bir serveti olduğunu düşünüyor."
-        },
-        {
-          "fr": "Malgré son apparence modeste, elle est cousue d'or.",
-          "tr": "Mütevazı görünümüne rağmen büyük bir servet sahibi."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://usito.usherbrooke.ca/d%C3%A9finitions/cousu/lexies",
-          "verification": "dictionary_entry_opened",
-          "locator": "être cousu d'or : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Malgré son apparence modeste, elle est cousue d'or.",
-        "promptTr": "Bu bağlamda « être cousu d'or » ne anlama geliyor?",
-        "optionsTr": [
-          "Hesabı eksi bakiyede olmak",
-          "Servet sahibi olacak kadar zengin olmak",
-          "Para harcamaya yanaşmayacak kadar cimri olmak",
-          "Çalışmaya üşenen tembel biri olmak"
-        ],
-        "answerIndex": 1,
-        "explanationTr": "Buradaki anlamı: Servet sahibi olacak kadar zengin olmak. Abartılı zenginlik ifadesi; gerçek altınla dikilmiş giysi anlatılmaz."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -221,8 +181,9 @@
         "explanationTr": "Buradaki anlamı: Hesabı eksi bakiyede olmak. Bu kart banka hesabının mali durumunu seçer; her türlü parasızlıkla eşitlenmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -264,8 +225,9 @@
         "explanationTr": "Buradaki anlamı: Elinde para kalmamış olmak. Bu kart paranın tükenmesi anlamında; su veya yakıt anlamı sınanmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -307,8 +269,9 @@
         "explanationTr": "Buradaki anlamı: Tamamen parasız olmak. Samimi, abartılı yoksulluk ifadesi; gerçek tarla anlatılmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -350,8 +313,9 @@
         "explanationTr": "Buradaki anlamı: Geçim sıkıntısı içinde yaşamak. Gelir ve ihtiyaçlar arasındaki güçlüğü anlatır; kişiyi küçümseyen bir yargı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -393,8 +357,9 @@
         "explanationTr": "Buradaki anlamı: Geliriyle temel giderlerini karşılayabilmek. Çoğu kez güçlük veya olumsuzlukla kullanılır; zenginleşmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -436,8 +401,9 @@
         "explanationTr": "Buradaki anlamı: Masrafları kısmak, kemer sıkmak. Harcamaları zorunlu olarak azaltma; diyet veya beden ölçüsü değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -479,8 +445,9 @@
         "explanationTr": "Buradaki anlamı: Ek gelirle maddi durumunu biraz rahatlatmak. Geliri artıran katkı; gerçek yemek tarifi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -522,8 +489,9 @@
         "explanationTr": "Buradaki anlamı: Evin geçimini sağlayacak parayı kazanmak. Aileyi yaşatan gelir; gerçek yemek kaynatmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -565,8 +533,9 @@
         "explanationTr": "Buradaki anlamı: Çalışarak ekmeğini kazanmak. Samimi, halk dili ifadesi; işin küçümsenmesi amaçlanmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -608,8 +577,9 @@
         "explanationTr": "Buradaki anlamı: Birini ağırlamak için gösterişli bir sofra hazırlamak. Gösterişli veya çok özenli ağırlama hazırlığı; tabakları gerçekten iç içe yerleştirmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -651,8 +621,9 @@
         "explanationTr": "Buradaki anlamı: Para harcamaya yanaşmayacak kadar cimri olmak. Eleştirel ve samimi ifade; fiziksel cep içeriği değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -694,8 +665,9 @@
         "explanationTr": "Buradaki anlamı: Etkili bağlantılara ve nüfuza sahip olmak. Mali servetle aynı şey değildir; çevre ve etki gücü anlatılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -710,8 +682,8 @@
           "tr": "Bütün işleri geçiştiriyor; onun için tembel diyorlar."
         },
         {
-          "fr": "Dans la comédie, le personnage a un poil dans la main et laisse tout faire aux autres.",
-          "tr": "Komedideki karakter tembel; bütün işi başkalarına bırakıyor."
+          "fr": "Ce personnage a un poil dans la main : les autres font tout.",
+          "tr": "Bu karakter çalışmaya hiç yanaşmıyor; her şeyi başkaları yapıyor."
         }
       ],
       "sources": [
@@ -721,11 +693,18 @@
           "locator": "avoir un poil dans la main : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.closermag.fr/royautes/harry-et-meghan-un-poil-dans-la-main-des-sussex-malgre-le-chaos-ils-se-tournent-les-pouces-3414294",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "Dans la comédie, le personnage a un poil dans la main et laisse tout faire aux autres.",
+        "context": "Ce personnage a un poil dans la main : les autres font tout.",
         "promptTr": "Bu bağlamda « avoir un poil dans la main » ne anlama geliyor?",
         "optionsTr": [
           "Para harcamaya yanaşmayacak kadar cimri olmak",
@@ -737,8 +716,9 @@
         "explanationTr": "Buradaki anlamı: Çalışmaya üşenen tembel biri olmak. Eleştirel, samimi etiket; kişilere nesnel teşhis gibi uygulanmamalı."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -780,51 +760,9 @@
         "explanationTr": "Buradaki anlamı: Eline geçen parayı tutamayıp harcamak. Parayı elde tutamama alışkanlığı; gerçek delik cepler seçilmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "fr-idiom-000175",
-      "expression": "manger son blé en herbe",
-      "meaningTr": "Henüz gelmemiş geliri önceden harcamak",
-      "usageNoteTr": "Gelecekteki kaynağı tüketme; yalnız bugünkü yüksek harcama değildir.",
-      "level": null,
-      "examples": [
-        {
-          "fr": "N'achète pas à crédit sur cette prime incertaine : tu manges ton blé en herbe.",
-          "tr": "Bu belirsiz ikramiyeye güvenip borçla alışveriş yapma; gelecek gelirini önceden tüketiyorsun."
-        },
-        {
-          "fr": "Il avait déjà dépensé sa commission avant de la recevoir ; il mangeait son blé en herbe.",
-          "tr": "Komisyonunu almadan harcamıştı; gelmemiş gelirini önceden tüketiyordu."
-        }
-      ],
-      "sources": [
-        {
-          "url": "https://fr.wiktionary.org/wiki/manger_son_bl%C3%A9_en_herbe",
-          "verification": "dictionary_entry_opened",
-          "locator": "manger son blé en herbe : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
-          "checkedOn": "2026-11-10",
-          "purpose": "meaning_and_expression"
-        }
-      ],
-      "exercise": {
-        "type": "meaning_in_context",
-        "context": "Il avait déjà dépensé sa commission avant de la recevoir ; il mangeait son blé en herbe.",
-        "promptTr": "Bu bağlamda « manger son blé en herbe » ne anlama geliyor?",
-        "optionsTr": [
-          "Henüz gelmemiş geliri önceden harcamak",
-          "Para harcamaya yanaşmayacak kadar cimri olmak",
-          "Etkili bağlantılara ve nüfuza sahip olmak",
-          "Borcunu eksiksiz ve hemen ödemek"
-        ],
-        "answerIndex": 0,
-        "explanationTr": "Buradaki anlamı: Henüz gelmemiş geliri önceden harcamak. Gelecekteki kaynağı tüketme; yalnız bugünkü yüksek harcama değildir."
-      },
-      "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -866,8 +804,9 @@
         "explanationTr": "Buradaki anlamı: Önemsiz tutarlar için anlamsız tasarruf yapmak. Tasarrufun yersiz küçüklüğü eleştirilir; yararlı bütçe yönetiminin bütünü değil."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -909,8 +848,9 @@
         "explanationTr": "Buradaki anlamı: Borcunu eksiksiz ve hemen ödemek. Tam ödeme vurgulanır; taksit veya pazarlıkla aynı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -952,8 +892,9 @@
         "explanationTr": "Buradaki anlamı: Bir işin kötü sonuçlarının bedelini üstlenmek. Sorumlusu olmadığı sonuçları da kapsayabilir; gerçek kırık kap gerekmez."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -995,8 +936,9 @@
         "explanationTr": "Buradaki anlamı: Yaptığı harcamayı karşılayamayıp zararda kalmak. Bu kart mali anlamı seçer; kaynakta bulunan mecaz hayal kırıklığı anlamı sınanmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -1038,8 +980,9 @@
         "explanationTr": "Buradaki anlamı: Aradığı sonucu elde edememek. Samimi mecaz; araştırma veya girişimin sonuçsuz kalması."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -1050,12 +993,12 @@
       "level": null,
       "examples": [
         {
-          "fr": "En venant à vélo, je fais du sport et économise : d'une pierre deux coups.",
-          "tr": "Bisikletle gelerek spor yapıyor ve tasarruf ediyorum; bir taşla iki kuş."
+          "fr": "Je fais d'une pierre deux coups : je marche et je poste mon colis.",
+          "tr": "Yürüyüp kolimi postalayarak bir taşla iki kuş vuruyorum."
         },
         {
-          "fr": "En allant à pied poster son colis, elle a fait d'une pierre deux coups : une course et de l'exercice.",
-          "tr": "Paketini göndermeye yürüyerek gidip hem işini gördü hem spor yaptı; bir taşla iki kuş vurdu."
+          "fr": "Elle a fait d'une pierre deux coups : poster son colis lui a permis de marcher.",
+          "tr": "Koliyi postalamaya yürüyerek gidip bir taşla iki kuş vurdu."
         }
       ],
       "sources": [
@@ -1065,11 +1008,18 @@
           "locator": "faire d'une pierre deux coups : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lapresse.tn/2024/10/30/pourquoi-dune-pierre-deux-coups/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "En allant à pied poster son colis, elle a fait d'une pierre deux coups : une course et de l'exercice.",
+        "context": "Elle a fait d'une pierre deux coups : poster son colis lui a permis de marcher.",
         "promptTr": "Bu bağlamda « faire d'une pierre deux coups » ne anlama geliyor?",
         "optionsTr": [
           "Para harcamaya yanaşmayacak kadar cimri olmak",
@@ -1081,8 +1031,9 @@
         "explanationTr": "Buradaki anlamı: Tek bir işle iki sonuç elde etmek. İki hedefin aynı eylemle karşılanması; gerçek taş atmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     },
     {
@@ -1124,9 +1075,11 @@
         "explanationTr": "Buradaki anlamı: Masrafı karşılamak için cebinden para vermek. Mecaz ödeme katkısı; yalnızca elini cebine sokmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0007.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

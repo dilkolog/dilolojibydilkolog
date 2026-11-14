@@ -10,6 +10,6 @@
     "3": 6
   },
   "structuralCheck": "passed",
-  "independentLanguageReview": "pending",
+  "independentLanguageReview": "revisions_pending_recheck",
   "cefrAllocation": "pending"
 }

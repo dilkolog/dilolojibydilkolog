@@ -1,3 +1,9 @@
+# Üretici notlarının tarihçesi
+
+14 Kasım 2026: Antigravity raporları işlendi; güncel sayım ve 63 karar [DENETIM-DUZELTMELERI.md](DENETIM-DUZELTMELERI.md) dosyasındadır. Aşağıdaki ilk teslim notları tarihsel kayıt olarak tutulur.
+
+## İlk teslim — 10 Kasım 2026
+
 # Üretici kontrolü ve bağımsız inceleme notları
 
 Bu kayıt Codex'in üretici kontrolüdür; Antigravity veya başka bir bağımsız çözücünün raporu değildir.

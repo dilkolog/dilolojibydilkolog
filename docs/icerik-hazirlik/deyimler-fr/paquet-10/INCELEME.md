@@ -1,8 +1,8 @@
 # Paket 10 — Anlama, sezgi ve yanılgı
 
-26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.
+25 deyim · 50 özgün örnek/çeviri · 25 soru.
 
-Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.
+Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.
 
 Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.
 
@@ -18,7 +18,7 @@ Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm iç
 2. En comparant les factures, elle a mis le doigt sur l'erreur.
    Türkçesi: Faturaları karşılaştırarak hatanın yerini buldu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_le_doigt_sur) — mettre le doigt sur quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/mettre_le_doigt_sur) — mettre le doigt sur quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -39,7 +39,7 @@ Buradaki anlamı: Sorunun veya önemli noktanın yerini bulmak. Mecaz; bir şeyi
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000236 — avoir le nez creux
 
@@ -53,7 +53,7 @@ Buradaki anlamı: Sorunun veya önemli noktanın yerini bulmak. Mecaz; bir şeyi
 2. Il avait eu le nez creux : la petite entreprise est devenue prospère.
    Türkçesi: Sezgisi doğru çıkmıştı; küçük şirket gelişip zenginleşti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_nez_creux) — avoir le nez creux : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_le_nez_creux) — avoir le nez creux : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -74,7 +74,7 @@ Buradaki anlamı: Sezgisiyle doğru tahmin etmek. Öngörü veya iyi sezgi; ger�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000237 — avoir du flair
 
@@ -88,7 +88,7 @@ Buradaki anlamı: Sezgisiyle doğru tahmin etmek. Öngörü veya iyi sezgi; ger�
 2. Elle a du flair et remarque vite les projets prometteurs.
    Türkçesi: Sezgisi güçlü; umut veren projeleri çabuk fark ediyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_du_flair) — avoir du flair : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_du_flair) — avoir du flair : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -109,7 +109,7 @@ Buradaki anlamı: Bir şeyi sezebilme yeteneği olmak. İnsan sezgisi seçilir; 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000238 — sentir le vent tourner
 
@@ -123,7 +123,7 @@ Buradaki anlamı: Bir şeyi sezebilme yeteneği olmak. İnsan sezgisi seçilir; 
 2. Les soutiens se retiraient ; elle a senti le vent tourner.
    Türkçesi: Destekler çekiliyordu; durumun yön değiştirdiğini sezdi.
 
-**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A9S1258) — sentir le vent tourner : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A9S1258) — sentir le vent tourner : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -144,7 +144,7 @@ Buradaki anlamı: Durumun yön değiştirdiğini sezmek. Koşulların lehe veya 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000239 — voir venir quelqu'un
 
@@ -158,7 +158,7 @@ Buradaki anlamı: Durumun yön değiştirdiğini sezmek. Koşulların lehe veya 
 2. Après tant de compliments, elle le voyait venir et devinait sa demande.
    Türkçesi: Bunca iltifattan sonra niyetini anlamış, ne isteyeceğini sezmişti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_venir) — voir venir quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_venir) — voir venir quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -179,7 +179,7 @@ Buradaki anlamı: Birinin niyetini önceden anlamak. Bu kart kişinin gizli amac
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000240 — lire entre les lignes
 
@@ -193,7 +193,7 @@ Buradaki anlamı: Birinin niyetini önceden anlamak. Bu kart kişinin gizli amac
 2. En lisant entre les lignes, elle a compris que le message était un refus poli.
    Türkçesi: Satır aralarını okuyunca mesajın kibar bir ret olduğunu anladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/lire_entre_les_lignes) — lire entre les lignes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/lire_entre_les_lignes) — lire entre les lignes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -214,7 +214,7 @@ Buradaki anlamı: Açıkça yazılmayan anlamı çıkarmak. Metindeki ima; yaln�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000241 — lire en quelqu'un comme dans un livre ouvert
 
@@ -228,7 +228,7 @@ Buradaki anlamı: Açıkça yazılmayan anlamı çıkarmak. Metindeki ima; yaln�
 2. Avec ses expressions si claires, on lisait en elle comme dans un livre ouvert.
    Türkçesi: Yüz ifadesi öyle açıktı ki içinden geçenler kolayca anlaşılıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/lire_en_quelqu%E2%80%99un_comme_dans_un_livre_ouvert) — lire en quelqu'un comme dans un livre ouvert : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/lire_en_quelqu%E2%80%99un_comme_dans_un_livre_ouvert) — lire en quelqu'un comme dans un livre ouvert : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -249,7 +249,7 @@ Buradaki anlamı: Birinin duygu veya düşüncesini kolayca anlamak. Bu kart lir
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000242 — ne pas voir plus loin que le bout de son nez
 
@@ -260,14 +260,18 @@ Buradaki anlamı: Birinin duygu veya düşüncesini kolayca anlamak. Bu kart lir
 1. En supprimant toute formation, ils ne voient pas plus loin que le bout de leur nez.
    Türkçesi: Bütün eğitimi kaldırarak yalnızca yakın vadeyi düşünüyorlar.
 
-2. Il économisait aujourd'hui en créant des coûts futurs ; il ne voyait pas plus loin que le bout de son nez.
-   Türkçesi: Gelecekte masraf doğuracak biçimde bugün tasarruf ediyordu; ileriyi göremiyordu.
+2. Il néglige l'avenir : il ne voit pas plus loin que le bout de son nez.
+   Türkçesi: Geleceği önemsemiyor; burnunun ucundan ötesini göremiyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_voir_plus_loin_que_le_bout_de_son_nez) — ne pas voir plus loin que le bout de son nez : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_voir_plus_loin_que_le_bout_de_son_nez) — ne pas voir plus loin que le bout de son nez : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.tf1.fr](https://www.tf1.fr/fr-dz/tf1/demain-nous-appartient/videos/demain-nous-appartient-du-vendredi-23-fevrier-2024-episode-1629-34125098.html) — Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm (2026-11-14).
+
+**Kaynak sınırı:** Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez.
 
 **Soru:**
 
-Il économisait aujourd'hui en créant des coûts futurs ; il ne voyait pas plus loin que le bout de son nez.
+Il néglige l'avenir : il ne voit pas plus loin que le bout de son nez.
 
 Bu bağlamda « ne pas voir plus loin que le bout de son nez » ne anlama geliyor?
 
@@ -284,7 +288,7 @@ Buradaki anlamı: Yalnız yakın vadeyi görüp ileriyi düşünememek. Dar gör
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000243 — voir midi à sa porte
 
@@ -298,7 +302,7 @@ Buradaki anlamı: Yalnız yakın vadeyi görüp ileriyi düşünememek. Dar gör
 2. Les commerçants et les riverains voyaient chacun midi à leur porte.
    Türkçesi: Esnaf ve mahalleliler durumu kendi çıkarlarına göre değerlendiriyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_midi_%C3%A0_sa_porte) — voir midi à sa porte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/voir_midi_%C3%A0_sa_porte) — voir midi à sa porte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -319,7 +323,7 @@ Buradaki anlamı: Durumu yalnız kendi çıkarına göre değerlendirmek. Öznel
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000244 — prendre des vessies pour des lanternes
 
@@ -333,7 +337,7 @@ Buradaki anlamı: Durumu yalnız kendi çıkarına göre değerlendirmek. Öznel
 2. Il croyait acheter une œuvre rare et prenait des vessies pour des lanternes.
    Türkçesi: Nadir bir eser aldığını sanıyordu ama fena yanılıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_des_vessies_pour_des_lanternes) — prendre des vessies pour des lanternes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_des_vessies_pour_des_lanternes) — prendre des vessies pour des lanternes : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -354,7 +358,7 @@ Buradaki anlamı: Bir şeyi gerçeğinden çok farklı sanıp fena yanılmak. Sa
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000245 — prendre quelque chose pour argent comptant
 
@@ -368,7 +372,7 @@ Buradaki anlamı: Bir şeyi gerçeğinden çok farklı sanıp fena yanılmak. Sa
 2. Elle a pris son récit pour argent comptant sans vérifier les dates.
    Türkçesi: Tarihleri kontrol etmeden anlattıklarını doğru kabul etti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_pour_argent_comptant) — prendre quelque chose pour argent comptant : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_pour_argent_comptant) — prendre quelque chose pour argent comptant : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -389,7 +393,7 @@ Buradaki anlamı: Duyduğunu sorgulamadan doğru kabul etmek. Bilgi veya sözün
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000246 — se mettre le doigt dans l'œil
 
@@ -403,7 +407,7 @@ Buradaki anlamı: Duyduğunu sorgulamadan doğru kabul etmek. Bilgi veya sözün
 2. Il pensait terminer en une heure ; il se mettait le doigt dans l'œil.
    Türkçesi: Bir saatte bitireceğini düşünüyordu; bütünüyle yanılıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_mettre_le_doigt_dans_l%E2%80%99%C5%93il) — se mettre le doigt dans l'œil : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_mettre_le_doigt_dans_l%E2%80%99%C5%93il) — se mettre le doigt dans l'œil : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -424,7 +428,7 @@ Buradaki anlamı: Bir konuda bütünüyle yanılmak. Samimi mecaz; gerçek göz 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000247 — se voiler la face
 
@@ -438,7 +442,7 @@ Buradaki anlamı: Bir konuda bütünüyle yanılmak. Samimi mecaz; gerçek göz 
 2. Malgré les chiffres, elle se voilait la face sur la baisse des ventes.
    Türkçesi: Rakamlara rağmen satışların düştüğü gerçeğini kabul etmekten kaçınıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_voiler_la_face) — se voiler la face : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/se_voiler_la_face) — se voiler la face : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -459,7 +463,7 @@ Buradaki anlamı: Hoşuna gitmeyen gerçeği kabul etmekten kaçınmak. Kendi ke
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000248 — fermer les yeux sur quelque chose
 
@@ -473,7 +477,7 @@ Buradaki anlamı: Hoşuna gitmeyen gerçeği kabul etmekten kaçınmak. Kendi ke
 2. La responsable connaissait les retards, mais elle fermait les yeux.
    Türkçesi: Sorumlu kişi gecikmeleri biliyordu ama göz yumuyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/fermer_les_yeux) — fermer les yeux sur quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/fermer_les_yeux) — fermer les yeux sur quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -494,7 +498,7 @@ Buradaki anlamı: Bilinen bir kusuru bilerek görmezden gelmek. Mecaz; fark edil
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000249 — ouvrir les yeux à quelqu'un
 
@@ -508,7 +512,7 @@ Buradaki anlamı: Bilinen bir kusuru bilerek görmezden gelmek. Mecaz; fark edil
 2. Son témoignage nous a ouvert les yeux sur les conditions réelles de travail.
    Türkçesi: Tanıklığı gerçek çalışma koşullarını fark etmemizi sağladı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ouvrir_les_yeux) — ouvrir les yeux à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ouvrir_les_yeux) — ouvrir les yeux à quelqu'un : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -529,7 +533,7 @@ Buradaki anlamı: Birinin gerçeği fark etmesini sağlamak. Bir başkasına dur
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000250 — tomber des nues
 
@@ -543,7 +547,7 @@ Buradaki anlamı: Birinin gerçeği fark etmesini sağlamak. Bir başkasına dur
 2. Personne ne lui avait parlé du changement ; elle est tombée des nues.
    Türkçesi: Değişiklikten kimse ona söz etmemişti; haberi alınca çok şaşırdı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tomber_des_nues) — tomber des nues : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tomber_des_nues) — tomber des nues : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -564,7 +568,7 @@ Buradaki anlamı: Beklenmedik haber karşısında çok şaşırmak. Büyük şa�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000251 — ne pas en croire ses yeux
 
@@ -578,7 +582,7 @@ Buradaki anlamı: Beklenmedik haber karşısında çok şaşırmak. Büyük şa�
 2. Elle a découvert ses amis venus de loin et n'en croyait pas ses yeux.
    Türkçesi: Uzaktan gelen arkadaşlarını görünce gözlerine inanamadı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_en_croire_ses_yeux) — ne pas en croire ses yeux : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_en_croire_ses_yeux) — ne pas en croire ses yeux : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -599,7 +603,7 @@ Buradaki anlamı: Gördüğü şeye inanamayacak kadar şaşırmak. Görsel şa�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000252 — ne pas en croire ses oreilles
 
@@ -613,7 +617,7 @@ Buradaki anlamı: Gördüğü şeye inanamayacak kadar şaşırmak. Görsel şa�
 2. En entendant l'annonce de sa nomination, il n'en croyait pas ses oreilles.
    Türkçesi: Atandığının açıklanmasını duyunca kulaklarına inanamadı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_en_croire_ses_oreilles) — ne pas en croire ses oreilles : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/ne_pas_en_croire_ses_oreilles) — ne pas en croire ses oreilles : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -634,7 +638,7 @@ Buradaki anlamı: Duyduğu şeye inanamayacak kadar şaşırmak. İşitilen söz
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000253 — en perdre son latin
 
@@ -648,7 +652,7 @@ Buradaki anlamı: Duyduğu şeye inanamayacak kadar şaşırmak. İşitilen söz
 2. Les explications changeaient sans cesse ; même l'experte en perdait son latin.
    Türkçesi: Açıklamalar durmadan değişiyordu; uzman bile hiçbir şey anlayamaz hâle geliyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_perdre_son_latin) — en perdre son latin : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_perdre_son_latin) — en perdre son latin : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -669,7 +673,7 @@ Buradaki anlamı: Hiçbir şey anlayamaz hâle gelmek. Bu kart karmaşa karşıs
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000254 — avoir la science infuse
 
@@ -683,7 +687,7 @@ Buradaki anlamı: Hiçbir şey anlayamaz hâle gelmek. Bu kart karmaşa karşıs
 2. Tu n'as pas la science infuse ; tu peux demander une explication.
    Türkçesi: Her şeyi kendiliğinden bilmiyorsun; açıklama isteyebilirsin.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_science_infuse) — avoir la science infuse : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/avoir_la_science_infuse) — avoir la science infuse : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -704,7 +708,7 @@ Buradaki anlamı: Her şeyi öğrenmeden bildiğini sanmak. Genellikle ironik ve
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000255 — connaître quelque chose sur le bout des doigts
 
@@ -718,7 +722,7 @@ Buradaki anlamı: Her şeyi öğrenmeden bildiğini sanmak. Genellikle ironik ve
 2. Après vingt ans de métier, il connaissait ces procédures sur le bout des doigts.
    Türkçesi: Meslekte yirmi yıldan sonra bu işlemleri çok iyi biliyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_le_bout_des_doigts) — connaître quelque chose sur le bout des doigts : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_le_bout_des_doigts) — connaître quelque chose sur le bout des doigts : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -739,42 +743,7 @@ Buradaki anlamı: Bir konuyu çok iyi bilmek. Ustalıkla bilme; gerçek parmak u
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000256 — être incollable sur quelque chose
-
-**Anlam:** Bir konuda her soruyu cevaplayabilecek kadar bilgili olmak
-
-**Kullanım:** Konu alanı açıkça belirtilir; her konuda her şeyi bilmek değildir.
-
-1. Sur les oiseaux de la région, elle est incollable.
-   Türkçesi: Bölgenin kuşları konusunda her soruyu cevaplayacak kadar bilgili.
-
-2. Passionné de trains, il est incollable sur les anciennes locomotives.
-   Türkçesi: Trenlere tutkuyla bağlı; eski lokomotifler konusunda her soruyu cevaplayacak kadar bilgili.
-
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/incollable) — être incollable sur quelque chose : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Passionné de trains, il est incollable sur les anciennes locomotives.
-
-Bu bağlamda « être incollable sur quelque chose » ne anlama geliyor?
-
-- A) Bir şeyi gerçeğinden çok farklı sanıp fena yanılmak
-- B) Hoşuna gitmeyen gerçeği kabul etmekten kaçınmak
-- C) Durumu anlayamayıp zihni karışık olmak
-- D) Bir konuda her soruyu cevaplayabilecek kadar bilgili olmak
-
-<details><summary>Cevap ve açıklama</summary>
-
-D) Bir konuda her soruyu cevaplayabilecek kadar bilgili olmak
-
-Buradaki anlamı: Bir konuda her soruyu cevaplayabilecek kadar bilgili olmak. Konu alanı açıkça belirtilir; her konuda her şeyi bilmek değildir.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000257 — avoir réponse à tout
 
@@ -788,7 +757,7 @@ Buradaki anlamı: Bir konuda her soruyu cevaplayabilecek kadar bilgili olmak. Ko
 2. On lui montrait les contradictions, mais elle avait réponse à tout.
    Türkçesi: Çelişkiler gösteriliyordu ama her itiraza bir cevap buluyordu.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/r%C3%A9ponse/68438) — avoir réponse à tout : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/r%C3%A9ponse/68438) — avoir réponse à tout : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -809,7 +778,7 @@ Buradaki anlamı: Her itiraza karşı bir cevap bulmak. Bazen eleştirel ton; he
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000258 — être à côté de la plaque
 
@@ -820,14 +789,16 @@ Buradaki anlamı: Her itiraza karşı bir cevap bulmak. Bazen eleştirel ton; he
 1. Avec cette réponse, tu es à côté de la plaque.
    Türkçesi: Bu cevabınla konunun özünü kaçırıyorsun.
 
-2. La question portait sur le prix, mais il parlait de couleur ; il était à côté de la plaque.
-   Türkçesi: Soru fiyatla ilgiliydi ama renkten söz ediyordu; konuyu kaçırmıştı.
+2. On parle des prix; elle répond sur les horaires : elle est à côté de la plaque.
+   Türkçesi: Fiyatlardan söz edilirken saatler hakkında cevap veriyor; konuyu tamamen kaçırıyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_c%C3%B4t%C3%A9_de_la_plaque) — être à côté de la plaque : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_c%C3%B4t%C3%A9_de_la_plaque) — être à côté de la plaque : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.unsa-education.com](https://www.unsa-education.com/article-/a-cote-de-la-plaque-2/) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
-La question portait sur le prix, mais il parlait de couleur ; il était à côté de la plaque.
+On parle des prix; elle répond sur les horaires : elle est à côté de la plaque.
 
 Bu bağlamda « être à côté de la plaque » ne anlama geliyor?
 
@@ -844,7 +815,7 @@ Buradaki anlamı: Konunun özünü kaçırıp ilgisiz bir cevap vermek. Samimi k
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000259 — être dans le brouillard
 
@@ -858,7 +829,7 @@ Buradaki anlamı: Konunun özünü kaçırıp ilgisiz bir cevap vermek. Samimi k
 2. Elle restait dans le brouillard sur ce qu'on attendait d'elle.
    Türkçesi: Kendisinden ne beklendiğini anlayamıyor, belirsizlik içinde kalıyordu.
 
-**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/brouillard/11411) — être dans le brouillard : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Larousse](https://www.larousse.fr/dictionnaires/francais/brouillard/11411) — être dans le brouillard : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -879,7 +850,7 @@ Buradaki anlamı: Durumu anlayamayıp zihni karışık olmak. Bu kart zihinsel b
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000260 — perdre le nord
 
@@ -893,7 +864,7 @@ Buradaki anlamı: Durumu anlayamayıp zihni karışık olmak. Bu kart zihinsel b
 2. Malgré l'agitation, elle n'a pas perdu le nord et a organisé la sortie.
    Türkçesi: Karmaşaya rağmen ne yapacağını şaşırmadı ve çıkışı düzenledi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/perdre_le_nord) — perdre le nord : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/perdre_le_nord) — perdre le nord : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -914,4 +885,4 @@ Buradaki anlamı: Şaşkınlıkla ne yapacağını bilemez hâle gelmek. Mecaz; 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.

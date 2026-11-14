@@ -303,7 +303,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000076
 
-On lui attribuait tout l'échec ; elle a remis les pendules à l'heure en présentant les faits.
+Elle a remis les pendules à l'heure en présentant les faits.
 
 Bu bağlamda « remettre les pendules à l'heure » ne anlama geliyor?
 

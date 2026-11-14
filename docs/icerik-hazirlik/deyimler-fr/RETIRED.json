@@ -1,0 +1,140 @@
+[
+  {
+    "id": "fr-idiom-000001",
+    "expression": "donner sa langue au chat",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000002",
+    "expression": "avoir un coup de foudre",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000003",
+    "expression": "poser un lapin à quelqu'un",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000004",
+    "expression": "mettre les pieds dans le plat",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000006",
+    "expression": "coûter les yeux de la tête",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000007",
+    "expression": "tomber dans les pommes",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000011",
+    "expression": "chercher midi à quatorze heures",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000014",
+    "expression": "avoir du pain sur la planche",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000015",
+    "expression": "couper la poire en deux",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000016",
+    "expression": "prendre ses jambes à son cou",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000017",
+    "expression": "en faire tout un fromage",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000022",
+    "expression": "tourner autour du pot",
+    "batch": "fr-idioms-0001",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000035",
+    "expression": "sauter de joie",
+    "batch": "fr-idioms-0002",
+    "reasonTr": "Anlamı bileşenlerinden doğrudan çıkan saydam kalıp; dar mecaz deyim kapsamından çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000042",
+    "expression": "être rouge de colère",
+    "batch": "fr-idioms-0002",
+    "reasonTr": "Anlamı bileşenlerinden doğrudan çıkan saydam kalıp; dar mecaz deyim kapsamından çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000160",
+    "expression": "être cousu d'or",
+    "batch": "fr-idioms-0007",
+    "reasonTr": "Deyimin sözlük anlamı reddedilmedi; bu turda yeterli güncel bağımsız kullanım doğrulanamadığı için paketten çıkarıldı. Rapor gerekçesindeki « avoir les moyens » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi."
+  },
+  {
+    "id": "fr-idiom-000175",
+    "expression": "manger son blé en herbe",
+    "batch": "fr-idioms-0007",
+    "reasonTr": "Deyimin sözlük anlamı reddedilmedi; bu turda yeterli güncel bağımsız kullanım doğrulanamadığı için paketten çıkarıldı. Rapor gerekçesindeki « placer son argent » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi."
+  },
+  {
+    "id": "fr-idiom-000183",
+    "expression": "prendre son temps",
+    "batch": "fr-idioms-0008",
+    "reasonTr": "Anlamı bileşenlerinden doğrudan çıkan saydam kalıp; dar mecaz deyim kapsamından çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000199",
+    "expression": "de fil en aiguille",
+    "batch": "fr-idioms-0008",
+    "reasonTr": "İkinci sözlükte mecaz anlam doğrulandı; Latince olduğu gerekçesi bu kayda ait değil, ancak fiilsiz zarf öbeği dar paket kapsamından çıkarıldı. Rapor gerekçesindeki « reporter sine die » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi."
+  },
+  {
+    "id": "fr-idiom-000200",
+    "expression": "au pied levé",
+    "batch": "fr-idioms-0008",
+    "reasonTr": "Fiilsiz zarf öbeği; başlıktaki au pied levé ile gerekçedeki revenir sur ses pas aynı ifade değil, dar kapsamdan çıkarıldı. Rapor gerekçesindeki « revenir sur ses pas » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi."
+  },
+  {
+    "id": "fr-idiom-000203",
+    "expression": "dès potron-minet",
+    "batch": "fr-idioms-0008",
+    "reasonTr": "Güncel Académie maddesi anlamı doğruluyor; eskimiş olduğu iddia edilmedi, fiilsiz zarf öbeği kapsam dışında bırakıldı. Rapor gerekçesindeki « battre le fer tant qu’il est chaud » güncel başlıkla eşleşmiyor; karar gerçek kayıt üzerinden verildi."
+  },
+  {
+    "id": "fr-idiom-000207",
+    "expression": "passer une nuit blanche",
+    "batch": "fr-idioms-0008",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000256",
+    "expression": "être incollable sur quelque chose",
+    "batch": "fr-idioms-0010",
+    "reasonTr": "Spor basınında kullanım doğrulandı; özgül deyim yerine sıradan sıfat + edat yapısı olduğu için dar kapsamdan çıkarıldı."
+  },
+  {
+    "id": "fr-idiom-000091",
+    "expression": "se creuser la tête",
+    "batch": "fr-idioms-0004",
+    "reasonTr": "Çekirdek content/raw/idioms/fr-0000.json kaydıyla aynı deyim veya varyantı; çekirdek korunarak editoryal kopya çıkarıldı."
+  }
+]

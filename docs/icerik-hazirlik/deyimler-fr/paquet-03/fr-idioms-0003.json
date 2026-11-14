@@ -3,7 +3,7 @@
   "batch": "fr-idioms-0003",
   "language": "fr",
   "themeTr": "Konuşma ve iletişim",
-  "status": "ready_for_independent_review",
+  "status": "revised_for_recheck",
   "author": "Codex",
   "intendedReviewer": "Antigravity",
   "createdOn": "2026-11-10",
@@ -49,8 +49,9 @@
         "explanationTr": "Buradaki anlamı: Sırrı söylemeyip dilini tutmak. Bu kart gizli bilgiyi saklama anlamını seçer; fiziksel dil hareketi değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -92,8 +93,9 @@
         "explanationTr": "Buradaki anlamı: Çenesi düşük olup çok konuşmak. Konuşkanlık, bazen küstahlık çağrışımı taşır; yalnız iyi diksiyon değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -135,8 +137,9 @@
         "explanationTr": "Buradaki anlamı: Sözünü sakınmadan fikrini söylemek. Samimi kullanım; çekinmeden konuşma niteliği. Benzer açık konuşma deyimleri çeldirici yapılmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -178,8 +181,9 @@
         "explanationTr": "Buradaki anlamı: Bildiği bir sözcüğü bir türlü hatırlayamamak. Sözcüğün az sonra hatırlanabilecek kadar yakın hissedilmesi anlatılır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -221,8 +225,9 @@
         "explanationTr": "Buradaki anlamı: Lafını esirgemeden sertçe konuşmak. Olumsuz yapıda kullanılan kalıp, eleştirinin sertliğini öne çıkarır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -264,8 +269,9 @@
         "explanationTr": "Buradaki anlamı: Bir şeyi adıyla açıkça söylemek. Üstü kapalı anlatım yerine gerçeği olduğu gibi adlandırmak."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -307,8 +313,9 @@
         "explanationTr": "Buradaki anlamı: Yanlış anlaşılmayacak biçimde açık ve kesin konuşmak. Ayrıntıları netleştirme ve sınır koyma anlamı; yazım işaretleriyle sınırlı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -350,8 +357,9 @@
         "explanationTr": "Buradaki anlamı: Doğrudan konuya girmek. Samimi kullanım; dolambaçlı giriş yapmadan söylemek."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -393,8 +401,9 @@
         "explanationTr": "Buradaki anlamı: Belirli bir sıra izlemeden serbestçe sohbet etmek. Konuşma serbest ve kesintili ilerler; karşıdakinin sözünü zorla kesmek değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -436,8 +445,9 @@
         "explanationTr": "Buradaki anlamı: Bir konudan ilgisiz başka bir konuya atlamak. Konu değişimindeki bağlantısızlık vurgulanır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -479,8 +489,9 @@
         "explanationTr": "Buradaki anlamı: Asıl konuşulan konuya dönmek. Burada yaygın konuşmaya geri dönme anlamı seçilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -491,8 +502,8 @@
       "level": null,
       "examples": [
         {
-          "fr": "Ne raconte pas de salades : je t'ai vu sortir.",
-          "tr": "Yalan dolan anlatma; dışarı çıktığını gördüm."
+          "fr": "Il raconte des salades pour cacher son erreur.",
+          "tr": "Hatasını gizlemek için yalan dolan anlatıyor."
         },
         {
           "fr": "Il racontait des salades sur un diplôme qu'il n'avait jamais obtenu.",
@@ -506,6 +517,13 @@
           "locator": "raconter des salades : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://lepetitjournal.com/inde/communaute/raconter-des-salades-ou-se-creuser-la-tete-249477",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -522,8 +540,9 @@
         "explanationTr": "Buradaki anlamı: Yalan dolan anlatmak. Konuşma dili; uydurma haber veya açıklamalar anlatmak."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -565,8 +584,9 @@
         "explanationTr": "Buradaki anlamı: Birini uydurma anlatımlarla kandırmak. Gerçek tekne yolculuğu değil, aldatma anlamı öğretilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -608,8 +628,9 @@
         "explanationTr": "Buradaki anlamı: Birini şakayla kandırıp işletmek. Samimi kullanım; gerçek çalıştırma veya bir aracı işletme değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -620,8 +641,8 @@
       "level": null,
       "examples": [
         {
-          "fr": "Ne vends pas la mèche avant la fête surprise.",
-          "tr": "Sürpriz partiden önce sırrı açıklama."
+          "fr": "Jules a vendu la mèche sur notre fête surprise.",
+          "tr": "Jules sürpriz partimizin sırrını açıkladı."
         },
         {
           "fr": "En parlant du gâteau, Jules a vendu la mèche sur l'anniversaire surprise.",
@@ -635,6 +656,13 @@
           "locator": "vendre la mèche : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.lemonde.fr/international/article/2021/04/20/a-new-york-le-jour-ou-j-ai-recu-une-facture-de-43-970-dollars-de-mon-chirurgien_6077343_3210.html",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
@@ -651,8 +679,9 @@
         "explanationTr": "Buradaki anlamı: Gizli kalması gereken şeyi açıklamak. İstemeden veya bilerek sırrı açığa vurma; itiraf baskısı zorunlu değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -694,8 +723,9 @@
         "explanationTr": "Buradaki anlamı: Sakladığı bilgiyi sonunda itiraf etmek. Argo kökenli samimi ifade; burada gerçek tükürme değil, bilgi verme anlamı seçilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -737,8 +767,9 @@
         "explanationTr": "Buradaki anlamı: Birinin konuşmasını yarıda kesmek. Konuşan kişiyi kesip söze girmek; susmasını ikna yoluyla sağlamakla aynı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -780,8 +811,9 @@
         "explanationTr": "Buradaki anlamı: Birini cevap veremez hâle getirip susturmak. Keskin yanıt veya kanıtla susturma; genel söz kesmeyle karıştırılmaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -823,8 +855,9 @@
         "explanationTr": "Buradaki anlamı: Şaşkınlıktan ağzı açık kalmak. Hayretin etkisiyle konuşamama; bilinç kaybı değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -866,8 +899,9 @@
         "explanationTr": "Buradaki anlamı: Ortamın veya konuşmanın havasını belirlemek. Müzik dışındaki mecaz anlam seçilir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -893,6 +927,14 @@
           "locator": "avoir voix au chapitre : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.letemps.ch/opinions/ia-au-temps-avoir-voix-au-chapitre",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_search_excerpt",
+          "purpose": "meaning_and_usage",
+          "locator": "Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm",
+          "verificationNoteTr": "Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez."
         }
       ],
       "exercise": {
@@ -909,8 +951,9 @@
         "explanationTr": "Buradaki anlamı: Kararda söz hakkı olmak. Fikir belirtme ve kararı etkileme hakkı; sadece yüksek sesle konuşmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -952,8 +995,9 @@
         "explanationTr": "Buradaki anlamı: Dinleyen olmadığı için boşuna konuşmak. Bu kart yaygın mecaz anlamı seçer; tarihsel dinî anlamı sınamaz."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -995,8 +1039,9 @@
         "explanationTr": "Buradaki anlamı: İçi boş sözlerle konuşmak. Söylenenin bilgi veya katkı taşımaması; sır tutmak değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -1011,8 +1056,8 @@
           "tr": "Bu dosyayla ilgili yanlış algıları düzeltip durumu netleştirmek gerekiyor."
         },
         {
-          "fr": "On lui attribuait tout l'échec ; elle a remis les pendules à l'heure en présentant les faits.",
-          "tr": "Başarısızlığın tamamı ona yükleniyordu; gerçekleri sunup durumu netleştirdi."
+          "fr": "Elle a remis les pendules à l'heure en présentant les faits.",
+          "tr": "Gerçekleri ortaya koyarak yanlış algıyı düzeltti."
         }
       ],
       "sources": [
@@ -1022,11 +1067,18 @@
           "locator": "remettre les pendules à l'heure : ilgili sözlük anlamı veya kaynak maddedeki kalıp",
           "checkedOn": "2026-11-10",
           "purpose": "meaning_and_expression"
+        },
+        {
+          "url": "https://www.chga.fm/antecedents-judiciaires-le-csshbo-tient-a-remettre-les-pendules-a-lheure/",
+          "checkedOn": "2026-11-14",
+          "verification": "usage_page_opened",
+          "purpose": "meaning_and_usage",
+          "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı"
         }
       ],
       "exercise": {
         "type": "meaning_in_context",
-        "context": "On lui attribuait tout l'échec ; elle a remis les pendules à l'heure en présentant les faits.",
+        "context": "Elle a remis les pendules à l'heure en présentant les faits.",
         "promptTr": "Bu bağlamda « remettre les pendules à l'heure » ne anlama geliyor?",
         "optionsTr": [
           "Bildiği bir sözcüğü bir türlü hatırlayamamak",
@@ -1038,8 +1090,9 @@
         "explanationTr": "Buradaki anlamı: Yanlış algıyı düzeltip durumu netleştirmek. Saat ayarı dışındaki mecaz anlam; gerçeği veya sorumlulukları açıklığa kavuşturmak."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "pending_recheck",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -1081,8 +1134,9 @@
         "explanationTr": "Buradaki anlamı: Duymazdan gelmek. İsteği veya uyarıyı bilerek dikkate almamak; işitme yetisine ilişkin değildir."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     },
     {
@@ -1124,9 +1178,11 @@
         "explanationTr": "Buradaki anlamı: Konuşmayı tekeline alıp başkalarına söz bırakmamak. Samimi ifade; uzun konuşmayla başkalarının katılımını sınırlama vurgusu taşır."
       },
       "independentReview": {
-        "status": "pending",
-        "reviewer": null
+        "status": "reported_clean",
+        "reviewer": "Antigravity",
+        "report": "content/review/idioms/fr-0003.md"
       }
     }
-  ]
+  ],
+  "revisedOn": "2026-11-14"
 }

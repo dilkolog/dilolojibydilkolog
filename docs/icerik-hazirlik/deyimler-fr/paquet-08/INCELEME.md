@@ -1,45 +1,10 @@
 # Paket 08 — Zaman ve gündelik ritim
 
-26 deyim ve kalıp · 52 özgün örnek/çeviri · 26 soru.
+21 deyim · 42 özgün örnek/çeviri · 21 soru.
 
-Üretici: Codex. Bağımsız denetim: bekliyor. CEFR düzeyleri atanmadı.
+Üretici: Codex. Antigravity raporu alındı; düzeltmelerin tekrar denetimi bekliyor. CEFR düzeyleri atanmadı.
 
 Bu öğretim kartlarında anlam baştan görünür. Cevaba bakmadan çözüm için [SORULAR.md](SORULAR.md) dosyasını kullan.
-
-## fr-idiom-000183 — prendre son temps
-
-**Anlam:** Acele etmeden yapmak
-
-**Kullanım:** Yerleşik kalıp; gecikmek veya isteksizlik anlamı zorunlu değildir.
-
-1. Prends ton temps, le train ne part que dans une heure.
-   Türkçesi: Acele etme; tren ancak bir saat sonra kalkacak.
-
-2. Pour apprécier l'exposition, elle a pris son temps devant chaque tableau.
-   Türkçesi: Serginin tadını çıkarmak için her tablonun önünde acele etmeden durdu.
-
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/prendre_son_temps) — prendre son temps : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Pour apprécier l'exposition, elle a pris son temps devant chaque tableau.
-
-Bu bağlamda « prendre son temps » ne anlama geliyor?
-
-- A) Geç kalmış olmak
-- B) Akşam alacakaranlığında
-- C) Bir yerde ayakta uzun süre beklemek
-- D) Acele etmeden yapmak
-
-<details><summary>Cevap ve açıklama</summary>
-
-D) Acele etmeden yapmak
-
-Buradaki anlamı: Acele etmeden yapmak. Yerleşik kalıp; gecikmek veya isteksizlik anlamı zorunlu değildir.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
 
 ## fr-idiom-000184 — traîner la patte
 
@@ -53,7 +18,7 @@ Buradaki anlamı: Acele etmeden yapmak. Yerleşik kalıp; gecikmek veya isteksiz
 2. Épuisé par la montée, il traînait la patte derrière le groupe.
    Türkçesi: Yokuştan bitkin düşmüş, grubun arkasında ağır ağır ilerliyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tra%C3%AEner_la_patte) — traîner la patte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tra%C3%AEner_la_patte) — traîner la patte : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -74,7 +39,7 @@ Buradaki anlamı: Yorgunlukla ağır ağır ilerlemek. Yavaş ve zor hareket etm
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000185 — traîner les pieds
 
@@ -88,7 +53,11 @@ Buradaki anlamı: Yorgunlukla ağır ağır ilerlemek. Yavaş ve zor hareket etm
 2. Elle traînait les pieds avant cette réunion qu'elle voulait éviter.
    Türkçesi: Kaçınmak istediği toplantıdan önce isteksizce oyalanıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tra%C3%AEner_les_pieds) — traîner les pieds : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tra%C3%AEner_les_pieds) — traîner les pieds : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [bamada.net](https://bamada.net/presidentielle-au-senegal-15-candidats-accusent-le-president-sall-de-trainer-les-pieds) — Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm (2026-11-14).
+
+**Kaynak sınırı:** Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez.
 
 **Soru:**
 
@@ -109,7 +78,7 @@ Buradaki anlamı: İsteksizce oyalanıp işi ağırdan almak. Mecaz; bedensel yo
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000186 — être à la bourre
 
@@ -123,7 +92,11 @@ Buradaki anlamı: İsteksizce oyalanıp işi ağırdan almak. Mecaz; bedensel yo
 2. Il était à la bourre et cherchait encore ses clés.
    Türkçesi: Geç kalmıştı ve hâlâ anahtarlarını arıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_%C3%A0_la_bourre) — être à la bourre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%AAtre_%C3%A0_la_bourre) — être à la bourre : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.europe1.fr](https://www.europe1.fr/culture/dun-jeu-de-carte-aux-retardataires-les-origines-de-lexpression-etre-a-la-bourre-4025943) — Deyimin mecaz kullanımını veya söz öbeği türünü gösteren bölüm (2026-11-14).
+
+**Kaynak sınırı:** Arama sonucundaki ilgili kullanım okundu; sayfanın tamamına erişildiği iddia edilmez.
 
 **Soru:**
 
@@ -144,7 +117,7 @@ Buradaki anlamı: Geç kalmış olmak. Samimi kullanım; resmî yazışmada nöt
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000187 — arriver à point nommé
 
@@ -158,7 +131,7 @@ Buradaki anlamı: Geç kalmış olmak. Samimi kullanım; resmî yazışmada nöt
 2. Le technicien est arrivé à point nommé pour sauver la présentation.
    Türkçesi: Teknisyen sunumu kurtarmak için tam ihtiyaç duyulan anda geldi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_point_nomm%C3%A9) — arriver à point nommé : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_point_nomm%C3%A9) — arriver à point nommé : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -179,7 +152,7 @@ Buradaki anlamı: Tam ihtiyaç duyulan anda gelmek. Zamanın elverişliliği; ya
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000188 — tomber à pic
 
@@ -193,7 +166,7 @@ Buradaki anlamı: Tam ihtiyaç duyulan anda gelmek. Zamanın elverişliliği; ya
 2. Son appel est tombé à pic : j'avais justement besoin de son avis.
    Türkçesi: Telefonu tam zamanında geldi; tam da fikrine ihtiyacım vardı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tomber_%C3%A0_pic) — tomber à pic : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tomber_%C3%A0_pic) — tomber à pic : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -214,7 +187,7 @@ Buradaki anlamı: Tam zamanında işe yaramak. Elverişli an vurgulanır; gerçe
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000189 — en un clin d'œil
 
@@ -228,7 +201,7 @@ Buradaki anlamı: Tam zamanında işe yaramak. Elverişli an vurgulanır; gerçe
 2. En un clin d'œil, tous les billets ont été vendus.
    Türkçesi: Göz açıp kapayıncaya kadar bütün biletler satıldı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_un_clin_d%E2%80%99%C5%93il) — en un clin d'œil : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/en_un_clin_d%E2%80%99%C5%93il) — en un clin d'œil : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -249,7 +222,7 @@ Buradaki anlamı: Göz açıp kapayıncaya kadar. Çok kısa süre; gerçek göz
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000190 — en un tour de main
 
@@ -263,7 +236,7 @@ Buradaki anlamı: Göz açıp kapayıncaya kadar. Çok kısa süre; gerçek göz
 2. Le décorateur a transformé la salle en un tour de main.
    Türkçesi: Dekoratör salonu çok kısa sürede dönüştürdü.
 
-**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A8T0857) — en un tour de main : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Académie française](https://www.dictionnaire-academie.fr/article/A8T0857) — en un tour de main : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -284,7 +257,7 @@ Buradaki anlamı: Çok kısa sürede kolayca yapmak. Hızlı sonuç alma; bütü
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000191 — à la dernière minute
 
@@ -298,7 +271,7 @@ Buradaki anlamı: Çok kısa sürede kolayca yapmak. Hızlı sonuç alma; bütü
 2. Nous avons changé de salle à la dernière minute.
    Türkçesi: Son anda salon değiştirdik.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_la_derni%C3%A8re_minute) — à la dernière minute : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_la_derni%C3%A8re_minute) — à la dernière minute : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -319,7 +292,7 @@ Buradaki anlamı: Son anda. Sürenin bitimine çok yakın; her zaman fırsat aç
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000192 — à la Saint-Glinglin
 
@@ -333,7 +306,7 @@ Buradaki anlamı: Son anda. Sürenin bitimine çok yakın; her zaman fırsat aç
 2. Il promet de rembourser, mais ce sera à la Saint-Glinglin.
    Türkçesi: Ödeyeceğine söz veriyor ama belli ki belirsiz bir gelecekte, belki de hiç ödemeyecek.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_la_Saint-Glinglin) — à la Saint-Glinglin : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_la_Saint-Glinglin) — à la Saint-Glinglin : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -354,7 +327,7 @@ Buradaki anlamı: Belirsiz bir gelecekte, belki de hiçbir zaman. Alaycı bir ta
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000193 — remettre aux calendes grecques
 
@@ -368,7 +341,9 @@ Buradaki anlamı: Belirsiz bir gelecekte, belki de hiçbir zaman. Alaycı bir ta
 2. Faute d'accord, la réunion a été remise aux calendes grecques.
    Türkçesi: Anlaşma olmayınca toplantı belirsiz ve gerçekleşmeyecek bir tarihe ertelendi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/remettre_aux_calendes_grecques) — remettre aux calendes grecques : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/remettre_aux_calendes_grecques) — remettre aux calendes grecques : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.lacsq.org](https://www.lacsq.org/actualite/remettre-aux-calendes-grecques/) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -389,7 +364,7 @@ Buradaki anlamı: Bir işi gerçekleşmeyecek bir tarihe ertelemek. Sonu gelmeye
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.
 
 ## fr-idiom-000194 — quand les poules auront des dents
 
@@ -403,7 +378,7 @@ Buradaki anlamı: Bir işi gerçekleşmeyecek bir tarihe ertelemek. Sonu gelmeye
 2. Quand lui prêterai-je encore ma voiture ? Quand les poules auront des dents !
    Türkçesi: Ona arabamı yeniden ne zaman veririm? Balık kavağa çıkınca!
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/quand_les_poules_auront_des_dents) — quand les poules auront des dents : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/quand_les_poules_auront_des_dents) — quand les poules auront des dents : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -424,7 +399,7 @@ Buradaki anlamı: Hiçbir zaman, balık kavağa çıkınca. Alaycı imkânsız g
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000195 — tous les trente-six du mois
 
@@ -438,7 +413,7 @@ Buradaki anlamı: Hiçbir zaman, balık kavağa çıkınca. Alaycı imkânsız g
 2. Elle ne vient au club que tous les trente-six du mois.
    Türkçesi: Kulübe ancak çok seyrek uğruyor.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tous_les_trente-six_du_mois) — tous les trente-six du mois : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/tous_les_trente-six_du_mois) — tous les trente-six du mois : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -459,7 +434,7 @@ Buradaki anlamı: Çok seyrek, neredeyse hiç. Alaycı sıklık ifadesi; gerçek
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000196 — une fois n'est pas coutume
 
@@ -473,7 +448,7 @@ Buradaki anlamı: Çok seyrek, neredeyse hiç. Alaycı sıklık ifadesi; gerçek
 2. D'habitude à vélo, elle a pris un taxi : une fois n'est pas coutume.
    Türkçesi: Genellikle bisiklete binen kadın bu kez taksiye bindi; bir kerelik istisnaydı.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/une_fois_n'est_pas_coutume) — une fois n'est pas coutume : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/une_fois_n'est_pas_coutume) — une fois n'est pas coutume : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -494,7 +469,7 @@ Buradaki anlamı: Bir kerelik istisna yapmak. Atasözü niteliğinde kalıplaşm
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000197 — au fil de l'eau
 
@@ -508,7 +483,7 @@ Buradaki anlamı: Bir kerelik istisna yapmak. Atasözü niteliğinde kalıplaşm
 2. Les résultats seront publiés au fil de l'eau, sans attendre la fin de l'enquête.
    Türkçesi: Sonuçlar araştırmanın sonu beklenmeden, geldikçe aşama aşama yayımlanacak.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/au_fil_de_l%E2%80%99eau) — au fil de l'eau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/au_fil_de_l%E2%80%99eau) — au fil de l'eau : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -529,7 +504,7 @@ Buradaki anlamı: Gelişmeler oldukça aşama aşama. Bu kart işlerin sırayla 
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000198 — au jour le jour
 
@@ -543,7 +518,7 @@ Buradaki anlamı: Gelişmeler oldukça aşama aşama. Bu kart işlerin sırayla 
 2. Ne sachant où travailler le mois suivant, elle vivait au jour le jour.
    Türkçesi: Ertesi ay nerede çalışacağını bilmeden günü gününe yaşıyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/au_jour_le_jour) — au jour le jour : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/au_jour_le_jour) — au jour le jour : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -564,77 +539,7 @@ Buradaki anlamı: Geleceği planlamadan günü gününe yaşamak. Bu kart plans�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000199 — de fil en aiguille
-
-**Anlam:** Bir şey diğerine bağlanarak
-
-**Kullanım:** Mantıksal veya doğal ilerleyiş; aniden ilgisiz konuya atlamak değildir.
-
-1. De fil en aiguille, nous avons parlé de nos enfances.
-   Türkçesi: Bir şey diğerine bağlandı, çocukluklarımızdan söz etmeye başladık.
-
-2. Un voisin en a invité un autre et, de fil en aiguille, toute la rue s'est réunie.
-   Türkçesi: Bir komşu diğerini çağırdı; derken bütün sokak bir araya geldi.
-
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/de_fil_en_aiguille) — de fil en aiguille : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Un voisin en a invité un autre et, de fil en aiguille, toute la rue s'est réunie.
-
-Bu bağlamda « de fil en aiguille » ne anlama geliyor?
-
-- A) Geç kalmış olmak
-- B) Akşam alacakaranlığında
-- C) Derin ve deliksiz uyumak
-- D) Bir şey diğerine bağlanarak
-
-<details><summary>Cevap ve açıklama</summary>
-
-D) Bir şey diğerine bağlanarak
-
-Buradaki anlamı: Bir şey diğerine bağlanarak. Mantıksal veya doğal ilerleyiş; aniden ilgisiz konuya atlamak değildir.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000200 — au pied levé
-
-**Anlam:** Hazırlıksız ve son anda devreye girerek
-
-**Kullanım:** Öngörülmemiş göreve hemen katılma; gerçek ayak hareketi değildir.
-
-1. Elle a remplacé le présentateur au pied levé.
-   Türkçesi: Sunucunun yerine hazırlıksız ve son anda geçti.
-
-2. Prévenu le matin même, il a animé l'atelier au pied levé.
-   Türkçesi: Aynı sabah haber verilince atölyeyi hazırlıksız biçimde yönetti.
-
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/au_pied_lev%C3%A9) — au pied levé : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Prévenu le matin même, il a animé l'atelier au pied levé.
-
-Bu bağlamda « au pied levé » ne anlama geliyor?
-
-- A) Hazırlıksız ve son anda devreye girerek
-- B) Çok seyrek, neredeyse hiç
-- C) Akşam alacakaranlığında
-- D) Derin ve deliksiz uyumak
-
-<details><summary>Cevap ve açıklama</summary>
-
-A) Hazırlıksız ve son anda devreye girerek
-
-Buradaki anlamı: Hazırlıksız ve son anda devreye girerek. Öngörülmemiş göreve hemen katılma; gerçek ayak hareketi değildir.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000201 — sur le pouce
 
@@ -648,7 +553,7 @@ Buradaki anlamı: Hazırlıksız ve son anda devreye girerek. Öngörülmemiş g
 2. Entre deux réunions, elle a mangé un sandwich sur le pouce.
    Türkçesi: İki toplantı arasında ayaküstü bir sandviç yedi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_le_pouce) — sur le pouce : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/sur_le_pouce) — sur le pouce : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -669,7 +574,7 @@ Buradaki anlamı: Ayaküstü ve hızlıca yiyerek. Yeme içme bağlamıyla sın�
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000202 — entre chien et loup
 
@@ -683,7 +588,7 @@ Buradaki anlamı: Ayaküstü ve hızlıca yiyerek. Yeme içme bağlamıyla sın�
 2. Entre chien et loup, les contours du village devenaient flous.
    Türkçesi: Akşam alacakaranlığında köyün hatları belirsizleşiyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/entre_chien_et_loup) — entre chien et loup : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/entre_chien_et_loup) — entre chien et loup : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -704,42 +609,7 @@ Buradaki anlamı: Akşam alacakaranlığında. Günün ışığı azalmış zama
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000203 — dès potron-minet
-
-**Anlam:** Sabahın çok erken saatinde
-
-**Kullanım:** Nükteli, eskice tınlayan ifade; sıradan her sabah saati değildir.
-
-1. Le boulanger travaille dès potron-minet.
-   Türkçesi: Fırıncı sabahın çok erken saatinde çalışıyor.
-
-2. Dès potron-minet, les pêcheurs étaient déjà sur le quai.
-   Türkçesi: Sabahın çok erken saatinde balıkçılar çoktan rıhtımdaydı.
-
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/d%C3%A8s_potron-minet) — dès potron-minet : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Dès potron-minet, les pêcheurs étaient déjà sur le quai.
-
-Bu bağlamda « dès potron-minet » ne anlama geliyor?
-
-- A) Geç kalmış olmak
-- B) Çok seyrek, neredeyse hiç
-- C) Akşam alacakaranlığında
-- D) Sabahın çok erken saatinde
-
-<details><summary>Cevap ve açıklama</summary>
-
-D) Sabahın çok erken saatinde
-
-Buradaki anlamı: Sabahın çok erken saatinde. Nükteli, eskice tınlayan ifade; sıradan her sabah saati değildir.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000204 — à pas de loup
 
@@ -753,7 +623,7 @@ Buradaki anlamı: Sabahın çok erken saatinde. Nükteli, eskice tınlayan ifade
 2. Pour ne réveiller personne, il a traversé le couloir à pas de loup.
    Türkçesi: Kimseyi uyandırmamak için koridoru sessiz adımlarla geçti.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_pas_de_loup) — à pas de loup : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/%C3%A0_pas_de_loup) — à pas de loup : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -774,7 +644,7 @@ Buradaki anlamı: Sessiz ve ihtiyatlı adımlarla. Gizlice veya ses çıkarmadan
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000205 — battre le pavé
 
@@ -788,7 +658,7 @@ Buradaki anlamı: Sessiz ve ihtiyatlı adımlarla. Gizlice veya ses çıkarmadan
 2. Faute d'idée pour l'après-midi, nous avons battu le pavé du quartier.
    Türkçesi: Öğleden sonra için fikrimiz olmayınca mahalle sokaklarında amaçsızca dolaştık.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/battre_le_pav%C3%A9) — battre le pavé : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/battre_le_pav%C3%A9) — battre le pavé : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -809,7 +679,7 @@ Buradaki anlamı: Sokaklarda amaçsızca dolaşmak. Avare dolaşma anlamı; çal
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000206 — faire le pied de grue
 
@@ -823,7 +693,7 @@ Buradaki anlamı: Sokaklarda amaçsızca dolaşmak. Avare dolaşma anlamı; çal
 2. Les visiteurs faisaient le pied de grue en attendant l'ouverture.
    Türkçesi: Ziyaretçiler açılışı beklerken ayakta uzun süre dikildi.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_le_pied_de_grue) — faire le pied de grue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/faire_le_pied_de_grue) — faire le pied de grue : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
 
 **Soru:**
 
@@ -844,42 +714,7 @@ Buradaki anlamı: Bir yerde ayakta uzun süre beklemek. Samimi ifade; birinin ge
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
-
-## fr-idiom-000207 — passer une nuit blanche
-
-**Anlam:** Geceyi hiç uyumadan geçirmek
-
-**Kullanım:** Uykusuz geçirilen gece; beyaz renk veya gece kıyafeti değildir.
-
-1. À cause du bruit, nous avons passé une nuit blanche.
-   Türkçesi: Gürültü yüzünden geceyi hiç uyumadan geçirdik.
-
-2. Il a passé une nuit blanche en attendant des nouvelles de sa famille.
-   Türkçesi: Ailesinden haber beklerken geceyi hiç uyumadan geçirdi.
-
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/nuit_blanche) — passer une nuit blanche : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
-
-**Soru:**
-
-Il a passé une nuit blanche en attendant des nouvelles de sa famille.
-
-Bu bağlamda « passer une nuit blanche » ne anlama geliyor?
-
-- A) Çok seyrek, neredeyse hiç
-- B) Akşam alacakaranlığında
-- C) Derin ve deliksiz uyumak
-- D) Geceyi hiç uyumadan geçirmek
-
-<details><summary>Cevap ve açıklama</summary>
-
-D) Geceyi hiç uyumadan geçirmek
-
-Buradaki anlamı: Geceyi hiç uyumadan geçirmek. Uykusuz geçirilen gece; beyaz renk veya gece kıyafeti değildir.
-
-</details>
-
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity raporunda temiz; ortak şema ve CEFR eksikleri sürüyor.
 
 ## fr-idiom-000208 — dormir à poings fermés
 
@@ -893,7 +728,9 @@ Buradaki anlamı: Geceyi hiç uyumadan geçirmek. Uykusuz geçirilen gece; beyaz
 2. Malgré l'orage, le bébé dormait à poings fermés.
    Türkçesi: Fırtınaya rağmen bebek derin ve deliksiz uyuyordu.
 
-**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/dormir_%C3%A0_poings_ferm%C3%A9s) — dormir à poings fermés : ilgili sözlük anlamı veya kaynak maddedeki kalıp (10 Kasım 2026).
+**Kaynak:** [Wiktionnaire](https://fr.wiktionary.org/wiki/dormir_%C3%A0_poings_ferm%C3%A9s) — dormir à poings fermés : ilgili sözlük anlamı veya kaynak maddedeki kalıp (2026-11-10).
+
+**Kaynak:** [www.lorientlejour.com](https://www.lorientlejour.com/article/1410217/-un-vaudeville-des-libanais-reagissent-aux-frappes-iraniennes-contre-israel.html) — Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı (2026-11-14).
 
 **Soru:**
 
@@ -914,4 +751,4 @@ Buradaki anlamı: Derin ve deliksiz uyumak. İyice uyuma; yumrukların gerçek d
 
 </details>
 
-**Bağımsız inceleme:** bekliyor.
+**Bağımsız inceleme:** Antigravity bulgularına göre düzeltildi; tekrar denetim bekliyor.

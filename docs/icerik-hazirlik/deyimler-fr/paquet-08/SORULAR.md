@@ -2,19 +2,6 @@
 
 Önce bu dosyayı çöz; sonra INCELEME.md veya JSON anahtarıyla karşılaştır. İkinci geçerli seçenek varsa ayrıca bildir.
 
-## fr-idiom-000183
-
-Pour apprécier l'exposition, elle a pris son temps devant chaque tableau.
-
-Bu bağlamda « prendre son temps » ne anlama geliyor?
-
-- A) Geç kalmış olmak
-- B) Akşam alacakaranlığında
-- C) Bir yerde ayakta uzun süre beklemek
-- D) Acele etmeden yapmak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
 ## fr-idiom-000184
 
 Épuisé par la montée, il traînait la patte derrière le groupe.
@@ -210,32 +197,6 @@ Bu bağlamda « au jour le jour » ne anlama geliyor?
 
 Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
-## fr-idiom-000199
-
-Un voisin en a invité un autre et, de fil en aiguille, toute la rue s'est réunie.
-
-Bu bağlamda « de fil en aiguille » ne anlama geliyor?
-
-- A) Geç kalmış olmak
-- B) Akşam alacakaranlığında
-- C) Derin ve deliksiz uyumak
-- D) Bir şey diğerine bağlanarak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
-## fr-idiom-000200
-
-Prévenu le matin même, il a animé l'atelier au pied levé.
-
-Bu bağlamda « au pied levé » ne anlama geliyor?
-
-- A) Hazırlıksız ve son anda devreye girerek
-- B) Çok seyrek, neredeyse hiç
-- C) Akşam alacakaranlığında
-- D) Derin ve deliksiz uyumak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
 ## fr-idiom-000201
 
 Entre deux réunions, elle a mangé un sandwich sur le pouce.
@@ -259,19 +220,6 @@ Bu bağlamda « entre chien et loup » ne anlama geliyor?
 - B) Çok seyrek, neredeyse hiç
 - C) Akşam alacakaranlığında
 - D) Derin ve deliksiz uyumak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
-## fr-idiom-000203
-
-Dès potron-minet, les pêcheurs étaient déjà sur le quai.
-
-Bu bağlamda « dès potron-minet » ne anlama geliyor?
-
-- A) Geç kalmış olmak
-- B) Çok seyrek, neredeyse hiç
-- C) Akşam alacakaranlığında
-- D) Sabahın çok erken saatinde
 
 Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
@@ -311,19 +259,6 @@ Bu bağlamda « faire le pied de grue » ne anlama geliyor?
 - B) Akşam alacakaranlığında
 - C) Bir yerde ayakta uzun süre beklemek
 - D) Derin ve deliksiz uyumak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
-## fr-idiom-000207
-
-Il a passé une nuit blanche en attendant des nouvelles de sa famille.
-
-Bu bağlamda « passer une nuit blanche » ne anlama geliyor?
-
-- A) Çok seyrek, neredeyse hiç
-- B) Akşam alacakaranlığında
-- C) Derin ve deliksiz uyumak
-- D) Geceyi hiç uyumadan geçirmek
 
 Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 

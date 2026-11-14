@@ -41,19 +41,6 @@ Bu bağlamda « être plein aux as » ne anlama geliyor?
 
 Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
-## fr-idiom-000160
-
-Malgré son apparence modeste, elle est cousue d'or.
-
-Bu bağlamda « être cousu d'or » ne anlama geliyor?
-
-- A) Hesabı eksi bakiyede olmak
-- B) Servet sahibi olacak kadar zengin olmak
-- C) Para harcamaya yanaşmayacak kadar cimri olmak
-- D) Çalışmaya üşenen tembel biri olmak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
 ## fr-idiom-000161
 
 Avec un solde de moins cent euros, elle était dans le rouge.
@@ -212,7 +199,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000173
 
-Dans la comédie, le personnage a un poil dans la main et laisse tout faire aux autres.
+Ce personnage a un poil dans la main : les autres font tout.
 
 Bu bağlamda « avoir un poil dans la main » ne anlama geliyor?
 
@@ -233,19 +220,6 @@ Bu bağlamda « avoir les poches percées » ne anlama geliyor?
 - B) Etkili bağlantılara ve nüfuza sahip olmak
 - C) Borcunu eksiksiz ve hemen ödemek
 - D) Eline geçen parayı tutamayıp harcamak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
-## fr-idiom-000175
-
-Il avait déjà dépensé sa commission avant de la recevoir ; il mangeait son blé en herbe.
-
-Bu bağlamda « manger son blé en herbe » ne anlama geliyor?
-
-- A) Henüz gelmemiş geliri önceden harcamak
-- B) Para harcamaya yanaşmayacak kadar cimri olmak
-- C) Etkili bağlantılara ve nüfuza sahip olmak
-- D) Borcunu eksiksiz ve hemen ödemek
 
 Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
@@ -316,7 +290,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000181
 
-En allant à pied poster son colis, elle a fait d'une pierre deux coups : une course et de l'exercice.
+Elle a fait d'une pierre deux coups : poster son colis lui a permis de marcher.
 
 Bu bağlamda « faire d'une pierre deux coups » ne anlama geliyor?
 

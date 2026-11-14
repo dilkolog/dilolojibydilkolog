@@ -106,19 +106,6 @@ Bu bağlamda « être sur un petit nuage » ne anlama geliyor?
 
 Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
-## fr-idiom-000035
-
-Quand leur équipe a gagné, les supporters ont sauté de joie.
-
-Bu bağlamda « sauter de joie » ne anlama geliyor?
-
-- A) İçi burkulmak
-- B) Sevinçten zıplamak
-- C) Yaprak gibi titremek
-- D) Sinirleri çok hassas olmak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
 ## fr-idiom-000036
 
 Après la surprise de ses amis, Yanis avait le sourire jusqu'aux oreilles.
@@ -194,19 +181,6 @@ Bu bağlamda « avoir des papillons dans le ventre » ne anlama geliyor?
 - B) Öfkeden kendini kaybetmek
 - C) Gücü ve dayanma kapasitesi tükenmiş olmak
 - D) Heyecandan midesinde kelebekler uçuşmak
-
-Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
-
-## fr-idiom-000042
-
-La cliente était rouge de colère après cette réponse méprisante.
-
-Bu bağlamda « être rouge de colère » ne anlama geliyor?
-
-- A) Öfkeden kıpkırmızı kesilmek
-- B) Nedeni tam belirgin olmayan bir hüzün duymak
-- C) Sevinçten zıplamak
-- D) İçinde yoğun bir korku taşımak
 
 Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
@@ -290,7 +264,7 @@ Seçilen cevap: … · İkinci geçerli seçenek: … · Not: …
 
 ## fr-idiom-000049
 
-Épuisé par le bruit, Sami avait les nerfs à fleur de peau et supportait mal les remarques.
+Épuisé, Sami avait les nerfs à fleur de peau et s'irritait facilement.
 
 Bu bağlamda « avoir les nerfs à fleur de peau » ne anlama geliyor?
 
