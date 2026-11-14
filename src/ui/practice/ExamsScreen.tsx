@@ -16,6 +16,15 @@ import { HeadphonesIcon, PenIcon, ReadIcon } from '../shared/icons'
 import { LANGUAGE_NAME } from '../shared/labels'
 import { PageHeader } from '../shared/PageHeader'
 import { canSpeak } from '../shared/speech'
+import { PTE_TASKS, type PtePack, type PteTask } from '../../data/pte'
+import { loadPte } from '../../data/ptePack'
+import { emptyPteLog, type PteLog } from '../../engine/pteScore'
+import { PteDrill } from './pte/PteDrill'
+import { PteSection } from './pte/PteSection'
+import { readPteMode, savePteMode, type PteMode } from './pte/pteMode'
+
+/** The PTE-style part's place in the exam choice (it has no levels). */
+const PTE = 'PTE'
 
 const day = (iso?: string) => (iso ? new Date(iso).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' }) : '')
 
@@ -30,6 +39,9 @@ export function ExamsScreen({
   passage,
   passages = examPassages,
   tasks: givenTasks,
+  pteTask,
+  ptePack: givenPack,
+  onOpenPte = () => {},
   onOpenSet,
   onCloseSet,
   onOpenTask,
@@ -40,6 +52,11 @@ export function ExamsScreen({
   /** The content, for tests; the app's own by default. */
   passages?: readonly ExamPassage[]
   tasks?: readonly ExamTask[]
+  /** A PTE-style task opened from this screen (the route's). */
+  pteTask?: string
+  /** The PTE-style content, for tests; the app's own (English only) by default. */
+  ptePack?: PtePack | null
+  onOpenPte?: (task: PteTask) => void
   onOpenSet: (id: string) => void
   onCloseSet: () => void
   onOpenTask: (id: string) => void
@@ -50,6 +67,11 @@ export function ExamsScreen({
   const [journal, setJournal] = useState<JournalEntry[]>([])
   const [mode, setModeState] = useState<ExamMode>(readExamMode)
   const [choice, setChoiceState] = useState(() => readExamChoice(language))
+  // undefined while loading, null for a language without PTE-style content.
+  const [loadedPack, setLoadedPack] = useState<PtePack | null | undefined>(givenPack)
+  const pack = givenPack !== undefined ? givenPack : loadedPack
+  const [pteLog, setPteLog] = useState<PteLog>(emptyPteLog)
+  const [pteMode, setPteModeState] = useState<PteMode>(readPteMode)
 
   useEffect(() => {
     if (givenTasks) return
@@ -60,21 +82,42 @@ export function ExamsScreen({
     }
   }, [language, givenTasks])
   useEffect(() => {
+    if (givenPack !== undefined) return
     let live = true
-    void db.getExamLog().then((l) => live && setLog(l))
-    void db.getJournal(language).then((j) => live && setJournal(j))
+    void loadPte(language).then((p) => live && setLoadedPack(p))
     return () => {
       live = false
     }
-  }, [language, passage])
+  }, [language, givenPack])
+  useEffect(() => {
+    let live = true
+    void db.getExamLog().then((l) => live && setLog(l))
+    void db.getJournal(language).then((j) => live && setJournal(j))
+    void db.getPteLog().then((l) => live && setPteLog(l))
+    return () => {
+      live = false
+    }
+  }, [language, passage, pteTask])
 
   const families = useMemo(() => (tasks ? examFamilies(language, passages, tasks) : []), [language, passages, tasks])
   const current = pickExam(families, choice)
   const content = current && tasks ? examContent(language, current.exam, current.level, passages, tasks) : null
+  const hasPte = !!pack && PTE_TASKS.some((t) => pack[t].length > 0)
+  // PTE-style when it is chosen, or when the language has nothing else.
+  const pteOn = hasPte && (choice.exam === PTE || !families.length)
 
   if (passage) return <ExamTasks key={passage} language={language} start={passage} exitLabel="← Sınavlar" onExit={onCloseSet} />
+  if (pteTask && pack && (PTE_TASKS as readonly string[]).includes(pteTask) && pack[pteTask as PteTask].length) {
+    return <PteDrill key={pteTask} task={pteTask as PteTask} pack={pack} log={pteLog} mode={pteMode} onExit={onCloseSet} />
+  }
 
   const choose = (next: { exam: string; level?: string }) => {
+    if (next.exam === PTE) {
+      const pte = { exam: PTE, level: current?.level ?? '' }
+      setChoiceState(pte)
+      saveExamChoice(language, pte)
+      return
+    }
     const picked = pickExam(families, next)
     if (!picked) return
     setChoiceState(picked)
@@ -84,27 +127,37 @@ export function ExamsScreen({
     setModeState(m)
     saveExamMode(m)
   }
+  const setPteMode = (m: PteMode) => {
+    setPteModeState(m)
+    savePteMode(m)
+  }
   const names = families.map((f) => f.exam)
 
   return (
     <div className="stack exams">
       <PageHeader art="exam" title="Sınavlar" sub={`${LANGUAGE_NAME[language]} sınavlarının tarzında okuma, dinleme ve yazma görevleri: önce sınavı, sonra seviyeni seç.`} />
-      {tasks && !families.length && (
+      {tasks && !families.length && pack !== undefined && !hasPte && (
         <EmptyState art="nothing-found" title="Bu dilde sınav görevi yok">
           Sınav tarzı görevler henüz bu dil için yazılmadı.
         </EmptyState>
       )}
-      {current && content && (
-        <>
-          {families.length > 1 && (
-            <div className="choice-row" role="group" aria-label="Sınav">
-              {families.map((f) => (
-                <button key={f.exam} type="button" className="chip" aria-pressed={f.exam === current.exam} onClick={() => choose({ exam: f.exam, level: current.level })}>
-                  {f.exam} tarzı
-                </button>
-              ))}
-            </div>
+      {families.length + (hasPte ? 1 : 0) > 1 && (
+        <div className="choice-row" role="group" aria-label="Sınav">
+          {families.map((f) => (
+            <button key={f.exam} type="button" className="chip" aria-pressed={!pteOn && f.exam === current?.exam} onClick={() => choose({ exam: f.exam, level: current?.level })}>
+              {f.exam} tarzı
+            </button>
+          ))}
+          {hasPte && (
+            <button type="button" className="chip" aria-pressed={pteOn} onClick={() => choose({ exam: PTE })}>
+              PTE tarzı
+            </button>
           )}
+        </div>
+      )}
+      {pteOn && pack && <PteSection pack={pack} log={pteLog} mode={pteMode} onMode={setPteMode} onOpen={onOpenPte} />}
+      {!pteOn && current && content && (
+        <>
           <div className="segmented" role="group" aria-label="Seviye">
             {families
               .find((f) => f.exam === current.exam)!
@@ -188,7 +241,7 @@ export function ExamsScreen({
           </section>
         </>
       )}
-      {names.length > 0 && (
+      {!pteOn && names.length > 0 && (
         <p className="small muted exams-note">
           Bu görevler Diloloji için yazılmış özgün içeriktir. {names.join(', ')} adları yalnızca görevlerin tarzını anlatır; resmî sınav kurumlarıyla bir bağlantı yoktur.
         </p>

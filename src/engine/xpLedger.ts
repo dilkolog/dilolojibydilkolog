@@ -52,7 +52,7 @@ export function mergeLedgers(a: XpLedger | undefined, b: XpLedger | undefined): 
   return out
 }
 
-const KEY = /^(?:time\|\d{4}-\d{2}-\d{2}|lesson\|[\w-]+|review\|[\w-]+\|\d|cert\|(?:en|fr|es)\|[A-C][12]|invite\|(?:in|[2-9A-HJKMNP-Z]{8}))$/
+const KEY = /^(?:time\|\d{4}-\d{2}-\d{2}|lesson\|[\w-]+|review\|[\w-]+\|\d|cert\|(?:en|fr|es)\|[A-C][12]|invite\|(?:in|[2-9A-HJKMNP-Z]{8})|pte\|(?:wfd|rs|ra|fib|asq)\|[\w-]+\|\d{4}-\d{2}-\d{2})$/
 
 /** Only awards of a known kind with a day and sensible points survive (a hand-edited or damaged backup). */
 export function cleanLedger(raw: unknown): XpLedger {

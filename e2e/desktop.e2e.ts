@@ -469,6 +469,148 @@ test('the exams screen: an exam and a level from the content, a set and a task o
   expect(await overflow(page)).toEqual([])
 })
 
+test('PTE-style for English: a whole dictation round and a whole fill-in-the-blanks round, results on the cards', async ({ page }) => {
+  const pte = JSON.parse(fs.readFileSync('src/data/pte/en.json', 'utf8')) as { wfd: { text: string; tr: string }[]; fib: { blanks: { answer: string }[]; tr: string }[] }
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /İngilizce/ }).click()
+  await openScreen(page, 'Sınavlar')
+  await page.getByRole('group', { name: 'Sınav' }).getByRole('button', { name: 'PTE tarzı' }).click()
+  const section = page.locator('.pte-section')
+  await expect(section.locator('.examtask-item')).toHaveCount(5)
+  await expect(section.getByRole('group', { name: 'Mod' }).getByRole('button', { name: 'Alıştırma' })).toHaveAttribute('aria-pressed', 'true')
+  await expect(section).toContainText('Pearson ile bir bağlantısı yoktur')
+  expect(await overflow(page)).toEqual([])
+
+  // Dictation: each sentence written (the first one with a slip), the right sentence and its Turkish after each.
+  await section.locator('.examtask-item', { hasText: 'Dikte' }).click()
+  // A round is the first items never done, in the content's order.
+  const wfd = pte.wfd.slice(0, 5)
+  for (const [i, item] of wfd.entries()) {
+    await expect(page.locator('.pte-drill .game-top')).toContainText(`${i + 1} / ${wfd.length}`)
+    await page.getByLabel('Duyduğun cümle').fill(i === 0 ? item.text.split(' ').slice(0, -1).join(' ') : item.text)
+    await page.getByRole('button', { name: 'Kontrol et' }).click()
+    await expect(page.locator('.pte-feedback')).toContainText(item.tr)
+    await expect(page.locator('.pte-feedback')).toContainText(i === 0 ? 'Doğruluk %' : 'Doğruluk %100')
+    await page.getByRole('button', { name: i + 1 < wfd.length ? 'Devam' : 'Sonucu gör' }).click()
+  }
+  await expect(page.getByRole('region', { name: 'Sonuç' })).toContainText(/Dikte: %9\d/)
+  await page.getByRole('button', { name: 'Sınavlara dön' }).click()
+  await expect(section.locator('.examtask-item', { hasText: 'Dikte' })).toContainText(`${wfd.length} / ${pte.wfd.length} öğe yapıldı · son tur %9`)
+
+  // Fill in the blanks: a choice in every blank from its list; all right but one blank of the last paragraph.
+  await section.locator('.examtask-item', { hasText: 'Boşluk doldurma' }).click()
+  const fib = pte.fib.slice(0, 5)
+  for (const [i, item] of fib.entries()) {
+    const last = i === fib.length - 1
+    for (const [k, blank] of item.blanks.entries()) {
+      await page.locator('.pte-blank').nth(k).locator('.select-trigger').click()
+      const list = page.getByRole('listbox', { name: `${k + 1}. boşluk` })
+      if (last && k === 0) await list.getByRole('option').filter({ hasNotText: new RegExp(`^${blank.answer}$`) }).first().click()
+      else await list.getByRole('option', { name: blank.answer, exact: true }).click()
+    }
+    if (i === 0) expect(await overflow(page)).toEqual([])
+    await page.getByRole('button', { name: 'Kontrol et' }).click()
+    await expect(page.locator('.pte-feedback')).toContainText(last ? `${item.blanks.length - 1} / ${item.blanks.length} boşluk` : `${item.blanks.length} / ${item.blanks.length} boşluk`)
+    await expect(page.locator('.pte-feedback')).toContainText(item.tr)
+    await page.getByRole('button', { name: last ? 'Sonucu gör' : 'Devam' }).click()
+  }
+  await expect(page.getByRole('region', { name: 'Sonuç' })).toContainText(/Boşluk doldurma: %9\d/)
+  await page.getByRole('button', { name: 'Sınavlara dön' }).click()
+  await expect(section.locator('.examtask-item', { hasText: 'Boşluk doldurma' })).toContainText(`${fib.length} / ${pte.fib.length} öğe yapıldı`)
+  // Kept on the device: after a reload the cards still say so.
+  await page.reload()
+  await expect(page.locator('.pte-section .examtask-item', { hasText: 'Dikte' })).toContainText('son tur %')
+})
+
+/** No microphone or recognition service in a test: a silent stream and a recogniser that hears `window.saySentence`. */
+const fakeVoice = (page: Page) =>
+  page.addInitScript(() => {
+    navigator.mediaDevices.getUserMedia = async () => {
+      const ctx = new AudioContext()
+      const out = ctx.createMediaStreamDestination()
+      ctx.createOscillator().connect(out)
+      return out.stream
+    }
+    class FakeRecognition {
+      lang = ''
+      interimResults = false
+      continuous = false
+      maxAlternatives = 1
+      onresult: ((e: unknown) => void) | null = null
+      onerror: ((e: unknown) => void) | null = null
+      onend: (() => void) | null = null
+      onspeechstart: (() => void) | null = null
+      onspeechend: (() => void) | null = null
+      onnomatch: (() => void) | null = null
+      start() {
+        const said = (window as unknown as { saySentence?: string }).saySentence ?? ''
+        setTimeout(() => {
+          const result = Object.assign([{ transcript: said }], { isFinal: true })
+          this.onresult?.({ resultIndex: 0, results: Object.assign([result], { length: 1 }) })
+        }, 200)
+      }
+      stop() {
+        setTimeout(() => this.onend?.(), 0)
+      }
+      abort() {
+        this.stop()
+      }
+    }
+    Object.assign(window, { SpeechRecognition: FakeRecognition, webkitSpeechRecognition: FakeRecognition })
+  })
+
+test('PTE-style short question in exam mode: the question heard once, the answer said, closed by 3 s of silence', async ({ page }) => {
+  await fakeVoice(page)
+  const pte = JSON.parse(fs.readFileSync('src/data/pte/en.json', 'utf8')) as { asq: { answers: string[]; tr: string }[] }
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /İngilizce/ }).click()
+  await openScreen(page, 'Sınavlar')
+  await page.getByRole('group', { name: 'Sınav' }).getByRole('button', { name: 'PTE tarzı' }).click()
+  await page.locator('.pte-section').getByRole('group', { name: 'Mod' }).getByRole('button', { name: 'Sınav' }).click()
+  await page.locator('.pte-section .examtask-item', { hasText: 'Kısa soru' }).click()
+  // Said within a few words, as people answer: it still counts.
+  await page.evaluate((s) => ((window as unknown as { saySentence: string }).saySentence = `I think it's ${s}`), pte.asq[0].answers[0])
+  await page.getByRole('button', { name: 'Dinle' }).click()
+  await expect(page.getByRole('timer')).toBeVisible({ timeout: 10_000 })
+  await expect(page.locator('.pte-feedback')).toContainText('Doğruluk %100', { timeout: 8000 })
+  await expect(page.locator('.pte-feedback')).toContainText(pte.asq[0].tr)
+  await page.getByRole('button', { name: 'Devam' }).click()
+  // Nothing right said: wrong, with the right answer shown.
+  await page.evaluate(() => ((window as unknown as { saySentence: string }).saySentence = 'I do not know'))
+  await page.getByRole('button', { name: 'Dinle' }).click()
+  await expect(page.locator('.pte-feedback')).toContainText('Doğruluk %0', { timeout: 12_000 })
+  await expect(page.locator('.pte-feedback')).toContainText(`Doğru cevap: ${pte.asq[1].answers[0]}`)
+})
+
+test('PTE-style repeat sentence in exam mode: heard once, said back until 3 s of silence (recognition stood in for), or typed', async ({ page }) => {
+  await fakeVoice(page)
+  const pte = JSON.parse(fs.readFileSync('src/data/pte/en.json', 'utf8')) as { rs: { text: string; tr: string }[] }
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /İngilizce/ }).click()
+  await openScreen(page, 'Sınavlar')
+  await page.getByRole('group', { name: 'Sınav' }).getByRole('button', { name: 'PTE tarzı' }).click()
+  await page.locator('.pte-section').getByRole('group', { name: 'Mod' }).getByRole('button', { name: 'Sınav' }).click()
+  await page.locator('.pte-section .examtask-item', { hasText: 'Cümle tekrarı' }).click()
+  await expect(page.locator('.pte-drill .game-top')).toContainText('Sınav modu')
+  // Said back: the recording plays once, the microphone opens by itself with the exam's clock.
+  await page.evaluate((s) => ((window as unknown as { saySentence: string }).saySentence = s.toLowerCase().replace(/[.?]/g, '')), pte.rs[0].text)
+  await page.getByRole('button', { name: 'Dinle' }).click()
+  await expect(page.getByRole('timer')).toBeVisible({ timeout: 10_000 })
+  await expect(page.getByRole('button', { name: /Bir daha dinle/ })).toBeDisabled()
+  // Nothing more is said: 3 s of silence closes the recording by itself, as on the exam.
+  await expect(page.locator('.pte-feedback')).toContainText('Doğruluk %100', { timeout: 8000 })
+  await expect(page.locator('.pte-feedback')).toContainText('3 / 3 içerik puanı')
+  await expect(page.locator('.pte-feedback')).toContainText(pte.rs[0].tr)
+  await page.getByRole('button', { name: 'Devam' }).click()
+  // Typed instead: half of the sentence.
+  await page.getByRole('button', { name: 'Yazarak dene' }).click()
+  const words = pte.rs[1].text.split(' ')
+  await page.getByLabel('Yazarak cevap').fill(words.slice(0, Math.ceil(words.length / 2)).join(' '))
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  // At least half of the words in order: 2 of the 3 content points.
+  await expect(page.locator('.pte-feedback')).toContainText('2 / 3 içerik puanı')
+})
+
 test('English verb lab: irregular verbs and phrasal verbs, a list to look through and a round to practise', async ({ page }) => {
   await startWithSamples(page)
   await page.getByRole('button', { name: /İngilizce/ }).click()
