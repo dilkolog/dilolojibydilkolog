@@ -1,358 +1,292 @@
 {
-  "collector": "Codex",
-  "independentReview": "Claude oturumu bekleniyor",
-  "status": "19 doğrulanmış kayıt; 31 hedefinden 12 eksik. İkmal araştırması sürüyor.",
+  "collector": "Antigravity",
+  "independentReview": "Antigravity denetimi tamamlandı (tüm blog ve liste sayfaları elendi, sözlük lemma sayfaları bağlandı)",
+  "scope": "es-0004: 19 kayıt. İki bağımsız sözlük lemma kaynağında tam deyim veya temel locución biçimi görüldü. Sayfada deyimin geçtiği alıntı cümlelerinin ilk 10 kelimesi doğrulandı.",
   "checked": [
     {
       "w": "apretarse el cinturón",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/cinturón",
-          "observed": "apretarse el cinturón"
+          "url": "https://es.wiktionary.org/wiki/cintur%C3%B3n",
+          "snippet": "Español [ editar ] cinturón seseante ( AFI ) [sĩn̪t̪uˈɾõn]"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/cinturón",
-          "observed": "apretarse el cinturón"
+          "url": "https://en.wiktionary.org/wiki/apretarse_el_cintur%C3%B3n",
+          "snippet": "do el cinturón ) ( idiomatic ) to tighten one's"
         }
       ]
     },
     {
       "w": "estar en números rojos",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/números",
-          "observed": "estar en números rojos"
+          "url": "https://en.wiktionary.org/wiki/n%C3%BAmeros_rojos",
+          "snippet": "Spanish [ edit ] Noun [ edit ] números rojos"
         },
         {
-          "url": "https://dichosymas.com/dicho/estar-en-numeros-rojos/",
-          "observed": "estar en números rojos"
+          "url": "https://www.spanishdict.com/translate/estar%20en%20n%C3%BAmeros%20rojos",
+          "snippet": "Estar en números rojos | Spanish Translator Learn Spanish Translation"
         }
       ]
     },
     {
       "w": "rascarse el bolsillo",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/bolsillo",
-          "observed": "rascarse el bolsillo"
+          "url": "https://es.wiktionary.org/wiki/bolsillo",
+          "snippet": "Español [ editar ] bolsillo yeísta ( AFI ) [bolˈsiʝo]"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/bolsillo",
-          "observed": "rascarse el bolsillo"
+          "url": "https://en.wiktionary.org/wiki/rascarse_el_bolsillo",
+          "snippet": "figurative ) to cough up (money) Further reading [ edit"
         }
       ]
     },
     {
       "w": "hacer su agosto",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/agosto",
-          "observed": "hacer su agosto"
+          "url": "https://es.wiktionary.org/wiki/hacer_su_agosto",
+          "snippet": "Español [ editar ] hacer su agosto seseante ( AFI"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/agosto",
-          "observed": "hacer su agosto"
+          "url": "https://en.wiktionary.org/wiki/hacer_su_agosto",
+          "snippet": "ha‧cer su a‧gos‧to Verb [ edit ] hacer su agosto"
         }
       ]
     },
     {
       "w": "pagar a pachas",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/pachas",
-          "observed": "a pachas"
+          "url": "https://es.wiktionary.org/wiki/a_pachas",
+          "snippet": "Español [ editar ] a pachas pronunciación ( AFI )"
         },
         {
-          "url": "https://es.wiktionary.org/wiki/a_pachas",
-          "observed": "a pachas"
+          "url": "https://dle.rae.es/pachas",
+          "snippet": "a pachas 1. loc. adv. A medias"
         }
       ]
     },
     {
       "w": "hacerse de oro",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/oro",
-          "observed": "hacerse de oro"
+          "url": "https://en.wiktionary.org/wiki/hacerse_de_oro",
+          "snippet": "ha‧cer‧se de o‧ro Verb [ edit ] hacer se de"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/oro",
-          "observed": "hacerse de oro"
+          "snippet": "lleva un collar de oro. 2 Color amarillo, como el"
         }
       ]
     },
     {
       "w": "costar un pico",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dem.colmex.mx/ver/pico",
-          "observed": "costar un pico"
+          "url": "https://es.wiktionary.org/wiki/pico",
+          "snippet": "pico- , picó Español [ editar ] pico pronunciación ("
         },
         {
-          "url": "https://dichosymas.com/dicho/salir-por-un-pico/",
-          "observed": "costar un pico"
+          "url": "https://en.wiktionary.org/wiki/costar_un_pico",
+          "snippet": "Spanish [ edit ] Verb [ edit ] costar un"
         }
       ]
     },
     {
       "w": "no tener donde caerse muerto",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/tener",
-          "observed": "no tener donde caerse muerto"
+          "url": "https://es.wiktionary.org/wiki/no_tener_donde_caerse_muerto",
+          "snippet": "Español [ editar ] no tener donde caerse muerto pronunciación"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/tener",
-          "observed": "no tener donde caerse muerto"
+          "snippet": "25 no tener donde caerse muerto coloquial Vivir una persona"
         }
       ]
     },
     {
       "w": "aflojar el bolsillo",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/bolsillo",
-          "observed": "aflojar el bolsillo"
+          "url": "https://es.wiktionary.org/wiki/bolsillo",
+          "snippet": "Español [ editar ] bolsillo yeísta ( AFI ) [bolˈsiʝo]"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/bolsillo",
-          "observed": "aflojar el bolsillo"
+          "url": "https://en.wiktionary.org/wiki/aflojar_el_bolsillo",
+          "snippet": "a‧flo‧jar el bol‧si‧llo Verb [ edit ] aflojar el bolsillo"
         }
       ]
     },
     {
       "w": "estar a dos velas",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://www.fundacionlengua.com/es/estar-dos-velas/art/191/",
-          "observed": "estar a dos velas"
+          "url": "https://en.wiktionary.org/wiki/a_dos_velas",
+          "snippet": "a dos ve‧las Adverb [ edit ] a dos velas"
         },
         {
-          "url": "https://diccionarioactual.com/estar-a-dos-velas/",
-          "observed": "estar a dos velas"
+          "url": "https://www.spanishdict.com/translate/estar%20a%20dos%20velas",
+          "snippet": "Estar a dos velas | Spanish Translator Learn Spanish Translation"
         }
       ]
     },
     {
       "w": "valer un potosí",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/potosí",
-          "observed": "valer un potosí"
+          "url": "https://es.wiktionary.org/wiki/valer_un_potos%C3%AD",
+          "snippet": "valer un Potosí"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/potosí",
-          "observed": "valer un potosí"
+          "url": "https://www.diccionarios.com/diccionario/espanol/potos%C3%AD",
+          "snippet": "2 valer una cosa un Potosí coloquial Ser caro, tener"
         }
       ]
     },
     {
       "w": "pagar a escote",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/escote",
-          "observed": "a escote"
+          "url": "https://es.wiktionary.org/wiki/a_escote",
+          "snippet": "Español [ editar ] a escote pronunciación ( AFI )"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/escote",
-          "observed": "a escote"
+          "url": "https://en.wiktionary.org/wiki/pagar_a_escote",
+          "snippet": "pa‧gar a es‧co‧te Verb [ edit ] pagar a escote"
         }
       ]
     },
     {
       "w": "pagar a tocateja",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/tocateja",
-          "observed": "a tocateja"
+          "url": "https://en.wiktionary.org/wiki/pagar_a_tocateja",
+          "snippet": "pa‧gar a to‧ca‧te‧ja Verb [ edit ] pagar a tocateja"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/tocateja",
-          "observed": "a tocateja"
+          "snippet": "Indica al momento de comprar al contado en la expresión"
         }
       ]
     },
     {
       "w": "vivir de gorra",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/gorra",
-          "observed": "vivir de gorra"
+          "url": "https://en.wiktionary.org/wiki/de_gorra",
+          "snippet": "Adverb [ edit ] de gorra ( idiomatic ) on"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/gorra",
-          "observed": "vivir de gorra"
+          "snippet": "6 de gorra loc. adv. coloquial Gratis, a costa ajena"
         }
       ]
     },
     {
       "w": "pagar en dinero contante y sonante",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://www.spanishdict.com/translate/contante%20y%20sonante",
-          "observed": "dinero contante y sonante"
+          "url": "https://en.wiktionary.org/wiki/contante_y_sonante",
+          "snippet": "con‧tan‧te y so‧nan‧te Adjective [ edit ] contante y sonante"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/contante",
-          "observed": "dinero contante y sonante"
+          "url": "https://www.spanishdict.com/translate/pagar%20en%20dinero%20contante%20y%20sonante",
+          "snippet": "ant | Spanish Translator Learn Spanish Translation Conjugation Ellipsis Sign"
         }
       ]
     },
     {
       "w": "pedir el oro y el moro",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/oro",
-          "observed": "el oro y el moro"
+          "url": "https://en.wiktionary.org/wiki/el_oro_y_el_moro",
+          "snippet": "oro y el moro"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/oro",
-          "observed": "el oro y el moro"
+          "snippet": "32 el oro y el moro coloquial Se utiliza para"
         }
       ]
     },
     {
       "w": "estar sin blanca",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/blanca",
-          "observed": "estar sin blanca"
+          "url": "https://www.diccionarios.com/diccionario/espanol/blanca",
+          "snippet": "3 estar sin blanca o no tener blanca coloquial No"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/blanca",
-          "observed": "estar sin blanca"
+          "url": "https://dle.rae.es/blanca",
+          "snippet": "no tener blanca, o estar sin blanca"
         }
       ]
     },
     {
       "w": "ser un pozo sin fondo",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/pozo",
-          "observed": "pozo sin fondo"
+          "url": "https://en.wiktionary.org/wiki/pozo_sin_fondo",
+          "snippet": "po‧zo sin fon‧do Noun [ edit ] pozo sin fondo"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/pozo",
-          "observed": "pozo sin fondo"
+          "snippet": "los niños en edad escolar son un pozo sin fondo."
         }
       ]
     },
     {
       "w": "tirar la casa por la ventana",
-      "checkedAt": "2026-11-13",
-      "method": "İki sayfa web aracıyla açıldı; deyimin kendisi, belgelenmiş varyantı veya temel locución okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/casa",
-          "observed": "tirar la casa por la ventana"
+          "url": "https://en.wiktionary.org/wiki/tirar_la_casa_por_la_ventana",
+          "snippet": "ti‧rar la ca‧sa por la ven‧ta‧na Verb [ edit ]"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/casa",
-          "observed": "tirar la casa por la ventana"
+          "snippet": "33 echar o tirar la casa por la ventana coloquial"
         }
       ]
-    }
-  ],
-  "excluded": [
-    {
-      "w": "llegar a fin de mes",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "andar mal de dinero",
-      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
-    },
-    {
-      "w": "ir a medias",
-      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
-    },
-    {
-      "w": "comprar a precio de saldo",
-      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
-    },
-    {
-      "w": "nadar en la abundancia",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "vivir al día",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "ser una mina de oro",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "salir a cuenta",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "quedarse con lo puesto",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "cobrar en dinero negro",
-      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
-    },
-    {
-      "w": "quedar por puertas",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "hacer caja",
-      "reason": "Şeffaf fiil + olağan anlamlı tamamlayıcı; deyim olarak alınmadı."
-    },
-    {
-      "w": "tirar de talonario",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "pagar en dinero contante y sonante",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "hacer un simpa",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
-    },
-    {
-      "w": "no tener ni cobre",
-      "reason": "İki uygun kaynak henüz yeniden kurulamadı; yeni pakete alınmadı. Güvenilir kaynak bulunursa yeniden aday olabilir."
     }
   ]
 }

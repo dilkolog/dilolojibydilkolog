@@ -12,8 +12,8 @@
   "level": "B1",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/cinturón",
-   "https://www.diccionarios.com/diccionario/espanol/cinturón"
+   "https://es.wiktionary.org/wiki/cintur%C3%B3n",
+   "https://en.wiktionary.org/wiki/apretarse_el_cintur%C3%B3n"
   ]
  },
  {
@@ -28,8 +28,8 @@
   "level": "B1",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/números",
-   "https://dichosymas.com/dicho/estar-en-numeros-rojos/"
+   "https://en.wiktionary.org/wiki/n%C3%BAmeros_rojos",
+   "https://www.spanishdict.com/translate/estar%20en%20n%C3%BAmeros%20rojos"
   ]
  },
  {
@@ -45,8 +45,8 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/bolsillo",
-   "https://www.diccionarios.com/diccionario/espanol/bolsillo"
+   "https://es.wiktionary.org/wiki/bolsillo",
+   "https://en.wiktionary.org/wiki/rascarse_el_bolsillo"
   ]
  },
  {
@@ -62,8 +62,8 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/agosto",
-   "https://www.diccionarios.com/diccionario/espanol/agosto"
+   "https://es.wiktionary.org/wiki/hacer_su_agosto",
+   "https://en.wiktionary.org/wiki/hacer_su_agosto"
   ]
  },
  {
@@ -78,8 +78,8 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/pachas",
-   "https://es.wiktionary.org/wiki/a_pachas"
+   "https://es.wiktionary.org/wiki/a_pachas",
+   "https://dle.rae.es/pachas"
   ]
  },
  {
@@ -95,7 +95,7 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/oro",
+   "https://en.wiktionary.org/wiki/hacerse_de_oro",
    "https://www.diccionarios.com/diccionario/espanol/oro"
   ]
  },
@@ -112,8 +112,8 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dem.colmex.mx/ver/pico",
-   "https://dichosymas.com/dicho/salir-por-un-pico/"
+   "https://es.wiktionary.org/wiki/pico",
+   "https://en.wiktionary.org/wiki/costar_un_pico"
   ]
  },
  {
@@ -129,7 +129,7 @@
   "level": "C1",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/tener",
+   "https://es.wiktionary.org/wiki/no_tener_donde_caerse_muerto",
    "https://www.diccionarios.com/diccionario/espanol/tener"
   ]
  },
@@ -146,8 +146,8 @@
   "level": "C1",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/bolsillo",
-   "https://www.diccionarios.com/diccionario/espanol/bolsillo"
+   "https://es.wiktionary.org/wiki/bolsillo",
+   "https://en.wiktionary.org/wiki/aflojar_el_bolsillo"
   ]
  },
  {
@@ -163,8 +163,8 @@
   "level": "C1",
   "theme": "money",
   "src": [
-   "https://www.fundacionlengua.com/es/estar-dos-velas/art/191/",
-   "https://diccionarioactual.com/estar-a-dos-velas/"
+   "https://en.wiktionary.org/wiki/a_dos_velas",
+   "https://www.spanishdict.com/translate/estar%20a%20dos%20velas"
   ]
  },
  {
@@ -180,8 +180,8 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/potosí",
-   "https://www.diccionarios.com/diccionario/espanol/potosí"
+   "https://es.wiktionary.org/wiki/valer_un_potos%C3%AD",
+   "https://www.diccionarios.com/diccionario/espanol/potos%C3%AD"
   ]
  },
  {
@@ -196,8 +196,8 @@
   "level": "C1",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/escote",
-   "https://www.diccionarios.com/diccionario/espanol/escote"
+   "https://es.wiktionary.org/wiki/a_escote",
+   "https://en.wiktionary.org/wiki/pagar_a_escote"
   ]
  },
  {
@@ -213,7 +213,7 @@
   "level": "C1",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/tocateja",
+   "https://en.wiktionary.org/wiki/pagar_a_tocateja",
    "https://www.diccionarios.com/diccionario/espanol/tocateja"
   ]
  },
@@ -229,7 +229,7 @@
   "level": "C1",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/gorra",
+   "https://en.wiktionary.org/wiki/de_gorra",
    "https://www.diccionarios.com/diccionario/espanol/gorra"
   ]
  },
@@ -245,8 +245,8 @@
   "level": "C1",
   "theme": "money",
   "src": [
-   "https://www.spanishdict.com/translate/contante%20y%20sonante",
-   "https://www.diccionarios.com/diccionario/espanol/contante"
+   "https://en.wiktionary.org/wiki/contante_y_sonante",
+   "https://www.spanishdict.com/translate/pagar%20en%20dinero%20contante%20y%20sonante"
   ]
  },
  {
@@ -261,7 +261,7 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/oro",
+   "https://en.wiktionary.org/wiki/el_oro_y_el_moro",
    "https://www.diccionarios.com/diccionario/espanol/oro"
   ]
  },
@@ -277,8 +277,8 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/blanca",
-   "https://www.diccionarios.com/diccionario/espanol/blanca"
+   "https://www.diccionarios.com/diccionario/espanol/blanca",
+   "https://dle.rae.es/blanca"
   ]
  },
  {
@@ -293,7 +293,7 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/pozo",
+   "https://en.wiktionary.org/wiki/pozo_sin_fondo",
    "https://www.diccionarios.com/diccionario/espanol/pozo"
   ]
  },
@@ -309,7 +309,7 @@
   "level": "B2",
   "theme": "money",
   "src": [
-   "https://dle.rae.es/casa",
+   "https://en.wiktionary.org/wiki/tirar_la_casa_por_la_ventana",
    "https://www.diccionarios.com/diccionario/espanol/casa"
   ]
  }

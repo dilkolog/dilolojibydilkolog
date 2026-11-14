@@ -70,7 +70,7 @@ describe('idiom pack', () => {
     expect(findIdioms(es, 'göz yummak').others.map((i) => i.w)).toEqual(['hacer la vista gorda'])
     // Too short to mean anything, and a word no idiom has.
     expect(findIdioms(es, 'el').others).toEqual([])
-    expect(findIdioms(es, 'ventana')).toEqual({ exact: undefined, others: [] })
+    expect(findIdioms(es, 'jirafa')).toEqual({ exact: undefined, others: [] })
     const fr = await loadIdioms('fr')
     expect(findIdioms(fr, "l'esprit").others).toEqual([])
     expect(findIdioms(fr, 'etre dans la lune').exact?.w).toBe('être dans la lune')

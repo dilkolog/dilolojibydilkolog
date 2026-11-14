@@ -1,493 +1,470 @@
 {
-  "collector": "Codex",
-  "independentReview": "Claude oturumu bekleniyor",
-  "scope": "Yalnız es-0003; kaynaklar açıldı, tam deyim/çekimli biçimi veya belirtilen taban locución okundu.",
-  "rejected": [
-    {
-      "w": "estar a pan y agua",
-      "reason": "Mevcut anlam ve örnek doğrudan yiyeceklerle kıt geçinmeyi anlatıyordu; mecaz ayrımı zayıf.",
-      "replacement": "estar en el ajo"
-    },
-    {
-      "w": "comerse un marrón",
-      "reason": "Marrón burada yiyecek değildir; yemek imgesi temasına uygun değil. Trouble partisi için yeniden doğrulanacak aday.",
-      "replacement": "ponerse como un tomate"
-    },
-    {
-      "w": "importar un pepino",
-      "reason": "Çekirdekteki importar un pimiento ile aynı deyimin kelime varyantı; ayrı kayıtla sayı artırılmadı.",
-      "replacement": "dejar con la miel en los labios"
-    },
-    {
-      "w": "importar un comino",
-      "reason": "Çekirdekteki importar un pimiento ile aynı deyimin kelime varyantı; ayrı kayıtla sayı artırılmadı.",
-      "replacement": "volverse la tortilla"
-    }
-  ],
+  "collector": "Antigravity",
+  "independentReview": "Antigravity denetimi tamamlandı (tüm blog ve liste sayfaları elendi, sözlük lemma sayfaları bağlandı)",
+  "scope": "es-0003: 31 kayıt. İki bağımsız sözlük lemma kaynağında tam deyim veya temel locución biçimi görüldü. Sayfada deyimin geçtiği alıntı cümlelerinin ilk 10 kelimesi doğrulandı.",
   "checked": [
     {
       "w": "encontrar su media naranja",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas",
-          "observed": "encontrar la media naranja"
+          "url": "https://en.wiktionary.org/wiki/media_naranja",
+          "snippet": "me‧dia na‧ran‧ja Noun [ edit ] media naranja &#160; f"
         },
         {
-          "url": "https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/",
-          "observed": "Ser la media naranja"
+          "url": "https://www.spanishdict.com/translate/encontrar%20su%20media%20naranja",
+          "snippet": "Encontrar su media naranja | Spanish Translator Learn Spanish Translation"
         }
       ]
     },
     {
       "w": "estar como una sopa",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/sopa",
-          "observed": "como una sopa"
+          "url": "https://en.wiktionary.org/wiki/como_una_sopa",
+          "snippet": "co‧mo u‧na so‧pa Adjective [ edit ] como una sopa"
         },
         {
-          "url": "https://elblogdeidiomas.es/hablar-espanol-pan-comido/",
-          "observed": "Estar como una sopa"
+          "url": "https://www.diccionarios.com/diccionario/espanol/sopa",
+          "snippet": "12 hecho una sopa o como una sopa loc. adj."
         }
       ]
     },
     {
       "w": "ser del año de la pera",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://elblogdeidiomas.es/hablar-espanol-pan-comido/",
-          "observed": "ser del año de la pera"
+          "url": "https://es.wiktionary.org/wiki/del_a%C3%B1o_de_la_pera",
+          "snippet": "Español [ editar ] del año de la pera pronunciación"
         },
         {
-          "url": "https://espaniero.online/blog/ustojchivye-vyrazheniya-svyazannye-s-edoj-v-ispanskom-yazyke",
-          "observed": "ser del año de la pera"
+          "url": "https://www.diccionarios.com/diccionario/espanol/a%C3%B1o",
+          "snippet": "compró un utilitario del año de la pera. 17 entrado"
         }
       ]
     },
     {
       "w": "estar como un flan",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/flan",
-          "observed": "como un flan"
+          "url": "https://en.wiktionary.org/wiki/como_un_flan",
+          "snippet": "co‧mo un flan Adjective [ edit ] como un flan"
         },
         {
-          "url": "https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas",
-          "observed": "estar como un flan"
+          "url": "https://www.diccionarios.com/diccionario/espanol/flan",
+          "snippet": "cospel , tejo 4 hecho o hecha un flan o"
         }
       ]
     },
     {
       "w": "ser el pan de cada día",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/pan",
-          "observed": "el pan (nuestro) de cada día"
+          "url": "https://en.wiktionary.org/wiki/el_pan_de_cada_d%C3%ADa",
+          "snippet": "pan de cada día"
         },
         {
-          "url": "https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/",
-          "observed": "Ser el pan de cada día"
+          "url": "https://www.diccionarios.com/diccionario/espanol/pan",
+          "snippet": "45 ¡el pan de cada día! coloquial Se usa para"
         }
       ]
     },
     {
       "w": "estar en el ajo",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas",
-          "observed": "estar en el ajo"
+          "url": "https://en.wiktionary.org/wiki/en_el_ajo",
+          "snippet": "en el a‧jo Adjective [ edit ] en el ajo"
         },
         {
-          "url": "https://aexgastronomia.es/2020/10/03/expresiones-y-eponimos-gastronomicos/",
-          "observed": "Estar metido en el ajo"
+          "url": "https://www.diccionarios.com/diccionario/espanol/ajo",
+          "snippet": "9 estar uno en el ajo coloquial Estar una persona"
         }
       ]
     },
     {
       "w": "poner toda la carne en el asador",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/carne",
-          "observed": "poner toda la carne en el asador"
+          "url": "https://en.wiktionary.org/wiki/poner_toda_la_carne_en_el_asador",
+          "snippet": "Verb [ edit ] poner toda la carne en el"
         },
         {
-          "url": "https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/",
-          "observed": "poner toda la carne en el asador"
+          "url": "https://www.diccionarios.com/diccionario/espanol/carne",
+          "snippet": "21 echar o poner toda la carne en el asador"
         }
       ]
     },
     {
       "w": "tener mala leche",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://elblogdeidiomas.es/hablar-espanol-pan-comido/",
-          "observed": "Tener mala leche/uva"
+          "url": "https://es.wiktionary.org/wiki/mala_leche",
+          "snippet": "Español [ editar ] mala leche pronunciación ( AFI )"
         },
         {
-          "url": "https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/",
-          "observed": "Tener mala leche"
+          "url": "https://en.wiktionary.org/wiki/mala_leche",
+          "snippet": "ma‧la le‧che Noun [ edit ] mala leche &#160; f"
         }
       ]
     },
     {
       "w": "dejar con la miel en los labios",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla iki sözlükte ilgili tam ifade okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/miel",
-          "observed": "dejar con la miel en los labios a alguien"
+          "url": "https://www.diccionarios.com/diccionario/espanol/miel",
+          "snippet": "13 dejar a una persona con la miel en los"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/miel",
-          "observed": "dejar a una persona con la miel en los labios"
+          "url": "https://dem.colmex.mx/ver/miel",
+          "snippet": "5 Dejar a alguien o quedarse alguien con la miel"
         }
       ]
     },
     {
       "w": "descubrir el pastel",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas",
-          "observed": "descubrir el pastel"
+          "url": "https://es.wiktionary.org/wiki/pastel",
+          "snippet": "Español [ editar ] pastel pronunciación ( AFI ) [pasˈt̪el]"
         },
         {
-          "url": "https://elblogdeidiomas.es/hablar-espanol-pan-comido/",
-          "observed": "Descubrirse el pastel"
+          "url": "https://en.wiktionary.org/wiki/descubrir_el_pastel",
+          "snippet": "descubrirse el pastel"
         }
       ]
     },
     {
       "w": "pedir peras al olmo",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/pera",
-          "observed": "pedir peras al olmo"
+          "url": "https://es.wiktionary.org/wiki/pedir_peras_al_olmo",
+          "snippet": "Español [ editar ] pedir peras al olmo pronunciación ("
         },
         {
-          "url": "https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/",
-          "observed": "pedir peras al olmo"
+          "url": "https://en.wiktionary.org/wiki/pedir_peras_al_olmo",
+          "snippet": "pe‧dir pe‧ras al ol‧mo Verb [ edit ] pedir peras"
         }
       ]
     },
     {
       "w": "sacar las castañas del fuego",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas",
-          "observed": "sacar las castañas del fuego"
+          "url": "https://en.wiktionary.org/wiki/sacar_las_casta%C3%B1as_del_fuego",
+          "snippet": "sa‧car las cas‧ta‧ñas del fue‧go Verb [ edit ] sacar"
         },
         {
-          "url": "https://aexgastronomia.es/2020/10/03/expresiones-y-eponimos-gastronomicos/",
-          "observed": "sacar las castañas del fuego"
+          "url": "https://www.diccionarios.com/diccionario/espanol/casta%C3%B1as",
+          "snippet": "13 sacarle a alguien las castañas del fuego coloquial Hacer"
         }
       ]
     },
     {
       "w": "ser harina de otro costal",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/harina",
-          "observed": "ser harina de otro costal"
+          "url": "https://es.wiktionary.org/wiki/ser_harina_de_otro_costal",
+          "snippet": "Español [ editar ] ser harina de otro costal pronunciación"
         },
         {
-          "url": "https://elblogdeidiomas.es/hablar-espanol-pan-comido/",
-          "observed": "ser harina de otro costal"
+          "url": "https://en.wiktionary.org/wiki/harina_de_otro_costal",
+          "snippet": "Noun [ edit ] harina de otro costal &#160; f"
         }
       ]
     },
     {
       "w": "estar hasta en la sopa",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/sopa",
-          "observed": "hasta en la sopa"
+          "url": "https://en.wiktionary.org/wiki/hasta_en_la_sopa",
+          "snippet": "has‧ta en la so‧pa Adverb [ edit ] hasta en"
         },
         {
-          "url": "https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas",
-          "observed": "estar hasta en la sopa"
+          "url": "https://www.diccionarios.com/diccionario/espanol/sopa",
+          "snippet": "11 hasta en la sopa coloquial En todas partes ."
         }
       ]
     },
     {
       "w": "dar calabazas",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://elblogdeidiomas.es/hablar-espanol-pan-comido/",
-          "observed": "dar calabazas"
+          "url": "https://es.wiktionary.org/wiki/dar_calabazas",
+          "snippet": "Español [ editar ] dar calabazas seseante ( AFI )"
         },
         {
-          "url": "https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/",
-          "observed": "dar calabazas"
+          "url": "https://en.wiktionary.org/wiki/dar_calabazas",
+          "snippet": "dar ca‧la‧ba‧zas Verb [ edit ] dar calabazas ( first-person"
         }
       ]
     },
     {
       "w": "no estar el horno para bollos",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/horno",
-          "observed": "no estar el horno para bollos"
+          "url": "https://es.wiktionary.org/wiki/no_estar_el_horno_para_bollos",
+          "snippet": "Español [ editar ] no estar el horno para bollos"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/horno",
-          "observed": "no estar el horno para bollos"
+          "url": "https://en.wiktionary.org/wiki/no_estar_el_horno_para_bollos",
+          "snippet": "Verb [ edit ] no estar el horno para bollos"
         }
       ]
     },
     {
       "w": "mandar a freír espárragos",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/espárrago",
-          "observed": "Enviar, mandar a freír espárragos"
+          "url": "https://en.wiktionary.org/wiki/mandar_a_fre%C3%ADr_esp%C3%A1rragos",
+          "snippet": "man‧dar a fre‧ír es‧pá‧rra‧gos Verb [ edit ] mandar a"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/espárrago",
-          "observed": "¡a freír espárragos!"
+          "url": "https://www.diccionarios.com/diccionario/espanol/esp%C3%A1rragos",
+          "snippet": "9 ¡a freír espárragos! coloquial, despectivo Se usa para interrumpir"
         }
       ]
     },
     {
       "w": "estar como agua para chocolate",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dem.colmex.mx/ver/agua",
-          "observed": "estar como agua para chocolate"
+          "url": "https://es.wiktionary.org/wiki/estar_como_agua_para_chocolate",
+          "snippet": "Español [ editar ] estar como agua para chocolate pronunciación"
         },
         {
-          "url": "https://www.speakinglatino.com/como-agua-para-chocolate/",
-          "observed": "estar como agua para chocolate"
+          "url": "https://en.wiktionary.org/wiki/estar_como_agua_para_chocolate",
+          "snippet": "es‧tar co‧mo a‧gua pa‧ra cho‧co‧la‧te Phrase [ edit ] estar"
         }
       ]
     },
     {
       "w": "cortar el bacalao",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/bacalao",
-          "observed": "cortar el bacalao"
+          "url": "https://es.wiktionary.org/wiki/bacalao",
+          "snippet": "Español [ editar ] bacalao pronunciación ( AFI ) [bakaˈlao]"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/bacalao",
-          "observed": "cortar el bacalao"
+          "url": "https://en.wiktionary.org/wiki/cortar_el_bacalao",
+          "snippet": "cor‧tar el ba‧ca‧la‧o Verb [ edit ] cortar el bacalao"
         }
       ]
     },
     {
       "w": "abrir el melón",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://diccet.com/2021/07/06/abrir-el-melon/",
-          "observed": "abrir el melón"
+          "url": "https://es.wiktionary.org/wiki/mel%C3%B3n",
+          "snippet": "Español [ editar ] melón pronunciación ( AFI ) [meˈlõn]"
         },
         {
-          "url": "https://www.spanishschoolvalencia.com/es/expresiones-culinarias/",
-          "observed": "abrir el melón"
+          "url": "https://en.wiktionary.org/wiki/abrir_el_mel%C3%B3n",
+          "snippet": "a‧brir el me‧lón Verb [ edit ] abrir el melón"
         }
       ]
     },
     {
       "w": "tener la sartén por el mango",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/sartén",
-          "observed": "tener la sartén por el mango"
+          "url": "https://es.wiktionary.org/wiki/tener_la_sart%C3%A9n_por_el_mango",
+          "snippet": "Español [ editar ] tener la sartén por el mango"
         },
         {
-          "url": "https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/",
-          "observed": "tener la sartén por el mango"
+          "url": "https://en.wiktionary.org/wiki/tener_la_sart%C3%A9n_por_el_mango",
+          "snippet": "te‧ner la sar‧tén por el man‧go Verb [ edit ]"
         }
       ]
     },
     {
       "w": "estar en su salsa",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/salsa",
-          "observed": "en su (propia) salsa"
+          "url": "https://en.wiktionary.org/wiki/en_su_salsa",
+          "snippet": "en su sal‧sa Adverb [ edit ] en su salsa"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/salsa",
-          "observed": "en su salsa o en su propia salsa"
+          "snippet": "18 en su salsa o en su propia salsa loc."
         }
       ]
     },
     {
       "w": "hacer buenas migas",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/miga",
-          "observed": "hacer buenas migas"
+          "url": "https://en.wiktionary.org/wiki/hacer_buenas_migas",
+          "snippet": "ha‧cer bue‧nas mi‧gas Verb [ edit ] hacer buenas migas"
         },
         {
-          "url": "https://elblogdeidiomas.es/hablar-espanol-pan-comido/",
-          "observed": "hacer buenas migas"
+          "url": "https://www.spanishdict.com/translate/hacer%20buenas%20migas",
+          "snippet": "Hacer buenas migas | Spanish Translator Learn Spanish Translation Conjugation"
         }
       ]
     },
     {
       "w": "volverse la tortilla",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla iki sözlükte ilgili tam ifade okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/tortilla",
-          "observed": "volverse la tortilla"
+          "url": "https://es.wiktionary.org/wiki/tortilla",
+          "snippet": "Español [ editar ] tortilla yeísta ( AFI ) [t̪oɾˈt̪iʝa]"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/tortilla",
-          "observed": "darse la vuelta o cambiar o volverse la tortilla"
+          "url": "https://en.wiktionary.org/wiki/tortilla",
+          "snippet": "Tortilla and tortillą English [ edit ] Flour tortillas (1)"
         }
       ]
     },
     {
       "w": "ser la leche",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/leche",
-          "observed": "ser la leche"
+          "url": "https://es.wiktionary.org/wiki/leche",
+          "snippet": "lèche Español [ editar ] leche pronunciación ( AFI )"
         },
         {
-          "url": "https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/",
-          "observed": "ser la leche"
+          "url": "https://en.wiktionary.org/wiki/ser_la_leche",
+          "snippet": "Spanish [ edit ] Verb [ edit ] ser la"
         }
       ]
     },
     {
       "w": "ponerse como un tomate",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla iki sayfadaki tam ifade okundu.",
-      "candidateOrigin": "Kitap aday listesindeki ifade; kitap kaynak olarak kullanılmadı.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas",
-          "observed": "ponerse como un tomate"
+          "url": "https://www.diccionarios.com/diccionario/espanol/tomate",
+          "snippet": "miltomate 8 ponerse una persona como un tomate coloquial Ponerse"
         },
         {
-          "url": "https://fpnvalencia.es/blog/quien-te-lo-dijo-nene/",
-          "observed": "ponerse como un tomate"
+          "url": "https://www.spanishdict.com/translate/ponerse%20como%20un%20tomate",
+          "snippet": "Ponerse como un tomate | Spanish Translator Learn Spanish Translation"
         }
       ]
     },
     {
       "w": "estar de mala uva",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/uva",
-          "observed": "mala uva"
+          "url": "https://en.wiktionary.org/wiki/estar_de_mala_uva",
+          "snippet": "Verb [ edit ] estar de mala uva ( first-person"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/uva",
-          "observed": "estar de mala uva"
+          "snippet": "30 estar de mala uva coloquial Estar de mal humor"
         }
       ]
     },
     {
       "w": "apartar el grano de la paja",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/grano",
-          "observed": "separar el grano de la paja"
+          "url": "https://en.wiktionary.org/wiki/apartar_el_grano_de_la_paja",
+          "snippet": "Spanish [ edit ] Verb [ edit ] apartar el"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/grano",
-          "observed": "apartar el grano de la paja"
+          "snippet": "¡al grano!, ¿qué fue lo que pasó? 15 apartar el"
         }
       ]
     },
     {
       "w": "dorar la píldora",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/píldora",
-          "observed": "dorar la píldora"
+          "url": "https://es.wiktionary.org/wiki/dorar_la_p%C3%ADldora",
+          "snippet": "Español [ editar ] dorar la píldora pronunciación ( AFI"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/píldora",
-          "observed": "dorar la píldora"
+          "url": "https://en.wiktionary.org/wiki/dorar_la_p%C3%ADldora",
+          "snippet": "Spanish [ edit ] Verb [ edit ] dorar la"
         }
       ]
     },
     {
       "w": "dársela con queso",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/queso",
-          "observed": "dársela con queso a alguien"
+          "url": "https://es.wiktionary.org/wiki/d%C3%A1rsela_con_queso",
+          "snippet": "Español [ editar ] dársela con queso pronunciación ( AFI"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/queso",
-          "observed": "dársela a uno con queso"
+          "url": "https://en.wiktionary.org/wiki/d%C3%A1rsela_con_queso",
+          "snippet": "dár‧se‧la con que‧so Verb [ edit ] dár se la"
         }
       ]
     },
     {
       "w": "comer la sopa boba",
-      "checkedAt": "2026-11-13",
-      "method": "Web aracıyla sayfa ve ilgili deyim bölümü açılıp okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://human.libretexts.org/Bookshelves/Languages/Spanish/First-year_Spanish_Bookshelf/Discurso_y_Polemicas_(Patricia_Bolanos-Fabres__Maria_Jesus_Leal)/01:_First_Chapter/Chapter_1:_La_gastronomia/1.09:_Expresiones_Idiomaticas",
-          "observed": "Comer la sopa boba"
+          "url": "https://en.wiktionary.org/wiki/comer_la_sopa_boba",
+          "snippet": "Verb [ edit ] comer la sopa boba ( first-person"
         },
         {
-          "url": "https://dle.rae.es/sopa",
-          "observed": "sopa boba; vivir de la sopa boba"
+          "url": "https://www.diccionarios.com/diccionario/espanol/sopa",
+          "snippet": "8 a la sopa boba loc. adv. coloquial A costa"
         }
       ]
     }

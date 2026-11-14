@@ -12,8 +12,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/ratón",
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/"
+   "https://en.wiktionary.org/wiki/rat%C3%B3n_de_biblioteca",
+   "https://www.spanishdict.com/translate/ser%20un%20rat%C3%B3n%20de%20biblioteca"
   ]
  },
  {
@@ -29,8 +29,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
-   "https://www.juegosdepalabras.com/animal/animal-3.html"
+   "https://en.wiktionary.org/wiki/tener_memoria_de_elefante",
+   "https://www.diccionarios.com/diccionario/espanol/memoria"
   ]
  },
  {
@@ -45,8 +45,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/pez",
-   "https://www.juegosdepalabras.com/animal/animal-3.html"
+   "https://www.diccionarios.com/diccionario/espanol/pez",
+   "https://www.spanishdict.com/translate/sentirse%20como%20pez%20en%20el%20agua"
   ]
  },
  {
@@ -62,8 +62,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
-   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
+   "https://es.wiktionary.org/wiki/oveja_negra",
+   "https://en.wiktionary.org/wiki/oveja_negra"
   ]
  },
  {
@@ -80,8 +80,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/piel",
-   "https://www.diccionarios.com/diccionario/espanol/piel"
+   "https://es.wiktionary.org/wiki/piel_de_gallina",
+   "https://en.wiktionary.org/wiki/piel_de_gallina"
   ]
  },
  {
@@ -97,8 +97,8 @@
   "level": "B1",
   "theme": "animals",
   "src": [
-   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/",
-   "https://www.juegosdepalabras.com/animal/animal-3.html"
+   "https://www.diccionarios.com/diccionario/espanol/paso",
+   "https://www.spanishdict.com/translate/ir%20a%20paso%20de%20tortuga"
   ]
  },
  {
@@ -114,8 +114,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/pájaro",
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/"
+   "https://es.wiktionary.org/wiki/matar_dos_p%C3%A1jaros_de_un_tiro",
+   "https://en.wiktionary.org/wiki/matar_dos_p%C3%A1jaros_de_un_tiro"
   ]
  },
  {
@@ -131,8 +131,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/gato",
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/"
+   "https://en.wiktionary.org/wiki/haber_gato_encerrado",
+   "https://www.diccionarios.com/diccionario/espanol/gato"
   ]
  },
  {
@@ -148,8 +148,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/gato",
-   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
+   "https://es.wiktionary.org/wiki/dar_gato_por_liebre",
+   "https://en.wiktionary.org/wiki/dar_gato_por_liebre"
   ]
  },
  {
@@ -165,7 +165,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/tomar_el_toro_por_los_cuernos",
-   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
+   "https://www.spanishdict.com/translate/tomar%20el%20toro%20por%20los%20cuernos"
   ]
  },
  {
@@ -180,8 +180,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/pájaro",
-   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
+   "https://es.wiktionary.org/wiki/tener_p%C3%A1jaros_en_la_cabeza",
+   "https://en.wiktionary.org/wiki/tener_p%C3%A1jaros_en_la_cabeza"
   ]
  },
  {
@@ -197,8 +197,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://www.juegosdepalabras.com/animal/animal-3.html",
-   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
+   "https://en.wiktionary.org/wiki/buscarle_tres_pies_al_gato",
+   "https://dem.colmex.mx/ver/buscarle"
   ]
  },
  {
@@ -214,8 +214,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/pato",
-   "https://www.juegosdepalabras.com/animal/animal-3.html"
+   "https://es.wiktionary.org/wiki/pagar_el_pato",
+   "https://en.wiktionary.org/wiki/pagar_el_pato"
   ]
  },
  {
@@ -232,7 +232,7 @@
   "theme": "animals",
   "src": [
    "https://es.wiktionary.org/wiki/lobo_con_piel_de_cordero",
-   "https://www.newsinslowspanish.com/latino/series/expressions/5/55/lesson"
+   "https://en.wiktionary.org/wiki/un_lobo_con_piel_de_cordero"
   ]
  },
  {
@@ -248,8 +248,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
-   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
+   "https://en.wiktionary.org/wiki/como_una_cabra",
+   "https://www.diccionarios.com/diccionario/espanol/cabra"
   ]
  },
  {
@@ -264,8 +264,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/vista",
-   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
+   "https://en.wiktionary.org/wiki/vista_de_lince",
+   "https://www.spanishdict.com/translate/tener%20vista%20de%20lince"
   ]
  },
  {
@@ -281,8 +281,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/lirón",
-   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
+   "https://en.wiktionary.org/wiki/dormir_como_un_lir%C3%B3n",
+   "https://www.diccionarios.com/diccionario/espanol/lir%C3%B3n"
   ]
  },
  {
@@ -298,8 +298,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
-   "https://www.juegosdepalabras.com/animal/animal-3.html"
+   "https://www.diccionarios.com/diccionario/espanol/l%C3%A1grimas",
+   "https://dem.colmex.mx/ver/l%C3%A1grimas"
   ]
  },
  {
@@ -314,8 +314,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/oreja",
-   "https://www.diccionarios.com/diccionario/espanol-extranjeros/oreja"
+   "https://en.wiktionary.org/wiki/ver_las_orejas_al_lobo",
+   "https://www.diccionarios.com/diccionario/espanol/orejas"
   ]
  },
  {
@@ -331,8 +331,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
-   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
+   "https://www.diccionarios.com/diccionario/espanol/boca",
+   "https://dem.colmex.mx/ver/boca"
   ]
  },
  {
@@ -347,8 +347,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/gato",
-   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
+   "https://es.wiktionary.org/wiki/llevarse_el_gato_al_agua",
+   "https://en.wiktionary.org/wiki/llevarse_el_gato_al_agua"
   ]
  },
  {
@@ -364,8 +364,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/mosca",
-   "https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento"
+   "https://en.wiktionary.org/wiki/tener_la_mosca_detr%C3%A1s_de_la_oreja",
+   "https://www.diccionarios.com/diccionario/espanol/mosca"
   ]
  },
  {
@@ -380,8 +380,8 @@
   "level": "B2",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/ganso",
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/"
+   "https://es.wiktionary.org/wiki/ganso",
+   "https://en.wiktionary.org/wiki/hacer_el_ganso"
   ]
  },
  {
@@ -396,8 +396,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/",
-   "https://www.juegosdepalabras.com/animal/animal-3.html"
+   "https://en.wiktionary.org/wiki/no_ver_tres_en_un_burro",
+   "https://www.diccionarios.com/diccionario/espanol/burro"
   ]
  },
  {
@@ -413,8 +413,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/perdiz",
-   "https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento"
+   "https://es.wiktionary.org/wiki/marear_la_perdiz",
+   "https://en.wiktionary.org/wiki/marear_la_perdiz"
   ]
  },
  {
@@ -430,8 +430,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/gusanillo",
-   "https://www.juegosdepalabras.com/animal/animal-3.html"
+   "https://en.wiktionary.org/wiki/matar_el_gusanillo",
+   "https://www.diccionarios.com/diccionario/espanol/gusanillo"
   ]
  },
  {
@@ -446,8 +446,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/pulga",
-   "https://preparaeldele.com/vocabulario/expresiones/10-expresiones-populares-con-animales-en-espanol/"
+   "https://en.wiktionary.org/wiki/tener_malas_pulgas",
+   "https://www.spanishdict.com/translate/tener%20malas%20pulgas"
   ]
  },
  {
@@ -463,8 +463,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://dle.rae.es/perro",
-   "https://www.diccionarios.com/diccionario/espanol/perro"
+   "https://es.wiktionary.org/wiki/ser_perro_viejo",
+   "https://en.wiktionary.org/wiki/perro_viejo"
   ]
  },
  {
@@ -481,7 +481,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/caer_como_moscas",
-   "https://aprenderespanholesfacil.wordpress.com/2015/05/21/expresiones-idiomaticas-con-animales/"
+   "https://dem.colmex.mx/ver/moscas"
   ]
  },
  {
@@ -496,8 +496,8 @@
   "level": "C1",
   "theme": "animals",
   "src": [
-   "https://spanishlessonsacademy.com/25-expresiones-idiomaticas-animales/",
-   "https://www.revistaelobservador.com/opinion/122-escribir-desde-el-corazon/19533-de-animales-va-el-cuento"
+   "https://es.wiktionary.org/wiki/dormir_la_mona",
+   "https://en.wiktionary.org/wiki/dormir_la_mona"
   ]
  },
  {
@@ -513,7 +513,7 @@
   "theme": "animals",
   "src": [
    "https://en.wiktionary.org/wiki/matar_moscas_a_ca%C3%B1onazos",
-   "https://cadenaser.com/navarra/2026/02/23/esto-es-lo-que-vemos-ahora-toca-la-respuesta-a-la-pregunta-de-si-de-verdad-hacia-falta-matar-moscas-a-canonazos-radio-pamplona/"
+   "https://www.spanishdict.com/translate/matar%20moscas%20a%20ca%C3%B1onazos"
   ]
  }
 ]
