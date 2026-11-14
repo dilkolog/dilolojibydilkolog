@@ -1,0 +1,530 @@
+[
+ {
+  "w": "go for it",
+  "t": "cesaret edip girişmek, hiç durma yap demek",
+  "lit": "onun için git",
+  "eq": "durma atıl",
+  "s": "If you really want that fellowship, just go for it!",
+  "form": "go for it",
+  "tr": "O bursu gerçekten istiyorsan tereddüt etme, hemen başvur!",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-for-it",
+   "https://en.wiktionary.org/wiki/go_for_it"
+  ]
+ },
+ {
+  "w": "think twice",
+  "t": "iki kez düşünmek, acele karar vermeden önce tartmak",
+  "lit": "iki kere düşünmek",
+  "eq": "kırk ölçüp bir biçmek",
+  "s": "Think twice before sharing bank digits on public Wi-Fi.",
+  "form": "Think twice",
+  "tr": "Herkese açık ağda banka bilgilerini paylaşmadan önce iki kez düşün.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/think-twice",
+   "https://en.wiktionary.org/wiki/think_twice"
+  ]
+ },
+ {
+  "w": "take it or leave it",
+  "t": "işine gelirse al gelmezse bırak, pazarlığa kapalı",
+  "lit": "al ya da bırak",
+  "eq": "işine gelirse",
+  "s": "That's my final offer on the van—take it or leave it.",
+  "form": "take it or leave it",
+  "tr": "Minibüs için son teklifim bu—istersen kabul et, istemezsen bırak.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-it-or-leave-it",
+   "https://en.wiktionary.org/wiki/take_it_or_leave_it"
+  ]
+ },
+ {
+  "w": "have a say",
+  "t": "kararda söz hakkı olmak",
+  "lit": "bir söze sahip olmak",
+  "eq": "söz sahibi olmak",
+  "s": "Residents should have a say in how park funds are spent.",
+  "form": "have a say",
+  "tr": "Mahalle sakinlerinin park bütçesinin harcanmasında söz hakkı olmalı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/have-a-lot-to-say-for",
+   "https://en.wiktionary.org/wiki/have_a_say"
+  ]
+ },
+ {
+  "w": "stand one's ground",
+  "t": "geri adım atmamak, tutumunda direnmek",
+  "lit": "zemininde ayakta kalmak",
+  "eq": "ayak diremek",
+  "s": "Even under pressure, the referee stood his ground.",
+  "form": "stood his ground",
+  "tr": "Baskıya rağmen hakem kararından geri adım atmadı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/stand-ground",
+   "https://en.wiktionary.org/wiki/stand_one's_ground"
+  ]
+ },
+ {
+  "w": "call the shots",
+  "t": "kararları veren patron olmak, sözünü geçirmek",
+  "lit": "atışları çağırmak",
+  "eq": "dümeni elinde tutmak",
+  "s": "In the kitchen, the head pastry chef calls the shots.",
+  "form": "calls the shots",
+  "tr": "Mutfakta son sözü her zaman baş pastacı söyler.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/call-the-shots",
+   "https://en.wiktionary.org/wiki/call_the_shots"
+  ]
+ },
+ {
+  "w": "take the plunge",
+  "t": "tereddüdü bırakıp büyük ve cesur adımı atmak",
+  "lit": "dalışı yapmak",
+  "eq": "gözünü karartıp atılmak",
+  "s": "After years of renting, they took the plunge and bought land.",
+  "form": "took the plunge",
+  "tr": "Yıllarca kirada oturduktan sonra cesaret edip arsa aldılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-the-plunge",
+   "https://en.wiktionary.org/wiki/take_the_plunge"
+  ]
+ },
+ {
+  "w": "stick to one's guns",
+  "t": "fikrinden şaşmamak, sonuna kadar savunmak",
+  "lit": "silahlarına bağlı kalmak",
+  "eq": "dediğinden dönmemek",
+  "s": "The designer stuck to her guns despite demands for neon colors.",
+  "form": "stuck to her guns",
+  "tr": "Tasarımcı fosforlu renk taleplerine rağmen kararından şaşmadı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/stick-to-guns",
+   "https://en.wiktionary.org/wiki/stick_to_one's_guns"
+  ]
+ },
+ {
+  "w": "cut the cord",
+  "t": "bağımlılığı bitirip kendi yoluna gitmek, ilişiği kesmek",
+  "lit": "kordonu kesmek",
+  "eq": "göbek bağını kesmek",
+  "s": "Thousands of viewers cut the cord and dropped cable TV.",
+  "form": "cut the cord",
+  "tr": "Binlerce izleyici bağını koparıp kablolu yayını iptal etti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cut-the-cord",
+   "https://en.wiktionary.org/wiki/cut_the_cord"
+  ]
+ },
+ {
+  "w": "draw the line",
+  "pat": "draw the line at something",
+  "t": "sınır koymak, kabul edilecek noktayı belirlemek",
+  "lit": "çizgiyi çekmek",
+  "eq": "sınır çizmek",
+  "s": "I'll work late occasionally, yet I draw the line at Sundays.",
+  "form": "draw the line",
+  "tr": "Ara sıra geç saate kadar çalışırım ama pazar günleri benim kırmızı çizgimdir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/draw-the-line",
+   "https://en.wiktionary.org/wiki/draw_the_line"
+  ]
+ },
+ {
+  "w": "jump on the bandwagon",
+  "t": "moda olana veya çoğunluğa hemen katılmak",
+  "lit": "bando arabasına atlamak",
+  "eq": "akıma uymak",
+  "s": "Every café jumped on the bandwagon with iced matcha drinks.",
+  "form": "jumped on the bandwagon",
+  "tr": "Her kafe modaya uyup soğuk matcha içecekleri menüye koydu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/jump-on-the-bandwagon",
+   "https://en.wiktionary.org/wiki/jump_on_the_bandwagon"
+  ]
+ },
+ {
+  "w": "change one's tune",
+  "t": "tavır ve söylem değiştirmek, ağız değiştirmek",
+  "lit": "ezgisini değiştirmek",
+  "eq": "ağız değiştirmek",
+  "s": "He changed his tune quickly once he saw the test scores.",
+  "form": "changed his tune",
+  "tr": "Sınav sonuçlarını görünce bir anda ağız değiştirdi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/change-tune",
+   "https://en.wiktionary.org/wiki/change_one's_tune"
+  ]
+ },
+ {
+  "w": "set one's sights on",
+  "pat": "set one's sights on something",
+  "t": "gözünü dikmek, bir hedefe kilitlenmek",
+  "lit": "nişangâhını bir şeye ayarlamak",
+  "eq": "gözünü dikmek",
+  "s": "She set her sights on rowing in the regional finals.",
+  "form": "set her sights on",
+  "tr": "Bölge finallerinde kürek çekmeyi kendine hedef koydu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/set-sights-on",
+   "https://en.wiktionary.org/wiki/set_one's_sights_on"
+  ]
+ },
+ {
+  "w": "change of heart",
+  "t": "fikir ve duygu değişikliği, kararından yumuşama",
+  "lit": "kalp değişimi",
+  "eq": "fikir değiştirmek",
+  "s": "The seller had a change of heart and kept the piano.",
+  "form": "change of heart",
+  "tr": "Satıcı son anda fikrini değiştirip piyanoyu elinde tutmaya karar verdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/change-of-heart",
+   "https://en.wiktionary.org/wiki/change_of_heart"
+  ]
+ },
+ {
+  "w": "sit tight",
+  "t": "kıpırdamadan beklemek, şimdilik adım atmamak",
+  "lit": "sıkıca oturmak",
+  "eq": "yerinde durmak",
+  "s": "Sit tight until the station agent announces the track.",
+  "form": "Sit tight",
+  "tr": "İstasyon görevlisi peronu anons edene kadar kıpırdamadan bekle.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/sit-tight",
+   "https://en.wiktionary.org/wiki/sit_tight"
+  ]
+ },
+ {
+  "w": "gut feeling",
+  "t": "içgüdüsel his, altıncı his",
+  "lit": "bağırsak hissi",
+  "eq": "içine doğmak",
+  "s": "Follow your gut feeling if the rental contract feels off.",
+  "form": "gut feeling",
+  "tr": "Kira sözleşmesinde ters bir şey seziyorsan içgüdüne güven.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/gut-feeling-reaction",
+   "https://en.wiktionary.org/wiki/gut_feeling"
+  ]
+ },
+ {
+  "w": "call it quits",
+  "t": "burada bırakmak, işi veya ilişkiyi sonlandırmak",
+  "lit": "buna ödeşmiş demek",
+  "eq": "noktayı koymak",
+  "s": "After twenty seasons on air, the host decided to call it quits.",
+  "form": "call it quits",
+  "tr": "Yirmi sezon yayının ardından sunucu artık bırakmaya karar verdi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/call-it-quits",
+   "https://en.wiktionary.org/wiki/call_it_quits"
+  ]
+ },
+ {
+  "w": "rule of thumb",
+  "t": "pratik genel ölçü, tecrübeye dayalı yaklaşık kural",
+  "lit": "başparmak kuralı",
+  "s": "As a rule of thumb, steep green tea for three minutes.",
+  "form": "rule of thumb",
+  "tr": "Pratik ölçü olarak yeşil çayı üç dakika demlemek yeterlidir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rule-of-thumb",
+   "https://en.wiktionary.org/wiki/rule_of_thumb"
+  ]
+ },
+ {
+  "w": "burn one's boats",
+  "t": "geri dönüşü imkânsız kılacak kesin karar almak",
+  "lit": "teknelerini yakmak",
+  "eq": "gemileri yakmak",
+  "s": "Quitting without notice burned his boats at that agency.",
+  "form": "burned his boats",
+  "tr": "Haber vermeden istifa ederek o ajansa geri dönüş gemilerini yaktı.",
+  "reg": "neutral",
+  "area": "UK",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/burn-boats-bridges",
+   "https://en.wiktionary.org/wiki/burn_one's_boats"
+  ]
+ },
+ {
+  "w": "dig in one's heels",
+  "t": "inatla ayak diremek, kararından milim şaşmamak",
+  "lit": "topuklarını yere saplamak",
+  "eq": "topuklarını yere dikmek",
+  "s": "The committee dug in its heels over raising membership dues.",
+  "form": "dug in its heels",
+  "tr": "Komite üyelik aidatını artırma konusunda inatla ayak diredi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/dig-heels-in",
+   "https://en.wiktionary.org/wiki/dig_in_one's_heels"
+  ]
+ },
+ {
+  "w": "toe the line",
+  "t": "kurallara veya disipline harfiyen uymak",
+  "lit": "çizgiye ayak parmağını koymak",
+  "eq": "hizaya gelmek",
+  "s": "New deputies were told to toe the line on voting day.",
+  "form": "toe the line",
+  "tr": "Yeni vekillere oylama günü parti çizgisinden şaşmamaları söylendi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/toe-the-line",
+   "https://en.wiktionary.org/wiki/toe_the_line"
+  ]
+ },
+ {
+  "w": "err on the side of caution",
+  "t": "ihtiyatlı davranmayı yeğlemek, tedbiri elden bırakmamak",
+  "lit": "tedbir tarafında yanılmak",
+  "eq": "yoğurdu üfleyerek yemek",
+  "s": "Let's err on the side of caution and pack thermal jackets.",
+  "form": "err on the side of caution",
+  "tr": "İşi şansa bırakmayıp tedbiren kalın montları da yanımıza alalım.",
+  "reg": "formal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/err-on-the-side-of-caution",
+   "https://en.wiktionary.org/wiki/err_on_the_side_of_caution"
+  ]
+ },
+ {
+  "w": "grasp the nettle",
+  "t": "zor ve tatsız kararı cesaretle göğüsleyip halletmek",
+  "lit": "ısırgan otunu sıkıca kavramak",
+  "s": "Managers must grasp the nettle and close failing stores.",
+  "form": "grasp the nettle",
+  "tr": "Yöneticiler elini taşın altına koyup zarar eden mağazaları kapatmalı.",
+  "reg": "formal",
+  "area": "UK",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/grasp-the-nettle",
+   "https://en.wiktionary.org/wiki/grasp_the_nettle"
+  ]
+ },
+ {
+  "w": "put one's cards on the table",
+  "t": "kartlarını açık oynamak, niyetini dürüstçe ortaya koymak",
+  "lit": "kartlarını masaya koymak",
+  "eq": "kartlarını açmak",
+  "s": "Let's put our cards on the table about the lease terms.",
+  "form": "put our cards on the table",
+  "tr": "Kira koşulları konusunda kartlarımızı açık açık masaya koyalım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-lay-cards-on-the-table",
+   "https://en.wiktionary.org/wiki/put_one's_cards_on_the_table"
+  ]
+ },
+ {
+  "w": "turn a corner",
+  "t": "dönüm noktasını geçip iyileşmeye başlamak",
+  "lit": "bir köşeyi dönmek",
+  "eq": "dönüm noktasını aşmak",
+  "s": "After two hard seasons, the farm finally turned a corner.",
+  "form": "turned a corner",
+  "tr": "Zor geçen iki mevsimden sonra çiftlik nihayet düzlüğe çıktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/turn-the-corner",
+   "https://en.wiktionary.org/wiki/turn_a_corner"
+  ]
+ },
+ {
+  "w": "come to terms with",
+  "pat": "come to terms with something",
+  "t": "kabullenmek, acı veya zor gerçeğe alışmak",
+  "lit": "şartlara gelmek",
+  "eq": "sineye çekmek",
+  "s": "It took months to come to terms with leaving his hometown.",
+  "form": "come to terms with",
+  "tr": "Memleketinden ayrıldığını kabullenmesi aylar aldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/come-to-terms-with",
+   "https://en.wiktionary.org/wiki/come_to_terms_with"
+  ]
+ },
+ {
+  "w": "stay the course",
+  "t": "engellere rağmen başladığı yoldan dönmemek",
+  "lit": "rotada kalmak",
+  "eq": "yolundan şaşmamak",
+  "s": "Our coach urged everyone to stay the course despite losses.",
+  "form": "stay the course",
+  "tr": "Antrenörümüz yenilgilere rağmen herkesi hedeften şaşmamaya çağırdı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/stay-the-course",
+   "https://en.wiktionary.org/wiki/stay_the_course"
+  ]
+ },
+ {
+  "w": "split the difference",
+  "t": "ortada buluşup iki teklifin tam arasını seçmek",
+  "lit": "farkı ikiye bölmek",
+  "eq": "ortasını bulmak",
+  "s": "You asked fifty, I offered forty—let's split the difference.",
+  "form": "split the difference",
+  "tr": "Sen elli istedin, ben kırk önerdim—hadi kırk beşte anlaşalım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/split-the-difference",
+   "https://en.wiktionary.org/wiki/split_the_difference"
+  ]
+ },
+ {
+  "w": "tip the scales",
+  "t": "terazinin kefesini ağır basmak, sonucu belirlemek",
+  "lit": "teraziyi eğmek",
+  "eq": "kefeyi ağır basmak",
+  "s": "Free childcare ultimately tipped the scales toward that job offer.",
+  "form": "tipped the scales",
+  "tr": "Ücretsiz kreş imkânı sonunda o iş teklifini seçmemde belirleyici oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tip-the-balance-scales",
+   "https://en.wiktionary.org/wiki/tip_the_scales"
+  ]
+ },
+ {
+  "w": "the die is cast",
+  "t": "ok yaydan çıktı, geri dönüşsüz karar verilmiş durumda",
+  "lit": "zar atılmıştır",
+  "eq": "ok yaydan çıkmak",
+  "s": "We signed the lease this morning; the die is cast.",
+  "form": "the die is cast",
+  "tr": "Bu sabah kontratı imzaladık; artık ok yaydan çıktı.",
+  "reg": "formal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/die-is-cast",
+   "https://en.wiktionary.org/wiki/the_die_is_cast"
+  ]
+ },
+ {
+  "w": "throw down the gauntlet",
+  "t": "meydan okumak, düelloya veya yarışa davet etmek",
+  "lit": "zırhlı eldiveni yere atmak",
+  "eq": "meydan okumak",
+  "s": "Launching an all-electric van threw down the gauntlet to rivals.",
+  "form": "threw down the gauntlet",
+  "tr": "Tam elektrikli minibüsü çıkarmak rakiplere resmen meydan okudu.",
+  "reg": "formal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "decide",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/throw-down-the-gauntlet",
+   "https://en.wiktionary.org/wiki/throw_down_the_gauntlet"
+  ]
+ }
+]

@@ -1,0 +1,525 @@
+[
+ {
+  "w": "no sweat",
+  "t": "hiç dert değil, çocuk oyuncağı gibi kolay",
+  "lit": "ter yok",
+  "eq": "işten bile değil",
+  "s": "Fixing that loose hinge will take ten minutes—no sweat.",
+  "form": "no sweat",
+  "tr": "O gevşek menteşeyi sıkmak on dakikamızı almaz—hiç dert değil.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/no-sweat",
+   "https://en.wiktionary.org/wiki/no_sweat"
+  ]
+ },
+ {
+  "w": "child's play",
+  "t": "çocuk oyuncağı, son derece kolay iş",
+  "lit": "çocuk oyunu",
+  "eq": "çocuk oyuncağı",
+  "s": "Setting up this printer is child's play compared to the old one.",
+  "form": "child's play",
+  "tr": "Eskisine göre bu yazıcıyı kurmak tam anlamıyla çocuk oyuncağı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-child-s-play",
+   "https://en.wiktionary.org/wiki/child's_play"
+  ]
+ },
+ {
+  "w": "easier said than done",
+  "t": "söylemesi kolay ama yapması zor",
+  "lit": "söylenmesi yapılmasından daha kolay",
+  "eq": "söylemesi kolay",
+  "s": "Staying calm in gridlock is easier said than done.",
+  "form": "easier said than done",
+  "tr": "Kilitlenmiş trafikte sakin kalmak söylemesi kolay ama yapması zor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/easier-said-than-done",
+   "https://en.wiktionary.org/wiki/easier_said_than_done"
+  ]
+ },
+ {
+  "w": "smooth sailing",
+  "t": "pürüzsüz gidişat, sorunsuz ve kolay süreç",
+  "lit": "düzgün yelken seyri",
+  "eq": "tereyağından kıl çeker gibi",
+  "s": "Once permits cleared, the rest was smooth sailing.",
+  "form": "smooth sailing",
+  "tr": "İzinler çıktıktan sonra işin geri kalanı yağ gibi aktı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-smooth-sailing",
+   "https://en.wiktionary.org/wiki/smooth_sailing"
+  ]
+ },
+ {
+  "w": "easy peasy",
+  "t": "çerez gibi kolay, çok basit",
+  "lit": "kolay bezelye",
+  "eq": "çerez gibi",
+  "s": "Boiling soft eggs takes four minutes—easy peasy.",
+  "form": "easy peasy",
+  "tr": "Rafadan yumurta haşlamak dört dakika—çocuk oyuncağı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/easy-peasy",
+   "https://en.wiktionary.org/wiki/easy_peasy"
+  ]
+ },
+ {
+  "w": "walk in the park",
+  "t": "çok zahmetsiz kolay iş",
+  "lit": "parkta yürüyüş",
+  "eq": "çantada keklik",
+  "s": "After marathon training, a five-kilometer jog feels like a walk in the park.",
+  "form": "walk in the park",
+  "tr": "Maraton antrenmanından sonra beş kilometrelik koşu parkta yürüyüş gibi geliyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/walk-in-the-park",
+   "https://en.wiktionary.org/wiki/walk_in_the_park"
+  ]
+ },
+ {
+  "w": "pain in the neck",
+  "t": "tam bir baş belası, çok can sıkıcı ve uğraştırıcı",
+  "lit": "boyunda ağrı",
+  "eq": "baş belası",
+  "s": "Filling out duplicate customs forms is a real pain in the neck.",
+  "form": "pain in the neck",
+  "tr": "Aynı gümrük formlarını ikişer kez doldurmak tam bir baş belası.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pain-in-the-neck",
+   "https://en.wiktionary.org/wiki/pain_in_the_neck"
+  ]
+ },
+ {
+  "w": "hands down",
+  "t": "açık ara farkla, tartışmasız kolayca",
+  "lit": "eller aşağı",
+  "eq": "açık ara",
+  "s": "That roasted corn soup was hands down the best dish.",
+  "form": "hands down",
+  "tr": "O köz mısır çorbası açık ara gecenin en iyi yemeğiydi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hands-down",
+   "https://en.wiktionary.org/wiki/hands_down"
+  ]
+ },
+ {
+  "w": "piece of work",
+  "t": "uğraşması zor ve tuhaf huylu tip",
+  "lit": "bir iş parçası",
+  "eq": "ne mal olduğu belli",
+  "s": "Our new landlord is quite a piece of work.",
+  "form": "piece of work",
+  "tr": "Yeni ev sahibimiz doğrusu başa çıkması zor, ilginç bir tip.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/piece-of-work",
+   "https://en.wiktionary.org/wiki/piece_of_work"
+  ]
+ },
+ {
+  "w": "with flying colors",
+  "t": "alnının akıyla, çok büyük başarıyla",
+  "lit": "dalgalanan sancaklarla",
+  "eq": "alnının akıyla",
+  "s": "Tariq passed his medical board exam with flying colors.",
+  "form": "with flying colors",
+  "tr": "Tariq tıp yeterlilik sınavını alnının akıyla, yüksek başarıyla geçti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/with-flying-colors",
+   "https://en.wiktionary.org/wiki/with_flying_colors"
+  ]
+ },
+ {
+  "w": "cut and dried",
+  "t": "önceden kesinleşmiş, tartışmaya açık olmayan",
+  "lit": "kesilmiş ve kurutulmuş",
+  "s": "Zoning law disputes are rarely cut and dried.",
+  "form": "cut and dried",
+  "tr": "İmar hukuku uyuşmazlıkları nadiren siyah beyaz kadar nettir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cut-and-dried",
+   "https://en.wiktionary.org/wiki/cut_and_dried"
+  ]
+ },
+ {
+  "w": "like taking candy from a baby",
+  "t": "bebekten şeker almak kadar zahmetsiz ve kolay",
+  "lit": "bebekten şeker almak gibi",
+  "s": "Unlocking that old padlock was like taking candy from a baby.",
+  "form": "like taking candy from a baby",
+  "tr": "O eski asma kilidi açmak çocuktan şeker almak kadar kolaydı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-like-taking-candy-from-a-baby",
+   "https://en.wiktionary.org/wiki/like_taking_candy_from_a_baby"
+  ]
+ },
+ {
+  "w": "rough patch",
+  "t": "zorlu ve çalkantılı dönem",
+  "lit": "engebeli parça",
+  "eq": "dar boğaz",
+  "s": "Most long friendships go through a rough patch at some point.",
+  "form": "rough patch",
+  "tr": "Uzun süren arkadaşlıkların çoğu bir noktada zorlu bir dönemden geçer.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-through-a-bad-difficult-rough-sticky-patch",
+   "https://en.wiktionary.org/wiki/rough_patch"
+  ]
+ },
+ {
+  "w": "in a snap",
+  "t": "şipşak, parmak şıklatır gibi bir anda",
+  "lit": "bir parmak şıklatmada",
+  "eq": "bir çırpıda",
+  "s": "This folding table locks shut in a snap.",
+  "form": "in a snap",
+  "tr": "Bu katlanır masa şipşak kapanıp kilitleniyor.",
+  "reg": "informal",
+  "area": "US",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-a-snap",
+   "https://en.wiktionary.org/wiki/in_a_snap"
+  ]
+ },
+ {
+  "w": "clear as day",
+  "t": "gün gibi ortada, apaçık ve anlaşılması kolay",
+  "lit": "gündüz kadar açık",
+  "eq": "gün gibi ortada",
+  "s": "Once she drew the diagram, the solution looked clear as day.",
+  "form": "clear as day",
+  "tr": "Şemayı çizince çözüm gün gibi apaçık ortaya çıktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/as-clear-as-day",
+   "https://en.wiktionary.org/wiki/clear_as_day"
+  ]
+ },
+ {
+  "w": "break a sweat",
+  "t": "zorlanmak, ter dökmek (genelde olumsuzda: hiç zorlanmadan)",
+  "lit": "ter dökmek",
+  "eq": "ter dökmek",
+  "s": "She carried both heavy suitcases upstairs without breaking a sweat.",
+  "form": "breaking a sweat",
+  "tr": "İki ağır bavulu hiç ter bile dökmeden yukarı çıkardı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/break-out-in-a-cold-sweat",
+   "https://en.wiktionary.org/wiki/break_a_sweat"
+  ]
+ },
+ {
+  "w": "easy money",
+  "t": "zahmetsizce veya ter dökmeden kazanılan para",
+  "lit": "kolay para",
+  "eq": "havadan gelen para",
+  "s": "Don't trust ads promising easy money from home.",
+  "form": "easy money",
+  "tr": "Evden zahmetsiz para vaat eden reklamlara güvenme.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/easy-money",
+   "https://en.wiktionary.org/wiki/easy_money"
+  ]
+ },
+ {
+  "w": "rocket science",
+  "t": "çözülmesi çok güç karmaşık bilim veya zekâ işi",
+  "lit": "roket bilimi",
+  "eq": "atom parçalamak",
+  "s": "Baking sourdough bread takes patience, not rocket science.",
+  "form": "rocket science",
+  "tr": "Ekşi mayalı ekmek yapmak sabır ister, atom parçalamak değil.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rocket-science",
+   "https://en.wiktionary.org/wiki/rocket_science"
+  ]
+ },
+ {
+  "w": "no picnic",
+  "t": "hiç de kolay ve eğlenceli olmayan zorlu iş",
+  "lit": "piknik değil",
+  "eq": "güllük gülistanlık değil",
+  "s": "Driving a delivery truck through January ice is no picnic.",
+  "form": "no picnic",
+  "tr": "Ocak buzunda dağıtım kamyonu sürmek hiç de kolay bir iş değil.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-no-picnic",
+   "https://en.wiktionary.org/wiki/no_picnic"
+  ]
+ },
+ {
+  "w": "a tall order",
+  "t": "yerine getirmesi güç, çok şey isteyen talep",
+  "lit": "uzun boylu bir sipariş",
+  "eq": "zorlu görev",
+  "s": "Tripling exports in one quarter is a tall order.",
+  "form": "a tall order",
+  "tr": "İhracatı tek çeyrekte üçe katlamak başarılması epey güç bir hedef.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-a-tall-order",
+   "https://www.ldoceonline.com/dictionary/a-tall-order"
+  ]
+ },
+ {
+  "w": "baptism of fire",
+  "t": "ateşten gömlek, en çetin ilk sınav",
+  "lit": "ateşle vaftiz",
+  "eq": "ateşten gömlek",
+  "s": "Hosting the live finale was a true baptism of fire.",
+  "form": "baptism of fire",
+  "tr": "Canlı finali sunmak onun için gerçek bir ilk ateş sınavıydı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/baptism-of-by-fire",
+   "https://en.wiktionary.org/wiki/baptism_of_fire"
+  ]
+ },
+ {
+  "w": "by leaps and bounds",
+  "t": "dev adımlarla, çok hızlı bir sıçramayla",
+  "lit": "sıçrayışlar ve atlayışlarla",
+  "eq": "dev adımlarla",
+  "s": "Since joining the choir, her confidence grew by leaps and bounds.",
+  "form": "by leaps and bounds",
+  "tr": "Koroya katıldığından beri özgüveni dev adımlarla arttı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/by-leaps-and-bounds",
+   "https://en.wiktionary.org/wiki/by_leaps_and_bounds"
+  ]
+ },
+ {
+  "w": "heavy lifting",
+  "t": "işin asıl zor ve yorucu yükü",
+  "lit": "ağır kaldırma",
+  "eq": "hamallık",
+  "s": "Automation handles the heavy lifting in data cleanup.",
+  "form": "heavy lifting",
+  "tr": "Veri temizliğindeki asıl zahmetli işi otomasyon hallediyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/heavy-lifting",
+   "https://en.wiktionary.org/wiki/heavy_lifting"
+  ]
+ },
+ {
+  "w": "walk on water",
+  "t": "imkânsızı başarmak, mucize yaratmak",
+  "lit": "suyun üstünde yürümek",
+  "s": "Investors expect a single CEO to walk on water.",
+  "form": "walk on water",
+  "tr": "Yatırımcılar tek bir yöneticinin mucizeler yaratmasını bekliyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/walk-on-water",
+   "https://en.wiktionary.org/wiki/walk_on_water"
+  ]
+ },
+ {
+  "w": "blood sweat and tears",
+  "t": "büyük emek ve özveri, alın teri",
+  "lit": "kan ter ve gözyaşı",
+  "eq": "alın teri",
+  "s": "Building this community orchard took blood sweat and tears.",
+  "form": "blood sweat and tears",
+  "tr": "Bu mahalle meyve bahçesini kurmak büyük emek ve alın teri istedi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/blood-sweat-and-tears",
+   "https://www.ldoceonline.com/dictionary/blood-sweat-and-tears"
+  ]
+ },
+ {
+  "w": "with one hand tied behind one's back",
+  "t": "gözü kapalı, hiç zorlanmadan rahatlıkla",
+  "lit": "bir eli arkadan bağlı olarak",
+  "eq": "gözü kapalı",
+  "s": "She could solve those algebra drills with one hand tied behind her back.",
+  "form": "with one hand tied behind her back",
+  "tr": "O cebir alıştırmalarını bir eli bağlı bile rahatça çözerdi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/could-do-with-one-arm-hand-tied-behind-back",
+   "https://en.wiktionary.org/wiki/with_one_hand_tied_behind_one's_back"
+  ]
+ },
+ {
+  "w": "jump through hoops",
+  "t": "bir sürü zahmetli formaliteden ve testten geçmek",
+  "lit": "çemberlerden atlamak",
+  "eq": "kırk dereden su getirmek",
+  "s": "Vendors must jump through hoops just to update an address.",
+  "form": "jump through hoops",
+  "tr": "Satıcılar sadece adres güncellemek için bile kırk engelden geçmek zorunda.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/jump-through-hoops",
+   "https://en.wiktionary.org/wiki/jump_through_hoops"
+  ]
+ },
+ {
+  "w": "bed of roses",
+  "t": "güllük gülistanlık, tasasız ve rahat yaşam",
+  "lit": "gül yatağı",
+  "eq": "güllük gülistanlık",
+  "s": "Running a family bakery is no bed of roses.",
+  "form": "bed of roses",
+  "tr": "Aile fırını işletmek hiç de güllük gülistanlık bir iş değil.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bed-of-roses",
+   "https://en.wiktionary.org/wiki/bed_of_roses"
+  ]
+ },
+ {
+  "w": "easy as pie",
+  "t": "börek yemek kadar kolay, çok basit",
+  "lit": "turta kadar kolay",
+  "eq": "su içmek kadar kolay",
+  "s": "Once you swap the filter, cleaning the unit is easy as pie.",
+  "form": "easy as pie",
+  "tr": "Filtreyi değiştirdikten sonra cihazı temizlemek son derece kolay.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/as-easy-as-pie",
+   "https://en.wiktionary.org/wiki/easy_as_pie"
+  ]
+ },
+ {
+  "w": "smooth as silk",
+  "t": "ipek gibi pürüzsüz, aksaksız ve akıcı",
+  "lit": "ipek kadar pürüzsüz",
+  "eq": "yağ gibi",
+  "s": "Check-in at the small terminal went smooth as silk.",
+  "form": "smooth as silk",
+  "tr": "Küçük terminalde biniş işlemleri tereyağından kıl çeker gibi aktı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/as-smooth-as-silk-a-baby-s-bottom",
+   "https://en.wiktionary.org/wiki/smooth_as_silk"
+  ]
+ },
+ {
+  "w": "tough act to follow",
+  "t": "ardından gelip aynı düzeyi tutturması zor başarı",
+  "lit": "izlemesi zor sahne numarası",
+  "s": "Our retiring principal leaves behind a tough act to follow.",
+  "form": "tough act to follow",
+  "tr": "Emekli olan müdürümüzün ardından yerini doldurmak kolay olmayacak.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "ease",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tough-act-to-follow",
+   "https://en.wiktionary.org/wiki/tough_act_to_follow"
+  ]
+ }
+]

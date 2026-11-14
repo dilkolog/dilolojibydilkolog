@@ -1,0 +1,527 @@
+[
+ {
+  "w": "in hot water",
+  "t": "başı belada, başı dertte",
+  "lit": "sıcak suyun içinde",
+  "eq": "başı dertte",
+  "s": "Missing three shifts put Paul in hot water with his boss.",
+  "form": "in hot water",
+  "tr": "Üç vardiyayı kaçırmak Paul'ün patronla başını derde soktu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-hot-water",
+   "https://en.wiktionary.org/wiki/in_hot_water"
+  ]
+ },
+ {
+  "w": "learn the hard way",
+  "t": "acısını çekerek öğrenmek, pahalıya öğrenmek",
+  "lit": "zor yoldan öğrenmek",
+  "eq": "kafasına vura vura öğrenmek",
+  "s": "Always save backups, or you'll learn the hard way.",
+  "form": "learn the hard way",
+  "tr": "Her zaman yedek al, yoksa bunu acı bir tecrübeyle öğrenirsin.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/learn-the-hard-way",
+   "https://en.wiktionary.org/wiki/learn_the_hard_way"
+  ]
+ },
+ {
+  "w": "close call",
+  "t": "ucuz atlatılan tehlike, kıl payı kurtuluş",
+  "lit": "yakın çağrı",
+  "eq": "ucuz atlatmak",
+  "s": "That skidding truck was a very close call on the highway.",
+  "form": "close call",
+  "tr": "Otoyolda kayan kamyondan gerçekten kıl payı kurtulduk.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/close-call",
+   "https://en.wiktionary.org/wiki/close_call"
+  ]
+ },
+ {
+  "w": "out of order",
+  "t": "bozuk, çalışmayan veya yersiz",
+  "lit": "düzenin dışında",
+  "eq": "devre dışı",
+  "s": "The lobby elevator is out of order again today.",
+  "form": "out of order",
+  "tr": "Lobideki asansör bugün yine bozuk.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/out-of-order",
+   "https://en.wiktionary.org/wiki/out_of_order"
+  ]
+ },
+ {
+  "w": "miss the boat",
+  "t": "fırsatı kaçırmak, geç kalmak",
+  "lit": "tekneyi kaçırmak",
+  "eq": "treni kaçırmak",
+  "s": "Delaying your application means you could miss the boat.",
+  "form": "miss the boat",
+  "tr": "Başvurunu geciktirirsen fırsatı kaçırabilirsin.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/miss-the-boat",
+   "https://en.wiktionary.org/wiki/miss_the_boat"
+  ]
+ },
+ {
+  "w": "in a pickle",
+  "t": "çıkmazda, zor ve sıkıntılı durumda",
+  "lit": "turşunun içinde",
+  "eq": "sıkıntıya düşmek",
+  "s": "We forgot both spare keys and ended up in a pickle.",
+  "form": "in a pickle",
+  "tr": "İki yedek anahtarı da unuttuk ve kendimizi zor durumda bulduk.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-in-a-pretty-pickle",
+   "https://en.wiktionary.org/wiki/in_a_pickle"
+  ]
+ },
+ {
+  "w": "drop the ball",
+  "t": "büyük hata yapmak, sorumluluğunu yüzüne gözüne bulaştırmak",
+  "lit": "topu düşürmek",
+  "eq": "çuvallamak",
+  "s": "Our supplier dropped the ball right before holiday week.",
+  "form": "dropped the ball",
+  "tr": "Tedarikçimiz tam tatil haftası öncesi işi eline yüzüne bulaştırdı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/drop-the-ball",
+   "https://en.wiktionary.org/wiki/drop_the_ball"
+  ]
+ },
+ {
+  "w": "add fuel to the fire",
+  "t": "yangına körükle gitmek, sorunu iyice büyütmek",
+  "lit": "ateşe yakıt eklemek",
+  "eq": "yangına körükle gitmek",
+  "s": "Sarcastic replies only add fuel to the fire.",
+  "form": "add fuel to the fire",
+  "tr": "Alaycı yanıtlar yalnızca yangına körükle gider.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/add-fuel-to-the-fire",
+   "https://en.wiktionary.org/wiki/add_fuel_to_the_fire"
+  ]
+ },
+ {
+  "w": "add insult to injury",
+  "t": "tuzu biberi olmak, derdin üstüne bir de hakaret eklemek",
+  "lit": "yaraya hakaret eklemek",
+  "eq": "tuzu biberi olmak",
+  "s": "To add insult to injury, my flight lost my bag.",
+  "form": "add insult to injury",
+  "tr": "Yetmezmiş gibi bir de uçuşta bavulumu kaybettiler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/to-add-insult-to-injury",
+   "https://en.wiktionary.org/wiki/add_insult_to_injury"
+  ]
+ },
+ {
+  "w": "between a rock and a hard place",
+  "t": "iki arada bir derede, iki kötü seçenek arasında sıkışmış",
+  "lit": "bir kaya ile sert bir yer arasında",
+  "eq": "yukarı tükürsen bıyık aşağı tükürsen sakal",
+  "s": "Raising prices or cutting staff left them between a rock and a hard place.",
+  "form": "between a rock and a hard place",
+  "tr": "Zam yapmak ya da işten çıkarmak arasında iyice sıkışıp kaldılar.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-caught-between-a-rock-and-a-hard-place",
+   "https://en.wiktionary.org/wiki/between_a_rock_and_a_hard_place"
+  ]
+ },
+ {
+  "w": "get off on the wrong foot",
+  "t": "kötü bir başlangıç yapmak, ters başlamak",
+  "lit": "yanlış ayakla yola çıkmak",
+  "eq": "ters başlamak",
+  "s": "Let's apologize early so we don't get off on the wrong foot.",
+  "form": "get off on the wrong foot",
+  "tr": "Erkenden özür dileyelim ki ilişkiye ters bir başlangıç yapmayalım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-off-on-the-right-wrong-foot",
+   "https://www.ldoceonline.com/dictionary/get-off-on-the-wrong-foot"
+  ]
+ },
+ {
+  "w": "out of the frying pan into the fire",
+  "t": "yağmurdan kaçarken doluya tutulmak",
+  "lit": "kızartma tavasından çıkıp ateşe düşmek",
+  "eq": "yağmurdan kaçarken doluya tutulmak",
+  "s": "Quitting to join an even worse firm was out of the frying pan into the fire.",
+  "form": "out of the frying pan into the fire",
+  "tr": "Oradan çıkıp daha kötü bir şirkete girmek yağmurdan kaçarken doluya tutulmaktı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/out-of-the-frying-pan-into-the-fire",
+   "https://en.wiktionary.org/wiki/out_of_the_frying_pan_into_the_fire"
+  ]
+ },
+ {
+  "w": "rub salt into the wound",
+  "t": "yarasına tuz basmak, acıyı daha da artırmak",
+  "lit": "yaraya tuz sürmek",
+  "eq": "yarasına tuz basmak",
+  "s": "Bringing up his old mistake just rubbed salt into the wound.",
+  "form": "rubbed salt into the wound",
+  "tr": "Eski hatasını hatırlatmak sadece yarasına tuz bastı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rub-salt-in-into-the-wound",
+   "https://www.ldoceonline.com/dictionary/rub-salt-into-the-wound"
+  ]
+ },
+ {
+  "w": "the last straw",
+  "t": "bardağı taşıran son damla",
+  "lit": "son saman çöpü",
+  "eq": "bardağı taşıran son damla",
+  "s": "Another rent hike was the last straw for long-term tenants.",
+  "form": "the last straw",
+  "tr": "Yeni bir kira zammı eski kiracılar için bardağı taşıran son damla oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/final-last-straw",
+   "https://en.wiktionary.org/wiki/the_last_straw"
+  ]
+ },
+ {
+  "w": "throw a wrench in the works",
+  "t": "işe çomak sokmak, düzeni bozmak",
+  "lit": "dişlilere İngiliz anahtarı atmak",
+  "eq": "tekerine çomak sokmak",
+  "s": "A sudden permit delay threw a wrench in the works.",
+  "form": "threw a wrench in the works",
+  "tr": "Ani ruhsat gecikmesi bütün planlara çomak soktu.",
+  "reg": "informal",
+  "area": "US",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/throw-a-monkey-wrench-in-the-works",
+   "https://en.wiktionary.org/wiki/throw_a_wrench_in_the_works"
+  ]
+ },
+ {
+  "w": "up in smoke",
+  "t": "duman olup uçmak, suya düşüp boşa gitmek",
+  "lit": "duman içinde yukarı",
+  "eq": "suya düşmek",
+  "s": "All our savings went up in smoke during the crash.",
+  "form": "up in smoke",
+  "tr": "Bütün birikimimiz krizde bir anda duman olup gitti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-up-in-smoke",
+   "https://en.wiktionary.org/wiki/up_in_smoke"
+  ]
+ },
+ {
+  "w": "on thin ice",
+  "t": "ince buz üstünde, çok riskli durumda",
+  "lit": "ince buzun üstünde",
+  "eq": "bıçak sırtında",
+  "s": "After two missed deadlines, he's walking on thin ice.",
+  "form": "on thin ice",
+  "tr": "İki teslim tarihini kaçırdıktan sonra artık çok tehlikeli bir sınırda.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-skating-on-thin-ice",
+   "https://en.wiktionary.org/wiki/on_thin_ice"
+  ]
+ },
+ {
+  "w": "hang by a thread",
+  "t": "pamuk ipliğine bağlı olmak",
+  "lit": "bir iplikten asılı durmak",
+  "eq": "pamuk ipliğine bağlı",
+  "s": "Their championship hopes hang by a thread tonight.",
+  "form": "hang by a thread",
+  "tr": "Şampiyonluk umutları bu akşam pamuk ipliğine bağlı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hang-by-a-thread",
+   "https://en.wiktionary.org/wiki/hang_by_a_thread"
+  ]
+ },
+ {
+  "w": "jump the gun",
+  "t": "erken davranmak, vakti gelmeden atlamak",
+  "lit": "silah sesinden önce atlamak",
+  "eq": "dereyi görmeden paçayı sıvamak",
+  "s": "Don't jump the gun and print signs before approval.",
+  "form": "jump the gun",
+  "tr": "Onay çıkmadan hemen tabelaları bastırıp acele etme.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/jump-the-gun",
+   "https://en.wiktionary.org/wiki/jump_the_gun"
+  ]
+ },
+ {
+  "w": "miss the mark",
+  "t": "hedefi tutturamamak, isabetsiz kalmak",
+  "lit": "hedefi ıskalamak",
+  "eq": "ıska geçmek",
+  "s": "The new ad campaign completely missed the mark with teens.",
+  "form": "missed the mark",
+  "tr": "Yeni reklam kampanyası gençlerde hedefi hiç tutturamadı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/miss-the-mark",
+   "https://en.wiktionary.org/wiki/miss_the_mark"
+  ]
+ },
+ {
+  "w": "on the ropes",
+  "t": "köşeye sıkışmış, yenilginin eşiğinde",
+  "lit": "iplerin üstünde",
+  "eq": "köşeye sıkışmak",
+  "s": "With sales tumbling, the chain is really on the ropes.",
+  "form": "on the ropes",
+  "tr": "Satışlar tepetaklak giderken zincir mağaza iyice köşeye sıkıştı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-the-ropes",
+   "https://en.wiktionary.org/wiki/on_the_ropes"
+  ]
+ },
+ {
+  "w": "dig one's own grave",
+  "t": "kendi kuyusunu kazmak, kendi sonunu hazırlamak",
+  "lit": "kendi mezarını kazmak",
+  "eq": "kendi kuyusunu kazmak",
+  "s": "Lying to the auditor was just digging his own grave.",
+  "form": "digging his own grave",
+  "tr": "Denetçiye yalan söylemek kendi kuyusunu kazmaktan başka bir şey değildi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/dig-own-grave",
+   "https://en.wiktionary.org/wiki/dig_one's_own_grave"
+  ]
+ },
+ {
+  "w": "put a spoke in someone's wheel",
+  "t": "tekerine taş koymak, planını engellemek",
+  "lit": "birinin tekerleğine parmaklık sokmak",
+  "eq": "tekerine çomak sokmak",
+  "s": "Local rules put a spoke in the developer's wheel.",
+  "form": "put a spoke in the developer's wheel",
+  "tr": "Yerel kurallar müteahhidin projesine taş koydu.",
+  "reg": "informal",
+  "area": "UK",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-a-spoke-in-wheel",
+   "https://en.wiktionary.org/wiki/put_a_spoke_in_someone's_wheel"
+  ]
+ },
+ {
+  "w": "upset the apple cart",
+  "t": "bütün düzeni bozmak, planları altüst etmek",
+  "lit": "elma arabasını devirmek",
+  "eq": "çanına ot tıkamak",
+  "s": "One sudden resignation upset the apple cart before the merger.",
+  "form": "upset the apple cart",
+  "tr": "Ani bir istifa birleşme öncesinde bütün düzeni altüst etti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://en.wiktionary.org/wiki/upset_the_apple_cart",
+   "https://www.ldoceonline.com/dictionary/upset-the-apple-cart"
+  ]
+ },
+ {
+  "w": "go pear-shaped",
+  "t": "sarpa sarmak, tamamen ters gitmek",
+  "lit": "armut biçimine dönmek",
+  "eq": "sarpa sarmak",
+  "s": "Everything went pear-shaped when the sound system crashed.",
+  "form": "went pear-shaped",
+  "tr": "Ses sistemi çökünce her şey tamamen sarpa sardı.",
+  "reg": "informal",
+  "area": "UK",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-pear-shaped",
+   "https://en.wiktionary.org/wiki/go_pear-shaped"
+  ]
+ },
+ {
+  "w": "rock the boat",
+  "t": "huzuru veya kurulu düzeni bozacak iş yapmak",
+  "lit": "tekneyi sallamak",
+  "s": "Nobody wanted to rock the boat before yearly bonuses.",
+  "form": "rock the boat",
+  "tr": "Yıllık primler öncesinde kimse ortalığı karıştırmak istemedi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rock-the-boat",
+   "https://en.wiktionary.org/wiki/rock_the_boat"
+  ]
+ },
+ {
+  "w": "wake-up call",
+  "t": "kendine getiren sarsıcı uyarı",
+  "lit": "uyandırma çağrısı",
+  "eq": "soğuk duş",
+  "s": "The mild tremor served as a wake-up call for city planners.",
+  "form": "wake-up call",
+  "tr": "Hafif sarsıntı şehir plancıları için ciddi bir uyarı niteliğindeydi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/wake-up-call",
+   "https://en.wiktionary.org/wiki/wake-up_call"
+  ]
+ },
+ {
+  "w": "stumbling block",
+  "t": "ilerlemeyi durduran engel, pürüz",
+  "lit": "tökezleme taşı",
+  "eq": "engel teşkil etmek",
+  "s": "Shipping tariffs remained the main stumbling block in talks.",
+  "form": "stumbling block",
+  "tr": "Nakliye vergileri görüşmelerdeki başlıca pürüz olmayı sürdürdü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/stumbling-block",
+   "https://en.wiktionary.org/wiki/stumbling_block"
+  ]
+ },
+ {
+  "w": "thorn in someone's side",
+  "t": "sürekli baş ağrıtan dert veya kişi",
+  "lit": "birinin böğründeki diken",
+  "eq": "baş belası",
+  "s": "That unresolved border rule has been a thorn in our side.",
+  "form": "thorn in our side",
+  "tr": "Çözülmemiş o sınır kuralı başımızda sürekli bir dert oldu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/thorn-in-side",
+   "https://en.wiktionary.org/wiki/thorn_in_someone's_side"
+  ]
+ },
+ {
+  "w": "out of the woods",
+  "t": "tehlikeyi veya en zor kısmı atlatmış",
+  "lit": "ormanların dışında",
+  "eq": "düzlüğe çıkmak",
+  "s": "Patient numbers are down, yet hospitals aren't out of the woods.",
+  "form": "out of the woods",
+  "tr": "Hasta sayıları düştü ama hastaneler henüz tehlikeyi atlatmadı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/out-of-the-woods",
+   "https://en.wiktionary.org/wiki/out_of_the_woods"
+  ]
+ },
+ {
+  "w": "fly in the ointment",
+  "t": "keyfi kaçıran ufak aksilik, çorbadaki sinek",
+  "lit": "merhemin içindeki sinek",
+  "s": "The only fly in the ointment was the noisy hotel lobby.",
+  "form": "fly in the ointment",
+  "tr": "Her şeyin tadını kaçıran tek pürüz gürültülü otel lobisiydi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "trouble",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/fly-in-the-ointment",
+   "https://en.wiktionary.org/wiki/fly_in_the_ointment"
+  ]
+ }
+]

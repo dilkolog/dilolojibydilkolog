@@ -1,0 +1,525 @@
+[
+ {
+  "w": "hit it off",
+  "t": "ilk tanışmada çok iyi anlaşmak, hemen kaynaşmak",
+  "lit": "onu vurup başlatmak",
+  "eq": "yıldızı barışmak",
+  "s": "Emma and my sister hit it off at dinner.",
+  "form": "hit it off",
+  "tr": "Emma ile kız kardeşim akşam yemeğinde hemen kaynaştı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hit-it-off",
+   "https://en.wiktionary.org/wiki/hit_it_off"
+  ]
+ },
+ {
+  "w": "tie the knot",
+  "t": "evlenmek, nikâh kıymak",
+  "lit": "düğümü bağlamak",
+  "eq": "dünya evine girmek",
+  "s": "They plan to tie the knot next June by the lake.",
+  "form": "tie the knot",
+  "tr": "Önümüzdeki haziranda göl kenarında evlenmeyi planlıyorlar.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/tie-the-knot",
+   "https://en.wiktionary.org/wiki/tie_the_knot"
+  ]
+ },
+ {
+  "w": "stab someone in the back",
+  "t": "sırtından bıçaklamak, ihanet etmek",
+  "lit": "birini sırtından bıçaklamak",
+  "eq": "sırtından bıçaklamak",
+  "s": "I trusted my partner, yet he stabbed me in the back.",
+  "form": "stabbed me in the back",
+  "tr": "Ortağıma güvenmiştim ama beni sırtımdan bıçakladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/stab-in-the-back",
+   "https://en.wiktionary.org/wiki/stab_someone_in_the_back"
+  ]
+ },
+ {
+  "w": "clear the air",
+  "t": "gerginliği gidermek, aradaki soğukluğu dağıtmak",
+  "lit": "havayı temizlemek",
+  "eq": "havayı yumuşatmak",
+  "s": "Let's grab coffee and clear the air after yesterday.",
+  "form": "clear the air",
+  "tr": "Hadi kahve içip dünkü gerginliği tatlıya bağlayalım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/clear-the-air",
+   "https://en.wiktionary.org/wiki/clear_the_air"
+  ]
+ },
+ {
+  "w": "turn over a new leaf",
+  "t": "hayatında temiz bir sayfa açmak, huyunu düzeltmek",
+  "lit": "yeni bir yaprak çevirmek",
+  "eq": "yeni bir sayfa açmak",
+  "s": "After college, Sam turned over a new leaf and saved up.",
+  "form": "turned over a new leaf",
+  "tr": "Üniversiteden sonra Sam hayatında yeni bir sayfa açıp para biriktirdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/turn-over-a-new-leaf",
+   "https://en.wiktionary.org/wiki/turn_over_a_new_leaf"
+  ]
+ },
+ {
+  "w": "meet someone halfway",
+  "t": "ortak noktada buluşmak, karşılıklı ödün vermek",
+  "lit": "birini yarı yolda karşılamak",
+  "eq": "ortasını bulmak",
+  "s": "Both landlords agreed to meet tenants halfway on repairs.",
+  "form": "meet tenants halfway",
+  "tr": "İki ev sahibi de onarımlar konusunda kiracılarla ortada buluşmayı kabul etti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/meet-halfway",
+   "https://en.wiktionary.org/wiki/meet_someone_halfway"
+  ]
+ },
+ {
+  "w": "bury the hatchet",
+  "t": "dargınlığa son verip barışmak",
+  "lit": "baltayı gömmek",
+  "eq": "küskünlüğe son vermek",
+  "s": "After years apart, the brothers finally buried the hatchet.",
+  "form": "buried the hatchet",
+  "tr": "Yıllar süren küslükten sonra iki kardeş sonunda barıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bury-the-hatchet",
+   "https://en.wiktionary.org/wiki/bury_the_hatchet"
+  ]
+ },
+ {
+  "w": "fair-weather friend",
+  "t": "yalnızca iyi günde yanında olan dost",
+  "lit": "güzel hava dostu",
+  "eq": "iyi gün dostu",
+  "s": "Don't count on fair-weather friends when money gets tight.",
+  "form": "fair-weather friends",
+  "tr": "Paran sıkışınca yalnızca iyi gün dostlarına bel bağlama.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/fair-weather-friend",
+   "https://en.wiktionary.org/wiki/fair-weather_friend"
+  ]
+ },
+ {
+  "w": "pop the question",
+  "t": "evlenme teklif etmek",
+  "lit": "soruyu patlatmak",
+  "s": "He took her to the lighthouse to pop the question.",
+  "form": "pop the question",
+  "tr": "Ona evlenme teklif etmek için deniz fenerine götürdü.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pop-the-question",
+   "https://en.wiktionary.org/wiki/pop_the_question"
+  ]
+ },
+ {
+  "w": "give someone the benefit of the doubt",
+  "t": "aksini kanıtlayana dek iyi niyetine inanmak",
+  "lit": "birine kuşkunun faydasını vermek",
+  "eq": "hüsnüzan beslemek",
+  "s": "She arrived late, so I gave her the benefit of the doubt.",
+  "form": "gave her the benefit of the doubt",
+  "tr": "Geç geldi ama yine de iyi niyetine inanmayı seçtim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/give-the-benefit-of-the-doubt",
+   "https://en.wiktionary.org/wiki/give_someone_the_benefit_of_the_doubt"
+  ]
+ },
+ {
+  "w": "blind date",
+  "t": "tanımadan ayarlanan ilk buluşma",
+  "lit": "kör randevu",
+  "s": "My cousin met her husband on a blind date.",
+  "form": "blind date",
+  "tr": "Kuzenim eşiyle arkadaşların ayarladığı ilk buluşmada tanıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/blind-date",
+   "https://en.wiktionary.org/wiki/blind_date"
+  ]
+ },
+ {
+  "w": "shoulder to cry on",
+  "t": "derdini dinleyip teselli veren yakın dost",
+  "lit": "üstünde ağlanacak omuz",
+  "eq": "dert ortağı",
+  "s": "Whenever life gets rough, Sara offers a shoulder to cry on.",
+  "form": "shoulder to cry on",
+  "tr": "Hayat zorlaştığında Sara her zaman derdini paylaşabileceğin bir dosttur.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/shoulder-to-cry-on",
+   "https://en.wiktionary.org/wiki/shoulder_to_cry_on"
+  ]
+ },
+ {
+  "w": "in someone's good books",
+  "t": "birinin gözünde değerli ve makbul olmak",
+  "lit": "birinin iyi defterlerinde",
+  "eq": "gözüne girmek",
+  "s": "Bringing fresh croissants put him in her good books.",
+  "form": "in her good books",
+  "tr": "Taze kruvasan getirmesi kadının gözüne girmesini sağladı.",
+  "reg": "informal",
+  "area": "UK",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-good-books",
+   "https://en.wiktionary.org/wiki/in_someone's_good_books"
+  ]
+ },
+ {
+  "w": "speak the same language",
+  "t": "aynı kafada olmak, birbirini kolayca anlamak",
+  "lit": "aynı dili konuşmak",
+  "eq": "aynı dili konuşmak",
+  "s": "Working with engineers is easy because we speak the same language.",
+  "form": "speak the same language",
+  "tr": "Mühendislerle çalışmak kolay çünkü aynı dili konuşuyoruz.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/speak-talk-the-same-language",
+   "https://www.ldoceonline.com/dictionary/speak-the-same-language"
+  ]
+ },
+ {
+  "w": "on speaking terms",
+  "t": "birbiriyle konuşur ve görüşür durumda",
+  "lit": "konuşma şartlarında",
+  "s": "Are the neighbors back on speaking terms after the fence row?",
+  "form": "on speaking terms",
+  "tr": "Komşular çit tartışmasından sonra yeniden konuşmaya başladı mı?",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-speaking-terms",
+   "https://en.wiktionary.org/wiki/on_speaking_terms"
+  ]
+ },
+ {
+  "w": "no love lost",
+  "t": "aralarında hiç sevgi olmaması, karşılıklı soğukluk",
+  "lit": "kayıp sevgi yok",
+  "s": "There's clearly no love lost between the two coaches.",
+  "form": "no love lost",
+  "tr": "İki teknik direktör arasında hiç sıcak bir bağ olmadığı belli.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-no-little-love-lost-between",
+   "https://en.wiktionary.org/wiki/no_love_lost"
+  ]
+ },
+ {
+  "w": "rub shoulders with",
+  "pat": "rub shoulders with someone",
+  "t": "omuz omuza bulunmak, ünlülerle veya nüfuzlu kişilerle görüşmek",
+  "lit": "biriyle omuz sürtmek",
+  "eq": "dirsek temasında olmak",
+  "s": "At the film gala, guests rubbed shoulders with directors.",
+  "form": "rubbed shoulders with",
+  "tr": "Film galasında konuklar ünlü yönetmenlerle bir arada bulundu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/rub-shoulders-with",
+   "https://en.wiktionary.org/wiki/rub_shoulders_with"
+  ]
+ },
+ {
+  "w": "behind closed doors",
+  "t": "kapalı kapılar ardında, kamuoyundan gizli",
+  "lit": "kapalı kapılar arkasında",
+  "eq": "kapalı kapılar ardında",
+  "s": "Union talks continued behind closed doors all afternoon.",
+  "form": "behind closed doors",
+  "tr": "Sendika görüşmeleri öğleden sonra boyunca kapalı kapılar ardında sürdü.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/behind-closed-doors",
+   "https://en.wiktionary.org/wiki/behind_closed_doors"
+  ]
+ },
+ {
+  "w": "thick as thieves",
+  "t": "su sızmaz derecede samimi, ayrılmaz ikili",
+  "lit": "hırsızlar kadar sıkı",
+  "eq": "aralarından su sızmamak",
+  "s": "Since third grade, those twins have been thick as thieves.",
+  "form": "thick as thieves",
+  "tr": "Üçüncü sınıftan beri o iki arkadaşın aralarından su sızmıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-as-thick-as-thieves",
+   "https://en.wiktionary.org/wiki/thick_as_thieves"
+  ]
+ },
+ {
+  "w": "through thick and thin",
+  "t": "iyi günde kötü günde, her koşulda",
+  "lit": "kalın ve inceden geçerek",
+  "eq": "iyi günde kötü günde",
+  "s": "True friends stand by you through thick and thin.",
+  "form": "through thick and thin",
+  "tr": "Gerçek dostlar iyi günde kötü günde yanında durur.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/through-thick-and-thin",
+   "https://en.wiktionary.org/wiki/through_thick_and_thin"
+  ]
+ },
+ {
+  "w": "bad blood",
+  "t": "eskiye dayanan husumet, kan uyuşmazlığı",
+  "lit": "kötü kan",
+  "eq": "kan davası",
+  "s": "There has been bad blood between those families for decades.",
+  "form": "bad blood",
+  "tr": "O iki aile arasında onlarca yıldır süren bir husumet var.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bad-blood",
+   "https://en.wiktionary.org/wiki/bad_blood"
+  ]
+ },
+ {
+  "w": "burn one's bridges",
+  "t": "geri dönüş yollarını yakmak, bağları koparmak",
+  "lit": "köprülerini yakmak",
+  "eq": "gemileri yakmak",
+  "s": "Leave gracefully; you never want to burn your bridges.",
+  "form": "burn your bridges",
+  "tr": "Güzelce ayrıl; geri dönüş köprülerini asla yakmak istemezsin.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/burn-boats-bridges",
+   "https://en.wiktionary.org/wiki/burn_one's_bridges"
+  ]
+ },
+ {
+  "w": "bend over backwards",
+  "t": "elinden gelenin fazlasını yapmak, kırk takla atmak",
+  "lit": "geriye doğru bükülmek",
+  "eq": "saçını süpürge etmek",
+  "s": "The staff bent over backwards to accommodate our late check-in.",
+  "form": "bent over backwards",
+  "tr": "Personel geç girişimizi kolaylaştırmak için çırpınıp durdu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bend-over-backwards",
+   "https://en.wiktionary.org/wiki/bend_over_backwards"
+  ]
+ },
+ {
+  "w": "take someone under one's wing",
+  "t": "kanatları altına alıp korumak ve yetiştirmek",
+  "lit": "birini kanadının altına almak",
+  "eq": "kanatlarının altına almak",
+  "s": "Our senior editor took two interns under her wing.",
+  "form": "took two interns under her wing",
+  "tr": "Baş editörümüz iki stajyeri kanatları altına aldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-under-wing",
+   "https://en.wiktionary.org/wiki/take_someone_under_one's_wing"
+  ]
+ },
+ {
+  "w": "wear the pants",
+  "t": "evde veya ilişkide sözü geçen kişi olmak",
+  "lit": "pantolonu giymek",
+  "eq": "borusu ötmek",
+  "s": "Everyone knows my aunt wears the pants in their house.",
+  "form": "wears the pants",
+  "tr": "O evde kimin sözünün geçtiğini herkes bilir: teyzemin.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/wear-the-pants",
+   "https://en.wiktionary.org/wiki/wear_the_pants"
+  ]
+ },
+ {
+  "w": "like two peas in a pod",
+  "t": "ikiz gibi benzeyen, birbirine çok yakın",
+  "lit": "bir kabuktaki iki bezelye gibi",
+  "eq": "elmanın iki yarısı gibi",
+  "s": "With matching laughs, those sisters are like two peas in a pod.",
+  "form": "like two peas in a pod",
+  "tr": "Aynı kahkahalarıyla o iki kız kardeş birbirinin tıpatıp aynısı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/like-two-peas-in-a-pod",
+   "https://en.wiktionary.org/wiki/like_two_peas_in_a_pod"
+  ]
+ },
+ {
+  "w": "old flame",
+  "t": "eski sevgili, geçmişteki gönül ilişkisi",
+  "lit": "eski alev",
+  "eq": "eski göz ağrısı",
+  "s": "He bumped into an old flame at the train station.",
+  "form": "old flame",
+  "tr": "Tren istasyonunda eski bir sevgilisiyle karşılaştı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/old-flame",
+   "https://en.wiktionary.org/wiki/old_flame"
+  ]
+ },
+ {
+  "w": "social butterfly",
+  "t": "her ortama giren çok girişken kimse",
+  "lit": "sosyal kelebek",
+  "s": "Unlike her shy twin, Maya is a complete social butterfly.",
+  "form": "social butterfly",
+  "tr": "Utangaç ikizinin aksine Maya tam bir ortam insanı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/social-butterfly",
+   "https://en.wiktionary.org/wiki/social_butterfly"
+  ]
+ },
+ {
+  "w": "kindred spirit",
+  "t": "kafa dengi, ruh ikizi gibi uyuşan kişi",
+  "lit": "akraba ruh",
+  "eq": "kafa dengi",
+  "s": "Meeting another vinyl collector felt like finding a kindred spirit.",
+  "form": "kindred spirit",
+  "tr": "Başka bir plak koleksiyoncusuyla tanışmak kafa dengi bir ruh bulmak gibiydi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/kindred-spirit",
+   "https://en.wiktionary.org/wiki/kindred_spirit"
+  ]
+ },
+ {
+  "w": "lock horns",
+  "t": "kafa kafaya çarpışmak, sert tartışmaya girmek",
+  "lit": "boynuzları kilitlemek",
+  "eq": "sürtüşmek",
+  "s": "The architect and builder locked horns over stair materials.",
+  "form": "locked horns",
+  "tr": "Mimar ile müteahhit merdiven malzemeleri yüzünden sertçe kapıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/lock-horns",
+   "https://en.wiktionary.org/wiki/lock_horns"
+  ]
+ },
+ {
+  "w": "get on like a house on fire",
+  "t": "birbirine hemen ısınıp çok iyi anlaşmak",
+  "lit": "yanan bir ev gibi anlaşmak",
+  "eq": "hemen kanı kaynamak",
+  "s": "Both grandfathers got on like a house on fire at brunch.",
+  "form": "got on like a house on fire",
+  "tr": "İki dede de kahvaltıda birbirine hemen ısınıp şahane anlaştı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "people",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-on-like-a-house-on-fire",
+   "https://en.wiktionary.org/wiki/get_on_like_a_house_on_fire"
+  ]
+ }
+]

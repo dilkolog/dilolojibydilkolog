@@ -1,0 +1,526 @@
+[
+ {
+  "w": "hit the road",
+  "t": "yola çıkmak, yola koyulmak",
+  "lit": "yola vurmak",
+  "eq": "yola koyulmak",
+  "s": "We should hit the road before rush hour starts.",
+  "form": "hit the road",
+  "tr": "Trafik yoğunlaşmadan önce yola çıksak iyi olur.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/hit-the-road",
+   "https://en.wiktionary.org/wiki/hit_the_road"
+  ]
+ },
+ {
+  "w": "off the beaten track",
+  "t": "turist rotalarının dışında, sakin ve kuytu",
+  "lit": "çiğnenmiş izin dışında",
+  "eq": "kuş uçmaz kervan geçmez",
+  "s": "They rented a tiny stone cabin off the beaten track.",
+  "form": "off the beaten track",
+  "tr": "Ana rotalardan uzak, sakin bir taş kulübe kiraladılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/off-the-beaten-track",
+   "https://en.wiktionary.org/wiki/off_the_beaten_track"
+  ]
+ },
+ {
+  "w": "travel light",
+  "t": "az eşyayla seyahat etmek, hafif bavulla gezmek",
+  "lit": "hafif seyahat etmek",
+  "s": "I prefer to travel light with just one backpack.",
+  "form": "travel light",
+  "tr": "Sadece tek bir sırt çantasıyla hafif seyahat etmeyi yeğlerim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/travel-light",
+   "https://en.wiktionary.org/wiki/travel_light"
+  ]
+ },
+ {
+  "w": "all over the place",
+  "t": "her tarafta dağınık, karmakarışık veya her yönde",
+  "lit": "mekânın her yerinde",
+  "eq": "darmadağın",
+  "s": "After unpacking hastily, socks ended up all over the place.",
+  "form": "all over the place",
+  "tr": "Bavulu aceleyle boşaltınca çoraplar her tarafa dağıldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/all-over-the-place",
+   "https://en.wiktionary.org/wiki/all_over_the_place"
+  ]
+ },
+ {
+  "w": "on the road",
+  "t": "yolda, seyahatte veya turnede olmak",
+  "lit": "yolun üstünde",
+  "eq": "yollarda olmak",
+  "s": "Sales reps spend three weeks a month on the road.",
+  "form": "on the road",
+  "tr": "Satış temsilcileri ayın üç haftasını yollarda geçiriyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-the-road",
+   "https://en.wiktionary.org/wiki/on_the_road"
+  ]
+ },
+ {
+  "w": "on the move",
+  "t": "sürekli hareket hâlinde, yer değiştiren veya ilerleyen",
+  "lit": "hareketin üstünde",
+  "eq": "hareket hâlinde",
+  "s": "Migrating cranes stay on the move until late October.",
+  "form": "on the move",
+  "tr": "Göçmen turnalar ekim sonuna dek sürekli hareket hâlinde kalır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-on-the-move",
+   "https://en.wiktionary.org/wiki/on_the_move"
+  ]
+ },
+ {
+  "w": "in the fast lane",
+  "t": "hızlı, yoğun ve tempolu bir hayat tarzında",
+  "lit": "hızlı şeritte",
+  "s": "Ten years of life in the fast lane left him drained.",
+  "form": "in the fast lane",
+  "tr": "On yıl boyunca hızlı tempolu yaşamak onu bitkin düşürdü.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-the-fast-lane",
+   "https://en.wiktionary.org/wiki/in_the_fast_lane"
+  ]
+ },
+ {
+  "w": "dead end",
+  "t": "çıkmaz sokak, ilerleme imkânı olmayan durum",
+  "lit": "ölü uç",
+  "eq": "çıkmaz sokak",
+  "s": "This narrow alley turns into a dead end past the fountain.",
+  "form": "dead end",
+  "tr": "Bu dar sokak çeşmeyi geçince çıkmaza bağlanıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/dead-end",
+   "https://en.wiktionary.org/wiki/dead_end"
+  ]
+ },
+ {
+  "w": "get the show on the road",
+  "t": "işi veya yolculuğu artık başlatmak",
+  "lit": "gösteriyi yola çıkarmak",
+  "eq": "marşa basmak",
+  "s": "Everyone's buckled in—let's get the show on the road!",
+  "form": "get the show on the road",
+  "tr": "Herkes kemerini bağladı—hadi artık yola çıkalım!",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-the-this-show-on-the-road",
+   "https://en.wiktionary.org/wiki/get_the_show_on_the_road"
+  ]
+ },
+ {
+  "w": "light at the end of the tunnel",
+  "t": "tünelin ucundaki ışık, zorluğun sonunun görünmesi",
+  "lit": "tünelin sonundaki ışık",
+  "eq": "tünelin ucunda ışık görünmek",
+  "s": "Finishing exams gave exhausted seniors light at the end of the tunnel.",
+  "form": "light at the end of the tunnel",
+  "tr": "Sınavların bitmesi yorgun son sınıflara tünelin ucundaki ışığı gösterdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/light-at-the-end-of-the-tunnel",
+   "https://en.wiktionary.org/wiki/light_at_the_end_of_the_tunnel"
+  ]
+ },
+ {
+  "w": "run out of steam",
+  "t": "hızını ve enerjisini yitirip durmak",
+  "lit": "buharı tükenmek",
+  "eq": "nefesi kesilmek",
+  "s": "Our renovation campaign ran out of steam by winter.",
+  "form": "ran out of steam",
+  "tr": "Yenileme kampanyamız kışa doğru temposunu yitirdi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/run-out-of-steam",
+   "https://en.wiktionary.org/wiki/run_out_of_steam"
+  ]
+ },
+ {
+  "w": "step on the gas",
+  "t": "gaza basmak, hızlanmak veya tempoyu artırmak",
+  "lit": "gaz pedalına basmak",
+  "eq": "gaza basmak",
+  "s": "We need to step on the gas to beat sunset to camp.",
+  "form": "step on the gas",
+  "tr": "Gün batımından önce kampa varmak için biraz gaza basmalıyız.",
+  "reg": "informal",
+  "area": "US",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/step-on-the-gas",
+   "https://en.wiktionary.org/wiki/step_on_the_gas"
+  ]
+ },
+ {
+  "w": "on the right track",
+  "t": "doğru yolda, isabetli yönde ilerleyen",
+  "lit": "doğru rayın üstünde",
+  "eq": "doğru yolda",
+  "s": "Your pilot data suggests we're definitely on the right track.",
+  "form": "on the right track",
+  "tr": "Pilot verilerin kesinlikle doğru yolda olduğumuzu gösteriyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-the-right-track",
+   "https://en.wiktionary.org/wiki/on_the_right_track"
+  ]
+ },
+ {
+  "w": "walk a tightrope",
+  "t": "ince bir dengede yürümek, çok hassas bir durumu idare etmek",
+  "lit": "gergin ip üstünde yürümek",
+  "eq": "ip üstünde yürümek",
+  "s": "Diplomats walk a tightrope when both allies disagree.",
+  "form": "walk a tightrope",
+  "tr": "İki müttefik ters düştüğünde diplomatlar ince bir ip üstünde yürür.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/walk-tread-a-tightrope",
+   "https://en.wiktionary.org/wiki/walk_a_tightrope"
+  ]
+ },
+ {
+  "w": "path of least resistance",
+  "t": "en az dirençle karşılaşılan kolay yol",
+  "lit": "en az direnç yolu",
+  "eq": "kolaya kaçmak",
+  "s": "Approving default settings is often the path of least resistance.",
+  "form": "path of least resistance",
+  "tr": "Varsayılan ayarları onaylamak genellikle en zahmetsiz yoldur.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/path-of-least-resistance",
+   "https://en.wiktionary.org/wiki/path_of_least_resistance"
+  ]
+ },
+ {
+  "w": "shift gears",
+  "t": "vites değiştirmek, tempo ya da yaklaşım değiştirmek",
+  "lit": "vites değiştirmek",
+  "eq": "vites değiştirmek",
+  "s": "Mid-year, the studio shifted gears from print to audio.",
+  "form": "shifted gears",
+  "tr": "Yıl ortasında stüdyo basılı işlerden sesli içeriklere yön değiştirdi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/shift-gears",
+   "https://en.wiktionary.org/wiki/shift_gears"
+  ]
+ },
+ {
+  "w": "make headway",
+  "t": "yol katetmek, zorlu işte ilerleme sağlamak",
+  "lit": "ileri yol almak",
+  "eq": "yol katetmek",
+  "s": "Volunteers quickly made headway clearing the blocked trail.",
+  "form": "made headway",
+  "tr": "Gönüllüler kapalı patikayı açmakta hızla yol katetti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/make-headway",
+   "https://en.wiktionary.org/wiki/make_headway"
+  ]
+ },
+ {
+  "w": "go places",
+  "t": "çok yükselecek ve başarılı olacak olmak",
+  "lit": "yerlere gitmek",
+  "eq": "önü açık olmak",
+  "s": "Watch that young violinist—she's going places.",
+  "form": "going places",
+  "tr": "Şu genç kemancıya dikkat et—çok başarılı yerlere gelecek.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-places",
+   "https://en.wiktionary.org/wiki/go_places"
+  ]
+ },
+ {
+  "w": "down the road",
+  "t": "ileride, zamanla gelecekte veya yol boyunca",
+  "lit": "yolun aşağısında",
+  "eq": "ilerleyen dönemde",
+  "s": "Cheap shortcuts today bring costly repairs down the road.",
+  "form": "down the road",
+  "tr": "Bugünkü ucuz kestirmeler ileride pahalı onarımlar doğurur.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/down-the-road",
+   "https://en.wiktionary.org/wiki/down_the_road"
+  ]
+ },
+ {
+  "w": "end of the road",
+  "t": "yolun sonu, artık devam edememe noktası",
+  "lit": "yolun sonu",
+  "eq": "yolun sonu",
+  "s": "After forty faithful years, this factory reached the end of the road.",
+  "form": "end of the road",
+  "tr": "Kırk yıllık emeğin ardından bu fabrika yolun sonuna geldi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/end-of-the-line-road",
+   "https://en.wiktionary.org/wiki/end_of_the_road"
+  ]
+ },
+ {
+  "w": "blaze a trail",
+  "t": "çığır açmak, kimsenin geçmediği yeni yolu açmak",
+  "lit": "bir patikayı işaretleyip yakmak",
+  "eq": "çığır açmak",
+  "s": "Early mountain guides blazed a trail across those passes.",
+  "form": "blazed a trail",
+  "tr": "İlk dağ rehberleri o geçitlerde yepyeni bir çığır açtı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/blaze-a-trail",
+   "https://en.wiktionary.org/wiki/blaze_a_trail"
+  ]
+ },
+ {
+  "w": "go off the rails",
+  "t": "raydan çıkmak, kontrolden çıkıp bocalamak",
+  "lit": "raylardan çıkmak",
+  "eq": "raydan çıkmak",
+  "s": "Without a clear budget, the film shoot went off the rails.",
+  "form": "went off the rails",
+  "tr": "Net bir bütçe olmayınca film çekimi tamamen raydan çıktı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/go-off-the-rails",
+   "https://en.wiktionary.org/wiki/go_off_the_rails"
+  ]
+ },
+ {
+  "w": "kick up one's heels",
+  "t": "gönlünce eğlenip coşmak, kurtlarını dökmek",
+  "lit": "topuklarını havaya tekmelemek",
+  "eq": "kurtlarını dökmek",
+  "s": "Graduates gathered outdoors to kick up their heels all evening.",
+  "form": "kick up their heels",
+  "tr": "Mezunlar bütün akşam açık havada gönüllerince eğlenip coştu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/kick-up-heels",
+   "https://en.wiktionary.org/wiki/kick_up_one's_heels"
+  ]
+ },
+ {
+  "w": "make tracks",
+  "t": "aceleyle yola koyulmak, hızla ayrılmak",
+  "lit": "ayak izleri yapmak",
+  "eq": "tabana kuvvet",
+  "s": "Storm clouds are gathering—we'd better make tracks home.",
+  "form": "make tracks",
+  "tr": "Fırtına bulutları toplanıyor—eve doğru aceleyle yola çıksak iyi olur.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/make-tracks",
+   "https://en.wiktionary.org/wiki/make_tracks"
+  ]
+ },
+ {
+  "w": "paddle one's own canoe",
+  "t": "kendi gemisinin kaptanı olmak, kimseden yardım almadan ilerlemek",
+  "lit": "kendi kanosunu küreklemek",
+  "eq": "kendi göbeğini kendi kesmek",
+  "s": "After leaving the firm, she preferred to paddle her own canoe.",
+  "form": "paddle her own canoe",
+  "tr": "Şirketten ayrıldıktan sonra kendi işini tek başına yürütmeyi seçti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/paddle-own-canoe",
+   "https://en.wiktionary.org/wiki/paddle_one's_own_canoe"
+  ]
+ },
+ {
+  "w": "put the brakes on",
+  "t": "frene basmak, gidişatı yavaşlatıp durdurmak",
+  "lit": "frenleri üstüne koymak",
+  "eq": "frene basmak",
+  "s": "High borrowing rates put the brakes on housing construction.",
+  "form": "put the brakes on",
+  "tr": "Yüksek kredi faizleri konut inşaatlarında frene bastırdı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-the-brakes-on",
+   "https://en.wiktionary.org/wiki/put_the_brakes_on"
+  ]
+ },
+ {
+  "w": "take a back seat",
+  "t": "arka koltuğa çekilmek, geri planda kalmak",
+  "lit": "arka koltuk almak",
+  "eq": "geri plana çekilmek",
+  "s": "Founders often take a back seat once new directors arrive.",
+  "form": "take a back seat",
+  "tr": "Kurucular yeni yöneticiler gelince çoğu kez geri plana çekilir.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/take-a-back-seat",
+   "https://en.wiktionary.org/wiki/take_a_back_seat"
+  ]
+ },
+ {
+  "w": "wrong side of the tracks",
+  "t": "şehrin yoksul veya ihmal edilmiş kesimi",
+  "lit": "demiryolunun yanlış tarafı",
+  "s": "He grew up on the wrong side of the tracks yet thrived.",
+  "form": "wrong side of the tracks",
+  "tr": "Şehrin imkânları kısıtlı yakasında büyüdü ama yine de başardı.",
+  "reg": "informal",
+  "area": "US",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/wrong-other-side-of-the-tracks",
+   "https://en.wiktionary.org/wiki/wrong_side_of_the_tracks"
+  ]
+ },
+ {
+  "w": "jump ship",
+  "t": "zor anda gemiyi terk etmek, işi bırakıp kaçmak",
+  "lit": "gemiden atlamak",
+  "eq": "gemiyi terk etmek",
+  "s": "Three senior engineers jumped ship before the audit began.",
+  "form": "jumped ship",
+  "tr": "Üç kıdemli mühendis denetim başlamadan önce şirketten ayrıldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/jump-ship",
+   "https://en.wiktionary.org/wiki/jump_ship"
+  ]
+ },
+ {
+  "w": "cover ground",
+  "t": "epey yol katetmek veya geniş bir alanı/konuyu ele almak",
+  "lit": "zemin örtmek",
+  "eq": "mesafe katetmek",
+  "s": "Walking briskly from dawn, hikers covered ground fast.",
+  "form": "covered ground",
+  "tr": "Şafaktan beri tempolu yürüyen dağcılar hızla epey yol katetti.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cover-ground",
+   "https://en.wiktionary.org/wiki/cover_ground"
+  ]
+ },
+ {
+  "w": "gain ground",
+  "t": "ilerleme kaydetmek, güç ve taraftar kazanmak",
+  "lit": "zemin kazanmak",
+  "eq": "ivme kazanmak",
+  "s": "Electric ferries are steadily gaining ground in Nordic harbors.",
+  "form": "gaining ground",
+  "tr": "Elektrikli feribotlar Kuzey limanlarında giderek yaygınlaşıyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "move",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/gain-ground",
+   "https://en.wiktionary.org/wiki/gain_ground"
+  ]
+ }
+]

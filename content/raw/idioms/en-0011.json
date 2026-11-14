@@ -1,0 +1,527 @@
+[
+ {
+  "w": "in no time",
+  "t": "göz açıp kapayıncaya kadar, çok çabuk",
+  "lit": "hiçbir zamanda",
+  "eq": "göz açıp kapayıncaya kadar",
+  "s": "With two extra hands, we'll pack boxes in no time.",
+  "form": "in no time",
+  "tr": "İki kişi daha yardım ederse kolileri şipşak toplarız.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-no-time",
+   "https://en.wiktionary.org/wiki/in_no_time"
+  ]
+ },
+ {
+  "w": "ahead of time",
+  "t": "vaktinden önce, erkenden",
+  "lit": "zamanın önünde",
+  "eq": "önceden",
+  "s": "Please send dietary notes ahead of time.",
+  "form": "ahead of time",
+  "tr": "Lütfen diyet notlarınızı vaktinden önce iletin.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/ahead-of-time",
+   "https://en.wiktionary.org/wiki/ahead_of_time"
+  ]
+ },
+ {
+  "w": "at the last minute",
+  "t": "son dakikada, tam vaktin sonunda",
+  "lit": "son dakikada",
+  "eq": "son anda",
+  "s": "They always book holiday flights at the last minute.",
+  "form": "at the last minute",
+  "tr": "Tatil uçuşlarını hep son dakikada ayarlıyorlar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/at-the-last-minute",
+   "https://en.wiktionary.org/wiki/at_the_last_minute"
+  ]
+ },
+ {
+  "w": "for good",
+  "t": "temelli olarak, bir daha dönmemek üzere",
+  "lit": "iyilik için",
+  "eq": "temelli",
+  "s": "After twenty winters there, they moved south for good.",
+  "form": "for good",
+  "tr": "Orada yirmi kış geçirdikten sonra temelli olarak güneye taşındılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/for-good",
+   "https://en.wiktionary.org/wiki/for_good"
+  ]
+ },
+ {
+  "w": "sooner or later",
+  "t": "er ya da geç, eninde sonunda",
+  "lit": "daha erken ya da daha geç",
+  "eq": "er ya da geç",
+  "s": "Truth always surfaces sooner or later.",
+  "form": "sooner or later",
+  "tr": "Gerçek er ya da geç mutlaka ortaya çıkar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/sooner-or-later",
+   "https://en.wiktionary.org/wiki/sooner_or_later"
+  ]
+ },
+ {
+  "w": "in the long run",
+  "t": "uzun vadede, zamanla sonunda",
+  "lit": "uzun koşuda",
+  "eq": "uzun vadede",
+  "s": "Buying sturdy shoes saves money in the long run.",
+  "form": "in the long run",
+  "tr": "Sağlam ayakkabı almak uzun vadede para kazandırır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-the-long-run",
+   "https://en.wiktionary.org/wiki/in_the_long_run"
+  ]
+ },
+ {
+  "w": "against the clock",
+  "t": "zamanla yarışarak, vakit daralırken",
+  "lit": "saate karşı",
+  "eq": "zamana karşı yarışmak",
+  "s": "Crews worked against the clock before the tide rose.",
+  "form": "against the clock",
+  "tr": "Ekipler sular yükselmeden önce zamana karşı yarıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/against-the-clock",
+   "https://en.wiktionary.org/wiki/against_the_clock"
+  ]
+ },
+ {
+  "w": "behind the times",
+  "t": "çağın gerisinde kalmış, demode",
+  "lit": "zamanların gerisinde",
+  "eq": "çağ dışı kalmış",
+  "s": "Using paper ledgers feels a bit behind the times now.",
+  "form": "behind the times",
+  "tr": "Kâğıt defter kullanmak artık biraz çağın gerisinde kalmış gibi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/behind-the-times",
+   "https://en.wiktionary.org/wiki/behind_the_times"
+  ]
+ },
+ {
+  "w": "from scratch",
+  "t": "sıfırdan, hiçbir hazır malzeme olmadan en baştan",
+  "lit": "çizikten",
+  "eq": "sıfırdan",
+  "s": "She baked the birthday cake completely from scratch.",
+  "form": "from scratch",
+  "tr": "Doğum günü pastasını tamamen sıfırdan kendi yaptı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/from-scratch",
+   "https://en.wiktionary.org/wiki/from_scratch"
+  ]
+ },
+ {
+  "w": "in the nick of time",
+  "t": "tam zamanında, kıl payı yetişerek",
+  "lit": "zamanın çentiğinde",
+  "eq": "tam üstüne",
+  "s": "Firefighters reached the barn in the nick of time.",
+  "form": "in the nick of time",
+  "tr": "İtfaiye ahıra tam son anda, kıl payı yetişti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-the-nick-of-time",
+   "https://en.wiktionary.org/wiki/in_the_nick_of_time"
+  ]
+ },
+ {
+  "w": "on the spur of the moment",
+  "t": "anlık bir hevesle, hiç planlamadan",
+  "lit": "anın mahmuzunda",
+  "eq": "bir anlık hevesle",
+  "s": "We bought ferry tickets on the spur of the moment.",
+  "form": "on the spur of the moment",
+  "tr": "Hiç planlamadan, bir anda karar verip vapur biletlerini aldık.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-the-spur-of-the-moment",
+   "https://en.wiktionary.org/wiki/on_the_spur_of_the_moment"
+  ]
+ },
+ {
+  "w": "only a matter of time",
+  "t": "an meselesi, yakında mutlaka olacak",
+  "lit": "sadece bir zaman meselesi",
+  "eq": "an meselesi",
+  "s": "With rents soaring, protests were only a matter of time.",
+  "form": "only a matter of time",
+  "tr": "Kiralar bu kadar uçarken tepkilerin başlaması zaten an meselesiydi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-only-a-matter-of-time",
+   "https://en.wiktionary.org/wiki/only_a_matter_of_time"
+  ]
+ },
+ {
+  "w": "turn back the clock",
+  "t": "zamanı geriye almak, eski günlere dönmek",
+  "lit": "saati geri çevirmek",
+  "s": "I'd love to turn back the clock to that quiet summer.",
+  "form": "turn back the clock",
+  "tr": "Zamanı geriye alıp o sakin yaza dönebilmeyi çok isterdim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/turn-back-the-clock",
+   "https://en.wiktionary.org/wiki/turn_back_the_clock"
+  ]
+ },
+ {
+  "w": "buy time",
+  "t": "vakit kazanmak, işi biraz geciktirmek",
+  "lit": "zaman satın almak",
+  "eq": "vakit kazanmak",
+  "s": "Asking extra questions helped her buy time to think.",
+  "form": "buy time",
+  "tr": "Ekstra sorular sorması düşünmek için vakit kazanmasını sağladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/buy-time",
+   "https://en.wiktionary.org/wiki/buy_time"
+  ]
+ },
+ {
+  "w": "beat the clock",
+  "t": "süre dolmadan işi bitirmek",
+  "lit": "saati yenmek",
+  "s": "Our warehouse team managed to beat the clock before shipping closed.",
+  "form": "beat the clock",
+  "tr": "Depo ekibimiz kargo kapanmadan önce süreyi yakalamayı başardı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/beat-the-clock",
+   "https://en.wiktionary.org/wiki/beat_the_clock"
+  ]
+ },
+ {
+  "w": "bide one's time",
+  "t": "doğru ânı sabırla beklemek",
+  "lit": "zamanını beklemek",
+  "eq": "fırsat kollamak",
+  "s": "Instead of rushing, she decided to bide her time.",
+  "form": "bide her time",
+  "tr": "Acele etmek yerine doğru ânı sabırla beklemeye karar verdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bide-time",
+   "https://en.wiktionary.org/wiki/bide_one's_time"
+  ]
+ },
+ {
+  "w": "make up for lost time",
+  "t": "kaybedilen vakti telafi etmek",
+  "lit": "kayıp zamanı telafi etmek",
+  "eq": "açığı kapatmak",
+  "s": "After recovering, he traveled nonstop to make up for lost time.",
+  "form": "make up for lost time",
+  "tr": "İyileştikten sonra geçen yılların acısını çıkarmak için durmadan gezdi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/make-up-for-lost-time",
+   "https://en.wiktionary.org/wiki/make_up_for_lost_time"
+  ]
+ },
+ {
+  "w": "day in day out",
+  "t": "her Allah'ın günü, bıkmadan her gün",
+  "lit": "gün içeri gün dışarı",
+  "eq": "gece gündüz",
+  "s": "She practiced scales day in day out for months.",
+  "form": "day in day out",
+  "tr": "Aylar boyunca her Allah'ın günü gam çalıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/day-in-day-out",
+   "https://en.wiktionary.org/wiki/day_in_day_out"
+  ]
+ },
+ {
+  "w": "until the cows come home",
+  "t": "sabahlara kadar, sonsuza dek bitmeyecek kadar uzun süre",
+  "lit": "inekler eve dönene kadar",
+  "eq": "sabahlara kadar",
+  "s": "We can debate grammar rules until the cows come home.",
+  "form": "until the cows come home",
+  "tr": "Dil bilgisi kurallarını sabaha kadar tartışabiliriz ama bitmez.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/till-until-the-cows-come-home",
+   "https://en.wiktionary.org/wiki/until_the_cows_come_home"
+  ]
+ },
+ {
+  "w": "in broad daylight",
+  "t": "güpegündüz, herkesin gözü önünde",
+  "lit": "geniş gün ışığında",
+  "eq": "güpegündüz",
+  "s": "Someone stole bicycles right outside the café in broad daylight.",
+  "form": "in broad daylight",
+  "tr": "Kafenin önünden güpegündüz bisiklet çaldılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-broad-daylight",
+   "https://en.wiktionary.org/wiki/in_broad_daylight"
+  ]
+ },
+ {
+  "w": "in the blink of an eye",
+  "t": "göz açıp kapayıncaya kadar, bir anda",
+  "lit": "göz kırpmasında",
+  "eq": "göz açıp kapayıncaya kadar",
+  "s": "Childhood seems to pass in the blink of an eye.",
+  "form": "in the blink of an eye",
+  "tr": "Çocukluk sanki göz açıp kapayıncaya kadar geçiveriyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-the-blink-of-an-eye",
+   "https://en.wiktionary.org/wiki/in_the_blink_of_an_eye"
+  ]
+ },
+ {
+  "w": "stand the test of time",
+  "t": "zamanın sınavından geçmek, yıllara meydan okumak",
+  "lit": "zamanın testine dayanmak",
+  "eq": "yıllara meydan okumak",
+  "s": "Good leather boots always stand the test of time.",
+  "form": "stand the test of time",
+  "tr": "İyi deri botlar yıllara her zaman meydan okur.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/stand-the-test-of-time",
+   "https://en.wiktionary.org/wiki/stand_the_test_of_time"
+  ]
+ },
+ {
+  "w": "at the drop of a hat",
+  "t": "hiç tereddüt etmeden, bir işaretle anında",
+  "lit": "şapkanın düşüşünde",
+  "eq": "anında",
+  "s": "My brother would fly back to help at the drop of a hat.",
+  "form": "at the drop of a hat",
+  "tr": "Kardeşim yardım etmek için hiç düşünmeden anında uçağa atlayıp gelir.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/at-the-drop-of-a-hat",
+   "https://en.wiktionary.org/wiki/at_the_drop_of_a_hat"
+  ]
+ },
+ {
+  "w": "around the corner",
+  "t": "kapıda, eli kulağında yaklaşmış",
+  "lit": "köşenin etrafında",
+  "eq": "eli kulağında",
+  "s": "Spring is just around the corner after this cold spell.",
+  "form": "around the corner",
+  "tr": "Bu soğukların ardından bahar artık eli kulağında.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/just-around-the-corner",
+   "https://en.wiktionary.org/wiki/around_the_corner"
+  ]
+ },
+ {
+  "w": "mark time",
+  "t": "beklerken yerinde saymak, vakit geçirmek",
+  "lit": "zamanı işaretlemek",
+  "eq": "yerinde saymak",
+  "s": "Temporary clerks were merely marking time before restructuring.",
+  "form": "marking time",
+  "tr": "Geçici memurlar yeniden yapılanma öncesi sadece vakit dolduruyordu.",
+  "reg": "formal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/mark-time",
+   "https://en.wiktionary.org/wiki/mark_time"
+  ]
+ },
+ {
+  "w": "once and for all",
+  "t": "bir defada kesin olarak, temelli",
+  "lit": "bir kez ve herkes için",
+  "eq": "kökünden",
+  "s": "Let's settle this billing dispute once and for all.",
+  "form": "once and for all",
+  "tr": "Şu fatura anlaşmazlığını bir kerede kesin olarak çözelim.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/once-and-for-all",
+   "https://en.wiktionary.org/wiki/once_and_for_all"
+  ]
+ },
+ {
+  "w": "time will tell",
+  "t": "zaman gösterecek, ileride belli olur",
+  "lit": "zaman söyleyecek",
+  "eq": "zaman gösterecek",
+  "s": "Whether this policy works, only time will tell.",
+  "form": "time will tell",
+  "tr": "Bu politikanın işe yarayıp yaramayacağını ancak zaman gösterecek.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/time-will-tell",
+   "https://en.wiktionary.org/wiki/time_will_tell"
+  ]
+ },
+ {
+  "w": "for the time being",
+  "t": "şimdilik, geçici bir süre için",
+  "lit": "şimdiki zaman için",
+  "eq": "şimdilik",
+  "s": "Keep the spare desk in the hallway for the time being.",
+  "form": "for the time being",
+  "tr": "Yedek masayı şimdilik koridorda tutun.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/for-the-time-being",
+   "https://en.wiktionary.org/wiki/for_the_time_being"
+  ]
+ },
+ {
+  "w": "over the hill",
+  "t": "yaşını başını almış, en parlak çağını geçmiş",
+  "lit": "tepenin ötesinde",
+  "eq": "unu elemiş eleğini asmış",
+  "s": "At forty-five, athletes are often unfairly called over the hill.",
+  "form": "over the hill",
+  "tr": "Kırk beş yaşında sporculara çoğu kez haksızca devri geçmiş gözüyle bakılır.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/over-the-hill",
+   "https://en.wiktionary.org/wiki/over_the_hill"
+  ]
+ },
+ {
+  "w": "at death's door",
+  "t": "ölüm döşeğinde, bir ayağı çukurda",
+  "lit": "ölümün kapısında",
+  "eq": "bir ayağı çukurda",
+  "s": "Our old apple tree looked at death's door last winter.",
+  "form": "at death's door",
+  "tr": "Yaşlı elma ağacımız geçen kış neredeyse kurumak üzereydi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/be-at-death-s-door",
+   "https://en.wiktionary.org/wiki/at_death's_door"
+  ]
+ },
+ {
+  "w": "in two shakes",
+  "t": "iki dakikada, göz açıp kapamadan",
+  "lit": "iki sallamada",
+  "eq": "bir çırpıda",
+  "s": "Sit tight—I'll whip up fresh coffee in two shakes.",
+  "form": "in two shakes",
+  "tr": "Rahatına bak—bir çırpıda taze kahve yapıp getiririm.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "time",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/in-two-shakes-of-a-lamb-s-tail",
+   "https://en.wiktionary.org/wiki/in_two_shakes"
+  ]
+ }
+]

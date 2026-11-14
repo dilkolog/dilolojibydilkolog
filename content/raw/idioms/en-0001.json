@@ -1,0 +1,530 @@
+[
+ {
+  "w": "keep an eye on",
+  "pat": "keep an eye on someone/something",
+  "t": "göz kulak olmak, gözetmek",
+  "lit": "birinin üstünde bir göz tutmak",
+  "eq": "göz kulak olmak",
+  "s": "Could you keep an eye on my bag while I pay?",
+  "form": "keep an eye on",
+  "tr": "Ben ödeme yaparken çantama göz kulak olabilir misin?",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/keep-an-eye-on",
+   "https://en.wiktionary.org/wiki/keep_an_eye_on"
+  ]
+ },
+ {
+  "w": "cross one's fingers",
+  "t": "şans dilemek, iyi sonuç ummak",
+  "lit": "parmaklarını çapraz yapmak",
+  "s": "We'll hear back tomorrow, so cross your fingers for us.",
+  "form": "cross your fingers",
+  "tr": "Yarın haber alacağız, o yüzden bizim için şans dile.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cross-fingers",
+   "https://en.wiktionary.org/wiki/cross_one's_fingers"
+  ]
+ },
+ {
+  "w": "lose heart",
+  "t": "cesareti kırılmak, umudunu yitirmek",
+  "lit": "yüreğini kaybetmek",
+  "eq": "umudunu yitirmek",
+  "s": "Don't lose heart just because the first test was tough.",
+  "form": "lose heart",
+  "tr": "İlk sınav zor geçti diye hemen umudunu yitirme.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/lose-heart",
+   "https://en.wiktionary.org/wiki/lose_heart"
+  ]
+ },
+ {
+  "w": "catch one's breath",
+  "t": "soluklanmak, nefes almak",
+  "lit": "nefesini yakalamak",
+  "eq": "soluk almak",
+  "s": "Let's pause at the bench so I can catch my breath.",
+  "form": "catch my breath",
+  "tr": "Bankta duralım da biraz soluklanayım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/catch-breath",
+   "https://en.wiktionary.org/wiki/catch_one's_breath"
+  ]
+ },
+ {
+  "w": "get cold feet",
+  "t": "son anda çekinmek, gözü korkmak",
+  "lit": "soğuk ayaklar edinmek",
+  "eq": "gözü korkmak",
+  "s": "He wanted to skydive, then got cold feet at the door.",
+  "form": "got cold feet",
+  "tr": "Paraşütle atlamak istedi ama kapıda son anda gözü korktu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-cold-feet",
+   "https://en.wiktionary.org/wiki/get_cold_feet"
+  ]
+ },
+ {
+  "w": "learn by heart",
+  "pat": "learn something by heart",
+  "t": "ezberlemek",
+  "lit": "yürekten öğrenmek",
+  "eq": "ezberden bilmek",
+  "s": "You shouldn't try to learn by heart what you don't understand.",
+  "form": "learn by heart",
+  "tr": "Anlamadığın şeyleri ezberlemeye çalışmamalısın.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/learn-by-heart",
+   "https://en.wiktionary.org/wiki/learn_by_heart"
+  ]
+ },
+ {
+  "w": "break a leg",
+  "t": "bol şans (sahne öncesi)",
+  "lit": "bacağını kır",
+  "eq": "yolun açık olsun",
+  "s": "You're going to do great tonight—break a leg!",
+  "form": "break a leg",
+  "tr": "Bu akşam harika olacaksın—bol şans!",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/break-a-leg",
+   "https://en.wiktionary.org/wiki/break_a_leg"
+  ]
+ },
+ {
+  "w": "get something off one's chest",
+  "pat": "get something off one's chest",
+  "t": "içini dökmek, derdini paylaşmak",
+  "lit": "göğsünden bir şeyi indirmek",
+  "eq": "içini dökmek",
+  "s": "Talking with Maya helped me get that worry off my chest.",
+  "form": "get that worry off my chest",
+  "tr": "Maya ile konuşmak o kaygıyı içimden atıp rahatlamama yardımcı oldu.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/get-off-chest",
+   "https://en.wiktionary.org/wiki/get_something_off_one's_chest"
+  ]
+ },
+ {
+  "w": "bite one's tongue",
+  "t": "dilini tutmak, sesini çıkarmamak",
+  "lit": "dilini ısırmak",
+  "eq": "dilini tutmak",
+  "s": "I had to bite my tongue during that unfair meeting.",
+  "form": "bite my tongue",
+  "tr": "O adaletsiz toplantıda dilimi tutmak zorunda kaldım.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bite-tongue",
+   "https://en.wiktionary.org/wiki/bite_one's_tongue"
+  ]
+ },
+ {
+  "w": "turn a blind eye",
+  "pat": "turn a blind eye to something",
+  "t": "görmezden gelmek, göz yummak",
+  "lit": "kör göz çevirmek",
+  "eq": "göz yummak",
+  "s": "Managers shouldn't turn a blind eye to late deliveries.",
+  "form": "turn a blind eye",
+  "tr": "Yöneticiler geç teslimatlara göz yummamalı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/turn-a-blind-eye",
+   "https://en.wiktionary.org/wiki/turn_a_blind_eye"
+  ]
+ },
+ {
+  "w": "twist someone's arm",
+  "t": "ısrarla ikna etmek, zorlamak",
+  "lit": "birinin kolunu bükmek",
+  "s": "I didn't plan to stay, though he twisted my arm.",
+  "form": "twisted my arm",
+  "tr": "Kalmayı planlamıyordum ama ısrar edip beni ikna etti.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/twist-arm",
+   "https://en.wiktionary.org/wiki/twist_someone's_arm"
+  ]
+ },
+ {
+  "w": "put one's foot down",
+  "t": "kesin tavır koymak, ağırlığını koymak",
+  "lit": "ayağını yere basmak",
+  "eq": "ağırlığını koymak",
+  "s": "Dad finally put his foot down about curfew.",
+  "form": "put his foot down",
+  "tr": "Babam eve dönüş saati konusunda sonunda kesin tavrını koydu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-foot-down",
+   "https://en.wiktionary.org/wiki/put_one's_foot_down"
+  ]
+ },
+ {
+  "w": "stick one's neck out",
+  "t": "risk almak, başını taşın altına koymak",
+  "lit": "boynunu dışarı uzatmak",
+  "eq": "risk almak",
+  "s": "She stuck her neck out to defend the new hire.",
+  "form": "stuck her neck out",
+  "tr": "Yeni çalışanı savunmak için risk aldı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/stick-neck-out",
+   "https://en.wiktionary.org/wiki/stick_one's_neck_out"
+  ]
+ },
+ {
+  "w": "wash one's hands of",
+  "pat": "wash one's hands of someone/something",
+  "t": "elini eteğini çekmek, sorumluluğu bırakmak",
+  "lit": "ellerini bir şeyden yıkamak",
+  "eq": "elini eteğini çekmek",
+  "s": "After repeated warnings, they washed their hands of the deal.",
+  "form": "washed their hands of",
+  "tr": "Tekrarlanan uyarılardan sonra anlaşmadan ellerini çektiler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/wash-hands-of",
+   "https://en.wiktionary.org/wiki/wash_one's_hands_of"
+  ]
+ },
+ {
+  "w": "pull one's weight",
+  "t": "üzerine düşeni yapmak",
+  "lit": "kendi ağırlığını çekmek",
+  "eq": "üzerine düşeni yapmak",
+  "s": "Every member of the crew has to pull their weight.",
+  "form": "pull their weight",
+  "tr": "Ekibin her üyesi üzerine düşen payı yapmalı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pull-weight",
+   "https://en.wiktionary.org/wiki/pull_one's_weight"
+  ]
+ },
+ {
+  "w": "give someone the cold shoulder",
+  "t": "soğuk davranmak, yüz vermemek",
+  "lit": "birine soğuk omuz vermek",
+  "eq": "yüz vermemek",
+  "s": "Ever since the argument, Nora has given me the cold shoulder.",
+  "form": "given me the cold shoulder",
+  "tr": "Tartışmadan beri Nora bana soğuk davranıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/give-the-cold-shoulder",
+   "https://en.wiktionary.org/wiki/give_someone_the_cold_shoulder"
+  ]
+ },
+ {
+  "w": "cry one's eyes out",
+  "t": "iki gözü iki çeşme ağlamak",
+  "lit": "gözlerini dışarı ağlamak",
+  "eq": "iki gözü iki çeşme ağlamak",
+  "s": "He cried his eyes out at the ending of that film.",
+  "form": "cried his eyes out",
+  "tr": "O filmin sonunda hüngür hüngür ağladı.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/cry-eyes-out",
+   "https://en.wiktionary.org/wiki/cry_one's_eyes_out"
+  ]
+ },
+ {
+  "w": "off the top of one's head",
+  "t": "düşünmeden ilk anda, ezberden",
+  "lit": "kafasının tepesinden",
+  "s": "Off the top of my head, we invited about twenty guests.",
+  "form": "Off the top of my head",
+  "tr": "İlk anda aklıma gelen, yaklaşık yirmi konuk çağırdığımız.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "B2",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/off-the-top-of-head",
+   "https://en.wiktionary.org/wiki/off_the_top_of_one's_head"
+  ]
+ },
+ {
+  "w": "pay through the nose",
+  "t": "dünya kadar para ödemek, fahiş fiyat ödemek",
+  "lit": "burnundan ödemek",
+  "s": "Tourists pay through the nose for coffee near the square.",
+  "form": "pay through the nose",
+  "tr": "Turistler meydanın yakınında kahveye fahiş fiyat ödüyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pay-through-the-nose",
+   "https://en.wiktionary.org/wiki/pay_through_the_nose"
+  ]
+ },
+ {
+  "w": "by the skin of one's teeth",
+  "t": "ucuz kurtulmak, kıl payı başarmak",
+  "lit": "dişlerinin derisiyle",
+  "eq": "kıl payı",
+  "s": "We caught the last ferry by the skin of our teeth.",
+  "form": "by the skin of our teeth",
+  "tr": "Son vapura kıl payı yetiştik.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/by-the-skin-of-teeth",
+   "https://en.wiktionary.org/wiki/by_the_skin_of_one's_teeth"
+  ]
+ },
+ {
+  "w": "bite someone's head off",
+  "t": "terslemek, ağzının payını sertçe vermek",
+  "lit": "birinin kafasını ısırmak",
+  "eq": "terslemek",
+  "s": "I only asked the time, and he bit my head off.",
+  "form": "bit my head off",
+  "tr": "Sadece saati sordum, beni bir güzel tersledi.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bite-head-off",
+   "https://en.wiktionary.org/wiki/bite_someone's_head_off"
+  ]
+ },
+ {
+  "w": "wear one's heart on one's sleeve",
+  "t": "duygularını hiç saklamamak",
+  "lit": "kalbini yeninin üstünde taşımak",
+  "eq": "içi dışı bir olmak",
+  "s": "Leo wears his heart on his sleeve, so you always know.",
+  "form": "wears his heart on his sleeve",
+  "tr": "Leo duygularını hiç saklamaz, bu yüzden ne hissettiğini hep anlarsın.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/wear-heart-on-sleeve",
+   "https://en.wiktionary.org/wiki/wear_one's_heart_on_one's_sleeve"
+  ]
+ },
+ {
+  "w": "keep one's ear to the ground",
+  "t": "gelişmeleri yakından takip etmek, kulak kabartmak",
+  "lit": "kulağını yerde tutmak",
+  "eq": "kulak kabartmak",
+  "s": "She keeps her ear to the ground for any hiring news.",
+  "form": "keeps her ear to the ground",
+  "tr": "İşe alım haberleri için kulağını sürekli dört açar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/keep-ear-to-the-ground",
+   "https://en.wiktionary.org/wiki/keep_one's_ear_to_the_ground"
+  ]
+ },
+ {
+  "w": "pick someone's brain",
+  "t": "birinin fikrini ve bilgisini almak",
+  "lit": "birinin beynini kurcalamak",
+  "eq": "aklını almak",
+  "s": "Can I pick your brain about the tax rules later?",
+  "form": "pick your brain",
+  "tr": "Vergi kuralları hakkında daha sonra fikrini alabilir miyim?",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/pick-brain",
+   "https://en.wiktionary.org/wiki/pick_someone's_brain"
+  ]
+ },
+ {
+  "w": "put one's foot in it",
+  "t": "pot kırmak, gaf yapmak",
+  "lit": "ayağını içine sokmak",
+  "eq": "pot kırmak",
+  "s": "I really put my foot in it by mentioning the surprise.",
+  "form": "put my foot in it",
+  "tr": "Sürprizden söz ederek fena halde pot kırdım.",
+  "reg": "informal",
+  "area": "UK",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/put-your-foot-in-it",
+   "https://en.wiktionary.org/wiki/put_one's_foot_in_it"
+  ]
+ },
+ {
+  "w": "have a chip on one's shoulder",
+  "t": "alınganlık ve kin beslemek, kompleksli olmak",
+  "lit": "omzunda bir yonga taşımak",
+  "s": "He still has a chip on his shoulder about losing that promotion.",
+  "form": "has a chip on his shoulder",
+  "tr": "O terfiyi kaçırdığı için hâlâ içinde bir kırgınlık ve öfke taşıyor.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/have-a-chip-on-shoulder",
+   "https://en.wiktionary.org/wiki/have_a_chip_on_one's_shoulder"
+  ]
+ },
+ {
+  "w": "on the tip of one's tongue",
+  "t": "dilinin ucunda olmak",
+  "lit": "dilinin ucunda",
+  "eq": "dilinin ucunda",
+  "s": "Wait, his name is right on the tip of my tongue.",
+  "form": "on the tip of my tongue",
+  "tr": "Dur, adı tam dilimin ucunda.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/on-the-tip-of-tongue",
+   "https://en.wiktionary.org/wiki/on_the_tip_of_one's_tongue"
+  ]
+ },
+ {
+  "w": "give someone a hand",
+  "t": "yardım etmek, el atmak",
+  "lit": "birine bir el vermek",
+  "eq": "el atmak",
+  "s": "Could you give me a hand moving this heavy table?",
+  "form": "give me a hand",
+  "tr": "Şu ağır masayı taşırken bana biraz el atabilir misin?",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/give-a-hand",
+   "https://en.wiktionary.org/wiki/give_someone_a_hand"
+  ]
+ },
+ {
+  "w": "bite one's lip",
+  "t": "söyleyeceğini yutmak, kendini tutmak",
+  "lit": "dudağını ısırmak",
+  "eq": "dudağını ısırmak",
+  "s": "She bit her lip to keep from laughing in the hall.",
+  "form": "bit her lip",
+  "tr": "Salonda gülmemek için dudağını ısırdı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/bite-lip",
+   "https://en.wiktionary.org/wiki/bite_one's_lip"
+  ]
+ },
+ {
+  "w": "point the finger at",
+  "pat": "point the finger at someone",
+  "t": "suçlamak, hedef göstermek",
+  "lit": "parmağı birine doğrultmak",
+  "eq": "parmakla göstermek",
+  "s": "They were quick to point the finger at the contractor.",
+  "form": "point the finger at",
+  "tr": "Suçu hemen yükleniciye atmakta gecikmediler.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/point-the-finger-at",
+   "https://en.wiktionary.org/wiki/point_the_finger_at"
+  ]
+ },
+ {
+  "w": "drag one's heels",
+  "t": "ayak sürüp işi ağırdan almak",
+  "lit": "topuklarını sürümek",
+  "eq": "ayak sürümek",
+  "s": "The committee is dragging its heels on approving the budget.",
+  "form": "dragging its heels",
+  "tr": "Komite bütçeyi onaylama konusunda ayak sürüyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "body",
+  "src": [
+   "https://dictionary.cambridge.org/dictionary/english/drag-heels-feet",
+   "https://en.wiktionary.org/wiki/drag_one's_heels"
+  ]
+ }
+]
