@@ -81,6 +81,7 @@ function weekOf(day: string): string[] {
 describe('FriendsCard', () => {
   it('publishes the own card, then ranks the learner and the friends by today or this week', async () => {
     const { host, calls } = await mount(true)
+    await until(() => !!host.querySelector('.friends-board'))
     expect(calls.some((c) => (c.body as { action?: string } | undefined)?.action === 'friends-publish')).toBe(true)
     const names = () => [...host.querySelectorAll('.friends-board .friends-name')].map((n) => n.textContent!.replace(/\d+$/, '').trim())
     expect(names()).toEqual(['Veli', 'Sen'])
