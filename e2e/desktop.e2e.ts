@@ -417,6 +417,58 @@ test('exam-style tasks: a text and three questions to read, a listening mode tha
   await expect(page.locator('.examtask [lang="tr"]').first()).toBeVisible()
 })
 
+test('the exams screen: an exam and a level from the content, a set and a task opened in their own flows, kept after a reload', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Sınavlar')
+  await expect(page.getByRole('heading', { name: 'Sınavlar', level: 1 })).toBeVisible()
+  const exams = page.getByRole('group', { name: 'Sınav' })
+  await expect(exams.getByRole('button')).toHaveText(['DELF tarzı', 'DALF tarzı'])
+  const levels = page.getByRole('group', { name: 'Seviye' })
+  // Only the levels with content: DELF stops at B2, C1 is DALF's.
+  await expect(levels.getByRole('button')).toHaveText(['A2', 'B1', 'B2'])
+  await exams.getByRole('button', { name: 'DALF tarzı' }).click()
+  await expect(levels.getByRole('button')).toHaveText(['C1'])
+  await exams.getByRole('button', { name: 'DELF tarzı' }).click()
+  await levels.getByRole('button', { name: 'B1' }).click()
+  await expect(page.getByText('resmî sınav kurumlarıyla bir bağlantı yoktur')).toBeVisible()
+  // Kept after a reload: the screen, the exam and the level.
+  await page.reload()
+  await expect(page.getByRole('group', { name: 'Seviye' }).getByRole('button', { name: 'B1' })).toHaveAttribute('aria-pressed', 'true')
+  // A set opens the exam-style tasks game on it; leaving it comes back here, with the result on the row.
+  const reading = page.getByRole('region', { name: /Okuma ve dinleme/ })
+  const title = (await reading.locator('.examtask-item strong').first().textContent())!.trim()
+  await reading.locator('.examtask-item').first().click()
+  await expect(page.locator('.examtask-text')).toBeVisible()
+  await expect(page.getByRole('button', { name: '← Sınavlar' })).toBeVisible()
+  for (const n of [1, 2, 3]) await page.getByRole('region', { name: `Soru ${n}` }).locator('.option').first().click()
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.getByRole('region', { name: 'Sonuç' })).toContainText('/ 3 doğru')
+  await page.getByRole('button', { name: 'Sınavlara dön' }).click()
+  await expect(reading.locator('.examtask-item', { hasText: title })).toContainText('Son sonuç %')
+  // The browser's Back closes an opened set too.
+  await reading.locator('.examtask-item').first().click()
+  await expect(page.locator('.examtask-text')).toBeVisible()
+  await page.goBack()
+  await expect(page.getByRole('heading', { name: 'Sınavlar', level: 1 })).toBeVisible()
+  // A writing task opens the journal of "Yaz & konuş" with it chosen; what is written there is dated on the row.
+  const writing = page.getByRole('region', { name: /Yazma/ })
+  const task = (await writing.locator('.examtask-item strong').first().textContent())!.trim()
+  await writing.locator('.examtask-item').first().click()
+  await expect(page.locator('.exam-instruction')).toBeVisible()
+  await expect(page.locator('.exam-task')).toContainText('DELF tarzında özgün bir görev')
+  await page.getByLabel('Günlük').fill('Chère Léa, je t’écris pour te dire que je viens samedi avec mon frère.')
+  await page.getByRole('button', { name: 'Kaydet', exact: true }).click()
+  await expect(page.locator('.journal-item')).toHaveCount(1)
+  await page.goBack()
+  await expect(page.getByRole('region', { name: /Yazma/ }).locator('.examtask-item', { hasText: task })).toContainText('Son yazış')
+  // Another language, its own exams.
+  await page.getByRole('button', { name: /İspanyolca/ }).click()
+  await expect(page.getByText('DELE adları yalnızca görevlerin tarzını anlatır')).toBeVisible()
+  await expect(page.getByRole('group', { name: 'Sınav' })).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
 test('English verb lab: irregular verbs and phrasal verbs, a list to look through and a round to practise', async ({ page }) => {
   await startWithSamples(page)
   await page.getByRole('button', { name: /İngilizce/ }).click()

@@ -9,6 +9,7 @@ export const screenModules = {
   Progress: () => import('./ui/progress/Progress'),
   Reading: () => import('./ui/reading/Reading'),
   Produce: () => import('./ui/practice/Produce'),
+  Exams: () => import('./ui/practice/ExamsScreen'),
   VocabTest: () => import('./ui/progress/VocabTest'),
   Exam: () => import('./ui/progress/Exam'),
   Settings: () => import('./ui/settings/SettingsScreen'),
@@ -35,6 +36,7 @@ export const ProfileScreen = lazy(() => screenModules.Profile().then((m) => ({ d
 export const ProgressScreen = lazy(() => screenModules.Progress().then((m) => ({ default: m.ProgressScreen })))
 export const ReadingScreen = lazy(() => screenModules.Reading().then((m) => ({ default: m.ReadingScreen })))
 export const ProduceScreen = lazy(() => screenModules.Produce().then((m) => ({ default: m.ProduceScreen })))
+export const ExamsScreen = lazy(() => screenModules.Exams().then((m) => ({ default: m.ExamsScreen })))
 export const VocabTestScreen = lazy(() => screenModules.VocabTest().then((m) => ({ default: m.VocabTestScreen })))
 export const ExamScreen = lazy(() => screenModules.Exam().then((m) => ({ default: m.ExamScreen })))
 export const SettingsScreen = lazy(() => screenModules.Settings().then((m) => ({ default: m.SettingsScreen })))

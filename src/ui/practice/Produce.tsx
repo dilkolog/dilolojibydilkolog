@@ -52,7 +52,7 @@ function usePracticeWords(vocabulary: VocabularyEntry[], states: UserWordState[]
  * Pushed output (Swain): writing and speaking show what you can actually use, not just
  * recognise. Journal works without AI (entries are kept); feedback and conversation need it.
  */
-export function ProduceScreen(p: Props) {
+export function ProduceScreen(p: Props & { initialTask?: string }) {
   const [tab, setTab] = useState<'journal' | 'chat' | 'mission' | 'fluency' | 'gloss'>('journal')
   const tabsRef = useTabIndicator(tab)
   const fluencyWords = usePracticeWords(p.vocabulary, p.states, 3)
@@ -118,7 +118,7 @@ function ExamTaskCard({ task, language }: { task: ExamTask; language: TargetLang
   )
 }
 
-function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }: Props) {
+function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings, initialTask }: Props & { initialTask?: string }) {
   const { apiKey } = useAi()
   const words = usePracticeWords(vocabulary, states, 3)
   const prompt = PERSONAL_PROMPTS[Math.floor(Date.now() / 86_400_000) % PERSONAL_PROMPTS.length]
@@ -131,7 +131,8 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
   const [credited, setCredited] = useState(0)
   const [confirmDelete, setConfirmDelete] = useState<JournalEntry | null>(null)
   const [examTasks, setExamTasks] = useState<ExamTask[]>([])
-  const [taskId, setTaskId] = useState('')
+  // Opened from the exams screen with a task: it is chosen once the tasks have loaded.
+  const [taskId, setTaskId] = useState(initialTask ?? '')
   const task = examTasks.find((t) => t.id === taskId)
   const area = useRef<HTMLTextAreaElement>(null)
 
@@ -146,12 +147,13 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
 
   useEffect(() => {
     let live = true
-    setTaskId('')
+    setTaskId((id) => (id && id === initialTask ? id : ''))
     setExamTasks([])
     void loadExamTasks(language).then((t) => live && setExamTasks(t))
     return () => {
       live = false
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- the task is only the first choice, not a reason to reload
   }, [language])
 
   const handleDelete = async (entryToDelete: JournalEntry) => {
@@ -172,7 +174,7 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
     if (!t) return
     setBusy(true)
     setError('')
-    let entry: JournalEntry = { id: crypto.randomUUID(), language, at: new Date().toISOString(), text: t }
+    let entry: JournalEntry = { id: crypto.randomUUID(), language, at: new Date().toISOString(), text: t, ...(task ? { task: task.id } : {}) }
     try {
       if (apiKey) {
         const review = await reviewJournal(apiKey, { language, text: t, words: words.map((w) => ({ lemma: displayForm(w), gloss: w.senses[0].gloss })) })

@@ -3959,7 +3959,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 
 /* Exam-style reading and listening tasks (ui/games/ExamTasks) */
 .examtask-list { gap: 0.625rem; }
-.examtask-item { display: flex; gap: 0.875rem; align-items: center; width: 100%; text-align: left; cursor: pointer; }
+.examtask-item { display: flex; gap: 0.875rem; align-items: center; width: 100%; text-align: left; cursor: pointer; border: 2px solid transparent; color: inherit; font: inherit; }
 .examtask-item:hover { border-color: var(--lang); }
 .examtask-level { flex: none; min-width: 2.5rem; text-align: center; font-weight: 700; color: var(--lang-text); background: var(--lang-soft); border-radius: var(--r-md); padding: 0.375rem 0.5rem; }
 .examtask-title { display: grid; gap: 0.125rem; }

@@ -1,9 +1,9 @@
 import { useEffect, useRef, type Dispatch, type SetStateAction } from 'react'
 import { RESTORABLE, type Screen } from '../appNav'
 
-/** Where a screen is: its name and, for those that have one, the thing it shows (a game, a verb, a word, a list). */
+/** Where a screen is: its name and, for those that have one, the thing it shows (a game, a verb, a word, a list, an exam set or task). */
 const routeKey = (s: Screen) => {
-  const extra = (s as { game?: string; verb?: string; entryId?: string; list?: string; lesson?: string }).game ?? (s as { verb?: string }).verb ?? (s as { entryId?: string }).entryId ?? (s as { list?: string }).list ?? (s as { lesson?: string }).lesson ?? ''
+  const extra = (s as { game?: string; verb?: string; entryId?: string; list?: string; lesson?: string }).game ?? (s as { verb?: string }).verb ?? (s as { entryId?: string }).entryId ?? (s as { list?: string }).list ?? (s as { lesson?: string }).lesson ?? (s as { passage?: string }).passage ?? (s as { task?: string }).task ?? ''
   return `${s.name}:${extra}`
 }
 
