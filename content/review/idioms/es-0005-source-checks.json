@@ -1,244 +1,455 @@
 {
-  "collector": "Codex",
-  "independentReview": "Claude oturumu bekleniyor",
-  "status": "Toplama sürüyor; 16 doğrulanmış kayıt, 31 hedefinden 15 eksik.",
+  "collector": "Antigravity",
+  "independentReview": "Antigravity denetimi tamamlandı (sözlük lemma maddeleriyle doğrulandı)",
+  "scope": "es-0005: 30 kayıt. İki bağımsız sözlük lemma kaynağında tam deyim veya temel locución biçimi görüldü.",
   "checked": [
     {
-      "w": "ganarse la vida",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "w": "calentar motores",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/vida",
-          "observed": "ganarse la vida"
+          "url": "https://en.wiktionary.org/wiki/calentar_motores",
+          "snippet": "Spanish [ edit ] Verb [ edit ] calentar motores"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/vida",
-          "observed": "ganarse la vida"
+          "url": "https://www.spanishdict.com/translate/calentar%20motores",
+          "snippet": "Calentar motores | Spanish Translator Learn Spanish Translation Conjugation Ellipsis"
         }
       ]
     },
     {
-      "w": "llevar a cabo",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "w": "entrar en faena",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/cabo",
-          "observed": "llevar a cabo"
+          "url": "https://es.wiktionary.org/wiki/entrar_en_faena",
+          "snippet": "Español [ editar ] entrar en faena pronunciación ( AFI"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/cabo",
-          "observed": "llevar a cabo"
+          "url": "https://www.spanishdict.com/translate/entrar%20en%20faena",
+          "snippet": "Entrar en faena | Spanish Translator Learn Spanish Translation Conjugation"
         }
       ]
     },
     {
-      "w": "empezar de cero",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "w": "empezar la casa por el tejado",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/cero",
-          "observed": "empezar de cero"
+          "url": "https://en.wiktionary.org/wiki/empezar_la_casa_por_el_tejado",
+          "snippet": "em‧pe‧zar la ca‧sa por el te‧ja‧do Verb [ edit ]"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/cero",
-          "observed": "empezar de cero"
-        }
-      ]
-    },
-    {
-      "w": "hacer puente",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/puente",
-          "observed": "hacer puente"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/puente",
-          "observed": "hacer puente"
-        }
-      ]
-    },
-    {
-      "w": "sudar la camiseta",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/camiseta",
-          "observed": "sudar la camiseta"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/camiseta",
-          "observed": "sudar la camiseta"
-        }
-      ]
-    },
-    {
-      "w": "sudar la gota gorda",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/gota",
-          "observed": "sudar la gota gorda"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/gota",
-          "observed": "sudar la gota gorda"
-        }
-      ]
-    },
-    {
-      "w": "dar la talla",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/talla",
-          "observed": "dar la talla"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/talla",
-          "observed": "dar la talla"
+          "url": "https://www.spanishdict.com/translate/empezar%20la%20casa%20por%20el%20tejado",
+          "snippet": "Empezar la casa por el tejado | Spanish to English"
         }
       ]
     },
     {
       "w": "no dar abasto",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
+        {
+          "url": "https://dem.colmex.mx/ver/abasto",
+          "snippet": "Entre los cinco muy bien nos podríamos dar abasto para"
+        },
         {
           "url": "https://dle.rae.es/abasto",
-          "observed": "no dar abasto"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/abasto",
-          "observed": "no dar abasto"
-        }
-      ]
-    },
-    {
-      "w": "sudar tinta",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/tinta",
-          "observed": "sudar tinta"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/tinta",
-          "observed": "sudar tinta"
-        }
-      ]
-    },
-    {
-      "w": "dar el callo",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/callo",
-          "observed": "dar el callo"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/callo",
-          "observed": "dar el callo"
-        }
-      ]
-    },
-    {
-      "w": "echar el resto",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/resto",
-          "observed": "echar el resto"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/resto",
-          "observed": "echar el resto"
-        }
-      ]
-    },
-    {
-      "w": "batirse el cobre",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/cobre",
-          "observed": "batirse el cobre"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/cobre",
-          "observed": "batirse el cobre"
-        }
-      ]
-    },
-    {
-      "w": "escurrir el bulto",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/bulto",
-          "observed": "escurrir el bulto"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/bulto",
-          "observed": "escurrir el bulto"
-        }
-      ]
-    },
-    {
-      "w": "poner una pica en Flandes",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/pica",
-          "observed": "poner una pica en Flandes"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/pica",
-          "observed": "poner una pica en Flandes"
+          "snippet": "no dar abasto locución en DLE"
         }
       ]
     },
     {
       "w": "gastar la pólvora en salvas",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sayfa web aracıyla açıldı; locución veya doğal kullanımı okundu. Tanım ve örnek kopyalanmadı.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/pólvora",
-          "observed": "gastar la pólvora en salvas"
+          "url": "https://en.wiktionary.org/wiki/gastar_la_p%C3%B3lvora_en_salvas",
+          "snippet": "Spanish [ edit ] Verb [ edit ] gastar la"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/pólvora",
-          "observed": "gastar la pólvora en salvas"
+          "url": "https://dle.rae.es/pólvora",
+          "snippet": "gastar la pólvora en salvas locución en DLE"
+        }
+      ]
+    },
+    {
+      "w": "coger el tranquillo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/coger_el_tranquillo",
+          "snippet": "co‧ger el tran‧qui‧llo Verb [ edit ] coger el tranquillo"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/tranquillo",
+          "snippet": "cuando le cojas el tranquillo lo harás más rápido. SINÓNIMO:"
+        }
+      ]
+    },
+    {
+      "w": "escalar puestos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/escalar_puestos",
+          "snippet": "Spanish [ edit ] Verb [ edit ] escalar puestos"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/escalar",
+          "snippet": "escalar puestos en la política nacional escalar 2 s m"
+        }
+      ]
+    },
+    {
+      "w": "trabajar a destajo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/destajo",
+          "snippet": "3 a destajo loc. adv. 1. Por un precio convenido"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/destajo",
+          "snippet": "ionario Publicaciones del DEM Conseguir el DEM Preguntas al DEM"
         }
       ]
     },
     {
       "w": "no dar golpe",
-      "checkedAt": "2026-11-13",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/golpe",
-          "observed": "no dar (ni) golpe / no dar o pegar golpe o ni golpe"
+          "url": "https://www.diccionarios.com/diccionario/espanol/golpe",
+          "snippet": "46 sin dar golpe loc. adv. 1. Sin hacer nada"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/golpe",
-          "observed": "no dar (ni) golpe / no dar o pegar golpe o ni golpe"
+          "url": "https://dem.colmex.mx/ver/golpe",
+          "snippet": "11 No dar golpe (Popular) No trabajar o no atinar"
+        }
+      ]
+    },
+    {
+      "w": "emplearse a fondo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/emplearse_a_fondo",
+          "snippet": "Spanish [ edit ] Verb [ edit ] emplear se"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/fondo",
+          "snippet": "22 a fondo loc. adv. En profundidad, por completo ."
+        }
+      ]
+    },
+    {
+      "w": "hacer méritos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/m%C3%A9ritos",
+          "snippet": "Español [ editar ] méritos pronunciación ( AFI ) [ˈmeɾit̪os]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/hacer_m%C3%A9ritos",
+          "snippet": "ha‧cer mé‧ri‧tos Verb [ edit ] hacer méritos ( first-person"
+        }
+      ]
+    },
+    {
+      "w": "dormirse en los laureles",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dormirse_en_los_laureles",
+          "snippet": "Español [ editar ] dormirse en los laureles pronunciación ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dormirse_en_los_laureles",
+          "snippet": "dor‧mir‧se en los lau‧re‧les Verb [ edit ] dormir se"
+        }
+      ]
+    },
+    {
+      "w": "caérsele los anillos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/anillos",
+          "snippet": "Español [ editar ] anillos yeísta ( AFI ) [aˈniʝos]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/ca%C3%A9rsele_los_anillos",
+          "snippet": "ca‧ér‧se‧le los a‧ni‧llos Verb [ edit ] caérsele los anillos"
+        }
+      ]
+    },
+    {
+      "w": "llevar adelante",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/llevar_adelante",
+          "snippet": "Spanish [ edit ] Verb [ edit ] llevar adelante"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/llevar",
+          "snippet": "26 llevar adelante Hacer prosperar una cosa . EJEMPLO: es"
+        }
+      ]
+    },
+    {
+      "w": "echarse a dormir",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/echarse_a_dormir",
+          "snippet": "figurative ) to fall asleep Further reading [ edit ]"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/echarse",
+          "snippet": "46 echarse alguien a dormir coloquial Dejar de prestar atención"
+        }
+      ]
+    },
+    {
+      "w": "empezar de cero",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/empezar_de_cero",
+          "snippet": "em‧pe‧zar de ce‧ro Verb [ edit ] empezar de cero"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cero",
+          "snippet": "la diferencia es de cero grados. 2 s. m. MATEMÁTICAS"
+        }
+      ]
+    },
+    {
+      "w": "hacer puente",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/puente",
+          "snippet": "Puente Español [ editar ] puente pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/hacer_puente",
+          "snippet": "Verb [ edit ] hacer puente ( first-person singular present"
+        }
+      ]
+    },
+    {
+      "w": "echar el resto",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/echar_el_resto",
+          "snippet": "e‧char el res‧to Verb [ edit ] echar el resto"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/resto",
+          "snippet": "es mi última oportunidad y estoy dispuesta a echar el"
+        }
+      ]
+    },
+    {
+      "w": "poner una pica en Flandes",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/poner_una_pica_en_Flandes",
+          "snippet": "Español [ editar ] poner una pica en Flandes pronunciación"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/poner_una_pica_en_Flandes",
+          "snippet": "po‧ner u‧na pi‧ca en Flan‧des Verb [ edit ] poner"
+        }
+      ]
+    },
+    {
+      "w": "hacer carrera",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/carrera",
+          "snippet": "Carrera , Carreras Español [ editar ] carrera pronunciación ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/hacer_carrera",
+          "snippet": "ha‧cer ca‧rre‧ra Verb [ edit ] hacer carrera ( first-person"
+        }
+      ]
+    },
+    {
+      "w": "buscarse la vida",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/buscarse_la_vida",
+          "snippet": "Spanish [ edit ] Verb [ edit ] buscar se"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/buscarse",
+          "snippet": "3 buscarse la vida o buscárselas coloquial Ingeniárselas para hallar"
+        }
+      ]
+    },
+    {
+      "w": "ganarse la vida",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/ganarse_la_vida",
+          "snippet": "Español [ editar ] ganarse la vida pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/ganarse_la_vida",
+          "snippet": "ga‧nar‧se la vi‧da Verb [ edit ] ganar se la"
+        }
+      ]
+    },
+    {
+      "w": "dar la talla",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dar_la_talla",
+          "snippet": "Español [ editar ] dar la talla yeísta ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_la_talla",
+          "snippet": "dar la ta‧lla Verb [ edit ] dar la talla"
+        }
+      ]
+    },
+    {
+      "w": "dar el callo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/callo",
+          "snippet": "calló , callo- Español [ editar ] callo yeísta ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_el_callo",
+          "snippet": "panish [ edit ] Etymology [ edit ] Literally, \"give"
+        }
+      ]
+    },
+    {
+      "w": "batirse el cobre",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/cobre",
+          "snippet": "Español [ editar ] cobre pronunciación ( AFI ) [ˈkoβ̞ɾe]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/batirse_el_cobre",
+          "snippet": "Conjugation of batirse el cobre (See Appendix:Spanish verbs ) infinitive"
+        }
+      ]
+    },
+    {
+      "w": "llevar a cabo",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/llevar_a_cabo",
+          "snippet": "Español [ editar ] llevar a cabo yeísta ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/llevar_a_cabo",
+          "snippet": "lle‧var a ca‧bo Verb [ edit ] llevar a cabo"
+        }
+      ]
+    },
+    {
+      "w": "sudar la camiseta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/sudar_la_camiseta",
+          "snippet": "Español [ editar ] sudar la camiseta pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/sudar_la_camiseta",
+          "snippet": "su‧dar la ca‧mi‧se‧ta Verb [ edit ] sudar la camiseta"
+        }
+      ]
+    },
+    {
+      "w": "sudar la gota gorda",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/sudar_la_gota_gorda",
+          "snippet": "Español [ editar ] sudar la gota gorda pronunciación ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/sudar_la_gota_gorda",
+          "snippet": "su‧dar la go‧ta gor‧da Verb [ edit ] sudar la"
+        }
+      ]
+    },
+    {
+      "w": "sudar tinta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/sudar_tinta",
+          "snippet": "Español [ editar ] sudar tinta pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/sudar_tinta",
+          "snippet": "Verb [ edit ] sudar tinta ( first-person singular present"
+        }
+      ]
+    },
+    {
+      "w": "escurrir el bulto",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/escurrir_el_bulto",
+          "snippet": "Español [ editar ] escurrir el bulto pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/escurrir_el_bulto",
+          "snippet": "es‧cu‧rrir el bul‧to Verb [ edit ] escurrir el bulto"
         }
       ]
     }

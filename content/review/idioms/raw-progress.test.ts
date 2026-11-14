@@ -8,7 +8,7 @@ const batches = readdirSync(root).filter(f => /^es-\d{4}\.json$/.test(f)).map(fi
 it('validates all current Spanish raw fields, forms and duplicates', () => {
   expect(idiomProblems(batches.flatMap(b => b.rows))).toEqual([])
 })
-it.each(['0001', '0002', '0003', '0004', '0005', '0006', '0007'])('validates renewed source addresses in batch %s', number => {
+it.each(['0001', '0002', '0003', '0004', '0005', '0006', '0007', '0008'])('validates renewed source addresses in batch %s', number => {
   const rows = batches.find(b => b.file === `es-${number}.json`)!.rows as (Idiom & {src: string[]})[]
   for (const row of rows) {
     expect(row.src.length, row.w).toBeGreaterThanOrEqual(2)

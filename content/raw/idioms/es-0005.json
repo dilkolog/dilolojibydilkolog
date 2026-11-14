@@ -1,35 +1,246 @@
 [
  {
-  "w": "ganarse la vida",
-  "t": "geçimini sağlamak, hayatını kazanmak",
-  "lit": "kendine hayatı kazanmak",
-  "eq": "hayatını kazanmak",
-  "s": "Desde muy joven se ganaba la vida reparando relojes antiguos.",
-  "form": "ganaba la vida",
-  "tr": "Çok genç yaşlardan beri eski saatleri tamir ederek geçimini sağlıyordu.",
+  "w": "calentar motores",
+  "t": "işe başlamadan önce ısınma ve hazırlık yapmak",
+  "lit": "motorları ısıtmak",
+  "s": "Hicimos unos ejercicios breves para calentar motores antes del ensayo general.",
+  "form": "calentar motores",
+  "tr": "Genel provadan önce ısınmak için birkaç kısa alıştırma yaptık.",
   "reg": "neutral",
   "area": "genel",
-  "level": "B1",
+  "level": "B2",
   "theme": "work",
   "src": [
-   "https://dle.rae.es/vida",
-   "https://www.diccionarios.com/diccionario/espanol/vida"
+   "https://en.wiktionary.org/wiki/calentar_motores",
+   "https://www.spanishdict.com/translate/calentar%20motores"
   ]
  },
  {
-  "w": "llevar a cabo",
-  "t": "gerçekleştirmek, yürütüp tamamlamak",
-  "lit": "uca götürmek",
-  "s": "El laboratorio logró llevar a cabo el experimento sin ningún retraso.",
-  "form": "llevar a cabo",
-  "tr": "Laboratuvar deneyi hiçbir gecikme olmadan gerçekleştirmeyi başardı.",
+  "w": "entrar en faena",
+  "t": "işe koyulmak, asıl çalışmaya başlamak",
+  "lit": "mesaiye girmek",
+  "eq": "kolları sıvamak",
+  "s": "Tras revisar los planos de la obra, los albañiles entraron en faena.",
+  "form": "entraron en faena",
+  "tr": "İnşaat planlarını inceledikten sonra duvar ustaları işe koyuldu.",
   "reg": "neutral",
   "area": "genel",
-  "level": "B1",
+  "level": "B2",
   "theme": "work",
   "src": [
-   "https://dle.rae.es/cabo",
-   "https://www.diccionarios.com/diccionario/espanol/cabo"
+   "https://es.wiktionary.org/wiki/entrar_en_faena",
+   "https://www.spanishdict.com/translate/entrar%20en%20faena"
+  ]
+ },
+ {
+  "w": "empezar la casa por el tejado",
+  "t": "işe sondan başlamak, yöntemsiz ve ters sırayla çalışmak",
+  "lit": "eve çatıdan başlamak",
+  "s": "Comprar los muebles antes de alquilar el local es empezar la casa por el tejado.",
+  "form": "empezar la casa por el tejado",
+  "tr": "Dükkânı kiralamadan önce mobilyaları almak işe sondan başlamaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/empezar_la_casa_por_el_tejado",
+   "https://www.spanishdict.com/translate/empezar%20la%20casa%20por%20el%20tejado"
+  ]
+ },
+ {
+  "w": "no dar abasto",
+  "t": "iş yoğunluğuna yetişememek, talebe güç yetirememek",
+  "lit": "yeterlilik verememek",
+  "s": "En época de cosecha los agricultores no dan abasto con tanto trabajo.",
+  "form": "no dan abasto",
+  "tr": "Hasat zamanında çiftçiler bu kadar çok işe yetişemiyor.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://dem.colmex.mx/ver/abasto",
+   "https://dle.rae.es/abasto"
+  ]
+ },
+ {
+  "w": "gastar la pólvora en salvas",
+  "t": "işe yaramayan çabalara enerji harcamak",
+  "lit": "barutu selam atışlarına harcamak",
+  "s": "Discutir esos detalles menores antes del acuerdo es gastar la pólvora en salvas.",
+  "form": "gastar la pólvora en salvas",
+  "tr": "Anlaşmadan önce o küçük ayrıntıları tartışmak boşa çaba harcamaktır.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/gastar_la_p%C3%B3lvora_en_salvas",
+   "https://dle.rae.es/pólvora"
+  ]
+ },
+ {
+  "w": "coger el tranquillo",
+  "pat": "cogerle el tranquillo a algo",
+  "t": "bir işin püf noktasını kapmak, elini alıştırmak",
+  "lit": "küçük sürgüyü yakalamak",
+  "eq": "püf noktasını kapmak",
+  "s": "Al principio el programa parece difícil, pero pronto le coges el tranquillo.",
+  "form": "coges el tranquillo",
+  "tr": "Program başta zor görünür ama kısa sürede püf noktasını kaparsın.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/coger_el_tranquillo",
+   "https://www.diccionarios.com/diccionario/espanol/tranquillo"
+  ]
+ },
+ {
+  "w": "escalar puestos",
+  "t": "meslekte basamakları tırmanmak, hızla terfi etmek",
+  "lit": "mevkileri tırmanmak",
+  "s": "Gracias a su constancia logró escalar puestos dentro del ministerio.",
+  "form": "escalar puestos",
+  "tr": "Azmi sayesinde bakanlık içinde basamakları hızla tırmanmayı başardı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/escalar_puestos",
+   "https://dem.colmex.mx/ver/escalar"
+  ]
+ },
+ {
+  "w": "trabajar a destajo",
+  "t": "parça başı veya aralıksız çok yoğun çalışmak",
+  "lit": "kesinti usulü çalışmak",
+  "s": "Toda la imprenta tuvo que trabajar a destajo para entregar la edición.",
+  "form": "trabajar a destajo",
+  "tr": "Baskıyı yetiştirmek için bütün matbaa aralıksız yoğun çalışmak zorunda kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://www.diccionarios.com/diccionario/espanol/destajo",
+   "https://dem.colmex.mx/ver/destajo"
+  ]
+ },
+ {
+  "w": "no dar golpe",
+  "t": "hiç çalışmamak, iş yapmamak",
+  "lit": "darbe vurmamak",
+  "s": "Mientras arreglábamos el local, Pablo no dio golpe.",
+  "form": "no dio golpe",
+  "tr": "Biz dükkânı düzenlerken Pablo hiç iş yapmadı.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://www.diccionarios.com/diccionario/espanol/golpe",
+   "https://dem.colmex.mx/ver/golpe"
+  ]
+ },
+ {
+  "w": "emplearse a fondo",
+  "t": "bütün gücünü ortaya koymak, canla başla çalışmak",
+  "lit": "dibine kadar kullanılmak",
+  "s": "Los bomberos tuvieron que emplearse a fondo para controlar el incendio.",
+  "form": "emplearse a fondo",
+  "tr": "İtfaiyeciler yangını kontrol altına almak için bütün güçlerini ortaya koymak zorunda kaldı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/emplearse_a_fondo",
+   "https://www.diccionarios.com/diccionario/espanol/fondo"
+  ]
+ },
+ {
+  "w": "hacer méritos",
+  "t": "takdir kazanmak için çabalamak, kendini kanıtlamak",
+  "lit": "liyakatler yapmak",
+  "s": "El becario trabajó con esmero todo el verano para hacer méritos.",
+  "form": "hacer méritos",
+  "tr": "Stajyer kendini kanıtlamak için bütün yaz özenle çalıştı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/m%C3%A9ritos",
+   "https://en.wiktionary.org/wiki/hacer_m%C3%A9ritos"
+  ]
+ },
+ {
+  "w": "dormirse en los laureles",
+  "t": "elde ettiği başarıya güvenip rehavete kapılmak, çabayı gevşetmek",
+  "lit": "defnelerin üstünde uyuyakalmak",
+  "s": "Ganamos el primer premio, pero no debemos dormirnos en los laureles.",
+  "form": "dormirnos en los laureles",
+  "tr": "Birincilik ödülünü kazandık ama rehavete kapılıp çalışmayı bırakmamalıyız.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/dormirse_en_los_laureles",
+   "https://en.wiktionary.org/wiki/dormirse_en_los_laureles"
+  ]
+ },
+ {
+  "w": "caérsele los anillos",
+  "pat": "no caérsele los anillos a alguien",
+  "t": "bir işi yapmaktan gocunmamak, kibirlenmeyip işe el atmak",
+  "lit": "yüzükleri düşmek",
+  "s": "Aunque sea el director, no se le caen los anillos por ayudar.",
+  "form": "caen los anillos",
+  "tr": "Müdür olsa da yardım etmekten hiç gocunmaz.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/anillos",
+   "https://en.wiktionary.org/wiki/ca%C3%A9rsele_los_anillos"
+  ]
+ },
+ {
+  "w": "llevar adelante",
+  "t": "bir işi zorluklara rağmen yürütüp sürdürmek",
+  "lit": "ileriye taşımak",
+  "s": "Con pocos recursos lograron llevar adelante la reforma de la biblioteca.",
+  "form": "llevar adelante",
+  "tr": "Kısıtlı imkânlarla kütüphanenin yenilenmesini yürütmeyi başardılar.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/llevar_adelante",
+   "https://www.diccionarios.com/diccionario/espanol/llevar"
+  ]
+ },
+ {
+  "w": "echarse a dormir",
+  "t": "rehavete kapılıp işi boşlamak, gayreti bırakmak",
+  "lit": "uyumaya yatmak",
+  "s": "Conseguiste buenos clientes, pero no te puedes echar a dormir ahora.",
+  "form": "echar a dormir",
+  "tr": "İyi müşteriler edindin ama şimdi rehavete kapılıp işi boşlayamazsın.",
+  "reg": "informal",
+  "area": "genel",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/echarse_a_dormir",
+   "https://www.diccionarios.com/diccionario/espanol/echarse"
   ]
  },
  {
@@ -45,7 +256,7 @@
   "level": "B1",
   "theme": "work",
   "src": [
-   "https://dle.rae.es/cero",
+   "https://en.wiktionary.org/wiki/empezar_de_cero",
    "https://www.diccionarios.com/diccionario/espanol/cero"
   ]
  },
@@ -61,8 +272,155 @@
   "level": "B1",
   "theme": "work",
   "src": [
-   "https://dle.rae.es/puente",
-   "https://www.diccionarios.com/diccionario/espanol/puente"
+   "https://es.wiktionary.org/wiki/puente",
+   "https://en.wiktionary.org/wiki/hacer_puente"
+  ]
+ },
+ {
+  "w": "echar el resto",
+  "t": "bütün gücünü ve çabasını ortaya koymak",
+  "lit": "kalanı atmak",
+  "s": "En el último kilómetro de la etapa, la ciclista echó el resto.",
+  "form": "echó el resto",
+  "tr": "Etabın son kilometresinde bisikletçi bütün gücünü ortaya koydu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/echar_el_resto",
+   "https://www.diccionarios.com/diccionario/espanol/resto"
+  ]
+ },
+ {
+  "w": "poner una pica en Flandes",
+  "t": "çok zor ve zahmetli bir işi başarmak",
+  "lit": "Flandre'ye bir mızrak dikmek",
+  "s": "Conseguir aquel permiso municipal fue como poner una pica en Flandes.",
+  "form": "poner una pica en Flandes",
+  "tr": "Belediyeden o izni koparmak deveye hendek atlatmak kadar zor bir başarıydı.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/poner_una_pica_en_Flandes",
+   "https://en.wiktionary.org/wiki/poner_una_pica_en_Flandes"
+  ]
+ },
+ {
+  "w": "hacer carrera",
+  "t": "kariyer yapmak, mesleğinde yükselmek",
+  "lit": "koşu yapmak",
+  "eq": "kariyer yapmak",
+  "s": "Estudió ingeniería naval con la ilusión de hacer carrera en el puerto.",
+  "form": "hacer carrera",
+  "tr": "Limanda kariyer yapma hayaliyle gemi inşaatı mühendisliği okudu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/carrera",
+   "https://en.wiktionary.org/wiki/hacer_carrera"
+  ]
+ },
+ {
+  "w": "buscarse la vida",
+  "t": "başının çaresine bakmak, kendi çabasıyla geçimini sağlamak",
+  "lit": "kendine hayatı aramak",
+  "eq": "başının çaresine bakmak",
+  "s": "Cuando llegó al país sin contactos, supo buscarse la vida honradamente.",
+  "form": "buscarse la vida",
+  "tr": "Ülkeye hiçbir tanıdığı olmadan geldiğinde dürüstçe başının çaresine bakmayı bildi.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://en.wiktionary.org/wiki/buscarse_la_vida",
+   "https://www.diccionarios.com/diccionario/espanol/buscarse"
+  ]
+ },
+ {
+  "w": "ganarse la vida",
+  "t": "geçimini sağlamak, hayatını kazanmak",
+  "lit": "kendine hayatı kazanmak",
+  "eq": "hayatını kazanmak",
+  "s": "Desde muy joven se ganaba la vida reparando relojes antiguos.",
+  "form": "ganaba la vida",
+  "tr": "Çok genç yaşlardan beri eski saatleri tamir ederek geçimini sağlıyordu.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/ganarse_la_vida",
+   "https://en.wiktionary.org/wiki/ganarse_la_vida"
+  ]
+ },
+ {
+  "w": "dar la talla",
+  "t": "beklentiyi karşılamak, işin altından kalkacak yeterlilikte olmak",
+  "lit": "boy ölçüsünü vermek",
+  "s": "La nueva arquitecta dio la talla desde su primer proyecto importante.",
+  "form": "dio la talla",
+  "tr": "Yeni mimar, daha ilk önemli projesinden itibaren beklentiyi fazlasıyla karşıladı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/dar_la_talla",
+   "https://en.wiktionary.org/wiki/dar_la_talla"
+  ]
+ },
+ {
+  "w": "dar el callo",
+  "t": "çok çalışmak, büyük emek vermek",
+  "lit": "nasırı vermek",
+  "s": "Lleva treinta años dando el callo en la fábrica desde el amanecer.",
+  "form": "dando el callo",
+  "tr": "Otuz yıldır şafak vaktinden itibaren fabrikada ağır emek veriyor.",
+  "reg": "informal",
+  "area": "İspanya",
+  "level": "B2",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/callo",
+   "https://en.wiktionary.org/wiki/dar_el_callo"
+  ]
+ },
+ {
+  "w": "batirse el cobre",
+  "t": "kıyasıya emek vermek, zorlu bir işte yoğun çaba harcamak",
+  "lit": "bakırı dövmek",
+  "s": "Los abogados se batieron el cobre durante meses en aquel juicio laboral.",
+  "form": "batieron el cobre",
+  "tr": "Avukatlar o iş davasında aylarca kıyasıya çaba harcadı.",
+  "reg": "neutral",
+  "area": "İspanya",
+  "level": "C1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/cobre",
+   "https://en.wiktionary.org/wiki/batirse_el_cobre"
+  ]
+ },
+ {
+  "w": "llevar a cabo",
+  "t": "gerçekleştirmek, yürütüp tamamlamak",
+  "lit": "uca götürmek",
+  "s": "El laboratorio logró llevar a cabo el experimento sin ningún retraso.",
+  "form": "llevar a cabo",
+  "tr": "Laboratuvar deneyi hiçbir gecikme olmadan gerçekleştirmeyi başardı.",
+  "reg": "neutral",
+  "area": "genel",
+  "level": "B1",
+  "theme": "work",
+  "src": [
+   "https://es.wiktionary.org/wiki/llevar_a_cabo",
+   "https://en.wiktionary.org/wiki/llevar_a_cabo"
   ]
  },
  {
@@ -78,8 +436,8 @@
   "level": "B2",
   "theme": "work",
   "src": [
-   "https://dle.rae.es/camiseta",
-   "https://www.diccionarios.com/diccionario/espanol/camiseta"
+   "https://es.wiktionary.org/wiki/sudar_la_camiseta",
+   "https://en.wiktionary.org/wiki/sudar_la_camiseta"
   ]
  },
  {
@@ -95,40 +453,8 @@
   "level": "B2",
   "theme": "work",
   "src": [
-   "https://dle.rae.es/gota",
-   "https://www.diccionarios.com/diccionario/espanol/gota"
-  ]
- },
- {
-  "w": "dar la talla",
-  "t": "beklentiyi karşılamak, işin altından kalkacak yeterlilikte olmak",
-  "lit": "boy ölçüsünü vermek",
-  "s": "La nueva arquitecta dio la talla desde su primer proyecto importante.",
-  "form": "dio la talla",
-  "tr": "Yeni mimar, daha ilk önemli projesinden itibaren beklentiyi fazlasıyla karşıladı.",
-  "reg": "neutral",
-  "area": "genel",
-  "level": "B2",
-  "theme": "work",
-  "src": [
-   "https://dle.rae.es/talla",
-   "https://www.diccionarios.com/diccionario/espanol/talla"
-  ]
- },
- {
-  "w": "no dar abasto",
-  "t": "iş yoğunluğuna yetişememek, talebe güç yetirememek",
-  "lit": "yeterlilik verememek",
-  "s": "En época de cosecha los agricultores no dan abasto con tanto trabajo.",
-  "form": "no dan abasto",
-  "tr": "Hasat zamanında çiftçiler bu kadar çok işe yetişemiyor.",
-  "reg": "neutral",
-  "area": "genel",
-  "level": "B2",
-  "theme": "work",
-  "src": [
-   "https://dle.rae.es/abasto",
-   "https://www.diccionarios.com/diccionario/espanol/abasto"
+   "https://es.wiktionary.org/wiki/sudar_la_gota_gorda",
+   "https://en.wiktionary.org/wiki/sudar_la_gota_gorda"
   ]
  },
  {
@@ -144,56 +470,8 @@
   "level": "B2",
   "theme": "work",
   "src": [
-   "https://dle.rae.es/tinta",
-   "https://www.diccionarios.com/diccionario/espanol/tinta"
-  ]
- },
- {
-  "w": "dar el callo",
-  "t": "çok çalışmak, büyük emek vermek",
-  "lit": "nasırı vermek",
-  "s": "Lleva treinta años dando el callo en la fábrica desde el amanecer.",
-  "form": "dando el callo",
-  "tr": "Otuz yıldır şafak vaktinden itibaren fabrikada ağır emek veriyor.",
-  "reg": "informal",
-  "area": "İspanya",
-  "level": "B2",
-  "theme": "work",
-  "src": [
-   "https://dle.rae.es/callo",
-   "https://www.diccionarios.com/diccionario/espanol/callo"
-  ]
- },
- {
-  "w": "echar el resto",
-  "t": "bütün gücünü ve çabasını ortaya koymak",
-  "lit": "kalanı atmak",
-  "s": "En el último kilómetro de la etapa, la ciclista echó el resto.",
-  "form": "echó el resto",
-  "tr": "Etabın son kilometresinde bisikletçi bütün gücünü ortaya koydu.",
-  "reg": "neutral",
-  "area": "genel",
-  "level": "B2",
-  "theme": "work",
-  "src": [
-   "https://dle.rae.es/resto",
-   "https://www.diccionarios.com/diccionario/espanol/resto"
-  ]
- },
- {
-  "w": "batirse el cobre",
-  "t": "kıyasıya emek vermek, zorlu bir işte yoğun çaba harcamak",
-  "lit": "bakırı dövmek",
-  "s": "Los abogados se batieron el cobre durante meses en aquel juicio laboral.",
-  "form": "batieron el cobre",
-  "tr": "Avukatlar o iş davasında aylarca kıyasıya çaba harcadı.",
-  "reg": "neutral",
-  "area": "İspanya",
-  "level": "C1",
-  "theme": "work",
-  "src": [
-   "https://dle.rae.es/cobre",
-   "https://www.diccionarios.com/diccionario/espanol/cobre"
+   "https://es.wiktionary.org/wiki/sudar_tinta",
+   "https://en.wiktionary.org/wiki/sudar_tinta"
   ]
  },
  {
@@ -209,56 +487,8 @@
   "level": "B2",
   "theme": "work",
   "src": [
-   "https://dle.rae.es/bulto",
-   "https://www.diccionarios.com/diccionario/espanol/bulto"
-  ]
- },
- {
-  "w": "poner una pica en Flandes",
-  "t": "çok zor ve zahmetli bir işi başarmak",
-  "lit": "Flandre'ye bir mızrak dikmek",
-  "s": "Conseguir aquel permiso municipal fue como poner una pica en Flandes.",
-  "form": "poner una pica en Flandes",
-  "tr": "Belediyeden o izni koparmak deveye hendek atlatmak kadar zor bir başarıydı.",
-  "reg": "neutral",
-  "area": "İspanya",
-  "level": "C1",
-  "theme": "work",
-  "src": [
-   "https://dle.rae.es/pica",
-   "https://www.diccionarios.com/diccionario/espanol/pica"
-  ]
- },
- {
-  "w": "gastar la pólvora en salvas",
-  "t": "işe yaramayan çabalara enerji harcamak",
-  "lit": "barutu selam atışlarına harcamak",
-  "s": "Discutir esos detalles menores antes del acuerdo es gastar la pólvora en salvas.",
-  "form": "gastar la pólvora en salvas",
-  "tr": "Anlaşmadan önce o küçük ayrıntıları tartışmak boşa çaba harcamaktır.",
-  "reg": "neutral",
-  "area": "genel",
-  "level": "C1",
-  "theme": "work",
-  "src": [
-   "https://dle.rae.es/pólvora",
-   "https://www.diccionarios.com/diccionario/espanol/pólvora"
-  ]
- },
- {
-  "w": "no dar golpe",
-  "t": "hiç çalışmamak, iş yapmamak",
-  "lit": "darbe vurmamak",
-  "s": "Mientras arreglábamos el local, Pablo no dio golpe.",
-  "form": "no dio golpe",
-  "tr": "Biz dükkânı düzenlerken Pablo hiç iş yapmadı.",
-  "reg": "informal",
-  "area": "İspanya",
-  "level": "B2",
-  "theme": "work",
-  "src": [
-   "https://dle.rae.es/golpe",
-   "https://www.diccionarios.com/diccionario/espanol/golpe"
+   "https://es.wiktionary.org/wiki/escurrir_el_bulto",
+   "https://en.wiktionary.org/wiki/escurrir_el_bulto"
   ]
  }
 ]

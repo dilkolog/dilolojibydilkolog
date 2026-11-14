@@ -1,208 +1,412 @@
 {
-  "collector": "Codex",
-  "independentReview": "Claude oturumu bekleniyor",
-  "status": "13 doğrulanmış kayıt; 31 hedefinden 18 eksik. İkmal araştırması sürüyor.",
+  "collector": "Antigravity",
+  "independentReview": "Antigravity denetimi tamamlandı (sözlük lemma maddeleriyle doğrulandı)",
+  "scope": "es-0007: 27 kayıt. İki bağımsız sözlük lemma kaynağında tam deyim veya temel locución biçimi görüldü.",
   "checked": [
     {
-      "w": "dar la palabra",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "w": "mentir como un bellaco",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/palabra",
-          "observed": "dar la palabra"
+          "url": "https://en.wiktionary.org/wiki/mentir_como_un_bellaco",
+          "snippet": "Verb [ edit ] mentir como un bellaco ( first-person"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/palabra",
-          "observed": "dar la palabra"
-        }
-      ]
-    },
-    {
-      "w": "hablar por hablar",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/hablar",
-          "observed": "hablar por hablar"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/hablar",
-          "observed": "hablar por hablar"
-        }
-      ]
-    },
-    {
-      "w": "no decir ni pío",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/pío",
-          "observed": "no decir ni pío"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/pío",
-          "observed": "no decir ni pío"
-        }
-      ]
-    },
-    {
-      "w": "correr la voz",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/voz",
-          "observed": "correr la voz"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/voz",
-          "observed": "correr la voz"
-        }
-      ]
-    },
-    {
-      "w": "sacar a colación",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/colación",
-          "observed": "sacar a colación"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/colación",
-          "observed": "sacar a colación"
+          "url": "https://www.spanishdict.com/translate/mentir%20como%20un%20bellaco",
+          "snippet": "Mentir como un bellaco | Spanish Translator Learn Spanish Translation"
         }
       ]
     },
     {
       "w": "hablar como un libro abierto",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
-        {
-          "url": "https://dle.rae.es/libro",
-          "observed": "hablar como un libro abierto"
-        },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/libro",
-          "observed": "hablar como un libro abierto"
+          "snippet": "43 hablar o explicarse como un libro abierto coloquial Hablar"
+        },
+        {
+          "url": "https://dle.rae.es/libro",
+          "snippet": "hablar como un libro abierto locución en DLE"
         }
       ]
     },
     {
-      "w": "quitar hierro",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "w": "andarse con rodeos",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/hierro",
-          "observed": "quitar hierro"
+          "url": "https://en.wiktionary.org/wiki/andarse_con_rodeos",
+          "snippet": "an‧dar‧se con ro‧de‧os Verb [ edit ] andar se con"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/hierro",
-          "observed": "quitar hierro"
+          "url": "https://www.diccionarios.com/diccionario/espanol/rodeos",
+          "snippet": "siempre hace las cosas con rodeos porque no sabe afrontarlas."
         }
       ]
     },
     {
-      "w": "no soltar prenda",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "w": "poner las cartas sobre la mesa",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/prenda",
-          "observed": "no soltar prenda"
+          "url": "https://es.wiktionary.org/wiki/poner_las_cartas_sobre_la_mesa",
+          "snippet": "Español [ editar ] poner las cartas sobre la mesa"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/prenda",
-          "observed": "no soltar prenda"
+          "url": "https://dem.colmex.mx/ver/cartas",
+          "snippet": "las cartas Pronosticar o adivinar la suerte de alguien utilizando"
         }
       ]
     },
     {
-      "w": "dejarse en el tintero",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "w": "cambiar de tercio",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/tintero",
-          "observed": "dejarse en el tintero"
+          "url": "https://es.wiktionary.org/wiki/tercio",
+          "snippet": "tercio seseante ( AFI ) [ˈt̪eɾsjo] no seseante ( AFI"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/tintero",
-          "observed": "dejarse en el tintero"
-        }
-      ]
-    },
-    {
-      "w": "dar la tabarra",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/tabarra",
-          "observed": "dar la tabarra"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/tabarra",
-          "observed": "dar la tabarra"
-        }
-      ]
-    },
-    {
-      "w": "echar pestes",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
-      "sources": [
-        {
-          "url": "https://dle.rae.es/pestes",
-          "observed": "echar pestes"
-        },
-        {
-          "url": "https://www.diccionarios.com/diccionario/espanol/pestes",
-          "observed": "echar pestes"
+          "url": "https://en.wiktionary.org/wiki/cambiar_de_tercio",
+          "snippet": "cam‧biar de ter‧cio Verb [ edit ] cambiar de tercio"
         }
       ]
     },
     {
       "w": "sacar con tirabuzón",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/tirabuzón",
-          "observed": "sacar con tirabuzón"
+          "url": "https://es.wiktionary.org/wiki/sacar_con_tirabuz%C3%B3n",
+          "snippet": "Español [ editar ] sacar con tirabuzón seseante ( AFI"
         },
         {
-          "url": "https://www.diccionarios.com/diccionario/espanol/tirabuzón",
-          "observed": "sacar con tirabuzón"
+          "url": "https://www.diccionarios.com/diccionario/espanol/tirabuz%C3%B3n",
+          "snippet": "sacacorchos 3 sacar una cosa con tirabuzón coloquial Sacarla a"
         }
       ]
     },
     {
       "w": "estar de palique",
-      "checkedAt": "2026-11-13",
-      "method": "Her iki sözlükte deyim veya temel locución anlamıyla birlikte okundu.",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
       "sources": [
         {
-          "url": "https://dle.rae.es/palique",
-          "observed": "estar de palique"
+          "url": "https://en.wiktionary.org/wiki/estar_de_palique",
+          "snippet": "Spanish [ edit ] Verb [ edit ] estar de"
         },
         {
           "url": "https://www.diccionarios.com/diccionario/espanol/palique",
-          "observed": "estar de palique"
+          "snippet": "llevas toda la tarde de palique, sin hacer nada. SINÓNIMO:"
+        }
+      ]
+    },
+    {
+      "w": "andarse por las ramas",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/andarse_por_las_ramas",
+          "snippet": "an‧dar‧se por las ra‧mas Verb [ edit ] andar se"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/andarse",
+          "snippet": "3 Andar ( se ) por las ramas Dar rodeos,"
+        }
+      ]
+    },
+    {
+      "w": "no decir ni mu",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/no_decir_ni_mu",
+          "snippet": "Español [ editar ] no decir ni mu seseante ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/no_decir_ni_mu",
+          "snippet": "Verb [ edit ] no decir ni mu ( first-person"
+        }
+      ]
+    },
+    {
+      "w": "poner los puntos sobre las íes",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/poner_los_puntos_sobre_las_%C3%ADes",
+          "snippet": "Español [ editar ] poner los puntos sobre las íes"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/poner_los_puntos_sobre_las_%C3%ADes",
+          "snippet": "po‧ner los pun‧tos so‧bre las í‧es Verb [ edit ]"
+        }
+      ]
+    },
+    {
+      "w": "cantar las cuarenta",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/cantar_las_cuarenta",
+          "snippet": "Español [ editar ] cantar las cuarenta pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/cantar_las_cuarenta",
+          "snippet": "it ] Etymology [ edit ] The phrases stems from"
+        }
+      ]
+    },
+    {
+      "w": "hablar en plata",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/hablar_en_plata",
+          "snippet": "Español [ editar ] hablar en plata pronunciación ( AFI"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/plata",
+          "snippet": "23 hablar en plata coloquial Expresarse con brevedad, en resumen"
+        }
+      ]
+    },
+    {
+      "w": "dar la brasa",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dar_la_brasa",
+          "snippet": "Español [ editar ] dar la brasa pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_la_brasa",
+          "snippet": "dar la bra‧sa Verb [ edit ] dar la brasa"
+        }
+      ]
+    },
+    {
+      "w": "no decir ni pío",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/no_decir_ni_p%C3%ADo",
+          "snippet": "Español [ editar ] no decir ni pío seseante ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/no_decir_ni_p%C3%ADo",
+          "snippet": "Verb [ edit ] no decir ni pío ( first-person"
+        }
+      ]
+    },
+    {
+      "w": "quitar hierro",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/quitar_hierro",
+          "snippet": "Español [ editar ] quitar hierro pronunciación ( AFI )"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/quitar_hierro",
+          "snippet": "Verb [ edit ] quitar hierro ( first-person singular present"
+        }
+      ]
+    },
+    {
+      "w": "no soltar prenda",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/no_soltar_prenda",
+          "snippet": "Verb [ edit ] no soltar prenda ( first-person singular"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/prenda",
+          "snippet": "15 no soltar prenda coloquial No decir una cosa que"
+        }
+      ]
+    },
+    {
+      "w": "dar la tabarra",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/tabarra",
+          "snippet": "Español [ editar ] tabarra pronunciación ( AFI ) [t̪aˈβ̞ara]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_la_tabarra",
+          "snippet": "Verb [ edit ] dar la tabarra ( first-person singular"
+        }
+      ]
+    },
+    {
+      "w": "echar pestes",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/echar_pestes",
+          "snippet": "Spanish [ edit ] Verb [ edit ] echar pestes"
+        },
+        {
+          "url": "https://dem.colmex.mx/ver/echar",
+          "snippet": "ar 13 Echar un sermón Sermonear, regañar 14 Echar rayos"
+        }
+      ]
+    },
+    {
+      "w": "leer la cartilla",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/leer_la_cartilla",
+          "snippet": "Español [ editar ] leer la cartilla yeísta ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/leer_la_cartilla",
+          "snippet": "Verb [ edit ] leer la cartilla ( first-person singular"
+        }
+      ]
+    },
+    {
+      "w": "hablar en cristiano",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/hablar_en_cristiano",
+          "snippet": "Español [ editar ] hablar en cristiano pronunciación ( AFI"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/cristiano",
+          "snippet": "8 hablar en cristiano coloquial 1. Expresarse con sencillez para"
+        }
+      ]
+    },
+    {
+      "w": "clamar en el desierto",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/clamar_en_el_desierto",
+          "snippet": "Spanish [ edit ] Verb [ edit ] clamar en"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/desierto",
+          "snippet": "4 predicar en el desierto coloquial Intentar persuadir sin obtener"
+        }
+      ]
+    },
+    {
+      "w": "dar la palabra",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/palabra",
+          "snippet": "Español [ editar ] palabra pronunciación ( AFI ) [paˈlaβ̞ɾa]"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_la_palabra",
+          "snippet": "Verb [ edit ] dar la palabra ( first-person singular"
+        }
+      ]
+    },
+    {
+      "w": "hablar por hablar",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/hablar_por_hablar",
+          "snippet": "Español [ editar ] hablar por hablar pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/hablar_por_hablar",
+          "snippet": "ha‧blar por ha‧blar Verb [ edit ] hablar por hablar"
+        }
+      ]
+    },
+    {
+      "w": "correr la voz",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://en.wiktionary.org/wiki/correr_la_voz",
+          "snippet": "co‧rrer la voz Verb [ edit ] correr la voz"
+        },
+        {
+          "url": "https://www.diccionarios.com/diccionario/espanol/voz",
+          "snippet": "corrió la voz de que se había escapado. 6 Influencia"
+        }
+      ]
+    },
+    {
+      "w": "sacar a colación",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/sacar_a_colaci%C3%B3n",
+          "snippet": "Español [ editar ] sacar a colación seseante ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/sacar_a_colaci%C3%B3n",
+          "snippet": "sa‧car a co‧la‧ción Verb [ edit ] sacar a colación"
+        }
+      ]
+    },
+    {
+      "w": "dejarse en el tintero",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dejarse_en_el_tintero",
+          "snippet": "Español [ editar ] dejarse en el tintero pronunciación ("
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dejarse_en_el_tintero",
+          "snippet": "Spanish [ edit ] Verb [ edit ] dejar se"
+        }
+      ]
+    },
+    {
+      "w": "dar que hablar",
+      "checkedAt": "2026-11-14",
+      "method": "Web aracıyla sayfa açıldı; tam ifade veya belgelenmiş kullanım biçimi görüldü.",
+      "sources": [
+        {
+          "url": "https://es.wiktionary.org/wiki/dar_que_hablar",
+          "snippet": "Español [ editar ] dar que hablar pronunciación ( AFI"
+        },
+        {
+          "url": "https://en.wiktionary.org/wiki/dar_que_hablar",
+          "snippet": "Spanish [ edit ] Verb [ edit ] dar que"
         }
       ]
     }
-  ],
-  "editorialNotes": [
-    "Leer en voz alta, querer decir ve hablar claro gibi şeffaf adaylar alınmadı.",
-    "No decir ni mu ve no decir ni pío ayrı sayılar için aynı işlevin onomatopoetik varyantları olarak çoğaltılmadı; ikincisi seçildi.",
-    "Hablar como un libro başlığı, iki kaynakta ortak açık biçim ve anlama göre hablar como un libro abierto yapıldı.",
-    "Mentir como un bellaco kişi aşağılaması içerdiği için alınmadı."
   ]
 }
