@@ -1,0 +1,213 @@
+[
+  {
+    "id": "pte-asq-0001",
+    "question": "How many days are there in a week?",
+    "answers": [
+      "seven",
+      "7"
+    ],
+    "level": "A1",
+    "tr": "Bir haftada kaç gün vardır?"
+  },
+  {
+    "id": "pte-asq-0002",
+    "question": "What do we call a person who teaches at school?",
+    "answers": [
+      "teacher",
+      "a teacher"
+    ],
+    "level": "A1",
+    "tr": "Okulda ders veren kişiye ne denir?"
+  },
+  {
+    "id": "pte-asq-0003",
+    "question": "What do you use to smell things?",
+    "answers": [
+      "nose",
+      "the nose",
+      "your nose",
+      "my nose"
+    ],
+    "level": "A1",
+    "tr": "Bir şeyleri koklamak için ne kullanırsınız?"
+  },
+  {
+    "id": "pte-asq-0004",
+    "question": "What colour is the sky when there are no clouds?",
+    "answers": [
+      "blue"
+    ],
+    "level": "A1",
+    "tr": "Hiç bulut yokken gökyüzü ne renktir?"
+  },
+  {
+    "id": "pte-asq-0005",
+    "question": "What do we call the meal we eat in the morning?",
+    "answers": [
+      "breakfast"
+    ],
+    "level": "A2",
+    "tr": "Sabah yediğimiz öğüne ne denir?"
+  },
+  {
+    "id": "pte-asq-0006",
+    "question": "How many legs does an adult insect have?",
+    "answers": [
+      "six",
+      "6"
+    ],
+    "level": "A2",
+    "tr": "Yetişkin bir böceğin kaç bacağı vardır?"
+  },
+  {
+    "id": "pte-asq-0007",
+    "question": "Does summer come before or after spring?",
+    "answers": [
+      "after",
+      "after spring"
+    ],
+    "level": "A2",
+    "tr": "Yaz ilkbahardan önce mi, sonra mı gelir?"
+  },
+  {
+    "id": "pte-asq-0008",
+    "question": "What is the opposite of hot?",
+    "answers": [
+      "cold"
+    ],
+    "level": "A2",
+    "tr": "Sıcağın zıttı nedir?"
+  },
+  {
+    "id": "pte-asq-0009",
+    "question": "What do we call a place where we borrow books?",
+    "answers": [
+      "library",
+      "a library",
+      "public library",
+      "a public library"
+    ],
+    "level": "A2",
+    "tr": "Kitap ödünç aldığımız yere ne denir?"
+  },
+  {
+    "id": "pte-asq-0010",
+    "question": "How many wheels does a bicycle have?",
+    "answers": [
+      "two",
+      "2"
+    ],
+    "level": "A2",
+    "tr": "Bir bisikletin kaç tekerleği vardır?"
+  },
+  {
+    "id": "pte-asq-0011",
+    "question": "What does water become when it gets very cold and freezes?",
+    "answers": [
+      "ice"
+    ],
+    "level": "A2",
+    "tr": "Su çok soğuyup donduğunda neye dönüşür?"
+  },
+  {
+    "id": "pte-asq-0012",
+    "question": "What part of your body sends blood around it?",
+    "answers": [
+      "heart",
+      "the heart",
+      "a heart",
+      "your heart"
+    ],
+    "level": "A2",
+    "tr": "Vücudunuzun hangi bölümü kanı vücudun içinde dolaştırır?"
+  },
+  {
+    "id": "pte-asq-0013",
+    "question": "What do we breathe through our nose and mouth?",
+    "answers": [
+      "air",
+      "the air"
+    ],
+    "level": "A2",
+    "tr": "Burnumuzdan ve ağzımızdan ne soluruz?"
+  },
+  {
+    "id": "pte-asq-0014",
+    "question": "Which flat shape has no corners and is perfectly round?",
+    "answers": [
+      "circle",
+      "a circle"
+    ],
+    "level": "A2",
+    "tr": "Hangi düz şeklin köşesi yoktur ve kendisi tamamen yuvarlaktır?"
+  },
+  {
+    "id": "pte-asq-0015",
+    "question": "What document lists the food available in a restaurant?",
+    "answers": [
+      "menu",
+      "a menu",
+      "the menu"
+    ],
+    "level": "B1",
+    "tr": "Bir restoranda sunulan yemekleri hangi belge listeler?"
+  },
+  {
+    "id": "pte-asq-0016",
+    "question": "What do we call the money a passenger pays for a bus journey?",
+    "answers": [
+      "fare",
+      "a fare",
+      "bus fare"
+    ],
+    "level": "B1",
+    "tr": "Bir yolcunun otobüs yolculuğu için ödediği paraya ne denir?"
+  },
+  {
+    "id": "pte-asq-0017",
+    "question": "What protective object do people riding bicycles wear on their heads?",
+    "answers": [
+      "helmet",
+      "a helmet",
+      "cycle helmet",
+      "bicycle helmet",
+      "cycling helmet",
+      "bike helmet",
+      "a bike helmet",
+      "a cycle helmet",
+      "a bicycle helmet",
+      "a cycling helmet"
+    ],
+    "level": "B1",
+    "tr": "Bisikletliler başlarına hangi koruyucu eşyayı takar?"
+  },
+  {
+    "id": "pte-asq-0018",
+    "question": "What do we call a scientist who studies the stars and planets?",
+    "answers": [
+      "astronomer",
+      "an astronomer"
+    ],
+    "level": "B1",
+    "tr": "Yıldızları ve gezegenleri inceleyen bilim insanına ne denir?"
+  },
+  {
+    "id": "pte-asq-0019",
+    "question": "What term describes turning used materials into new products?",
+    "answers": [
+      "recycling"
+    ],
+    "level": "B1",
+    "tr": "Kullanılmış malzemeleri yeni ürünlere dönüştürmeye ne denir?"
+  },
+  {
+    "id": "pte-asq-0020",
+    "question": "What do we call the money a shop gives back when we return something?",
+    "answers": [
+      "refund",
+      "a refund"
+    ],
+    "level": "B1",
+    "tr": "Bir şeyi iade ettiğimizde mağazanın geri verdiği paraya ne denir?"
+  }
+]

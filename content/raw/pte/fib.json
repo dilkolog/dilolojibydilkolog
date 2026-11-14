@@ -1,0 +1,902 @@
+[
+  {
+    "id": "pte-fib-0001",
+    "text": "I work in a small shop near my home. Every morning, I open the [[1]] and go into the shop. I put my bag on a [[2]] and start work. At lunch, I [[3]] some bread and have a cup of tea. I like my job. When I finish work, I [[4]] the door and walk home to have dinner with my family.",
+    "blanks": [
+      {
+        "answer": "door",
+        "options": [
+          "door",
+          "table",
+          "chair",
+          "bed"
+        ]
+      },
+      {
+        "answer": "chair",
+        "options": [
+          "milk",
+          "tea",
+          "chair",
+          "water"
+        ]
+      },
+      {
+        "answer": "eat",
+        "options": [
+          "read",
+          "write",
+          "eat",
+          "hear"
+        ]
+      },
+      {
+        "answer": "close",
+        "options": [
+          "drink",
+          "close",
+          "eat",
+          "read"
+        ]
+      }
+    ],
+    "level": "A1",
+    "topic": "work",
+    "tr": "Evimin yakınındaki küçük bir dükkânda çalışıyorum. Her sabah kapıyı açıp dükkâna giriyorum. Çantamı bir sandalyeye koyup işe başlıyorum. Öğle yemeğinde biraz ekmek yiyip bir fincan çay içiyorum. İşimi seviyorum. İşi bitirdiğimde kapıyı kapatıp ailemle akşam yemeği yemek için eve yürürüm."
+  },
+  {
+    "id": "pte-fib-0002",
+    "text": "Our class has a big table with many books on it. I take a book and [[1]] it to find out about animals. My friend has some paper and a pen, so she can [[2]] a story. Our teacher puts a picture on the wall for us to [[3]]. After class, we put our books in our [[4]] and go home together.",
+    "blanks": [
+      {
+        "answer": "read",
+        "options": [
+          "eat",
+          "drink",
+          "read",
+          "cook"
+        ]
+      },
+      {
+        "answer": "write",
+        "options": [
+          "hear",
+          "write",
+          "drink",
+          "eat"
+        ]
+      },
+      {
+        "answer": "see",
+        "options": [
+          "see",
+          "eat",
+          "drink",
+          "cook"
+        ]
+      },
+      {
+        "answer": "bags",
+        "options": [
+          "bags",
+          "tea",
+          "milk",
+          "water"
+        ]
+      }
+    ],
+    "level": "A1",
+    "topic": "education",
+    "tr": "Sınıfımızda üzerinde pek çok kitap bulunan büyük bir masa var. Bir kitap alıp hayvanlar hakkında bilgi edinmek için okuyorum. Arkadaşımın kâğıdı ve kalemi var, bu yüzden bir öykü yazabiliyor. Öğretmenimiz görmemiz için duvara bir resim koyuyor. Dersten sonra kitaplarımızı çantalarımıza koyup birlikte eve gidiyoruz."
+  },
+  {
+    "id": "pte-fib-0003",
+    "text": "I go for a walk with my mother in the morning. We [[1]] to the park and talk about our day together. When we come home, we [[2]] some water because we are hot. Then we sit on the [[3]] in the living room. My mother opens the window, so the room is not too [[4]] when the sun comes out.",
+    "blanks": [
+      {
+        "answer": "walk",
+        "options": [
+          "write",
+          "drink",
+          "walk",
+          "read"
+        ]
+      },
+      {
+        "answer": "drink",
+        "options": [
+          "write",
+          "drink",
+          "read",
+          "hear"
+        ]
+      },
+      {
+        "answer": "sofa",
+        "options": [
+          "sofa",
+          "milk",
+          "bread",
+          "tea"
+        ]
+      },
+      {
+        "answer": "hot",
+        "options": [
+          "hot",
+          "hungry",
+          "afraid",
+          "young"
+        ]
+      }
+    ],
+    "level": "A1",
+    "topic": "health",
+    "tr": "Sabah annemle yürüyüşe çıkıyorum. Parka yürüyüp günümüz hakkında konuşuyoruz. Eve gelince sıcakladığımız için biraz su içiyoruz. Sonra oturma odasındaki kanepede oturuyoruz. Annem pencereyi açıyor; böylece güneş çıktığında oda fazla sıcak olmuyor."
+  },
+  {
+    "id": "pte-fib-0004",
+    "text": "My family has a small kitchen where we make our food. My father uses a knife to [[1]] the bread for breakfast. I put a [[2]] of tea on the table for him to drink. My sister puts some milk in a [[3]] and brings it to the table for all of us. We all sit down and eat together before going to [[4]], where we have lessons.",
+    "blanks": [
+      {
+        "answer": "cut",
+        "options": [
+          "read",
+          "cut",
+          "hear",
+          "drink"
+        ]
+      },
+      {
+        "answer": "cup",
+        "options": [
+          "cup",
+          "bed",
+          "coat",
+          "shoe"
+        ]
+      },
+      {
+        "answer": "glass",
+        "options": [
+          "glass",
+          "shirt",
+          "hat",
+          "coat"
+        ]
+      },
+      {
+        "answer": "school",
+        "options": [
+          "school",
+          "bed",
+          "home",
+          "town"
+        ]
+      }
+    ],
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Ailemin yemek yaptığımız küçük bir mutfağı var. Babam kahvaltı için ekmeği bıçakla kesiyor. İçmesi için masaya bir fincan çay koyuyorum. Kız kardeşim bir bardağa süt koyup hepimiz için masaya getiriyor. Ders gördüğümüz okula gitmeden önce hepimiz oturup birlikte yemek yiyoruz."
+  },
+  {
+    "id": "pte-fib-0005",
+    "text": "Before taking a train, I buy my [[1]] from the machine at the station. I then look at the large screen to find out which train to [[2]]. Yesterday, my train was late because a fallen tree was blocking the [[3]]. I waited on a wooden [[4]] and read a book until the train finally arrived right in front of me.",
+    "blanks": [
+      {
+        "answer": "ticket",
+        "options": [
+          "ticket",
+          "fork",
+          "brush",
+          "leaf"
+        ]
+      },
+      {
+        "answer": "take",
+        "options": [
+          "eat",
+          "take",
+          "sing",
+          "drink"
+        ]
+      },
+      {
+        "answer": "track",
+        "options": [
+          "track",
+          "cloud",
+          "sky",
+          "cup"
+        ]
+      },
+      {
+        "answer": "bench",
+        "options": [
+          "bench",
+          "bottle",
+          "leaf",
+          "spoon"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Trene binmeden önce istasyondaki makineden biletimi alıyorum. Ardından hangi trene bineceğimi öğrenmek için büyük ekrana bakıyorum. Dün devrilen bir ağaç demiryolunu kapattığı için trenim gecikti. Tahta bir bankta oturup tren sonunda tam önüme gelene kadar kitap okudum."
+  },
+  {
+    "id": "pte-fib-0006",
+    "text": "There is a small garden behind our school. We use a large bottle to [[1]] the vegetables when the ground is dry. Each plant needs light from the [[2]], so we put them outside in an open space without trees. When the tomatoes are [[3]] in colour, we pick them for the kitchen. The cook then makes a [[4]] that we eat from bowls at lunch.",
+    "blanks": [
+      {
+        "answer": "water",
+        "options": [
+          "paint",
+          "cook",
+          "water",
+          "freeze"
+        ]
+      },
+      {
+        "answer": "sun",
+        "options": [
+          "screen",
+          "sun",
+          "moon",
+          "lamp"
+        ]
+      },
+      {
+        "answer": "red",
+        "options": [
+          "empty",
+          "loud",
+          "red",
+          "afraid"
+        ]
+      },
+      {
+        "answer": "soup",
+        "options": [
+          "coat",
+          "soup",
+          "chair",
+          "hat"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Okulumuzun arkasında küçük bir bahçe var. Toprak kuruduğunda sebzeleri sulamak için büyük bir şişe kullanıyoruz. Her bitkinin güneş ışığına ihtiyacı olduğu için onları ağaç bulunmayan açık bir alana koyuyoruz. Domateslerin rengi kırmızı olduğunda mutfak için topluyoruz. Aşçı da öğle yemeğinde kâselerden içtiğimiz bir çorba yapıyor."
+  },
+  {
+    "id": "pte-fib-0007",
+    "text": "My grandmother uses her phone to talk to us. She touches the green button to [[1]] a call when it rings. If the sound is too quiet, she turns it [[2]] to make it easier to hear. She keeps the phone in her [[3]] when she leaves the house. At night, she puts it beside her [[4]] while she sleeps.",
+    "blanks": [
+      {
+        "answer": "answer",
+        "options": [
+          "answer",
+          "plant",
+          "bake",
+          "read"
+        ]
+      },
+      {
+        "answer": "up",
+        "options": [
+          "down",
+          "on",
+          "up",
+          "off"
+        ]
+      },
+      {
+        "answer": "bag",
+        "options": [
+          "bag",
+          "oven",
+          "sink",
+          "fridge"
+        ]
+      },
+      {
+        "answer": "bed",
+        "options": [
+          "bridge",
+          "field",
+          "bed",
+          "castle"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Büyükannem bizimle konuşmak için telefonunu kullanıyor. Telefon çaldığında aramayı cevaplamak için yeşil düğmeye dokunuyor. Ses çok kısıksa daha kolay duyulsun diye sesi açıyor. Evden çıkarken telefonu çantasında tutuyor. Gece uyurken de yatağının yanına koyuyor."
+  },
+  {
+    "id": "pte-fib-0008",
+    "text": "The new student in our class did not know anyone. Our teacher asked us to sit in a [[1]] so that we formed a ring and could all see each other. We took turns to say our [[2]] and where we lived. Then we worked in pairs to [[3]] a short story on paper. At the end, we read our stories in [[4]] voices so the whole class could hear.",
+    "blanks": [
+      {
+        "answer": "circle",
+        "options": [
+          "circle",
+          "corner",
+          "line",
+          "row"
+        ]
+      },
+      {
+        "answer": "names",
+        "options": [
+          "prices",
+          "weights",
+          "speeds",
+          "names"
+        ]
+      },
+      {
+        "answer": "write",
+        "options": [
+          "drive",
+          "swim",
+          "write",
+          "boil"
+        ]
+      },
+      {
+        "answer": "loud",
+        "options": [
+          "loud",
+          "silent",
+          "empty",
+          "hungry"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "education",
+    "tr": "Sınıfımızdaki yeni öğrenci kimseyi tanımıyordu. Öğretmenimiz bir halka oluşturup hepimizin birbirimizi görebilmesi için daire şeklinde oturmamızı istedi. Sırayla adlarımızı ve nerede yaşadığımızı söyledik. Sonra kâğıda kısa bir öykü yazmak için ikili çalıştık. En sonunda bütün sınıf duyabilsin diye öykülerimizi sesli okuduk."
+  },
+  {
+    "id": "pte-fib-0009",
+    "text": "I work in a small shop that sells bread. Every morning, the cook takes fresh bread out of the hot [[1]] after it has finished baking. I place it on the shelf and write the [[2]] on a card beside each kind so customers know how much to pay. People [[3]] in a line near the door. I put their bread in paper [[4]] that they carry home.",
+    "blanks": [
+      {
+        "answer": "oven",
+        "options": [
+          "oven",
+          "cupboard",
+          "fridge",
+          "sink"
+        ]
+      },
+      {
+        "answer": "price",
+        "options": [
+          "poem",
+          "price",
+          "map",
+          "weight"
+        ]
+      },
+      {
+        "answer": "stand",
+        "options": [
+          "float",
+          "grow",
+          "stand",
+          "sing"
+        ]
+      },
+      {
+        "answer": "bags",
+        "options": [
+          "bags",
+          "socks",
+          "glasses",
+          "hats"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "work",
+    "tr": "Ekmek satan küçük bir dükkânda çalışıyorum. Aşçı her sabah pişen taze ekmekleri sıcak fırından çıkarıyor. Ben ekmekleri rafa koyup müşteriler ne kadar ödeyeceklerini bilsin diye her çeşidin yanındaki bir karta fiyatını yazıyorum. İnsanlar kapının yanında bir sıra hâlinde duruyor. Ekmeklerini eve götürdükleri kâğıt torbalara koyuyorum."
+  },
+  {
+    "id": "pte-fib-0010",
+    "text": "We are going to visit a friend who lives near the sea. Before we leave, I put our clothes in a [[1]] and close it carefully. My brother checks the car to make sure there is enough [[2]] to drive all the way there. We take a map because we do not know the [[3]] to the house. Our friend will [[4]] us at her front door.",
+    "blanks": [
+      {
+        "answer": "suitcase",
+        "options": [
+          "shower",
+          "sink",
+          "suitcase",
+          "cooker"
+        ]
+      },
+      {
+        "answer": "petrol",
+        "options": [
+          "salt",
+          "petrol",
+          "soup",
+          "tea"
+        ]
+      },
+      {
+        "answer": "way",
+        "options": [
+          "way",
+          "meal",
+          "price",
+          "weight"
+        ]
+      },
+      {
+        "answer": "meet",
+        "options": [
+          "break",
+          "fry",
+          "meet",
+          "read"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Deniz kenarında yaşayan bir arkadaşımızı ziyaret edeceğiz. Çıkmadan önce giysilerimizi bir bavula koyup dikkatlice kapatıyorum. Kardeşim arabayla oraya kadar gitmeye yetecek benzin olduğundan emin olmak için arabayı kontrol ediyor. Eve giden yolu bilmediğimiz için harita alıyoruz. Arkadaşımız bizi ön kapısında karşılayacak."
+  },
+  {
+    "id": "pte-fib-0011",
+    "text": "Our office has changed the way it sends boxes. Each box now receives a piece of [[1]] with the customer's address printed on it. Staff compare this with the order before sending anything out. If the details do not [[2]], they contact the customer for the correct information. This extra [[3]] takes only a moment but helps prevent mistakes. Since the change, fewer boxes have arrived at the wrong [[4]]. One worker now reads the address while another looks at the order on the computer. They do this together at the start of each day, before the first driver arrives. If a customer phones to ask about a box, the team can look up the order and explain where it is. Everyone says the new way of working is easy to follow.",
+    "blanks": [
+      {
+        "answer": "paper",
+        "options": [
+          "paper",
+          "sugar",
+          "bread",
+          "wood"
+        ]
+      },
+      {
+        "answer": "match",
+        "options": [
+          "match",
+          "cook",
+          "float",
+          "bloom"
+        ]
+      },
+      {
+        "answer": "check",
+        "options": [
+          "journey",
+          "check",
+          "painting",
+          "meal"
+        ]
+      },
+      {
+        "answer": "address",
+        "options": [
+          "address",
+          "weight",
+          "age",
+          "name"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "work",
+    "tr": "Ofisimiz teslimatlarla ilgili çalışma biçimini değiştirdi. Artık her pakete müşterinin adresinin basılı olduğu bir kâğıt konuluyor. Çalışanlar bir şey göndermeden önce bunu siparişle karşılaştırıyor. Bilgiler uyuşmuyorsa doğru bilgiyi almak için müşteriyle iletişime geçiyorlar. Bu ek kontrol yalnızca kısa bir zaman alıyor ama hataları önlemeye yardımcı oluyor. Değişiklikten bu yana daha az paket yanlış adrese ulaşıyor. Artık bir çalışan adresi okurken diğeri bilgisayardaki siparişe bakıyor. Bunu her gün ilk sürücü gelmeden önce birlikte yapıyorlar. Bir müşteri bir kutuyu sormak için ararsa ekip siparişe bakıp nerede olduğunu açıklayabiliyor. Herkes yeni çalışma yöntemini takip etmenin kolay olduğunu söylüyor."
+  },
+  {
+    "id": "pte-fib-0012",
+    "text": "A local health centre recently asked patients about their visits. Many said the waiting room was difficult to [[1]] because there were no signs in the entrance hall. The centre has now added clear [[2]] on the walls to show the way. Chairs have also been moved to leave enough [[3]] for people using wheelchairs. Staff will collect more comments next month to see if these changes have made a [[4]]. The staff also asked people to describe their first visit to the building. Some had arrived early but still missed their appointment because they went to the wrong floor. A worker now waits near the front door during busy hours. This person answers questions and helps anyone who is not sure where to go or who to ask for help.",
+    "blanks": [
+      {
+        "answer": "find",
+        "options": [
+          "find",
+          "eat",
+          "sew",
+          "boil"
+        ]
+      },
+      {
+        "answer": "directions",
+        "options": [
+          "prices",
+          "meals",
+          "directions",
+          "colours"
+        ]
+      },
+      {
+        "answer": "space",
+        "options": [
+          "sugar",
+          "speed",
+          "space",
+          "heat"
+        ]
+      },
+      {
+        "answer": "difference",
+        "options": [
+          "temperature",
+          "difference",
+          "colour",
+          "sandwich"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "health",
+    "tr": "Yerel bir sağlık merkezi yakın zamanda hastalara ziyaretlerini sordu. Pek çoğu girişteki salonda tabela olmadığı için bekleme odasını bulmanın zor olduğunu söyledi. Merkez artık yolu göstermek için duvarlara açık yönlendirmeler ekledi. Tekerlekli sandalye kullanan kişilere yeterli alan bırakmak için sandalyeler de taşındı. Çalışanlar bu değişikliklerin fark yaratıp yaratmadığını görmek üzere gelecek ay daha fazla geri bildirim toplayacak. Çalışanlar insanlardan binaya ilk ziyaretlerini anlatmalarını da istedi. Bazıları erken gelmiş ama yanlış kata gittikleri için yine de randevularını kaçırmıştı. Artık yoğun saatlerde bir çalışan ön kapının yakınında bekliyor. Bu kişi soruları yanıtlıyor; nereye gideceğinden ya da kimden yardım isteyeceğinden emin olmayanlara yardımcı oluyor."
+  },
+  {
+    "id": "pte-fib-0013",
+    "text": "Students at our college can borrow cameras for use during lessons. To keep track of the cameras, the library records the [[1]] printed on the bottom of each camera. Before leaving, students must [[2]] a form to show they have received the camera. They are expected to return the camera with its [[3]], which gives it power. Students should tell the library about any problems [[4]], rather than waiting until the end of the course. The library keeps all the cameras in a locked room when classes are over. A member of staff opens the room each morning and counts the items before students arrive. Students can ask for help if they do not know how to use a camera. They can also work with a friend until they feel ready to take their own pictures.",
+    "blanks": [
+      {
+        "answer": "number",
+        "options": [
+          "number",
+          "smell",
+          "colour",
+          "temperature"
+        ]
+      },
+      {
+        "answer": "sign",
+        "options": [
+          "sign",
+          "fry",
+          "read",
+          "drink"
+        ]
+      },
+      {
+        "answer": "battery",
+        "options": [
+          "battery",
+          "clock",
+          "phone",
+          "brush"
+        ]
+      },
+      {
+        "answer": "quickly",
+        "options": [
+          "quickly",
+          "never",
+          "secretly",
+          "slowly"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Kolejimizdeki öğrenciler derslerde kullanmak üzere fotoğraf makinesi ödünç alabiliyor. Kütüphane ekipmanı takip etmek için her makinenin altında basılı olan numarayı kaydediyor. Öğrenciler ayrılmadan önce makineyi aldıklarını göstermek için bir form imzalamalı. Makineyi, güç sağlayan piliyle birlikte iade etmeleri bekleniyor. Her türlü hasar, kurs sonuna kadar beklemek yerine hızlıca bildirilmelidir. Dersler bitince kütüphane bütün ekipmanı kilitli bir odada tutuyor. Bir çalışan her sabah öğrenciler gelmeden odayı açıp eşyaları sayıyor. Öğrenciler fotoğraf makinesini kullanmayı bilmiyorsa yardım isteyebiliyor. Kendi fotoğraflarını çekmeye hazır hissedene kadar bir arkadaşlarıyla da çalışabiliyorlar."
+  },
+  {
+    "id": "pte-fib-0014",
+    "text": "The town has introduced a way of sharing garden tools. People can [[1]] an item online before collecting it from the local centre. Every tool is checked to make sure it is [[2]] to use and will not hurt anyone. People pay nothing, but they must return things on [[3]]. Sharing means that fewer people need to [[4]] tools they might use only once a year. The centre is open on Saturday mornings, when most people are not at work. A friendly worker explains how each item works before people take it home. There is also a list on the wall showing what people can borrow that week. People can suggest other things to add, and the centre tries to find them without spending too much money.",
+    "blanks": [
+      {
+        "answer": "choose",
+        "options": [
+          "choose",
+          "fry",
+          "drink",
+          "sing"
+        ]
+      },
+      {
+        "answer": "safe",
+        "options": [
+          "thirsty",
+          "safe",
+          "hungry",
+          "asleep"
+        ]
+      },
+      {
+        "answer": "time",
+        "options": [
+          "time",
+          "fire",
+          "sale",
+          "head"
+        ]
+      },
+      {
+        "answer": "buy",
+        "options": [
+          "buy",
+          "boil",
+          "drink",
+          "read"
+        ]
+      }
+    ],
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Kasaba bahçe aletlerini paylaşmak için bir hizmet başlattı. Bölge sakinleri bir aleti toplum merkezinden almadan önce çevrim içi olarak seçebiliyor. Kullanımının güvenli olduğundan ve yaralanmaya yol açmayacağından emin olmak için her alet kontrol ediliyor. Ücret alınmıyor ama ödünç alanlar ekipmanı zamanında iade etmeli. Paylaşım sayesinde daha az kişi yılda belki yalnızca bir kez kullanacağı aletleri satın almak zorunda kalıyor. Hizmet, çoğu kişinin çalışmadığı cumartesi sabahları açık. Güler yüzlü bir çalışan, insanlar eşyaları eve götürmeden önce her birinin nasıl çalıştığını açıklıyor. Duvardaki bir liste o hafta nelerin bulunduğunu gösteriyor. İnsanlar eklenecek başka şeyler önerebiliyor; merkez de çok para harcamadan bunları bulmaya çalışıyor."
+  },
+  {
+    "id": "pte-fib-0015",
+    "text": "When our evening class moved to a different building, several students worried about getting home. The old bus service stopped too [[1]] for anyone finishing after sunset. The college contacted the bus company and explained the [[2]]. A later service now stops outside the main [[3]], where students enter the building. Students can wait indoors until it arrives, which is especially helpful when the weather is [[4]] and rain is falling. Teachers have noticed that more students stay until the end of class now. Before this change, some had to leave before the final activity to catch the last bus. The college plans to review the service after a few weeks. Students will be asked how often they use it and whether a different departure time would make their journey home easier.",
+    "blanks": [
+      {
+        "answer": "early",
+        "options": [
+          "brightly",
+          "early",
+          "politely",
+          "softly"
+        ]
+      },
+      {
+        "answer": "problem",
+        "options": [
+          "colour",
+          "problem",
+          "flavour",
+          "meal"
+        ]
+      },
+      {
+        "answer": "entrance",
+        "options": [
+          "roof",
+          "entrance",
+          "window",
+          "wall"
+        ]
+      },
+      {
+        "answer": "wet",
+        "options": [
+          "asleep",
+          "wooden",
+          "wet",
+          "sweet"
+        ]
+      }
+    ],
+    "level": "B1",
+    "topic": "education",
+    "tr": "Akşam dersimiz başka bir binaya taşındığında bazı öğrenciler eve dönüş konusunda endişelendi. Eski otobüs seferleri, gün batımından sonra dersi bitenler için fazla erken sona eriyordu. Kolej otobüs şirketiyle iletişime geçip sorunu anlattı. Artık daha geç bir sefer, öğrencilerin binaya girdiği ana girişin önünde duruyor. Öğrenciler otobüs gelene kadar içeride bekleyebiliyor; bu da özellikle hava yağışlıyken çok işe yarıyor. Öğretmenler artık daha fazla öğrencinin dersin sonuna kadar kaldığını fark etti. Önceden bazıları son otobüsü yakalamak için son etkinlikten önce ayrılmak zorundaydı. Kolej birkaç hafta sonra hizmeti gözden geçirmeyi planlıyor. Öğrencilere hizmeti ne sıklıkla kullandıkları ve farklı bir kalkış saatinin eve yolculuklarını kolaylaştırıp kolaylaştırmayacağı sorulacak."
+  },
+  {
+    "id": "pte-fib-0016",
+    "text": "Before booking a room in a shared house, I arranged to visit it. The photographs made the bedroom look [[1]] than it really was, with far more floor space. I also asked what the weekly payment would [[2]], such as heating and internet access. The owner explained the [[3]] that we would both sign. Having all the details in [[4]] helped me compare this room with other places. I took notes during the visit and asked if I could look at the kitchen as well. The other people living there were friendly and explained how they shared the cleaning. I decided to think about it overnight rather than agree immediately. The next morning, I read my notes again and called the owner to ask one final question.",
+    "blanks": [
+      {
+        "answer": "larger",
+        "options": [
+          "louder",
+          "colder",
+          "larger",
+          "warmer"
+        ]
+      },
+      {
+        "answer": "include",
+        "options": [
+          "boil",
+          "melt",
+          "swim",
+          "include"
+        ]
+      },
+      {
+        "answer": "agreement",
+        "options": [
+          "flavour",
+          "temperature",
+          "agreement",
+          "colour"
+        ]
+      },
+      {
+        "answer": "writing",
+        "options": [
+          "steam",
+          "writing",
+          "sand",
+          "sugar"
+        ]
+      }
+    ],
+    "level": "B1",
+    "topic": "daily_life",
+    "tr": "Ortak bir evde oda ayırtmadan önce gidip görmek için anlaştım. Fotoğraflar yatak odasını gerçekte olduğundan daha büyük, çok daha fazla zemin alanı varmış gibi gösteriyordu. Haftalık ödemenin ısınma ve internet erişimi gibi neleri kapsayacağını da sordum. Ev sahibi ikimizin de imzalayacağı sözleşmeyi açıkladı. Bütün ayrıntıların yazılı olması bu odayı diğer yerlerle karşılaştırmama yardımcı oldu. Ziyaret sırasında not aldım ve mutfağa da bakıp bakamayacağımı sordum. Evde yaşayan diğer insanlar güler yüzlüydü ve temizliği nasıl paylaştıklarını açıkladılar. Hemen kabul etmek yerine gece boyunca düşünmeye karar verdim. Ertesi sabah notlarımı tekrar okuyup son bir soru sormak için ev sahibini aradım."
+  },
+  {
+    "id": "pte-fib-0017",
+    "text": "Our walking group used to choose paths without checking how difficult they were. After one trip, we realised that some members needed a [[1]] route with less distance to cover. We now describe the length and [[2]] of each path, including whether the ground is rocky or smooth. This allows people to [[3]] whether a walk suits them. We also agree on a meeting [[4]] where everyone gathers before setting off. New members receive this information before joining their first trip, so they can ask questions in advance. On the day, the leader checks that everyone has arrived before explaining the plan. Everyone can walk at a comfortable speed. If someone wants to stop for a break, the group waits together rather than leaving that person behind.",
+    "blanks": [
+      {
+        "answer": "shorter",
+        "options": [
+          "shorter",
+          "colder",
+          "wetter",
+          "hotter"
+        ]
+      },
+      {
+        "answer": "surface",
+        "options": [
+          "smell",
+          "colour",
+          "surface",
+          "flavour"
+        ]
+      },
+      {
+        "answer": "decide",
+        "options": [
+          "sew",
+          "decide",
+          "boil",
+          "melt"
+        ]
+      },
+      {
+        "answer": "point",
+        "options": [
+          "point",
+          "temperature",
+          "flavour",
+          "weight"
+        ]
+      }
+    ],
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Yürüyüş grubumuz eskiden zorluklarını kontrol etmeden rotalar seçiyordu. Bir geziden sonra bazı üyelerin daha az mesafe içeren daha kısa bir rotaya ihtiyaç duyduğunu fark ettik. Artık her yolun uzunluğunu ve zeminin kayalık mı düz mü olduğu dâhil yüzeyini açıklıyoruz. Böylece insanlar bir yürüyüşün kendilerine uygun olup olmadığına karar verebiliyor. Yola çıkmadan önce herkesin toplanacağı bir buluşma noktası da belirliyoruz. Yeni üyeler ilk gezilerine katılmadan önce bu bilgiyi alıyor; böylece önceden soru sorabiliyorlar. O gün lider, planı açıklamadan önce herkesin geldiğini kontrol ediyor. Kimseden kendini rahat hissettiğinden daha hızlı yürümesi beklenmiyor. Biri mola vermek isterse grup o kişiyi geride bırakmak yerine birlikte bekliyor."
+  },
+  {
+    "id": "pte-fib-0018",
+    "text": "The small hotel where I work has started offering guests a choice about room cleaning. Those who do not need fresh towels can hang a [[1]] on their door saying so. This helps the hotel [[2]] the amount of water it uses for washing. Staff still [[3]] the rubbish bins every day. Guests can change their minds at any time by asking at [[4]], the desk where they checked in. The manager explained the change at a team meeting before it began. Workers practised answering the questions that guests might ask about the new system. Information is also included in each room, so guests can read it when they arrive. The hotel plans to compare its water bills over several months to see how much the change has helped.",
+    "blanks": [
+      {
+        "answer": "sign",
+        "options": [
+          "temperature",
+          "noise",
+          "sign",
+          "flavour"
+        ]
+      },
+      {
+        "answer": "reduce",
+        "options": [
+          "taste",
+          "reduce",
+          "boil",
+          "fold"
+        ]
+      },
+      {
+        "answer": "empty",
+        "options": [
+          "empty",
+          "knit",
+          "bake",
+          "plant"
+        ]
+      },
+      {
+        "answer": "reception",
+        "options": [
+          "dessert",
+          "breakfast",
+          "sunset",
+          "reception"
+        ]
+      }
+    ],
+    "level": "B1",
+    "topic": "work",
+    "tr": "Çalıştığım küçük otel, misafirlerine oda temizliği konusunda seçim sunmaya başladı. Temiz havluya ihtiyacı olmayanlar bunu belirten bir işareti kapılarına asabiliyor. Bu, otelin yıkama için kullandığı su miktarını azaltmasına yardımcı oluyor. Çalışanlar yine de çöp kutularını her gün boşaltıyor. Misafirler, giriş yaptıkları danışma masasına başvurarak istedikleri zaman fikirlerini değiştirebiliyor. Müdür değişikliği başlamadan önce bir ekip toplantısında açıkladı. Çalışanlar misafirlerin yeni sistem hakkında sorabileceği soruları yanıtlamayı denedi. Misafirler geldiklerinde okuyabilsin diye her odada bilgi de bulunuyor. Otel değişikliğin ne kadar yarar sağladığını görmek için birkaç aylık su faturalarını karşılaştırmayı planlıyor."
+  },
+  {
+    "id": "pte-fib-0019",
+    "text": "Our office wanted to find out whether a choice of working hours was helping staff. A recent [[1]] looked at the results of the change. It showed a clear [[2]] between workers who could choose their hours and those who could not. These results [[3]] the idea that everyone had the same needs. The manager agreed to [[4]] the plan instead of keeping it the same. The manager asked each team to suggest a plan that would work for them. Some preferred earlier starts, while others wanted to change their hours on certain days. Staff agreed that customers should still be able to get help throughout the working day. The office will try the new plans for a month before deciding which changes to keep.",
+    "blanks": [
+      {
+        "answer": "study",
+        "options": [
+          "meal",
+          "study",
+          "journey",
+          "colour"
+        ]
+      },
+      {
+        "answer": "difference",
+        "options": [
+          "colour",
+          "weight",
+          "difference",
+          "height"
+        ]
+      },
+      {
+        "answer": "challenged",
+        "options": [
+          "boiled",
+          "challenged",
+          "knitted",
+          "melted"
+        ]
+      },
+      {
+        "answer": "revise",
+        "options": [
+          "taste",
+          "fry",
+          "revise",
+          "smell"
+        ]
+      }
+    ],
+    "level": "B1",
+    "topic": "work",
+    "tr": "Ofisimiz çalışma saatlerini seçebilmenin çalışanlara yardımcı olup olmadığını öğrenmek istedi. Yakın tarihli bir çalışma değişikliğin sonuçlarına baktı. Saatlerini seçebilen çalışanlarla seçemeyenler arasında açık bir fark gösterdi. Bu sonuçlar herkesin aynı ihtiyaçlara sahip olduğu fikrini sorgulattı. Müdür planı aynı tutmak yerine gözden geçirmeyi kabul etti. Müdür her ekipten kendilerine uygun bir plan önermesini istedi. Bazıları daha erken başlamayı tercih ederken diğerleri belirli günlerde saatlerini değiştirmek istedi. Çalışanlar müşterilerin çalışma günü boyunca yine yardım alabilmesi gerektiğinde anlaştı. Ofis hangi değişiklikleri koruyacağına karar vermeden önce yeni planları bir ay deneyecek."
+  },
+  {
+    "id": "pte-fib-0020",
+    "text": "A local group wanted to [[1]] electricity by changing the street lights. Members first asked for [[2]] about when the lights were being used. They found that some stayed on after the sun had [[3]]. Changing the controls became their first [[4]], because this could reduce waste without buying new lights. They planned to measure how much electricity was used before and after the change. Residents were invited to share their views at an open meeting in the town hall. Several explained that they wanted well-lit streets when returning home late at night. The group made clear that saving electricity should not mean making people feel afraid. Members agreed to look at both the lighting costs and the needs of people using the streets.",
+    "blanks": [
+      {
+        "answer": "save",
+        "options": [
+          "save",
+          "sew",
+          "boil",
+          "taste"
+        ]
+      },
+      {
+        "answer": "information",
+        "options": [
+          "flavour",
+          "temperature",
+          "information",
+          "weight"
+        ]
+      },
+      {
+        "answer": "risen",
+        "options": [
+          "melted",
+          "risen",
+          "frozen",
+          "fallen"
+        ]
+      },
+      {
+        "answer": "task",
+        "options": [
+          "dessert",
+          "weight",
+          "task",
+          "temperature"
+        ]
+      }
+    ],
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Yerel bir grup sokak lambalarını değiştirerek elektrik tasarrufu yapmak istedi. Üyeler önce lambaların ne zaman kullanıldığı hakkında bilgi istedi. Bazılarının güneş doğduktan sonra da açık kaldığını gördüler. Yeni lambalar almadan israfı azaltabileceği için kontrolleri değiştirmek ilk işleri oldu. Değişiklikten önce ve sonra ne kadar elektrik kullanıldığını ölçmeyi planladılar. Bölge sakinleri belediye binasındaki açık bir toplantıda görüşlerini paylaşmaya davet edildi. Bazıları gece geç saatte eve dönerken iyi aydınlatılmış sokaklar istediklerini açıkladı. Grup elektrik tasarrufunun insanlara kendilerini korkutmak anlamına gelmemesi gerektiğini belirtti. Üyeler hem aydınlatma giderlerini hem de sokakları kullanan insanların ihtiyaçlarını değerlendirmeyi kabul etti."
+  }
+]

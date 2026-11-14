@@ -1,0 +1,142 @@
+[
+  {
+    "id": "pte-wfd-0001",
+    "text": "Please put your bag on the chair near the door.",
+    "level": "A1",
+    "topic": "daily_life",
+    "tr": "Lütfen çantanı kapının yakınındaki sandalyeye koy."
+  },
+  {
+    "id": "pte-wfd-0002",
+    "text": "The bus is outside the shop on the left.",
+    "level": "A1",
+    "topic": "travel",
+    "tr": "Otobüs soldaki dükkânın dışında."
+  },
+  {
+    "id": "pte-wfd-0003",
+    "text": "Our class at school starts after lunch on Monday afternoon.",
+    "level": "A1",
+    "topic": "education",
+    "tr": "Okuldaki dersimiz pazartesi öğleden sonra, öğle yemeğinin ardından başlıyor."
+  },
+  {
+    "id": "pte-wfd-0004",
+    "text": "You can put your food on this kitchen table.",
+    "level": "A1",
+    "topic": "work",
+    "tr": "Yiyeceklerini bu mutfak masasına koyabilirsin."
+  },
+  {
+    "id": "pte-wfd-0005",
+    "text": "I usually drink water before my morning walk.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Sabah yürüyüşümden önce genellikle su içerim."
+  },
+  {
+    "id": "pte-wfd-0006",
+    "text": "Please put the empty bottles in this box.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Lütfen boş şişeleri bu kutuya koyun."
+  },
+  {
+    "id": "pte-wfd-0007",
+    "text": "My phone needs a new battery this week.",
+    "level": "A2",
+    "topic": "technology",
+    "tr": "Telefonumun bu hafta yeni bir pile ihtiyacı var."
+  },
+  {
+    "id": "pte-wfd-0008",
+    "text": "The kitchen window looks out over the garden.",
+    "level": "A2",
+    "topic": "daily_life",
+    "tr": "Mutfak penceresi bahçeye bakıyor."
+  },
+  {
+    "id": "pte-wfd-0009",
+    "text": "We need clean towels for the guest room.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Misafir odası için temiz havlulara ihtiyacımız var."
+  },
+  {
+    "id": "pte-wfd-0010",
+    "text": "The train leaves from the station near the beach.",
+    "level": "A2",
+    "topic": "travel",
+    "tr": "Tren plajın yakınındaki istasyondan kalkıyor."
+  },
+  {
+    "id": "pte-wfd-0011",
+    "text": "The library is open until late on Monday evenings.",
+    "level": "A2",
+    "topic": "education",
+    "tr": "Kütüphane pazartesi akşamları geç saate kadar açık."
+  },
+  {
+    "id": "pte-wfd-0012",
+    "text": "Please check the date before our meeting on Friday.",
+    "level": "A2",
+    "topic": "work",
+    "tr": "Lütfen cuma günkü toplantımızdan önce tarihi kontrol edin."
+  },
+  {
+    "id": "pte-wfd-0013",
+    "text": "You can take a short break after this job.",
+    "level": "A2",
+    "topic": "health",
+    "tr": "Bu işten sonra kısa bir mola verebilirsin."
+  },
+  {
+    "id": "pte-wfd-0014",
+    "text": "Please put your old paper in the green box.",
+    "level": "A2",
+    "topic": "environment",
+    "tr": "Lütfen eski kâğıtlarını yeşil kutuya koy."
+  },
+  {
+    "id": "pte-wfd-0015",
+    "text": "You should save your document before closing the programme.",
+    "level": "B1",
+    "topic": "technology",
+    "tr": "Programı kapatmadan önce belgenizi kaydetmelisiniz."
+  },
+  {
+    "id": "pte-wfd-0016",
+    "text": "Our landlord has agreed to repair the broken heating.",
+    "level": "B1",
+    "topic": "daily_life",
+    "tr": "Ev sahibimiz bozuk ısıtma sistemini onarmayı kabul etti."
+  },
+  {
+    "id": "pte-wfd-0017",
+    "text": "Passengers must keep the emergency exit clear of luggage.",
+    "level": "B1",
+    "topic": "travel",
+    "tr": "Yolcular acil çıkışı bagajla kapatmamalıdır."
+  },
+  {
+    "id": "pte-wfd-0018",
+    "text": "Students may borrow equipment after completing the safety training.",
+    "level": "B1",
+    "topic": "education",
+    "tr": "Öğrenciler güvenlik eğitimini tamamladıktan sonra ekipman ödünç alabilirler."
+  },
+  {
+    "id": "pte-wfd-0019",
+    "text": "Local people suggested planting more trees beside the road.",
+    "level": "B1",
+    "topic": "environment",
+    "tr": "Bölge halkı yol kenarına daha fazla ağaç dikilmesini önerdi."
+  },
+  {
+    "id": "pte-wfd-0020",
+    "text": "Staff can change their working hours with the manager's permission.",
+    "level": "B1",
+    "topic": "work",
+    "tr": "Çalışanlar müdürün izniyle çalışma saatlerini değiştirebilir."
+  }
+]
