@@ -270,6 +270,8 @@ export function AppScreens(props: AppScreensProps) {
           key={data.language}
           language={data.language}
           passage={screen.passage}
+          pteTask={screen.pte}
+          onOpenPte={(task) => setScreen({ name: 'exams', pte: task })}
           onOpenSet={(id) => setScreen({ name: 'exams', passage: id })}
           onCloseSet={() => setScreen({ name: 'exams' })}
           onOpenTask={(id) => setScreen({ name: 'produce', task: id })}

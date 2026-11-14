@@ -51,7 +51,7 @@ export type Screen =
   | { name: 'vocabtest' }
   | { name: 'produce'; task?: string }
   /** The exam-style practice of the language (DELF, DELE… style), or one of its reading sets opened. Not 'exam': that is the recall test. */
-  | { name: 'exams'; passage?: string }
+  | { name: 'exams'; passage?: string; pte?: string }
   | { name: 'exam'; repair?: boolean }
   | { name: 'games'; game?: GameId; topic?: string }
   | { name: 'community' }
