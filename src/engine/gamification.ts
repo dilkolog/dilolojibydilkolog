@@ -28,6 +28,8 @@ export const BASE_XP: Record<ExerciseType, number> = {
   idiom_complete: 7,
   family_choice: 6,
   aspect_choice: 6,
+  mc_reverse: 6,
+  assemble: 8,
 }
 
 /** Meeting a new word. */

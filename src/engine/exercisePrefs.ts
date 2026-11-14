@@ -25,6 +25,8 @@ export const PREF_TYPES: PrefType[] = [
   { type: 'conjugation', name: 'Fiili çek', hint: 'Fiili özneye göre çekip yazarsın.', group: 'typed' },
   { type: 'listen_type', name: 'Duyduğun kelimeyi yaz', hint: 'Kelimeyi dinler, yazarsın.', group: 'typed' },
   { type: 'dictation', name: 'Duyduğun cümleyi yaz', hint: 'Bir örnek cümleyi dinler, tamamını yazarsın.', group: 'typed' },
+  { type: 'assemble', name: 'Parçalardan kelimeyi diz', hint: 'Yeni kelimeyi öğrenirken: anlamını görür, kelimeyi hece parçalarından dizersin. Kapatırsan bu adım atlanır.', group: 'typed' },
+  { type: 'mc_reverse', name: 'Anlamdan kelimeyi seç', hint: 'Yeni kelimeyi öğrenirken: Türkçesini görür, kelimeyi dört seçenekten seçersin. Kapatırsan bu adım atlanır.', group: 'choice' },
   { type: 'mc_context', name: 'Cümlede boşluk (seçenekli)', hint: 'Boşluğa uyan kelimeyi dört seçenekten seçersin.', group: 'choice' },
   { type: 'discriminate', name: 'Karışan kelimeler', hint: 'Birbirine benzeyen kelimeler arasından cümleye uyanı seçersin.', group: 'choice' },
   { type: 'collocation_choice', name: 'Doğal eşdizim', hint: 'Hangi kelimeyle birlikte kullanıldığını seçersin (poser une question).', group: 'choice' },

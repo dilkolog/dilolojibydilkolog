@@ -31,6 +31,11 @@ export interface ExerciseMeta {
   requiresAI?: boolean
   /** Only offered when the browser can recognise speech. */
   requiresSpeech?: boolean
+  /**
+   * A step of the first-learning ladder only (session.ts `bridgeStep`): never picked for a skill's ordinary
+   * questions, so reviews and the FSRS cards are asked as before.
+   */
+  ladderOnly?: boolean
 }
 
 /** A sentence with the word in it, which can be blanked out (a pasted sentence may lack the word). */
@@ -74,6 +79,10 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     applicable: (e) => hasExamples(e) && e.relations.some((r) => r.type === 'confusable'),
   },
   typed_translation: { skill: 'recall', direction: 'native_to_target', input: 'typed', expectedMs: 8000, applicable: always },
+  // The bridges from recognising a word to writing it (first learning only): its meaning → pick the word among four,
+  // or build it from its pieces. Counted as recognition, in practice mode (session.ts), so no card or interval changes.
+  mc_reverse: { skill: 'recognition', direction: 'native_to_target', input: 'choice', expectedMs: 5000, applicable: always, ladderOnly: true },
+  assemble: { skill: 'recognition', direction: 'native_to_target', input: 'typed', expectedMs: 8000, applicable: (e) => canAssemble(displayForm(e)), ladderOnly: true },
   cloze_typed: { skill: 'production', direction: 'context', input: 'typed', expectedMs: 12000, applicable: hasExamples },
   word_form: {
     skill: 'production',
@@ -187,8 +196,75 @@ export function exerciseTypesFor(
       EXERCISES[t].applicable(entry) &&
       (!EXERCISES[t].requiresAI || opts.ai) &&
       (!EXERCISES[t].requiresSpeech || opts.speech) &&
+      !EXERCISES[t].ladderOnly &&
       !blockedByPrefs(t, entry, opts),
   )
+}
+
+/** Whether a ladder step can be asked of this word: it has what the step needs and the learner has not switched it off. */
+export const ladderStepOk = (type: ExerciseType, entry: VocabularyEntry, opts: EngineOptions = {}): boolean => EXERCISES[type].applicable(entry) && !blockedByPrefs(type, entry, opts)
+
+const VOWELS = /[aeiouyàâäæéèêëîïôöœùûüáíóúñ]/i
+/** A word can be built from pieces when it has enough letters to cut, and is not a long phrase. */
+export const canAssemble = (answer: string): boolean => {
+  const letters = answer.replace(/[^\p{L}]/gu, '')
+  return letters.length >= 3 && letters.length <= 24 && answer.trim().split(/\s+/).length <= 3
+}
+
+/**
+ * The word cut into pieces to put back in order: an article or a word of a phrase stays whole when short, longer
+ * words go by syllable-like chunks (a vowel group with the consonants before it); a chunk of one letter joins its
+ * neighbour. Joined in order the pieces give the answer exactly (spaces and apostrophes stay on their piece).
+ */
+export function wordPieces(answer: string): string[] {
+  const out: string[] = []
+  for (const token of answer.match(/\S+\s*/g) ?? []) {
+    const bare = token.trimEnd()
+    if (bare.replace(/[^\p{L}]/gu, '').length <= 3) {
+      out.push(token)
+      continue
+    }
+    // Cut between vowel groups: before a single consonant (de|ci|sion), after the first of several (im|pro|ve).
+    const vowel = [...token].map((ch) => VOWELS.test(ch))
+    const cuts: number[] = []
+    for (let i = 0; i < token.length; i++) {
+      if (!vowel[i] || vowel[i + 1]) continue
+      let next = i + 1
+      while (next < token.length && !vowel[next]) next++
+      if (next >= token.length) break
+      const between = next - i - 1
+      cuts.push(i + 1 + (between >= 2 ? 1 : 0))
+    }
+    const parts = [0, ...cuts].map((from, k) => token.slice(from, cuts[k] ?? token.length)).filter(Boolean)
+    // No piece of one letter: it would give the word away by elimination.
+    for (let i = 0; i < parts.length; i++) {
+      if (parts[i].trim().length < 2 && parts.length > 1) {
+        if (i + 1 < parts.length) parts[i + 1] = parts[i] + parts[i + 1]
+        else parts[i - 1] += parts[i]
+        parts.splice(i, 1)
+        i--
+      }
+    }
+    out.push(...parts)
+  }
+  // A word that came out in one piece is cut in two, so there is still something to order.
+  if (out.length === 1 && answer.length >= 4) {
+    const mid = Math.ceil(answer.length / 2)
+    return [answer.slice(0, mid), answer.slice(mid)]
+  }
+  return out
+}
+
+/** The pieces in a shuffled order (never the right one), with up to two pieces of other words to pass over. */
+export function assembleTiles(answer: string, others: readonly string[], rng: Rng): string[] {
+  const pieces = wordPieces(answer)
+  const extra = [...new Set(others.flatMap((o) => wordPieces(o)).map((p) => p.trim()).filter((p) => p.length >= 2 && !pieces.some((q) => q.trim() === p)))]
+  const tiles = [...pieces, ...shuffle(extra, rng).slice(0, Math.min(2, Math.max(1, pieces.length - 1)))]
+  for (let tries = 0; tries < 8; tries++) {
+    const order = shuffle(tiles, rng)
+    if (order.slice(0, pieces.length).join('') !== answer) return order
+  }
+  return [...tiles].reverse()
 }
 
 /**
@@ -255,6 +331,8 @@ export interface TypedExercise extends ExerciseBase {
   accepted: string[]
   /** Revealed one at a time, never all up front (desirable difficulty). */
   hints: string[]
+  /** `assemble`: the pieces the answer is built from (tapped in order), with a couple of others mixed in. */
+  tiles?: string[]
 }
 
 export type Exercise = ChoiceExercise | TypedExercise
@@ -649,6 +727,19 @@ export function buildExercise(
         hints: buildHints(answer, ex?.translation),
       }
     }
+
+    case 'mc_reverse':
+      return choice({ ...base, prompt: sense.gloss }, answer, sameCase(pickDistractors(entry, catalog, OPTION_COUNT - 1, rng).map(displayForm), answer), rng)
+
+    case 'assemble':
+      return {
+        ...base,
+        kind: 'typed',
+        prompt: sense.gloss,
+        accepted: [answer],
+        hints: [],
+        tiles: assembleTiles(answer, pickDistractors(entry, catalog, 2, rng).map(displayForm), rng),
+      }
 
     case 'listen_type':
       return {

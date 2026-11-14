@@ -214,6 +214,8 @@ export type ExerciseType =
   | 'idiom_complete' // idiom / phrasal verb with one word missing → choose it
   | 'family_choice' // a relative + the meaning → choose the right derived form (décision, not décidement)
   | 'aspect_choice' // FR/ES sentence with a time cue → passé composé or imparfait (indefinido or imperfecto)
+  | 'mc_reverse' // Turkish meaning → choose the target word (first-learning bridge, see session.ts)
+  | 'assemble' // Turkish meaning → build the word from its pieces (first-learning bridge, see session.ts)
 
 /** Capabilities available to the engine at runtime. */
 export interface EngineOptions {
@@ -305,7 +307,11 @@ export interface ReviewContext {
   /** The card's FSRS stability and difficulty just before the answer. */
   stabilityBefore: number
   difficultyBefore: number
-  /** Who chose the question: 'heuristic-v1' is the plan's own rules (no choice probabilities are kept for it). */
+  /**
+   * Who chose the question: the plan's own rules, by version (no choice probabilities are kept for them). 'heuristic-v1'
+   * until 2026-11-14; 'bridge-v1' since: the first-learning ladder with its bridge steps (engine/session.ts, notes in
+   * docs/notlar/ogrenme-motoru.md).
+   */
   policy: string
   /** Why the plan asked it (due, weak, mistake…). */
   reason?: string

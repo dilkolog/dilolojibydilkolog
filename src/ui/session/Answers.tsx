@@ -94,7 +94,11 @@ export function TypedAnswer({
   verdict?: Evaluation['verdict']
   onSubmit: (text: string, hintsUsed: number, shift: boolean) => void
 }) {
-  const [text, setText] = useState('')
+  const [typed, setText] = useState('')
+  // `assemble`: the pieces tapped, in order (by their place in the list, so two equal pieces stay apart).
+  const tiles = exercise.tiles
+  const [placed, setPlaced] = useState<number[]>([])
+  const text = tiles ? placed.map((i) => tiles[i]).join('') : typed
   const input = useRef<HTMLInputElement>(null)
   const [hearing, setHearing] = useState(false)
   const stopListening = useRef<() => void>(() => {})
@@ -154,6 +158,7 @@ export function TypedAnswer({
         className={`answer-input${verdict ? ` is-${verdict}` : ''}`}
         value={text}
         onChange={accentChange(language, setText)}
+        readOnly={!!tiles}
         onKeyDown={(e) => {
           // Shift+Enter: answer, marked as not sure.
           if (e.key === 'Enter' && e.shiftKey) {
@@ -162,8 +167,8 @@ export function TypedAnswer({
           }
         }}
         disabled={answered}
-        autoFocus
-        placeholder="Cevabını yaz"
+        autoFocus={!tiles}
+        placeholder={tiles ? 'Parçalara dokun' : 'Cevabını yaz'}
         autoComplete="off"
         autoCapitalize="off"
         autoCorrect="off"
@@ -172,13 +177,31 @@ export function TypedAnswer({
         lang={exercise.entryId.slice(0, 2)}
       />
       {/* Listening exercises test spelling what you hear, so no speaking shortcut there. */}
-      {canListen() && !answered && exercise.skill !== 'listening' && (
+      {canListen() && !answered && exercise.skill !== 'listening' && !tiles && (
         <button type="button" className={`mic-btn${hearing ? ' is-on' : ''}`} onClick={dictate} aria-label={hearing ? 'Dinlemeyi durdur' : 'Sesle cevap ver'}>
           <MicIcon size={20} />
         </button>
       )}
       </div>
-      {!answered && <AccentBar language={language} onInsert={(ch) => input.current && setText(insertAt(input.current, ch))} />}
+      {!answered && !tiles && <AccentBar language={language} onInsert={(ch) => input.current && setText(insertAt(input.current, ch))} />}
+      {tiles && !answered && (
+        <div className="stack gap-2">
+          <div className="choice-row context-bank piece-bank" role="group" aria-label="Kelimenin parçaları">
+            {tiles.map((t, i) => (
+              <button key={i} type="button" className="chip" lang={language} disabled={placed.includes(i)} onClick={() => setPlaced((p) => [...p, i])}>
+                {t.trim()}
+              </button>
+            ))}
+          </div>
+          {placed.length > 0 && (
+            <div className="row">
+              <button type="button" className="btn btn-quiet btn-sm" onClick={() => setPlaced((p) => p.slice(0, -1))}>
+                Son parçayı geri al
+              </button>
+            </div>
+          )}
+        </div>
+      )}
       {shown > 0 && (
         <div className="hints">
           {exercise.hints.slice(0, shown).map((h, i) => (

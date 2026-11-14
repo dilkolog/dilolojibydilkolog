@@ -83,6 +83,8 @@ export const PROMPT_TEXT: Record<string, string> = {
   family_choice: 'Doğru eki seç',
   back_translation: 'Bu cümleyi çevir',
   aspect_choice: 'Hangi geçmiş zaman uyar?',
+  mc_reverse: 'Bu anlamdaki kelime hangisi?',
+  assemble: 'Kelimeyi parçalarından diz',
 }
 
 /** "-tion ile biten isimler dişildir (la)" / "İstisna: …" for a gender rule match. */

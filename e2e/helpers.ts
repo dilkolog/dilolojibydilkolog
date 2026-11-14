@@ -220,6 +220,8 @@ export async function playSession(page: Page, start = true) {
     const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Tanıdım|Hatırlıyorum)/ })
     const guess = page.locator('.session-stage .option:not([disabled])')
     const typed = page.locator('.session-stage input.answer-input:visible')
+    // A word built from its pieces (the input is read-only): one piece is an answer, right or not.
+    const piece = page.locator('.session-stage .piece-bank .chip:not([disabled])')
     // A question to say aloud: a test has no microphone, so it is answered by typing.
     const instead = page.getByRole('button', { name: 'Yazarak cevapla' })
     // An answer is saved before the screen moves on: the option counted a moment ago can be disabled (or the
@@ -228,7 +230,10 @@ export async function playSession(page: Page, start = true) {
     const tap = (l: typeof next) => l.first().click({ timeout: 3000 }).catch(() => {})
     if (await next.count()) await tap(next)
     else if (await guess.count()) await tap(guess)
-    else if (await typed.count()) {
+    else if (await piece.count()) {
+      await tap(piece)
+      await tap(page.locator('.session-stage button[type=submit]:not([disabled])'))
+    } else if (await typed.count()) {
       await typed.first().fill('x')
       await page.keyboard.press('Enter')
     } else if (await instead.count()) await instead.click()

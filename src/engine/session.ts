@@ -1,7 +1,7 @@
 import type { PlanItem } from './dailyPlan'
 import { MASTERY_STAGES, type MasteryStage } from './mastery'
 import type { Rng } from './rng'
-import { exerciseTypesFor, EXERCISES } from './exercises'
+import { exerciseTypesFor, EXERCISES, ladderStepOk } from './exercises'
 import { blockedByPrefs } from './exercises'
 import { pickExerciseType } from './selection'
 import type { Confidence, EngineOptions, ErrorType, ExerciseType, ReviewMode, Skill, UserWordState, VocabularyEntry, Verdict } from './types'
@@ -203,7 +203,9 @@ export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, ret
   const followUpTargets = { ...(s.followUpTargets ?? {}) }
   const firstAnswer = !s.log.some((l) => l.entryId === id && l.verdict)
   if (firstAnswer && log.independent === true && log.responseMs && log.responseMs < 3000) followUpTargets[id] = 1
-  const gap = log.independent !== false && log.verdict && log.verdict !== 'wrong' ? graduatedGap({ ...s, followUpTargets }, id) : undefined
+  // With this answer's relearning count: the answer that finishes a recovery opens the follow-ups (bridge-v1; before,
+  // the count from before the answer kept a word that started with a miss from ever reaching its typed recall).
+  const gap = log.independent !== false && log.verdict && log.verdict !== 'wrong' ? graduatedGap({ ...s, relearn, followUpTargets }, id) : undefined
   if (followUp && gap !== undefined && !pending && !(relearn[id] > 0)) {
     items.splice(insertAt(gap), 0, { ...followUp, probe: undefined, reason: 'practice', learningFollowUp: true, learningBatch: item.learningBatch })
     followUps[id] = (followUps[id] ?? 0) + 1
@@ -220,7 +222,22 @@ export function attemptMode(item: PlanItem, mode: ReviewMode, state: UserWordSta
   return item.learningFollowUp && skill && !state.skills[skill] ? 'normal' : 'practice'
 }
 
-/** Per-word progression: fast independent recognition goes straight to recall; misses keep two recoveries. */
+/**
+ * The bridge between recognising a new word and writing it (bridge-v1): its meaning → pick the word (mc_reverse), or
+ * build it from its pieces (assemble). The steadier answer gets the harder bridge: a word recovered after a miss (it
+ * has just been recognised twice) or a first answer within the question's usual time builds the word; a slow one picks
+ * it. A step the word cannot have or the learner switched off falls to the other, then to the meaning question.
+ */
+export function bridgeStep(item: PlanItem, entry: VocabularyEntry, steady: boolean, opts: EngineOptions = {}): PlanItem {
+  const order: ExerciseType[] = steady ? ['assemble', 'mc_reverse'] : ['mc_reverse', 'assemble']
+  const type = order.find((t) => ladderStepOk(t, entry, opts)) ?? 'mc_meaning'
+  return { ...item, kind: 'exercise', skill: 'recognition', exerciseType: type, firstLetter: undefined }
+}
+
+/**
+ * Per-word progression: fast independent recognition (under 3 s) goes straight to typed recall; otherwise a bridge
+ * step (bridgeStep) comes before it; misses keep two recoveries, then the same two steps.
+ */
 export function advanceLearning(s: Session, log: Omit<SessionLogEntry, 'item'>, entry: VocabularyEntry, state: UserWordState, rng: Rng, opts: EngineOptions = {}): Session {
   const item = currentItem(s)!
   const debt = state.learning?.[item.skill]?.remaining ?? 0
@@ -228,9 +245,10 @@ export function advanceLearning(s: Session, log: Omit<SessionLogEntry, 'item'>, 
   const retry = log.verdict === 'wrong' || log.independent === false || (before.relearn[entry.id] ?? 0) > 0 ? retryItem({ ...item, skill: before.relearnSkills?.[entry.id] ?? item.skill }, entry, state, rng, opts) : undefined
   const typedAllowed = !blockedByPrefs('typed_translation', entry, opts)
   const directRecall = log.independent === true && !!log.responseMs && log.responseMs < 3000 && !s.log.some((l) => l.entryId === entry.id && l.verdict)
-  const followUp = (before.followUps?.[entry.id] ?? 0) >= 1 || directRecall
-    ? typedFollowUp(item, typedAllowed)
-    : { ...item, kind: 'exercise' as const, skill: 'recognition' as const, exerciseType: 'mc_meaning' as const }
+  const recovered = (s.retries[entry.id] ?? 0) > 0
+  const usualMs = item.exerciseType ? EXERCISES[item.exerciseType].expectedMs : 4000
+  const steady = recovered || (log.independent === true && !!log.responseMs && log.responseMs <= usualMs)
+  const followUp = (before.followUps?.[entry.id] ?? 0) >= 1 || directRecall ? typedFollowUp(item, typedAllowed) : bridgeStep(item, entry, steady, opts)
   const after = completeItem(before, log, retry, followUp)
   const pending = new Set(after.pendingLearning ?? [])
   if (Object.values(state.learning ?? {}).some((e) => e && e.remaining > 0)) pending.add(entry.id)
@@ -272,8 +290,8 @@ export function learningSteps(s: Session, entryId: string, debt = false): Learni
   const relearn = s.relearn[entryId] ?? 0
   // A relearning word comes back once per right answer it still owes, while re-queues are left.
   const moreRetries = relearn > 0 ? Math.max(0, Math.min(relearn - queuedTests, MAX_RETRIES - (s.retries[entryId] ?? 0))) : 0
-  // The graduated follow-ups a new word has not had yet. After a miss they are not added this
-  // session (completeItem), so they stand for what the next session still has to cover.
+  // The graduated follow-ups a new word has not had yet: after a miss they come once the word is recovered
+  // (completeItem); when the session ends first, they stand for what the next session still has to cover.
   const isNew = mine.some((l) => l.item.kind === 'introduce') || ahead.some((it) => it.kind === 'introduce')
   const moreFollowUps = isNew ? Math.max(0, (s.followUpTargets?.[entryId] ?? GRADUATED_GAPS.length) - (s.followUps?.[entryId] ?? 0)) : 0
   const total = done + ahead.length + moreRetries + moreFollowUps

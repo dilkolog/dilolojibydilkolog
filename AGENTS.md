@@ -95,6 +95,8 @@ Yeni kelimeler `session.ts:startSession` içinde üçlü gruplara ayrılır (`le
 
 Kalıcı öğrenme güncellemesi: normal oturum taslağı `data/sessionDraft.ts` ile dil başına `meta study-session:<dil>` altında cihazda saklanır. Cevap ve sonraki adım `saveReview` işleminde atomiktir; override/discard da taslağı atomik düzeltir. `UserWordState.learning` beceri başına kalan hedefi ve gecikmeli hatırlamayı taşır; serbest pratik bunu değiştirmez. `learningProgress.ts` birleştirmesi zaman + sıra sayacına göre sıfır borcu da korur. Başarılı tekrarlar FSRS aralığını şişirmez, yanlış/tam ipuçlu tekrar normal değerlendirilir. Yardımsızlık ölçütü `independentAnswer`, basamaklar `advanceLearning`; yanlış becerinin doğru cevabı geri çağırma borcunu kapatmaz. Yeni rehberli kelimelerde yüksek aşamalar için en az 24 saat sonra üretken geri çağırma gerekir; eski kayıtlar korunur. Ayrıntılar: [kalıcı öğrenme akışı](docs/kalici-ogrenme-motoru-2026-11-04.md).
 
+İlk öğrenme merdiveni `bridge-v1` (2026-11-14): anlam seçme ile yazılı hatırlama arasında köprü adımı (`mc_reverse` ya da `assemble`, `session.ts` `bridgeStep`; `ladderOnly`, tekrarlarda seçilmez); yanlışla başlayan kelime toparlanınca aynı turda yazılıya ulaşır; `ReviewEvent.ctx.policy` `bridge-v1`. Ayrıntı ve karşılaştırma okuması: `docs/notlar/ogrenme-motoru.md`.
+
 Yazılı yanlıştan sonra "doğrusunu yaz" adımı (`CopyStep`, `copyAfterMiss`) puanlanmaz; halka bu turdaki adımları `learningSteps` ile gösterir (yalnız görüntü). Ayrıntı: `docs/notlar/ogrenme-motoru.md` (2026-11-13).
 
 ## Bilinen tuzaklar

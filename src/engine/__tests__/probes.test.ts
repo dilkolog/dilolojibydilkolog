@@ -134,7 +134,7 @@ describe('what an answer keeps of the moment', () => {
   it('reads the context off the card and the plan: age of the memory, stability, why, where, probe', () => {
     const w = word(1, { ago: 6 })
     const { event } = processAttempt(w.state, { exerciseType: 'mc_meaning', verdict: 'correct', responseMs: 1500, hintsUsed: 0, maxHints: 3, at: now, mode: 'practice', plan: { reason: 'practice', slot: 7, probe: 0.05 } }, [], scheduler)
-    expect(event.ctx).toMatchObject({ policy: 'heuristic-v1', reason: 'practice', slot: 7, probe: 0.05, stabilityBefore: 8 })
+    expect(event.ctx).toMatchObject({ policy: 'bridge-v1', reason: 'practice', slot: 7, probe: 0.05, stabilityBefore: 8 })
     expect(event.ctx?.elapsedDays).toBeCloseTo(6, 1)
     expect(event.mode).toBe('practice')
   })
@@ -149,7 +149,7 @@ describe('what an answer keeps of the moment', () => {
   it('a new card has no past', () => {
     const e = entry(9)
     const { event } = processAttempt(newWordState(e, now), { exerciseType: 'mc_meaning', verdict: 'correct', responseMs: 900, hintsUsed: 0, maxHints: 3, at: now }, [], scheduler)
-    expect(event.ctx).toMatchObject({ elapsedDays: 0, policy: 'heuristic-v1' })
+    expect(event.ctx).toMatchObject({ elapsedDays: 0, policy: 'bridge-v1' })
     expect(event.ctx?.probe).toBeUndefined()
   })
 })
