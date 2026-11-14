@@ -64,8 +64,7 @@ function e2eLocalApi(): import('vite').Plugin {
 export default defineConfig({
   define: { __BUILD_ID__: JSON.stringify(buildId()) },
   // The tests assume a build without the sign-in gate; a developer's .env.local (needed by deploy:cf) must not leak in.
-  // The PTE pack's checks are written for `node --test` (content/raw/pte/README.md); `npm test` runs them after vitest.
-  test: { env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_PUBLISHABLE_KEY: '', VITE_SUPABASE_ANON_KEY: '' }, setupFiles: ['./src/test/noNetwork.ts'], exclude: [...configDefaults.exclude, 'content/raw/pte/**'] },
+  test: { exclude: [...configDefaults.exclude, 'content/**'], env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_PUBLISHABLE_KEY: '', VITE_SUPABASE_ANON_KEY: '' }, setupFiles: ['./src/test/noNetwork.ts'] },
   // Drawings are never inlined into the scripts: a small one would otherwise ride in the start-up
   // bundle as base64 (larger, not cacheable on its own) even when its screen is never opened.
   build: { assetsInlineLimit: (file) => (file.endsWith('.webp') ? false : undefined) },
