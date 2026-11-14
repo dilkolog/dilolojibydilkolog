@@ -131,4 +131,25 @@ describe('Supabase migrations', () => {
       expect(await policy('own media delete')).toMatchObject({ cmd: 'DELETE', rule: expect.stringMatching(/auth\.uid/) })
     }
   }, 60_000)
+
+  it('0015: items are counted across people, by the server alone, without saying who', async () => {
+    const { db } = await run(FILES)
+    const a = '44444444-4444-4444-4444-444444444444'
+    const b = '55555555-5555-5555-5555-555555555555'
+    await db.exec(`insert into auth.users (id, email) values ('${a}', 'a@x.y'), ('${b}', 'b@x.y')`)
+    const recent = '2026-11-13T10:00:00.000Z'
+    const core = (log: object) => JSON.stringify({ grammar: log, examTasks: { 'fr-reading-1|2': { ok: 0, wrong: 1, last: recent } }, traps: 'not a log' })
+    await db.exec(`insert into public.sync_parts (user_id, name, data) values
+      ('${a}', 'core', '${core({ 'fr-g-1': { ok: 1, wrong: 3, last: recent }, 'fr-g-old': { ok: 5, wrong: 0, last: '2026-01-01T00:00:00.000Z' }, 'fr-g-odd': { ok: 1, wrong: 0, last: {} } })}'),
+      ('${b}', 'core', '${core({ 'fr-g-1': { ok: 0, wrong: 2, last: recent } })}'),
+      ('${a}', 'ev-2026-11', '${JSON.stringify({ events: [{ entryId: 'fr:maison', verdict: 'wrong', timestamp: recent }, { entryId: 'fr:maison', verdict: 'near', timestamp: recent }, { entryId: 'fr:maison', verdict: 'correct', timestamp: recent }] })}')`)
+    const rows = (await db.query<{ kind: string; item: string; people: number; ok: number; wrong: number }>(`select kind, item, people::int, ok::int, wrong::int from public.content_item_stats('2026-11-07T00:00:00Z') order by kind, item`)).rows
+    expect(rows).toEqual([
+      { kind: 'examTasks', item: 'fr-reading-1|2', people: 2, ok: 0, wrong: 2 },
+      { kind: 'grammar', item: 'fr-g-1', people: 2, ok: 1, wrong: 5 },
+      { kind: 'word', item: 'fr:maison', people: 1, ok: 1, wrong: 1 },
+    ])
+    const can = async (role: string) => (await db.query<{ ok: boolean }>(`select has_function_privilege('${role}', 'public.content_item_stats(timestamptz)', 'execute') as ok`)).rows[0]!.ok
+    expect([await can('anon'), await can('authenticated'), await can('service_role')]).toEqual([false, false, true])
+  }, 60_000)
 })

@@ -2935,7 +2935,8 @@ test('the guide: a lesson can be reported and the list is kept for the author', 
   await page.locator('.guide-row').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await page.getByRole('button', { name: 'Derste hata var' }).click()
   await page.getByLabel('Neyi yanlış ya da eksik buldun?').fill('Tablodaki örnek yanlış')
-  await page.locator('.report-issue').getByRole('button', { name: 'Kaydet' }).click()
+  await page.locator('.report-issue').getByRole('button', { name: 'Gönder' }).click()
+  // No account in the test: the note stays on the device.
   await expect(page.getByRole('status').filter({ hasText: 'Not alındı' })).toBeVisible()
   await page.locator('.guide-back-btn').click()
   const card = page.locator('.guide-reports')

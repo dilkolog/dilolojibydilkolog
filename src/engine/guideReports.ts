@@ -12,6 +12,8 @@ export interface GuideReport {
   /** `lesson`: about the lesson itself; `question`: about one question, whose text is in `prompt`. */
   kind: 'lesson' | 'question'
   prompt?: string
+  /** The question's or text's id, when it has one ("fr-g-000123"): the owner can find it, and retire a factory item. */
+  item?: string
   /** What the learner thinks is wrong (may be empty). */
   note: string
 }
@@ -35,7 +37,7 @@ export function cleanReports(raw: unknown): GuideReport[] {
   for (const r of raw as Partial<GuideReport>[]) {
     if (!r || typeof r.id !== 'string' || typeof r.at !== 'string' || typeof r.language !== 'string' || typeof r.topic !== 'string') continue
     if (r.kind !== 'lesson' && r.kind !== 'question') continue
-    out.push({ id: r.id, at: r.at, language: r.language, topic: r.topic, kind: r.kind, ...(typeof r.prompt === 'string' ? { prompt: r.prompt } : {}), note: typeof r.note === 'string' ? r.note : '' })
+    out.push({ id: r.id, at: r.at, language: r.language, topic: r.topic, kind: r.kind, ...(typeof r.prompt === 'string' ? { prompt: r.prompt } : {}), ...(typeof r.item === 'string' ? { item: r.item } : {}), note: typeof r.note === 'string' ? r.note : '' })
   }
   return out.slice(0, MAX_REPORTS)
 }
@@ -46,7 +48,8 @@ export function reportsText(reports: readonly GuideReport[]): string {
     .map((r) => {
       const where = r.kind === 'question' ? `soru (${r.topic})` : `ders (${r.topic})`
       const quote = r.prompt ? `\n  Soru: ${r.prompt}` : ''
-      return `- [${r.language}] ${where}: ${r.note.trim() || '(not yok)'}${quote}`
+      const id = r.item ? ` [${r.item}]` : ''
+      return `- [${r.language}] ${where}${id}: ${r.note.trim() || '(not yok)'}${quote}`
     })
     .join('\n')
 }

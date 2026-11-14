@@ -6,6 +6,7 @@
 #   bash scripts/backup-mac.sh status    the last backup, and whether the job is installed
 #   bash scripts/backup-mac.sh remove    removes the job and the secrets (the backups stay)
 #
+# After a backup it writes the week's content report (icerik-raporu-<date>.md, see `report` below) next to it.
 # launchd calls `run` every day at 03:30 and at each login; it backs up only when the last backup is 7 days old or more,
 # so a week the Mac was off is caught up the next time it is on. A failure shows a macOS notification and is logged in
 # ~/Diloloji-yedek/yedek.log. Moving the repository folder needs `install` again (the job points at this file).
@@ -64,10 +65,23 @@ dump() {
   echo "$(date '+%F %T') yedek başlıyor" >>"$LOG"
   if node "$REPO/scripts/backup-supabase.mjs" --out "$OUT" >>"$LOG" 2>&1; then
     echo "$(date '+%F %T') yedek tamam" >>"$LOG"
+    report
   else
     echo "$(date '+%F %T') yedek BAŞARISIZ" >>"$LOG"
     notify "Yedek alınamadı; ayrıntı: ~/Diloloji-yedek/yedek.log"
     return 1
+  fi
+}
+
+# The week's content report (npm run content -- missed): the items most answered wrong, with their text. A failure
+# here (0015 not run yet, the repository's packages missing) is logged and does not touch the backup.
+report() {
+  local file="$OUT/icerik-raporu-$(date +%F).md"
+  if (cd "$REPO" && npm run --silent content -- missed --out "$file") >>"$LOG" 2>&1; then
+    echo "$(date '+%F %T') içerik raporu: $file" >>"$LOG"
+    notify "Haftanın içerik raporu hazır: $(basename "$file")"
+  else
+    echo "$(date '+%F %T') içerik raporu alınamadı (0015 çalıştırıldı mı?)" >>"$LOG"
   fi
 }
 

@@ -6,6 +6,7 @@ import { examQuestionId, MAX_PLAYS, passageOrder, passageShare, shuffledQuestion
 import type { GrammarLog } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
+import { ReportIssue } from '../guide/ReportIssue'
 import { readExamMode, saveExamMode } from './examMode'
 import { noteIn } from './logNote'
 import { Ring } from '../home/Ring'
@@ -233,6 +234,7 @@ function Task({ passage, mode, onBack, backLabel, onNext, next }: { passage: Exa
               <button type="button" className="btn btn-quiet" onClick={onBack}>
                 {backLabel ? `${backLabel.replace(/^← /, '')}a dön` : 'Görevlere dön'}
               </button>
+              <ReportIssue language={passage.language} topic={passage.exam} kind="question" prompt={passage.title} item={passage.id} label="Görevde hata var" />
             </div>
           </div>
         </section>

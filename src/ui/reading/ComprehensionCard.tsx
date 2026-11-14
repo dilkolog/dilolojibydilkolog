@@ -5,6 +5,7 @@ import type { TargetLanguage } from '../../engine/types'
 import { useAi } from '../aiContext'
 import { HelpIcon } from '../shared/icons'
 import { sfx } from '../shared/sounds'
+import { ReportIssue } from '../guide/ReportIssue'
 
 /** The options in a shuffled order (the model tends to put the right one early). */
 function shown(q: QuizQuestion, rng: () => number): QuizQuestion {
@@ -20,7 +21,7 @@ const MIN_WORDS = 40
  * checked here (the one request only writes the questions), each with the reason and where the text
  * says it. Needs the AI key; nothing is kept.
  */
-export function ComprehensionCard({ text, language, ready }: { text: string; language: TargetLanguage; ready?: QuizQuestion[] }) {
+export function ComprehensionCard({ text, language, ready, item }: { text: string; language: TargetLanguage; ready?: QuizQuestion[]; /** One of Diloloji's own texts, by its id: its questions can be reported as wrong. */ item?: string }) {
   const { apiKey } = useAi()
   const [questions, setQuestions] = useState<QuizQuestion[] | null>(null)
   const [picked, setPicked] = useState<(number | null)[]>([])
@@ -106,6 +107,7 @@ export function ComprehensionCard({ text, language, ready }: { text: string; lan
           {right === questions.length ? 'Metni tam anladın.' : right === 0 ? 'Bu metin zor geldi; bilmediğin kelimeleri işaretleyip bir daha oku.' : `${questions.length} sorudan ${right}'ini bildin; yanlışların açıklamasına bir daha göz at.`}
         </p>
       )}
+      {answered === questions.length && own && item && <ReportIssue language={language} topic={item} kind="question" prompt={questions.map((q) => q.question).join(' / ')} item={item} label="Sorularda hata var" />}
     </section>
   )
 }

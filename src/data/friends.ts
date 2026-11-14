@@ -115,15 +115,16 @@ export async function loadBlocked(): Promise<BlockedPerson[]> {
 }
 
 /** What can be reported (api/_reports.ts): a person by their code, an inbox message by its id, a library list, a club room. */
-export type ReportKind = 'user' | 'message' | 'set' | 'club'
-export type ReportReason = 'spam' | 'sexual' | 'harassment' | 'violence' | 'personal' | 'copyright' | 'other'
+/** `content`: a mistake in the app's own content (a question or a text, by its id; reason `mistake`). */
+export type ReportKind = 'user' | 'message' | 'set' | 'club' | 'content'
+export type ReportReason = 'spam' | 'sexual' | 'harassment' | 'violence' | 'personal' | 'copyright' | 'other' | 'mistake'
 
 export interface ReportInput {
   kind: ReportKind
   target: string
   reason: ReportReason
   note?: string
-  /** For a club room, what the screen showed (a room lives only on the server's memory). */
+  /** For a club room or the app's content, what the screen showed (the server has no copy of either). */
   shown?: string
 }
 
