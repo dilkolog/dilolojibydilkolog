@@ -42,7 +42,7 @@ export function PteDiff({ given, text }: { given: string; text: string }) {
   )
 }
 
-const UNIT: Record<PteTask, string> = { wfd: 'kelime', rs: 'kelime', ra: 'kelime', fib: 'boşluk', asq: '' }
+const UNIT: Record<PteTask, string> = { wfd: 'kelime', rs: 'içerik puanı', ra: 'kelime', fib: 'boşluk', asq: '' }
 
 /** After an answer: how much of it was right, the right answer and its Turkish. */
 export function PteFeedback({ task, score, pronunciation, children, tr }: { task: PteTask; score: PteScore; pronunciation?: boolean; children: React.ReactNode; tr: string }) {

@@ -22,8 +22,27 @@ export function scoreDictation(given: string, text: string): PteScore {
   return { got: right, of: total }
 }
 
-/** Repeat sentence and read aloud by recognition: how much of the sentence's words were said, in order (the same comparison). */
+/** Read aloud by recognition: how much of the text's words were said, in order (the same comparison). */
 export const scoreSpoken = scoreDictation
+
+/**
+ * Repeat sentence, content only (0–3, as the exam scores it): 3 every word in order with nothing replaced, left out or
+ * put in between; 2 at least half of the words in order; 1 fewer than half; 0 none. Words before the sentence starts
+ * or after it ends do not count against it.
+ */
+export function scoreRepeat(said: string, text: string): PteScore {
+  if (!said.trim()) return { got: 0, of: 3 }
+  const parts = wordDiff(said, text)
+  let from = 0
+  let to = parts.length
+  while (from < to && parts[from].status === 'extra') from++
+  while (to > from && parts[to - 1].status === 'extra') to--
+  const inner = parts.slice(from, to)
+  const { right, total } = diffScore(parts)
+  const share = total ? right / total : 0
+  const all = share === 1 && !inner.some((p) => p.status === 'extra')
+  return { got: all ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0, of: 3 }
+}
 
 /** Read aloud: the pronunciation check's score when it ran (0–100), otherwise the words said. */
 export function scoreReadAloud(text: string, said: { pronunciation?: number; heard?: string }): PteScore {

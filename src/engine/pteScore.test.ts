@@ -15,6 +15,7 @@ import {
   scoreBlanks,
   scoreDictation,
   scoreReadAloud,
+  scoreRepeat,
   scoreShortAnswer,
   scoreSpoken,
 } from './pteScore'
@@ -37,7 +38,25 @@ describe('dictation: words written right of the sentence’s words', () => {
   })
 })
 
-describe('repeat sentence and read aloud: how much of the sentence was said', () => {
+describe('repeat sentence: content 0–3, as the exam scores it', () => {
+  const text = 'Could you tell me where the main office is?'
+  it('every word in order is 3, words around the sentence do not count against it', () => {
+    expect(scoreRepeat('could you tell me where the main office is', text)).toEqual({ got: 3, of: 3 })
+    expect(scoreRepeat('um could you tell me where the main office is please', text)).toEqual({ got: 3, of: 3 })
+  })
+  it('a word put in, left out or replaced is 2 while at least half are in order', () => {
+    expect(scoreRepeat('could you tell me where the big main office is', text)).toEqual({ got: 2, of: 3 })
+    expect(scoreRepeat('could you tell me where the office is', text)).toEqual({ got: 2, of: 3 })
+    expect(scoreRepeat('could you tell me where', text)).toEqual({ got: 2, of: 3 })
+  })
+  it('fewer than half is 1, none is 0', () => {
+    expect(scoreRepeat('the office', text)).toEqual({ got: 1, of: 3 })
+    expect(scoreRepeat('good morning', text)).toEqual({ got: 0, of: 3 })
+    expect(scoreRepeat('', text)).toEqual({ got: 0, of: 3 })
+  })
+})
+
+describe('read aloud: how much of the text was said', () => {
   it('recognised speech is compared word by word', () => {
     expect(scoreSpoken('could you tell me where the office is', 'Could you tell me where the main office is?')).toEqual({ got: 8, of: 9 })
   })

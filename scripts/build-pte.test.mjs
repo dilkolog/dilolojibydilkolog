@@ -16,19 +16,21 @@ const fixture = ({ raw = true } = {}) => {
   writeFileSync(new URL('en.json', out), '{"old":true}')
   const write = (name, batch) => writeFileSync(new URL(name, rawUrl), typeof batch === 'string' ? batch : JSON.stringify(batch))
   const built = () => readFileSync(new URL('en.json', out), 'utf8')
-  return { raw: rawUrl, out, write, built, log: vi.fn(), error: vi.fn() }
+  return { raw: rawUrl, out, write, built, log: vi.fn(), error: vi.fn(), warn: vi.fn() }
 }
-const wfd = (id, extra = {}) => ({ id, text: 'The library closes early on Fridays in summer.', level: 'A2', topic: 'campus', tr: 'Kütüphane yazın cuma erken kapanır.', ...extra })
+const wfd = (id, extra = {}) => ({ id, text: 'The library closes early on Fridays in the summer.', level: 'A2', topic: 'campus', tr: 'Kütüphane yazın cuma erken kapanır.', ...extra })
 const fib = (id, extra = {}) => ({
   id,
-  text: 'Coffee is one of the most [[1]] drinks in the world, and many people [[2]] their day with a cup before they go to work or school.',
+  text: 'Walking is one of the easiest ways to stay [[1]]. Doctors suggest that adults walk for at least thirty minutes a day. It does not [[2]] any special equipment, and you can do it almost anywhere. A short walk after lunch can [[3]] you feel less tired in the afternoon, and a longer walk at the weekend is a good way to [[4]] time with friends.',
   blanks: [
-    { answer: 'popular', options: ['popular', 'famous', 'busy', 'lucky'] },
-    { answer: 'start', options: ['start', 'open', 'begin with', 'make'] },
+    { answer: 'healthy', options: ['healthy', 'health', 'healthily', 'heal'] },
+    { answer: 'need', options: ['need', 'needs', 'needing', 'needed'] },
+    { answer: 'make', options: ['make', 'do', 'take', 'give'] },
+    { answer: 'spend', options: ['spend', 'spent', 'spending', 'spends'] },
   ],
-  level: 'B1',
-  topic: 'food',
-  tr: 'Kahve…',
+  level: 'A2',
+  topic: 'health',
+  tr: 'Yürümek…',
   ...extra,
 })
 
@@ -44,21 +46,23 @@ describe('building the PTE pack', () => {
   it('joins the batches in name order, keeps only the known fields and trims them', () => {
     const f = fixture()
     f.write('en-0002.json', { fib: [fib('fib-1')] })
-    f.write('en-0001.json', { wfd: [wfd('wfd-1', { note: 'not kept', text: '  The library closes early on Fridays in summer. ' })], rs: [] })
+    f.write('en-0001.json', { wfd: [wfd('wfd-1', { note: 'not kept', text: '  The library closes early on Fridays in the summer. ' })], rs: [] })
     expect(buildPte(f)).toBe(true)
     const pack = JSON.parse(f.built())
     expect(pack.language).toBe('en')
     expect(pack.placeholder).toBeUndefined()
     expect(pack.wfd).toEqual([wfd('wfd-1')])
-    expect(pack.fib[0].blanks).toHaveLength(2)
+    expect(pack.fib[0].blanks).toHaveLength(4)
     expect(pack.ra).toEqual([])
     expect(f.log).toHaveBeenCalledWith(expect.stringContaining('wfd 1'))
+    // Two A2 items: far from the brief's mix, said but not refused.
+    expect(f.warn).toHaveBeenCalledWith(expect.stringContaining('A2: %100 (hedef %50)'))
   })
 
   it('a rejected batch writes nothing and says which file and item', () => {
     const f = fixture()
     f.write('en-0001.json', { wfd: [wfd('same')] })
-    f.write('en-0002.json', { fib: [fib('same', { blanks: [{ answer: 'tea', options: ['popular', 'famous', 'busy', 'lucky'] }] })] })
+    f.write('en-0002.json', { fib: [fib('same', { blanks: [{ answer: 'tea', options: ['healthy', 'health', 'healthily', 'heal'] }] })] })
     expect(buildPte(f)).toBe(false)
     expect(f.built()).toBe('{"old":true}')
     const said = f.error.mock.calls.map((c) => c[0]).join('\n')

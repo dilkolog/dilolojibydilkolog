@@ -80,67 +80,104 @@ export const PTE_TASK_NAME: Record<PteTask, string> = {
 }
 
 /**
- * The exam's rules, in one place. Taken from docs/sinavlar/PTE-462.md (branch belge/pte-462, not yet reviewed); every
- * value read from it says so, the rest are Diloloji's own choices. Change them here only.
+ * The exam's rules and the content's brief, in one place. Read from docs/sinavlar/PTE-462.md (branch belge/pte-462,
+ * "Ek Bölüm", Pearson's format pages and the 2026 Score Guide; not yet merged): every value says where it comes from
+ * ("Doc") or that it is Diloloji's own choice ("Brief": the content brief of 2026-11-14; "Ours"). Change them here only.
  *
- * `listens`: how many times the recording may be played in exam mode (practice mode always allows replaying).
- * `prepSeconds` / `answerSeconds`: the exam's preparation and answer time (practice mode has no clock); null when
- * the document gives no time for the single task (it is managed within the section).
- * `words`: the length a content item must have, in words (the check below).
+ * `listens`: plays of the recording in exam mode (practice mode always allows replaying).
+ * `prepSeconds` / `answerSeconds`: the exam's preparation and answer time (practice mode has no clock); null where the
+ * exam gives the single question no time of its own (the section's time is managed by the test taker).
+ * `silenceSeconds`: in exam mode the recording closes after this long without speech (before or while speaking).
+ * `words`: the length an item must have, in words (a blank counts as a word); the check below enforces it.
  */
 export const PTE_RULES = {
-  /** Items in one round of a task (Diloloji's choice). */
+  /** Brief: the target is a PTE overall of 24 (above A1, early A2), for the Subclass 462 visa. Shown nowhere as a score. */
+  target: 24,
+  /** Brief: the share of each level in the content (no B2 or above); the build warns when a pack strays from it. */
+  levels: { A1: 0.2, A2: 0.5, B1: 0.3 },
+  /** Ours: items in one round of a task. */
   roundSize: 5,
   wfd: {
-    /** Plays once (the task's instruction, as on the exam screen). */
+    /** Doc: plays once, by itself. */
     listens: 1,
-    /** Doc: no time per question ("Kalan Listening bölüm süresi içinde"). */
+    /** Doc: no time per question (within the listening section). */
     answerSeconds: null,
-    /** Doc: a 3–5 s recording; about 6–15 words read at a learner's pace (Diloloji's reading of it). */
-    words: [5, 15],
+    /** Brief: a 3–5 s recording (Doc) is 8–12 words. */
+    words: [8, 12],
   },
   rs: {
+    /** Doc: plays once. */
     listens: 1,
     /** Doc: no preparation, the microphone opens when the recording ends. */
     prepSeconds: 0,
     /** Doc: 15 s to answer. */
     answerSeconds: 15,
-    /** Doc: a 3–9 s recording; 4–18 words (Diloloji's reading of it). */
-    words: [4, 18],
+    /** Doc: 3 s of silence closes the recording. */
+    silenceSeconds: 3,
+    /** Brief: a 3–9 s recording (Doc) is 6–14 words. */
+    words: [6, 14],
   },
   ra: {
     /** Doc: 30–40 s of preparation; the middle of it. */
     prepSeconds: 35,
-    /** Doc: "depends on the length of the text", no number given: 40 s is Diloloji's choice for a 60-word text. */
+    /** Doc: "varies by item, depending on the length of text", no number: 40 s is ours, for a 60-word text. */
     answerSeconds: 40,
-    /** Doc: at most 60 words. */
+    /** Doc: 3 s of silence closes the recording. */
+    silenceSeconds: 3,
+    /** Doc: at most 60 words (the 15 at least is ours). */
     words: [15, 60],
   },
   fib: {
-    /** Doc: no time per question (the reading section's time is managed by the test taker). */
+    /** Doc: no time per question (within the reading section's 23–30 min). */
     answerSeconds: null,
-    /** Doc: at most 200 words. */
-    words: [25, 200],
-    /** Choices in each blank's list (the task's brief: four). */
+    /** Doc: at most 200 words. Brief: half the items 60–90 words, half 120–180 (an item must fall in one of the two). */
+    words: [60, 200],
+    lengths: [
+      [60, 90],
+      [120, 180],
+    ],
+    /** Ours: four choices in each blank's list. */
     options: 4,
-    /** Blanks in one paragraph (Diloloji's choice; the doc does not say per paragraph). */
-    blanks: [2, 6],
+    /** Brief: 4–5 blanks a paragraph. */
+    blanks: [4, 5],
   },
   asq: {
+    /** Doc: plays once. */
     listens: 1,
-    /** Doc: no preparation. */
+    /** Doc: no preparation, no tone. */
     prepSeconds: 0,
-    /** Doc: 10 s to answer. */
+    /** Doc: 10 s to answer (here typed: the 3 s silence rule of the spoken answer does not apply). */
     answerSeconds: 10,
-    /** Doc: a 3–9 s question; 4–20 words (Diloloji's reading of it). */
+    /** Doc: a 3–9 s question; 4–20 words (ours). */
     words: [4, 20],
   },
 } as const
 
-export const PTE_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const
+/** The levels the content may have (the brief's, no B2 or above). */
+export const PTE_LEVELS = Object.keys(PTE_RULES.levels) as (keyof typeof PTE_RULES.levels)[]
 
-/** Words in a text, the blank marks left out. */
-export const pteWords = (text: string): number => text.replace(/\[\[\d+\]\]/g, ' ').split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length
+/** Words in a text; a blank mark counts as the word it stands for. */
+export const pteWords = (text: string): number => text.replace(/\[\[\d+\]\]/g, ' blank ').split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length
+
+/**
+ * How a pack strays from the brief's mix, as readable lines (warnings, not errors: a batch can be lopsided while the
+ * whole is not): each level's share against the brief's, more than 10 points off; the paragraphs' two lengths.
+ */
+export function pteMixWarnings(items: Partial<Record<PteTask, readonly { level?: string; text?: string }[]>>): string[] {
+  const all = PTE_TASKS.flatMap((t) => items[t] ?? [])
+  if (!all.length) return []
+  const out: string[] = []
+  for (const [level, want] of Object.entries(PTE_RULES.levels)) {
+    const share = all.filter((i) => i.level === level).length / all.length
+    if (Math.abs(share - want) > 0.1) out.push(`${level}: %${Math.round(share * 100)} (hedef %${Math.round(want * 100)})`)
+  }
+  const fib = items.fib ?? []
+  if (fib.length >= 4) {
+    const short = fib.filter((f) => pteWords(f.text ?? '') <= PTE_RULES.fib.lengths[0][1]).length / fib.length
+    if (Math.abs(short - 0.5) > 0.2) out.push(`boşluk doldurma: paragrafların %${Math.round(short * 100)} kadarı kısa (hedef yarı yarıya)`)
+  }
+  return out
+}
 
 /** The blank numbers marked in a paragraph, in order. */
 export const blankMarks = (text: string): number[] => [...text.matchAll(/\[\[(\d+)\]\]/g)].map((m) => Number(m[1]))
@@ -186,7 +223,7 @@ export function pteProblems(items: Partial<Record<PteTask, unknown>>): string[] 
       if (!/^[\w-]+$/.test(id)) problems.push(`${at}: kimlik (id) boş ya da harf, rakam, - ve _ dışında karakter taşıyor`)
       else if (seen.has(id)) problems.push(`${at}: kimlik iki kez kullanılmış`)
       seen.add(id)
-      if (!(PTE_LEVELS as readonly string[]).includes(row.level as string)) problems.push(`${at}: seviye (level) A1–C2 değil`)
+      if (!(PTE_LEVELS as readonly string[]).includes(row.level as string)) problems.push(`${at}: seviye (level) ${PTE_LEVELS.join(', ')} değil`)
       if (!filled(row.tr)) problems.push(`${at}: Türkçesi (tr) yok`)
       if ((task === 'wfd' || task === 'ra' || task === 'fib') && !filled(row.topic)) problems.push(`${at}: konu (topic) yok`)
       const text = task === 'asq' ? row.question : row.text
@@ -197,6 +234,7 @@ export function pteProblems(items: Partial<Record<PteTask, unknown>>): string[] 
       const [min, max] = PTE_RULES[task].words
       const n = pteWords(text)
       if (n < min || n > max) problems.push(`${at}: ${n} kelime; ${min}–${max} olmalı`)
+      else if (task === 'fib' && !PTE_RULES.fib.lengths.some(([a, b]) => n >= a && n <= b)) problems.push(`${at}: ${n} kelime; ${PTE_RULES.fib.lengths.map(([a, b]) => `${a}–${b}`).join(' ya da ')} olmalı`)
       if (task !== 'fib' && blankMarks(text).length) problems.push(`${at}: boşluk işareti yalnızca boşluk doldurmada olur`)
       if (task === 'fib') {
         const blanks = row.blanks

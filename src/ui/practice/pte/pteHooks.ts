@@ -57,3 +57,39 @@ export function useCountdown(seconds: number | null, running: boolean, onDone: (
   }, [seconds, running])
   return left
 }
+
+/** Below this loudness (RMS of the samples) a moment counts as silence. */
+const QUIET_RMS = 0.01
+
+/**
+ * Calls `onSilent` once when the microphone has carried no sound for `seconds` (counted from now, so saying nothing at
+ * all closes it too). Returns a function that stops watching.
+ */
+export function watchSilence(stream: MediaStream, seconds: number, onSilent: () => void): () => void {
+  let ctx: AudioContext
+  try {
+    ctx = new AudioContext()
+  } catch {
+    return () => {}
+  }
+  const analyser = ctx.createAnalyser()
+  analyser.fftSize = 2048
+  ctx.createMediaStreamSource(stream).connect(analyser)
+  const samples = new Float32Array(analyser.fftSize)
+  let loudAt = Date.now()
+  const t = window.setInterval(() => {
+    analyser.getFloatTimeDomainData(samples)
+    let sum = 0
+    for (const v of samples) sum += v * v
+    if (Math.sqrt(sum / samples.length) > QUIET_RMS) loudAt = Date.now()
+    else if (Date.now() - loudAt > seconds * 1000) {
+      stop()
+      onSilent()
+    }
+  }, 100)
+  const stop = () => {
+    window.clearInterval(t)
+    void ctx.close().catch(() => {})
+  }
+  return stop
+}

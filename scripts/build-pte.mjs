@@ -3,7 +3,7 @@
 // (the item shapes and the rules are in src/data/pte.ts). Files are read in name order; a rejected batch writes nothing.
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
-import { PTE_TASKS, pteProblems } from '../src/data/pte.ts'
+import { PTE_TASKS, pteMixWarnings, pteProblems } from '../src/data/pte.ts'
 
 const RAW = new URL('../content/raw/pte/', import.meta.url)
 const OUT = new URL('../src/data/pte/', import.meta.url)
@@ -16,7 +16,7 @@ const FIELDS = {
 }
 const trim = (v) => (typeof v === 'string' ? v.trim() : Array.isArray(v) ? v.map(trim) : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, trim(x)])) : v)
 
-export function buildPte({ raw = RAW, out = OUT, log = console.log, error = console.error } = {}) {
+export function buildPte({ raw = RAW, out = OUT, log = console.log, error = console.error, warn = console.warn } = {}) {
   // No raw content yet: nothing to build, and the pack already in the app stays as it is.
   const files = existsSync(raw) ? readdirSync(raw).filter((f) => f.endsWith('.json')).sort() : []
   if (!files.length) {
@@ -62,6 +62,8 @@ export function buildPte({ raw = RAW, out = OUT, log = console.log, error = cons
   const pack = { language: 'en', source: 'Diloloji (özgün)', ...Object.fromEntries(PTE_TASKS.map((t) => [t, items[t].map((x) => x.row)])) }
   writeFileSync(new URL('en.json', out), JSON.stringify(pack, null, 1) + '\n')
   log(`en: ${PTE_TASKS.map((t) => `${t} ${items[t].length}`).join(', ')} (${files.length} dosya)`)
+  // The brief's mix of levels and paragraph lengths: a warning, the pack is still built.
+  for (const w of pteMixWarnings(pack)) warn(`Uyarı: ${w}`)
   return true
 }
 

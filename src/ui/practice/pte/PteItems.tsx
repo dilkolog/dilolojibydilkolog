@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { blankParts, PTE_RULES, type PteAsq, type PteFib, type PteRa, type PteRs, type PteWfd } from '../../../data/pte'
-import { scoreBlanks, scoreDictation, scoreReadAloud, scoreShortAnswer, scoreSpoken } from '../../../engine/pteScore'
+import { scoreBlanks, scoreDictation, scoreReadAloud, scoreRepeat, scoreShortAnswer } from '../../../engine/pteScore'
 import { createRng, shuffle } from '../../../engine/rng'
 import { canRecord, recordingType } from '../audioRecord'
 import { assessPronunciation, azureEnabled } from '../pronunciation'
@@ -8,7 +8,7 @@ import { KeyboardIcon, MicIcon } from '../../shared/icons'
 import { Select } from '../../shared/Select'
 import { canSpeak } from '../../shared/speech'
 import { canListen, listenContinuous } from '../../shared/speechInput'
-import { useCountdown, usePteAudio } from './pteHooks'
+import { useCountdown, usePteAudio, watchSilence } from './pteHooks'
 import type { PteItemProps } from './pteMode'
 import { PteClock, PteListen } from './pteShared'
 
@@ -70,36 +70,58 @@ export function PteDictation({ item, mode, onAnswer }: PteItemProps<PteWfd>) {
 // ---------------------------------------------------------------------------
 // Speaking: recognition, with what was heard so far
 
-function useSpeaking(onError: (message: string) => void) {
+/**
+ * Recognition, with what was heard so far. With `silenceSeconds` (exam mode) listening closes by itself after that long
+ * without anything new heard, from the moment the microphone opens (the exam's rule), and `onSilence` gets what was said.
+ */
+function useSpeaking(onError: (message: string) => void, silenceSeconds: number | null = null, onSilence?: (said: string) => void) {
   const [heard, setHeard] = useState('')
   const [on, setOn] = useState(false)
   const stop = useRef<(() => void) | null>(null)
   const text = useRef('')
-  useEffect(() => () => stop.current?.(), [])
+  const quiet = useRef<number>(undefined)
+  const silent = useRef(onSilence)
+  silent.current = onSilence
+  useEffect(
+    () => () => {
+      window.clearTimeout(quiet.current)
+      stop.current?.()
+    },
+    [],
+  )
+  /** Ends listening and gives everything heard. */
+  const finish = () => {
+    window.clearTimeout(quiet.current)
+    stop.current?.()
+    stop.current = null
+    setOn(false)
+    return text.current
+  }
+  const arm = () => {
+    window.clearTimeout(quiet.current)
+    if (silenceSeconds) quiet.current = window.setTimeout(() => stop.current && silent.current?.(finish()), silenceSeconds * 1000)
+  }
   const start = () => {
     text.current = ''
     setHeard('')
     setOn(true)
+    arm()
     stop.current = listenContinuous(
       'en',
       (final, interim) => {
-        text.current = `${final} ${interim}`.trim()
-        setHeard(text.current)
+        const now = `${final} ${interim}`.trim()
+        if (now !== text.current) arm()
+        text.current = now
+        setHeard(now)
       },
       (message) => {
+        window.clearTimeout(quiet.current)
         stop.current?.()
         stop.current = null
         setOn(false)
         onError(message)
       },
     )
-  }
-  /** Ends listening and gives everything heard. */
-  const finish = () => {
-    stop.current?.()
-    stop.current = null
-    setOn(false)
-    return text.current
   }
   return { start, finish, heard, on }
 }
@@ -125,11 +147,15 @@ function TypeInstead({ onDone, placeholder }: { onDone: (text: string) => void; 
 export function PteRepeat({ item, mode, onAnswer }: PteItemProps<PteRs>) {
   const [typing, setTyping] = useState(!canListen())
   const [error, setError] = useState('')
-  const speaking = useSpeaking((message) => {
-    setError(message)
-    setTyping(true)
-  })
-  const done = (said: string) => onAnswer({ score: scoreSpoken(said, item.text), given: said })
+  const done = (said: string) => onAnswer({ score: scoreRepeat(said, item.text), given: said })
+  const speaking = useSpeaking(
+    (message) => {
+      setError(message)
+      setTyping(true)
+    },
+    mode === 'exam' ? PTE_RULES.rs.silenceSeconds : null,
+    done,
+  )
   const startSaying = () => {
     setError('')
     speaking.start()
@@ -141,7 +167,10 @@ export function PteRepeat({ item, mode, onAnswer }: PteItemProps<PteRs>) {
   const left = useCountdown(mode === 'exam' ? PTE_RULES.rs.answerSeconds : null, speaking.on, () => done(speaking.finish()))
   return (
     <div className="stack">
-      <p className="small muted">Cümleyi dinle, sonra aynen tekrar et.{mode === 'exam' ? ` Kayıt bitince mikrofon açılır; ${PTE_RULES.rs.answerSeconds} saniyen var.` : ''}</p>
+      <p className="small muted">
+        Cümleyi dinle, sonra aynen tekrar et.{' '}
+        {mode === 'exam' ? `Kayıt bitince mikrofon açılır; ${PTE_RULES.rs.answerSeconds} saniyen var, ${PTE_RULES.rs.silenceSeconds} saniye sessiz kalırsan kayıt kapanır.` : ''} Puan içeriğe göre 0–3: hepsi doğru sırada 3, en az yarısı 2, yarısından azı 1.
+      </p>
       <PteListen audio={audio} mode={mode} />
       {typing ? (
         <>
@@ -186,15 +215,24 @@ export function PteReadAloud({ item, mode, onAnswer, onSkip }: PteItemProps<PteR
   const [phase, setPhase] = useState<ReadPhase>('prep')
   const [note, setNote] = useState('')
   const recorder = useRef<MediaRecorder | null>(null)
-  const speaking = useSpeaking((message) => {
-    setNote(message)
-    setPhase('prep')
-  })
-  useEffect(() => () => {
-    if (recorder.current?.state === 'recording') recorder.current.stop()
-  }, [])
-  const canDo = usePron || canListen()
   const exam = mode === 'exam'
+  const speaking = useSpeaking(
+    (message) => {
+      setNote(message)
+      setPhase('prep')
+    },
+    exam ? PTE_RULES.ra.silenceSeconds : null,
+    (said) => onAnswer({ score: scoreReadAloud(item.text, { heard: said }), given: said }),
+  )
+  const unwatch = useRef<(() => void) | null>(null)
+  useEffect(
+    () => () => {
+      unwatch.current?.()
+      if (recorder.current?.state === 'recording') recorder.current.stop()
+    },
+    [],
+  )
+  const canDo = usePron || canListen()
   const answerSeconds = usePron ? Math.min(PTE_RULES.ra.answerSeconds, PRON_MAX_SECONDS) : PTE_RULES.ra.answerSeconds
 
   const begin = async () => {
@@ -210,6 +248,8 @@ export function PteReadAloud({ item, mode, onAnswer, onSkip }: PteItemProps<PteR
       const chunks: Blob[] = []
       rec.ondataavailable = (e) => e.data.size && chunks.push(e.data)
       rec.onstop = async () => {
+        unwatch.current?.()
+        unwatch.current = null
         stream.getTracks().forEach((t) => t.stop())
         const blob = new Blob(chunks, { type: rec.mimeType })
         setPhase('checking')
@@ -227,6 +267,8 @@ export function PteReadAloud({ item, mode, onAnswer, onSkip }: PteItemProps<PteR
       }
       recorder.current = rec
       rec.start()
+      // The exam's rule: 3 s without speech closes the recording.
+      if (exam) unwatch.current = watchSilence(stream, PTE_RULES.ra.silenceSeconds, () => rec.state === 'recording' && rec.stop())
       setPhase('reading')
     } catch {
       setNote('Mikrofona erişilemedi; tarayıcının mikrofon iznini kontrol et.')
@@ -249,7 +291,9 @@ export function PteReadAloud({ item, mode, onAnswer, onSkip }: PteItemProps<PteR
     <div className="stack">
       <p className="small muted">
         Metni sesli oku.{' '}
-        {exam ? `Önce ${PTE_RULES.ra.prepSeconds} saniye hazırlan; kayıt kendiliğinden başlar ve ${answerSeconds} saniye sürer.` : 'Hazır olunca kaydı başlat; süre yok.'}{' '}
+        {exam
+          ? `Önce ${PTE_RULES.ra.prepSeconds} saniye hazırlan; kayıt kendiliğinden başlar, en çok ${answerSeconds} saniye sürer ve ${PTE_RULES.ra.silenceSeconds} saniye sessiz kalırsan kapanır.`
+          : 'Hazır olunca kaydı başlat; süre yok.'}{' '}
         {usePron ? 'Telaffuz denetimi puanlar.' : 'Söylediğin kelimeler metinle karşılaştırılır.'}
       </p>
       <p className="examtask-text" lang="en">
