@@ -4,7 +4,7 @@ import { falseFriendsOf } from '../../engine/crossLanguage'
 import { ruleFor } from '../../engine/genderRules'
 import { displayForm } from '../../engine/exercises'
 import { MASTERY_STAGES, type MasteryStage } from '../../engine/mastery'
-import type { Confidence, VocabularyEntry } from '../../engine/types'
+import type { Confidence, TargetLanguage, Verdict, VocabularyEntry } from '../../engine/types'
 import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, STAGE_NAME } from '../shared/labels'
 import { Plant } from '../home/Plant'
 import { isFormId } from '../../engine/dailyPlan'
@@ -20,6 +20,7 @@ import { AskMonki } from '../monki/AskMonki'
 import { missAsk } from '../monki/asks'
 import { useAi } from '../aiContext'
 import { REACT } from '../shared/drawnArt'
+import { CopyStep } from './CopyStep'
 
 /** After a miss: kind, short, and true (the word is asked once more in a moment). */
 const SOFT = ['Olur böyle.', 'Hata, öğrenmenin yarısı.', 'Beynin bunu şimdi kaydetti.', 'Bir sonrakinde sende.']
@@ -51,7 +52,10 @@ export function Feedback({
   typeName,
   onTypePref,
   history,
+  copy,
 }: {
+  /** After a miss on a typed question: offer typing the shown answer once (not scored; see CopyStep). */
+  copy?: { language: TargetLanguage; check: (text: string) => Verdict }
   /** "Unuttum": the answer is shown as a lesson, not as a mistake (no red, no scolding). */
   independent?: boolean
   forgot?: boolean
@@ -91,14 +95,16 @@ export function Feedback({
   const hint = ev.errorType && ev.verdict !== 'correct' && !ev.intrusion && !forgot ? ERROR_HINT[ev.errorType] : ''
   const btnClass = forgot ? '' : ev.verdict === 'correct' ? 'btn-ok' : ev.verdict === 'near' ? 'btn-near' : 'btn-bad'
   const [ready, setReady] = useState(!confidentError)
+  const hasCopy = !!copy
   useEffect(() => {
     if (ready) return
     const t = setTimeout(() => setReady(true), CONFIDENT_ERROR_PAUSE_MS)
     return () => clearTimeout(t)
   }, [ready])
   useEffect(() => {
-    if (ready && confidentError) continueRef.current?.focus()
-  }, [ready, confidentError, continueRef])
+    // The copy field keeps the focus it took; it hands it to Devam once used.
+    if (ready && confidentError && !hasCopy) continueRef.current?.focus()
+  }, [ready, confidentError, continueRef, hasCopy])
   // Enter continues even when focus wandered off the button; Alt+D: "my answer is right too".
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -137,6 +143,7 @@ export function Feedback({
               {ev.expected}
             </p>
           )}
+          {copy && <CopyStep expected={ev.expected} language={copy.language} check={copy.check} continueRef={continueRef} ready={ready} onSkip={() => ready && onContinue()} />}
           <div className="sheet-notes">
           {confidentError && (
             <div className="hyper">
