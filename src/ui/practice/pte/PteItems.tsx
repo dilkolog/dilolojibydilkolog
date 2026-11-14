@@ -296,7 +296,7 @@ export function PteReadAloud({ item, mode, onAnswer, onSkip }: PteItemProps<PteR
           : 'Hazır olunca kaydı başlat; süre yok.'}{' '}
         {usePron ? 'Telaffuz denetimi puanlar.' : 'Söylediğin kelimeler metinle karşılaştırılır.'}
       </p>
-      <p className="examtask-text" lang="en">
+      <p className="examtask-text pte-text" lang="en">
         {item.text}
       </p>
       {note && <p className="small cross-warn">{note}</p>}
@@ -354,7 +354,7 @@ export function PteBlanks({ item, onAnswer }: PteItemProps<PteFib>) {
   return (
     <div className="stack">
       <p className="small muted">Her boşluk için listeden doğru kelimeyi seç. Her doğru boşluk bir puan.</p>
-      <div className="examtask-text pte-paragraph" lang="en">
+      <div className="examtask-text pte-text pte-paragraph" lang="en">
         {parts.map((p, i) =>
           'text' in p ? (
             <span key={i}>{p.text}</span>
@@ -415,7 +415,7 @@ export function PteShort({ item, mode, onAnswer }: PteItemProps<PteAsq>) {
     <div className="stack">
       <p className="small muted">Soruyu dinle ve tek kelimeyle ya da kısa bir ifadeyle cevapla.{mode === 'exam' ? ` Soru bitince ${PTE_RULES.asq.answerSeconds} saniyen var.` : ''}</p>
       <PteListen audio={audio} mode={mode} />
-      <p className="prompt-label" lang="en">
+      <p className="prompt-label pte-text" lang="en">
         {item.question}
       </p>
       <AnswerLine value={text} onChange={setText} onSubmit={() => text.trim() && check()} label="Cevabın" placeholder="Cevabın" />

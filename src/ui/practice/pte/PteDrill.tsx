@@ -151,7 +151,7 @@ export function PteDrill({ task, pack, log, mode, onExit }: { task: PteTask; pac
                   </p>
                 )}
                 {answer.pronunciation ? (
-                  <p className="examtask-text" lang="en">
+                  <p className="examtask-text pte-text" lang="en">
                     {(item as PteRa).text}
                   </p>
                 ) : (

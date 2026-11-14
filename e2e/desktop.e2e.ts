@@ -519,7 +519,7 @@ test('PTE-style for English: a whole dictation round and a whole fill-in-the-bla
   await expect(page.locator('.pte-section .examtask-item', { hasText: 'Dikte' })).toContainText('son tur %')
 })
 
-test('PTE-style repeat sentence in exam mode: heard once, then said back (recognition stood in for), or typed', async ({ page }) => {
+test('PTE-style repeat sentence in exam mode: heard once, said back until 3 s of silence (recognition stood in for), or typed', async ({ page }) => {
   // No microphone or recognition service in a test: a silent stream and a recogniser that hears the sentence.
   await page.addInitScript(() => {
     navigator.mediaDevices.getUserMedia = async () => {
@@ -568,9 +568,9 @@ test('PTE-style repeat sentence in exam mode: heard once, then said back (recogn
   await page.getByRole('button', { name: 'Dinle' }).click()
   await expect(page.getByRole('timer')).toBeVisible({ timeout: 10_000 })
   await expect(page.getByRole('button', { name: /Bir daha dinle/ })).toBeDisabled()
-  await expect(page.getByText(pte.rs[0].text.toLowerCase().replace(/[.?]/g, ''))).toBeVisible()
-  await page.getByRole('button', { name: 'Bitir' }).click()
-  await expect(page.locator('.pte-feedback')).toContainText('Doğruluk %100')
+  // Nothing more is said: 3 s of silence closes the recording by itself, as on the exam.
+  await expect(page.locator('.pte-feedback')).toContainText('Doğruluk %100', { timeout: 8000 })
+  await expect(page.locator('.pte-feedback')).toContainText('3 / 3 içerik puanı')
   await expect(page.locator('.pte-feedback')).toContainText(pte.rs[0].tr)
   await page.getByRole('button', { name: 'Devam' }).click()
   // Typed instead: half of the sentence.
@@ -578,7 +578,8 @@ test('PTE-style repeat sentence in exam mode: heard once, then said back (recogn
   const words = pte.rs[1].text.split(' ')
   await page.getByLabel('Yazarak cevap').fill(words.slice(0, Math.ceil(words.length / 2)).join(' '))
   await page.getByRole('button', { name: 'Kontrol et' }).click()
-  await expect(page.locator('.pte-feedback')).toContainText(`${Math.ceil(words.length / 2)} / ${words.length} kelime`)
+  // At least half of the words in order: 2 of the 3 content points.
+  await expect(page.locator('.pte-feedback')).toContainText('2 / 3 içerik puanı')
 })
 
 test('English verb lab: irregular verbs and phrasal verbs, a list to look through and a round to practise', async ({ page }) => {
