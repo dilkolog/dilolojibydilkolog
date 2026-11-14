@@ -45,6 +45,10 @@ export function PteDrill({ task, pack, log, mode, onExit }: { task: PteTask; pac
   useEffect(() => {
     if (done && scores.length) void saveRound(task, scores)
   }, [done]) // eslint-disable-line react-hooks/exhaustive-deps
+  // Each item (and the result) starts at the top of the page, not where the card list was scrolled to.
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [step, done, seed])
 
   const answered = (a: PteAnswer) => {
     setAnswer(a)
