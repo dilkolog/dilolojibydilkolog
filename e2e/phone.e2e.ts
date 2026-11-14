@@ -167,7 +167,15 @@ test('Progress starts with the overview and opens a group from the shortcut row'
   const toggles = page.locator('.group-toggle')
   await expect(toggles.first()).toHaveAttribute('aria-expanded', 'true')
   await expect(toggles.nth(1)).toHaveAttribute('aria-expanded', 'false')
-  const closedHeight = await page.evaluate(() => document.documentElement.scrollHeight)
+  // With answers the overview fills in after its data loads: measure once the page has stopped growing.
+  let lastHeight = -1
+  await expect.poll(async () => {
+    const h = await page.evaluate(() => document.documentElement.scrollHeight)
+    const settled = h === lastHeight
+    lastHeight = h
+    return settled
+  }, { intervals: [300] }).toBe(true)
+  const closedHeight = lastHeight
   await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true')
   // It scrolled there, and the page grew by what it opened.
