@@ -88,6 +88,38 @@ for (const theme of ['light', 'dark', 'calm', 'contrast'] as const) {
   })
 }
 
+test('PTE-style on a phone: the cards, a paragraph with its lists and the feedback fit and read well in every theme', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /İngilizce/ }).click()
+  await openScreen(page, 'Sınavlar')
+  await page.getByRole('group', { name: 'Sınav' }).getByRole('button', { name: 'PTE tarzı' }).click()
+  await expect(page.locator('.pte-section .examtask-item')).toHaveCount(5)
+  const found: string[] = []
+  const look = async (where: string) => {
+    for (const theme of ['light', 'dark', 'calm'] as const) {
+      await page.evaluate((t) => {
+        document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t
+        if (t === 'calm') document.documentElement.dataset.calm = ''
+        else delete document.documentElement.dataset.calm
+      }, theme)
+      await page.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running' || a.effect?.getComputedTiming().iterations === Infinity))
+      for (const p of await contrastProblems(page)) found.push(`${theme} ${where}: ${p}`)
+      for (const o of await overflow(page)) found.push(`${theme} ${where}: overflow ${o}`)
+    }
+  }
+  await look('cards')
+  await page.locator('.pte-section .examtask-item', { hasText: 'Boşluk doldurma' }).click()
+  await expect(page.locator('.pte-blank')).not.toHaveCount(0)
+  await look('paragraph')
+  await page.locator('.pte-blank').first().locator('.select-trigger').click()
+  await page.getByRole('listbox', { name: '1. boşluk' }).getByRole('option').first().click()
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.locator('.pte-feedback')).toBeVisible()
+  await look('feedback')
+  expect(found).toEqual([])
+})
+
 test('in a session the answer choices sit within thumb reach', async ({ page }) => {
   await startWithSamples(page)
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
