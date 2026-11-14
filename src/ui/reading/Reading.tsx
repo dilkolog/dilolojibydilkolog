@@ -620,7 +620,7 @@ export function ReadingScreen({
             <span>{message}</span>
           </p>
         )}
-        {message && <ComprehensionCard key={`cq-${current?.id}`} text={text} language={language} ready={current?.questions} />}
+        {message && <ComprehensionCard key={`cq-${current?.id}`} text={text} language={language} ready={current?.questions} item={current?.questions?.length ? current.id.replace(/^content-/, '') : undefined} />}
         {message && !nextChapter && (
           <SameTopic
             text={text}

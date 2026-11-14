@@ -208,6 +208,9 @@ Derlemede `VITE_TURNSTILE_SITE_KEY` varsa giriş formu (giriş, kayıt, bağlant
 ### Doluluk denetimi (0014, 2026-11-12)
 `supabase/migrations/0014_storage_usage.sql`: `storage_usage()` veritabanının boyutunu (`pg_database_size`) ve `media` kovasındaki toplamı döndürür; yalnızca sunucu (service role) çağırabilir. Saatlik sağlık denetimi (`api/_health.ts` `fullness`) veritabanı 500 MB'ın, dosya deposu 1 GB'ın %80'ini ve %90'ını geçince sahibine bir kez mail atar (oran değil basamak yazılır, sayı oynadıkça mail gelmez). Plan büyürse Worker değişkenleri `SUPABASE_DB_LIMIT_MB` / `SUPABASE_STORAGE_LIMIT_MB`. Fonksiyon yoksa denetim sessizce atlanır. **Sahibinin yapacağı:** 0013 ve yeniden 0005'ten sonra SQL Editor'de bir kez çalıştırmak.
 
+### İçerik raporu (0015, 2026-11-14)
+`supabase/migrations/0015_content_item_stats.sql`: `content_item_stats(since)` her öğe için kaç kişinin cevapladığını, toplam doğru ve yanlış sayısını döndürür. Kelimeler ay parçalarındaki olaylardan, dilbilgisi ve sınav soruları çekirdekteki günlüklerden (`grammar`, `examTasks`, `traps`…) gelir. Kişi kimliği döndürmez; yalnızca sunucu anahtarı (service role) çağırabilir. `npm run content -- missed` bunu okur (`SUPABASE_URL`, `SUPABASE_SECRET_KEY`); Mac'teki haftalık yedek işi de çalıştırır. **Sahibinin yapacağı:** SQL Editor'de bir kez çalıştırmak.
+
 ### Yedek ve geri yükleme (2026-11-12)
 Ücretsiz planda Supabase yedek tutmuyor; Worker'ın ücretsiz plandaki CPU payı da veritabanını kopyalamaya yetmiyor. Yedek sahibinin bilgisayarında alınır: `scripts/backup-supabase.mjs`.
 

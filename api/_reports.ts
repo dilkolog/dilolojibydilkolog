@@ -7,7 +7,9 @@ import { SHARE_ID, shareStore } from './share.js'
 
 /**
  * Reports on what people send one another (Google Play's user-generated content rules): a person (their name or
- * card), a message in one's inbox, a list in the community library, a reading club room.
+ * card), a message in one's inbox, a list in the community library, a reading club room. And a mistake in the app's
+ * own content (`content`: a question or a text, by its id), so the owner can fix it or retire it
+ * (npm run content -- retire, docs/ICERIK-FABRIKASI.md §6.4).
  *
  * Each report is kept (reports/<day>/<id>.json, with the server's own copy of what was reported where it has one, so
  * the owner sees what was there, not what the reporter says was there) and mailed to the owner (OWNER_EMAIL or
@@ -15,9 +17,9 @@ import { SHARE_ID, shareStore } from './share.js'
  * different people leaves the library on its own (the list itself stays, so the owner can look and decide).
  * A person may file REPORTS_A_DAY reports a day: enough for any real need, too few to bury the owner.
  */
-export const REASONS = ['spam', 'sexual', 'harassment', 'violence', 'personal', 'copyright', 'other'] as const
+export const REASONS = ['spam', 'sexual', 'harassment', 'violence', 'personal', 'copyright', 'other', 'mistake'] as const
 export type ReportReason = (typeof REASONS)[number]
-export const REPORT_KINDS = ['user', 'message', 'set', 'club'] as const
+export const REPORT_KINDS = ['user', 'message', 'set', 'club', 'content'] as const
 export type ReportKind = (typeof REPORT_KINDS)[number]
 
 const REASON_TEXT: Record<ReportReason, string> = {
@@ -28,12 +30,14 @@ const REASON_TEXT: Record<ReportReason, string> = {
   personal: 'Kişisel bilgilerin paylaşılması',
   copyright: 'Telif hakkı ihlali',
   other: 'Başka bir sorun',
+  mistake: 'İçerikte hata',
 }
 const KIND_TEXT: Record<ReportKind, string> = {
   user: 'Kullanıcı',
   message: 'Arkadaştan gelen ileti',
   set: 'Topluluk listesi',
   club: 'Okuma kulübü odası',
+  content: 'Uygulamanın içeriği',
 }
 
 export const REPORTS_A_DAY = 20
@@ -44,6 +48,8 @@ const MAX_CONTENT = 2000
 const ROOM = /^[2-9A-HJKMNP-Z]{6}$/
 const ITEM_ID = /^[\w-]{1,80}$/
 const FRIEND_CODE = /^[2-9A-HJKMNP-Z]{8}$/
+/** An item of the app's content: a question or a text id ("fr-g-000123", "fr-read-lyon|2", "content-fr-r-000006"). */
+const CONTENT_ID = /^[a-z]{2}[\w:|.-]{1,118}$/
 
 export interface Report {
   id: string
@@ -122,6 +128,8 @@ async function snapshot(reporter: string, kind: ReportKind, target: string, show
       content: `Liste: “${found.doc.name}” (${words.length} kelime)\n\n${list}`.slice(0, MAX_CONTENT),
     }
   }
+  // The app's own content is in the app, not on the server: what the learner saw (the question as shown) is kept.
+  if (kind === 'content') return CONTENT_ID.test(target) ? { content: plain(shown, MAX_CONTENT) || '(içerik yok)' } : null
   // A room lives only in the memory of its Durable Object: what the reporter saw is all there is.
   if (!ROOM.test(target)) return null
   return { content: plain(shown, MAX_CONTENT) || '(içerik yok)' }
@@ -186,7 +194,9 @@ export function reportMail(to: string, r: Report, nth: number, site = APP_URL): 
         : `Liste ${HIDE_AFTER} farklı kişi şikâyet edince kütüphaneden kendiliğinden kalkar.`
       : r.kind === 'club'
         ? 'Oda yalnızca bellekte yaşar; aşağıdaki içerik şikâyet edenin ekranında görünendir.'
-        : ''
+        : r.kind === 'content'
+          ? `Düzeltene kadar emekliye ayırmak için (fabrika içeriği): npm run content -- retire ${r.target.replace(/^content-/, '')}`
+          : ''
   const lastNote = last ? `Bugün ${MAILS_A_DAY} şikâyet bildirimine ulaşıldı; bugünün geri kalanı yalnızca depoda (reports/).` : ''
   const subject = `Diloloji: şikâyet · ${KIND_TEXT[r.kind]} · ${REASON_TEXT[r.reason]}${last ? ' · bugünün son bildirimi' : ''}`
   return {
@@ -224,8 +234,10 @@ export async function fileReport(reporter: string, body: Record<string, unknown>
   const reason = REASONS.find((r) => r === body.reason)
   const raw = typeof body.target === 'string' ? body.target.trim() : ''
   // List ids are lower-case hex, codes upper-case; a message id is taken as it is.
-  const target = kind === 'set' ? raw.toLowerCase() : kind === 'message' ? raw : raw.toUpperCase()
+  const target = kind === 'set' ? raw.toLowerCase() : kind === 'message' || kind === 'content' ? raw : raw.toUpperCase()
   if (!kind || !reason || !target) return 'bad_request'
+  // A mistake is a content report's only reason, and only a content report's.
+  if ((kind === 'content') !== (reason === 'mistake')) return 'bad_request'
   if (!(await quotaLeft('report', reporter, 1, REPORTS_A_DAY, store))) return 'too_many'
   const found = await snapshot(reporter, kind, target, plain(body.shown, MAX_CONTENT))
   if (!found) return 'not_found'

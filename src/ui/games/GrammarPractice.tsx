@@ -13,6 +13,7 @@ import { accentChange, insertAt } from '../shared/accentCaret'
 import { LANGUAGE_NAME } from '../shared/labels'
 import { sfx } from '../shared/sounds'
 import { LessonLink } from '../guide/LessonLink'
+import { ReportIssue } from '../guide/ReportIssue'
 import { grammarCatalog, matchesGrammarLevel, type GrammarLevelFilter } from '../../data/grammarCatalog'
 import { GrammarCatalog } from './GrammarCatalog'
 
@@ -336,6 +337,7 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
                 <button type="button" className="btn" onClick={next} autoFocus>
                   Devam
                 </button>
+                <ReportIssue language={language} topic={q.topic} kind="question" prompt={q.prompt} item={q.id} label="Soruda hata var" />
               </div>
             </div>
           )}

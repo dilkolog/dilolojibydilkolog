@@ -262,6 +262,21 @@ describe('reporting and blocking a friend', () => {
     })
   })
 
+  it('a mistake in the app’s content is reported by its id, with what the learner saw, and only as a mistake', async () => {
+    const ok = await post(ALI, { action: 'report', kind: 'content', target: 'fr-read-lyon|2', reason: 'mistake', note: 'iki şık doğru', shown: 'Pourquoi Paul n’a-t-il pas dormi ?' })
+    expect(ok.status).toBe(200)
+    expect(reports()[0]).toMatchObject({ kind: 'content', reason: 'mistake', target: 'fr-read-lyon|2', note: 'iki şık doğru', content: 'Pourquoi Paul n’a-t-il pas dormi ?' })
+    resetRate()
+    // A mistake is only the content's reason, and the content takes no other.
+    expect((await post(ALI, { action: 'report', kind: 'content', target: 'fr-g-000001', reason: 'spam' })).status).toBe(400)
+    resetRate()
+    expect((await post(ALI, { action: 'report', kind: 'user', target: 'ABCDEFGH', reason: 'mistake' })).status).toBe(400)
+    resetRate()
+    // Not an id of the content.
+    expect((await post(ALI, { action: 'report', kind: 'content', target: '<script>', reason: 'mistake' })).status).toBe(404)
+    expect(reports()).toHaveLength(1)
+  })
+
   it(`a person files at most ${REPORTS_A_DAY} reports a day`, async () => {
     const veliCode = await publish(VELI, 'Veli')
     for (let i = 0; i < REPORTS_A_DAY; i++) {

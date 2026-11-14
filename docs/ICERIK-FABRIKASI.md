@@ -186,6 +186,25 @@ Sahibi ya da anadili konuşan biri "tamam / hata: …" yazar. Bulunan her hata t
 
 ---
 
+### 5.5 Hat ve kalite döngüsü (2026-11-14)
+
+Her içerik türü (okuma, dilbilgisi, sınav seti, deyim) aynı yoldan geçer:
+
+1. **Ham parti:** iş emrine göre `content/raw/…`.
+2. **Otomatik denetim:** `check`, deyimlerde `build-idioms` kaynak denetimi.
+3. **Bağımsız denetim:** yazandan farklı bir model, cevap anahtarını görmeden çözer ve dili okur.
+4. **Sahibinin örneklemi:** `sample`.
+5. **Birleştirme:** `build`, PR.
+
+Birleştikten sonra iki kaynak hatayı geri getirir:
+
+- **Haftalık rapor:** `npm run content -- missed` (Supabase `content_item_stats()`, `supabase/migrations/0015_content_item_stats.sql`). Bütün kullanıcıların cevaplarından en çok yanlış yapılan 20 öğeyi ve hep doğru bilinenleri, metni ve dosyasıyla yazar. Kişi bilgisi yoktur, yalnızca sayı. Sahibinin Mac'indeki haftalık yedek işi (`scripts/backup-mac.sh`) raporu `~/Diloloji-yedek/icerik-raporu-<tarih>.md` olarak yanına yazar. Öğrenci azken sonuçlar gürültülüdür; bariz hataları yakalar.
+- **Kullanıcı bildirimi:** "Soruda hata var" / "Görevde hata var" / "Sorularda hata var" (`src/ui/guide/ReportIssue.tsx`; dilbilgisi oyunu, sınav setleri, Diloloji metinlerinin soruları, Rehber). Hesabı olan öğrencinin bildirimi sunucuya `content` türüyle (`reason: mistake`) düşer, sahibine mail gider, R2'de `reports/` altında kalır (`api/_reports.ts`). Bildirim öğenin kimliğini ve öğrencinin gördüğü metni taşır. Misafirde not cihazda kalır (Rehber → Bildirdiklerin).
+
+Bozuk bir fabrika öğesi düzeltilene kadar emekliye ayrılır: `npm run content -- retire <kimlik>` (geri almak için `--undo`), sonra `build` (§6.4). Uygulamanın paketteki soruları (`src/data/grammar…`) manifestle yayınlanmadığı için doğrudan düzeltilir.
+
+**Sipariş sırası:** yeni partiler kapsama raporunun en boş "seviye × konu" hücresinden açılır (`jobs`, en boş hücre önce). 2026-11-14'te Fransızca dilbilgisinde A1 ve A2 temelleri dolu; A2'nin yedi konusu (partitif, olumsuzluk, yer edatları, dönüşlü fiiller, karşılaştırma, emir, süre) ile B1–C1 boş. Önce Fransızca dilbilgisi.
+
 ## 6. Yayın katmanı: içerik uygulamaya nasıl ulaşır
 
 ### 6.1 Derleme (`scripts/content/build.ts`)
@@ -237,6 +256,7 @@ Maliyet tek seferliktir, karakter başına. Önce yalnız A1–B1 metinler sesle
 - Kimlik bir kez verilir; öğe düzeltilince kimlik aynı kalır.
 - Anlamı değişecek kadar büyük bir düzeltme ise öğe emekliye ayrılır (`manifest.retired`), yenisi yeni kimlik alır.
 - Emekli öğe yeni turlarda sorulmaz, ama öğrencinin günlüğünde kalır ve hata vermez.
+- Komut: `npm run content -- retire <kimlik> [--undo]` (`content/retired/<dil>.json`, yalnızca fabrika kimlikleri; bir sınav setinin sorusu setin kimliğiyle), ardından `npm run content -- build`.
 
 ---
 
