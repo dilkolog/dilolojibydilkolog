@@ -96,6 +96,16 @@
       ]
     }
   },
+  "starter": {
+    "words": [
+      30,
+      70
+    ],
+    "sentenceWords": 8,
+    "rank": 300,
+    "a1Rank": 2000,
+    "fit": 0.95
+  },
   "themes": [
     {
       "id": "aile",

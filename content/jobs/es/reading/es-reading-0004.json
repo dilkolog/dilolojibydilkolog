@@ -1,0 +1,16 @@
+{
+  "id": "es-reading-0004",
+  "language": "es",
+  "kind": "reading",
+  "level": "A1",
+  "grammar": [
+    "basics_es_presente"
+  ],
+  "count": 25,
+  "starter": true,
+  "ids": {
+    "from": 31,
+    "to": 55
+  },
+  "createdAt": "2026-11-13T11:35:37.506Z"
+}

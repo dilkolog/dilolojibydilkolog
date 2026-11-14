@@ -1,0 +1,1284 @@
+{
+ "results": [
+  {
+   "id": "fr-r-000031",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: 'travail' -> 'devoirs' would be more natural for homework; tr 'ödev' already assumes that."
+   ]
+  },
+  {
+   "id": "fr-r-000032",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 3,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: tr 'Elle est super ! Elle est grande.' -> 'Büyükmüş.' adds evidential nuance; use 'Çok büyük.'",
+    "minor: 'Tu vas au travail avec ?' is colloquial stranded 'avec'; 'Tu y vas avec ?'/'Tu vas au travail avec elle ?' clearer for A1."
+   ]
+  },
+  {
+   "id": "fr-r-000033",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000034",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: speaker label 'Luc, au café :' / tr 'Luc, kafede:' is odd; use 'Luc (garçon de café) :'.",
+    "minor: tr 'Très bien' -> 'Çok iyi' is stiff; 'Peki' / 'Çok güzel'."
+   ]
+  },
+  {
+   "id": "fr-r-000035",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000036",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": false,
+     "note": "Hugo says 'Rien' only at first, then agrees to go to the cinema; 'Hiçbir şey' is the only fitting option but contradicts the end of the dialogue. Reword (e.g. 'Hugo'nun yarın planı var mı?' / 'başta ne diyor')."
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "Q1 flawed: Hugo ends up going to the cinema, so 'Hiçbir şey' contradicts the text overall; reword the question."
+   ]
+  },
+  {
+   "id": "fr-r-000037",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000038",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000039",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 3,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: Q0 option 'Clara'nın şehrinde' is vague (Clara is presumably in Paris too); replace distractor."
+   ]
+  },
+  {
+   "id": "fr-r-000040",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000041",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 3,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000042",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000043",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": false,
+     "note": "The ad never says 'à louer' (nor sale/rent); 'Kiralık' is inferred, not stated."
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "Text lacks 'À louer :' so Q0 'Kiralık bir daire' is not stated; add 'À louer :' to the first line (and tr 'Kiralık'). Same for 'Satılık' distractor logic.",
+    "minor: 'Le parc et l’école sont près.' unnatural without complement; use 'sont tout près' or 'sont à côté'."
+   ]
+  },
+  {
+   "id": "fr-r-000044",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "'Je parle avec des gens de tout le monde.' is ungrammatical; fix: 'des gens du monde entier' (or 'de partout')."
+   ]
+  },
+  {
+   "id": "fr-r-000045",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000046",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000047",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000048",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: tr labels 'Max (garson)' but French has plain 'Max :' (inconsistent; add 'Max, le serveur :' in French)."
+   ]
+  },
+  {
+   "id": "fr-r-000049",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000050",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000051",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000052",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000053",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "tr 'Elle a quel âge ?' -> 'Kaç yaşına giriyor?' is not literal; use 'Kaç yaşında?' (or French 'Elle a quel âge ? / Elle fait quel âge').",
+    "minor: 'Elle a quel âge ?' is colloquial; 'Quel âge a-t-elle ?' is standard."
+   ]
+  },
+  {
+   "id": "fr-r-000054",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "fr-r-000055",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000031",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: 'trabajo para mañana' -> 'deberes' more natural; tr uses 'ödev'."
+   ]
+  },
+  {
+   "id": "es-r-000032",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 3,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: vocab 'semana=hafta' but text has 'fin de semana' (hafta sonu); gloss the phrase."
+   ]
+  },
+  {
+   "id": "es-r-000033",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000034",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000035",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000036",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": false,
+     "note": "Hugo says 'Nada' only at first, then agrees to go to the cine; 'Hiçbir şey' is the only fitting option but contradicts the end of the dialogue. Reword the question."
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "Q1 flawed: Hugo ends up going to the cine, so 'Hiçbir şey' contradicts the text overall; reword the question."
+   ]
+  },
+  {
+   "id": "es-r-000037",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000038",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: 'Quiero pan.' is blunt for a shop; 'Quisiera pan, por favor.' more polite.",
+    "minor: asking a panadería for milk is a bit odd."
+   ]
+  },
+  {
+   "id": "es-r-000039",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 3,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000040",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "'Sami sale de la cama' is unnatural; use 'Sami se levanta'. Vocab then 'levantarse=kalkmak'."
+   ]
+  },
+  {
+   "id": "es-r-000041",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 3,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000042",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000043",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000044",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000045",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000046",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: '¡Buen día!' is Latin American; for neutral/Spain use '¡Buenos días!' only as greeting; closing 'Que tenga un buen día' / 'Adiós'."
+   ]
+  },
+  {
+   "id": "es-r-000047",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000048",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: tr 'Max (garson)' label absent in Spanish source; add 'Max, el camarero:'."
+   ]
+  },
+  {
+   "id": "es-r-000049",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "Gender error: 'Tito está contenta.' -> 'Tito está contento.' (el gato)."
+   ]
+  },
+  {
+   "id": "es-r-000050",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000051",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000052",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000053",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 2,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "tr 'Kaç yaşına giriyor?' for '¿Cuántos años tiene?' -> 'Kaç yaşında?'",
+    "minor: bringing 'café y pan' to a birthday party is odd; use 'una tarta'/'un pastel' (French has gâteau)."
+   ]
+  },
+  {
+   "id": "es-r-000054",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": []
+  },
+  {
+   "id": "es-r-000055",
+   "answers": [
+    {
+     "q": 0,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 1,
+     "answer": 0,
+     "single": true,
+     "note": ""
+    },
+    {
+     "q": 2,
+     "answer": 1,
+     "single": true,
+     "note": ""
+    }
+   ],
+   "issues": [
+    "minor: 'con el libro en la cabeza' -> 'con el libro sobre la cabeza'."
+   ]
+  }
+ ]
+}

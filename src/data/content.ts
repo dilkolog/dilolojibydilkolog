@@ -125,5 +125,8 @@ export async function grammarForIds(language: ContentLanguage, m: ContentManifes
   return parts.flat().filter((q) => want.has(q.id) && !out.has(q.id)).map(asExercise)
 }
 
-/** Where a text stands for a beginner (lower first): the first-step series in its order, then the rest. */
-export const beginnerRank = (r: Pick<PublishedReading, 'firstStep'>): number => (r.firstStep ? r.firstStep.position : 1000)
+/**
+ * Where a text stands for a beginner (lower first): the first-step series in its order, then the starter texts (short
+ * texts written from the most frequent words, read in any order), then the rest.
+ */
+export const beginnerRank = (r: Pick<PublishedReading, 'firstStep' | 'starter'>): number => (r.firstStep ? r.firstStep.position : r.starter ? 1000 : 2000)

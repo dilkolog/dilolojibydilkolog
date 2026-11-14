@@ -1,0 +1,93 @@
+{
+  "job": "es-reading-0004",
+  "language": "es",
+  "kind": "reading",
+  "total": 25,
+  "accepted": [
+    "es-r-000031",
+    "es-r-000032",
+    "es-r-000033",
+    "es-r-000034",
+    "es-r-000035",
+    "es-r-000036",
+    "es-r-000037",
+    "es-r-000038",
+    "es-r-000039",
+    "es-r-000040",
+    "es-r-000041",
+    "es-r-000042",
+    "es-r-000043",
+    "es-r-000044",
+    "es-r-000045",
+    "es-r-000046",
+    "es-r-000047",
+    "es-r-000048",
+    "es-r-000049",
+    "es-r-000050",
+    "es-r-000051",
+    "es-r-000052",
+    "es-r-000053",
+    "es-r-000054",
+    "es-r-000055"
+  ],
+  "rejected": [],
+  "warnings": [
+    {
+      "id": "es-r-000033",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): fútbol"
+      ]
+    },
+    {
+      "id": "es-r-000038",
+      "reasons": [
+        "above A1 or unlisted: euros",
+        "starter, outside (among the 300 most frequent or A1 within 2000): euros"
+      ]
+    },
+    {
+      "id": "es-r-000040",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): levanta"
+      ]
+    },
+    {
+      "id": "es-r-000042",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): lloviendo"
+      ]
+    },
+    {
+      "id": "es-r-000044",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): temprano"
+      ]
+    },
+    {
+      "id": "es-r-000047",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): quince, guitarra"
+      ]
+    },
+    {
+      "id": "es-r-000050",
+      "reasons": [
+        "above A1 or unlisted: hechos"
+      ]
+    },
+    {
+      "id": "es-r-000052",
+      "reasons": [
+        "starter, outside (among the 300 most frequent or A1 within 2000): veinte"
+      ]
+    },
+    {
+      "id": "es-r-000055",
+      "reasons": [
+        "above A1 or unlisted: maría",
+        "starter, outside (among the 300 most frequent or A1 within 2000): maría, doce"
+      ]
+    }
+  ],
+  "rate": 1
+}
