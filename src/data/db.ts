@@ -216,6 +216,8 @@ export interface Settings {
   pretest: boolean
   /** Resume an unfinished recent introduction with its card; never reveal an already tested word. */
   refreshCard?: boolean
+  /** After a miss on a typed question, offer typing the shown answer once (unscored). Unset = on. */
+  copyAfterMiss?: boolean
   /** Offer "not sure" before answering; confident errors get extra attention. */
   confidence: boolean
   /** Turn "e'" into "é" etc. while typing. */

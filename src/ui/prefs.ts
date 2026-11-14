@@ -19,6 +19,8 @@ export const prefs = {
   showKeyLegend: true,
   pretest: true,
   refreshCard: true,
+  /** After a miss on a typed question, the shown answer is typed once (Settings → Sorular). */
+  copyAfterMiss: true,
   confidence: true,
   accentShortcuts: true,
   autoRetire: true,
@@ -47,6 +49,7 @@ export function applySettings(s: Settings) {
   prefs.showKeyLegend = s.showKeyLegend
   prefs.pretest = s.pretest
   prefs.refreshCard = s.refreshCard !== false
+  prefs.copyAfterMiss = s.copyAfterMiss !== false
   prefs.confidence = s.confidence
   prefs.accentShortcuts = s.accentShortcuts
   // One model for everyone, chosen by the site (the owner pays); a model saved in older settings is ignored.

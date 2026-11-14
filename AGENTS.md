@@ -96,6 +96,8 @@ Yeni kelimeler `session.ts:startSession` içinde üçlü gruplara ayrılır (`le
 
 Kalıcı öğrenme güncellemesi: normal oturum taslağı `data/sessionDraft.ts` ile dil başına `meta study-session:<dil>` altında cihazda saklanır. Cevap ve sonraki adım `saveReview` işleminde atomiktir; override/discard da taslağı atomik düzeltir. `UserWordState.learning` beceri başına kalan hedefi ve gecikmeli hatırlamayı taşır; serbest pratik bunu değiştirmez. `learningProgress.ts` birleştirmesi zaman + sıra sayacına göre sıfır borcu da korur. Başarılı tekrarlar FSRS aralığını şişirmez, yanlış/tam ipuçlu tekrar normal değerlendirilir. Yardımsızlık ölçütü `independentAnswer`, basamaklar `advanceLearning`; yanlış becerinin doğru cevabı geri çağırma borcunu kapatmaz. Yeni rehberli kelimelerde yüksek aşamalar için en az 24 saat sonra üretken geri çağırma gerekir; eski kayıtlar korunur. Ayrıntılar: [kalıcı öğrenme akışı](docs/kalici-ogrenme-motoru-2026-11-04.md).
 
+Yazılı yanlıştan sonra "doğrusunu yaz" adımı (`CopyStep`, `copyAfterMiss`) puanlanmaz; halka bu turdaki adımları `learningSteps` ile gösterir (yalnız görüntü). Ayrıntı: `docs/notlar/ogrenme-motoru.md` (2026-11-13).
+
 ## Bilinen tuzaklar
 - **Telefonda yapışık öğeler:** üst çubuk da yapışık; altına girmemeleri için `top: calc(var(--topbar-h) + 0.5rem)` (`.shell` telefonda `--topbar-h` tanımlar, #125).
 - E2E'de mikrofon yok: gölgeleme testi `getUserMedia`'yı sessiz bir `AudioContext` akışıyla taklit eder (#127). LanguageTool testi `page.route('https://api.languagetool.org/v2/check', …)` ile taklit edilir.

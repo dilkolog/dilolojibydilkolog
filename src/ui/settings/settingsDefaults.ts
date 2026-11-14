@@ -10,7 +10,7 @@ export type GroupId = 's-account' | 's-study' | 's-answers' | 's-sound' | 's-loo
 export const ADVANCED_GROUPS: GroupId[] = ['s-study', 's-answers', 's-sound', 's-look', 's-remind', 's-tools', 's-data']
 export const RESET_KEYS: Partial<Record<GroupId, (keyof Settings)[]>> = {
   's-study': ['dailyMinutes', 'newWordsPerDay', 'dailyXpGoal', 'sessionMax', 'splitLongDays', 'probes', 'retention', 'frequencyFirst', 'autoRetire', 'dayWeights'],
-  's-answers': ['typingShare', 'autoAdvance', 'hintDelaySec', 'accentShortcuts', 'confidence', 'hideVosotros', 'accentStrict', 'exercisePrefs', 'typedBlanks', 'skipLongGloss', 'pretest', 'refreshCard', 'targetDefinitions'],
+  's-answers': ['typingShare', 'autoAdvance', 'hintDelaySec', 'accentShortcuts', 'confidence', 'hideVosotros', 'accentStrict', 'copyAfterMiss', 'exercisePrefs', 'typedBlanks', 'skipLongGloss', 'pretest', 'refreshCard', 'targetDefinitions'],
   's-sound': ['autoPlayAudio', 'soundEffects', 'soundVolume', 'soundLevel', 'haptics', 'speechExercises', 'varyVoices', 'speechRate', 'voices'],
   's-look': ['theme', 'textScale', 'keepAwake', 'showKeyLegend', 'hiddenTabs'],
 }
@@ -25,6 +25,7 @@ const RESET_VALUES: Partial<Settings> = {
   typedBlanks: true,
   skipLongGloss: false,
   refreshCard: true,
+  copyAfterMiss: true,
   soundVolume: 0.8,
   soundLevel: 'all',
   keepAwake: true,
