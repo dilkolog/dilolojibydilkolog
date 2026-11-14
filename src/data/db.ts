@@ -19,6 +19,7 @@ import { addTime, cleanTimeLog, daySeconds, pruneTimeLog, type TimeKind, type Ti
 import { cleanGone, cleanNotices, rememberGone, removeNotices, type Notice, type NoticeKind } from '../engine/notices'
 import type { Prefs } from './devicePrefs'
 import { award, cleanLedger, timeAwardKey, timeXp, type XpLedger } from '../engine/xpLedger'
+import { cleanPteLog, type PteLog } from '../engine/pteScore'
 import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
@@ -980,6 +981,15 @@ export class KelimeDB extends Dexie {
     return this.saveLog('examtasks', log)
   }
 
+  /** How the PTE-style tasks went: each item's last answer and each task's last round (see engine/pteScore). */
+  async getPteLog(): Promise<PteLog> {
+    return cleanPteLog((await this.meta.get('ptelog'))?.value)
+  }
+
+  savePteLog(log: PteLog) {
+    return this.meta.put({ key: 'ptelog', value: log })
+  }
+
   /** Labelled pictures (see engine/diagram); the pictures themselves are in the media store. */
   async getDiagrams(language?: TargetLanguage): Promise<Diagram[]> {
     const all = ((await this.meta.get('diagrams'))?.value as Diagram[]) ?? []
@@ -1488,6 +1498,8 @@ export interface Backup {
   enVerbs?: GrammarLog
   /** How the exam-style reading and listening questions went. */
   examTasks?: GrammarLog
+  /** How the PTE-style tasks went. */
+  pte?: PteLog
   /** Dictionary corrections and look-ups, per language. */
   dictionary?: Partial<Record<TargetLanguage, DictionaryNotes>>
   /** Choices and seen-markers kept beside the database (see devicePrefs.ts; backup version 13+). */
@@ -1556,6 +1568,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     affixes: await db.getAffixLog(),
     enVerbs: await db.getEnVerbLog(),
     examTasks: await db.getExamLog(),
+    pte: await db.getPteLog(),
     dictionary: { en: await db.getDictionaryNotes('en'), fr: await db.getDictionaryNotes('fr'), es: await db.getDictionaryNotes('es') },
     // Loaded here, not with the first screen: it only matters to a backup and a sync.
     prefs: await (await import('./devicePrefs')).collectPrefs(db, now),
@@ -1676,6 +1689,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.affixes) await db.meta.put({ key: 'affixes', value: backup.affixes })
     if (backup.enVerbs) await db.meta.put({ key: 'enverbs', value: backup.enVerbs })
     if (backup.examTasks) await db.meta.put({ key: 'examtasks', value: backup.examTasks })
+    if (backup.pte) await db.meta.put({ key: 'ptelog', value: cleanPteLog(backup.pte) })
   })
   // Outside the transaction: the module loads on demand, and a transaction closes on an unrelated await.
   if (backup.prefs) await (await import('./devicePrefs')).applyPrefs(db, backup.prefs)
