@@ -26,7 +26,7 @@ Bu 237 kaydın 13'ü, fiilsiz/atasözü/saydam veya o örnekte yalnız gerçek a
 
 ## Kaynaklar ve derleyici
 
-484 çekirdek dışı kaydın her birinde en az iki ayrı yayıncıdan kaynak adresi bulunur. `sourceChecks` erişim yöntemini, tarihi ve gerekirse madde içindeki konumu kaydeder. Arama özetinden okunan kaynak tam sayfa açılmış gibi sunulmaz. Önceki sayfa açma ve erişim kısıtı notları korunmuştur. Birçok ikinci kaynak sözlüktür; her deyimde ayrıca tarihli güncel gazete örneği doğrulanmış olduğu iddia edilmez. Güncel sıklık ölçülmedi; bu, bağımsız editoryal denetimin parçası olarak açık kalır.
+484 çekirdek dışı kaydın tamamına seçilmiş gerçek kullanım tanığı eklendi (`sourceChecks.selectedUsageWitness`). Tanıklar derlem örnekleri, tarihli atıflı alıntılar veya yayımlanmış metinlerdir; `src` sözlük kaynaklarını korur. Her kullanım tanığının yayıncısından farklı en az bir sözlük kaynağı vardır. Erişim yöntemi, tarih, ifade ve metin içi konum kaydedildi: 324 sayfa açılarak, 160 arama özeti üzerinden doğrulandı. Arama özeti tam sayfa erişimi olarak sunulmaz. Sıklık ölçümü yapılmadı; kaynak kaydı bağımsız anlam/örnek incelemesinin yerine geçmez.
 
 Académie française'ın gerçek dokuzuncu baskı madde adresleri sözcük yerine numaralı kimlik taşıdığından derleyicide dar bir destek eklendi: yalnız HTTPS, resmî alan adı, `A9` madde biçimi, tarihli doğrulama ve deyime ilişkin açık madde konumu varsa kabul edilir. Bu bir kaynak okuma kanıtı değildir; URL ön kontrolünün gerçek kaynakları reddetmesini giderir. Fransızca tekil URL başlığı/çoğul deyim karşılaştırması da eklendi. Sahte URL sorgu parametresi üretilmedi.
 
@@ -37,7 +37,7 @@ Académie française'ın gerçek dokuzuncu baskı madde adresleri sözcük yerin
 - Tarihsel editoryal `validate.py` ve 7 Python testi geçti.
 - Çekirdek 0000, İspanyolca dosyaları ve denetçi raporları korunur.
 
-**Bu paket taslaktır.** Önceki 63 düzeltmenin tekrar denetimi ve yeni/aktarılmış uygulama kayıtlarının Antigravity incelemesi, ardından sahibinin örneklemi bekler. CEFR atamaları editoryaldir. Temalar eşit 31'er kayıt değildir; özellikle beden imgesi baskındır ve ease teması yalnız çekirdekte temsil edilir. 31'lik tema ve 6/12/13 seviye hedefinin sağlandığı iddia edilmez. 500 sayısına ulaşılması bağımsız dil denetiminin tamamlandığı anlamına gelmez.
+**Bu paket taslaktır.** Önceki 63 düzeltmenin tekrar denetimi ve yeni/aktarılmış uygulama kayıtlarının Antigravity incelemesi, ardından sahibinin örneklemi bekler. CEFR atamaları editoryaldir. Sahibinin 2026-11-14 kararıyla 500 yaygın deyim korunur; temaların eşit olması gerekmiyor. Aşağıdaki dağılım bu tercihi yansıtır; CEFR seviyeleri editoryaldir. 500 sayısına ulaşılması bağımsız dil denetiminin tamamlandığı anlamına gelmez.
 
 ## Gerçek dağılım
 
@@ -66,6 +66,6 @@ Académie française'ın gerçek dokuzuncu baskı madde adresleri sözcük yerin
 | decide | 32 |
 | move | 13 |
 
-Kaynak erişim yöntemleri, aynı kayıt içindeki tarihsel ek kanıtlar da sayılarak: dictionary_entry_opened: 229, dictionary_search_excerpt: 957, usage_page_opened: 32, usage_search_excerpt: 9.
+Seçilmiş kullanım tanıkları: 324 `usage_page_opened`, 160 `usage_search_excerpt` (toplam 484). Tarihsel ek kanıtlar ayrıca korunur.
 
 Yeniden üretim: `node scripts/build-idioms.mjs` bütün dillerin çıktılarını yazar; yalnız kendi dilini teslim eden ajan geçici `out` dizini kullanıp kendi dilinin dosyasını kopyalamalıdır.

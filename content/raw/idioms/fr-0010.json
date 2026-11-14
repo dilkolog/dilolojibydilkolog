@@ -42,6 +42,16 @@
         "citation": "— (Rémi Nadeau, « Voici les bulletins de session des élus à l'Assemblée nationale », Le journal de Québec, 12 décembre 2020)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_son_%C3%A9pingle_du_jeu",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer son épingle du jeu",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tirer_son_épingle_du_jeu&oldid=39753557",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -90,6 +100,16 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.estrepublicain.fr/actualite/2017/06/17/ce-que-je-vous-dis",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "İlk paragrafta s’avancer en terrain miné mecaz kullanımı",
+        "expression": "s'avancer en terrain miné",
+        "evidenceKind": "published_usage",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -127,6 +147,16 @@
         "citation": "— (Víctor del Árbol, Toutes les vagues de l’océan, Babel Noir, 2014)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_d%E2%80%99affaire",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2014.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer d'affaire",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tirer_d’affaire&oldid=39755851",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "tirer quelqu'un d'affaire"
@@ -165,6 +195,16 @@
         "citation": "— (Fanfan López, Le Saucisson (Vieux proverbe Pied-noir) ou Les tribulations d'une silhouette algéroise, Éditions Publibook, 2003, page 288)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_des_b%C3%A2tons_dans_les_roues",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 140; année mentionnée 2016.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre des bâtons dans les roues",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_des_bâtons_dans_les_roues&oldid=39610076",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "mettre des bâtons dans les roues de quelqu'un"
@@ -197,6 +237,16 @@
         "url": "https://www.expressio.fr/expressions/remonter-la-pente",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/remonter_la_pente",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "remonter la pente",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=remonter_la_pente&oldid=38715902",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -234,6 +284,16 @@
         "citation": null,
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voir_le_bout_du_tunnel",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "voir le bout du tunnel",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=voir_le_bout_du_tunnel&oldid=39756108",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -271,6 +331,16 @@
         "citation": "— (Víctor del Árbol, Toutes les vagues de l’océan, Babel Noir, 2014)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_de_beaux_draps",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être dans de beaux draps",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=être_dans_de_beaux_draps&oldid=39733644",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -308,6 +378,16 @@
         "citation": "— (Jean-Paul Chagnollaud, Euro-Méditerranée: Un projet à réinventer, 2000)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/aller_droit_dans_le_mur",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2000.",
+        "evidenceKind": "dated_quotation",
+        "expression": "aller droit dans le mur",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=aller_droit_dans_le_mur&oldid=39729182",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -345,6 +425,16 @@
         "citation": "— (Emmanuel de Waresquiel, Voyage autour de mon enfance, Tallandier, 2022, page 122)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/essuyer_les_pl%C3%A2tres",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "essuyer les plâtres",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=essuyer_les_plâtres&oldid=39226740",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -376,6 +466,15 @@
         "url": "https://www.expressio.fr/expressions/se-heurter-a-un-mur",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://www.lemonde.fr/international/article/2026/10/05/une-chinoise-arretee-aux-etats-unis-pour-avoir-espionne-le-fils-du-president-taiwanais_6788572_3210.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de se heurter à un mur",
+        "evidenceKind": "published_usage",
+        "expression": "se heurter à un mur",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -413,6 +512,15 @@
         "citation": "— (Colette, Le toutounier, 1939)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/archives/article/2003/12/05/pour-en-voir-de-toutes-les-couleurs_4286471_1819218.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de en voir de toutes les couleurs",
+        "evidenceKind": "published_usage",
+        "expression": "en voir de toutes les couleurs",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -450,6 +558,16 @@
         "citation": "— (Annie Ernaux - Regarde les lumières mon amour - Gallimard Folio 2016 - page 91)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_la_cl%C3%A9_sous_la_porte",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre la clé sous la porte",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_la_clé_sous_la_porte&oldid=39857021",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -478,6 +596,15 @@
         "url": "https://www.larousse.fr/dictionnaires/francais/corde/19248",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2026/04/14/la-corde-au-cou-une-prise-d-otage-sous-tres-haute-tension-signee-gus-van-sant_6679873_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir la corde au cou",
+        "evidenceKind": "published_usage",
+        "expression": "avoir la corde au cou",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -506,6 +633,16 @@
         "url": "https://fr.wiktionary.org/wiki/donner_du_fil_%C3%A0_retordre",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/donner_du_fil_%C3%A0_retordre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 126; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "donner du fil à retordre",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=donner_du_fil_à_retordre&oldid=39692229",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -534,6 +671,15 @@
         "url": "https://fr.wiktionary.org/wiki/mordre_la_poussi%C3%A8re",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/libye/article/2011/08/23/libye-la-guerre-de-nicolas-sarkozy_1562377_1496980.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mordre la poussière",
+        "evidenceKind": "published_usage",
+        "expression": "mordre la poussière",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -562,6 +708,16 @@
         "url": "https://fr.wiktionary.org/wiki/passer_%C3%A0_la_trappe",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_%C3%A0_la_trappe",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "passer à la trappe",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=passer_à_la_trappe&oldid=38094379",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -602,6 +758,16 @@
         "url": "https://sanction.usito.usherbrooke.ca/expressions/gauche",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_l%E2%80%99arme_%C3%A0_gauche",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 146; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "passer l'arme à gauche",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=passer_l’arme_à_gauche&oldid=38984484",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -630,6 +796,16 @@
         "url": "https://fr.wiktionary.org/wiki/passer_entre_les_mailles_du_filet",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_entre_les_mailles_du_filet",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 127; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "passer entre les mailles du filet",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=passer_entre_les_mailles_du_filet&oldid=38094411",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -658,6 +834,15 @@
         "url": "https://www.larousse.fr/dictionnaires/francais/rendre/68146?q=rendre",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/serie/fantastique/4400-m195384899/s01e01-tout-commence-par-le-passe-c195384214/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de rendre l'âme",
+        "evidenceKind": "published_usage",
+        "expression": "rendre l'âme",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -686,6 +871,16 @@
         "url": "https://fr.wiktionary.org/wiki/sauver_les_meubles",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sauver_les_meubles",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "sauver les meubles",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=sauver_les_meubles&oldid=38721614",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -714,6 +909,16 @@
         "url": "https://fr.wiktionary.org/wiki/se_battre_contre_des_moulins_%C3%A0_vent",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_battre_contre_des_moulins_%C3%A0_vent",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se battre contre des moulins à vent",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_battre_contre_des_moulins_à_vent&oldid=39755279",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -742,6 +947,16 @@
         "url": "https://fr.wiktionary.org/wiki/sentir_le_roussi",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sentir_le_roussi",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2014.",
+        "evidenceKind": "dated_quotation",
+        "expression": "sentir le roussi",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=sentir_le_roussi&oldid=38096709",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -770,6 +985,15 @@
         "url": "https://dictionnaire.lerobert.com/definition/orniere",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Article/Droits-tv-l-appel-d-offres-ligue-1-envisage-en-octobre/1713338",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de sortir de l'ornière",
+        "evidenceKind": "published_usage",
+        "expression": "sortir de l'ornière",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -798,6 +1022,16 @@
         "url": "https://dictionary.cambridge.org/fr/dictionnaire/francais-anglais/tomber-dans-le-panneau",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tomber_dans_le_panneau",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2014.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tomber dans le panneau",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tomber_dans_le_panneau&oldid=39753951",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -826,6 +1060,15 @@
         "url": "https://fr.wiktionary.org/wiki/tomber_de_Charybde_en_Scylla",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://blog.franceinfo.fr/l-instit-humeurs/2012/01/28/fragments-decole.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de tomber de Charybde en Scylla",
+        "evidenceKind": "published_usage",
+        "expression": "tomber de Charybde en Scylla",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -854,6 +1097,16 @@
         "url": "https://fr.wiktionary.org/wiki/tomber_de_haut",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tomber_de_haut",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2000.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tomber de haut",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tomber_de_haut&oldid=39959548",
+        "selectedUsageWitness": true
       }
     ]
   }

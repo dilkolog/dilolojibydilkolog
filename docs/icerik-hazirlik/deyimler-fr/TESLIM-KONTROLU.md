@@ -14,4 +14,4 @@
 - Çekirdek fr-0000.json, uygulama deyim verileri, İspanyolca ve İngilizce dosyaları korunmuştur.
 - `git diff --check` geçti.
 
-Antigravity’nin düzeltmeleri tekrar okuması, CEFR dağılımı, bütün setin ikinci kaynak kapsamı ve uygulama şemasına geçiş sürer. Yapı denetimi dilsel tek cevap kanıtının veya insan onayının yerine geçmez; PR taslak kalır.
+Uygulama taslağı ve 484 çekirdek dışı kaydın ikinci kaynak/kullanım tanıkları tamamlandı. Antigravity’nin düzeltmeleri ve uygulama setini tekrar okuması, ardından sahibinin örneklemi bekler. Eşit tema şartı sahibinin kararıyla kaldırıldı. Yapı denetimi dilsel tek cevap kanıtının veya insan onayının yerine geçmez; PR taslak kalır.

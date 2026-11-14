@@ -34,6 +34,16 @@
         "citation": "— (Hugo TSR, Iceberg, Tant qu'on est là, 2017)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_cafard",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir le cafard",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_le_cafard&oldid=39733039",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -79,6 +89,16 @@
         "citation": "— (Franca Lugand-Ciacci, L’école assassinée, 2008)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_la_charrue_avant_les_b%C5%93ufs",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 141; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre la charrue avant les bœufs",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_la_charrue_avant_les_bœufs&oldid=39801129",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -124,6 +144,16 @@
         "citation": "— (Les filles, qui aimaient peut-être toujours leur père, ont voulu ménager la chèvre et le chou, le père et le mari;)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/m%C3%A9nager_la_ch%C3%A8vre_et_le_chou",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 137; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "ménager la chèvre et le chou",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=ménager_la_chèvre_et_le_chou&oldid=39444859",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -169,6 +199,16 @@
         "citation": "— (Du poisson « durable » en grande surface ? )",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/noyer_le_poisson",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "noyer le poisson",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=noyer_le_poisson&oldid=39849099",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -214,6 +254,16 @@
         "citation": "— (Rémi Nadeau, Roberge est encore l’homme de Legault, Le Journal de Québec, 30 janvier 2021)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_le_taureau_par_les_cornes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre le taureau par les cornes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_le_taureau_par_les_cornes&oldid=39011829",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -252,6 +302,16 @@
         "url": "https://www.expressio.fr/expressions/mettre-la-puce-a-l-oreille-avoir-la-puce-a-l-oreille",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2026/10/13/les-series-de-la-semaine-la-diplomate-below-visioquest-et-crystal-lake_6793044_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı",
+        "expression": "mettre la puce à l'oreille",
+        "evidenceKind": "published_usage",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "mettre la puce à l'oreille de quelqu'un"
@@ -290,6 +350,16 @@
         "citation": "— (Louis Gigout, Syracuse : Chroniques de voyage, 2007)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_la_chair_de_poule",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir la chair de poule",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_la_chair_de_poule&oldid=39697569",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -330,6 +400,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/pixels/article/2023/12/08/baldur-s-gate-iii-quand-le-c-ur-des-joueurs-chavire-pour-des-personnages-de-pixels_6204713_4408996.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir des papillons dans le ventre",
+        "evidenceKind": "published_usage",
+        "expression": "avoir des papillons dans le ventre",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -367,6 +446,16 @@
         "citation": "— (Patrick Besson, La vie quotidienne de Patrick Besson sous le règne de François Mitterrand, Fayard, 2006)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/monter_sur_ses_grands_chevaux",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "monter sur ses grands chevaux",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=monter_sur_ses_grands_chevaux&oldid=39498168",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -404,6 +493,16 @@
         "citation": "— (Pierre Lemaitre, Couleurs de l’incendie, Albin Michel, 2018)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_la_mouche",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 137; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre la mouche",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_la_mouche&oldid=39639237",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -441,6 +540,16 @@
         "citation": "— (La Quadrature du Net, Smart Cities sécuritaires : la CNIL forfait ?, 6 novembre 2018 → lire en ligne)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/appeler_un_chat_un_chat",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "appeler un chat un chat",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=appeler_un_chat_un_chat&oldid=39206565",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -478,6 +587,16 @@
         "citation": "— (Delphine de Vigan, Rien ne s’oppose à la nuit, J.-C. ...   * France (Lyon) : écouter « du coq à l’âne [Prononciation ?]",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_du_coq_%C3%A0_l%E2%80%99%C3%A2ne",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 139; année mentionnée 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "passer du coq à l'âne",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=du_coq_à_l’âne&oldid=39912685",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -517,6 +636,15 @@
         "citation": "— (Georges Simenon, Les inconnus dans la maison, Gallimard, 1940, réédition Folio, 1975, page 228) ...   * France (Lyon) : écouter « revenir à ses moutons [Prononciation ?]",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://lemagdesanimaux.ouest-france.fr/dossier-1604-revenons-nos-moutons.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de revenir à ses moutons",
+        "evidenceKind": "published_usage",
+        "expression": "revenir à ses moutons",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -554,6 +682,16 @@
         "citation": "— (Georges Emmanuel Clancier, La Fabrique du roi, vol. 2 : Le Pain noir, éd. Robert Laffont, 2014)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/clouer_le_bec",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "clouer le bec",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=clouer_le_bec&oldid=39919089",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "clouer le bec à quelqu'un"
@@ -592,6 +730,15 @@
         "citation": null,
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/L-entraineur-de-naples-antonio-conte-contredit-son-president-en-pleine-conference-de-presse-s-accrocher-a-ces-arguments-je-n-aime-pas-ca/1678773",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de brosser dans le sens du poil",
+        "evidenceKind": "published_usage",
+        "expression": "brosser dans le sens du poil",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "brosser quelqu'un dans le sens du poil"
@@ -630,6 +777,16 @@
         "citation": "— (Romain Herreros, Jamal Khashoggi : Menaces diplomatiques, enquête, enregistrements… le point sur la disparition du journaliste, Le Huffington Post. Mis en ligne le 14 octobre 2018)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_regarder_en_chiens_de_fa%C3%AFence",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se regarder en chiens de faïence",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_regarder_en_chiens_de_faïence&oldid=39755074",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -669,6 +826,16 @@
         "citation": "— (Marc Trévidic, Le juge Trévidic : « Dans l’affaire Karachi, on nous a mis trop de handicaps », Le Monde. Mis en ligne le 7 octobre 2019)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_tirer_dans_les_pattes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 124; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer dans les pattes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_tirer_dans_les_pattes&oldid=38096574",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "tirer dans les pattes de quelqu'un"
@@ -709,6 +876,16 @@
         "citation": "— (Grégoire Bouillier, Le Coeur ne cède pas, J'ai lu, 2022, p. 1162.)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_des_oursins_dans_les_poches",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir des oursins dans les poches",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_des_oursins_dans_les_poches&oldid=39917732",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -748,6 +925,16 @@
         "citation": "— (Jacques Mandelbaum, Clint Eastwood, ou l’art d’être vieux derrière et devant la caméra, Le Monde. Mis en ligne le 10 novembre 2021)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tra%C3%AEner_la_patte",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "traîner la patte",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=traîner_la_patte&oldid=39755541",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -785,6 +972,16 @@
         "citation": "— (Qui veut la peau de Roger Rabbit, 1988)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_le_pied_de_grue",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 137; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire le pied de grue",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_le_pied_de_grue&oldid=39200512",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -822,6 +1019,15 @@
         "citation": "— (Laurent de Wilde, Monk, 1996, collection Folio, page 151)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/disparitions/article/2013/04/13/antoine-veil-haut-fonctionnaire-homme-politique-chef-d-entreprise-et-mari-de_3159208_3382.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre le pied à l'étrier",
+        "evidenceKind": "published_usage",
+        "expression": "mettre le pied à l'étrier",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "mettre le pied à l'étrier à quelqu'un"
@@ -862,6 +1068,16 @@
         "citation": "— (Jean-Louis Lessard, À la hache sur laurentiana.blogspot.com. Mis en ligne le 17 juin 2007)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_mouche",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2014.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire mouche",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_mouche&oldid=39473028",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -899,6 +1115,16 @@
         "citation": "— (Actu Pure Break, 10/10/2024)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_du_flair",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir du flair",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_du_flair&oldid=39902034",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -933,6 +1159,15 @@
         "url": "https://www.expressio.fr/expressions/tete-de-linotte/page-10",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://lemagdesanimaux.ouest-france.fr/dossier-1643-tete-de-linotte.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir une tête de linotte",
+        "evidenceKind": "published_usage",
+        "expression": "avoir une tête de linotte",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -961,6 +1196,15 @@
         "url": "https://dictionnaire.lerobert.com/definition/elephant",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/a-la-une/article/2011/03/08/la-memoire-ses-codes-et-ses-cles_1489929_3208.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir une mémoire d'éléphant",
+        "evidenceKind": "published_usage",
+        "expression": "avoir une mémoire d'éléphant",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -989,6 +1233,15 @@
         "url": "https://dictionnaire.lerobert.com/definition/autruche",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2006/08/25/lettre-ouverte-a-andre-malraux_806418_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire l'autruche",
+        "evidenceKind": "published_usage",
+        "expression": "faire l'autruche",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1023,6 +1276,15 @@
         "url": "https://www.expressio.fr/expressions/battre-de-l-aile-avoir-du-plomb-dans-l-aile",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/documentaire/societe/classe-de-chefs-m349934343/s01-battre-de-l-aile-c355080371/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de battre de l'aile",
+        "evidenceKind": "published_usage",
+        "expression": "battre de l'aile",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1051,6 +1313,15 @@
         "url": "https://fr.wiktionary.org/wiki/chercher_la_petite_b%C3%AAte",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/archives/article/2000/09/08/internet-rehabilite-le-bavardage_3709468_1819218.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de chercher la petite bête",
+        "evidenceKind": "published_usage",
+        "expression": "chercher la petite bête",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1079,6 +1350,15 @@
         "url": "https://fr.wiktionary.org/wiki/courir_deux_li%C3%A8vres_%C3%A0_la_fois",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/politique/article/2018/10/15/l-evaluation-du-cice-continue-de-faire-debat-chez-les-economistes_5369587_823448.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de courir plusieurs lièvres à la fois",
+        "evidenceKind": "published_usage",
+        "expression": "courir plusieurs lièvres à la fois",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1107,6 +1387,16 @@
         "url": "https://fr.wiktionary.org/wiki/jouer_au_chat_et_%C3%A0_la_souris",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_au_chat_et_%C3%A0_la_souris",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jouer au chat et à la souris",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=jouer_au_chat_et_à_la_souris&oldid=38092797",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1135,6 +1425,16 @@
         "url": "https://fr.wiktionary.org/wiki/l%C3%A2cher_la_bride",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/l%C3%A2cher_la_bride",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "lâcher la bride",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=lâcher_la_bride&oldid=39641460",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1163,6 +1463,15 @@
         "url": "https://fr.wiktionary.org/wiki/manger_%C3%A0_tous_les_r%C3%A2teliers",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://mcetv.ouest-france.fr/2024/secret-story-lou-veut-nominer-sa-rivale-amoureuse-perrine-28052024/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de manger à tous les râteliers",
+        "evidenceKind": "published_usage",
+        "expression": "manger à tous les râteliers",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1197,6 +1506,15 @@
         "url": "https://www.expressio.fr/expressions/mordre-a-l-hamecon",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Respire/Pratique-sportive/Actualites/-trop-nul-plus-jamais-le-velo-en-famille-ce-faux-ami-des-parents-sportifs/1673839",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mordre à l'hameçon",
+        "evidenceKind": "published_usage",
+        "expression": "mordre à l'hameçon",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1225,6 +1543,16 @@
         "url": "https://fr.wiktionary.org/wiki/montrer_patte_blanche",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/montrer_patte_blanche",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "montrer patte blanche",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=montrer_patte_blanche&oldid=39781566",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1265,6 +1593,16 @@
         "url": "https://www.cnrtl.fr/definition/Orfraie",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/pousser_des_cris_d%E2%80%99orfraie",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2017.",
+        "evidenceKind": "dated_quotation",
+        "expression": "pousser des cris d'orfraie",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=pousser_des_cris_d’orfraie&oldid=38635153",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1293,6 +1631,15 @@
         "url": "https://fr.wiktionary.org/wiki/rentrer_dans_sa_coquille",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/culture/article/2008/06/14/isabella-rossellini-et-le-sexe-des-insectes_1058209_3246.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de rentrer dans sa coquille",
+        "evidenceKind": "published_usage",
+        "expression": "rentrer dans sa coquille",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1321,6 +1668,15 @@
         "url": "https://usito.usherbrooke.ca/d%C3%A9finitions/aile/lexies?v=battre+de+l%27aile+%2C+ne+battre+que+d%E2%80%99une+aile",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/politique/article/2015/11/12/le-fantasme-macron_4807749_823448.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de se brûler les ailes",
+        "evidenceKind": "published_usage",
+        "expression": "se brûler les ailes",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1349,6 +1705,16 @@
         "url": "https://fr.wiktionary.org/wiki/se_jeter_dans_la_gueule_du_loup",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_jeter_dans_la_gueule_du_loup",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se jeter dans la gueule du loup",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_jeter_dans_la_gueule_du_loup&oldid=39902889",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1377,6 +1743,15 @@
         "url": "https://fr.wiktionary.org/wiki/verser_des_larmes_de_crocodile",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://lemagdesanimaux.ouest-france.fr/dossier-1081-larmes-crocodile.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de verser des larmes de crocodile",
+        "evidenceKind": "published_usage",
+        "expression": "verser des larmes de crocodile",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1405,6 +1780,16 @@
         "url": "https://examen-francais-quebec.usito.usherbrooke.ca/d%C3%A9finitions/plume/lexies?v=voler+dans+les+plumes+%C3%A0%2C+de+quelqu%E2%80%99un",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/voler_dans_les_plumes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 126; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "voler dans les plumes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=voler_dans_les_plumes&oldid=38456425",
+        "selectedUsageWitness": true
       }
     ]
   }

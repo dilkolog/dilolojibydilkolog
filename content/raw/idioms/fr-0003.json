@@ -34,6 +34,16 @@
         "url": "https://www.expressio.fr/expressions/mettre-de-l-eau-dans-son-vin",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://www.watson.ch/fr/sport/football/556672786-football-luis-enrique-a-transforme-le-psg",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "purpose": "meaning_and_usage",
+        "locator": "Başlık veya ilgili paragrafta deyimin mecaz kullanım bağlamı",
+        "expression": "mettre de l'eau dans son vin",
+        "evidenceKind": "published_usage",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -73,6 +83,15 @@
         "url": "https://www.expressio.fr/expressions/raconter-des-salades",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://www.programme-television.org/news/cinema/coulisses-de-tournage/on-nous-raconte-des-salades-sebastien-tarrago-fait-de-grosses-revelations-sur-letat-physique-de-karim-benzema-avant-la-coupe-du-monde-au-qatar-123692",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Propos rapportés le 18 novembre 2022; contestation de la véracité des informations.",
+        "evidenceKind": "published_usage",
+        "expression": "raconter des salades",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -104,6 +123,15 @@
         "url": "https://www.expressio.fr/expressions/mettre-la-main-a-la-pate",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/serie/animation/hello-kitty-super-style-m265186108/hello-kitty-super-style-c320870028/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre la main à la pâte",
+        "evidenceKind": "published_usage",
+        "expression": "mettre la main à la pâte",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -150,6 +178,16 @@
         "citation": "— (journal 20 minutes, édition Paris-IDF, 30 août 2023, page 10)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_les_bouch%C3%A9es_doubles",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre les bouchées doubles",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_les_bouchées_doubles&oldid=39925106",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -187,6 +225,16 @@
         "citation": "— (Nele Neuhaus, Flétrissure, Actes Sud, 2011)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/marcher_sur_des_%C5%93ufs",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "marcher sur des œufs",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=marcher_sur_des_œufs&oldid=39987498",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -224,6 +272,16 @@
         "citation": "— (Michel De Coster, Bernadette Bawin-Legros & Marc Poncelet, Introduction à la sociologie, De Boeck Supérieur, 2006, page 165)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_tous_ses_%C5%93ufs_dans_le_m%C3%AAme_panier",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre tous ses œufs dans le même panier",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_tous_ses_œufs_dans_le_même_panier&oldid=39610136",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -261,6 +319,16 @@
         "citation": "— (Thora Van Male, Quand les cochons sauront voler... les poules auront des dents !, 2013)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/garder_une_poire_pour_la_soif",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "garder une poire pour la soif",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=poire_pour_la_soif&oldid=38094724",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -298,6 +366,16 @@
         "citation": "— (Leïla Slimani, Dans le jardin de l’ogre, Folio, 2020)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_son_grain_de_sel",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre son grain de sel",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_son_grain_de_sel&oldid=38093578",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -335,6 +413,15 @@
         "citation": "— (Panait Istrati, Le Bureau de placement, 1933 chap. 2)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/langue-sauce-piquante/2021/11/08/ali-el-haddad-asufi-ou-la-gourmandise/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre du beurre dans les épinards",
+        "evidenceKind": "published_usage",
+        "expression": "mettre du beurre dans les épinards",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -372,6 +459,16 @@
         "citation": "— (Jean-Claude Zylberstein, Souvenirs d’un chasseur de trésors littéraires, Allary Éditions, 2018, page 150)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_bouillir_la_marmite",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire bouillir la marmite",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_bouillir_la_marmite&oldid=39793298",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -409,6 +506,16 @@
         "citation": "— (Harper Lee, Ne tirez pas sur l’oiseau moqueur, Éditions de Fallois, 2005)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/gagner_sa_cro%C3%BBte",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "gagner sa croûte",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=gagner_sa_croûte&oldid=39860623",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -446,6 +553,16 @@
         "citation": null,
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_les_petits_plats_dans_les_grands",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre les petits plats dans les grands",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_les_petits_plats_dans_les_grands&oldid=38093555",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -483,6 +600,16 @@
         "citation": "— (Pierre Lemaitre, Le Silence et la Colère, Calmann-Lévy, 2023)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_chou_blanc",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 140; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire chou blanc",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_chou_blanc&oldid=39587875",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -528,6 +655,16 @@
         "citation": "— (Le Monde, 3 septembre 2012)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/avoir_le_beurre_et_l'argent_du_beurre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2014.",
+        "evidenceKind": "dated_quotation",
+        "expression": "avoir le beurre et l'argent du beurre",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=avoir_le_beurre_et_l’argent_du_beurre&oldid=39909257",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -565,6 +702,16 @@
         "citation": "— (Raymond Chandler, Le rideau, traduction de Patrick Dusoulier, dans \"Les ennuis, c’est mon problème\", 2009)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_p%C3%A9trin",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être dans le pétrin",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=être_dans_le_pétrin&oldid=39902031",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -604,6 +751,16 @@
         "citation": "— (Richard Martineau, Quêter des vaccins à l’Inde, Le Journal de Québec, 17 février 2021)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/boire_la_tasse",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 137; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "boire la tasse",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=boire_la_tasse&oldid=38762251",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -643,6 +800,16 @@
         "citation": "— (Richard Boutin, Le club Guerriers dépose une plainte pour discrimination, Le Journal de Québec, 20 avril 2021)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/manger_son_pain_noir",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "manger son pain noir",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=manger_son_pain_noir&oldid=39339811",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -683,6 +850,15 @@
         "url": "https://www.larousse.fr/dictionnaires/college/artichaut/2619",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://hitwest.ouest-france.fr/pourquoi-dit-on-avoir-un-c-ur-d-artichaut",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir un cœur d'artichaut",
+        "evidenceKind": "published_usage",
+        "expression": "avoir un cœur d'artichaut",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -717,6 +893,15 @@
         "url": "https://www.expressio.fr/expressions/mettre-l-eau-a-la-bouche-avoir-l-eau-a-la-bouche",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/m-actu/article/2014/03/14/l-eau-a-la-bouche_4382474_4497186.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir l'eau à la bouche",
+        "evidenceKind": "published_usage",
+        "expression": "avoir l'eau à la bouche",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -757,6 +942,16 @@
         "url": "https://dictionnaire.lerobert.com/definition/faire-tache",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_tache_d%E2%80%99huile",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire tache d'huile",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_tache_d’huile&oldid=39300328",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -785,6 +980,16 @@
         "url": "https://fr.wiktionary.org/wiki/faire_son_beurre",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_son_beurre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire son beurre",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_son_beurre&oldid=39315885",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -813,6 +1018,16 @@
         "url": "https://fr.wiktionary.org/wiki/boire_du_petit-lait",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/boire_du_petit-lait",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2001.",
+        "evidenceKind": "dated_quotation",
+        "expression": "boire du petit-lait",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=boire_du_petit-lait&oldid=39869502",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -841,6 +1056,15 @@
         "url": "https://fr.wiktionary.org/wiki/courir_sur_l%E2%80%99haricot",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://toutelatele.ouest-france.fr/l-heure-des-pros-elisabeth-levy-pete-les-plombs-pascal-praud-s-en-prend-a-un-presentateur-de-cnews-169138",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de courir sur le haricot",
+        "evidenceKind": "published_usage",
+        "expression": "courir sur le haricot",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -869,6 +1093,16 @@
         "url": "https://fr.wiktionary.org/wiki/donner_du_grain_%C3%A0_moudre",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/donner_du_grain_%C3%A0_moudre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "donner du grain à moudre",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=donner_du_grain_à_moudre&oldid=38262246",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -897,6 +1131,15 @@
         "url": "https://www.larousse.fr/dictionnaires/francais/%C3%A9touffer/31515",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.zonebourse.com/actualite-bourse/la-bce-releve-ses-taux-pour-etouffer-dans-l-oeuf-l-inflation-ce7f5cd8db8dff24",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Dépêche Reuters du 11 juin 2026; variante typographique oeuf, arrêter un phénomène dès son début.",
+        "evidenceKind": "published_usage",
+        "expression": "étouffer dans l'œuf",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -925,6 +1168,16 @@
         "url": "https://fr.wiktionary.org/wiki/ramener_sa_fraise",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/ramener_sa_fraise",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "ramener sa fraise",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=ramener_sa_fraise&oldid=39534746",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -953,6 +1206,16 @@
         "url": "https://fr.wiktionary.org/wiki/rouler_dans_la_farine",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rouler_dans_la_farine",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2001.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rouler dans la farine",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rouler_dans_la_farine&oldid=38477356",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -981,6 +1244,15 @@
         "url": "https://www.larousse.fr/dictionnaires/college/noyer/28016",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/documentaire/telerealite/la-petite-famille-johnston-m124655604/?int_campaign=laplace&int_content=bloc-services&int_medium=lien",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de se noyer dans un verre d'eau",
+        "evidenceKind": "published_usage",
+        "expression": "se noyer dans un verre d'eau",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1009,6 +1281,16 @@
         "url": "https://fr.wiktionary.org/wiki/tenir_la_drag%C3%A9e_haute",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_la_drag%C3%A9e_haute",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tenir la dragée haute",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tenir_la_dragée_haute&oldid=39665610",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1037,6 +1319,16 @@
         "url": "https://fr.wiktionary.org/wiki/tirer_les_marrons_du_feu",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_les_marrons_du_feu",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 152; année mentionnée 2003.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer les marrons du feu",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tirer_les_marrons_du_feu&oldid=39591674",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1067,6 +1359,16 @@
         "checkedOn": "2026-11-14",
         "verification": "usage_search_excerpt",
         "locator": "traîner des casseroles"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tra%C3%AEner_des_casseroles",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "traîner des casseroles",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=traîner_des_casseroles&oldid=39364530",
+        "selectedUsageWitness": true
       }
     ]
   }

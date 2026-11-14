@@ -34,6 +34,16 @@
         "citation": "— (Jean-Christophe Saladin, Mieux parler en public, Vuibert, Paris, 2004)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_l%E2%80%99%C3%A9ponge",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jeter l'éponge",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=jeter_l’éponge&oldid=39930156",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -71,6 +81,16 @@
         "citation": "— (Anne Barrère, Les lycéens au travail: tâches objectives, épreuves subjectives, Presses universitaires de France, 1997, page 127)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/peser_le_pour_et_le_contre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "peser le pour et le contre",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=peser_le_pour_et_le_contre&oldid=39055736",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -110,6 +130,16 @@
         "citation": "— (Philippe Morvan, Ours, Calmann-Lévy, 2018)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_du_recul",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre du recul",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_du_recul&oldid=38980016",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -149,6 +179,16 @@
         "citation": "— (Cédric Pietralunga et Virginie Malingre, Macron tente de renouer le fil avec les Français, Le Monde. Mis en ligne le 17 octobre 2018)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_de_la_hauteur",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre de la hauteur",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_de_la_hauteur&oldid=38094961",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -182,6 +222,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/Ribery-et-gourcuff-se-sont-expliques/186923",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre les choses à plat",
+        "evidenceKind": "published_usage",
+        "expression": "mettre les choses à plat",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -219,6 +268,16 @@
         "citation": "— (Philippe Morvan, Ours, Calmann-Lévy, 2018)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/changer_son_fusil_d'%C3%A9paule",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2016.",
+        "evidenceKind": "dated_quotation",
+        "expression": "changer son fusil d'épaule",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=changer_son_fusil_d’épaule&oldid=38426309",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -256,6 +315,16 @@
         "citation": "— (Harlan Coben, À quelques secondes près, Pocket, 2012)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_machine_arri%C3%A8re",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire machine arrière",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_machine_arrière&oldid=38267948",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -289,6 +358,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lemonde.fr/international/article/2025/05/30/en-cote-d-ivoire-la-dangereux-succes-de-la-boisson-alcoolisee-vody_6609179_3210.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre un frein",
+        "evidenceKind": "published_usage",
+        "expression": "mettre un frein",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "mettre un frein à quelque chose"
@@ -336,6 +414,16 @@
         "citation": "— (Nicolas Mathieu, Connemara, Actes Sud, 2022)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sauter_le_pas",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2003.",
+        "evidenceKind": "dated_quotation",
+        "expression": "sauter le pas",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=sauter_le_pas&oldid=38096002",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -375,6 +463,16 @@
         "citation": "— (Frédéric Lemaître, Le rêve américain des jeunes Chinois, Le Monde. Mis en ligne le 23 septembre 2019)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/grand_saut",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 127; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire le grand saut",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=grand_saut&oldid=34784778",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -420,6 +518,16 @@
         "citation": "— (journal Sud-Ouest, édition Charente-Maritime / Charente, 20 août 2022, page 36)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/br%C3%BBler_les_%C3%A9tapes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "brûler les étapes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=brûler_les_étapes&oldid=38089324",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -453,6 +561,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/Mercato-le-barca-veut-attirer-eli-junior-kroupi-en-plan-b-du-dossier-julian-alvarez/1707597",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de assurer ses arrières",
+        "evidenceKind": "published_usage",
+        "expression": "assurer ses arrières",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -490,6 +607,16 @@
         "citation": "— (journal 20 minutes, édition Paris-IDF, 9 juin 2023, page 12)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/t%C3%A2ter_le_terrain",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2023.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tâter le terrain",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tâter_le_terrain&oldid=39779399",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -535,6 +662,15 @@
         "citation": "— (Lucien Descaves, L’Hirondelle sous le toit, 1924)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.togogoal.tg/journee-de-larbre-la-federation-togolaise-dathletisme-fait-dune-pierre-deux-coups/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article du 2 juin 2024; plantation et sensibilisation des athlètes, deux objectifs atteints ensemble.",
+        "evidenceKind": "published_usage",
+        "expression": "faire d'une pierre deux coups",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -563,6 +699,15 @@
         "url": "https://www.larousse.fr/dictionnaires/francais-arabe/impasse/20285",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Patinage-artistique/Actualites/Alysa-liu-double-medaillee-d-or-olympique-de-patinage-artistique-fait-l-impasse-sur-la-saison/1713625",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire l'impasse",
+        "evidenceKind": "published_usage",
+        "expression": "faire l'impasse",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -591,6 +736,16 @@
         "url": "https://fr.wiktionary.org/wiki/mettre_au_pied_du_mur",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mettre_au_pied_du_mur",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2020.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mettre au pied du mur",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mettre_au_pied_du_mur&oldid=39828575",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -619,6 +774,15 @@
         "url": "https://fr.wiktionary.org/wiki/br%C3%BBler_ses_vaisseaux",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/langue-sauce-piquante/2023/04/05/macron-le-nouveau-pyrrhus/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de brûler ses vaisseaux",
+        "evidenceKind": "published_usage",
+        "expression": "brûler ses vaisseaux",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -647,6 +811,15 @@
         "url": "https://fr.wiktionary.org/wiki/donner_carte_blanche",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/international/video/2023/08/09/en-tunisie-le-discours-de-kais-saied-a-donne-carte-blanche-a-la-violence-contre-les-migrants_6184896_3210.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de donner carte blanche",
+        "evidenceKind": "published_usage",
+        "expression": "donner carte blanche",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -675,6 +848,16 @@
         "url": "https://www.larousse.fr/dictionnaires/francais/blanc-seing/9755",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/blanc-seing",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 146; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "donner un blanc-seing",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=blanc-seing&oldid=39256814",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -703,6 +886,15 @@
         "url": "https://fr.wiktionary.org/wiki/jouer_sa_derni%C3%A8re_carte",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/archives-du-monde/03-07-2002/2/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de jouer sa dernière carte",
+        "evidenceKind": "published_usage",
+        "expression": "jouer sa dernière carte",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -731,6 +923,16 @@
         "url": "https://fr.wiktionary.org/wiki/jouer_serr%C3%A9",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_serr%C3%A9",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 125; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jouer serré",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=jouer_serré&oldid=38785249",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -761,6 +963,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "jouer sur deux tableaux"
+      },
+      {
+        "url": "https://programmetv.ouest-france.fr/documentaire/telerealite/caught-in-the-act-infidelite-m262432905/s03-il-a-meme-pas-de-voiture-c378155915/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de jouer sur deux tableaux",
+        "evidenceKind": "published_usage",
+        "expression": "jouer sur deux tableaux",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -789,6 +1000,16 @@
         "url": "https://fr.wiktionary.org/wiki/l%C3%A2cher_du_lest",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/l%C3%A2cher_du_lest",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "lâcher du lest",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=lâcher_du_lest&oldid=39221634",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -819,6 +1040,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "locator": "laisser courir"
+      },
+      {
+        "url": "https://france3-regions.blog.franceinfo.fr/midi-pyrenees-politiques-france3/2015/11/05/decryptage-affaire-reynie-un-ancien-prefet-explique-le-dessous-des-cartes.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de laisser courir",
+        "evidenceKind": "published_usage",
+        "expression": "laisser courir",
+        "selectedUsageWitness": true
       }
     ],
     "selectionNoteTr": "Uygulamaya aktarılmadan önce sözlük biçimi veya ikinci kaynak doğrulaması üzerinden yeniden seçildi."
@@ -848,6 +1078,16 @@
         "url": "https://fr.wiktionary.org/wiki/monter_au_cr%C3%A9neau",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/monter_au_cr%C3%A9neau",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "monter au créneau",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=monter_au_créneau&oldid=38093645",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -876,6 +1116,16 @@
         "url": "https://fr.wiktionary.org/wiki/rendre_les_armes",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rendre_les_armes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2026.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rendre les armes",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rendre_les_armes&oldid=39385377",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -904,6 +1154,16 @@
         "url": "https://fr.wiktionary.org/wiki/renverser_la_vapeur",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/renverser_la_vapeur",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "renverser la vapeur",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=renverser_la_vapeur&oldid=38095644",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -932,6 +1192,16 @@
         "url": "https://fr.wiktionary.org/wiki/se_tenir_%C3%A0_carreau",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_tenir_%C3%A0_carreau",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se tenir à carreau",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_tenir_à_carreau&oldid=39755092",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -960,6 +1230,16 @@
         "url": "https://dictionnaire.lerobert.com/definition/tenir-cap",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_le_cap",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tenir le cap",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tenir_le_cap&oldid=39944979",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -988,6 +1268,16 @@
         "url": "https://fr.wiktionary.org/wiki/tirer_un_trait",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_un_trait",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer un trait",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tirer_un_trait&oldid=39386067",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1016,6 +1306,16 @@
         "url": "https://fr.wiktionary.org/wiki/tourner_la_page",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tourner_la_page",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 138; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tourner la page",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tourner_la_page&oldid=39753548",
+        "selectedUsageWitness": true
       }
     ]
   }

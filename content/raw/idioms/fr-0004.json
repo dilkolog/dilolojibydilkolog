@@ -27,6 +27,16 @@
         "url": "https://www.expressio.fr/expressions/jeter-l-argent-par-les-fenetres",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jeter_l%E2%80%99argent_par_les_fen%C3%AAtres",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jeter l'argent par les fenêtres",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=jeter_l’argent_par_les_fenêtres&oldid=39972484",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -64,6 +74,16 @@
         "citation": "— (Francis Halin, Ça joue cochon dans l’industrie du porc, Le journal de Montréal, 15 novembre 2020)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rouler_sur_l'or",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rouler sur l'or",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rouler_sur_l’or&oldid=38607766",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -95,6 +115,16 @@
         "url": "https://www.expressio.fr/expressions/plein-aux-as",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/plein_aux_as",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 139; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être plein aux as",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=plein_aux_as&oldid=37008167",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -132,6 +162,16 @@
         "citation": "— (Nathalie Colin-Osterlé, Députée européenne, Centriste, Conseil économique, social et environnemental, «Nous avons un important travail à faire en matière d’éducation, de sensibilisation de notre jeunesse. », Droits des femmes : Quels enjeux pour les élections européennes 2024 ? page 36, 10 octobre 2",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_rouge",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2000.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être dans le rouge",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=être_dans_le_rouge&oldid=39801900",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -169,6 +209,16 @@
         "citation": "— (Big Browser, L’Indonésie et la Thaïlande ne veulent plus des « begpackers », Le Monde. Mis en ligne le 10 juillet 2019)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_sec",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 141; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être à sec",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=à_sec&oldid=39799394",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -206,6 +256,16 @@
         "citation": "— (Yan Lindingre, « L'Édito : Sea, Sex and Sun », dans Fluide glacial, n^{o} (numéro) 446 août 2013)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_le_diable_par_la_queue",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 141; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer le diable par la queue",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tirer_le_diable_par_la_queue&oldid=39811615",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -243,6 +303,15 @@
         "citation": "— (Henri Jeanson, Soixante-dix ans d'adolescence\", Stock, Le Livre de Poche, 1971, page 139)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/international/article/2026/11/11/espagne-une-greve-generale-sur-fond-de-crise-du-logement-et-de-colere-sur-le-pouvoir-d-achat_6809018_3210.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de joindre les deux bouts",
+        "evidenceKind": "published_usage",
+        "expression": "joindre les deux bouts",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -280,6 +349,16 @@
         "citation": "— (Thierry Desjardins, 【14†La ficelle est un peu grosse !†www.thierry-desjardins.fr】, 13.10.2010, <www.thierry-desjardins.fr>)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_serrer_la_ceinture",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se serrer la ceinture",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_serrer_la_ceinture&oldid=39755026",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -320,6 +399,15 @@
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt",
         "purpose": "meaning_and_expression"
+      },
+      {
+        "url": "https://www.ouest-france.fr/medias/ouest-france/courrier-des-lecteurs/archives/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir les poches percées",
+        "evidenceKind": "published_usage",
+        "expression": "avoir les poches percées",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -357,6 +445,15 @@
         "citation": "— (Jean-Claude Estampe, Le Peintre écarlate : roman noir, Éditions Publibook, 2007, page 150)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/archives/article/2004/09/21/la-preparation-du-budget-aura-fait-l-objet-d-une-intense-bataille-au-sein-du-gouvernement_379904_1819218.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire des économies de bouts de chandelle",
+        "evidenceKind": "published_usage",
+        "expression": "faire des économies de bouts de chandelle",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -388,6 +485,16 @@
         "url": "https://www.expressio.fr/expressions/payer-rubis-sur-l-ongle",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rubis_sur_l%E2%80%99ongle",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 138; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "payer rubis sur l'ongle",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rubis_sur_l’ongle&oldid=38487807",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -425,6 +532,15 @@
         "citation": "— (René Boylesve, La leçon d’amour dans un parc, Calmann-Lévy, 1920, collection Le Livre de Poche, page 104)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/economie/article/2026/01/19/liquidation-de-novasco-ex-ascometal-l-etat-enclenche-une-procedure-judiciaire-inedite_6663259_3234.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de payer les pots cassés",
+        "evidenceKind": "published_usage",
+        "expression": "payer les pots cassés",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -462,6 +578,16 @@
         "citation": "— (Stéphane Lauer, Plutôt que de « miracle » économique américain, ne vaut-il pas mieux parler de « mirage » ?, Le Monde. Mis en ligne le 13 mai 2019)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/en_%C3%AAtre_pour_ses_frais",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "en être pour ses frais",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=en_être_pour_ses_frais&oldid=39784005",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -499,6 +625,16 @@
         "citation": "— (Robert Jordan, Les Feux du ciel, traduit par Jean-Claude Mallé, Bragelonne, 2013, ISBN 978-2-35294-664-9)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_pour_argent_comptant",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre pour argent comptant",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_pour_argent_comptant&oldid=39237586",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "prendre quelque chose pour argent comptant"
@@ -528,6 +664,15 @@
         "url": "https://dictionnaire.lerobert.com/definition/partir",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/langue-sauce-piquante/2005/07/21/2005_07_une_maille_peut/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de avoir maille à partir",
+        "evidenceKind": "published_usage",
+        "expression": "avoir maille à partir",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -556,6 +701,16 @@
         "url": "https://fr.wiktionary.org/wiki/couper_les_vivres",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/couper_les_vivres",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2000.",
+        "evidenceKind": "dated_quotation",
+        "expression": "couper les vivres",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=couper_les_vivres&oldid=38089719",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -584,6 +739,16 @@
         "url": "https://fr.wiktionary.org/wiki/rendre_la_monnaie_de_sa_pi%C3%A8ce",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rendre_la_monnaie_de_sa_pi%C3%A8ce",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rendre la monnaie de sa pièce",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rendre_la_monnaie_de_sa_pièce&oldid=39702975",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -624,6 +789,16 @@
         "url": "https://usito.usherbrooke.ca/lexies/s%27en%20mettre%20plein%20les%20poches",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/s%E2%80%99en_mettre_plein_les_poches",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "s'en mettre plein les poches",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=s’en_mettre_plein_les_poches&oldid=39755285",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -652,6 +827,16 @@
         "url": "https://www.larousse.fr/dictionnaires/francais/pied/60776",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/vivre_sur_un_grand_pied",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 126; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "vivre sur un grand pied",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=vivre_sur_un_grand_pied&oldid=38824370",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -680,6 +865,15 @@
         "url": "https://www.larousse.fr/dictionnaires/francais/vivre/82325",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/economie/article/2007/10/06/le-couple-et-l-argent_963729_3234.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de vivre d'amour et d'eau fraîche",
+        "evidenceKind": "published_usage",
+        "expression": "vivre d'amour et d'eau fraîche",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -714,6 +908,16 @@
         "url": "https://sanction.usito.usherbrooke.ca/d%C3%A9finitions/crochet/lexies",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/vivre_aux_crochets_de",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "vivre aux crochets",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=vivre_aux_crochets_de&oldid=39869155",
+        "selectedUsageWitness": true
       }
     ]
   }

@@ -18,7 +18,7 @@ Kaynak yöntemleri: `dictionary_entry_opened`, `dictionary_search_excerpt`, `usa
 1. Değişen soruları ilgili `SORULAR.md` dosyasında cevap anahtarı görmeden çözün; sonra JSON ile karşılaştırın.
 2. 63 kararın her birini eski raporla ve gerçek ifadeyle eşleştirin; 22 gerekçede başka deyim adı geçtiği için yalnız gerekçe sözcüklerini izleyerek kayıt silmeyin.
 3. Uzun örnekler en çok 16 kelimeye indirildi; deyimin kesintisiz kullanımı, çeviri ve tek cevap yeniden incelensin.
-4. Sonraki aşamada 31’lik temalı parti düzeni, tüm kayıtlarda ikinci kaynak, CEFR dağılımı ve `docs/DEYIM-PAKETI.md` uygulama şeması tamamlanır. Mevcut editoryal JSON doğrudan uygulama verisi değildir.
+4. 500 kayıtlık uygulama taslağı, ikinci kaynaklar ve kullanım tanıkları tamamlandı; uygulama raporuna bakın. Sahibinin kararıyla eşit tema şartı yoktur. Bağımsız inceleme ve insan örneklemi bekler. Mevcut tarihsel editoryal JSON doğrudan uygulama verisi değildir.
 
 İspanyolca deyimler Antigravity’ye aittir; `icerik/deyimler-es` dalına yazmayın. Fransızca ve ardından İngilizce toplama Codex’tedir. Kullanıcı hazır yapmadıkça PR #773 taslak kalır.
 

@@ -33,6 +33,16 @@
         "citation": "— (Harlan Coben, Dans les bois, Belfond, 2008)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/mener_en_bateau",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2007.",
+        "evidenceKind": "dated_quotation",
+        "expression": "mener en bateau",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=mener_en_bateau&oldid=39228473",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "mener quelqu'un en bateau"
@@ -66,6 +76,15 @@
         "citation": "— (Daniel Boulanger, Le jardin d'Armide, 1969, réédition Le Livre de Poche, 1980, page 83)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.leprogres.fr/societe/2023/09/12/14-millions-d-euros-au-loto-tu-me-fais-marcher-ce-n-est-pas-possible",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Réplique rapportée le 12 septembre 2023; croire à une mauvaise blague.",
+        "evidenceKind": "published_usage",
+        "expression": "faire marcher",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "faire marcher quelqu'un"
@@ -104,6 +123,16 @@
         "citation": "— (Pierre Martin, Trump : patate chaude pour le Sénat américain, Le Journal de Québec, 26 janvier 2021) ...   * Somain (France) : écouter « se plier en quatre [Prononciation ?]",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_plier_en_quatre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se plier en quatre",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_plier_en_quatre&oldid=39756421",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -135,6 +164,16 @@
         "url": "https://www.expressio.fr/expressions/s-entendre-comme-larrons-en-foire",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/s%E2%80%99entendre_comme_larrons_en_foire",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "s'entendre comme larrons en foire",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=s’entendre_comme_larrons_en_foire&oldid=39755043",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -172,6 +211,16 @@
         "citation": "— (Pascale Le Garrec, Macron sur BFMTV. Les coulisses de l’interview de ce dimanche soir sur Ouest-France.fr, 15 avril 2018. Consulté le 16 avril 2018)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_sur_la_m%C3%AAme_longueur_d'onde",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2022.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être sur la même longueur d'onde",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=être_sur_la_même_longueur_d’onde&oldid=39792092",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -209,6 +258,16 @@
         "citation": "— (Laurent Scalese, Le Sang de la mariée, Éditions Belfond, 2006, ISBN 978-2714448866)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_de_la_pommade",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "passer de la pommade",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=passer_de_la_pommade&oldid=38636031",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "passer de la pommade à quelqu'un"
@@ -248,6 +307,15 @@
         "citation": "— (Fortuné du Boisgobey, Double-Blanc, tome 2, Paris : chez Plon & Nourrit, 1889, p. ...   * mettre sur un piédestal, piédestaliser, dépiédestaliser ...   * France (Vosges) : écouter « piédestal [Prononciation ?]",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/-ce-but-salvateur-l-a-mis-sur-un-piedestal-critique-pour-d-anciennes-declarations-issa-diop-a-definitivement-conquis-le-maroc-dans-cette-coupe-du-monde/1700784",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre sur un piédestal",
+        "evidenceKind": "published_usage",
+        "expression": "mettre sur un piédestal",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "mettre quelqu'un sur un piédestal"
@@ -286,6 +354,16 @@
         "citation": null,
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_faux_bond",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire faux bond",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_faux_bond&oldid=39445351",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "faire faux bond à quelqu'un"
@@ -326,6 +404,16 @@
         "citation": "— (Nicolas Mathieu, Leurs enfants après eux, Actes Sud, 2018)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/laisser_tomber",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 141; année mentionnée 2024.",
+        "evidenceKind": "dated_quotation",
+        "expression": "laisser tomber",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=laisser_tomber&oldid=39802763",
+        "selectedUsageWitness": true
       }
     ],
     "pat": "laisser tomber quelqu'un"
@@ -358,6 +446,16 @@
         "url": "https://www.expressio.fr/expressions/a-couteaux-tires",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%A0_couteaux_tir%C3%A9s",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2015.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être à couteaux tirés",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=à_couteaux_tirés&oldid=39728985",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -397,6 +495,15 @@
         "url": "https://www.expressio.fr/expressions/mettre-de-l-huile-dans-les-rouages",
         "verification": "dictionary_search_excerpt",
         "checkedOn": "2026-11-14"
+      },
+      {
+        "url": "https://www.lequipe.fr/Medias/Article/Apres-42-ans-a-suivre-le-foot-a-tf1-sylvaine-mignogna-livre-ses-souvenirs-je-ne-suis-jamais-entree-dans-un-vestiaire-c-etait-un-principe/1704497",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre de l'huile dans les rouages",
+        "evidenceKind": "published_usage",
+        "expression": "mettre de l'huile dans les rouages",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -434,6 +541,15 @@
         "citation": "— (Hélène Pelletier-Baillargeon, Olivar Asselin et son temps, 1996)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Natation/Actualites/Yannick-agnel-je-voulais-nager/715107",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de laver son linge sale en famille",
+        "evidenceKind": "published_usage",
+        "expression": "laver son linge sale en famille",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -473,6 +589,16 @@
         "citation": "— (L’Obs, lettre de réconciliation)",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/enterrer_la_hache_de_guerre",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 136; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "enterrer la hache de guerre",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=enterrer_la_hache_de_guerre&oldid=39820745",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -501,6 +627,15 @@
         "url": "https://fr.wiktionary.org/wiki/faire_cavalier_seul",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/economie/article/2024/09/13/intelligence-artificielle-openai-refuse-de-negocier-avec-les-syndicats-de-medias-francais-apig-et-sepm_6316785_3234.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire cavalier seul",
+        "evidenceKind": "published_usage",
+        "expression": "faire cavalier seul",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -535,6 +670,15 @@
         "url": "https://www.expressio.fr/expressions/faire-bande-a-part",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Tennis/Actualites/Edouard-roger-vasselin-et-nicolas-mahut-ne-seront-pas-associes-a-roland-garros/1468751",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de faire bande à part",
+        "evidenceKind": "published_usage",
+        "expression": "faire bande à part",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -563,6 +707,16 @@
         "url": "https://fr.wiktionary.org/wiki/faire_profil_bas",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/faire_profil_bas",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2008.",
+        "evidenceKind": "dated_quotation",
+        "expression": "faire profil bas",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=faire_profil_bas&oldid=38092052",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -591,6 +745,16 @@
         "url": "https://fr.wiktionary.org/wiki/prendre_des_gants",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/prendre_des_gants",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 133; année mentionnée 2010.",
+        "evidenceKind": "dated_quotation",
+        "expression": "prendre des gants",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=prendre_des_gants&oldid=38661836",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -619,6 +783,15 @@
         "url": "https://fr.wiktionary.org/wiki/mettre_dans_le_m%C3%AAme_sac",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/idees/article/2025/02/14/fracturer-la-gauche-la-strategie-perilleuse-de-jean-luc-melenchon_6546039_3232.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre dans le même sac",
+        "evidenceKind": "published_usage",
+        "expression": "mettre dans le même sac",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -647,6 +820,15 @@
         "url": "https://fr.wiktionary.org/wiki/mettre_en_bo%C3%AEte",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Gp-de-malaisie/",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de mettre en boîte",
+        "evidenceKind": "published_usage",
+        "expression": "mettre en boîte",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -675,6 +857,16 @@
         "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_m%C3%AAme_bateau",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_dans_le_m%C3%AAme_bateau",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être dans le même bateau",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=être_dans_le_même_bateau&oldid=34927714",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -703,6 +895,16 @@
         "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_log%C3%A9_%C3%A0_la_m%C3%AAme_enseigne",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/%C3%AAtre_log%C3%A9_%C3%A0_la_m%C3%AAme_enseigne",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "être logé à la même enseigne",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=être_logé_à_la_même_enseigne&oldid=39648238",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -731,6 +933,16 @@
         "url": "https://fr.wiktionary.org/wiki/chercher_des_noises",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/chercher_des_noises",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 134; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "chercher des noises",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=chercher_des_noises&oldid=38608918",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -759,6 +971,16 @@
         "url": "https://fr.wiktionary.org/wiki/couper_les_ponts",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/couper_les_ponts",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "couper les ponts",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=couper_les_ponts&oldid=39453710",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -787,6 +1009,16 @@
         "url": "https://fr.wiktionary.org/wiki/donner_le_change",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/donner_le_change",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2009.",
+        "evidenceKind": "dated_quotation",
+        "expression": "donner le change",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=donner_le_change&oldid=38274905",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -815,6 +1047,16 @@
         "url": "https://fr.wiktionary.org/wiki/filer_doux",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/filer_doux",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 132; année mentionnée 2013.",
+        "evidenceKind": "dated_quotation",
+        "expression": "filer doux",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=filer_doux&oldid=39523008",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -843,6 +1085,16 @@
         "url": "https://fr.wiktionary.org/wiki/jouer_franc-jeu",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/jouer_franc-jeu",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2001.",
+        "evidenceKind": "dated_quotation",
+        "expression": "jouer franc jeu",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=jouer_franc-jeu&oldid=38092839",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -877,6 +1129,16 @@
         "url": "https://fr.wiktionary.org/wiki/laisser_en_plan",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/laisser_en_plan",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "laisser en plan",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=laisser_en_plan&oldid=39698097",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -911,6 +1173,15 @@
         "url": "https://www.expressio.fr/expressions/passer-l-eponge",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Rugby/Article/Mathieu-cidre-entraineur-des-avants-de-l-usap-trait-d-union-d-une-saison-compliquee-rien-ne-s-est-passe-comme-prevu/1684465",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de passer l'éponge",
+        "evidenceKind": "published_usage",
+        "expression": "passer l'éponge",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -939,6 +1210,16 @@
         "url": "https://fr.wiktionary.org/wiki/passer_un_savon",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/passer_un_savon",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 139; année mentionnée 2005.",
+        "evidenceKind": "dated_quotation",
+        "expression": "passer un savon",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=passer_un_savon&oldid=39489501",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -967,6 +1248,16 @@
         "url": "https://fr.wiktionary.org/wiki/porter_le_chapeau",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/porter_le_chapeau",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 135; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "porter le chapeau",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=porter_le_chapeau&oldid=39661221",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -995,6 +1286,15 @@
         "url": "https://www.expressio.fr/expressions/pousser-le-bouchon-un-peu-loin",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Tennis/Article/Lucas-pouille-raconte-la-difficile-gestion-des-blessures-et-ce-qui-pousse-certains-joueurs-a-aller-trop-loin-tu-te-leves-le-matin-et-ta-vie-n-a-aucun-sens/1679436",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de pousser le bouchon trop loin",
+        "evidenceKind": "published_usage",
+        "expression": "pousser le bouchon trop loin",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1025,6 +1325,16 @@
         "checkedOn": "2026-11-14",
         "verification": "usage_search_excerpt",
         "locator": "quitter le navire"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/quitter_le_navire",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 127; année mentionnée 2014.",
+        "evidenceKind": "dated_quotation",
+        "expression": "quitter le navire",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=quitter_le_navire&oldid=38095369",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1053,6 +1363,16 @@
         "url": "https://fr.wiktionary.org/wiki/rentrer_dans_le_rang",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/rentrer_dans_le_rang",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "rentrer dans le rang",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=rentrer_dans_le_rang&oldid=39320180",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1081,6 +1401,16 @@
         "url": "https://fr.wiktionary.org/wiki/retourner_sa_veste",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/retourner_sa_veste",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 130; année mentionnée 2012.",
+        "evidenceKind": "dated_quotation",
+        "expression": "retourner sa veste",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=retourner_sa_veste&oldid=39755578",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1109,6 +1439,16 @@
         "url": "https://fr.wiktionary.org/wiki/se_faire_mousser",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_faire_mousser",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 128; année mentionnée 2021.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se faire mousser",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_faire_mousser&oldid=39254691",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1137,6 +1477,16 @@
         "url": "https://fr.wiktionary.org/wiki/se_mettre_sur_son_trente-et-un",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/se_mettre_sur_son_trente-et-un",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 142; année mentionnée 2019.",
+        "evidenceKind": "dated_quotation",
+        "expression": "se mettre sur son trente-et-un",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=se_mettre_sur_son_trente-et-un&oldid=39937021",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1165,6 +1515,16 @@
         "url": "https://fr.wiktionary.org/wiki/sortir_le_grand_jeu",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/sortir_le_grand_jeu",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2006.",
+        "evidenceKind": "dated_quotation",
+        "expression": "sortir le grand jeu",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=sortir_le_grand_jeu&oldid=38096806",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1193,6 +1553,15 @@
         "url": "https://fr.wiktionary.org/wiki/tenir_la_chandelle",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lemonde.fr/politique/article/2024/10/09/le-gouvernement-barnier-survit-a-une-premiere-motion-de-censure-grace-a-l-extreme-droite_6347032_823448.html",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de tenir la chandelle",
+        "evidenceKind": "published_usage",
+        "expression": "tenir la chandelle",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1221,6 +1590,16 @@
         "url": "https://fr.wiktionary.org/wiki/tenir_le_haut_du_pav%C3%A9",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tenir_le_haut_du_pav%C3%A9",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 131; année mentionnée 2018.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tenir le haut du pavé",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tenir_le_haut_du_pavé&oldid=39754822",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1249,6 +1628,16 @@
         "url": "https://fr.wiktionary.org/wiki/tirer_le_portrait",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://fr.wiktionary.org/wiki/tirer_le_portrait",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_page_opened",
+        "locator": "Français > citation attribuée, ligne 129; année mentionnée 2011.",
+        "evidenceKind": "dated_quotation",
+        "expression": "tirer le portrait",
+        "revisionUrl": "https://fr.wiktionary.org/w/index.php?title=tirer_le_portrait&oldid=39811604",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1277,6 +1666,15 @@
         "url": "https://fr.wiktionary.org/wiki/tirer_son_chapeau",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.letemps.ch/suisse/jacques-bourgeois-quitte-direction-lusp-tire-chapeau-aux-familles-paysannes",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de tirer son chapeau",
+        "evidenceKind": "published_usage",
+        "expression": "tirer son chapeau",
+        "selectedUsageWitness": true
       }
     ]
   },
@@ -1305,6 +1703,15 @@
         "url": "https://fr.wiktionary.org/wiki/trouver_chaussure_%C3%A0_son_pied",
         "checkedOn": "2026-11-14",
         "verification": "dictionary_search_excerpt"
+      },
+      {
+        "url": "https://www.lequipe.fr/Football/Actualites/L-fournier-a-creteil/38340",
+        "checkedOn": "2026-11-14",
+        "verification": "usage_search_excerpt",
+        "locator": "Article publié : usage de trouver chaussure à son pied",
+        "evidenceKind": "published_usage",
+        "expression": "trouver chaussure à son pied",
+        "selectedUsageWitness": true
       }
     ]
   }
