@@ -47,7 +47,7 @@ describe('PTE-style on the exams screen', () => {
     expect(button('Alıştırma').getAttribute('aria-pressed')).toBe('true')
     expect(cards()).toHaveLength(5)
     for (const name of ['Dikte', 'Cümle tekrarı', 'Sesli okuma', 'Boşluk doldurma', 'Kısa soru']) expect(container.textContent).toContain(name)
-    expect(container.textContent).toContain('0 / 5 öğe yapıldı')
+    expect(container.textContent).toContain(`0 / ${realPack.wfd.length} öğe yapıldı`)
     expect(container.textContent).toContain('Pearson ile bir bağlantısı yoktur')
     expect(container.textContent).not.toContain('A notice')
     // The exam mode is a choice, kept.

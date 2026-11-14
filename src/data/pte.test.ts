@@ -1,19 +1,24 @@
+import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { blankMarks, blankParts, PTE_RULES, PTE_TASKS, pteMixWarnings, pteProblems, pteWords, type PteFib } from './pte'
 import pack from './pte/en.json'
 import { loadPte } from './ptePack'
 
-// A sound paragraph (the placeholder pack's first) to break one thing at a time.
+// A sound paragraph (the pack's first) to break one thing at a time.
 const fib = (extra: Partial<PteFib> = {}): PteFib => ({ ...(pack.fib[0] as PteFib), id: 'fib-x', ...extra })
 const blanks = () => fib().blanks
 const withBlank = (k: number, b: Partial<PteFib['blanks'][number]>) => fib({ blanks: blanks().map((x, i) => (i === k ? { ...x, ...b } : x)) })
 
 describe('the PTE pack in the app', () => {
-  it('passes the check and the brief’s mix, has every task and says it is a placeholder', async () => {
+  it('passes the check and the brief’s mix, has every task, and is what content/raw/pte builds to', async () => {
     expect(pteProblems(pack)).toEqual([])
     expect(pteMixWarnings(pack)).toEqual([])
-    for (const task of PTE_TASKS) expect(pack[task].length).toBeGreaterThan(0)
-    expect(pack.placeholder).toMatch(/Yer tutucu/)
+    expect((pack as { placeholder?: string }).placeholder).toBeUndefined()
+    // Built from the raw content (node scripts/build-pte.mjs): the same items, in the same order.
+    for (const task of PTE_TASKS) {
+      const raw = JSON.parse(readFileSync(`content/raw/pte/${task}.json`, 'utf8')) as { id: string }[]
+      expect(pack[task].map((i) => i.id), task).toEqual(raw.map((i) => i.id))
+    }
     const loaded = await loadPte('en')
     expect(loaded?.wfd.length).toBe(pack.wfd.length)
     expect(await loadPte('fr')).toBeNull()
@@ -37,7 +42,7 @@ describe('the PTE content check', () => {
     expect(pteProblems({ wfd: [short] })).toEqual([`wfd[0] w: 2 kelime; ${min}–${max} olmalı`])
     expect(pteProblems({ rs: [{ id: 'r', text: Array(40).fill('word').join(' '), level: 'A2', tr: 'x' }] })[0]).toContain('40 kelime')
     // A paragraph is short (60–90) or long (120–180): 100 words is neither.
-    expect(pteProblems({ fib: [fib({ text: `${fib().text} ${Array(31).fill('word').join(' ')}` })] })).toEqual(['fib[0] fib-x: 100 kelime; 60–90 ya da 120–180 olmalı'])
+    expect(pteProblems({ fib: [fib({ text: `${fib().text} ${Array(100 - pteWords(fib().text)).fill('word').join(' ')}` })] })).toEqual(['fib[0] fib-x: 100 kelime; 60–90 ya da 120–180 olmalı'])
   })
 
   it('blank marks match the blanks one to one and in order, four or five of them', () => {

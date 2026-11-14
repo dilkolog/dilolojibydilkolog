@@ -71,7 +71,17 @@ describe('building the PTE pack', () => {
     expect(said).toContain('cevabı seçeneklerin içinde değil')
   })
 
-  it('broken JSON and a list instead of an object are rejected', () => {
+  it('a task’s list in a file named after it is that task (how the content arrives)', () => {
+    const f = fixture()
+    f.write('fib.json', [fib('fib-1')])
+    f.write('wfd.json', [wfd('wfd-1')])
+    expect(buildPte(f)).toBe(true)
+    const pack = JSON.parse(f.built())
+    expect(pack.fib.map((i) => i.id)).toEqual(['fib-1'])
+    expect(pack.wfd.map((i) => i.id)).toEqual(['wfd-1'])
+  })
+
+  it('broken JSON and a list in a file not named after a task are rejected', () => {
     const f = fixture()
     f.write('a.json', '{ nope')
     f.write('b.json', [wfd('x')])

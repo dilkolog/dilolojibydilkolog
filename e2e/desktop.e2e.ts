@@ -483,22 +483,25 @@ test('PTE-style for English: a whole dictation round and a whole fill-in-the-bla
 
   // Dictation: each sentence written (the first one with a slip), the right sentence and its Turkish after each.
   await section.locator('.examtask-item', { hasText: 'Dikte' }).click()
-  for (const [i, item] of pte.wfd.entries()) {
-    await expect(page.locator('.pte-drill .game-top')).toContainText(`${i + 1} / ${pte.wfd.length}`)
-    await page.getByLabel('Duyduğun cümle').fill(i === 0 ? item.text.replace('early', 'erly') : item.text)
+  // A round is the first items never done, in the content's order.
+  const wfd = pte.wfd.slice(0, 5)
+  for (const [i, item] of wfd.entries()) {
+    await expect(page.locator('.pte-drill .game-top')).toContainText(`${i + 1} / ${wfd.length}`)
+    await page.getByLabel('Duyduğun cümle').fill(i === 0 ? item.text.split(' ').slice(0, -1).join(' ') : item.text)
     await page.getByRole('button', { name: 'Kontrol et' }).click()
     await expect(page.locator('.pte-feedback')).toContainText(item.tr)
     await expect(page.locator('.pte-feedback')).toContainText(i === 0 ? 'Doğruluk %' : 'Doğruluk %100')
-    await page.getByRole('button', { name: i + 1 < pte.wfd.length ? 'Devam' : 'Sonucu gör' }).click()
+    await page.getByRole('button', { name: i + 1 < wfd.length ? 'Devam' : 'Sonucu gör' }).click()
   }
-  await expect(page.getByRole('region', { name: 'Sonuç' })).toContainText('Dikte: %9')
+  await expect(page.getByRole('region', { name: 'Sonuç' })).toContainText(/Dikte: %9\d/)
   await page.getByRole('button', { name: 'Sınavlara dön' }).click()
-  await expect(section.locator('.examtask-item', { hasText: 'Dikte' })).toContainText(`${pte.wfd.length} / ${pte.wfd.length} öğe yapıldı · son tur %`)
+  await expect(section.locator('.examtask-item', { hasText: 'Dikte' })).toContainText(`${wfd.length} / ${pte.wfd.length} öğe yapıldı · son tur %9`)
 
   // Fill in the blanks: a choice in every blank from its list; all right but one blank of the last paragraph.
   await section.locator('.examtask-item', { hasText: 'Boşluk doldurma' }).click()
-  for (const [i, item] of pte.fib.entries()) {
-    const last = i === pte.fib.length - 1
+  const fib = pte.fib.slice(0, 5)
+  for (const [i, item] of fib.entries()) {
+    const last = i === fib.length - 1
     for (const [k, blank] of item.blanks.entries()) {
       await page.locator('.pte-blank').nth(k).locator('.select-trigger').click()
       const list = page.getByRole('listbox', { name: `${k + 1}. boşluk` })
@@ -511,9 +514,9 @@ test('PTE-style for English: a whole dictation round and a whole fill-in-the-bla
     await expect(page.locator('.pte-feedback')).toContainText(item.tr)
     await page.getByRole('button', { name: last ? 'Sonucu gör' : 'Devam' }).click()
   }
-  await expect(page.getByRole('region', { name: 'Sonuç' })).toContainText('Boşluk doldurma: %9')
+  await expect(page.getByRole('region', { name: 'Sonuç' })).toContainText(/Boşluk doldurma: %9\d/)
   await page.getByRole('button', { name: 'Sınavlara dön' }).click()
-  await expect(section.locator('.examtask-item', { hasText: 'Boşluk doldurma' })).toContainText(`${pte.fib.length} / ${pte.fib.length} öğe yapıldı`)
+  await expect(section.locator('.examtask-item', { hasText: 'Boşluk doldurma' })).toContainText(`${fib.length} / ${pte.fib.length} öğe yapıldı`)
   // Kept on the device: after a reload the cards still say so.
   await page.reload()
   await expect(page.locator('.pte-section .examtask-item', { hasText: 'Dikte' })).toContainText('son tur %')

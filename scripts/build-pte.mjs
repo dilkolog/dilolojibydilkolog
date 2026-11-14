@@ -1,6 +1,7 @@
 // Build the PTE-style practice pack (src/data/pte/en.json) from content/raw/pte/*.json.
-// Each raw file is an object with any of the task lists: { "wfd": [...], "rs": [...], "ra": [...], "fib": [...], "asq": [...] }
-// (the item shapes and the rules are in src/data/pte.ts). Files are read in name order; a rejected batch writes nothing.
+// A raw file is either one task's list, named after it (wfd.json, rs.json, ra.json, fib.json, asq.json: how the content
+// arrives), or an object with any of the task lists ({ "wfd": [...], "rs": [...], ... }). The item shapes and the rules
+// are in src/data/pte.ts. Files are read in name order; a rejected batch writes nothing.
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import { PTE_TASKS, pteMixWarnings, pteProblems } from '../src/data/pte.ts'
@@ -34,8 +35,11 @@ export function buildPte({ raw = RAW, out = OUT, log = console.log, error = cons
       failed = true
       continue
     }
+    // A list is the task its file is named after.
+    const named = file.replace(/\.json$/, '')
+    if (Array.isArray(batch) && PTE_TASKS.includes(named)) batch = { [named]: batch }
     if (!batch || typeof batch !== 'object' || Array.isArray(batch)) {
-      error(`${file}: görev listelerini taşıyan bir nesne olmalı ({ "wfd": [...], ... })`)
+      error(`${file}: bir görevin listesi (dosya adı görevin adı: wfd.json…) ya da görev listelerini taşıyan bir nesne olmalı ({ "wfd": [...], ... })`)
       failed = true
       continue
     }
